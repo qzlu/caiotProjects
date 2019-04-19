@@ -1,0 +1,156 @@
+<template>
+    <div class="login">
+        <div class="login-box">
+            <h2>欢迎登陆</h2>
+            <zw-card class="login-item" :width='456' :height='73' :cornerWidth='17' :cornerHeight='14' :borderWidth='1'>
+                <el-input v-model="userName" clearable  @focus="nameErr = ''"><i slot="prefix" class=" iconfont icon-mine"></i></el-input>
+            </zw-card>
+            <p>{{nameErr}}</p>
+            <zw-card class="login-item" :width='456' :height='73' :cornerWidth='17' :cornerHeight='14' :borderWidth='1'>
+                <el-input type="password" clearable  v-model="password" @focus="passwordErr = ''"><i slot="prefix" class="iconfont icon-Lock"></i></el-input>
+            </zw-card>
+            <p>{{passwordErr}}</p>
+            <div class="login-item" style="text-align:left">
+                <el-checkbox v-model="loginState">
+                    保持登陆
+                </el-checkbox>
+            </div>
+            <el-button class="login-item" type="primary" @click="login" >登　陆</el-button>
+        </div>
+    </div>
+</template>
+<script>
+import {zwCard} from '@/components/index.js';
+export default {
+    data(){
+        return{
+            userName:'',
+            password:'',
+            loginState:true,
+            nameErr:'',
+            passwordErr:''
+        }
+    },
+    components: {
+      zwCard
+    },
+    created(){
+        document.onkeydown = e =>
+         {
+          let event = window.event||e
+          let _key = event.keyCode;
+          if (_key === 13) {
+              this.login()
+          }
+        };
+    },
+    methods:{
+        login(){
+            if(this.userName == ''){
+                this.nameErr = '请输入用户名'
+            }
+            if(this.password == ''){
+                this.passwordErr = '请输入密码'
+            }
+            if(this.userName != ''&&this.password != ''){
+                this.socket({
+                    FAction:'Login',
+                    FUserName:this.userName,
+                    FPassword:this.password
+                },this.handleLogin)
+            }
+        },
+        handleLogin(data){
+            console.log(data);
+            if(data.Result == 103){
+                this.passwordErr = '用户名或密码错误'
+            }else if(data.Result == 200){
+                if(this.loginState){
+                    this.$store.state.token = data.FObject.FToken
+                    localStorage.setItem('FToken',data.FObject.FToken)
+                    localStorage.setItem('FUserType',data.FObject.FUserType)
+                    localStorage.setItem('FContacts',data.FObject.FContacts)
+                }else{
+                    this.$store.state.token = data.FObject.FToken
+                    localStorage.removeItem('FToken')
+                    localStorage.removeItem('FUserType')
+                    localStorage.removeItem('FContacts')
+                }
+                this.$router.push('/')
+            }else{
+                this.passwordErr = '未知错误，请联系管理员'
+            }
+        }
+    }
+}
+</script>
+<style lang="scss">
+$img-url:'../../assets/image/';
+.login{
+    width: 100%;
+    height: 100%;
+    background: url(#{$img-url}login/bg_1.png);
+    position: relative;
+    &-box{
+        width: 651px;
+        height: 498px;
+        position: absolute;
+        top: 313px;
+        right: 70px;
+        background: url(#{$img-url}login/bg_2.png);
+        h2{
+            margin: 29px 0;
+            font-size:31px;
+            font-family:MicrosoftYaHei;
+            font-weight:400;
+            color:rgba(55,155,226,1);
+        }
+        .login-item{
+            width: 456px;
+            margin: 0px auto;
+            .el-input{
+                &__inner{
+                    width: 456px;
+                    height: 73px;
+                    background: #1A3E7D!important;
+                    font-size: 26px;
+                    border:none;
+                    padding-left: 40px;
+                    color: white
+                }
+                i{
+                    line-height: 73px;
+                    font-size: 26px;
+                    color: #9AC8ED
+                }
+            }
+        }
+        .login-item.el-button{
+            height: 78px;
+            margin-top: 34px;
+            font-size: 28px;
+        }
+        p{
+            height: 34px;
+            line-height: 34px;
+            font-size: 12px;
+            color: #f56c6c;
+        }
+    }
+    input:-internal-autofill-previewed,
+    input:-internal-autofill-selected,{
+        -webkit-box-shadow: 0 0 0 1000px #1A3E7D inset !important;
+        background-color: #1A3E7D!important;
+        background-image: none;
+        color: white!important
+    }
+    input:-webkit-autofill, 
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active { 
+        -webkit-transition-delay: 99999s;
+        -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    }
+
+}
+</style>

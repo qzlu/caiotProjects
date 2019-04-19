@@ -1,0 +1,286 @@
+$img-url:'../../../assets/image/';
+.state{
+    width:72px;
+    height:124px;
+    line-height: 124px;
+    margin-left: 20px;
+    margin-top: 36px;
+    position: relative;
+    background:rgba(11,38,79,1);
+    border:1px solid rgba(1,150,7,1);
+    border-radius:9px;
+    box-shadow:  0 0 14px rgba(1,150,7,1);
+    .sx1{
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        transform-origin: 50% 50%;
+        clip: rect(0px,36px,36px,0px); /*这个clip属性用来绘制半圆，在clip的rect范围内的内容显示出来，使用clip属性，元素必须是absolute的 */
+        border-radius: 100px;
+        background:linear-gradient(180deg,#02CD35,#fff);
+        animation: an1 2s infinite linear;
+        -webkit-animation: an1 2s infinite linear;
+    }
+    span{
+        font-size:23px;
+        font-family:MicrosoftYaHei;
+        font-weight:400;
+        color:rgba(1,121,1,1);
+    }
+    @keyframes an1 {
+        from {transform:translate(-50%,-50%) rotate(0deg)}
+        to {transform:translate(-50%,-50%) rotate(360deg)}
+    }
+}
+.home{
+  width: 100%;
+  height: 100%;
+  background: url(#{$img-url}index/index.png);
+  color: #AEE4F0;
+  font-size: 14px;
+  h1{
+    height: 72px;
+    font-size:36px;
+    font-family:JZunYuan;
+    font-weight:bold;
+    color:rgba(199,254,255,1);
+    overflow: hidden;
+  }
+  .aside{
+    width:414px;
+    height:995px;
+    position: relative;
+    border-radius:11px 7px 7px 11px;
+    margin-top: 4px;
+    margin-left: 4px;
+  }
+  .left-content{
+    .list{
+      width: 100%;
+      height: 916px;
+      overflow: hidden;
+      ul.cards{
+        li{
+          h5{
+            height:21px;
+            background:linear-gradient(90deg,rgba(29,79,132,0.88),rgba(12,39,74,0.88),rgba(9,31,63,0.88));
+            border-radius:4px;
+            font-size:14px;
+            color: #9EE5F3;
+            line-height: 28px;
+            text-align: left;
+            text-indent: 24px;
+          }
+          .info{
+            height: 208px;
+            ul{
+                margin-left: 130px;
+                height: 100%;
+                li{
+                    width: 50%;
+                    height: 40px;
+                    margin-top: 25px;
+                    line-height: 40px;
+                    color: #A5EFFC;
+                    i{
+                        position: relative;
+                        top: 4px;
+                        font-size: 32px;
+                    }
+                    span{
+                        margin-left: 20px;
+                        font-size: 20px;
+                    }
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-content{
+      width: 545px;
+      .el-scrollbar{
+          height:460px;
+      }
+      ul.alarm-info{
+          width: 100%;
+          overflow: hidden;
+          >li{
+              width: 570px;
+              height: 266px;
+              background: url(#{$img-url}index/room-info-bg.png) -20px;
+              .room-title{
+                  position: relative;
+                  button{
+                    width:76px;
+                    height:41px;
+                    position: absolute;
+                    border-radius:4px;
+                    outline: none;
+                    color: white;
+                    cursor: pointer;
+                  }
+                  .fire-alarm{
+                      top: 10px;
+                      left: 50px;
+                      background:rgba(174,36,56,1);
+                      border:1px solid rgba(220, 52, 87, 1);
+                  }
+                  button:last-of-type{
+                      top: 10px;
+                      right: 70px;
+                      background:rgba(106,105,105,0.79);
+                      border:1px solid rgba(81, 80, 80, 1);
+                  }
+                  .room-number{
+                    width: 156px;
+                    height: 42px;
+                    line-height: 42px;
+                    margin: 10px auto;
+                    background: url(#{$img-url}index/room-number.png);
+                    background-size: 100% 100%;
+                  }
+              }
+              .room-info{
+                  p.name{
+                      font-size: 28px;
+                  }
+                  ul{
+                      width: 100%;
+                      li{
+                          width:50%;
+                          box-sizing: border-box;
+                          padding-left: 40px;
+                          text-align: left;
+                          font-size: 18px;
+                          .sex-icon{
+                              display: inline-block;
+                              width:28px;
+                              height:28px;
+                              line-height: 28px;
+                              background:linear-gradient(0deg,rgba(33,106,183,1),rgba(7,71,119,1));
+                              border-radius:50%;
+                              font-size: 14px;
+                              text-align: center;
+                          }
+                          p{
+                              margin: 0 10px;
+                              display: inline-block;
+                              line-height: 30px;
+                              vertical-align: middle;
+                          };
+                      }
+                  }
+              }
+          }
+      }
+  }
+  .center{
+    height: 995px;
+    margin-left:426px;
+    margin-right: 550px;
+    .header{
+        width: 907px;
+        height: 191px;
+        margin: 0 auto;
+        margin-top: 21px;
+        margin-bottom: 13px;
+        background: url(#{$img-url}index/nav_bg_1.png);
+        ul{
+            width: 50%;
+            height: 100%;
+            li{
+                width: 50%;
+                height: 50%;
+                line-height: 30px;
+                p:first-of-type{
+                    margin-top: 18px;
+                    i{
+                        font-size: 31px;
+                    }
+                }
+                p:last-of-type{
+                    font-size:24px;
+                    font-family:JHRuHeiZhong;
+                    font-weight:400;
+                    color:rgba(174,228,240,1);
+                }
+            }
+        }
+    }
+    .floors{
+        .floor-list{
+            height: 710px;
+            box-sizing: border-box;
+            ul{
+                padding-left: 34px;
+                margin-top: 20px;
+                transform: rotateZ(180deg) rotateY(180deg);
+                transform-origin: 50% 50%;
+                li{
+                    width:113px;
+                    height:53px;
+                    line-height: 53px;
+                    position: relative;
+                    margin-top: 14px;
+                    border:1px solid #9EE5F3;
+                    border-radius:11px 7px 7px 11px;
+                    .icon{
+                        width: 47px;
+                        height: 0;
+                        box-sizing: border-box;
+                        border-bottom: 4px solid #5FCDF2;
+                        border-left: 4px solid transparent;
+                        border-right: 4px solid transparent;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        margin-left: -24px;
+                    }
+                    p{
+                        font-size: 20px;
+                        transform: rotateX(180deg);
+                    }
+                }
+                li:nth-of-type(2n){
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+    .rooms{
+        margin-left: 10px;
+        ul{
+            li{
+                width: 50%;
+                height: 218px;
+                box-sizing: border-box;
+                border-bottom: 1px dotted #2B76B2;
+                .room-number{
+                    width: 107px;
+                    height: 29px;
+                    line-height: 29px;
+                    margin: 0 auto;
+                    background: url(#{$img-url}index/room-number.png);
+                }
+                .room-info{
+                    p{
+                        margin-left: 109px;
+                        font-size: 20px;
+                        line-height: 30px;
+                        position: relative;
+                        top: 64px;
+                    }
+                }
+            }
+            li:nth-of-type(2n+1){
+                border-right: 1px dotted #2B76B2;
+            }
+        }
+    }
+  }
+}
