@@ -5,7 +5,10 @@ let projectName = process.argv[2]
 
 // 下面两行代码 获取projectName后把保存起来，写入到project.js里，方便其它js文件里引入使用
 let fs = require('fs')
-fs.writeFileSync('./project.js', `exports.name = '${projectName}'`)
+if(projectName){
+    fs.writeFileSync('./project.js', `exports.name = '${projectName}'`)
+}
+
 
 // 下面两行代码继续执行命令（npm run build），执行默认命令开始进行打包
 let exec = require('child_process').execSync;

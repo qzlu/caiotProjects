@@ -64,12 +64,12 @@
                       <span>正常</span>
                     </div>
                     <ul>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
-                      <li class="l"><i class="el-icon-time"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-ZS-Thestairs"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-ZS-Overallnumberofpeople"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-ZS-Ownermanagement"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-ZS-Online"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-FireAlarm"></i><span>1300</span></li>
+                      <li class="l"><i class="iconfont icon-ZS-Off-lineequipment"></i><span>1300</span></li>
                     </ul>
                   </div>
               </li>
@@ -113,45 +113,45 @@
       <div class="header">
         <ul class="l">
           <li class="l">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+            <p><i class="iconfont icon-ZS-Ownermanagement"></i><span>总户数</span></p>
             <p>1366</p>
           </li>
           <li class="l">
-            <p><i class="el-icon-time"></i><span>总人数</span></p>
+            <p><i class="iconfont icon-ZS-Overallnumberofpeople"></i><span>总人数</span></p>
             <p>1366</p>
           </li>
           <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总栋数</span></p>
+            <p><i class="iconfont icon-ZS-Thetotalnumberofbuildings"></i><span>总栋数</span></p>
             <p>1366</p>
           </li>
           <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总单元数</span></p>
+            <p><i class="iconfont icon-ZS-Thetotalnumberofunits"></i><span>总单元数</span></p>
             <p>1366</p>
           </li>
-          <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总层数</span></p>
+          <li class="l" style="width:33.33%;text-align:left">
+            <p><i class="iconfont icon-ZS-Thestairs"></i><span>总层数</span></p>
             <p>1366</p>
           </li>
         </ul>
         <ul class="l">
           <li class="l">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+            <p><i class="iconfont icon-FireAlarm"></i><span>火警数</span></p>
             <p>1366</p>
           </li>
           <li class="l">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+            <p><i class="iconfont icon-ZS-Countoffbymistake"></i><span>误报数</span></p>
             <p>1366</p>
           </li>
           <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+            <p><i class="iconfont icon-SmokeSence"></i><span>总烟感数</span></p>
             <p>1366</p>
           </li>
           <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+            <p><i class="iconfont icon-ZS-Online"></i><span>在线烟感</span></p>
             <p>1366</p>
           </li>
-          <li class="l" style="width:33.33%">
-            <p><i class="el-icon-time"></i><span>总户数</span></p>
+          <li class="l" style="width:33.33%;text-align:left">
+            <p><i class="iconfont icon-ZS-Off-lineequipment"></i><span>离线烟感</span></p>
             <p>1366</p>
           </li>
         </ul>
@@ -212,8 +212,19 @@ export default {
     zwCard
   },
   created(){
-    if(this.$store.state.token == ''){
-      
+    this.queryData()
+  },
+  methods:{
+    handleData(data){
+      console.log(data);
+    },
+    queryData(){
+      this.socket({
+        FRouteName:'HomePage',
+        FAction:'QueryMonitorDataCount',
+        FlatsID:0,
+        FloorID:0
+      },this.handleData)
     }
   }
 }

@@ -46,9 +46,10 @@ export default {
             display: inline-block;
             width: 100%;
             height: 100%;
+            color: #FFFFFF
         }
         a.router-link-exact-active.router-link-active{
-            background:linear-gradient(90deg,rgba(255,228,0,0.2),rgba(255,228,0,0.48),rgba(255,228,0,0.2));
+            background:linear-gradient(to right,rgba(159,144,20,0.13),rgba(255,247,24,0.33),rgba(255,247,24,0.33),rgba(255,247,24,0.33),rgba(159,144,20,0.13));
         }
     }
 }

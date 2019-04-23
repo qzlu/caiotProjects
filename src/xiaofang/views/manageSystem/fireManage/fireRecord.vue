@@ -144,7 +144,7 @@ export default {
                 AlarmState:this.alarmState,
                 StartDateTime:this.time[0].toLocaleDateString() + ' 00:00',
                 EndDateTime:this.time[1].toLocaleDateString()+ ' 23:59',
-                PageIndex:1,
+                PageIndex:this.pageIndex,
                 PageSize:10
             },this.handleData)
         },

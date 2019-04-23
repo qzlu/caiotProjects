@@ -43,7 +43,9 @@ $img-url:'../../../assets/image/';
   font-size: 14px;
   h1{
     height: 72px;
+    padding-left: 75px;
     font-size:36px;
+    letter-spacing: 10px;
     font-family:JZunYuan;
     font-weight:bold;
     color:rgba(199,254,255,1);
@@ -127,14 +129,14 @@ $img-url:'../../../assets/image/';
                   .fire-alarm{
                       top: 10px;
                       left: 50px;
-                      background:rgba(174,36,56,1);
-                      border:1px solid rgba(220, 52, 87, 1);
+                      background:linear-gradient(34deg,#691220,#8b1b2c 14%,#b03446,#871a2b 84%,#691220);
+                      border:1px solid #dc3457;
                   }
                   button:last-of-type{
                       top: 10px;
                       right: 70px;
-                      background:rgba(106,105,105,0.79);
-                      border:1px solid rgba(81, 80, 80, 1);
+                      background:linear-gradient(24deg,#3d434d,#5b606a 14%,#82879a,#5b606a 84%,#3d434d);
+                      border:1px solid #847f80                      ;
                   }
                   .room-number{
                     width: 156px;
@@ -198,9 +200,13 @@ $img-url:'../../../assets/image/';
                 height: 50%;
                 line-height: 30px;
                 p:first-of-type{
-                    margin-top: 18px;
+                    margin-top: 10px;
                     i{
+                        position: relative;
+                        top: 4px;
                         font-size: 31px;
+                        opacity: 0.6;
+                        margin-right: 6px;
                     }
                 }
                 p:last-of-type{

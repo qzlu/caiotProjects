@@ -23,14 +23,14 @@
                 <el-form-item label="设备编号" prop='DeviceCode'>
                   <el-input v-model="device.DeviceCode" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="安装日期" >
+<!--                 <el-form-item label="安装日期" >
                   <el-date-picker
                     v-model="device.InstallationDate"
                     type="date"
                     placeholder="选择日期"
                   >
                   </el-date-picker>
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="addOrUpdate()">确 定</el-button>
@@ -56,7 +56,7 @@
                 >
                     <template slot-scope="scoped">
                         <div>
-                            <span @click="updated(scoped.row)" title="编辑"><i class="el-icon-document"></i></span>
+                            <span @click="updated(scoped.row)" title="编辑"><i class="iconfont icon-Edit"></i></span>
                             <span @click="deleteDevice(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
                         </div>
                     </template>
@@ -76,10 +76,6 @@ export default {
                 {
                     prop: 'RowNum',
                     label: '序号'
-                },
-                {
-                    prop: 'ShortName',
-                    label: '项目名称'
                 },
                 {
                     prop: 'DeviceName',
@@ -108,7 +104,7 @@ export default {
                 OtherSourceID:0,
                 FState:1,
                 FDescribe:'',
-                InstallationDate:new Date()
+                InstallationDate:''
             },
             device:{ //添加设备对象参数
                 ID:0,
@@ -120,7 +116,7 @@ export default {
                 OtherSourceID:0,
                 FState:1,
                 FDescribe:'',
-                InstallationDate:new Date()
+                InstallationDate:''
             },
             typeList:[{name:'烟感',DeviceTypeID:1}]
         }
@@ -192,7 +188,6 @@ export default {
          */
         addOrUpdate(){
             this.show = false
-            this.device.InstallationDate = new Date(this.device.InstallationDate).toLocaleDateString()
             this.socket({
                 FRouteName:'Device',
                 FAction:this.type?'UpdateUDevice':'AddUDevice',
@@ -200,17 +195,7 @@ export default {
             },this.afterAddOrUpdate)
         },
         async deleteDevice(row){
-            await new Promise((resolve,reject) => {
-                this.$confirm(`此操作将删除${row.DeviceName}, 是否继续?`, '提示', {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  type: 'warning'
-                }).then(() => {
-                    resolve()
-                }).catch(() => {
-                    reject()
-                });
-            })
+            await this.beforeDelete(row.DeviceName)
             this.socket({
                 FRouteName:'Device',
                 FAction:'DeleteUDevice',

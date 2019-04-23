@@ -26,8 +26,10 @@ $img-url:'../image/';
                 height: 45px;
                 box-sizing: border-box;
                 border: 2px solid #2C95C1;
-                background: linear-gradient(to bottom,#2C95C1,#187A98)
-                // line-height: 45px;
+                background: linear-gradient(left bottom,#1a6f8b,#1d3a62);
+                i{
+                    margin-right: 6px;
+                }
             }
             .el-select{
                 width: 100px;
@@ -82,6 +84,7 @@ $img-url:'../image/';
             height:53px;
             box-sizing: border-box;
             background:linear-gradient(90deg,rgba(16,83,137,1),rgba(9,47,82,1),rgba(9,47,82,1),rgba(5,32,60,1));
+            border-radius: 4px 4px 0 0;
             .el-dialog__title{
                 color: #AEE4F0;
             }
@@ -98,47 +101,56 @@ $img-url:'../image/';
                         width: 100px;
                         color: #9EE5F3;
                     }
-                    .el-input{
-                        width: 202px;
-                        &__inner{
-                            width:100%;
-                            height:42px;
-                            border:1px solid rgba(158, 229, 243, 0.27);
-                            border-radius:2px;
-                            background: #092D53;
-                            color: #9EE5F3;
-                        }
-                    }
-                    .block.el-input,.block.el-textarea{
-                        width: 514px;
-                    }
-                    .unit.el-input.el-input--suffix{
-                        .el-input__suffix{
-                            height: 40px;
-                            top: 1px;
-                            right: 1px;
-                            padding: 0 6px;
-                            background: #0f4277
-                        }
-                    }
-                    .block.el-textarea{
-                        height: 94px;
-                        .el-textarea__inner{
-                            height: 100%;
-                            background: #092D53;
-                            border:1px solid rgba(158, 229, 243, 0.27);
-                        }
-                    }
-                    .str-length{
-                        position: absolute;
-                        top: 60px;
-                        right: 30px;
-                    }
                 }
+            }
+            .label{
+                width: 100px;
+                padding: 0 12px 0 0;
+                display: inline-block;
+                color: #9EE5F3;
+                text-align: right;
+            }
+            .el-input{
+                width: 202px;
+                &__inner{
+                    width:100%;
+                    height:42px;
+                    border:1px solid rgba(158, 229, 243, 0.27);
+                    border-radius:2px;
+                    background: #092D53;
+                    color: #9EE5F3;
+                }
+            }
+            .block.el-input,.block.el-textarea{
+                width: 514px;
+            }
+            .unit.el-input.el-input--suffix{
+                .el-input__suffix{
+                    height: 40px;
+                    line-height: 40px;
+                    top: 1px;
+                    right: 1px;
+                    padding: 0 6px;
+                    background: #0f4277
+                }
+            }
+            .block.el-textarea{
+                height: 94px;
+                .el-textarea__inner{
+                    height: 100%;
+                    background: #092D53;
+                    border:1px solid rgba(158, 229, 243, 0.27);
+                }
+            }
+            .str-length{
+                position: absolute;
+                top: 60px;
+                right: 30px;
             }
         }
         &__footer{
             height: 74px;
+            border-radius:0 0 4px 4px ;
             background:linear-gradient(90deg,rgba(10,48,83,1),rgba(7,44,79,1),rgba(5,32,60,1));
             .el-button{
                 height: 38px;
@@ -149,6 +161,32 @@ $img-url:'../image/';
                 background: radial-gradient(#133E6B,#1E4F8F)
             }
         }
+    }
+}
+.el-message-box{
+    border:none!important;
+    border-color: transparent!important;
+    background: none!important;
+    padding-bottom:0!important
+}
+.el-message-box__header{
+    background:linear-gradient(90deg,rgba(16,83,137,1),rgba(9,47,82,1),rgba(9,47,82,1),rgba(5,32,60,1))!important;
+    .el-message-box__title{
+        color: #9EE5F3!important;
+    }
+}
+.el-message-box__content{
+    padding:20px!important;
+    color: #9EE5F3!important;
+    background:#05203C!important;
+}
+.el-message-box__btns{
+    padding:16px;
+    background:linear-gradient(90deg,rgba(10,48,83,1),rgba(7,44,79,1),rgba(5,32,60,1))!important;
+    .el-button{
+        color: #9EE5F3;
+        border:1px solid rgba(81, 128, 205, 0.82);
+        background: radial-gradient(#133E6B,#1E4F8F)
     }
 }
 //el-inupt

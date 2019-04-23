@@ -59,10 +59,10 @@ function sendSock(agentData,callback){
 //数据接收
 function websocketonmessage(e){ 
     let data = JSON.parse(e.data)
-    global_callback(data);
     if(data.Result !=200){
         messageErr(data.Result,data.Message)
     }
+    global_callback(data);
 }
  
 //数据发送
@@ -78,7 +78,5 @@ function websocketclose(e){
 function websocketOpen(e){
 	console.log("连接成功");
 }
- 
-initWebSocket();
- 
+initWebSocket()
 export{sendSock}

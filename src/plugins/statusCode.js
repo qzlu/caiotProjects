@@ -26,7 +26,14 @@ export function messageErr(x,message = ''){
           break;
         case 106:
           Message('上传文件保存失败');
-          break;  
+          break;
+        case 107:
+        Message('该账号已在别处登录');
+        localStorage.removeItem('FToken')
+        setTimeout(function(){
+             router.push('/login') //跳至登录页面
+        },1000)
+        break;  
       
     }
 

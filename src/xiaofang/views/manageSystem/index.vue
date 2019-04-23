@@ -1,9 +1,9 @@
 <template>
     <div class="system-manage">
         <ul class="nav">
-            <li><router-link to="/system/projectManage" > <i class="el-icon-setting"></i><span>项目管理</span></router-link></li>
-            <li><router-link to="/system/fireManage"> <i class="el-icon-setting"></i><span>火警管理</span></router-link></li>
-            <li><router-link to="/test"> <i class="el-icon-setting"></i><span>系统管理</span></router-link></li>
+            <li><router-link to="/system/projectManage" > <i class="iconfont icon-ZS-Projectmanagement"></i><span>项目管理</span></router-link></li>
+            <li><router-link to="/system/fireManage"> <i class="iconfont icon-ZS-Firemanagement"></i><span>火警管理</span></router-link></li>
+            <li><router-link to="/system/systemMange"> <i class="iconfont icon-ZS-Systemmanagement"></i><span>系统管理</span></router-link></li>
         </ul>
         <router-view>
         </router-view>
@@ -32,7 +32,7 @@ $img-url:'../../../assets/image/';
         li{
             width: 166px;
             height: 52px;
-            line-height: 52px;
+            line-height: 42px;
             display: inline-block;
             vertical-align: middle;
             font-size: 20px;
@@ -41,11 +41,18 @@ $img-url:'../../../assets/image/';
                 width: 100%;
                 height: 100%;
                 text-align: center;
+                border: 2px solid;
+                border-radius: 4px;
+                color: #FFFFFF
             }
             a.router-link-active{
-                background:linear-gradient(90deg,rgba(255,228,0,0.2),rgba(255,228,0,0.48),rgba(255,228,0,0.2));
+                border-color: #b6cd61;   
+                background:linear-gradient(to right,#5c5712,#9e942f,#5c5712)
             }
             i{
+                position: relative;
+                top: 4px;
+                font-size: 30px;
                 margin-right: 11px;
             }
         }

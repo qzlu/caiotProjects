@@ -4,6 +4,7 @@
  * @param {Number} pageIndex 页码
  */
 import {zwPagination} from '@/components/index'
+import { resolve } from 'url';
 export default{
     data() {
         return{
@@ -36,6 +37,19 @@ export default{
         handleCurrentChange(val){
             this.pageIndex = val
             this.queryData()
+        },
+        beforeDelete(text = ''){
+            return new Promise((resolve,reject) => {
+                this.$confirm(`此操作将删除${text}, 是否继续?`, '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                  }).then(() => {
+                      resolve()
+                  }).catch(() => {
+                      reject()
+                  });
+            })
         },
         /**
          * 导出功能 下载文件

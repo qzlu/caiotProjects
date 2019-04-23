@@ -60,6 +60,24 @@ export default new Router({
               component: () => import('./views/manageSystem/fireManage/fireRecord.vue')
             }
           ]
+        },
+        {
+          path:'systemMange',
+          name:'systemMange',
+          component: () => import('./views/manageSystem/system/index.vue'), //系统管理
+          redirect:'/system/systemMange/',
+          children:[
+            {
+              path:'/',
+              name:'user',
+              component: () => import('./views/manageSystem/system/user.vue')
+            },
+            {
+              path:'role',
+              name:'role',
+              component: () => import('./views/manageSystem/system/role.vue')
+            },
+          ]
         }
       ]
     },
