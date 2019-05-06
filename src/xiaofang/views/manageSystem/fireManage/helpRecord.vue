@@ -1,6 +1,5 @@
 <template>
     <div class="report">
-        <h3>火警列表</h3>
         <ul class="operation clearfix">
             <li class="l" ><el-button type='primary'><i class="iconfont icon-Export"></i></el-button></li>
             <li class="r">
@@ -20,23 +19,25 @@
                 </el-date-picker>
             </li>
             <li class="r">
-                <span class="label">火警状态</span>
-                <el-select v-model="alarmState" @change="queryData">
-                    <el-option :value="-1" label="全部"></el-option>
-                    <el-option :value="0" label="报警结束"></el-option>
-                    <el-option :value="1" label="报警中"></el-option>
+                <span class="label">求助方式</span>
+                <el-select v-model="state" @change="queryData">
+                    <el-option :value="0" label="全部"></el-option>
+                    <el-option :value="1" label="SOS求助"></el-option>
+                    <el-option :value="2" label="一般求助"></el-option>
                 </el-select>
             </li>
         </ul>
         <el-dialog :visible.sync="show" class="zw-dialog record" width="695px" append-to-body title="反馈记录">
             <ul class="recod-list clearfix">
-                <li class="l" :title="record.DoorplateAddress"><span class="label">报警位置</span>{{record.DoorplateAddress}}</li>
-                <li class="l"><span class="label">报警时间</span>{{record.AlarmDateTime}}</li>
-                <li class="l"><span class="label">业主</span>{{record.Owners}}</li>
-                <li class="l"><span class="label">确认时间</span>{{record.ConfirmDateTime}}</li>
+                <li class="l"><span class="label">求助类型</span>{{record.HelpLevel == 1?'SOS求助':'一般求助'}}</li>
+                <li class="l" :title="record.HelpAddress"><span class="label">求助位置</span>{{record.HelpAddress}}</li>
+                <li class="l"><span class="label">求助人</span>{{record.FCreatorUser}}</li>
+                <li class="l"><span class="label">联系方式</span>{{record.FTelephone}}</li>
                 <li class="l"><span class="label">处理人</span>{{record.LeaderUser}}</li>
-                <li class="l"><span class="label">解除时间</span>{{record.LiftedDateTime}}</li>
-                <li class="l descripe"><span class="label l">报警描述</span><p>{{record.AlarmContent}}</p></li>
+                 <li class="l"><span class="label">求助时间</span>{{record.FCreateTime}}</li>
+                <li class="l"><span class="label">确认时间</span>{{record.ProcessingDateTime}}</li>
+                <li class="l"><span class="label">解救时间</span>{{record.LiftedDateTime}}</li>
+                <li class="l descripe"><span class="label l">求助描述</span><p>{{record.HelpLevel == 1?'SOS求助':'一般求助'}}</p></li>
                 <li class="l descripe"><span class="label l">处理描述</span><p>{{record.ProcessingContent}}</p></li>
             </ul>
         </el-dialog>                               
@@ -55,14 +56,6 @@
                   :width="item.width"
                   :formatter="item.formatter"
                  >
-                </el-table-column>
-                <el-table-column label = '确认结果'>
-                    <template slot-scope="scoped">
-                        <div>
-                            <span v-if="scoped.row.AlarmType == 2">误报</span>
-                            <span v-else style="color:red">火警</span>
-                        </div>
-                    </template>
                 </el-table-column>
                 <el-table-column
                     label="操作"
@@ -92,44 +85,50 @@ export default {
                     label: '序号'
                 },
                 {
-                    prop: 'DeviceCode',
-                    label: '设备编码',
+                    prop: 'HelpLevel',
+                    label: '求助方式',
+                    width:260,
+                    formatter:(row) => row.HelpLevel == 1?'SOS求助':'一般求助'
+                },
+                {
+                    prop: 'HelpAddress',
+                    label: '求助位置',
                     width:260,
                 },
                 {
-                    prop: 'DoorplateAddress',
-                    label: '报警位置',
-                    width:260,
+                    prop: 'FCreatorUser',
+                    label: '求助人'
                 },
                 {
-                    prop: 'Owners',
-                    label: '业主'
+                    prop: 'FTelephone',
+                    label: '联系电话'
                 },
                 {
                     prop: 'LeaderUser',
-                    label: '处理人'
-                },
-                {
-                    prop: 'AlarmDateTime',
-                    label: '报警时间',
+                    label: '处理人',
                     width:160,
-                    formatter:(row) => row.AlarmDateTime != null ? row.AlarmDateTime.replace(/T/ig,' '):''
                 },
                 {
-                    prop: 'ConfirmDateTime',
+                    prop: 'FCreateTime',
+                    label: '求助时间',
+                    width:160,
+                    formatter:(row) => row.FCreateTime != null?row.FCreateTime.replace(/T/ig,' '):''
+                },
+                {
+                    prop: 'ProcessingDateTime',
                     label: '确认时间',
                     width:160,
-                    formatter:(row) => row.ConfirmDateTime != null?row.ConfirmDateTime.replace(/T/ig,' '):''
+                    formatter:(row) => row.ProcessingDateTime != null?row.ProcessingDateTime.replace(/T/ig,' '):''
                 },
                 {
                     prop: 'LiftedDateTime',
-                    label: '解除时间',
+                    label: '解救时间',
                     width:160,
-                    formatter:(row) => row.LiftedDateTime!=null?row.LiftedDateTime.replace(/T/ig,' '):''
+                    formatter:(row) => row.LiftedDateTime != null?row.LiftedDateTime.replace(/T/ig,' '):''
                 },
             ],
             time:[new Date(),new Date()],
-            alarmState:-1,
+            state:0,
             record:{}
         }
     },
@@ -146,20 +145,21 @@ export default {
     },
     methods:{
         /**
-         * 分页查询报警
+         * 分页查询设备
          */
         queryData(){
             Alarm({
                 FRouteName:'Alarm',
-                FAction:'QueryPageUAlarm',
+                FAction:'QueryPageUHelpRecordpc',
                 SearchKey:this.filterText,
-                AlarmState:this.alarmState,
+                State:this.state,
                 StartDateTime:this.time[0].toLocaleDateString() + ' 00:00',
                 EndDateTime:this.time[1].toLocaleDateString()+ ' 23:59',
                 PageIndex:this.pageIndex,
                 PageSize:10
             })
             .then((data) => {
+                console.log(data);
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
             }).catch((err) => {

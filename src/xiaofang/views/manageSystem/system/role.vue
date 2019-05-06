@@ -8,6 +8,13 @@
                 <el-form-item label="角色简称" prop="FSimpleName" >
                     <el-input v-model="addData.FSimpleName"></el-input>
                 </el-form-item>
+                <el-form-item label="角色类型" prop="FType" >
+                    <el-select v-model="addData.FType"   placeholder="请选择角色类型">
+                      <el-option  label="户主" :value="1"></el-option>
+                      <el-option  label="物业" :value="2"></el-option>
+                      <el-option  label="中物" :value="3"></el-option>
+                    </el-select>
+                </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="addOrUpdate()">确 定</el-button>
@@ -56,6 +63,7 @@
 </template>
 <script>
 import table from '@/xiaofang/mixins/table.js'
+import {System} from '@/xiaofang/request/api.js';
 export default {
     mixins:[table],
     data(){
@@ -87,13 +95,15 @@ export default {
             defaultData:{
                 FGUID:"00000000-0000-0000-0000-000000000000",
                 FName:'',
-                FSimpleName:''
+                FSimpleName:'',
+                FType:''
             },
             //新增角色数据
             addData:{
                 FGUID:"00000000-0000-0000-0000-000000000000",
                 FName:'',
-                FSimpleName:''
+                FSimpleName:'',
+                FType:''
             },
         }
     },
@@ -113,25 +123,26 @@ export default {
          * 分页查询角色
          */
         queryData(){
-            this.socket({
+            System({
                 FRouteName:'System',
                 FAction:'QueryPageTRole',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            },this.handleData)
-        },
-        handleData(data){
-            console.log(data);
-            this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
-            this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
-            /**
-             * 删除操作时，当前页面无数据时跳到上一页
-             */
-            if(this.tableData.length === 0&&this.pageIndex > 1){
-                --this.pageIndex
-                this.queryData()
-            }
+            })
+            .then((data) => {
+                this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
+                this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
+                /**
+                 * 删除操作时，当前页面无数据时跳到上一页
+                 */
+                if(this.tableData.length === 0&&this.pageIndex > 1){
+                    --this.pageIndex
+                    this.queryData()
+                }
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增
@@ -152,37 +163,40 @@ export default {
             }
         },
         /**
-         * 增删改时处理数据
-         */
-        handleData1(data){
-            console.log(data);
-            this.queryData()
-        },
-        /**
          * 新增或修改角色
          */
         addOrUpdate(){
             this.show = false
-            this.socket({
+            System({
                 FRouteName:'System',
                 FAction:'AddOrUodateTRole',
-                FType:2,
+                FType:this.addData.FType,
                 TypeId:this.type,
                 FName:this.addData.FName,
                 FSimpleName:this.addData.FSimpleName,
                 FGUID:this.addData.FGUID
-            },this.handleData1)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 删除用户
          */
         async deleteUser(row){
             await this.beforeDelete()
-            this.socket({
+            System({
                 FRouteName:'System',
                 FAction:'DleteTRole',
                 FGuid:row.FGUID
-            },this.handleData1)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         }
     }
 }

@@ -5,8 +5,8 @@ import store from './store'
 import Element from 'element-ui'
 Vue.use(Element)
 /**webSocket */
-import {sendSock} from '@/xiaofang/request/socket.js'
-Vue.prototype.socket = sendSock
+/* import {sendSock} from '@/xiaofang/request/socket.js'
+Vue.prototype.socket = sendSock */
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css-font/iconfont.css'
 import '@/assets/css/reset.css'

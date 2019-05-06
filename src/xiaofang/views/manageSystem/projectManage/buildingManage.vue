@@ -2,16 +2,19 @@
     <div class="report">
         <!-- 新增弹框 -->
         <el-dialog class="zw-dialog" :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="695px">
-            <el-form inline ref="form">
-                <el-form-item label="结点类型">
-                    <el-input></el-input>
+            <el-form inline ref="form" v-if="selectData">
+                <el-form-item :label="selectData.NodeType == 2?'楼层名称':'节点编码'">
+                    <el-input v-model="addData.code"></el-input>
                 </el-form-item>
-                <el-form-item label="结点名称">
-                    <el-input></el-input>
+                <el-form-item label="楼层号" v-if="selectData.NodeType == 2">
+                    <el-input type="number" v-model="addData.name"></el-input>
+                </el-form-item>
+                <el-form-item label="结点名称" v-else>
+                    <el-input v-model="addData.name"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button type="primary">确 认</el-button>
+                <el-button type="primary" @click="addNode">确 认</el-button>
                 <el-button @click="show = false">取 消</el-button>
             </span>
         </el-dialog>
@@ -165,7 +168,7 @@
             </span>
         </el-dialog>
         <ul class="operation clearfix">
-            <li class="l" @click="show = true"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
+            <li class="l" @click="beforeAddNode"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
             <li class="l" @click="show1 = true"><el-button type='primary'><i class="iconfont icon-ZS-Generatefloor"></i>批量生成楼层</el-button></li>
             <li class="l" @click="createRoom"><el-button type='primary'><i class="iconfont icon-ZS-Generatehouse"></i>批量生成房间</el-button></li>
         </ul>
@@ -184,9 +187,12 @@
                             highlight-current
                             :expand-on-click-node="false">
                             <span class="custom-tree-node" slot-scope="{ node, data }">
-                              <el-input v-model="data.NodeName" :ref="data.ID"></el-input>
+                             <span v-if="data.NodeType == 1">{{data.NodeName}}</span>
+                              <el-input v-model="data.NodeName" v-if="data.NodeType == 2" @change="addOrUpdateUFlatsInfo(data.ID,data.NodeName,data.FlatsCode)"></el-input>
+                              <el-input v-model="data.NodeName" v-if="data.NodeType == 3" @change="addOrUpdateUFloorInfo(data.ID,data.FloorNumber,data.NodeName)"></el-input>
+                              <el-input v-model="data.NodeName" v-if="data.NodeType == 4" @change="addOrUpdateUDoorplateInfo(data.ID,data.NodeName,data.DoorplateCode)"></el-input>
                               <span style="position:absolute;right:45px;width:100px;text-align:left">
-                                  <i class="iconfont icon-Edit"></i>
+                                  <i class="iconfont icon-Edit" v-if="data.NodeType != 1"></i>
                                   <i class="el-icon-delete" v-if="!data.NodeList||data.NodeList.length ==0" style="margin-left:20px;" @click="deleteNode(data)"></i>
                               </span>
                             </span>
@@ -199,7 +205,16 @@
                     <div class="title">楼层信息</div>
                     <ul class="operation">
                         <li class="l"><el-button type='primary'>逃生疏散图</el-button></li>
-                        <li class="l" @click="show5 = true"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
+                        <li class="l">
+                            <el-upload
+                              action="http://47.106.64.130:56091/CaiotZSYJ/FileUploadContext"
+                              :on-success="handleSuccess"
+                              :show-file-list='false'
+                              :data="{FAction:'UpLoadFile',FVersion:'1.0.0',FTokenID:$store.state.token,ProjectID:$store.state.projectId,FName:''}"
+                             >
+                                <el-button type='primary'><i class="el-icon-plus"></i></el-button>
+                            </el-upload>                
+                        </li>
                     </ul>
                 </div>
                 <div class="room-info" v-if="selectData&&selectData.NodeType == 4">
@@ -232,7 +247,6 @@
                                 >
                                     <template slot-scope="scoped">
                                         <div>
-                                            <span @click="updated(scoped.row)" title="编辑"><i class="iconfont icon-Edit"></i></span>
                                             <span @click="deleteDevice(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
                                         </div>
                                     </template>
@@ -264,7 +278,7 @@
                                     <template slot-scope="scoped">
                                         <div>
                                             <span @click="updateMember(scoped.row)" title="编辑"><i class="iconfont icon-Edit"></i></span>
-                                            <span @click="deleteDevice(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
+                                            <span @click="deleteMember(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
                                         </div>
                                     </template>
                                 </el-table-column>
@@ -279,7 +293,8 @@
 <script>
 import table from '@/xiaofang/mixins/table.js'
 import {zwCard} from '@/components/index.js';
-import { Promise } from 'q';
+import {Building,Device} from '@/xiaofang/request/api.js';
+import { close } from 'fs';
 export default {
     mixins:[table],
     data(){
@@ -313,7 +328,8 @@ export default {
                 },
                 {
                     prop: 'DeviceCode',
-                    label: '设备编码'
+                    label: '设备编码',
+                    width:260
                 },
                 {
                     prop: 'InstallationLocation',
@@ -321,7 +337,9 @@ export default {
                 },
                 {
                     prop: 'InstallationDate',
-                    label: '安装日期'
+                    label: '安装日期',
+                    width:160,
+                    formatter:(row) => row.InstallationDate.split('T')[0]
                 },
                 {
                     prop: 'DeviceParam',
@@ -355,7 +373,7 @@ export default {
                     prop: 'FBirthday',
                     label: '出生年月',
                     width:160,
-                    formatter:(row) =>  `${new Date(row.FBirthday).getFullYear()}-${new Date(row.FBirthday).getMonth()}`
+                    formatter:(row) =>  `${new Date(row.FBirthday).getFullYear()}-${new Date(row.FBirthday).getMonth()+1}`
                 },
                 {
                     prop: 'FAge',
@@ -437,7 +455,11 @@ export default {
                 InstallationDate:''
             },
             deviceTypes:[],//所有设备类型
-            deviceList:[]
+            deviceList:[],
+            addData:{
+                code:'',
+                name:''
+            }
 
 
         }
@@ -463,6 +485,7 @@ export default {
     },
     created(){
         this.queryData()
+        this.queryDeviceType()
     },
     methods:{
         /**
@@ -485,44 +508,51 @@ export default {
         },
         handleData(data){
             console.log(data);
-            this.data = data.FObject
-            this.queryDeviceType()
+
         },
         /**
          * .楼宇管理-查询楼宇树形结构数据
          */
         queryData(){
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'QueryUBuildingTreeData'
-            },this.handleData)
-        },
-        handleQueryDeviceType(data){
-            console.log(data);
-            this.deviceTypes = data.FObject
+            })
+            .then((data) => {
+                console.log(data);
+                this.data = data.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 查询设备类型
          */
         queryDeviceType(){
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:'QueryDeviceType'
-            },this.handleQueryDeviceType)
-        },
-        handleQueryDeviceByTypeID(data){
-            console.log(data);
-            this.deviceList = data.FObject
+            })
+            .then((data) => {
+                this.deviceTypes = data.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 根据设备类型查设备
          */
         QueryDeviceByTypeID(id){
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:'QueryDeviceByTypeID',
                 TypeId:id
-            },this.handleQueryDeviceByTypeID)
+            })
+            .then((data) => {
+                this.deviceList = data.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 增删改查
@@ -563,7 +593,8 @@ export default {
         createNewFloor(){
             let flatsName = this.flats.map(item => `${item.name}|${item.code}`).join(',')
             let floorName = this.floorList.map(item => `${item.i}|${item.name}`).join(',')
-            this.socket({
+            this.show1 = false
+            Building({
                 FRouteName:'Building',
                 FAction:'CreateNewFloor',
                 mFlatsFloor:{
@@ -572,7 +603,12 @@ export default {
                     FloorName:floorName
                 },
                 
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         nodeClick(data,node){
             this.selectData = data
@@ -580,6 +616,7 @@ export default {
             console.log(data,node)
             if(data.NodeType ==4){
                 this.queryUDeviceByDoorplateID(data.ID)
+                this.queryUFamilyMembersByDoorplateID(data.ID)
             }
         },
         /**
@@ -654,9 +691,9 @@ export default {
                         let floor_rooms = []
                         for(let j =0 ;j<item.roomNumber;j++){
                             if(this.formatterFloorNumber&&this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${i}0${j+1}${this.unit}`)
+                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}0${j+1}${this.unit}`)
                             }else if(this.formatterFloorNumber&&!this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${i}${j+1}${this.unit}`)
+                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`)
                             }else if(!this.formatterFloorNumber&&this.formatterRoomNumber){
                                 floor_rooms.push(`${buildingCode}${flatCode}0${j+1}${this.unit}`)
                             }else{
@@ -673,9 +710,9 @@ export default {
                         let floor_rooms = []
                         for(let j =0 ;j<item.roomNumber;j++){
                             if(this.formatterFloorNumber&&this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${index}0${j+1}${this.unit}`)
+                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}0${j+1}${this.unit}`)
                             }else if(this.formatterFloorNumber&&!this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${index}${j+1}${this.unit}`)
+                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`)
                             }else if(!this.formatterFloorNumber&&this.formatterRoomNumber){
                                 floor_rooms.push(`${buildingCode}${flatCode}0${j+1}${this.unit}`)
                             }else{
@@ -687,7 +724,8 @@ export default {
                     }
                 }
             }
-            this.socket({
+            this.show3 = false
+            Building({
                 FRouteName:'Building',
                 FAction:'CreateNewDoorplate',
                 mUDoorplate:{
@@ -697,36 +735,137 @@ export default {
                     DoorplateCode:rooms.join('|'),
                     DoorplateName:rooms.join('|').replace(eval(`/${buildingCode}${flatCode}/ig`),'')
                 },
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
-        handDevice(data){
-            console.log(data);
-            this.tableData = data.FObject
-            this.queryUFamilyMembersByDoorplateID(this.selectData.ID)
+        /**
+         * 新增/修改单元
+         */
+        addOrUpdateUFlatsInfo(id = 0,name = this.addData.name,code = this.addData.code){
+            this.show = false
+            Building({
+                FRouteName:'Building',
+                FAction:'AddOrUpdateUFlatsInfo',
+                FType:id == 0?0:1,
+                mUFlats:{
+                    ID:id,
+                    BuildingID:this.selectData.ID,
+                    FlatsName:name,
+                    FlatsCode:code
+                }
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 新增/修改楼层
+         */
+        addOrUpdateUFloorInfo(id = 0,name = this.addData.name,code = this.addData.code){
+            this.show = false
+            Building({
+                FRouteName:'Building',
+                FAction:'AddOrUpdateUFloorInfo',
+                FType:id == 0?0:1,
+                mUFloor:{
+                    ID:id,
+                    BuildingID:this.selectData.BuildingID,
+                    FlatsID:this.selectData.ID,
+                    FloorNumber:name,
+                    FloorCode:code
+                }
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 新增/修改门牌信息
+         */
+        addOrUpdateUDoorplateInfo(id = 0,name = this.addData.name,code = this.addData.code){
+            this.show = false
+            Building({
+                FRouteName:'Building',
+                FAction:'AddOrUpdateUDoorplateInfo',
+                FType:id == 0?0:1,
+                mUDoorplate:{
+                    ID:id,
+                    BuildingID:this.selectData.BuildingID,
+                    FlatsID:this.selectData.FlatsID,
+                    FloorID:this.selectData.ID,
+                    DoorplateName:name,
+                    DoorplateCode:code
+                }
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 点击头部新增按钮
+         */
+        beforeAddNode(){
+            this.addData.code  = ''
+            this.addData.name = ''
+            if(this.selectData == null||this.selectData == ''){
+                this.$message({
+                    type:'warning',
+                    message:'请选择节点'
+                })
+                return
+            }
+            if(this.selectData.NodeType == 4) return
+            this.show = true
+        },
+        addNode(){
+            if(this.selectData.NodeType == 1){
+                this.addOrUpdateUFlatsInfo()
+            }else if(this.selectData.NodeType == 2){
+                this.addOrUpdateUFloorInfo()
+            }else if(this.selectData.NodeType == 3){
+                this.addOrUpdateUDoorplateInfo()
+            }
         },
         /**
          * 楼宇管理-根据门牌号(房间)查询设备列表
          */
         queryUDeviceByDoorplateID(id){
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'QueryUDeviceByDoorplateID',
                 ID:id
-            },this.handDevice)
-        },
-        handleFamilyData(data){
-            console.log(data);
-            this.tableData1 = data.FObject
+            })
+            .then((data) => {
+                this.tableData = data.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 楼宇管理-根据门牌号(房间)查询家庭成员列表
          */
         queryUFamilyMembersByDoorplateID(id){
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'QueryUFamilyMembersByDoorplateID',
                 ID:id
-            },this.handleFamilyData)
+            })
+            .then((data) => {
+                console.log(data);
+                this.tableData1 = data.FObject
+            }).catch((err) => {
+                console.log(err);
+            });
         },
         /**
          * 点击新增家庭成员
@@ -740,15 +879,11 @@ export default {
          * 编辑家庭成员
          */
         updateMember(row){
-            this.type = 0
+            this.type = 1
             Object.keys(this.familyMembers).forEach(key => {
                 this.familyMembers[key] = row[key]
             })
             this.show4 = true
-        },
-        handleAddOrUpdateUFamilyMembers(data){
-            console.log(data);
-            this.queryUFamilyMembersByDoorplateID(this.selectData.ID)
         },
         /**
          * .楼宇管理-新增/修改家庭成员及门牌号(房间)关联信息
@@ -763,15 +898,33 @@ export default {
             })
             this.familyMembers.DoorplateID = this.selectData.ID
             this.show4 = false
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'AddOrUpdateUFamilyMembers',
                 mUFamilyMembers:this.familyMembers
-            },this.handleAddOrUpdateUFamilyMembers)
+            })
+            .then((data) => {
+                this.queryUFamilyMembersByDoorplateID(this.selectData.ID)
+            }).catch((err) => {
+                
+            });
         },
-        handleAddUDevicePosition(data){
-            console.log(data);
-            this.queryUDeviceByDoorplateID(this.selectData.ID)
+        /**
+         * 删除家庭成员
+         */
+        async deleteMember(row){
+            await this.beforeDelete()
+            Building({
+                FRouteName:'Building',
+                FAction:'DeleteUFamilyMembers',
+                ID:this.selectData.ID,
+                FGuid:row.FUserGUID
+            })
+            .then((data) => {
+                this.queryUFamilyMembersByDoorplateID(this.selectData.ID)
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 新增设备门牌号(房间)关联信息
@@ -786,65 +939,128 @@ export default {
             })
             this.deviceData.PositionID = this.selectData.ID
             this.deviceData.InstallationDate = this.deviceData.InstallationDate.toLocaleDateString()
-            this.socket({
+            this.show5 = false
+            Building({
                 FRouteName:'Building',
                 FAction:'AddUDevicePosition',
                 mUDevicePosition:this.deviceData
-            },this.handleAddUDevicePosition)
+            })
+            .then((data) => {
+                this.queryUDeviceByDoorplateID(this.selectData.ID)
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 删除设备
+         */
+        async deleteDevice(row){
+            await this.beforeDelete()
+            Building({
+                FRouteName:'Building',
+                FAction:'DeleteUDevicePosition',
+                ID:row.ID
+            })
+            .then((data) => {
+                this.queryUDeviceByDoorplateID(this.selectData.ID)
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 楼宇管理-删除楼宇
          */
-        async deleteUBuilding(){
+        async deleteUBuilding(row){
             await this.beforeDelete()
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'DeleteUBuilding',
                 ID:row.ID
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         /**
          * .楼宇管理-删除单元
          */
         async deleteUFlats(row){
             await this.beforeDelete()
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'DeleteUFlats',
                 ID:row.ID
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+            });
         },
         /**
          * 楼宇管理-删除楼层
          */
         async deleteUFloor(row){
             await this.beforeDelete()
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'DeleteUFloor',
                 ID:row.ID
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 删除房间
          */
         async deleteUDoorplate(row){
             await this.beforeDelete()
-            this.socket({
+            Building({
                 FRouteName:'Building',
                 FAction:'DeleteUDoorplate',
                 ID:row.ID
-            },this.handleCreate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         async deleteNode(data){
             if(data.NodeType == 1){
                 this.deleteUBuilding(data)
             }else if(data.NodeType == 2){
-                this.deleteFlat(data)
+                this.deleteUFlats(data)
             }else if(data.NodeType == 3){
                 this.deleteUFloor(data)
             }else{
                 this.deleteUDoorplate(data)
+            }
+        },
+        handleSuccess(res,file){
+            if(res.Result == 200){
+               Building({
+                   FAction:'UpdateUFloorEvacuationMap',
+                   ID:this.selectData.ID,
+                   FilePath:res.FObject.FilePath
+               })
+               .then((data) => {
+                    this.$message({
+                        type:'success',
+                        message:'上传成功'
+                    })
+               }).catch((err) => {
+                   
+               });
+            }else{
+                this.$message({
+                    type:'error',
+                    message:'上传失败'
+                })
             }
         }
     }

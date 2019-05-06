@@ -18,15 +18,18 @@
                 <el-form-item label="项目简称" prop='ShortName'>
                     <el-input v-model="addData.ShortName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="建筑面积" prop='BuildArea'>
-                  <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
-                     <span slot="suffix">m²</span>
-                  </el-input>
+                <el-form-item label="物业名称" prop='PropertyName'>
+                    <el-input v-model="addData.PropertyName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="地区" prop='County'>
                   <el-select v-model="addData.County"  filterable  placeholder="请选择" >
                     <!-- <el-option v-for="list in typeList" :key="list.DeviceTypeID" :label="list.name" :value="list.DeviceTypeID"></el-option> -->
                   </el-select>
+                </el-form-item>
+                <el-form-item label="建筑面积" prop='BuildArea'>
+                  <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
+                     <span slot="suffix">m²</span>
+                  </el-input>
                 </el-form-item>
                 <el-form-item label="地址" prop='Address'>
                     <el-input v-model="addData.Address" class="block"></el-input>
@@ -68,6 +71,7 @@
 </template>
 <script>
 import table from '@/xiaofang/mixins/table.js'
+import {Project} from '@/xiaofang/request/api.js';
 export default {
     mixins:[table],
     data(){
@@ -84,6 +88,10 @@ export default {
                 {
                     prop: 'ShortName',
                     label: '项目简称'
+                },
+                {
+                    prop:'PropertyName',
+                    label:'物业名称'
                 },
                 {
                     prop: 'BuildArea',
@@ -113,6 +121,7 @@ export default {
                 County:'',
                 FState:1,
                 FDescribe:'',
+                PropertyName:''
             },
             addData:{ //添加设备对象参数
                 ID:0,
@@ -125,6 +134,7 @@ export default {
                 County:'',
                 FState:1,
                 FDescribe:'',
+                PropertyName:''
             },
             typeList:[{name:'烟感',addDataTypeID:1}]
         }
@@ -145,25 +155,27 @@ export default {
          * 分页查询设备
          */
         queryData(){
-            this.socket({
+            Project({
                 FRouteName:'Project',
                 FAction:'QueryPageUProjectByFUserGUID',
                 SearchKey:this.filterText,
                 PageIndex:1,
                 PageSize:10
-            },this.handleData)
-        },
-        handleData(data){
-            console.log(data);
-            this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
-            this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
-            /**
-             * 删除操作时，当前页面无数据时跳到上一页
-             */
-            if(this.tableData.length === 0&&this.pageIndex > 1){
-                --this.pageIndex
-                this.queryData()
-            }
+            })
+            .then((data) => {
+                console.log(data)
+                this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
+                this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
+                /**
+                 * 删除操作时，当前页面无数据时跳到上一页
+                 */
+                if(this.tableData.length === 0&&this.pageIndex > 1){
+                    --this.pageIndex
+                    this.queryData()
+                }
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增
@@ -184,44 +196,35 @@ export default {
             this.show = true
         },
         /**
-         * 新增,修改或删除之后调用
-         */
-        afterAddOrUpdate(data){
-            console.log(data)
-            if(data.Result == 200){
-                this.queryData()
-            }
-        },
-        /**
          * 新增或编辑项目
          */
         addOrUpdate(){
             this.show = false
-            this.socket({
+            Project({
                 FRouteName:'Project',
                 FAction:'AddOrUpdateUProject',
                 ID:0,
                 mUProject:this.addData
-            },this.afterAddOrUpdate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         async deleteProject(row){
-            await new Promise((resolve,reject) => {
-                this.$confirm(`此操作将删除${row.ShortName}, 是否继续?`, '提示', {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  type: 'warning'
-                }).then(() => {
-                    resolve()
-                }).catch(() => {
-                    reject()
-                });
-            })
-            this.socket({
+            await this.beforeDelete()
+            Project({
                 FRouteName:'Project',
                 FAction:'DeleteUProjectByID',
                 ID:row.ID
-            },this.afterAddOrUpdate)
-        }
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        },
     }
 }
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home/Home.vue'
 import Login from './views/Login.vue';
-
+import Caiot from './views/home/caiot.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -13,6 +13,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login //掌上应急登录页
+    },
+    {
+      path: '/caiot',
+      name: 'caiot',
+      component:Caiot
     },
     {
       path: '/',
@@ -57,7 +62,12 @@ export default new Router({
             {
               path:'/',
               name:'fireRecord',
-              component: () => import('./views/manageSystem/fireManage/fireRecord.vue')
+              component: () => import('./views/manageSystem/fireManage/fireRecord.vue') //火警记录
+            },
+            {
+              path:'helpRecord',
+              name:'helpRecord',
+              component: () => import('./views/manageSystem/fireManage/helpRecord.vue') //求助记录
             }
           ]
         },

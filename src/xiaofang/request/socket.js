@@ -34,7 +34,7 @@ function sendSock(agentData,callback){
     }else{
         data = Object.assign({
             FTokenID:store.state.token?store.state.token:'',
-            ProjectID:1,
+            ProjectID:store.state.projectId,
             FVersion:'1.0.0'
         },agentData)
     }
@@ -73,6 +73,7 @@ function websocketsend(agentData){
 //关闭
 function websocketclose(e){  
     console.log("connection closed (" + e.code + ")");
+    initWebSocket();
 }
  
 function websocketOpen(e){

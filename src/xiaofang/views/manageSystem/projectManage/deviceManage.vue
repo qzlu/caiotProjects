@@ -12,25 +12,17 @@
         </ul>
         <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body :title="type?'编辑':'新增'">
             <el-form :model="device"  inline ref="form">
+                <el-form-item label="设备类型" prop='DeviceTypeID'>
+                  <el-select v-model="device.DeviceTypeID"  filterable  placeholder="请选择" >
+                    <el-option v-for="item in deviceTypes" :key="item.ID" :value="item.ID" :label="item.DeviceTypeName"></el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item label="设备名称" prop='DeviceName'>
                   <el-input v-model="device.DeviceName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="设备类型" prop='DeviceTypeID'>
-                  <el-select v-model="device.DeviceTypeID"  filterable  placeholder="请选择" >
-                    <el-option v-for="list in typeList" :key="list.DeviceTypeID" :label="list.name" :value="list.DeviceTypeID"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="设备编号" prop='DeviceCode'>
+                <el-form-item label="唯一标识" prop='DeviceCode'>
                   <el-input v-model="device.DeviceCode" autocomplete="off"></el-input>
                 </el-form-item>
-<!--                 <el-form-item label="安装日期" >
-                  <el-date-picker
-                    v-model="device.InstallationDate"
-                    type="date"
-                    placeholder="选择日期"
-                  >
-                  </el-date-picker>
-                </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="addOrUpdate()">确 定</el-button>
@@ -49,6 +41,7 @@
                   :key="item.prop"
                   :prop="item.prop"
                   :label="item.label"
+                  :formatter="item.formatter"
                  >
                 </el-table-column>
                 <el-table-column
@@ -68,6 +61,7 @@
 </template>
 <script>
 import table from '@/xiaofang/mixins/table.js'
+import {Device} from '@/xiaofang/request/api.js'
 export default {
     mixins:[table],
     data(){
@@ -83,21 +77,22 @@ export default {
                 },
                 {
                     prop: 'DeviceTypeName',
-                    label: '设备类型'
+                    label: '设备类型',
                 },
                 {
                     prop: 'DeviceCode',
-                    label: '设备编号'
+                    label: '唯一标识'
                 },
                 {
                     prop: 'FState',
-                    label: '设备状态'
+                    label: '设备状态',
+                    formatter:(row) => row.FState ==0?'离线':'在线'
                 },
             ],
             defaultDevice:{
                 ID:0,
                 DoorplateID:0,
-                DeviceTypeID:1,
+                DeviceTypeID:'',
                 DeviceCode:null,
                 InstallationLocation:'',
                 DeviceName:null,
@@ -118,7 +113,7 @@ export default {
                 FDescribe:'',
                 InstallationDate:''
             },
-            typeList:[{name:'烟感',DeviceTypeID:1}]
+            deviceTypes:[]
         }
     },
     created(){
@@ -131,30 +126,47 @@ export default {
     },
     mounted(){
         this.queryData()
+        this.queryDeviceType()
     },
     methods:{
         /**
          * 分页查询设备
          */
         queryData(){
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:'QueryPageUDevice',
                 SearchKey:this.filterText,
                 PageIndex:1,
                 PageSize:10
-            },this.handleData)
+            })
+            .then((data) => {
+                this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
+                this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
+                /**
+                 * 删除操作时，当前页面无数据时跳到上一页
+                 */
+                if(this.tableData.length === 0&&this.pageIndex > 1){
+                    --this.pageIndex
+                    this.queryData()
+                }
+            }).catch((err) => {
+                
+            });
         },
-        handleData(data){
-            this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
-            this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
-            /**
-             * 删除操作时，当前页面无数据时跳到上一页
-             */
-            if(this.tableData.length === 0&&this.pageIndex > 1){
-                --this.pageIndex
-                this.queryData()
-            }
+        /**
+         * 查询设备类型
+         */
+        queryDeviceType(){
+            Device({
+                FRouteName:'Device',
+                FAction:'QueryDeviceType'
+            })
+            .then((data) => {
+                this.deviceTypes = data.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增
@@ -175,42 +187,48 @@ export default {
             this.show = true
         },
         /**
-         * 新增,修改或删除之后调用
-         */
-        afterAddOrUpdate(data){
-            console.log(data)
-            if(data.Result == 200){
-                this.queryData()
-            }
-        },
-        /**
          * 新增或编辑设备
          */
         addOrUpdate(){
             this.show = false
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:this.type?'UpdateUDevice':'AddUDevice',
                 mUDevice:this.device
-            },this.afterAddOrUpdate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         async deleteDevice(row){
             await this.beforeDelete(row.DeviceName)
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:'DeleteUDevice',
                 ID:row.ID
-            },this.afterAddOrUpdate)
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 导出
          */
         exportFile(){
-            this.socket({
+            Device({
                 FRouteName:'Device',
                 FAction:'QueryExportUDevice',
                 SearchKey:this.filterText
-            },this.downloadFile)
+            })
+            .then((data) => {
+                this.downloadFile(data)
+            }).catch((err) => {
+                
+            });
         }
     }
 }

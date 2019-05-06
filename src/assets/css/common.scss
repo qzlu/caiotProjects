@@ -121,6 +121,9 @@ $img-url:'../image/';
                     color: #9EE5F3;
                 }
             }
+            .el-form-item__error{
+                // left: 120px;
+            }
             .block.el-input,.block.el-textarea{
                 width: 514px;
             }
@@ -140,6 +143,7 @@ $img-url:'../image/';
                     height: 100%;
                     background: #092D53;
                     border:1px solid rgba(158, 229, 243, 0.27);
+                    color: #9EE5F3;
                 }
             }
             .str-length{
@@ -183,6 +187,10 @@ $img-url:'../image/';
 .el-message-box__btns{
     padding:16px;
     background:linear-gradient(90deg,rgba(10,48,83,1),rgba(7,44,79,1),rgba(5,32,60,1))!important;
+    .el-button:first-of-type{
+        float: right;
+        margin-left: 10px;
+    }
     .el-button{
         color: #9EE5F3;
         border:1px solid rgba(81, 128, 205, 0.82);

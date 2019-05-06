@@ -6,7 +6,8 @@ $img-url:'../../../assets/image/';
     margin-left: 20px;
     margin-top: 36px;
     position: relative;
-    background:rgba(11,38,79,1);
+    // background:rgba(11,38,79,1);
+    background: url(#{$img-url}index/normal.gif);
     border:1px solid rgba(1,150,7,1);
     border-radius:9px;
     box-shadow:  0 0 14px rgba(1,150,7,1);
@@ -35,21 +36,86 @@ $img-url:'../../../assets/image/';
         to {transform:translate(-50%,-50%) rotate(360deg)}
     }
 }
+.help{
+    background:rgba(104,10,23,0.34)!important;
+    .state{
+        background: url(#{$img-url}index/sos.gif);
+        border:1px solid #fb0d0d;
+        border-radius:9px;
+        box-shadow:  0 0 14px #fb0d0d;
+    }
+}
+.alarm{
+    background:rgba(104,10,23,0.34)!important;
+    .state{
+        background: url(#{$img-url}index/fire.gif);
+        border:1px solid #fb0d0d;
+        border-radius:9px;
+        box-shadow:  0 0 14px #fb0d0d;
+    }
+}
+.off-line{
+    .state{
+        background: url(#{$img-url}index/off-line.gif);
+        border:1px solid #fbed0d;
+        border-radius:9px;
+        box-shadow:  0 0 14px #fbed0d;
+    }
+}
+.uninstalled{
+    .state{
+        background: url(#{$img-url}index/uninstalled.gif);
+        border:1px solid #444544;
+        border-radius:9px;
+        box-shadow:  0 0 14px #444544;
+    }
+}
 .home{
   width: 100%;
   height: 100%;
-  background: url(#{$img-url}index/index.png);
+  background: url(#{$img-url}index/index.jpg);
   color: #AEE4F0;
   font-size: 14px;
   h1{
     height: 72px;
-    padding-left: 75px;
     font-size:36px;
+    position: relative;
     letter-spacing: 10px;
     font-family:JZunYuan;
     font-weight:bold;
     color:rgba(199,254,255,1);
     overflow: hidden;
+    >div{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    p{
+        height: 72px;
+        line-height: 72px;
+        font-size: 14px;
+        letter-spacing: 4px;
+        margin-right: 10px;
+    }
+    .icon-item{
+        width:44px;
+        height:44px;
+        line-height:44px;
+        background:rgba(84,177,221,0.32);
+        border-radius:50%;
+        box-shadow:  0 0 14px rgba(84,177,221,0.42);
+        cursor:pointer;
+        .iconfont{
+            font-size:30px;
+            color:#54B1DD;
+            position:relative;
+            left:4px;
+        }
+    }
+    .icon-item.r{
+        margin-top: 13px;
+        margin-right: 14px;
+    }
   }
   .aside{
     width:414px;
@@ -62,17 +128,20 @@ $img-url:'../../../assets/image/';
   .left-content{
     .list{
       width: 100%;
-      height: 916px;
+      height: 957px;
       overflow: hidden;
+      background: url(#{$img-url}index/left.png);
+      background-size: 100% 100%;
       ul.cards{
-        li{
+        >li{
+         /*  background: url(#{$img-url}index/room-info-bg.png); */
           h5{
             height:21px;
             background:linear-gradient(90deg,rgba(29,79,132,0.88),rgba(12,39,74,0.88),rgba(9,31,63,0.88));
             border-radius:4px;
-            font-size:14px;
+            font-size:16px;
             color: #9EE5F3;
-            line-height: 28px;
+            line-height: 21px;
             text-align: left;
             text-indent: 24px;
           }
@@ -84,12 +153,18 @@ $img-url:'../../../assets/image/';
                 li{
                     width: 50%;
                     height: 40px;
+                    position: relative;
                     margin-top: 25px;
+                    padding-left: 20px;
+                    box-sizing: border-box;
                     line-height: 40px;
                     color: #A5EFFC;
+                    opacity: 0.8;
+                    text-align: left;
                     i{
-                        position: relative;
-                        top: 4px;
+                        position: absolute;
+                        /* top: 4px; */
+                        left: 0px;
                         font-size: 32px;
                     }
                     span{
@@ -99,22 +174,29 @@ $img-url:'../../../assets/image/';
                 }
             }
           }
+          .info.active{
+            background: #1B63AA
+         }
         }
       }
     }
   }
   .right-content{
-      width: 545px;
-      .el-scrollbar{
-          height:460px;
-      }
-      ul.alarm-info{
+    width: 545px;
+    .list{
+      width: 100%;
+      height: 460px;
+      overflow: hidden;
+    }
+    ul.alarm-info{
           width: 100%;
           overflow: hidden;
           >li{
               width: 570px;
-              height: 266px;
+            //   height: 232px;
+              padding-bottom: 14px;
               background: url(#{$img-url}index/room-info-bg.png) -20px;
+              background-size: 100% 100%;
               .room-title{
                   position: relative;
                   button{
@@ -126,17 +208,21 @@ $img-url:'../../../assets/image/';
                     color: white;
                     cursor: pointer;
                   }
+                  button:first-of-type{
+                    top: 10px;
+                    left: 50px;
+                  }
                   .fire-alarm{
-                      top: 10px;
-                      left: 50px;
                       background:linear-gradient(34deg,#691220,#8b1b2c 14%,#b03446,#871a2b 84%,#691220);
                       border:1px solid #dc3457;
                   }
                   button:last-of-type{
                       top: 10px;
-                      right: 70px;
-                      background:linear-gradient(24deg,#3d434d,#5b606a 14%,#82879a,#5b606a 84%,#3d434d);
-                      border:1px solid #847f80                      ;
+                      right: 70px;                    ;
+                  }
+                  button{
+                    background:linear-gradient(24deg,#3d434d,#5b606a 14%,#82879a,#5b606a 84%,#3d434d);
+                    border:1px solid #847f80
                   }
                   .room-number{
                     width: 156px;
@@ -148,38 +234,79 @@ $img-url:'../../../assets/image/';
                   }
               }
               .room-info{
+                  padding: 4px 40px 4px 18px;
                   p.name{
-                      font-size: 28px;
+                      padding:4px 10px;
+                      text-align: left;
+                      font-size: 20px;
                   }
-                  ul{
+                  table{
                       width: 100%;
-                      li{
-                          width:50%;
-                          box-sizing: border-box;
-                          padding-left: 40px;
-                          text-align: left;
-                          font-size: 18px;
-                          .sex-icon{
-                              display: inline-block;
-                              width:28px;
-                              height:28px;
-                              line-height: 28px;
-                              background:linear-gradient(0deg,rgba(33,106,183,1),rgba(7,71,119,1));
-                              border-radius:50%;
-                              font-size: 14px;
-                              text-align: center;
-                          }
-                          p{
-                              margin: 0 10px;
-                              display: inline-block;
-                              line-height: 30px;
-                              vertical-align: middle;
-                          };
-                      }
+                  }
+                table.table-header{
+                    tr{
+                        height: 36px;
+                        background: linear-gradient(to bottom,#143159 10%,#28527c 90%)
+                    }
+                }
+                  .table-body{
+                        table{
+                            tr{
+                                height: 28px;
+                                font-size: 14px;
+                                td.warning{
+                                    color: #E0E213
+                                }
+                            }
+                            tr:nth-of-type(2n+1){
+                                background: #0a3667
+                            }
+                            tr:nth-of-type(2n){
+                                background: #30557f
+                            }
+                        }
                   }
               }
           }
-      }
+    }
+    .zw-card{
+        .map1{
+            width: 525px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .search-box{
+            width: 525px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            border: 1px solid #0770A5;
+            border-radius: 10px;
+            .arrow{
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                .iconfont{
+                    font-size: 24px;
+                    color: #999999
+                }
+            }
+            .inputs{
+                input{
+                    width: 425px;
+                    height: 46px;
+                    background: none;
+                    border: none;
+                    color: white;
+                }
+                input:first-of-type{
+                    border-bottom: 1px solid #0770A5;
+                }
+            }
+        }
+    }
   }
   .center{
     height: 995px;
@@ -233,7 +360,7 @@ $img-url:'../../../assets/image/';
                     line-height: 53px;
                     position: relative;
                     margin-top: 14px;
-                    border:1px solid #9EE5F3;
+                    border:1px solid rgba(158,229,243, 0.4);
                     border-radius:11px 7px 7px 11px;
                     .icon{
                         width: 47px;
@@ -250,10 +377,17 @@ $img-url:'../../../assets/image/';
                     p{
                         font-size: 20px;
                         transform: rotateX(180deg);
+                        opacity: 0.8;
                     }
                 }
                 li:nth-of-type(2n){
                     margin-left: 20px;
+                }
+                li.active{
+                    background: #1B63AA
+                }
+                li.alarm{
+                    background: rgba(104, 10, 23, 0.34)
                 }
             }
         }
@@ -286,6 +420,14 @@ $img-url:'../../../assets/image/';
             li:nth-of-type(2n+1){
                 border-right: 1px dotted #2B76B2;
             }
+        }
+    }
+    .zw-card.map-container{
+        box-sizing: border-box;
+        padding: 10px;
+        .map{
+            width: 100%;
+            height: 100%;
         }
     }
   }

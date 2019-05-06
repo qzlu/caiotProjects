@@ -1,10 +1,8 @@
 <template>
   <div id="app" :style="style">
-<!--     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view/>
+    <transition name="fade" mode="out-in" appear>
+      <router-view/>
+    </transition>
   </div>
 </template>
 <script>
@@ -30,6 +28,8 @@ export default {
     this.getHeight()
     if(this.$store.state.token != ''&&localStorage.getItem('FToken')){
       this.$store.state.token = localStorage.getItem('FToken')
+      this.$store.state.projectId = localStorage.getItem('projectId')
+      this.$store.state.FContacts =localStorage.getItem('FContacts')
     }
   },
   methods:{

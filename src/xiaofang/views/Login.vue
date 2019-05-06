@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="login-box">
-            <h2>欢迎登陆</h2>
+            <h2>欢迎登录</h2>
             <zw-card class="login-item" :width='456' :height='73' :cornerWidth='17' :cornerHeight='14' :borderWidth='1'>
                 <el-input v-model="userName" clearable  @focus="nameErr = ''"><i slot="prefix" class=" iconfont icon-mine"></i></el-input>
             </zw-card>
@@ -12,15 +12,16 @@
             <p>{{passwordErr}}</p>
             <div class="login-item" style="text-align:left">
                 <el-checkbox v-model="loginState">
-                    保持登陆
+                    保持登录
                 </el-checkbox>
             </div>
-            <el-button class="login-item" type="primary" @click="login" >登　陆</el-button>
+            <el-button class="login-item" type="primary" @click="login" >登　录</el-button>
         </div>
     </div>
 </template>
 <script>
 import {zwCard} from '@/components/index.js';
+import {Login} from '@/xiaofang/request/api.js'
 export default {
     data(){
         return{
@@ -53,34 +54,41 @@ export default {
                 this.passwordErr = '请输入密码'
             }
             if(this.userName != ''&&this.password != ''){
-                this.socket({
+                Login({
                     FAction:'Login',
                     FUserName:this.userName,
                     FPassword:this.password
-                },this.handleLogin)
+                })
+                .then((data) => {
+                    console.log(data);
+                    if(this.loginState){
+                        this.$store.state.token = data.FObject.FToken
+                        this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
+                        this.$store.state.FContacts = data.FObject.FContacts
+                        localStorage.setItem('FToken',data.FObject.FToken)
+                        localStorage.setItem('FUserType',data.FObject.FUserType)
+                        localStorage.setItem('FContacts',data.FObject.FContacts)
+                        localStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
+                    }else{
+                        this.$store.state.token = data.FObject.FToken
+                        this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
+                        this.$store.state.FContacts = data.FObject.FContacts
+                        localStorage.removeItem('FToken')
+                        localStorage.removeItem('FUserType')
+                        localStorage.removeItem('FContacts')
+                        localStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
+                    }
+                    this.$router.push('/')
+                }).catch((err) => {
+                    console.log(err);
+                    if(err.Result == 103){
+                        this.passwordErr = '用户名或密码错误'
+                    }else{
+                        this.passwordErr = '未知错误，请联系管理员'
+                    }
+                });
             }
         },
-        handleLogin(data){
-            console.log(data);
-            if(data.Result == 103){
-                this.passwordErr = '用户名或密码错误'
-            }else if(data.Result == 200){
-                if(this.loginState){
-                    this.$store.state.token = data.FObject.FToken
-                    localStorage.setItem('FToken',data.FObject.FToken)
-                    localStorage.setItem('FUserType',data.FObject.FUserType)
-                    localStorage.setItem('FContacts',data.FObject.FContacts)
-                }else{
-                    this.$store.state.token = data.FObject.FToken
-                    localStorage.removeItem('FToken')
-                    localStorage.removeItem('FUserType')
-                    localStorage.removeItem('FContacts')
-                }
-                this.$router.push('/')
-            }else{
-                this.passwordErr = '未知错误，请联系管理员'
-            }
-        }
     }
 }
 </script>
@@ -89,7 +97,7 @@ $img-url:'../../assets/image/';
 .login{
     width: 100%;
     height: 100%;
-    background: url(#{$img-url}login/bg_1.png);
+    background: url(#{$img-url}login/bg_1.jpg);
     position: relative;
     &-box{
         width: 651px;
