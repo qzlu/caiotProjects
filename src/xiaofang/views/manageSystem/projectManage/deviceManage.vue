@@ -84,9 +84,13 @@ export default {
                     label: '唯一标识'
                 },
                 {
-                    prop: 'FState',
+                    prop: 'IsOnline',
                     label: '设备状态',
-                    formatter:(row) => row.FState ==0?'离线':'在线'
+                    formatter:(row) => row.IsOnline ==0?'离线':'在线'
+                },
+                {
+                    prop: 'FAddress',
+                    label: '安装地址'
                 },
             ],
             defaultDevice:{

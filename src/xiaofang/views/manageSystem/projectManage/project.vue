@@ -21,15 +21,43 @@
                 <el-form-item label="物业名称" prop='PropertyName'>
                     <el-input v-model="addData.PropertyName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="地区" prop='County'>
-                  <el-select v-model="addData.County"  filterable  placeholder="请选择" >
-                    <!-- <el-option v-for="list in typeList" :key="list.DeviceTypeID" :label="list.name" :value="list.DeviceTypeID"></el-option> -->
-                  </el-select>
+                <el-form-item label="负责人" prop='PropertyLeader'>
+                    <el-input v-model="addData.PropertyLeader" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="联系电话" prop='PropertyPhone'>
+                    <el-input v-model="addData.PropertyPhone" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="建筑面积" prop='BuildArea'>
                   <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
                      <span slot="suffix">m²</span>
                   </el-input>
+                </el-form-item>
+                <el-form-item label="地区" prop='County'>
+                    <el-popover
+                      placement="bottom"
+                      width="200"
+                      trigger="click"
+                      popper-class="city-list"
+                      @hide='hide'
+                      v-model="show1"
+                      >
+                      <div class="city">
+                          <ul>
+                              <li :class="{active:province.p == provin.p}" v-for="(provin,i) in provins" :key="i" @click="selectProvince(provin)">{{provin.p}}</li>
+                          </ul>
+                          <ul v-if="province.c">
+                              <li :class="{active:city.n == item.n}" v-for="(item,i) in province.c" :key="i" @click="selectCity(item)">{{item.n}}</li>
+                          </ul>
+                          <ul v-if="city.a">
+                              <li :class="{active:area.s == obj.s}" v-for="(obj,i) in city.a" :key="i" @click="selectArea(obj)">{{obj.s}}</li>
+                          </ul>
+                          <div class="footer">
+                              <el-button class="zw-btn" @click='comfir'>确定</el-button>
+                              <el-button class="zw-btn" @click="show1 = false">取消</el-button>
+                          </div>
+                      </div>
+                      <div slot="reference" autocomplete="off" style="width:502px;height:40px;padding-left:10px;border: 1px solid rgba(158, 229, 243, 0.27); background: #092D53;cursor: pointer;color:#9EE5F3">{{this.addData.Province}}　{{this.addData.City}}　{{this.addData.County}}</div>
+                    </el-popover>
                 </el-form-item>
                 <el-form-item label="地址" prop='Address'>
                     <el-input v-model="addData.Address" class="block"></el-input>
@@ -72,6 +100,7 @@
 <script>
 import table from '@/xiaofang/mixins/table.js'
 import {Project} from '@/xiaofang/request/api.js';
+import citys from './city.json'
 export default {
     mixins:[table],
     data(){
@@ -94,6 +123,10 @@ export default {
                     label:'物业名称'
                 },
                 {
+                    prop: 'FContacts',
+                    label: '负责人'
+                },
+                {
                     prop: 'BuildArea',
                     label: '建筑面积（m²）'
                 },
@@ -104,10 +137,6 @@ export default {
                 {
                     prop: 'Address',
                     label: '地址'
-                },
-                {
-                    prop: 'FContacts',
-                    label: '创建人'
                 },
             ],
             defaultAddData:{
@@ -121,7 +150,9 @@ export default {
                 County:'',
                 FState:1,
                 FDescribe:'',
-                PropertyName:''
+                PropertyName:'',
+                PropertyLeader:'',
+                PropertyPhone:''
             },
             addData:{ //添加设备对象参数
                 ID:0,
@@ -134,13 +165,25 @@ export default {
                 County:'',
                 FState:1,
                 FDescribe:'',
-                PropertyName:''
+                PropertyName:'',
+                PropertyLeader:'',
+                PropertyPhone:''
             },
-            typeList:[{name:'烟感',addDataTypeID:1}]
+            typeList:[{name:'烟感',addDataTypeID:1}],
+            provins:[],
+            province:{},
+            city:{},
+            area:{},
+            active1:'',
+            active2:'',
+            active3:'',
+            show1:false
+
         }
     },
     created(){
-
+        console.log(citys)
+        this.provins = citys
     },
     watch:{
         filterText(val){
@@ -225,9 +268,82 @@ export default {
                 
             });
         },
+        /**
+         * 选择省
+         */
+        selectProvince(item){
+            this.province = item
+            this.city = {}
+        },
+        /**
+         * 选择市
+         */
+        selectCity(item){
+            this.city = item
+            console.log(this.city)
+        },
+        /**
+         * 选择区
+         */
+        selectArea(item){
+            this.area = item
+        },
+        comfir(){
+            this.addData.Province = this.province.p
+            if(!this.city.a){
+                this.addData.City = this.province.p
+                this.addData.County = this.city.n
+            }else{
+                this.addData.City = this.city.n
+                this.addData.County =this.area.s
+            }
+            this.show1 = false
+        },
+        hide(){
+            this.province = {}
+            this.city = {}
+            this.area = {}
+        }
     }
 }
 </script>
 <style lang="scss">
+.city-list{
+    width: 512px!important;
+    background: #05203C;
+    border-color: #05203C;
+    .city{
+        ul{
+            border-bottom: 1px dotted rgba(158, 229, 243, 0.27);
+            li{
+                display: inline-block;
+                padding: 10px;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                color: #9EE5F3;
+                border-radius: 4px;
+            }
+            li.active{
+                background: #1E4F8F;
+            }
+        }
+        ul+ul{
+            margin-top: 6px;
+        }
+        .footer{
+            margin-top: 10px;
+            text-align: right;
+            .el-button{
+                height: 38px;
+                line-height: 38px;
+                padding: 0 25px;
+                color: #9EE5F3;
+                border: 1px solid rgba(81, 128, 205, 0.82);
+                background: radial-gradient(#133E6B, #1E4F8F);
+            }
+        }
+    }
+}
 
 </style>

@@ -57,7 +57,8 @@ export default {
                 Login({
                     FAction:'Login',
                     FUserName:this.userName,
-                    FPassword:this.password
+                    FPassword:this.password,
+                    TerminalType:'PC'
                 })
                 .then((data) => {
                     console.log(data);

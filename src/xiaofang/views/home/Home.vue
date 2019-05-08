@@ -116,7 +116,7 @@
             <el-button @click="show = false">取 消</el-button>
         </span>
     </el-dialog>                               
-    <h1>天安数码城e应急云平台
+    <h1>{{projectName}}e应急云平台
       <div>
         <p class="r">{{$store.state.FContacts}}</p>
         <el-dropdown class="r" style="top: 13px;right: 10px;">
@@ -132,7 +132,7 @@
           <i class="iconfont icon-ZS-news"></i>
         </div>
         <router-link :to="{name:'system'}" :exact ='false' class="icon-item r"><i class="iconfont icon-zs-backstage"></i></router-link>
-        <router-link to="/caiot" class="icon-item r" title="集团">
+        <router-link to="/" class="icon-item r" title="集团">
           <i class="iconfont icon-ZS-bloc"></i>
         </router-link>
       </div>
@@ -344,7 +344,8 @@ export default {
       processingContent:'',
       show1:false,
       show2:false,
-      test:1
+      test:1,
+      projectName:''
     }
   },
   components: {
@@ -361,6 +362,7 @@ export default {
   },
   created(){
     this.queryData()
+    this.projectName = this.$route.params.name
 /*     setInterval(() => {
       this.test = Math.round(Math.random()*100)
     },1000) */

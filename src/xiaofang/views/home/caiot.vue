@@ -116,7 +116,7 @@
             <el-button @click="show = false">取 消</el-button>
         </span>
     </el-dialog>                               
-    <h1>中物物联e应急云平台
+    <h1>中物互联e应急云平台
         <div>
             <p class="r">{{$store.state.FContacts}}</p>
             <el-dropdown class="r" style="top: 13px;right: 10px;">
@@ -140,9 +140,9 @@
         <div class="list">
           <el-scrollbar>
             <ul class="cards">
-                <li v-for="(item,i) in buildings" :key='i' @click="queryData(item.ID)">
-                    <h5>{{item.BuildingName}}-{{item.FlatsName}}</h5>
-                    <div :class="['info',{alarm:item.FireAlarmCount>0,help:item.HelpCount>0}]">
+                <li v-for="(item,i) in buildings" :key='i' @click="active = i;selectProject(item)" @dblclick="changeRoute(item)">
+                    <h5>{{item.ProjectName}}</h5>
+                    <div :class="['info',{active:active ==i, alarm:item.FireAlarmCount>0,help:item.HelpCount>0}]">
                       <div class="state l" >
                       </div>
                       <ul >
@@ -164,7 +164,7 @@
         <div class="list">
           <el-scrollbar>
             <ul class="alarm-info">
-              <li v-for="(item,n) in alarmList" :key="n" class="l">
+              <li v-for="(item,n) in alarmList" :key="n" class="l" @click="setEndPlace(item)">
                 <div class="room-title" v-if="item.FType == 'Alarm'">
                   <button class="fire-alarm" v-if="item.ProcessingDateTime==null" @click="changeAlarmState(item,1)">火警</button>
                   <button class="fire-alarm" v-else-if="item.LiftedDateTime ==null||item.LiftedDateTime ==''"  @click="changeAlarmState(item,3)">解除</button>
@@ -226,8 +226,6 @@
         </div>
       </zw-card>
       <zw-card :width='545' :height='486' title="路线图" :titleWidth='200' style="margin-top:8px;" >
-        <div class="map1" id="map1">
-        </div>
         <div class="search-box">
           <div class="arrow" @click="changePlace">
             <i class="iconfont icon-ZS-arrows"></i>
@@ -240,6 +238,8 @@
           <div class="arrow" style="left:100%;margin-left:-30px;font-size:26px;" @click="searchRoad">
             <i class="el-icon-search"></i>
           </div>
+        </div>
+        <div class="map1" id="map1">
         </div>
       </zw-card>
     </div>
@@ -305,7 +305,6 @@ import {zwCard,setPassword} from '@/components/index.js';
 import {sendSock} from '@/xiaofang/request/socket.js'
 import {Alarm} from '@/xiaofang/request/api.js';
 import styleJson  from './custom_map_config.json';
-import { truncate } from 'fs';
 export default {
   name: 'home',
   data(){
@@ -324,8 +323,9 @@ export default {
       test:1,
       map:null,
       map1:null,
-      startPlace:'',
-      endPlace:''
+      startPlace:'深圳市创新科技广场二期西座1905',
+      endPlace:'',
+      active:0
     }
   },
   components: {
@@ -362,24 +362,50 @@ export default {
           this.map.clearOverlays()
           this.buildings.forEach((item,i) => {
                 const point = new BMap.Point(item.Flat,item.Flng)
-                let marker = new BMap.Marker(point)
+                let marker,icon,img
+                if(item.FireAlarmCount > 0){
+                  img = require('@/assets/image/index/icon_1.png')
+                  icon = this.setIcon(img,124,70)
+                  marker = new BMap.Marker(point,{icon:icon})
+                }else if(item.HelpCount > 0){
+                  img = require('@/assets/image/index/icon_3.png')
+                  icon = this.setIcon(img,97,110)
+                  marker = new BMap.Marker(point,{icon:icon})
+                }else{
+                  img = require('@/assets/image/index/icon_2.png')
+                  icon = this.setIcon(img)
+                  marker = new BMap.Marker(point,{icon:icon})
+                }
                 this.map.addOverlay(marker)
-                this.map.centerAndZoom(point, 15);
-                this.setLabel(marker,item.PropertyName)
-                let temp =`
-                            <div class='info-window'>
-                              <h4>${item.PropertyName}</h4>
-                              <ul>
-                                <li>${item.OnlineDeviceCount}</li>
-                                <li>${item.OfflineDeviceCount}</li>
-                              </ul>
-                            </div>
-                          ` 
-                marker.addEventListener('click',e => {
-                  this.openInfoWindow(temp,e)
+                this.map.centerAndZoom(point, 11);
+                this.setLabel(marker,item.ProjectName)
+                let temp =`<div class='info-window'>`
+                if(item.FireAlarmCount > 0||item.HelpCount > 0){
+                  temp +=    `<h4 style='color:#E49191'>${item.ProjectName}</h4>`
+                }else{
+                  temp +=    `<h4>${item.ProjectName}</h4>`
+                }
+                temp +=   `<ul>
+                      <li><i class='circle'></i><span >在线设备</span>${item.OnlineDeviceCount}</li>
+                      <li><i class='circle'></i><span >离线设备</span>${item.OfflineDeviceCount}</li>
+                    </ul>
+                  </div>
+                    ` 
+                if(item.FireAlarmCount > 0||item.HelpCount > 0){
+                  this.openInfoWindow(temp,point)
+                }
+                marker.addEventListener('mouseover',e => {
+                  let p = e.target;
+                  let point = new BMap.Point(p.getPosition().lng,p.getPosition().lat)
+                  this.openInfoWindow(temp,point)
+                })
+                marker.addEventListener('dblclick',e => {
+                  this.changeRoute(item)
                 })
           })
       }
+      this.endPlace = this.alarmList[0]?this.alarmList[0].FAddress:''
+      this.searchRoad()
     },
     queryData(){
       sendSock({
@@ -508,16 +534,37 @@ export default {
       })
       this.$router.push('/login')
     },
+    selectProject(item){
+      let temp =`<div class='info-window'>`
+      if(item.FireAlarmCount > 0||item.HelpCount > 0){
+        temp +=    `<h4 style='color:#E49191'>${item.ProjectName}</h4>`
+      }else{
+        temp +=    `<h4>${item.ProjectName}</h4>`
+      }
+      temp +=   `<ul>
+            <li><i class='circle'></i><span >在线设备</span>${item.OnlineDeviceCount}</li>
+            <li><i class='circle'></i><span >离线设备</span>${item.OfflineDeviceCount}</li>
+          </ul>
+        </div>
+          ` 
+      let point = new BMap.Point(item.Flat, item.Flng)
+      this.map.centerAndZoom(point, 11)
+      this.openInfoWindow(temp,point)
+    },
+    changeRoute(item){
+      this.$store.state.projectId = item.ID
+      this.$router.push(`/home/${item.PropertyName}`)
+    },
     /**百度地图 */
     initMap(){
       this.map =  new BMap.Map('map')
 	    this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
 	    //添加地图类型控件
-	    this.map.addControl(new BMap.MapTypeControl({
+/* 	    this.map.addControl(new BMap.MapTypeControl({
 	    	mapTypes:[
                 BMAP_NORMAL_MAP,
                 BMAP_HYBRID_MAP
-            ]}));	  
+            ]}));	   */
 	    this.map.setCurrentCity("深圳");          // 设置地图显示的城市 此项是必须设置的
       this.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
       this.map.setMapStyleV2({styleJson:styleJson})
@@ -526,16 +573,43 @@ export default {
       this.map1  = new BMap.Map('map1')
 	    this.map1.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
 	    //添加地图类型控件
-	    this.map1.addControl(new BMap.MapTypeControl({
+/* 	    this.map1.addControl(new BMap.MapTypeControl({
 	    	mapTypes:[
                 BMAP_NORMAL_MAP,
                 BMAP_HYBRID_MAP
-            ]}));	  
+            ]}));	   */
 	    this.map1.setCurrentCity("深圳");          // 设置地图显示的城市 此项是必须设置的
       this.map1.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-      this.map1.setCurrentCity("深圳");
+      let menu = new BMap.ContextMenu();
+      this.map1.setMapStyle({style:'light'});
+      let txtMenuItem = [
+      	{
+      		text:'以此为起点',
+      		callback:(e) => {
+            let geoc = new BMap.Geocoder();
+            geoc.getLocation(e, (rs) => {
+		        	var addComp = rs.addressComponents;
+		        	this.startPlace = addComp.province  + addComp.city + addComp.district + addComp.street  + addComp.streetNumber;
+		        });          
+          }
+      	},
+      	{
+      		text:'以此为终点',
+      		callback:(e) => {
+            let geoc = new BMap.Geocoder();
+            geoc.getLocation(e, (rs) => {
+		        	var addComp = rs.addressComponents;
+		        	this.endPlace = addComp.province  + addComp.city + addComp.district + addComp.street  + addComp.streetNumber;
+		        });          
+          }
+      	}
+      ];
+      for(var i=0; i < txtMenuItem.length; i++){
+	    	menu.addItem(new BMap.MenuItem(txtMenuItem[i].text,txtMenuItem[i].callback,100));
+	    }
+	    this.map1.addContextMenu(menu); 
       this.smartSearch('startPlace') 
-      this.smartSearch('endPlace') 
+      this.smartSearch('endPlace')
     },
     /**
      * 绘制点
@@ -545,6 +619,10 @@ export default {
     addMark(map,point){
       let marker = new BMap.Marker(point)
       map.addOverlay(marker)
+    },
+    setIcon(url,x = 32, y = 34){
+      var myIcon = new BMap.Icon(url, new BMap.Size(x,y));
+      return myIcon
     },
     /**
      * 给覆盖物设置label
@@ -556,7 +634,7 @@ export default {
     setLabel(marker,text,x=20,y=-10){
       let label = new BMap.Label(text,{offset:new BMap.Size(x,y)})
       label.setStyle({
-        color:'#aee4f0',
+        color:'#999999 ',
         borderColor:'white',
         padding:'0 10px',
       })
@@ -567,9 +645,7 @@ export default {
      * @param {String} content 信息窗口内容
      * @param {*}
      */
-    openInfoWindow(content,e){
-      let p = e.target;
-      let point = new BMap.Point(p.getPosition().lng,p.getPosition().lat)
+    openInfoWindow(content,point){
       let infoWindow = new BMap.InfoWindow(content,{
         height:0,
       })
@@ -585,10 +661,7 @@ export default {
 	    }
 	    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
 	    	{"input" : id
-        ,"location" : this.map1,
-        onSearchComplete:res => {
-          console.log(res)
-        }
+        ,"location" : this.map1
 	    });
     
 	    ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
@@ -637,53 +710,43 @@ export default {
     changePlace(){
       [this.startPlace,this.endPlace] = [this.endPlace,this.startPlace]
     },
-    searchRoad(){
-      console.log(123)
+    setEndPlace(item){
+      this.endPlace = item.FAddress
+      this.searchRoad()
+    },
+    /**
+     * 搜素路线
+     */
+    async searchRoad(){
       this.map1.clearOverlays()
       var myGeo = new BMap.Geocoder();
-      console.log(this.startPlace)
-      var point = myGeo.getPoint(this.startPlace,point => console.log(point))
-      var point1 = myGeo.getPoint(this.endPlace,point => point)
-     /*  var point = new BMap.Point(116.404, 39.915);
-      var point1 = new BMap.Point(116.404, 38.915); */
-      console.log(point,point1)
+      var point1,point2
+      await new Promise(resolve => {
+        myGeo.getPoint(this.startPlace,point => {
+          console.log(point)
+          point1 = point
+          resolve()
+        })
+      })
+      await new Promise(resolve => {
+        myGeo.getPoint(this.endPlace,point => {
+          point2 = point
+          resolve()
+        })
+      })
       var driving = new BMap.DrivingRoute(this.map1,{renderOptions:{map: this.map1, autoViewport: true}})
-      driving.search(point,point1);
-/*       let time;
-      var searchComplete = function (results){
-          console.log(transit.getStatus())
-          console.log(results)
-          if (transit.getStatus() != BMAP_STATUS_SUCCESS){
-              return ;
-          }
-          var plan = results.getPlan(0);
-          time= plan.getDuration(true);                //获取时间
-      }
-      var transit = new BMap.DrivingRoute(this.map1, {renderOptions: {map:this.map1},
-          onSearchComplete: searchComplete,
-          onPolylinesSet: function(){
-              console.log(time)
-      }});
-      transit.search(point,point1); */
+      driving.search(point1,point2);
     }
   }
 }
 </script>
 <style lang="scss" >
 @import './index.scss';
-/* .BMap_pop{
-  width: 250px;
-  height: 137px;
-  background:rgba(16,44,87,0.78);
-  div{
-    background: none!important;
-    border:none!important;
-    >img{
-      display: none
+#map{
+  .BMap_pop{
+    div{
+      border: none!important
     }
   }
-} */
-#map{
-  transform: scale(1,1)
 }
 </style>
