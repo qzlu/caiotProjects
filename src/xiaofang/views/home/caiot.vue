@@ -118,7 +118,7 @@
     </el-dialog>                               
     <h1>中物互联e应急云平台
         <div>
-            <p class="r">{{$store.state.FContacts}}</p>
+            <p class="r">{{userName}}</p>
             <el-dropdown class="r" style="top: 13px;right: 10px;">
               <div class="el-dropdown-link icon-item">
                 <i class="iconfont icon-ZS-headportrait"></i>
@@ -302,9 +302,10 @@
 </template>
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
-import {sendSock} from '@/xiaofang/request/socket.js'
+import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import {Alarm} from '@/xiaofang/request/api.js';
 import styleJson  from './custom_map_config.json';
+import './index.scss';
 export default {
   name: 'home',
   data(){
@@ -338,6 +339,9 @@ export default {
     },
     processingContentLength(){
       return this.processingContent?this.processingContent.length:0
+    },
+    userName(){
+      return this.$store.state.FContacts
     }
   },
   created(){
@@ -361,6 +365,9 @@ export default {
       if(this.map !==null){
           this.map.clearOverlays()
           this.buildings.forEach((item,i) => {
+                if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
+                  return
+                }
                 const point = new BMap.Point(item.Flat,item.Flng)
                 let marker,icon,img
                 if(item.FireAlarmCount > 0){
@@ -529,9 +536,7 @@ export default {
       })
     },
     loginOut(){
-      sendSock({
-        FAction:'Exit'
-      })
+      closeSocket()
       this.$router.push('/login')
     },
     selectProject(item){
@@ -553,7 +558,7 @@ export default {
     },
     changeRoute(item){
       this.$store.state.projectId = item.ID
-      this.$router.push(`/home/${item.PropertyName}`)
+      this.$router.push(`/home/${item.ProjectName}`)
     },
     /**百度地图 */
     initMap(){
@@ -741,12 +746,4 @@ export default {
 }
 </script>
 <style lang="scss" >
-@import './index.scss';
-#map{
-  .BMap_pop{
-    div{
-      border: none!important
-    }
-  }
-}
 </style>

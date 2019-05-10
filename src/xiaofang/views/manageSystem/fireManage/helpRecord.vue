@@ -37,7 +37,7 @@
                  <li class="l"><span class="label">求助时间</span>{{record.FCreateTime}}</li>
                 <li class="l"><span class="label">确认时间</span>{{record.ProcessingDateTime}}</li>
                 <li class="l"><span class="label">解救时间</span>{{record.LiftedDateTime}}</li>
-                <li class="l descripe"><span class="label l">求助描述</span><p>{{record.HelpLevel == 1?'SOS求助':'一般求助'}}</p></li>
+                <li class="l descripe"><span class="label l">求助描述</span><p>{{record.HelpLevel == 1?'SOS求助':record.HelpContent}}</p></li>
                 <li class="l descripe"><span class="label l">处理描述</span><p>{{record.ProcessingContent}}</p></li>
             </ul>
         </el-dialog>                               

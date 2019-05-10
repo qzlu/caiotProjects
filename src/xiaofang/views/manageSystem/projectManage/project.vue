@@ -123,7 +123,7 @@ export default {
                     label:'物业名称'
                 },
                 {
-                    prop: 'FContacts',
+                    prop: 'PropertyLeader',
                     label: '负责人'
                 },
                 {
@@ -246,7 +246,7 @@ export default {
             Project({
                 FRouteName:'Project',
                 FAction:'AddOrUpdateUProject',
-                ID:0,
+                ID:this.addData.ID,
                 mUProject:this.addData
             })
             .then((data) => {

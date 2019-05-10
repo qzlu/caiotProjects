@@ -1,9 +1,8 @@
 <template>
     <div id="container">
-<!--         <div id="map">
+        <div id="map">
 
-        </div> -->
-        <iframe src="https://map.baidu.com/@12694544,2558863,15z" frameborder="0"></iframe>
+        </div>
     </div>
 </template>
 <script>
@@ -39,6 +38,7 @@ export default {
                 marker.emit('click', {target: marker});
             }
             function markerClick(e) {
+                console.log(123)
                 infoWindow.setContent(e.target.content);
                 infoWindow.open(map, e.target.getPosition());
             }
@@ -50,8 +50,15 @@ export default {
 <style lang="scss">
 #container{
     height: 100%;
+    width: 900px;
+    /* transform: scale(1.1,1.1); */
     #map{
-        height: 100%;
+        width: 800px;
+        height: 600px;
+        // margin: 50px auto;
+        position: absolute;
+        left: 50px;
+
     }
 }
 </style>

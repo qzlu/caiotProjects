@@ -26,8 +26,10 @@ function initWebSocket(){ //初始化weosocket
 }
  
 // 实际调用的方法
-function sendSock(agentData,callback){  
-    global_callback = callback
+function sendSock(agentData,callback){
+    if(callback){
+        global_callback = callback
+    }  
     let data
     if(agentData.FAction === 'Login'){
         data = agentData
@@ -69,7 +71,9 @@ function websocketonmessage(e){
 function websocketsend(agentData){
     websock.send(JSON.stringify(agentData));
 }
- 
+function closeSocket(){
+    websock.close()
+}
 //关闭
 function websocketclose(e){  
     console.log("connection closed (" + e.code + ")");
@@ -80,4 +84,4 @@ function websocketOpen(e){
 	console.log("连接成功");
 }
 initWebSocket()
-export{sendSock}
+export{sendSock,closeSocket}

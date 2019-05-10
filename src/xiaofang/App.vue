@@ -26,10 +26,10 @@ export default {
   created(){
     window.addEventListener('resize',this.getHeight)
     this.getHeight()
-    if(this.$store.state.token != ''&&localStorage.getItem('FToken')){
-      this.$store.state.token = localStorage.getItem('FToken')
-      this.$store.state.projectId = localStorage.getItem('projectId')
-      this.$store.state.FContacts =localStorage.getItem('FContacts')
+    if(this.$store.state.token != ''&&sessionStorage.getItem('FToken')){
+      this.$store.state.token = sessionStorage.getItem('FToken')
+      this.$store.state.projectId = sessionStorage.getItem('projectId')
+      this.$store.state.FContacts =sessionStorage.getItem('FContacts')
     }
   },
   methods:{

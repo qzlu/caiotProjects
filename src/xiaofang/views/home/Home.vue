@@ -326,9 +326,10 @@
 </template>
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
-import {sendSock} from '@/xiaofang/request/socket.js'
+import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import {Alarm} from '@/xiaofang/request/api.js';
 import { setInterval } from 'timers';
+import './index.scss'
 export default {
   name: 'home',
   data(){
@@ -500,13 +501,12 @@ export default {
       })
     },
     loginOut(){
-      sendSock({
-        FAction:'Exit'
-      })
+      closeSocket()
       this.$router.push('/login')
     }
   }
 }
 </script>
-<style lang="scss" src='./index.scss'>
+<style lang="scss">
+/* @import './index.scss'; */
 </style>

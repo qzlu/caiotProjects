@@ -12,7 +12,7 @@
             <p>{{passwordErr}}</p>
             <div class="login-item" style="text-align:left">
                 <el-checkbox v-model="loginState">
-                    保持登录
+                    记住用户名和密码
                 </el-checkbox>
             </div>
             <el-button class="login-item" type="primary" @click="login" >登　录</el-button>
@@ -44,6 +44,8 @@ export default {
               this.login()
           }
         };
+        this.userName = localStorage.getItem('userName')
+        this.password = localStorage.getItem('password')
     },
     methods:{
         login(){
@@ -62,14 +64,21 @@ export default {
                 })
                 .then((data) => {
                     console.log(data);
+                    sessionStorage.setItem('FToken',data.FObject.FToken)
+                    sessionStorage.setItem('FUserType',data.FObject.FUserType)
+                    sessionStorage.setItem('FContacts',data.FObject.FContacts)
+                    sessionStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
+                    this.$store.state.token = data.FObject.FToken
+                    this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
+                    this.$store.state.FContacts = data.FObject.FContacts
                     if(this.loginState){
+                        localStorage.setItem('userName',this.userName)
+                        localStorage.setItem('password',this.password)
+                    }
+/*                     if(this.loginState){
                         this.$store.state.token = data.FObject.FToken
                         this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
                         this.$store.state.FContacts = data.FObject.FContacts
-                        localStorage.setItem('FToken',data.FObject.FToken)
-                        localStorage.setItem('FUserType',data.FObject.FUserType)
-                        localStorage.setItem('FContacts',data.FObject.FContacts)
-                        localStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
                     }else{
                         this.$store.state.token = data.FObject.FToken
                         this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
@@ -78,7 +87,7 @@ export default {
                         localStorage.removeItem('FUserType')
                         localStorage.removeItem('FContacts')
                         localStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
-                    }
+                    } */
                     this.$router.push('/')
                 }).catch((err) => {
                     console.log(err);
