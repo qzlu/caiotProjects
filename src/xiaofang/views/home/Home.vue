@@ -116,12 +116,12 @@
             <el-button @click="show = false">取 消</el-button>
         </span>
     </el-dialog>                               
-    <h1>天安数码城e应急云平台
+    <h1>{{count.ProjectName}}e应急云平台
       <div>
         <p class="r">{{$store.state.FContacts}}</p>
         <el-dropdown class="r" style="top: 13px;right: 10px;">
           <div class="el-dropdown-link icon-item">
-            <i class="iconfont icon-ZS-headportrait"></i>
+            <i class="iconfont icon-User"></i>
           </div>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item @click.native="show1 = true">设置密码</el-dropdown-item>
@@ -132,7 +132,7 @@
           <i class="iconfont icon-ZS-news"></i>
         </div>
         <router-link :to="{name:'system'}" :exact ='false' class="icon-item r"><i class="iconfont icon-zs-backstage"></i></router-link>
-        <router-link to="/caiot" class="icon-item r" title="集团">
+        <router-link v-if="userType == 3||userType == 4" to="/" class="icon-item r" title="集团">
           <i class="iconfont icon-ZS-bloc"></i>
         </router-link>
       </div>
@@ -326,9 +326,10 @@
 </template>
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
-import {sendSock} from '@/xiaofang/request/socket.js'
+import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import {Alarm} from '@/xiaofang/request/api.js';
 import { setInterval } from 'timers';
+import './index.scss'
 export default {
   name: 'home',
   data(){
@@ -344,7 +345,8 @@ export default {
       processingContent:'',
       show1:false,
       show2:false,
-      test:1
+      test:1,
+      projectName:'',
     }
   },
   components: {
@@ -357,10 +359,14 @@ export default {
     },
     processingContentLength(){
       return this.processingContent?this.processingContent.length:0
+    },
+    userType(){
+      return this.$store.state.userType
     }
   },
   created(){
     this.queryData()
+    this.projectName = this.$route.params.name
 /*     setInterval(() => {
       this.test = Math.round(Math.random()*100)
     },1000) */
@@ -373,6 +379,7 @@ export default {
       this.buildings = data.FObject&&data.FObject.Table2?data.FObject.Table2:[]
       this.floors = data.FObject&&data.FObject.Table3?data.FObject.Table3.reverse():[]
       this.rooms = data.FObject&&data.FObject.Table4?data.FObject.Table4:[]
+      this.$store.state.projectName = this.count.ProjectName
     },
     queryData(flatsID = 0,floorID = 0){
       sendSock({
@@ -498,13 +505,12 @@ export default {
       })
     },
     loginOut(){
-      sendSock({
-        FAction:'Exit'
-      })
+      closeSocket()
       this.$router.push('/login')
     }
   }
 }
 </script>
-<style lang="scss" src='./index.scss'>
+<style lang="scss">
+/* @import './index.scss'; */
 </style>

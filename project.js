@@ -1,1 +1,1 @@
-exports.name = 'xiaofang'
+exports.name = 'xiaoFangCloud'

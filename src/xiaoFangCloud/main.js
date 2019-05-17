@@ -18,12 +18,13 @@ Vue.config.productionTip = false
 import socketio from 'socket.io-client' */
 /* Vue.use(VueSocketio, socketio('http://cazsyj.com/'), store); */
 router.beforeEach((to, from, next) => {
-  let token = sessionStorage.getItem('FToken') 
+/*   let token = sessionStorage.getItem('FToken') 
   if(to.name !== 'login'&&!token){
     next({name:'login'})
   }else{
     next()
-  }
+  } */
+  next()
   
 })
 new Vue({

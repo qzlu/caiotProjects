@@ -174,7 +174,7 @@
         </ul>
         <div class="clearfix" style="height:785px">
             <div class="buildings l">
-                <h3>天安数码城</h3>
+                <h3>{{$store.state.projectName}}</h3>
                 <div class="border"></div>
                 <div class="tree">
                     <el-scrollbar>
@@ -709,15 +709,17 @@ export default {
                         let floor = this.selectData.NodeList.find(item => item.FloorNumber == index)
                         let floor_rooms = []
                         for(let j =0 ;j<item.roomNumber;j++){
+                            let roomNumber 
                             if(this.formatterFloorNumber&&this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}0${j+1}${this.unit}`)
+                                roomNumber = j+1>=10?`${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`:`${buildingCode}${flatCode}${floor.NodeName}0${j+1}${this.unit}`
                             }else if(this.formatterFloorNumber&&!this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`)
+                                roomNumber = `${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`
                             }else if(!this.formatterFloorNumber&&this.formatterRoomNumber){
-                                floor_rooms.push(`${buildingCode}${flatCode}0${j+1}${this.unit}`)
+                                roomNumber = j+1>=10?`${buildingCode}${flatCode}${floor.NodeName}${j+1}${this.unit}`:`${buildingCode}${flatCode}${floor.NodeName}0${j+1}${this.unit}`
                             }else{
-                                floor_rooms.push(`${buildingCode}${flatCode}${j+1}${this.unit}`)
+                                roomNumber = `${buildingCode}${flatCode}${j+1}${this.unit}`
                             }
+                            floor_rooms.push(roomNumber)
                         }
                         floorIDArr.push(floor.ID)
                         rooms.push(floor_rooms.join(','))

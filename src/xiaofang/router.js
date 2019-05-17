@@ -15,12 +15,16 @@ export default new Router({
       component: Login //掌上应急登录页
     },
     {
-      path: '/caiot',
+      path: '/test1',
+      component: () => import('./views/home/test.vue')
+    },
+    {
+      path: '/',
       name: 'caiot',
       component:Caiot
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home //掌上应急首页
     },
