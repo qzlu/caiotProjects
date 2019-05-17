@@ -41,6 +41,7 @@
                   :key="item.prop"
                   :prop="item.prop"
                   :label="item.label"
+                  :width="item.width"
                   :formatter="item.formatter"
                  >
                 </el-table-column>
@@ -90,7 +91,8 @@ export default {
                 },
                 {
                     prop: 'FAddress',
-                    label: '安装地址'
+                    label: '安装地址',
+                    width:'350'
                 },
             ],
             defaultDevice:{

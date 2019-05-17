@@ -1,7 +1,7 @@
 <template>
     <div class="report">
-        <h3>设备列表</h3>
-        <ul class="operation clearfix">
+        <h3 style="margin-bottom:20px">项目列表</h3>
+<!--         <ul class="operation clearfix">
             <li class="l" @click="beforeAdd"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
             <li class="l" ><el-button type='primary'><i class="iconfont icon-Export"></i></el-button></li>
             <li class="r">
@@ -9,7 +9,7 @@
                     <i class="el-icon-search" slot="suffix"></i>
                 </el-input>
             </li>
-        </ul>
+        </ul> -->
         <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body :title="type?'编辑':'新增'">
             <el-form :model="addData"  inline ref="form">
                 <el-form-item label="项目全称" prop='ProjectName'>
@@ -80,6 +80,7 @@
                   :key="item.prop"
                   :prop="item.prop"
                   :label="item.label"
+                  :width="item.width"
                  >
                 </el-table-column>
                 <el-table-column
@@ -136,7 +137,8 @@ export default {
                 },
                 {
                     prop: 'Address',
-                    label: '地址'
+                    label: '地址',
+                    width:'350'
                 },
             ],
             defaultAddData:{

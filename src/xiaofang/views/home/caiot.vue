@@ -121,7 +121,7 @@
             <p class="r">{{userName}}</p>
             <el-dropdown class="r" style="top: 13px;right: 10px;">
               <div class="el-dropdown-link icon-item">
-                <i class="iconfont icon-ZS-headportrait"></i>
+                <i class="iconfont icon-User"></i>
               </div>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item @click.native="show1 = true">设置密码</el-dropdown-item>
@@ -131,7 +131,7 @@
             <div class="icon-item r" style="margin-right:20px;">
               <i class="iconfont icon-ZS-news"></i>
             </div>
-            <router-link :to="{name:'system'}" :exact ='false' class="icon-item r"><i class="iconfont icon-zs-backstage"></i></router-link>
+           <!--  <router-link :to="{name:'system'}" :exact ='false' class="icon-item r"><i class="iconfont icon-zs-backstage"></i></router-link> -->
         </div>
     </h1>
     <!-- 楼宇单元分布 -->
@@ -345,7 +345,12 @@ export default {
     }
   },
   created(){
-
+    /**
+     * 没有集团权限直接跳转到项目
+     */
+    if(this.$store.state.userType != 3 && this.$store.state.userType != 4){
+      this.$router.push(`/home`)
+    }
   },
   mounted(){
     this.$nextTick(() => {
@@ -386,18 +391,7 @@ export default {
                 this.map.addOverlay(marker)
                 this.map.centerAndZoom(point, 11);
                 this.setLabel(marker,item.ProjectName)
-                let temp =`<div class='info-window'>`
-                if(item.FireAlarmCount > 0||item.HelpCount > 0){
-                  temp +=    `<h4 style='color:#E49191'>${item.ProjectName}</h4>`
-                }else{
-                  temp +=    `<h4>${item.ProjectName}</h4>`
-                }
-                temp +=   `<ul>
-                      <li><i class='circle'></i><span >在线设备</span>${item.OnlineDeviceCount}</li>
-                      <li><i class='circle'></i><span >离线设备</span>${item.OfflineDeviceCount}</li>
-                    </ul>
-                  </div>
-                    ` 
+                let temp = this.content(item)
                 if(item.FireAlarmCount > 0||item.HelpCount > 0){
                   this.openInfoWindow(temp,point)
                 }
@@ -413,6 +407,41 @@ export default {
       }
       this.endPlace = this.alarmList[0]?this.alarmList[0].FAddress:''
       this.searchRoad()
+    },
+    content(item){
+      let temp
+      if(item.FireAlarmCount > 0){
+        temp = `<ul class='info-window'>
+                  <li>项目名称:<span>${item.ProjectName}</span></li>
+                  <li>项目地址:<span>${item.ProjectAddress}</span></li>
+                  <li>火警地址:<span>${item.FireAddress}</span></li>
+                </ul>
+        
+        `
+      }else if(item.HelpCount > 0){
+        temp = `<ul class='info-window'>
+                  <li>项目名称:<span>${item.ProjectName}</span></li>
+                  <li>项目地址:<span>${item.ProjectAddress}</span></li>
+                  <li>sos地址:<span>${item.HelpAddress}</span></li>
+                </ul>
+        
+        `
+      }else{
+        temp = `<ul class='info-window clearfix'>
+                  <li>项目名称:<span>${item.ProjectName}</span></li>
+                  <li>项目地址:<span>${item.ProjectAddress}</span></li>
+                  <li>物业公司:<span>${item.PropertyName}</span></li>
+                  <li>负责人:<span>${item.PropertyLeader}</span><span>${item.PropertyPhone}</span></li>
+                  <li class="l" style="width:100px;overflow:hidden">楼栋数:<span>${item.BuildingCount}</span></li>
+                  <li class="l" style="width:50%;">户数:<span>${item.DoorplateCount}</span></li><br>
+                  <li class="l" style="width:100px;overflow:hidden">烟感数:<span>${item.DeviceCount}</span></li>
+                  <li class="l" >在线:<span>${item.OnlineDeviceCount}</span></li>
+                  <li class="l" style="margin-left:50px">离线:<span>${item.OfflineDeviceCount}</span></li>
+                </ul>
+        
+        `
+      }
+      return temp
     },
     queryData(){
       sendSock({
@@ -540,25 +569,15 @@ export default {
       this.$router.push('/login')
     },
     selectProject(item){
-      let temp =`<div class='info-window'>`
-      if(item.FireAlarmCount > 0||item.HelpCount > 0){
-        temp +=    `<h4 style='color:#E49191'>${item.ProjectName}</h4>`
-      }else{
-        temp +=    `<h4>${item.ProjectName}</h4>`
-      }
-      temp +=   `<ul>
-            <li><i class='circle'></i><span >在线设备</span>${item.OnlineDeviceCount}</li>
-            <li><i class='circle'></i><span >离线设备</span>${item.OfflineDeviceCount}</li>
-          </ul>
-        </div>
-          ` 
+      let temp = this.content(item)
       let point = new BMap.Point(item.Flat, item.Flng)
       this.map.centerAndZoom(point, 11)
       this.openInfoWindow(temp,point)
     },
     changeRoute(item){
       this.$store.state.projectId = item.ID
-      this.$router.push(`/home/${item.ProjectName}`)
+      sessionStorage.setItem('projectId',item.ID)
+      this.$router.push(`/home`)
     },
     /**百度地图 */
     initMap(){
@@ -746,4 +765,15 @@ export default {
 }
 </script>
 <style lang="scss" >
+ul.info-window{
+  margin-bottom: 10px;
+  li{
+    max-width: 300px;
+    margin-top: 10px;
+    color: #5fbef9;
+    span{
+      margin-left: 16px;
+    }
+  }
+}
 </style>

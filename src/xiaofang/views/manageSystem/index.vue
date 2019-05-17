@@ -4,7 +4,7 @@
             <li><router-link to="/system/projectManage" > <i class="iconfont icon-ZS-Projectmanagement"></i><span>项目管理</span></router-link></li>
             <li><router-link to="/system/fireManage"> <i class="iconfont icon-Alarm"></i><span>告警管理</span></router-link></li>
             <li><router-link to="/system/systemMange"> <i class="iconfont icon-ZS-Systemmanagement"></i><span>系统管理</span></router-link></li>
-            <li class="r" style="margin-top:40px;">
+            <li class="r" style="margin-top:40px;margin-right:20px;">
                 <el-dropdown style="left:50px;">
                   <div class="el-dropdown-link" style=";width:44px;height:44px;line-height:36px;background:rgba(84,177,221,0.32);border-radius:50%;box-shadow:  0 0 14px rgba(84,177,221,0.42);">
                     <i class="iconfont icon-User" style="font-size:30px;color:#54B1DD;position:relative;left:6px;"></i>
@@ -14,6 +14,7 @@
                     <el-dropdown-item @click.native="loginOut">退出登录</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
+                <p class="r">{{$store.state.FContacts}}</p>
             </li>
         </ul>
         <set-password :show.sync="show1"></set-password>

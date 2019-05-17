@@ -21,7 +21,7 @@
 </template>
 <script>
 import {zwCard} from '@/components/index.js';
-import {Login} from '@/xiaofang/request/api.js'
+import {Login} from '@/xiaoFangCloud/request/api.js'
 export default {
     data(){
         return{
@@ -65,36 +65,23 @@ export default {
                 .then((data) => {
                     console.log(data);
                     sessionStorage.setItem('FToken',data.FObject.FToken)
-                    sessionStorage.setItem('FUserType',data.FObject.FUserType)
+/*                     sessionStorage.setItem('FUserType',data.FObject.FUserType)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
-                    sessionStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
+                    sessionStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0) */
                     this.$store.state.token = data.FObject.FToken
-                    this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
+/*                     this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
                     this.$store.state.FContacts = data.FObject.FContacts
                     this.$store.state.userType = data.FObject.Project[0].FType
-                    sessionStorage.setItem('project',JSON.stringify(data.FObject.Project[0]))
+                    sessionStorage.setItem('project',JSON.stringify(data.FObject.Project[0])) */
                     if(this.loginState){
                         localStorage.setItem('userName',this.userName)
                         localStorage.setItem('password',this.password)
                     }
-                    if(data.FObject.Project[0].FType == 1){
+/*                     if(data.FObject.Project[0].FType == 1){
                         this.passwordErr = '用户名或密码错误'
                         return
-                    }
-                    this.$router.push('/')
-/*                     if(this.loginState){
-                        this.$store.state.token = data.FObject.FToken
-                        this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
-                        this.$store.state.FContacts = data.FObject.FContacts
-                    }else{
-                        this.$store.state.token = data.FObject.FToken
-                        this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
-                        this.$store.state.FContacts = data.FObject.FContacts
-                        localStorage.removeItem('FToken')
-                        localStorage.removeItem('FUserType')
-                        localStorage.removeItem('FContacts')
-                        localStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0)
                     } */
+                    this.$router.push('/')
                 }).catch((err) => {
                     console.log(err);
                     if(err.Result == 103){
@@ -109,11 +96,11 @@ export default {
 }
 </script>
 <style lang="scss">
-$img-url:'../../assets/image/';
+$img-url:'../../../assets/image/';
 .login{
     width: 100%;
     height: 100%;
-    background: url(#{$img-url}login/bg_1.jpg);
+    background: url(#{$img-url}cloud/login.jpg);
     position: relative;
     &-box{
         width: 651px;

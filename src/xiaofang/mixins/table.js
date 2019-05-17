@@ -4,7 +4,6 @@
  * @param {Number} pageIndex 页码
  */
 import {zwPagination} from '@/components/index'
-import { resolve } from 'url';
 export default{
     data() {
         return{

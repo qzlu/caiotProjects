@@ -24,7 +24,7 @@ export default new Router({
       component:Caiot
     },
     {
-      path: '/home/:name',
+      path: '/home',
       name: 'home',
       component: Home //掌上应急首页
     },
