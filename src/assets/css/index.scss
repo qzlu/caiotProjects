@@ -2,6 +2,8 @@ $url:'../image/cloud/index';
 .home{
     width: 100%;
     height: 100%;
+    color: #A5EFFC;
+    font-size: 14px;
     .statu{
         width:72px;
         height:124px;
@@ -24,16 +26,43 @@ $url:'../image/cloud/index';
             box-shadow:  0 0 14px #fb0d0d;
         }
     }
+    .unnormal{
+        background:rgba(104,10,23,0.34)!important;
+        .statu{
+            background: url(../image/cloud/index/unusual.gif);
+            border:1px solid #fb0d0d;
+            border-radius:9px;
+            box-shadow:  0 0 14px #fb0d0d;
+        }
+    }
     .header{
         position: relative;
         height: 84px;
         .title{
-            font-size:36px;
+            font-size:34px;
             font-family:MicrosoftYaHei-Bold;
             font-weight:bold;
             color:rgba(132,242,255,1);
             line-height:103px;
             letter-spacing: 4px;
+        }
+        .back.el-button{
+            width:92px;
+            height:50px;
+            line-height: 50px;
+            padding: 0;
+            background:rgba(84,177,221,0.22);
+            text-align: center;
+            border: none;
+            position: absolute;
+            left: 30px;
+            top: 18px;
+            a{
+                display: block;
+                height: 100%;
+                font-size: 20px;
+                color:rgba(96,229,247,1);
+            }
         }
         ul{
             position: absolute;
@@ -82,6 +111,7 @@ $url:'../image/cloud/index';
             .iconfont{
                 font-size: 28px;
                 margin-right: 8px;
+                vertical-align: middle;
             }
         }
     }
@@ -126,6 +156,7 @@ $url:'../image/cloud/index';
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
+                                    text-align: left;
                                     i{
                                         display: inline-block;
                                         width: 40px;
@@ -161,6 +192,7 @@ $url:'../image/cloud/index';
                     width: 100%;
                     height: 227px;
                     border-bottom: 1px dotted #2B76B2;
+                    cursor: pointer;
                     h4{
                         width: 188px;
                         height: 44px;
@@ -190,6 +222,9 @@ $url:'../image/cloud/index';
                                     font-size: 20px;
                                     margin-left: 10px;
                                 }
+                                .iconfont{
+                                    vertical-align: baseline;
+                                }
                             }
                         }
                     }
@@ -199,7 +234,7 @@ $url:'../image/cloud/index';
     }
     .main{
         margin-left: 390px;
-        margin-right: 420px;
+        margin-right: 425px;
         height: 974px;
         padding-top: 20px;
         &-header{
@@ -240,6 +275,97 @@ $url:'../image/cloud/index';
             box-sizing: border-box;
             display: flex;
             justify-content: space-between;
+        }
+        .device-list{
+            width: 100%;
+            height:100%;
+            background: url(#{$url}/device-list.png);
+            background-size: 100% 100%;
+            h4{
+                width: 278px;
+                height: 40px;
+                line-height: 40px;
+                font-size:20px;
+                margin: 5px auto 0 auto;
+                background: url(#{$url}/device-title.png);
+            }
+            .type-list{
+                height: 928px;
+                h5{
+                    height:55px;
+                    line-height: 55px;
+                    background:linear-gradient(90deg,rgba(17,45,69,0.34),rgba(16,52,78,0.34),rgba(15,60,89,0.34),rgba(15,64,94,0.34),rgba(16,71,101,0.34),rgba(15,66,95,0.34),rgba(15,61,87,0.34),rgba(16,50,77,0.34),rgba(18,45,72,0.34));
+                    border-radius:10px 6px 6px 10px;
+                    text-align: left;
+                    padding-left: 35px;
+                    font-size:18px;
+                    font-family:MicrosoftYaHeiUI;
+                    font-weight:400;
+                    color:rgba(165,239,252,1);
+                    .iconfont{
+                        font-size: 24px;
+                        margin-right: 10px;
+                    }
+                }
+                .device{
+                    text-align: left;
+                    >li{
+                        width: 273px;
+                        height: 200px;
+                        position: relative;
+                        display: inline-block;
+                        a{
+                            display: block;
+                            height: 100%;
+                        }
+                        .icon{
+                            position: absolute;
+                            left: 21px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #03CD82;
+                            .iconfont{
+                                font-size: 50px;
+                            }
+                            .device-status{
+                                margin-top: 18px;
+                            }
+                        }
+                        .device-info{
+                            position: absolute;
+                            left: 76px;
+                            margin-top: 19px;
+                            h6{
+                                font-size:22px;
+                                font-weight:400;
+                                color:rgba(182,192,220,1);
+                            }
+                        }
+                    }
+                    >li:before{
+                        display: block;
+                        width: 193px;
+                        height: 4px;
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: 4px;
+                        content: '';
+                        background: url(#{$url}/border-bottom.png)
+                    }
+                    >li:after{
+                        display: block;
+                        width: 4px;
+                        height: 193px;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: 4px;
+                        content: '';
+                        background: url(#{$url}/border-right.png);
+                    }
+                }
+            }
         }
     }
 }

@@ -22,6 +22,7 @@
 <script>
 import {zwCard} from '@/components/index.js';
 import {Login} from '@/xiaoFangCloud/request/api.js'
+import Md5 from 'js-md5'
 export default {
     data(){
         return{
@@ -59,12 +60,13 @@ export default {
                 Login({
                     FAction:'Login',
                     FUserName:this.userName,
-                    FPassword:this.password,
+                    FPassword:Md5(this.password),
                     TerminalType:'PC'
                 })
                 .then((data) => {
                     console.log(data);
                     sessionStorage.setItem('FToken',data.FObject.FToken)
+                    sessionStorage.setItem('FContacts',data.FObject.FContacts)
 /*                     sessionStorage.setItem('FUserType',data.FObject.FUserType)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
                     sessionStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0) */

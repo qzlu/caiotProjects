@@ -1,7 +1,7 @@
 //配置axios
 import axios from 'axios';
 import {messageErr} from '@/plugins/statusCode.js'
-import store from '@/xiaofang/store.js';
+import router from '../router'
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';} 
@@ -11,7 +11,6 @@ else if (process.env.NODE_ENV == 'debug') {
 else if (process.env.NODE_ENV == 'production') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
 }
-
 //设置请求超时时间
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
@@ -60,7 +59,7 @@ export function post(url, params) {
     return new Promise((resolve, reject) => {
         let obj = {
             FTokenID:sessionStorage.getItem('FToken'),
-            ProjectID:store.state.projectId,
+            ProjectID:sessionStorage.getItem('projectID'),
             FVersion:"1.0.0",		
         }
         axios.post(url,Object.assign(obj,params))
@@ -68,7 +67,7 @@ export function post(url, params) {
             resolve(res.data);
         })
         .catch(err =>{
-            messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
+            messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
             reject(err.data?err.data:err)
         })
     });

@@ -1,22 +1,5 @@
 <template>
-    <div class="home cloud">
-        <div class="header">
-            <span class="title">中物互联数字消防云平台</span>
-            <ul class="clearfix">
-                <li class="l icon">
-                    <el-dropdown>
-                      <div class="el-dropdown-link icon-item">
-                        <i class="iconfont icon-User"></i>
-                      </div>
-                      <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item @click.native="show1 = true">设置密码</el-dropdown-item>
-                        <el-dropdown-item @click.native="loginOut">退出登录</el-dropdown-item>
-                      </el-dropdown-menu>
-                    </el-dropdown>
-                </li>
-                <li class="l user-name">张三</li>
-            </ul>
-        </div>
+    <div>
         <div class="left-side l">
             <div class="side-header clearfix">
                 <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
@@ -24,29 +7,7 @@
             </div>
             <div class="side-content">
                  <el-scrollbar>
-                     <ul class="list">
-                         <li :class="{alarm:i===0}" v-for="(item,i) in systemList" :key="i">
-                             <h4>
-                                <i class="iconfont icon-Lift"></i>
-                                {{item[0].SystemParamName}}
-                            </h4>
-                            <div class="list-content">
-                                <div class="statu">
-                                </div>
-                                <ul class="param">
-                                    <li v-for="(obj,j) in item" :key="j">
-                                        <p class="l">
-                                            <i :class="['iconfont',obj.IconName]"></i>
-                                            {{obj.CountName}}
-                                        </p>
-                                        <span class="value">
-                                            10 / 0
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                         </li>
-                     </ul>
+                    <left-side :data="systemList"></left-side>
                  </el-scrollbar>
             </div>
         </div>
@@ -58,7 +19,7 @@
             <div class="side-content">
                  <el-scrollbar>
                      <ul class="list">
-                         <li :class="{alarm:item.FireCount>0}" v-for="(item,i) in fireList" :key="i">
+                         <li :class="{alarm:item.FireCount>0}" v-for="(item,i) in fireList" :key="i" @dblclick="changeRouter(item)">
                              <h4>{{item.ProjectName}}</h4>
                              <div class="list-content">
                                 <div class="statu"></div>
@@ -68,15 +29,15 @@
                                         <span class="value">{{item.FireCount}}</span>
                                     </li>
                                     <li class="l" style="margin-bottom: 30px;">
-                                        <i class="iconfont icon-Numberofwarning"></i>
+                                        <i class="iconfont icon-Fault"></i>
                                         <span class="value">{{item.FaultCount}}</span>
                                     </li>
                                     <li class="l">
-                                        <i class="iconfont icon-Numberofwarning"></i>
+                                        <i class="iconfont icon-SZXFY-Earlywarning"></i>
                                         <span class="value">{{item.WarningCount}}</span>
                                     </li>
                                     <li class="l">
-                                        <i class="iconfont icon-Numberofwarning"></i>
+                                        <i class="iconfont icon-SZXFY-Operations"></i>
                                         <span class="value">{{item.MaintenanceCount}}</span>
                                     </li>
                                 </ul>
@@ -118,7 +79,7 @@
                 </li>
             </ul>
             <div id="map">
-
+                <b-map ref="map"></b-map>
             </div>
             <div class="main-footer">
                 <zw-table icon='icon-FireAlarm' title="实时预警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
@@ -129,8 +90,9 @@
 </template>
 <script>
 import '@/assets/css/index.scss'
-import {number,zwTable} from '@/components/index.js'
+import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
+import leftSide from './leftSide.vue'
 export default {
     data(){
         return{
@@ -162,57 +124,24 @@ export default {
                     width:'25%'
                 }
             ],
-            data:[
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-                {
-                    name:'中物互联',
-                    time:'10:00',
-                    content:'过流',
-                    value:'100A'
-                },
-            ]
         }
     },
     components:{
         number,
-        zwTable
+        zwTable,
+        bMap,
+        leftSide
+    },
+    computed:{
+    },
+    watch:{
+
     },
     created(){
+        this.queryData()
     },
     mounted(){
-        this.$nextTick(() => {
-            this.initMap()
-            this.queryData()
-        })
+
     },
     methods:{
         queryData(){
@@ -220,29 +149,80 @@ export default {
                 FAction:'QueryBlocHomePageCount'
             })
             .then((data) => {
-                let a,b,c,d,e
-                [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject
-                console.log(this.fireAlarmData)
+                [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+                console.log(data)
+/*                 this.systemList = this.systemList.map(item => {
+                    let alarmObj = item.find(obj => obj.AlarmCount )
+                    return {
+                        SystemParamName:item[0].SystemParamName,
+                        AlarmCount:alarmObj?alarmObj.AlarmCount:0,
+                        iconName:item[0].SystemParamIconName,
+                        data:item
+                    }
+                })
+                this.systemList.sort((a,b) => b.AlarmCount - a.AlarmCount) */
+                this.$nextTick(() => {
+                    this.showMarks()
+                })
             }).catch((err) => {
                 console.log(err)
             });
         },
-        /**百度地图 */
-        initMap(){
-            this.map =  new BMap.Map('map')
-	        this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-	        //添加地图类型控件
-	        this.map.setCurrentCity("深圳");          // 设置地图显示的城市 此项是必须设置的
-            this.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-            this.map.setMapStyle({style:'midnight'});
+        content(item){
+            let temp = `
+                <div class = 'info-window'>
+                    <h5>${item.ProjectName}</h5> 
+                    <ul >
+                        <li><span>项目地址：</span>${item.Address}</li>
+                        <li><span>安全负责人：</span>${item.PropertyLeader}　${item.PropertyPhone}</li>
+                        <li><span>设备名称：</span>${item.DeviceName}</li>`
+            if(item.FireCount > 0){
+                temp += `<li><span>报警时间：</span>${item.AlarmTime}</li>`
+            }
+            temp += `            
+                    </ul>
+                </div>
+            `
+            return temp
+        },
+        /**
+         * 显示点
+         */
+        showMarks(){
+            let Map = this.$refs.map
+            Map.map.clearOverlays()
+            this.fireList.forEach((item,i) => {
+                if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
+                  return
+                }
+                const point = new BMap.Point(item.Flat,item.Flng)
+                let marker,icon,img,temp
+                if(item.FireCount>0){
+                    img = require('@/assets/image/cloud/index/bMap_icon_alarm.png')
+                }else{
+                    img = require('@/assets/image/cloud/index/bMap_icon.png')
+                }
+                icon = Map.setIcon(img,34,40)
+                marker = new BMap.Marker(point,{icon:icon})
+                temp = this.content(item)
+                Map.map.addOverlay(marker)
+                Map.map.centerAndZoom(point, 11);
+                Map.setLabel(marker,item.ProjectName)
+                marker.addEventListener('mouseover',e => {
+                  Map.openInfoWindow(temp,point)
+                })
+                marker.addEventListener('dblclick',e => {
+                  this.changeRouter(item)
+                })
+            })
+        },
+        changeRouter(item){
+            sessionStorage.setItem('projectID',item.ProjectID)
+            sessionStorage.setItem('projectName',item.ProjectName)
+            this.$router.push('/indexItem')
         },
     }
 }
 </script>
 <style lang="scss">
-    $url:'../../../assets/image/cloud/index/';
-    .cloud{
-       padding: 2px;
-       background: url('#{$url}bg_img.jpg');
-    }
 </style>

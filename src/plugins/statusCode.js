@@ -1,6 +1,5 @@
 import { Message } from 'element-ui';
-import router from '@/xiaofang/router.js';
-export function messageErr(x,message = ''){
+export function messageErr(x,message = '',router){
     switch(x)	{
         case 100:
           Message('异常错误');

@@ -9,13 +9,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "core-js": "^2.6.5",
-    "element-ui": "^2.7.2",
+    "echarts": "^4.2.1",
+    "element-ui": "^2.8.2",
     "js-md5": "^0.7.3",
+    "vue": "^2.6.6",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "vue": "^2.6.6",
-    "vue-cascading-address": "^0.1.7",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^3.0.7",
     "vuex": "^3.0.1"

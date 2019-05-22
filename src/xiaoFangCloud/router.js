@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './views/home/index.vue'
+import Index from './views/home/home.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -14,13 +14,23 @@ export default new Router({
         },
         {
             path:'',
-            name:'index',
-            component: Index //集团页面
-        },
-        {
-            path:'/indexItem',
-            name:'indexItem',
-            component: () => import('./views/home/indexItem.vue') //项目页面
+            component: Index, 
+            children:[
+                {
+                    path:'',
+                    component:() => import('./views/home/index.vue')//集团页面
+                },
+                {
+                    path:'indexItem',
+                    name:'indexItem',
+                    component: () => import('./views/home/indexItem.vue') //项目页面
+                },
+                {
+                    path:'deviceDetaile/:id',
+                    name:'deviceDetaile',
+                    component: () => import('./views/home/deviceDetaile.vue') //设备详情
+                }
+            ]
         },
     ]
 })

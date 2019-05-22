@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {messageErr} from '@/plugins/statusCode.js'
 import store from '@/xiaofang/store.js';
+/* import router from '../router' */
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
     axios.defaults.baseURL = 'http://47.106.64.130:56091/CaiotZSYJ/';} 
@@ -11,7 +12,6 @@ else if (process.env.NODE_ENV == 'debug') {
 else if (process.env.NODE_ENV == 'production') {    
     axios.defaults.baseURL = 'http://47.106.64.130:56091/CaiotZSYJ/';
 }
-
 //设置请求超时时间
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
@@ -68,6 +68,10 @@ export function post(url, params) {
             resolve(res.data);
         })
         .catch(err =>{
+            if(err.data.Result == 107){
+                let router = require('../router')
+                messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
+            }
             messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
             reject(err.data?err.data:err)
         })

@@ -1,0 +1,130 @@
+<template>
+    <div>
+        <div class="left-side l">
+            <div class="side-header clearfix">
+                <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
+                <span>火警总数</span>
+            </div>
+            <div class="side-content">
+                 <el-scrollbar>
+                    <left-side :data="systemList"></left-side>
+                 </el-scrollbar>
+            </div>
+        </div>
+        <div class="right-side r">
+            <div class="side-header clearfix">
+                <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
+                <span>预警总数</span>
+            </div>
+            <div class="side-content">
+                <div style="height:50%">
+                    <zw-table icon='icon-FireAlarm' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                </div>
+                <div style="height:50%">
+                    <zw-table icon='icon-FireAlarm' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="device-list">
+                <h4>设备总况</h4>
+                <div class="type-list">
+                    <el-scrollbar>
+                        <div v-for="(item,i) in count" :key="i">
+                            <h5>
+                                <i class="iconfont icon-Lift"></i>
+                                <span>{{item.SystemParamName}}（{{item.data.length}}）</span>
+                            </h5>
+                            <ul class="device">
+                                <li v-for="(device,j) in item.data" :key="j">
+                                    <router-link :to="`/deviceDetaile/${device.DeviceLedgerID}`">
+                                        <div class="icon">
+                                            <p><i :class="['iconfont',device.DeviceTypeIconName]"></i></p>
+                                            <p class="device-status">{{device.ShowText}}</p>
+                                        </div>
+                                        <div class="device-info">
+                                            <h6>{{device.DeviceLedgerName}}</h6>
+                                        </div>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </el-scrollbar>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import '@/assets/css/index.scss'
+import {number,zwTable} from '@/components/index.js'
+import {HomePage} from '@/xiaoFangCloud/request/api.js'
+import leftSide from './leftSide.vue'
+export default {
+    data(){
+        return{
+            map:null,
+            count:[],
+            systemList:[], //系统列表（左侧数据）
+            fireList:[], //火警信息列表（右侧数据）
+            fireAlarmData:null,
+            wariningData:null,
+            tableLabel:[
+                {
+                    label:'项目',
+                    prop:'ShortName',
+                    width:'20%'
+                },
+                {
+                    label:'告警时间',
+                    prop:'AlarmTime',
+                    width:'35%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'25%'
+                },
+                {
+                    label:'当前值',
+                    prop:'AlarmData',
+                    width:'20%'
+                }
+            ],
+        }
+    },
+    components:{
+        number,
+        zwTable,
+        leftSide
+    },
+    computed:{
+        projectName(){
+          return  sessionStorage.getItem('projectName')
+        }
+    },
+    watch:{
+
+    },
+    created(){
+        this.queryData()
+    },
+    mounted(){
+
+    },
+    methods:{
+        queryData(){
+            HomePage({
+                FAction:'QueryProjectHomePageCount'
+            })
+            .then((data) => {
+                [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+            }).catch((err) => {
+                console.log(err)
+            });
+        },
+    }
+}
+</script>
+<style lang="scss">
+</style>

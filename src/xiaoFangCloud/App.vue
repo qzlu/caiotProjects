@@ -31,7 +31,7 @@ export default {
       this.$store.state.token = sessionStorage.getItem('FToken')
       this.$store.state.projectId = sessionStorage.getItem('projectId')
       this.$store.state.FContacts =sessionStorage.getItem('FContacts')
-      this.$store.state.userType =project.FType
+      /* this.$store.state.userType =project.FType */
     }
   },
   methods:{
