@@ -17,11 +17,11 @@
                 <span>预警总数</span>
             </div>
             <div class="side-content">
-                <div style="height:50%">
+                <div style="height:450px">
                     <zw-table icon='icon-FireAlarm' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
                 </div>
-                <div style="height:50%">
-                    <zw-table icon='icon-FireAlarm' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                <div style="height:450px;margin-top:11px">
+                    <zw-table icon='icon-FireAlarm' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
                 </div>
             </div>
         </div>
@@ -31,19 +31,25 @@
                 <div class="type-list">
                     <el-scrollbar>
                         <div v-for="(item,i) in count" :key="i">
-                            <h5>
-                                <i class="iconfont icon-Lift"></i>
-                                <span>{{item.SystemParamName}}（{{item.data.length}}）</span>
+                            <h5 v-if="item.mProjectHomePageShowDevices.length">
+                                <i :class="['iconfont',item.SystemParamIconName]"></i>
+                                <span>{{item.SystemParamName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
                             </h5>
                             <ul class="device">
-                                <li v-for="(device,j) in item.data" :key="j">
-                                    <router-link :to="`/deviceDetaile/${device.DeviceLedgerID}`">
-                                        <div class="icon">
-                                            <p><i :class="['iconfont',device.DeviceTypeIconName]"></i></p>
-                                            <p class="device-status">{{device.ShowText}}</p>
+                                <li v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
+                                    <router-link :to="`/deviceDetaile/${device.DeviceID}`">
+                                        <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]">
+                                            <p><i :class="['iconfont',device.IconName]"></i></p>
+                                            <p class="device-status">{{device.DeviceStatusName}}</p>
                                         </div>
                                         <div class="device-info">
-                                            <h6>{{device.DeviceLedgerName}}</h6>
+                                            <h6>{{device.DeviceName}}</h6>
+                                            <ul class="data-item">
+                                                <li v-for="(obj,m) in device.mDeviceHomePageShowPositions" :key="m">
+                                                    <p>{{obj.ShowData}}</p>
+                                                    <p>{{obj.ShowName}}<span v-if="obj.Unit">（{{obj.Unit}}）</span></p>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </router-link>
                                 </li>
@@ -71,11 +77,6 @@ export default {
             wariningData:null,
             tableLabel:[
                 {
-                    label:'项目',
-                    prop:'ShortName',
-                    width:'20%'
-                },
-                {
                     label:'告警时间',
                     prop:'AlarmTime',
                     width:'35%'
@@ -88,6 +89,23 @@ export default {
                 {
                     label:'当前值',
                     prop:'AlarmData',
+                    width:'20%'
+                }
+            ],
+            tableLabel1:[
+                {
+                    label:'告警时间',
+                    prop:'AlarmTime',
+                    width:'35%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'25%'
+                },
+                {
+                    label:'类型',
+                    prop:'AlarmTypeName',
                     width:'20%'
                 }
             ],
@@ -118,6 +136,7 @@ export default {
                 FAction:'QueryProjectHomePageCount'
             })
             .then((data) => {
+                console.log(data);
                 [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
             }).catch((err) => {
                 console.log(err)

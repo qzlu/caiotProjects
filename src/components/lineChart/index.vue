@@ -60,7 +60,7 @@ export default {
               color: "#fff"
             },
             legend: {
-              top:'38px',
+              top:'20px',
               right:'96px',
               icon:'circle',
               itemWidth:10,

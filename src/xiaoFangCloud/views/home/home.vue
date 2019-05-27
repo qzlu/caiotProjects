@@ -13,11 +13,11 @@
                         <i class="iconfont icon-ZS-bloc"></i>
                     </router-link>
                 </li>
-                <li class="l icon" v-if="$route.path !=='/'">
+<!--                 <li class="l icon" v-if="$route.path !=='/'">
                     <router-link to="/indexItem" :exact ='false' class="icon-item">
                         <i class="iconfont icon-zs-backstage"></i>
                     </router-link>
-                </li>
+                </li> -->
                 <li class="l icon">
                     <el-dropdown>
                       <div class="el-dropdown-link icon-item">
@@ -82,6 +82,8 @@ export default {
             ul{
                 li{
                   max-width: 400px;
+                  height: 24px;
+                  line-height: 24px;
                   margin-top: 10px;
                   white-space: nowrap;
                 }

@@ -8,7 +8,7 @@
                   highlight-current
                   default-expand-all
                   :props="treeProp"
-                  node-key="DeviceLedgerID"
+                  node-key="DeviceID"
                   @node-click="handleClick"
                   :expand-on-click-node="false"
                  >
@@ -20,7 +20,7 @@
                             {{data.DeviceTypeName}}
                         </span>
                         <span v-else>
-                            {{data.DeviceLedgerName}}
+                            {{data.DeviceName}}
                         </span>
                     </span>
                 </el-tree>
@@ -29,30 +29,30 @@
         <div class="device-info">
             <div>
                 <div class="item-header">
-                    <i class="iconfont icon-Monitoring"></i>
+                    <i class="iconfont icon-SZXFY-Monitor"></i>
                     实时监测
                 </div>
                 <div class="monitor">
                     <div class="device-statu">
                         <div class="l">
-                            <i class="iconfont icon-FireControl"></i>
+                            <i :class="['iconfont',deviceInfo.IconName]"></i>
                         </div>
                         <div>
-                            <p>1# 配电柜</p>
-                            <p>合闸</p>
+                            <p>{{deviceInfo.DeviceName}}</p>
+                            <p>{{deviceMonitorInfo.DeviceStatusName}}</p>
                         </div>
                     </div>
-                    <ul>
-                        <li v-for="i in 4">
-                            <span class="label">三相电流（A）</span> 4.08/4/3.3
+                    <ul v-if="deviceMonitorInfo.mDeviceHomePageShowPositions">
+                        <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="queryLineData(item.ShowPosition,i)" :key="i">
+                            <span class="label">{{item.ShowName}}<span v-if="item.Unit">（{{item.Unit}}）</span></span> {{item.ShowData}}
                         </li>
                     </ul>
                     <div class="chart">
                         <div class="time-select">
                             <span>时间 </span>
-                            <el-date-picker v-model="time" type="date"></el-date-picker>
+                            <el-date-picker v-model="time" type="date" @change="timeChange"></el-date-picker>
                         </div>
-                        <line-chart :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
+                        <line-chart v-if="lineData.rows&&lineData.rows.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     </ul>
                     <div class="device-img r">
                         <div>
-                            <el-image :src="deviceInfo.DeviceLedgerPhoto" alt="">
+                            <el-image :src="`http://www.caszyj.com/${deviceInfo.DeviceLedgerPhoto}`" alt="">
                               <div slot="error" class="image-slot">
                                 <i class="el-icon-picture-outline"></i>
                               </div>
@@ -84,7 +84,7 @@
                             </p>
                         </div>
                         <div>
-                            <el-image :src="deviceInfo.DeviceLedgerPhoto" alt="">
+                            <el-image :src="`http://www.caszyj.com/${deviceInfo.DeviceLedgerQrCode}`" alt="">
                               <div slot="error" class="image-slot">
                                 <i class="el-icon-picture-outline"></i>
                               </div>
@@ -134,14 +134,14 @@ export default {
                 children:'Data'
             },
             basiInfo:[ //基本信息字段
-                {label:'设备名称',prop:'DeviceLedgerName'},
+                {label:'设备名称',prop:'DeviceName'},
                 {label:'设备编码',prop:'DeviceCode'},
-                {label:'规格类型',prop:'DeviceLedgerName'},
+                {label:'规格类型',prop:'DeviceName'},
                 {label:'设备类型',prop:'DeviceTypeName'},
                 {label:'生产厂商',prop:'Manufacturer'},
                 {label:'系统类型',prop:'SystemParamName'},
-                {label:'保质年限',prop:'DeviceLedgerName'},
-                {label:'安装位置',prop:'DeviceLedgerName'},
+                {label:'保质年限',prop:'DeviceName'},
+                {label:'安装位置',prop:'DeviceName'},
                 {label:'出厂日期',prop:'ManufacturingTime'},
                 {label:'启用日期',prop:'OperatingDateTime'},
                 {label:'相关参数',prop:'DeviceLedgerParam'},
@@ -149,29 +149,13 @@ export default {
             ],
             deviceInfo:{ //设备基本信息
             },
+            deviceMonitorInfo:{},
+            active:0,
+            showPosition:null,
             time:new Date(),
             lineData:{
-                columns:['周一','周二','周三','周四','周五','周六','周日'],
-                rows:[
-                    {
-                        name:'A',
-                        type:'line',
-                        stack: '总量',
-                        data:[120, 132, 101, 134, 90, 230, 210]
-                    },
-                    {
-                        name:'B',
-                        type:'line',
-                        stack: '总量',
-                        data:[220, 182, 191, 234, 290, 330, 310]
-                    },
-                    {
-                        name:'C',
-                        type:'line',
-                        stack: '总量',
-                        data:[150, 232, 201, 154, 190, 330, 410]
-                    },
-                ]
+/*                 columns:[],
+                rows:[] */
             }
         }
     },
@@ -188,7 +172,6 @@ export default {
                 FAction:'QuerySystemUDeviceLedgerTree'
             })
             .then((data) => {
-                console.log(data)
                 this.treeData = data.FObject
                 this.$nextTick(() => {
                     this.$refs.tree.setCurrentKey(this.$route.params.id)
@@ -208,6 +191,8 @@ export default {
                 console.log( this.deviceInfo)
             }else{
                 this.deviceInfo = {}
+                this.deviceMonitorInfo = {}
+                this.lineData = {}
             }
         },
         /**
@@ -215,12 +200,13 @@ export default {
          */
         queryMonitorData(obj){
             Project({
-                FAction:'QueryUDeviceEvents',
-                DeviceLedgerID:obj.DeviceLedgerID,
+                FAction:'QueryDeviceRealData',
+                DeviceID:obj.DeviceID,
                 SystemParamID:obj.SystemParamID
             })
             .then((data) => {
-                console.log(data)
+                this.deviceMonitorInfo = data.FObject[0]||{}
+                this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
             }).catch((err) => {
                 
             });
@@ -242,18 +228,39 @@ export default {
         /**
          * 查询曲线图数据
          */
-        queryLineData(item){
+        queryLineData(item = this.showPosition,i = this.active){
+            this.active = i
+            this.showPosition = item
             Project({
                 FAction:'QueryDataItemChartDataByDeviceID',
                 DeviceID:this.deviceInfo.DeviceID,
-                FDateTime:this.time.toLocaleTimeString(),
+                FDateTime:this.time.toLocaleDateString(),
                 ShowPosition:item
             })
             .then((data) => {
-                console.log(data)
+                let chartData = {
+                    name:[],
+                    columns:[],
+                    rows:{}
+                },
+                arr = data.FObject
+                chartData.name = arr.map(item => item.DataItemName)
+                chartData.columns = arr[0].ProjectChartLineDatas.map(item => item.X)
+                chartData.rows = arr.map(item => {
+                    let yAxis = item.ProjectChartLineDatas.map(obj => obj.Y)
+                    return {
+                      type: "line",
+                      name: item.DataItemName,
+                      data: yAxis
+                    };
+                }) 
+                this.lineData = chartData
             }).catch((err) => {
                 
             });
+        },
+        timeChange(){
+            this.queryLineData()
         }
     }
 }
@@ -272,7 +279,7 @@ $url:'../../../assets/image/cloud/index/';
         font-size: 18px;
     }
     >div.l{
-        width: 358px;
+        width: 261px;
         height: 100%;
         padding: 20px 0;
         box-sizing: border-box;
@@ -312,7 +319,7 @@ $url:'../../../assets/image/cloud/index/';
         }
     }
     .device-info{
-        margin-left: 358px;
+        margin-left: 260px;
         height: 100%;
         >div{
             .item-header{
@@ -396,18 +403,20 @@ $url:'../../../assets/image/cloud/index/';
                         font-weight:400;
                         color:#03CD82;
                         text-align: left;
+                        cursor: pointer;
                         .label{
                             display: inline-block;
                             width: 180px;
                         }
                     }
-                    >li:active{
+                    >li.active{
                         background:linear-gradient(90deg,rgba(6,34,75,1),rgba(16,61,138,1),rgba(36,85,167,1),rgba(6,34,75,1));
                     }
                 }
                 .chart{
                     width: 806px;
                     height: 100%;
+                    padding-top: 10px;
                     padding-bottom: 20px;
                     box-sizing: border-box;
                     position: relative;
@@ -418,6 +427,7 @@ $url:'../../../assets/image/cloud/index/';
                         z-index: 10000;
                         .el-date-editor{
                             width: 150px;
+                            height: 40px;
                             .el-input__inner{
                                 background:rgba(40,70,114,1);
                                 border:1px solid rgba(12,55,110,1);
@@ -428,9 +438,10 @@ $url:'../../../assets/image/cloud/index/';
                 }
             }
             .basi-info{
-                width: 1063px;
+                width: 1153px;
                 height: 510px;
                 padding-top: 20px;
+                position: relative;
                 &-list{
                     width: 830px;
                     height: 100%;
@@ -452,6 +463,7 @@ $url:'../../../assets/image/cloud/index/';
                 width: 233px;
                 height: 100%;
                 position: relative;
+                left: -80px;
                 display: flex;
                 flex-direction: column;
                 justify-content:space-around;
@@ -475,7 +487,7 @@ $url:'../../../assets/image/cloud/index/';
                     font-size: 20px;
                 }
             }
-            .device-img:after{
+            .basi-info:after{
                 content: '';
                 display: block;
                 width: 4px;

@@ -3,6 +3,7 @@ $url:'../image/cloud/index';
     width: 100%;
     height: 100%;
     color: #A5EFFC;
+    box-sizing: border-box;
     font-size: 14px;
     .statu{
         width:72px;
@@ -124,8 +125,9 @@ $url:'../image/cloud/index';
             .list{
                 >li{
                     width: 100%;
-                    height: 284px;
+                    height: 302px;
                     background: url('#{$url}/leftbar.png');
+                    background-size: 100% 100%;
                     cursor: pointer;
                     h4{
                         padding-top: 21px;
@@ -187,8 +189,10 @@ $url:'../image/cloud/index';
             margin-left: 20px;
         }
         .side-content{
+            overflow: hidden;
             .list{
-                >li{
+                height:100%;
+                .swiper-slide{
                     width: 100%;
                     height: 227px;
                     border-bottom: 1px dotted #2B76B2;
@@ -228,6 +232,9 @@ $url:'../image/cloud/index';
                             }
                         }
                     }
+                }
+                >li.active{
+                    background: rgba($color: #2B76B2, $alpha: 0.3);
                 }
             }
         }
@@ -305,13 +312,14 @@ $url:'../image/cloud/index';
                     .iconfont{
                         font-size: 24px;
                         margin-right: 10px;
+                        vertical-align: middle;
                     }
                 }
                 .device{
                     text-align: left;
                     >li{
                         width: 273px;
-                        height: 200px;
+                        height: 240px;
                         position: relative;
                         display: inline-block;
                         a{
@@ -328,8 +336,12 @@ $url:'../image/cloud/index';
                                 font-size: 50px;
                             }
                             .device-status{
+                                text-align: center;
                                 margin-top: 18px;
                             }
+                        }
+                        .icon.off-line{
+                            color: rgb(254, 245, 0);
                         }
                         .device-info{
                             position: absolute;
@@ -339,6 +351,20 @@ $url:'../image/cloud/index';
                                 font-size:22px;
                                 font-weight:400;
                                 color:rgba(182,192,220,1);
+                            }
+                            .data-item{
+                                margin-top: 16px;
+                                li+li{
+                                    margin-top: 10px;
+                                }
+                                p:first-of-type{
+                                    font-size:20px;
+                                    color: #03CD82
+                                }
+                                p:last-of-type{
+                                    font-size: 14px;
+                                    color: #A4A3A5
+                                }
                             }
                         }
                     }

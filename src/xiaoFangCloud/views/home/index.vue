@@ -17,9 +17,35 @@
                 <span>预警总数</span>
             </div>
             <div class="side-content">
-                 <el-scrollbar>
-                     <ul class="list">
-                         <li :class="{alarm:item.FireCount>0}" v-for="(item,i) in fireList" :key="i" @dblclick="changeRouter(item)">
+                <swiper class="list" :options="swiperOption">
+                    <swiper-slide :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
+                        <h4>{{item.ProjectName}}</h4>
+                        <div class="list-content">
+                           <div class="statu"></div>
+                           <ul  class="param clearfix">
+                               <li class="l" style="margin-bottom: 30px;">
+                                   <i class="iconfont icon-FireAlarm"></i>
+                                   <span class="value">{{item.FireCount}}</span>
+                               </li>
+                               <li class="l" style="margin-bottom: 30px;">
+                                   <i class="iconfont icon-Fault"></i>
+                                   <span class="value">{{item.FaultCount}}</span>
+                               </li>
+                               <li class="l">
+                                   <i class="iconfont icon-SZXFY-Earlywarning"></i>
+                                   <span class="value">{{item.WarningCount}}</span>
+                               </li>
+                               <li class="l">
+                                   <i class="iconfont icon-SZXFY-Operations"></i>
+                                   <span class="value">{{item.MaintenanceCount}}</span>
+                               </li>
+                           </ul>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+<!--                  <el-scrollbar>
+                     <transition-group tag="ul" name="list" class="list">
+                         <li :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
                              <h4>{{item.ProjectName}}</h4>
                              <div class="list-content">
                                 <div class="statu"></div>
@@ -43,15 +69,15 @@
                                 </ul>
                              </div>
                          </li>
-                     </ul>
-                 </el-scrollbar>
+                     </transition-group>
+                 </el-scrollbar> -->
             </div>
         </div>
         <div class="main">
             <ul class="main-header">
                 <li>
                     <div class="l">
-                        <p><i class="iconfont icon-Equipment"></i></p>
+                        <p><i class="iconfont icon-Numberofentry"></i></p>
                         <p>项目数</p>
                     </div>
                     <p class="l">{{count.ProjectCount}}</p>
@@ -65,14 +91,14 @@
                 </li>
                 <li>
                     <div class="l">
-                        <p><i class="iconfont icon-Equipment"></i></p>
+                        <p><i class="iconfont icon-Fault"></i></p>
                         <p>故障数</p>
                     </div>
                     <p class="l">{{count.FaultCount}}</p>
                 </li>
                 <li>
                     <div class="l">
-                        <p><i class="iconfont icon-Equipment"></i></p>
+                        <p><i class="iconfont icon-SZXFY-Operations"></i></p>
                         <p>运维数</p>
                     </div>
                     <p class="l">{{count.MaintenanceCount}}</p>
@@ -93,6 +119,9 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
+import { setTimeout } from 'timers';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 export default {
     data(){
         return{
@@ -102,6 +131,16 @@ export default {
             fireList:[], //火警信息列表（右侧数据）
             fireAlarmData:null,
             wariningData:null,
+            items: [1,2,3,4,5,6,7,8,9,10,11],
+            active:null,
+            swiperOption:{
+                autoplay: true,
+                direction : 'vertical',
+                speed:300,
+                loop:true,
+                slidesPerView: 4,
+                loopedSlides: 7
+            },
             tableLabel:[
                 {
                     label:'项目',
@@ -130,7 +169,9 @@ export default {
         number,
         zwTable,
         bMap,
-        leftSide
+        leftSide,
+        swiper,
+        swiperSlide
     },
     computed:{
     },
@@ -151,19 +192,11 @@ export default {
             .then((data) => {
                 [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
                 console.log(data)
-/*                 this.systemList = this.systemList.map(item => {
-                    let alarmObj = item.find(obj => obj.AlarmCount )
-                    return {
-                        SystemParamName:item[0].SystemParamName,
-                        AlarmCount:alarmObj?alarmObj.AlarmCount:0,
-                        iconName:item[0].SystemParamIconName,
-                        data:item
-                    }
-                })
-                this.systemList.sort((a,b) => b.AlarmCount - a.AlarmCount) */
                 this.$nextTick(() => {
                     this.showMarks()
+                    this.swiperOption.loopedSlides = 7
                 })
+                /* setTimeout(this.queryData,3000) */
             }).catch((err) => {
                 console.log(err)
             });
@@ -175,9 +208,10 @@ export default {
                     <ul >
                         <li><span>项目地址：</span>${item.Address}</li>
                         <li><span>安全负责人：</span>${item.PropertyLeader}　${item.PropertyPhone}</li>
-                        <li><span>设备名称：</span>${item.DeviceName}</li>`
+                       `
             if(item.FireCount > 0){
-                temp += `<li><span>报警时间：</span>${item.AlarmTime}</li>`
+                temp += ` <li><span>设备名称：</span>${item.DeviceName}</li>
+                <li><span>报警时间：</span>${item.AlarmTime}</li>`
             }
             temp += `            
                     </ul>
@@ -215,6 +249,14 @@ export default {
                   this.changeRouter(item)
                 })
             })
+        },
+        selectProject(item,i){
+            this.active = i
+            const point = new BMap.Point(item.Flat,item.Flng)
+            let Map = this.$refs.map
+            Map.map.centerAndZoom(point,15)
+            let temp = this.content(item)
+            Map.openInfoWindow(temp,point)
         },
         changeRouter(item){
             sessionStorage.setItem('projectID',item.ProjectID)
