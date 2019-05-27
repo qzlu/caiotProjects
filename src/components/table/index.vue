@@ -10,22 +10,44 @@
           </tr>
         </table>
         <div class="table-body" :style="style1">
-            <el-scrollbar>
+            <swiper :ref="id" :options='swiperOption'>
+                 <swiper-slide class="tr" v-for="(obj,i) in data" :key="i">
+                    <p class="td" v-for="(item,j) in labels" :key="j" :style="{width:item['width']}">{{obj[item.prop]}}</p>
+                 </swiper-slide>
+            </swiper>
+<!--             <el-scrollbar>
                 <table>
                   <tr v-for="(obj,i) in data" :key="i">
                     <td v-for="(item,j) in labels" :key="j" :width='item["width"]'>{{obj[item.prop]}}</td>
                   </tr>
                 </table>
-            </el-scrollbar>
+            </el-scrollbar> -->
         </div>
     </div>
 </template>
 <script>
+import uuidv1 from 'uuid/v1'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 export default {
     data(){
         return{
-
+            id:'',
+            swiperOption:{
+                init:false,
+                autoplay: true,
+                direction : 'vertical',
+                speed:300,
+                loop:true,
+                slidesPerView: 4,
+                slidesPerGroup : 4,
+               /*  loopedSlides: 6 */
+            },
         }
+    },
+    components:{
+        swiper,
+        swiperSlide
     },
     props:{
         data:{ //表格数据
@@ -49,7 +71,18 @@ export default {
         },
         style1(){
             return {height:this.$props.bodyHeight+'px'}
+        },
+        swiper(){
+            return  this.$refs[this.id].swiper
         }
+    },
+    updated(){
+        if(this.$props.data.length>0){
+            this.swiper.init();
+        }
+    },
+    created(){
+        this.id = uuidv1() //获取随机id
     }
 }
 </script>
@@ -77,6 +110,25 @@ export default {
         }
     }
     .table-body{
+        .tr{
+            width: 100%;
+            line-height: 42px;
+            .td{
+                height: 100%;
+                display: inline-block;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+        .tr:nth-of-type(2n+1){
+            background:rgba(158,229,243,0.3);
+        }
+        .tr:nth-of-type(2n){
+            background:rgba(7,148,207,0.3);
+        }
+    }
+/*     .table-body{
           table{
               width: 100%;
               tr{
@@ -91,7 +143,7 @@ export default {
                   background:rgba(7,148,207,0.3);
               }
           }
-    }
+    } */
 
 }
 </style>

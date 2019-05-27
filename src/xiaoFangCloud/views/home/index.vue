@@ -17,29 +17,31 @@
                 <span>预警总数</span>
             </div>
             <div class="side-content">
-                <swiper class="list" :options="swiperOption">
-                    <swiper-slide :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
-                        <h4>{{item.ProjectName}}</h4>
-                        <div class="list-content">
-                           <div class="statu"></div>
-                           <ul  class="param clearfix">
-                               <li class="l" style="margin-bottom: 30px;">
-                                   <i class="iconfont icon-FireAlarm"></i>
-                                   <span class="value">{{item.FireCount}}</span>
-                               </li>
-                               <li class="l" style="margin-bottom: 30px;">
-                                   <i class="iconfont icon-Fault"></i>
-                                   <span class="value">{{item.FaultCount}}</span>
-                               </li>
-                               <li class="l">
-                                   <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                                   <span class="value">{{item.WarningCount}}</span>
-                               </li>
-                               <li class="l">
-                                   <i class="iconfont icon-SZXFY-Operations"></i>
-                                   <span class="value">{{item.MaintenanceCount}}</span>
-                               </li>
-                           </ul>
+                <swiper class="list" ref="mySwiper" :options="swiperOption">
+                    <swiper-slide :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" >
+                        <div style="width:100%;height:100%" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
+                            <h4>{{item.ProjectName}}</h4>
+                            <div class="list-content">
+                               <div class="statu"></div>
+                               <ul  class="param clearfix">
+                                   <li class="l" style="margin-bottom: 30px;">
+                                       <i class="iconfont icon-FireAlarm"></i>
+                                       <span class="value">{{item.FireCount}}</span>
+                                   </li>
+                                   <li class="l" style="margin-bottom: 30px;">
+                                       <i class="iconfont icon-Fault"></i>
+                                       <span class="value">{{item.FaultCount}}</span>
+                                   </li>
+                                   <li class="l">
+                                       <i class="iconfont icon-SZXFY-Earlywarning"></i>
+                                       <span class="value">{{item.WarningCount}}</span>
+                                   </li>
+                                   <li class="l">
+                                       <i class="iconfont icon-SZXFY-Operations"></i>
+                                       <span class="value">{{item.MaintenanceCount}}</span>
+                                   </li>
+                               </ul>
+                            </div>
                         </div>
                     </swiper-slide>
                 </swiper>
@@ -134,6 +136,7 @@ export default {
             items: [1,2,3,4,5,6,7,8,9,10,11],
             active:null,
             swiperOption:{
+                init:false,
                 autoplay: true,
                 direction : 'vertical',
                 speed:300,
@@ -174,12 +177,21 @@ export default {
         swiperSlide
     },
     computed:{
+        swiper(){
+            return  this.$refs.mySwiper.swiper
+        }
     },
     watch:{
 
     },
     created(){
         this.queryData()
+    },
+    updated(){
+        console.log(123)
+        if(this.fireList.length>0){
+            this.swiper.init();
+        }
     },
     mounted(){
 
@@ -194,9 +206,8 @@ export default {
                 console.log(data)
                 this.$nextTick(() => {
                     this.showMarks()
-                    this.swiperOption.loopedSlides = 7
                 })
-                /* setTimeout(this.queryData,3000) */
+                setTimeout(this.queryData,3000)
             }).catch((err) => {
                 console.log(err)
             });
