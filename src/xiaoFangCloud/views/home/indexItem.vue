@@ -18,10 +18,10 @@
             </div>
             <div class="side-content">
                 <div style="height:450px">
-                    <zw-table icon='icon-FireAlarm' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                    <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
                 </div>
                 <div style="height:450px;margin-top:11px">
-                    <zw-table icon='icon-FireAlarm' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                    <zw-table icon='icon-FireAlarm' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@ export default {
                 {
                     label:'告警内容',
                     prop:'AlarmText',
-                    width:'25%'
+                    width:'45%'
                 },
                 {
                     label:'当前值',
@@ -101,7 +101,7 @@ export default {
                 {
                     label:'告警内容',
                     prop:'AlarmText',
-                    width:'25%'
+                    width:'45%'
                 },
                 {
                     label:'类型',

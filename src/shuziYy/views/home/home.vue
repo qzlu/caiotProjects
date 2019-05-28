@@ -6,7 +6,7 @@
                     <i class="icon el-icon-arrow-left"></i>返回
                 </router-link>
             </el-button>
-            <span class="title">{{projectName}}数字消防云平台</span>
+            <span class="title">{{projectName}}数字应急云平台</span>
             <ul class="clearfix">
                 <li  class="l icon" v-if="$route.path !=='/'">
                     <router-link to='/'>
@@ -40,7 +40,7 @@
 </template>
 <script>
 import {setPassword} from '@/components/index.js'
-import {System} from '@/xiaoFangCloud/request/api.js'
+import {System} from '@/shuziYy/request/api.js'
 import '@/assets/css/index.scss'
 export default {
     data(){

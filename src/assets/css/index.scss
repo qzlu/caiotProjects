@@ -195,7 +195,7 @@ $url:'../image/cloud/index';
             overflow: hidden;
             .list{
                 height:100%;
-                .swiper-slide{
+                >li{
                     width: 100%;
                     height: 227px;
                     border-bottom: 1px dotted #2B76B2;
@@ -216,18 +216,21 @@ $url:'../image/cloud/index';
                         height: 183px;
                         position: relative;
                         .param{
-                            padding-left: 20px;
+                            padding-left: 40px;
                             position: absolute;
                             top: 50%;
                             left: 72px;
                             transform: translateY(-50%);
                             li{
                                 width: 120px;
+                                height: 30px;
+                                line-height: 30px;
                                 font-size: 14px;
-                                justify-content: space-between;
+                                text-align: left;
                                 .value{
                                     font-size: 20px;
                                     margin-left: 10px;
+                                    line-height: 30px;
                                 }
                                 .iconfont{
                                     vertical-align: baseline;
@@ -236,7 +239,7 @@ $url:'../image/cloud/index';
                         }
                     }
                 }
-                .swiper-slide.active{
+                >li.active{
                     background: rgba($color: #2B76B2, $alpha: 0.3);
                 }
             }

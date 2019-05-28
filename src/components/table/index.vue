@@ -9,10 +9,10 @@
             <th v-for="(item,i) in labels" :key="i" :width='item.width'>{{item.label}}</th>
           </tr>
         </table>
-        <div class="table-body" :style="style1">
-            <swiper :ref="id" :options='swiperOption'>
+        <div class="table-body" v-if="data.length>0" :style="style1" @mouseenter="enter" @mouseleave="leave">
+            <swiper  :ref="id" :options='swiperOption'>
                  <swiper-slide class="tr" v-for="(obj,i) in data" :key="i">
-                    <p class="td" v-for="(item,j) in labels" :key="j" :style="{width:item['width']}">{{obj[item.prop]}}</p>
+                    <p class="td" v-for="(item,j) in labels" :key="j" :title="obj[item.prop]" :style="{width:item['width']}">{{obj[item.prop]}}</p>
                  </swiper-slide>
             </swiper>
 <!--             <el-scrollbar>
@@ -33,16 +33,6 @@ export default {
     data(){
         return{
             id:'',
-            swiperOption:{
-                init:false,
-                autoplay: true,
-                direction : 'vertical',
-                speed:300,
-                loop:true,
-                slidesPerView: 4,
-                slidesPerGroup : 4,
-               /*  loopedSlides: 6 */
-            },
         }
     },
     components:{
@@ -59,7 +49,11 @@ export default {
         title:String,
         icon:String,
         width:Number,
-        bodyHeight:Number
+        bodyHeight:Number,
+        pageSize:{
+            default:4,
+            type:Number
+        } // 显示数量
     },
     computed:{
         style(){
@@ -74,6 +68,20 @@ export default {
         },
         swiper(){
             return  this.$refs[this.id].swiper
+        },
+        swiperOption(){
+            return {
+                init:false,
+                autoplay: {
+                    disableOnInteraction: false,
+                },
+                direction : 'vertical',
+                speed:300,
+                loop:true,
+                slidesPerView: this.$props.pageSize,
+                slidesPerGroup : this.$props.pageSize,
+               /*  loopedSlides: 6 */
+            }
         }
     },
     updated(){
@@ -83,6 +91,17 @@ export default {
     },
     created(){
         this.id = uuidv1() //获取随机id
+    },
+    beforeDestroy(){
+        /* this.swiper.destroy() */
+    },
+    methods:{
+        enter(){
+            this.swiper.autoplay.stop()
+        },
+        leave(){
+            this.swiper.autoplay.start()
+        }
     }
 }
 </script>
@@ -122,10 +141,10 @@ export default {
             }
         }
         .tr:nth-of-type(2n+1){
-            background:rgba(158,229,243,0.3);
+            background:rgba(158,229,243,0.2);
         }
         .tr:nth-of-type(2n){
-            background:rgba(7,148,207,0.3);
+            background:rgba(7,148,207,0.14);
         }
     }
 /*     .table-body{

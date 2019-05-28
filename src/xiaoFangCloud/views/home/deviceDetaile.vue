@@ -235,7 +235,7 @@ export default {
                 FAction:'QueryDataItemChartDataByDeviceID',
                 DeviceID:this.deviceInfo.DeviceID,
                 FDateTime:this.time.toLocaleDateString(),
-                ShowPosition:item
+                ShowPosition:item===null?-2:item
             })
             .then((data) => {
                 let chartData = {

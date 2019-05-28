@@ -296,14 +296,14 @@
 
           </div>
         </zw-card>
-      <set-password :show.sync="show1"></set-password>
+      <set-password :show.sync="show1" @confirm="changePassword"></set-password>
     </div>
   </div>
 </template>
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
 import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
-import {Alarm} from '@/xiaofang/request/api.js';
+import {Alarm,System} from '@/xiaofang/request/api.js';
 import styleJson  from './custom_map_config.json';
 import './index.scss';
 export default {
@@ -760,6 +760,27 @@ export default {
       })
       var driving = new BMap.DrivingRoute(this.map1,{renderOptions:{map: this.map1, autoViewport: true}})
       driving.search(point1,point2);
+    },
+    changePassword(newPsd,oldPsd){
+        System({
+            FAction:'UpdateTUsersPassword',
+            FType:1,
+            FGuid:'00000000-0000-0000-0000-000000000000',
+            NewFPassword:newPsd,
+            FPassword:oldPsd
+        })
+        .then((data) => {
+            this.$message({
+              type:"success",
+              message:'密码修改成功,3秒后退出登录',
+              druration:1000
+            })
+            setTimeout(() => {
+              this.$router.push('/login')
+            },3000)
+        }).catch((err) => {
+            
+        });
     }
   }
 }

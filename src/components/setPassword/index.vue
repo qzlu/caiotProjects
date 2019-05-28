@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog class="zw-dialog" :visible.sync="visible" append-to-body width="400px" title="设置密码">
+        <el-dialog class="zw-dialog set-password" :visible.sync="visible" append-to-body width="400px" title="设置密码">
             <el-form ref="form" :model="addData">
                 <el-form-item label="旧密码" prop="FPassword" :rules="[{ required: true, message: '旧密码'}]">
                     <el-input type="password" v-model="addData.FPassword"></el-input>
@@ -20,7 +20,6 @@
     </div>
 </template>
 <script>
-import {System} from '@/xiaofang/request/api.js';
 import md5 from 'js-md5';
 export default {
     data(){
@@ -65,15 +64,15 @@ export default {
             })
             if(this.addData.NewPassword !== this.addData.repeatPassword){
                 console.log(this.addData);
-              this.$message({
-                type:"warning",
-                message:'确认密码不一致',
-                druration:1000
-              })
-              return
+                this.$message({
+                  type:"warning",
+                  message:'确认密码不一致',
+                  druration:1000
+                })
+                return
             }
-            this.close()
-            System({
+            this.$emit('confirm',md5(this.addData.NewPassword),md5(this.addData.FPassword))
+/*             System({
                 FAction:'UpdateTUsersPassword',
                 FType:1,
                 FGuid:'00000000-0000-0000-0000-000000000000',
@@ -91,7 +90,7 @@ export default {
                 },3000)
             }).catch((err) => {
                 
-            });
+            }); */
         },
         close(){
             this.$emit('update:show',false)
@@ -99,3 +98,13 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+.set-password{
+    .el-dialog__body{
+        .el-form-item__error{
+            left: 50%;
+            transform: translateX(-50%)
+        }
+    }
+}
+</style>

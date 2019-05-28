@@ -3,48 +3,42 @@
         <div class="left-side l">
             <div class="side-header clearfix">
                 <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
-                <span>火警总数</span>
+                <span>当前告警</span>
             </div>
             <div class="side-content">
                  <el-scrollbar>
-                    <left-side :data="systemList"></left-side>
+                    <ul class="list">
+                        <li :class="{unnormal:item.AlarmCount}" v-for="(item,i) in systemList" :key="i">
+                            <h4>
+                               <i :class="['iconfont',item.iconName]"></i>
+                               <span>{{item.SystemParamName}}</span>
+                           </h4>
+                           <div class="list-content">
+                               <div class="statu">
+                               </div>
+                               <ul class="param">
+                                   <li v-for="(obj,j) in item.data" :key="j">
+                                       <p class="l">
+                                           <i :class="['iconfont',obj.IconName]"></i>
+                                           {{obj.CountName}}
+                                       </p>
+                                       <span class="value">
+                                           {{obj.DeviceCount}} / {{obj.AlarmCount}}
+                                       </span>
+                                   </li>
+                               </ul>
+                           </div>
+                        </li>
+                    </ul>
                  </el-scrollbar>
             </div>
         </div>
         <div class="right-side r">
             <div class="side-header clearfix">
                 <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
-                <span>预警总数</span>
+                <span>当日告警</span>
             </div>
             <div class="side-content">
-<!--                 <swiper class="list" ref="mySwiper"  :options="swiperOption">
-                    <swiper-slide :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" >
-                        <div style="width:100%;height:100%" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
-                            <h4>{{item.ProjectName}}</h4>
-                            <div class="list-content">
-                               <div class="statu"></div>
-                               <ul  class="param clearfix">
-                                   <li class="l" style="margin-bottom: 30px;">
-                                       <i class="iconfont icon-FireAlarm"></i>
-                                       <span class="value">{{item.FireCount}}</span>
-                                   </li>
-                                   <li class="l" style="margin-bottom: 30px;">
-                                       <i class="iconfont icon-Fault"></i>
-                                       <span class="value">{{item.FaultCount}}</span>
-                                   </li>
-                                   <li class="l">
-                                       <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                                       <span class="value">{{item.WarningCount}}</span>
-                                   </li>
-                                   <li class="l">
-                                       <i class="iconfont icon-SZXFY-Operations"></i>
-                                       <span class="value">{{item.MaintenanceCount}}</span>
-                                   </li>
-                               </ul>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                </swiper> -->
                  <el-scrollbar>
                      <transition-group tag="ul" name="list" class="list">
                          <li :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
@@ -91,27 +85,12 @@
                     </div>
                     <p class="l">{{count.BlocDeviceCount}}</p>
                 </li>
-                <li>
-                    <div class="l">
-                        <p><i class="iconfont icon-Fault"></i></p>
-                        <p>故障数</p>
-                    </div>
-                    <p class="l">{{count.FaultCount}}</p>
-                </li>
-                <li>
-                    <div class="l">
-                        <p><i class="iconfont icon-SZXFY-Operations"></i></p>
-                        <p>运维数</p>
-                    </div>
-                    <p class="l">{{count.MaintenanceCount}}</p>
-                </li>
             </ul>
             <div id="map">
                 <b-map ref="map"></b-map>
             </div>
             <div class="main-footer">
-                <zw-table icon='icon-FireAlarm' title="实时火警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
-                <zw-table icon='icon-SZXFY-Earlywarning' title="实时预警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :width='1100' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
         </div>
     </div>
@@ -120,7 +99,6 @@
 import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
-import leftSide from './leftSide.vue'
 export default {
     data(){
         return{
@@ -132,17 +110,6 @@ export default {
             wariningData:null,
             active:null,
             timer:null,
-            test:1,
-/*             swiperOption:{
-                init:false,
-                autoplay: {
-                    disableOnInteraction: false,
-                },
-                direction : 'vertical',
-                speed:300,
-                loop:true,
-                slidesPerView: 4,
-            }, */
             tableLabel:[
                 {
                     label:'项目',
@@ -171,12 +138,9 @@ export default {
         number,
         zwTable,
         bMap,
-        leftSide
     },
     computed:{
-/*         swiper(){
-            return  this.$refs.mySwiper.swiper
-        } */
+
     },
     watch:{
 
@@ -185,9 +149,6 @@ export default {
         this.queryData()
     },
     updated(){
-/*         if(this.fireList.length>0){
-            this.swiper.init();
-        } */
     },
     mounted(){
     },
