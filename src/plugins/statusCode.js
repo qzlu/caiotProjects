@@ -30,7 +30,7 @@ export function messageErr(x,message = '',router){
         Message('该账号已在别处登录');
         localStorage.removeItem('FToken')
         setTimeout(function(){
-             router.push('/login') //跳至登录页面
+            /*  router.push('/login') //跳至登录页面 */
         },1000)
         break;  
       

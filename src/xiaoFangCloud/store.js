@@ -9,12 +9,32 @@ export default new Vuex.Store({
     projectId:0,
     FContacts:'',
     userType:null,
-    projectName:''
+    projectName:'',
+    routeList:JSON.parse(sessionStorage.getItem('cacheRoute'))||[],
   },
   mutations: {
-
+    addRoute(state,item){
+      let isExist = state.routeList.some((route)=> route.FGUID === item.FGUID)
+      !isExist&&state.routeList.push(item)
+      sessionStorage.setItem('cacheRoute',JSON.stringify(state.routeList))
+    },
+    deleteRoute(state,index){
+      state.routeList.splice(index,1)
+      sessionStorage.setItem('cacheRoute',JSON.stringify(state.routeList))
+    },
+    clearRoute(state){
+      state.routeList = []
+    }
   },
   actions: {
-
+    addRoute({commit},item){
+      commit('addRoute',item)
+    },
+    deleteRoute({commit},index){
+      commit('deleteRoute',index)
+    },
+    clearRoute({commit}){
+      commit('clearRoute')
+    }
   }
 })

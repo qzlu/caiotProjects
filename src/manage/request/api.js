@@ -8,13 +8,13 @@ const Login = p => post('Check', p);
 const HomePage = p => post('HomePage',p)
 const Project = p => post('Project',p)
 const Alarm = p => post('Alarm',p)
+const Building = p => post('Building',p)
 const System = p => post('System', p)
-const Device = p => post('Device',p)
 export{
     Login,
     HomePage,
     Project,
     Alarm,
-    System,
-    Device
+    Building,
+    System
 }

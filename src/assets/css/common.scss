@@ -27,6 +27,7 @@ $img-url:'../image/';
                 box-sizing: border-box;
                 border: 2px solid #2C95C1;
                 background: linear-gradient(left bottom,#1a6f8b,#1d3a62);
+                color: white;
                 i{
                     margin-right: 6px;
                 }
@@ -34,6 +35,9 @@ $img-url:'../image/';
             .el-select{
                 width: 100px;
                 height: 46px;
+            }
+            .search-input{
+                width:180px;
             }
             .el-input{
                 // height: 46px;

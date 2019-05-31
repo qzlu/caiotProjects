@@ -22,7 +22,8 @@ $url:'../image/cloud/index';
     
     }
     .alarm{
-        background:rgba(104,10,23,0.34)!important;
+        background:url(../image/index/alarm.png);
+        background-size: 100% 100%;
         .statu{
             background: url(../image/index/fire.gif);
             border:1px solid #fb0d0d;
@@ -31,7 +32,8 @@ $url:'../image/cloud/index';
         }
     }
     .unnormal{
-        background:rgba(104,10,23,0.34)!important;
+        background:url(../image/index/alarm.png)!important;
+        background-size: 100% 100%!important;
         .statu{
             background: url(../image/cloud/index/unusual.gif);
             border:1px solid #fb0d0d;
@@ -374,18 +376,19 @@ $url:'../image/cloud/index';
                             }
                         }
                     }
-                    >li:before{
+                    >li:not(.alarm):before{
                         display: block;
                         width: 193px;
                         height: 4px;
                         position: absolute;
                         left: 50%;
+                        bottom: 0;
                         transform: translateX(-50%);
                         bottom: 4px;
                         content: '';
                         background: url(#{$url}/border-bottom.png)
                     }
-                    >li:after{
+                    >li:not(.alarm):after{
                         display: block;
                         width: 4px;
                         height: 193px;

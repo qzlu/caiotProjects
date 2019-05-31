@@ -8,8 +8,13 @@ const config = {
     'xiaoFangCloud':{
         entry:'./src/xiaoFangCloud/',
     },
+    /**数字应急云平台 */
     'shuziYy':{
         entry:'./src/shuziYy/'
+    },
+    /**后台管理系统 */
+    'manage':{
+        entry:'./src/manage/'
     }
 }
 const configObj = config[projectName.name]

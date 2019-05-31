@@ -59,7 +59,7 @@ export function post(url, params) {
     return new Promise((resolve, reject) => {
         let obj = {
             FTokenID:sessionStorage.getItem('FToken'),
-            ProjectID:sessionStorage.getItem('projectID')||58,
+            ProjectID:sessionStorage.getItem('projectID'),
             FVersion:"1.0.0",		
         }
         axios.post(url,Object.assign(obj,params))

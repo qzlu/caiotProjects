@@ -10,7 +10,6 @@
                   :props="treeProp"
                   node-key="DeviceID"
                   @node-click="handleClick"
-                  :expand-on-click-node="false"
                  >
                     <span slot-scope="{ node, data }">
                         <span v-if="data.index === 0">
@@ -49,10 +48,10 @@
                     </ul>
                     <div class="chart">
                         <div class="time-select">
-                            <span>时间 </span>
+                            <span>时间　</span>
                             <el-date-picker v-model="time" type="date" @change="timeChange"></el-date-picker>
                         </div>
-                        <line-chart v-if="lineData.rows&&lineData.rows.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
+                        <line-chart v-if="lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
                     </div>
                 </div>
             </div>
@@ -245,7 +244,7 @@ export default {
                 },
                 arr = data.FObject
                 chartData.name = arr.map(item => item.DataItemName)
-                chartData.columns = arr[0].ProjectChartLineDatas.map(item => item.X)
+                chartData.columns = arr[0]&&arr[0].ProjectChartLineDatas.map(item => item.X)
                 chartData.rows = arr.map(item => {
                     let yAxis = item.ProjectChartLineDatas.map(obj => obj.Y)
                     return {
@@ -255,8 +254,9 @@ export default {
                     };
                 }) 
                 this.lineData = chartData
+                console.log(this.lineData)
             }).catch((err) => {
-                
+                console.log(err)
             });
         },
         timeChange(){

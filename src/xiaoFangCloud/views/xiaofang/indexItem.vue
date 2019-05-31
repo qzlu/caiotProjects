@@ -18,10 +18,10 @@
             </div>
             <div class="side-content">
                 <div style="height:450px">
-                    <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                    <zw-table icon='icon-FireAlarm' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
                 </div>
                 <div style="height:450px;margin-top:11px">
-                    <zw-table icon='icon-FireAlarm' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                    <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                 <span>{{item.SystemParamName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
                             </h5>
                             <ul class="device">
-                                <li v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
+                                <li :class="{alarm:device.DeviceStatusName === '告警'}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
                                     <router-link :to="`/deviceDetaile/${device.DeviceID}`">
                                         <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]">
                                             <p><i :class="['iconfont',device.IconName]"></i></p>
@@ -66,6 +66,7 @@ import '@/assets/css/index.scss'
 import {number,zwTable} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
+import { setTimeout, clearTimeout } from 'timers';
 export default {
     data(){
         return{
@@ -75,6 +76,7 @@ export default {
             fireList:[], //火警信息列表（右侧数据）
             fireAlarmData:null,
             wariningData:null,
+            timer:null,
             tableLabel:[
                 {
                     label:'告警时间',
@@ -138,10 +140,15 @@ export default {
             .then((data) => {
                 console.log(data);
                 [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+                this.timer = setTimeout(this.queryData,3000)
             }).catch((err) => {
                 console.log(err)
             });
         },
+    },
+    beforeDestroy(){
+        clearTimeout(this.timer)
+        this.timer = null
     }
 }
 </script>
