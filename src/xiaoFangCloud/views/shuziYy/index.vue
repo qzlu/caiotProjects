@@ -248,6 +248,11 @@ export default {
                     background: url('../../../assets/image/cloud/index/leftbar.png');
                     background-size: 100% 100%;
                     cursor: pointer;
+                    a{
+                        display: inline-block;
+                        width: 100%;
+                        height: 100%;
+                    }
                     h3{
                         padding-top: 21px;
                         padding-left: 5px;

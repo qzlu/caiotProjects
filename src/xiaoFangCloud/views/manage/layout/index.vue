@@ -7,12 +7,12 @@
             </router-link>
         </div>
         <div class="project-list">
-            <el-select v-model="projectID" placeholder="请选择">
+            <el-select v-model="project" value-key='ProjectID' placeholder="请选择" @change="select">
               <el-option
-                v-for="item in projects"
-                :key="item.value"
-                :label="item.projectName"
-                :value="item.projectID">
+                v-for="item in projectList"
+                :key="item.ProjectID"
+                :label="item.ProjectName"
+                :value="item">
               </el-option>
             </el-select>
         </div>
@@ -28,7 +28,7 @@
       <el-container>
         <el-header class="header" height='154px'>
             <div class="clearfix">
-                中物互联
+                <h2>{{project.ProjectName}}</h2>
                 <ul class="r clearfix">
                     <li class="l icon">
                         <el-dropdown>
@@ -55,8 +55,7 @@
             </ul>
         </el-header>
         <el-main>
-            <router-view>
-
+            <router-view :id='project.ProjectID'>
             </router-view>
         </el-main>
       </el-container>
@@ -72,17 +71,7 @@ export default {
         show:false,
         menus:[
         ],
-        projects:[
-            {
-                projectID:1,
-                projectName:'中物互联'
-            },
-            {
-                projectID:2,
-                projectName:'新都汇'
-            },
-        ],
-        projectID:1,
+        project:{},
       }
     },
     components:{
@@ -95,11 +84,16 @@ export default {
         },
         routeList(){
             return this.$store.state.routeList
+        },
+        projectList(){
+          this.project = JSON.parse(sessionStorage.getItem('project')) || this.$store.state.projectList[0]
+          return this.$store.state.projectList
         }
         
     },
     created(){
         this.getMenus()
+        this.getSystemList()
     },
     mounted(){
     },
@@ -112,11 +106,24 @@ export default {
                 FAction:'QuerySystemUsersMenu'
             })
             .then((data) => {
-                console.log(data)
                 this.menus = data.FObject
             }).catch((err) => {
 
             });
+        },
+        select(item){
+          this.project = item
+          sessionStorage.setItem('project',JSON.stringify(item))
+        },
+        getSystemList(){
+          System({
+            FAction:'GetSystemParam'
+          })
+          .then((data) => {
+            console.log(data)
+          }).catch((err) => {
+            
+          });
         },
         deleteRoute(index){
             this.$store.dispatch('deleteRoute',index)
@@ -145,8 +152,7 @@ export default {
         }
     },
     beforeDestroy(){
-        localStorage.removeItem("cacheRoute")
-        this.$store.dispatch('clearRoute')
+      this.$store.dispatch('clearRoute')
     }
 }
 </script>
@@ -194,6 +200,13 @@ $url:'../../../../assets/image/';
   }
   .header{
       position: relative;
+      >div.clearfix{
+        margin-top: 28px;
+        font-size:26px;
+        h2{
+          text-align: left;
+        }
+      }
       .route-list{
           width: 100%;
           padding-left: 20px;

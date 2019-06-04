@@ -33,7 +33,6 @@ export default {
   },
   watch: {
     data(){
-        console.log('updateol[-l',this.$props.data)
         this.$nextTick(() => {
             this.showChart()
         })

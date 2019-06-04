@@ -67,22 +67,12 @@ export default {
                     console.log(data);
                     sessionStorage.setItem('FToken',data.FObject.FToken)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
-/*                     sessionStorage.setItem('FUserType',data.FObject.FUserType)
-                    sessionStorage.setItem('FContacts',data.FObject.FContacts)
-                    sessionStorage.setItem('projectId',data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0) */
+                    sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
                     this.$store.state.token = data.FObject.FToken
-/*                     this.$store.state.projectId = data.FObject.Project[0]?data.FObject.Project[0].ProjectID:0
-                    this.$store.state.FContacts = data.FObject.FContacts
-                    this.$store.state.userType = data.FObject.Project[0].FType
-                    sessionStorage.setItem('project',JSON.stringify(data.FObject.Project[0])) */
                     if(this.loginState){
                         localStorage.setItem('userName',this.userName)
                         localStorage.setItem('password',this.password)
                     }
-/*                     if(data.FObject.Project[0].FType == 1){
-                        this.passwordErr = '用户名或密码错误'
-                        return
-                    } */
                     this.$router.push('/')
                 }).catch((err) => {
                     console.log(err);

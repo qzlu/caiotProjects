@@ -152,7 +152,7 @@ export default {
           EndDateTime: this.time[1].toLocaleDateString() + " 23:59",
           PageIndex: this.pageIndex,
           PageSize: 10,
-          FormID:systemId
+          FormID:this.systemId
         })
         .then(data => {
             this.total = data.FObject.Table

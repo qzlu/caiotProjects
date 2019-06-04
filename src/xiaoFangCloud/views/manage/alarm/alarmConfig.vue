@@ -334,7 +334,7 @@ export default {
                 SearchKey:this.filterText,
             })
             .then(data => {
-                window.location = "http://www.caszyj.com/" + data.FObject;
+                this.downloadFile(data)
             })
             .catch(error => {
                 this.$message({

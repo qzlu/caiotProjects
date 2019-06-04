@@ -55,15 +55,7 @@ export default{
          * @param {*} data 
          */
         downloadFile(data){
-            if(data.Result == 200&&data.FObject){
-                window.location = "http://47.106.64.130:56091/" + data.FObject;
-            }else{
-                console.log(data);
-                this.$message({
-                    type:'error',
-                    message:'导出失败'
-                })
-            }
+                window.location = "http://www.caszyj.com/" + data.FObject;
         }
     },
 }

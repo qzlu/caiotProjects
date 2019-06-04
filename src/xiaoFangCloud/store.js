@@ -11,6 +11,7 @@ export default new Vuex.Store({
     userType:null,
     projectName:'',
     routeList:JSON.parse(sessionStorage.getItem('cacheRoute'))||[],
+    projectList:JSON.parse(sessionStorage.getItem('projectList'))||[]
   },
   mutations: {
     addRoute(state,item){
@@ -23,6 +24,7 @@ export default new Vuex.Store({
       sessionStorage.setItem('cacheRoute',JSON.stringify(state.routeList))
     },
     clearRoute(state){
+      sessionStorage.removeItem("cacheRoute")
       state.routeList = []
     }
   },

@@ -16,12 +16,12 @@ export default new Router({
             path:'',
             component: Index, 
             children:[
-                {
+/*                 {
                     path:'',
                     component:() => import('./views/shuziYy/index.vue')//数字应急页面
-                },
+                }, */
                 {
-                    path:'xiaofang',
+                    path:'',
                     component:() => import('./views/xiaofang/index.vue') //数字消防页面
                 },
                 {
@@ -49,8 +49,24 @@ export default new Router({
                     component:() => import('./views/manage/alarm/alarmConfig.vue')
                 },
                 {
-                    path:'projectInfo',
+                    path:'projectInfo', //项目信息
                     component:() => import('./views/manage/project/projectInfo.vue')
+                },
+                {
+                    path:'gatewayInfo', //网关信息
+                    component:() => import('./views/manage/project/gatewayInfo.vue')
+                },
+                {
+                    path:'deviceInfo', //设备台账
+                    component:() => import('./views/manage/deviceInfo.vue')
+                },
+                {
+                    path:'meterInfo', //仪表信息
+                    component:() => import('./views/manage/project/meterInfo.vue')
+                },
+                {
+                    path:'deviceMeter', //设备仪表
+                    component: () => import('./views/manage/project/deviceMeter.vue')
                 }
             ]
         }

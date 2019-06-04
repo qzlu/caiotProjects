@@ -42,16 +42,20 @@
                         </div>
                     </div>
                     <ul v-if="deviceMonitorInfo.mDeviceHomePageShowPositions">
-                        <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="queryLineData(item.ShowPosition,i)" :key="i">
+                        <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="active = i;selectItem(item)" :key="i">
                             <span class="label">{{item.ShowName}}<span v-if="item.Unit">（{{item.Unit}}）</span></span> {{item.ShowData}}
                         </li>
                     </ul>
                     <div class="chart">
-                        <div class="time-select">
+                        <div v-if="deviceInfo.DeviceTypeID ==500" style="margin-top:16px;padding-left:30px;line-height:40px;text-align:left">{{type===1?'火警数':'故障数'}}</div>
+                        <div :class="['time-select',{right:deviceInfo.DeviceTypeID ==500}]">
                             <span>时间　</span>
                             <el-date-picker v-model="time" type="date" @change="timeChange"></el-date-picker>
                         </div>
-                        <line-chart v-if="lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
+                        <line-chart v-if="deviceInfo.DeviceTypeID !=500&&lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
+                        <ul class="alarm-list" v-else>
+                            <li v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span class="">{{item.AlarmText}}</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -95,10 +99,10 @@
                 <div class="event-record">
                     <el-scrollbar>
                         <ul>
-                            <li v-for="i in 4">
-                                <p class="event-text">过流告警</p>
+                            <li v-for="(item,i) in deviceEvent" :key="i">
+                                <p class="event-text">{{item.EventsText}}</p>
                                 <div class="icon-time">
-                                    <p class="event-time">2019.05.04</p>
+                                    <p class="event-time">{{item.EventsTime&&item.EventsTime.split(' ')[0]}}</p>
                                     <div>
                                         <div class="circle">
                                         </div>
@@ -107,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="event-item">
-                                    <i class="iconfont icon-SZXFY-basicinformation"></i>
+                                    <i :class="['iconfont',item.WebIconName]"></i>
                                 </div>
                             </li>
                             <li>
@@ -123,7 +127,7 @@
     </div>
 </template>
 <script>
-import {Project} from '@/xiaoFangCloud/request/api.js'
+import {Project,Alarm} from '@/xiaoFangCloud/request/api.js'
 import {lineChart} from '@/components/index.js'
 export default {
     data(){
@@ -153,12 +157,28 @@ export default {
             showPosition:null,
             time:new Date(),
             lineData:{
-/*                 columns:[],
-                rows:[] */
+            },
+            record:[] ,//消防主机记录
+            deviceEvent:[],
+            type:1,
+            swiperOption:{
+                init:false,
+                autoplay: {
+                    disableOnInteraction: false,
+                },
+                direction : 'vertical',
+                speed:300,
+                loop:true,
+                slidesPerView: 4,
+                slidesPerGroup : 4,
             }
         }
     },
-    components:{lineChart},
+    components:{
+        lineChart,
+    },
+    computed:{
+    },
     created(){
         this.queryDevice()
     },
@@ -205,7 +225,12 @@ export default {
             })
             .then((data) => {
                 this.deviceMonitorInfo = data.FObject[0]||{}
-                this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
+                if(this.deviceInfo.DeviceTypeID ==500){
+                    let type = this.deviceMonitorInfo.ShowName === '火警数'? 1: 2
+                    this.queryUAlarmByDate(type)
+                }else{
+                    this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
+                }
             }).catch((err) => {
                 
             });
@@ -219,7 +244,28 @@ export default {
                 DeviceID:obj.DeviceID
             })
             .then((data) => {
-                console.log(data)
+                this.deviceEvent = data.FObject.reverse()
+            }).catch((err) => {
+            });
+        },
+        selectItem(item){
+            if(this.deviceInfo.DeviceTypeID ==500){
+                let type = item.ShowName === '火警数'? 1: 2
+                this.queryUAlarmByDate(type)
+            }else{
+                this.queryLineData(item.ShowPosition,i)
+            }
+        },
+        queryUAlarmByDate(type = this.type){
+            this.type = type
+            Alarm({
+                FAction:'QueryUAlarmByDate',
+                ID:this.deviceInfo.DeviceID,
+                FDateTime:this.time.toLocaleDateString(),
+                FType:type
+            })
+            .then((data) => {
+                this.record = data.FObject
             }).catch((err) => {
                 
             });
@@ -260,7 +306,11 @@ export default {
             });
         },
         timeChange(){
-            this.queryLineData()
+            if(this.deviceInfo.DeviceTypeID ==500){
+                this.queryUAlarmByDate()
+            }else{
+                 this.queryLineData()
+            }
         }
     }
 }
@@ -435,6 +485,20 @@ $url:'../../../assets/image/cloud/index/';
                             }
                         }
                     }
+                    .time-select.right{
+                        left: 600px;
+                    }
+                    .alarm-list{
+                        margin-left: 30px;
+                        li{
+                            line-height: 30px;
+                            border-bottom: 1px solid #5F6B91;
+                            span.l{
+                                width: 200px;
+
+                            }
+                        }
+                    }
                 }
             }
             .basi-info{
@@ -512,6 +576,9 @@ $url:'../../../assets/image/cloud/index/';
                             text-align: right;
                             font-size:18px;
                             margin-right: 4px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                         .icon-time{
                             >div{
