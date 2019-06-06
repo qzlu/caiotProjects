@@ -53,9 +53,13 @@
                             <el-date-picker v-model="time" type="date" @change="timeChange"></el-date-picker>
                         </div>
                         <line-chart v-if="deviceInfo.DeviceTypeID !=500&&lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
-                        <ul class="alarm-list" v-else>
-                            <li v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span class="">{{item.AlarmText}}</span></li>
-                        </ul>
+                        <div class="alarm-list" v-else>
+                            <el-scrollbar>
+                                <ul>
+                                    <li v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span class="">{{item.AlarmText}}</span></li>
+                                </ul>
+                            </el-scrollbar>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,6 +136,7 @@ import {lineChart} from '@/components/index.js'
 export default {
     data(){
         return{
+            formID:1,
             treeData:[],
             treeProp:{
                 children:'Data'
@@ -180,6 +185,7 @@ export default {
     computed:{
     },
     created(){
+        this.formID = this.$route.params.formID
         this.queryDevice()
     },
     methods:{
@@ -188,7 +194,8 @@ export default {
          */
         queryDevice(){
             Project({
-                FAction:'QuerySystemUDeviceLedgerTree'
+                FAction:'QuerySystemUDeviceLedgerTree',
+                FormID:this.formID
             })
             .then((data) => {
                 this.treeData = data.FObject
@@ -226,7 +233,7 @@ export default {
             .then((data) => {
                 this.deviceMonitorInfo = data.FObject[0]||{}
                 if(this.deviceInfo.DeviceTypeID ==500){
-                    let type = this.deviceMonitorInfo.ShowName === '火警数'? 1: 2
+                    let type = this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition
                     this.queryUAlarmByDate(type)
                 }else{
                     this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
@@ -249,9 +256,9 @@ export default {
             });
         },
         selectItem(item){
+
             if(this.deviceInfo.DeviceTypeID ==500){
-                let type = item.ShowName === '火警数'? 1: 2
-                this.queryUAlarmByDate(type)
+                this.queryUAlarmByDate(item.ShowPosition)
             }else{
                 this.queryLineData(item.ShowPosition,i)
             }
@@ -300,7 +307,6 @@ export default {
                     };
                 }) 
                 this.lineData = chartData
-                console.log(this.lineData)
             }).catch((err) => {
                 console.log(err)
             });
@@ -490,8 +496,9 @@ $url:'../../../assets/image/cloud/index/';
                     }
                     .alarm-list{
                         margin-left: 30px;
+                        height: 200px;
                         li{
-                            line-height: 30px;
+                            line-height: 39px;
                             border-bottom: 1px solid #5F6B91;
                             span.l{
                                 width: 200px;

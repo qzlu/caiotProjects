@@ -21,21 +21,21 @@ $url:'../image/cloud/index';
         box-shadow:  0 0 14px rgba(1,150,7,1);
     
     }
-    .alarm{
-        background:url(../image/index/alarm.png);
-        background-size: 100% 100%;
-        .statu{
-            background: url(../image/index/fire.gif);
-            border:1px solid #fb0d0d;
-            border-radius:9px;
-            box-shadow:  0 0 14px #fb0d0d;
-        }
-    }
     .unnormal{
         background:url(../image/index/alarm.png)!important;
         background-size: 100% 100%!important;
         .statu{
             background: url(../image/cloud/index/unusual.gif);
+            border:1px solid #fb0d0d;
+            border-radius:9px;
+            box-shadow:  0 0 14px #fb0d0d;
+        }
+    }
+    .alarm{
+        background:url(../image/index/alarm.png);
+        background-size: 100% 100%;
+        .statu{
+            background: url(../image/index/fire.gif);
             border:1px solid #fb0d0d;
             border-radius:9px;
             box-shadow:  0 0 14px #fb0d0d;
@@ -63,12 +63,8 @@ $url:'../image/cloud/index';
             position: absolute;
             left: 30px;
             top: 18px;
-            a{
-                display: block;
-                height: 100%;
-                font-size: 20px;
-                color:rgba(96,229,247,1);
-            }
+            font-size: 20px;
+            color:rgba(96,229,247,1);
         }
         ul{
             position: absolute;
@@ -237,6 +233,9 @@ $url:'../image/cloud/index';
                                 .iconfont{
                                     vertical-align: baseline;
                                 }
+                            }
+                            li:nth-of-type(1),li:nth-of-type(2){
+                                margin-bottom: 30px
                             }
                         }
                     }

@@ -16,7 +16,7 @@
                                {{obj.CountName}}
                            </p>
                            <span class="value">
-                               {{obj.DeviceCount}} / {{obj.AlarmCount}}
+                               {{obj.DeviceCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
                            </span>
                        </li>
                    </ul>

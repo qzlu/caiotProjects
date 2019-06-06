@@ -16,13 +16,16 @@
                 <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
                 <span>预警总数</span>
             </div>
-            <div class="side-content">
+            <div class="side-content" v-if="formID == 1">
                 <div style="height:450px">
                     <zw-table icon='icon-FireAlarm' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
                 </div>
                 <div style="height:450px;margin-top:11px">
                     <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
                 </div>
+            </div>
+            <div class="side-content" v-else>
+                <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='18' title="实时告警" :width='414' :bodyHeight='800' :labels='tableLabel2' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
         </div>
         <div class="main">
@@ -37,7 +40,7 @@
                             </h5>
                             <ul class="device">
                                 <li :class="{alarm:device.DeviceStatusName === '告警'}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
-                                    <router-link :to="`/deviceDetaile/${device.DeviceID}`">
+                                    <router-link :to="`/deviceDetaile/${formID}/${device.DeviceID}`">
                                         <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]">
                                             <p><i :class="['iconfont',device.IconName]"></i></p>
                                             <p class="device-status">{{device.DeviceStatusName}}</p>
@@ -70,7 +73,7 @@ import { setTimeout, clearTimeout } from 'timers';
 export default {
     data(){
         return{
-            map:null,
+            formID:1,
             count:[],
             systemList:[], //系统列表（左侧数据）
             fireList:[], //火警信息列表（右侧数据）
@@ -111,6 +114,28 @@ export default {
                     width:'20%'
                 }
             ],
+            tableLabel2:[
+                {
+                    label:'项目',
+                    prop:'ShortName',
+                    width:'20%'
+                },
+                {
+                    label:'位置',
+                    prop:'AreaName',
+                    width:'25%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'40%'
+                },
+                {
+                    label:'当前值',
+                    prop:'AlarmData',
+                    width:'15%'
+                }
+            ]
         }
     },
     components:{
@@ -127,6 +152,7 @@ export default {
 
     },
     created(){
+        this.formID = this.$route.params.formID
         this.queryData()
     },
     mounted(){
@@ -135,10 +161,10 @@ export default {
     methods:{
         queryData(){
             HomePage({
-                FAction:'QueryProjectHomePageCount'
+                FAction:'QueryProjectHomePageCount',
+                FormID:this.formID
             })
             .then((data) => {
-                console.log(data);
                 [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
                 this.timer = setTimeout(this.queryData,3000)
             }).catch((err) => {

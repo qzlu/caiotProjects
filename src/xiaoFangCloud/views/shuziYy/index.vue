@@ -8,23 +8,29 @@
             <div class="side-content">
                  <el-scrollbar>
                     <ul class="list">
-                        <li :class="['system-card',{unnormal:item.AlarmCount}]" v-for="(item,i) in systemList" :key="i">
-                            <router-link to="/xiaofang">
+                        <li :class="['system-card',{unnormal:item.isAlarm}]" v-for="(item,i) in systemList[0]" :key="i">
+                            <router-link :to="`/index/${item.FormID}`">
                                 <h3>
                                    <i :class="['iconfont',item.iconName]"></i>
-                                   <span>{{item.SystemParamName}}</span>
+                                   <span>{{item.FormName}}</span>
+                                   <i class="iconfont icon-Up"></i>
+                                   <ul class="r">
+                                       <li v-for="(num,n) in (item.DeviceCount||0).toString()" :key="n">
+                                           {{num}}
+                                       </li>
+                                   </ul>
                                 </h3>
                                 <div class="list-content">
                                     <div class="statu">
                                     </div>
                                     <ul class="param">
-                                        <li v-for="(obj,j) in item.data" :key="j">
-                                            <p class="l">
+                                        <li v-for="(obj,j) in item.Items" :key="j">
+                                            <p class="l" :title="obj.ItemName">
                                                 <i :class="['iconfont',obj.IconName]"></i>
-                                                {{obj.CountName}}
+                                                {{obj.ItemName}}
                                             </p>
                                             <span class="value">
-                                                {{obj.DeviceCount}} / {{obj.AlarmCount}}
+                                                {{obj.ItemCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
                                             </span>
                                         </li>
                                     </ul>
@@ -37,35 +43,41 @@
         </div>
         <div class="right-side r">
             <div class="side-header clearfix">
-                <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
+                <number class="l" :data="fireAlarmData?fireAlarmData.FDayCount:0"></number>
                 <span>当日告警</span>
             </div>
             <div class="side-content">
-                <ul class="list">
-                    <li :class="['system-card',{unnormal:item.AlarmCount}]" v-for="(item,i) in systemList" :key="i">
-                        <router-link to="/xiaofang">
-                            <h3>
-                               <i :class="['iconfont',item.iconName]"></i>
-                               <span>{{item.SystemParamName}}</span>
-                            </h3>
-                            <div class="list-content">
-                                <div class="statu">
+                    <ul class="list">
+                        <li :class="['system-card',{unnormal:item.AlarmCount}]" v-for="(item,i) in systemList[1]" :key="i">
+                            <router-link :to="`/index/${item.FormID}`">
+                                <h3>
+                                   <i :class="['iconfont',item.iconName]"></i>
+                                   <span>{{item.FormName}}</span>
+                                   <i class="iconfont icon-Up"></i>
+                                   <ul class="r">
+                                       <li v-for="(num,n) in (item.DeviceCount||0).toString()" :key="n">
+                                           {{num}}
+                                       </li>
+                                   </ul>
+                                </h3>
+                                <div class="list-content">
+                                    <div class="statu">
+                                    </div>
+                                    <ul class="param">
+                                        <li v-for="(obj,j) in item.Items" :key="j">
+                                            <p class="l" :title="obj.ItemName">
+                                                <i :class="['iconfont',obj.IconName]"></i>
+                                                {{obj.ItemName}}
+                                            </p>
+                                            <span class="value">
+                                                {{obj.ItemCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="param">
-                                    <li v-for="(obj,j) in item.data" :key="j">
-                                        <p class="l">
-                                            <i :class="['iconfont',obj.IconName]"></i>
-                                            {{obj.CountName}}
-                                        </p>
-                                        <span class="value">
-                                            {{obj.DeviceCount}} / {{obj.AlarmCount}}
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </router-link>
-                    </li>
-                </ul>
+                            </router-link>
+                        </li>
+                    </ul>
             </div>
         </div>
         <div class="main">
@@ -82,22 +94,52 @@
                         <p><i class="iconfont icon-Equipment"></i></p>
                         <p>设备数</p>
                     </div>
-                    <p class="l">{{count.BlocDeviceCount}}</p>
+                    <p class="l">{{count.DeviceCount}}</p>
                 </li>
             </ul>
             <div id="map">
                 <b-map ref="map"></b-map>
             </div>
             <div class="main-footer">
-                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :width='1070' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :showMore='true' @click="queryMonitorData" :width='1070' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
+            <el-dialog class="zw-dialog" :visible.sync = 'show' title="实时告警" append-to-body width="910px">
+                <div class="clearfix">
+                    <div class="shuzi-yy r">
+                        <el-radio-group v-model="time" @change="selectDate">
+                           <el-radio-button label="今日"></el-radio-button>
+                           <el-radio-button label="本周"></el-radio-button>
+                           <el-radio-button label="本月"></el-radio-button>
+                        </el-radio-group>
+                        <span style="margin:0 10px">时间段</span>
+                        <el-date-picker ref="pick" v-model="time1" type="datetimerange" @change="queryMonitorData" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                        </el-date-picker>
+                    </div>
+                </div>
+                <div class="table" style="margin-top:20px">
+                    <table style="width:100%;color:white">
+                        <thead>
+                            <tr>
+                                <th v-for="(item,i) in tableLabel1" :width='item.width' :key="i">{{item.label}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,i) in monitorData" :key="i">
+                                <td v-for="(obj,j) in tableLabel1" :key="j" :width='obj.width'>{{item[obj.prop]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination> 
+                </div>
+            </el-dialog>
         </div>
     </div>
 </template>
 <script>
 import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
-import {HomePage} from '@/xiaoFangCloud/request/api.js'
+import {HomePage,Alarm} from '@/xiaoFangCloud/request/api.js'
+import {zwPagination} from '@/components/index'
 export default {
     data(){
         return{
@@ -109,6 +151,12 @@ export default {
             wariningData:null,
             active:null,
             timer:null,
+            show:false,
+            time:'今日',
+            time1:[new Date(new Date().toLocaleDateString()),new Date()],
+            total:0,
+            pageIndex:1,
+            monitorData:[],
             tableLabel:[
                 {
                     label:'项目',
@@ -131,12 +179,40 @@ export default {
                     width:'15%'
                 }
             ],
+            tableLabel1:[
+                {
+                    label:'序号',
+                    prop:'RowIndex',
+                    width:'10%'
+                },
+                {
+                    label:'项目',
+                    prop:'ShortName',
+                    width:'20%'
+                },
+                {
+                    label:'告警时间',
+                    prop:'AlarmTime',
+                    width:'25%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'30%'
+                },
+                {
+                    label:'当前值',
+                    prop:'AlarmData',
+                    width:'15%'
+                }
+            ],
         }
     },
     components:{
         number,
         zwTable,
         bMap,
+        zwPagination
     },
     computed:{
 
@@ -158,10 +234,19 @@ export default {
     methods:{
         queryData(){
             HomePage({
-                FAction:'QueryBlocHomePageCount'
+                FAction:'QueryDigtalHomePageCount'
             })
             .then((data) => {
-                [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+                let systemList
+                [this.count,systemList,this.fireAlarmData,this.fireList] = data.FObject&&data.FObject
+                let len = Math.ceil(systemList.length/2)
+                systemList.forEach(item => {
+                    let alarm = item.Items.some(obj => obj.AlarmCount > 0)
+                    item.isAlarm = alarm
+                })
+                let arr1 = systemList.slice(0,len)
+                let arr2 = systemList.slice(len)
+                this.systemList = [arr1,arr2]
                 this.$nextTick(() => {
                     if(!this.$refs.map) return
                     this.showMarks() 
@@ -233,6 +318,42 @@ export default {
             sessionStorage.setItem('projectName',item.ProjectName)
             this.$router.push('/indexItem')
         },
+        selectDate(val){
+            const end = new Date();
+            if(val === '今日'){
+                const start = new Date();
+                this.time1 = [new Date(start.toLocaleDateString()),end]
+            }else if(val === '本周'){
+                const start = new Date(new Date().toLocaleDateString()).getTime() - 3600*1000 *24*(new Date().getDay()-1);
+                this.time1 = [new Date(start),end]
+            }else{
+                const start = new Date(new Date().toLocaleDateString()).getTime() - 3600*1000 *24*(new Date().getDate()-1);
+                this.time1 = [new Date(start),end]
+            }
+            console.log(this.time1[0])
+            this.queryMonitorData()
+        },
+        queryMonitorData(){
+            this.show = true
+            Alarm({
+                FAction:'QueryPageUAlarmByDate',
+                PageIndex:this.pageIndex,
+                PageSize:10,
+                StartDateTime:this.time1[0].toLocaleDateString(),
+                EndDateTime:this.time1[1].toLocaleDateString()
+            })
+            .then((data) => {
+                console.log(data)
+                this.total = data.FObject.FTotalCount || 0
+                this.monitorData = data.FObject.Data || []
+            }).catch((err) => {
+                
+            });
+        },
+        handleCurrentChange(val){
+            this.pageIndex = val
+            this.queryMonitorData()
+        }
     }
 }
 </script>
@@ -252,6 +373,7 @@ export default {
                         display: inline-block;
                         width: 100%;
                         height: 100%;
+                        color: #A5EFFC;
                     }
                     h3{
                         padding-top: 21px;
@@ -261,9 +383,61 @@ export default {
                         color:rgba(165,239,252,1);
                         line-height:28px;
                         text-align: left;
+                        .icon-Up{
+                            display: inline-block;
+                            margin-left: 10px;
+                            font-size: 22px;
+                            transform: rotate(90deg)
+                        }
+                        ul.r{
+                            margin-right: 20px;
+                            display: flex;
+                            li{
+                                width:38px;
+                                height:32px;
+                                line-height: 32px;
+                                text-align: center;
+                                background:linear-gradient(0deg,rgba(61,111,182,1),rgba(16,56,113,1));
+                                border:2px solid rgba(29, 118, 170, 1);
+                                border-radius: 4px;
+                                margin-top: 0;
+                            }
+                            li+li{
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                    .list-content{
+                        height: 390px;
+                        .param{
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-around;
+                            li{
+                                width: 100%;
+                                height: 60px;
+                                line-height: 60px;
+                                font-size: 14px;
+                                p{
+                                    width: 180px;
+                                    height: 100%;
+                                    line-height: 60px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    text-align: left;
+                                    i{
+                                        display: inline-block;
+                                        width: 40px;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                >li+li{
+                >li+.system-car{
                     margin-top: 16px;
                 }
             }
@@ -273,4 +447,40 @@ export default {
         }
     }
 }
+.zw-dialog .el-dialog__body {
+    .shuzi-yy{
+        height: 40px;
+        color: #A5EFFC;
+        .el-date-editor--datetimerange{
+            width: 380px;
+            .el-range-input{
+                background: none;
+                color: #A5EFFC
+            }
+        }
+    }
+    .table{
+        height: 510px;
+        tr{
+            th,td{
+                height: 44px;
+                line-height: 44px;
+                text-align: center;
+            }
+        }
+        tbody{
+            tr:nth-of-type(2n+1){
+                background: #0A3F8A
+            }
+            tr:nth-of-type(2n){
+                background: #052A57
+            }
+        }
+        .zw-pagination{
+            bottom: 10px;
+        }
+
+    }
+}
+
 </style>

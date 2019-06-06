@@ -1,9 +1,13 @@
 <template>
     <div class="zw-table" :style="style">
-        <div class="title">
+        <div class="title" v-if="icon">
           <i :class="['iconfont',icon]"></i>
           {{title}}
+          <span v-if="showMore" @click="show()">
+              more <i class="iconfont icon-Up"></i>
+          </span>
         </div>
+        <slot v-else name="title"></slot>
         <table class="table-header">
           <tr>
             <th v-for="(item,i) in labels" :key="i" :width='item.width'>{{item.label}}</th>
@@ -48,6 +52,10 @@ export default {
         },
         title:String,
         icon:String,
+        showMore:{
+            type:Boolean,
+            default:false
+        },
         width:Number,
         bodyHeight:Number,
         pageSize:{
@@ -84,10 +92,16 @@ export default {
             }
         }
     },
-    updated(){
-        if(this.$props.data.length>0){
-            this.swiper.init();
+    watch:{
+        data(){
+            if(this.$props.data.length>0){
+                this.$nextTick(() =>{
+                    this.swiper.init()
+                })
+            }
         }
+    },
+    updated(){
     },
     created(){
         this.id = uuidv1() //获取随机id
@@ -96,6 +110,10 @@ export default {
         /* this.swiper.destroy() */
     },
     methods:{
+        show(){
+            console.log(123)
+            this.$emit('click')
+        },
         enter(){
             this.swiper.autoplay.stop()
         },
@@ -116,6 +134,17 @@ export default {
         font-size: 18px;
         .iconfont{
             font-size: 24px;
+        }
+        span{
+            cursor: pointer;
+            line-height: 30px;
+            margin-left: 10px;
+            .icon-Up{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 22px;
+                transform: rotate(90deg)
+            }
         }
     }
     .table-header{

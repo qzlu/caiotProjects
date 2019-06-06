@@ -1,12 +1,10 @@
 <template>
     <div class="home cloud">
         <div class="header">
-            <el-button v-if="$route.path.match(/deviceDetaile/ig)" class="back">
-                <router-link to="/indexItem">
+            <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
-                </router-link>
             </el-button>
-            <span class="title">{{projectName}}数字消防云平台</span>
+            <span class="title">{{projectName}}</span>
             <ul class="clearfix">
                 <li  class="l icon" v-if="$route.path !=='/'">
                     <router-link to='/'>
@@ -14,7 +12,7 @@
                     </router-link>
                 </li>
                 <li class="l icon" v-if="$route.path !=='/'">
-                    <router-link to="/manage" :exact ='false' class="icon-item">
+                    <router-link :to="`/manage`"  class="icon-item">
                         <i class="iconfont icon-zs-backstage"></i>
                     </router-link>
                 </li>
@@ -45,7 +43,8 @@ import '@/assets/css/index.scss'
 export default {
     data(){
         return{
-            show:false
+            show:false,
+            formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
         }
     },
     components:{
@@ -56,14 +55,23 @@ export default {
             return sessionStorage.getItem('FContacts')
         },
         projectName(){
-            return  this.$route.path !== '/' ? sessionStorage.getItem('projectName') : '中物互联'
+            let name
+            if(this.$route.path === '/'){
+                name = '中物互联数字应急云平台'
+            }else if(this.$route.params.formID&&(this.$route.path.match(/indexItem/)||this.$route.path.match(/deviceDetaile/))){
+                name = sessionStorage.getItem('projectName') + this.formList[this.$route.params.formID]
+            }else if(this.$route.params.formID){
+                name = '中物互联' + this.formList[this.$route.params.formID]
+            }
+            return  name
+        },
+        formID(){
+            return this.$route.params.formID||0
         }
     },
     watch:{
-
     },
     created(){
-        
     },
     mounted(){
 

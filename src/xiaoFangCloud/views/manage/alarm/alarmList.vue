@@ -137,7 +137,7 @@ export default {
   created() {
     this.queryData();
     this.querySystemAlarmType();
-    this.querySForm()
+    /* this.querySForm() */
   },
   methods: {
     /*查询数据按钮*/

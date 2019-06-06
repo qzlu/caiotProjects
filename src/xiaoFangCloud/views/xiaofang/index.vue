@@ -47,26 +47,14 @@
                 </swiper> -->
                  <el-scrollbar>
                      <transition-group tag="ul" name="list" class="list">
-                         <li :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
+                         <li :class="{alarm:item.isAlarm,unnormal:item.isNormal,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
                              <h4>{{item.ProjectName}}</h4>
                              <div class="list-content">
                                 <div class="statu"></div>
                                 <ul  class="param clearfix">
-                                    <li class="l" style="margin-bottom: 30px;">
-                                        <i class="iconfont icon-FireAlarm"></i>
-                                        <span class="value">{{item.FireCount}}</span>
-                                    </li>
-                                    <li class="l" style="margin-bottom: 30px;">
-                                        <i class="iconfont icon-Fault"></i>
-                                        <span class="value">{{item.FaultCount}}</span>
-                                    </li>
-                                    <li class="l">
-                                        <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                                        <span class="value">{{item.WarningCount}}</span>
-                                    </li>
-                                    <li class="l">
-                                        <i class="iconfont icon-SZXFY-Operations"></i>
-                                        <span class="value">{{item.MaintenanceCount}}</span>
+                                    <li class="l" v-for="(obj,j) in item.mBlocHomePageProjectItems" :key="j">
+                                        <i :class="['iconfont',obj.IconName]" :title="obj.ItemName"></i>
+                                        <span :class="['value',{'red':obj.ItemCount>0}]">{{obj.ItemCount}}</span>
                                     </li>
                                 </ul>
                              </div>
@@ -109,9 +97,12 @@
             <div id="map">
                 <b-map ref="map"></b-map>
             </div>
-            <div class="main-footer">
+            <div class="main-footer" v-if="formID == 1">
                 <zw-table icon='icon-FireAlarm' title="实时火警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
                 <zw-table icon='icon-SZXFY-Earlywarning' title="实时预警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+            </div>
+            <div class="main-footer" v-else>
+                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :width='1100' :bodyHeight='170' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
         </div>
     </div>
@@ -124,6 +115,7 @@ import leftSide from './leftSide.vue'
 export default {
     data(){
         return{
+            formID:1,
             map:null,
             count:{},
             systemList:[], //系统列表（左侧数据）
@@ -165,6 +157,28 @@ export default {
                     width:'15%'
                 }
             ],
+            tableLabel1:[
+                {
+                    label:'项目',
+                    prop:'ShortName',
+                    width:'20%'
+                },
+                {
+                    label:'位置',
+                    prop:'AreaName',
+                    width:'25%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'40%'
+                },
+                {
+                    label:'当前值',
+                    prop:'AlarmData',
+                    width:'15%'
+                }
+            ]
         }
     },
     components:{
@@ -182,7 +196,8 @@ export default {
 
     },
     created(){
-        this.queryData()
+        this.formID = this.$route.params.formID
+        this.queryData(true)
     },
     updated(){
 /*         if(this.fireList.length>0){
@@ -196,15 +211,29 @@ export default {
         this.timer = null
     },
     methods:{
-        queryData(){
+        /**
+         * @param {Boolean} resetView 改变中心位置
+         */
+        queryData(resetView = false){
             HomePage({
-                FAction:'QueryBlocHomePageCount'
+                FAction:'QueryBlocHomePageCount',
+                FormID:this.formID
             })
             .then((data) => {
                 [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+                this.fireList.forEach(item => {
+                    let isAlarm = false
+                    let isNormal = item.mBlocHomePageProjectItems.some(obj => obj.ItemCount>0)
+                    if(this.formID == 1){
+                        isAlarm = item.mBlocHomePageProjectItems.some(obj => obj.ItemName == '火警数'&&obj.ItemCount>0)
+                    }
+                    item.isAlarm = isAlarm
+                    item.isNormal = isNormal
+                })
+                this.fireList.sort((a,b) =>b.isAlarm - a.isAlarm ).sort((a,b) => b.isNormal -a.isNormal)
                 this.$nextTick(() => {
                     if(!this.$refs.map) return
-                    this.showMarks() 
+                    this.showMarks(resetView) 
                 })
                 this.timer = setTimeout(this.queryData,3000)
             }).catch((err) => {
@@ -217,7 +246,7 @@ export default {
                     <h5>${item.ProjectName}</h5> 
                     <ul >
                         <li><span>项目地址：</span>${item.Address}</li>
-                        <li><span>安全负责人：</span>${item.PropertyLeader}　${item.PropertyPhone}</li>
+                        <li><span>安全负责人：</span>${item.PropertyLeader||'--'}　${item.PropertyPhone||'--'}</li>
                        `
             if(item.FireCount > 0){
                 temp += ` <li><span>设备名称：</span>${item.DeviceName}</li>
@@ -232,7 +261,7 @@ export default {
         /**
          * 显示点
          */
-        showMarks(){
+        showMarks(resetView){
             let Map = this.$refs.map
             Map.map.clearOverlays()
             this.fireList.forEach((item,i) => {
@@ -250,7 +279,7 @@ export default {
                 marker = new BMap.Marker(point,{icon:icon})
                 temp = this.content(item)
                 Map.map.addOverlay(marker)
-                Map.map.centerAndZoom(point, 11);
+                resetView && Map.map.centerAndZoom(point, 11);
                 Map.setLabel(marker,item.ProjectName)
                 marker.addEventListener('mouseover',e => {
                   Map.openInfoWindow(temp,point)
@@ -262,6 +291,9 @@ export default {
         },
         selectProject(item,i){
             this.active = i
+            if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
+              return
+            }
             const point = new BMap.Point(item.Flat,item.Flng)
             let Map = this.$refs.map
             Map.map.centerAndZoom(point,15)
@@ -271,7 +303,7 @@ export default {
         changeRouter(item){
             sessionStorage.setItem('projectID',item.ProjectID)
             sessionStorage.setItem('projectName',item.ProjectName)
-            this.$router.push('/indexItem')
+            this.$router.push(`/indexItem/${this.formID}`)
         },
 /*         enter(){
             this.swiper&&this.swiper.autoplay.stop()

@@ -3,7 +3,7 @@
       <el-aside width="200px">
         <div class="app-logo">
             <router-link to="/">
-                <img src="../../../../assets/image/logo.png" alt="">
+                <img src="../../../../assets/image/shuziYy/logo.png" alt="">
             </router-link>
         </div>
         <div class="project-list">
@@ -28,7 +28,7 @@
       <el-container>
         <el-header class="header" height='154px'>
             <div class="clearfix">
-                <h2>{{project.ProjectName}}</h2>
+                <h2>{{project.ProjectName}}后台管理系统</h2>
                 <ul class="r clearfix">
                     <li class="l icon">
                         <el-dropdown>
@@ -114,6 +114,7 @@ export default {
         select(item){
           this.project = item
           sessionStorage.setItem('project',JSON.stringify(item))
+          windows.reload()
         },
         getSystemList(){
           System({
