@@ -25,15 +25,15 @@ $url:'../image/cloud/index';
         background:url(../image/index/alarm.png)!important;
         background-size: 100% 100%!important;
         .statu{
-            background: url(../image/cloud/index/unusual.gif);
+            background: url(../image/cloud/index/warning.gif);
             border:1px solid #fb0d0d;
             border-radius:9px;
             box-shadow:  0 0 14px #fb0d0d;
         }
     }
     .alarm{
-        background:url(../image/index/alarm.png);
-        background-size: 100% 100%;
+        background:url(../image/index/alarm.png)!important;
+        background-size: 100% 100%!important;
         .statu{
             background: url(../image/index/fire.gif);
             border:1px solid #fb0d0d;

@@ -8,15 +8,20 @@
             <div class="side-content">
                  <el-scrollbar>
                     <ul class="list">
-                        <li :class="['system-card',{unnormal:item.isAlarm}]" v-for="(item,i) in systemList[0]" :key="i">
+                        <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[0]" :key="i">
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
-                                   <i :class="['iconfont',item.iconName]"></i>
+                                   <i :class="['iconfont','icon-'+item.IconName]"></i>
                                    <span>{{item.FormName}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
-                                       <li v-for="(num,n) in (item.DeviceCount||0).toString()" :key="n">
-                                           {{num}}
+                                       <li>
+                                           <i class="iconfont icon-Numberofentry"></i>
+                                           {{item.ProjectCount||0}}
+                                       </li>
+                                       <li style="margin-top:0">
+                                           <i class="iconfont icon-Equipment"></i>
+                                           {{item.DeviceCount}}
                                        </li>
                                    </ul>
                                 </h3>
@@ -30,7 +35,7 @@
                                                 {{obj.ItemName}}
                                             </p>
                                             <span class="value">
-                                                {{obj.ItemCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
+                                                <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span> / {{obj.ItemCount}}
                                             </span>
                                         </li>
                                     </ul>
@@ -48,15 +53,20 @@
             </div>
             <div class="side-content">
                     <ul class="list">
-                        <li :class="['system-card',{unnormal:item.AlarmCount}]" v-for="(item,i) in systemList[1]" :key="i">
+                        <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[1]" :key="i">
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
-                                   <i :class="['iconfont',item.iconName]"></i>
+                                   <i :class="['iconfont','icon-'+item.IconName]"></i>
                                    <span>{{item.FormName}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
-                                       <li v-for="(num,n) in (item.DeviceCount||0).toString()" :key="n">
-                                           {{num}}
+                                       <li>
+                                           <i class="iconfont icon-Numberofentry"></i>
+                                           {{item.ProjectCount||0}}
+                                       </li>
+                                       <li style="margin-top:0">
+                                           <i class="iconfont icon-Equipment"></i>
+                                           {{item.DeviceCount}}
                                        </li>
                                    </ul>
                                 </h3>
@@ -101,7 +111,17 @@
                 <b-map ref="map"></b-map>
             </div>
             <div class="main-footer">
-                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :showMore='true' @click="queryMonitorData" :width='1070' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                <zw-table 
+                  icon='icon-SZXFY-Earlywarning' 
+                  title="实时告警" 
+                  :showMore='true' 
+                  @click="queryMonitorData" 
+                  @rowClick='rowClick' 
+                  :width='1070' 
+                  :bodyHeight='170' 
+                  :labels='tableLabel1' 
+                  :data='fireAlarmData?fireAlarmData.Data:[]' >
+                </zw-table>
             </div>
             <el-dialog class="zw-dialog" :visible.sync = 'show' title="实时告警" append-to-body width="910px">
                 <div class="clearfix">
@@ -120,12 +140,12 @@
                     <table style="width:100%;color:white">
                         <thead>
                             <tr>
-                                <th v-for="(item,i) in tableLabel1" :width='item.width' :key="i">{{item.label}}</th>
+                                <th v-for="(item,i) in tableLabel" :width='item.width' :key="i">{{item.label}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item,i) in monitorData" :key="i">
-                                <td v-for="(obj,j) in tableLabel1" :key="j" :width='obj.width'>{{item[obj.prop]}}</td>
+                                <td v-for="(obj,j) in tableLabel" :key="j" :width='obj.width'>{{obj.formatter?obj.formatter.call(null,item[obj.prop]):item[obj.prop]}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -140,6 +160,7 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage,Alarm} from '@/xiaoFangCloud/request/api.js'
 import {zwPagination} from '@/components/index'
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
 export default {
     data(){
         return{
@@ -159,28 +180,6 @@ export default {
             monitorData:[],
             tableLabel:[
                 {
-                    label:'项目',
-                    prop:'ShortName',
-                    width:'20%'
-                },
-                {
-                    label:'告警时间',
-                    prop:'AlarmTime',
-                    width:'25%'
-                },
-                {
-                    label:'告警内容',
-                    prop:'AlarmText',
-                    width:'40%'
-                },
-                {
-                    label:'当前值',
-                    prop:'AlarmData',
-                    width:'15%'
-                }
-            ],
-            tableLabel1:[
-                {
                     label:'序号',
                     prop:'RowIndex',
                     width:'10%'
@@ -193,21 +192,51 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'25%'
+                    width:'20%'
                 },
                 {
                     label:'告警内容',
                     prop:'AlarmText',
-                    width:'30%'
+                    width:'40%'
                 },
                 {
-                    label:'当前值',
-                    prop:'AlarmData',
-                    width:'15%'
-                }
+                    label:'当前状态',
+                    prop:'OrderState',
+                    width:'10%',
+                    formatter:(val)=>orderState[val]
+                },
             ],
+            tableLabel1:[
+                {
+                    label:'序号',
+                    prop:'RowIndexs',
+                    width:'10%'
+                },
+                {
+                    label:'项目',
+                    prop:'ShortName',
+                    width:'20%'
+                },
+                {
+                    label:'告警时间',
+                    prop:'AlarmTime',
+                    width:'20%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'40%'
+                },
+                {
+                    label:'当前状态',
+                    prop:'OrderState',
+                    width:'10%',
+                    formatter:(val)=>orderState[val]
+                }
+            ]
         }
     },
+    props:['isOpen'],
     components:{
         number,
         zwTable,
@@ -215,13 +244,15 @@ export default {
         zwPagination
     },
     computed:{
-
+        myAudio(){
+            return document.getElementById('myAudio')
+        }
     },
     watch:{
 
     },
     created(){
-        this.queryData()
+        this.queryData(true)
     },
     updated(){
     },
@@ -232,7 +263,10 @@ export default {
         this.timer = null
     },
     methods:{
-        queryData(){
+        /**
+         * @param {Boolean} resetView 改变中心位置
+         */
+        queryData(resetView = false){
             HomePage({
                 FAction:'QueryDigtalHomePageCount'
             })
@@ -240,16 +274,14 @@ export default {
                 let systemList
                 [this.count,systemList,this.fireAlarmData,this.fireList] = data.FObject&&data.FObject
                 let len = Math.ceil(systemList.length/2)
-                systemList.forEach(item => {
-                    let alarm = item.Items.some(obj => obj.AlarmCount > 0)
-                    item.isAlarm = alarm
-                })
                 let arr1 = systemList.slice(0,len)
                 let arr2 = systemList.slice(len)
                 this.systemList = [arr1,arr2]
+                let isAlarm = this.fireList.some((item) => item.FireCount>0)
                 this.$nextTick(() => {
+                    this.isOpen ==1 && isAlarm && this.myAudio.play()
                     if(!this.$refs.map) return
-                    this.showMarks() 
+                    this.showMarks(resetView) 
                 })
                 this.timer = setTimeout(this.queryData,3000)
             }).catch((err) => {
@@ -277,9 +309,10 @@ export default {
         /**
          * 显示点
          */
-        showMarks(){
+        showMarks(resetView){
             let Map = this.$refs.map
             Map.map.clearOverlays()
+            window.$BAIDU$._instances = {}
             this.fireList.forEach((item,i) => {
                 if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
                   return
@@ -287,16 +320,39 @@ export default {
                 const point = new BMap.Point(item.Flat,item.Flng)
                 let marker,icon,img,temp
                 if(item.FireCount>0){
-                    img = require('@/assets/image/cloud/index/bMap_icon_alarm.png')
+                    img = require('@/assets/image/marker/333(1).gif')
+                    icon = Map.setIcon(img,75,75)
                 }else{
-                    img = require('@/assets/image/cloud/index/bMap_icon.png')
+                    img = require('@/assets/image/marker/bMap_icon.png')
+                    icon = Map.setIcon(img,34,40)
                 }
-                icon = Map.setIcon(img,34,40)
                 marker = new BMap.Marker(point,{icon:icon})
+                item.FireCount&&marker.setZIndex({zIndex:10})
                 temp = this.content(item)
                 Map.map.addOverlay(marker)
-                Map.map.centerAndZoom(point, 11);
-                Map.setLabel(marker,item.ProjectName)
+                resetView && Map.map.centerAndZoom(point, 11);
+                /* Map.setLabel(marker,item.ProjectName) */
+                let label
+                if(item.FireCount>0){
+                    /* Map.map.centerAndZoom(point, 11) */
+                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(50,40)})
+                    label.setStyle({
+                      color:'red',
+                      borderColor:'white',
+                      padding:'4px 10px',
+                    })
+                    /* marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画 */
+                    /* Map.openInfoWindow(temp,point) */
+                }else{
+                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(20,20)})
+                    label.setStyle({
+                      color:'#999999 ',
+                      backgroundColor:'rgb(227, 228, 228)',
+                      borderColor:'rgb(227, 228, 228)',
+                      padding:'0 10px',
+                    })
+                }
+                marker.setLabel(label)
                 marker.addEventListener('mouseover',e => {
                   Map.openInfoWindow(temp,point)
                 })
@@ -330,7 +386,6 @@ export default {
                 const start = new Date(new Date().toLocaleDateString()).getTime() - 3600*1000 *24*(new Date().getDate()-1);
                 this.time1 = [new Date(start),end]
             }
-            console.log(this.time1[0])
             this.queryMonitorData()
         },
         queryMonitorData(){
@@ -339,11 +394,10 @@ export default {
                 FAction:'QueryPageUAlarmByDate',
                 PageIndex:this.pageIndex,
                 PageSize:10,
-                StartDateTime:this.time1[0].toLocaleDateString(),
-                EndDateTime:this.time1[1].toLocaleDateString()
+                StartDateTime:this.time1[0].toLocaleDateString() +' ' + this.time1[0].toTimeString().split(' ')[0],
+                EndDateTime:this.time1[1].toLocaleDateString() +' ' + this.time1[1].toTimeString().split(' ')[0]
             })
             .then((data) => {
-                console.log(data)
                 this.total = data.FObject.FTotalCount || 0
                 this.monitorData = data.FObject.Data || []
             }).catch((err) => {
@@ -353,6 +407,11 @@ export default {
         handleCurrentChange(val){
             this.pageIndex = val
             this.queryMonitorData()
+        },
+        rowClick(row){
+            sessionStorage.setItem('projectID',row.ProjectID)
+            sessionStorage.setItem('projectName',row.ShortName)
+            this.$router.push(`/indexItem/${row.FormID}`)
         }
     }
 }
@@ -393,6 +452,14 @@ export default {
                             margin-right: 20px;
                             display: flex;
                             li{
+                                line-height: 32px;
+                                .iconfont{
+                                    margin-right: 0;
+                                }
+                            }
+/*                             background: url('../../../assets/image/shuziYy/number.png');
+                            background-size: 100% 100%; */
+/*                             li{
                                 width:38px;
                                 height:32px;
                                 line-height: 32px;
@@ -401,9 +468,9 @@ export default {
                                 border:2px solid rgba(29, 118, 170, 1);
                                 border-radius: 4px;
                                 margin-top: 0;
-                            }
+                            } */
                             li+li{
-                                margin-left: 10px;
+                                margin-left: 40px;
                             }
                         }
                     }
@@ -413,12 +480,13 @@ export default {
                             height: 100%;
                             display: flex;
                             flex-direction: column;
-                            justify-content: space-around;
+                            justify-content: space-evenly;
                             li{
                                 width: 100%;
                                 height: 60px;
                                 line-height: 60px;
                                 font-size: 14px;
+                                margin: 0;
                                 p{
                                     width: 180px;
                                     height: 100%;
@@ -437,7 +505,7 @@ export default {
                         }
                     }
                 }
-                >li+.system-car{
+                .system-card+.system-card{
                     margin-top: 16px;
                 }
             }
@@ -451,9 +519,35 @@ export default {
     .shuzi-yy{
         height: 40px;
         color: #A5EFFC;
-        .el-date-editor--datetimerange{
+        font-size: 16px;
+        .el-radio-group{
+            color: #F1F1F2; 
+            background:rgba(5,28,74,1);
+            border:1px solid rgba(83,123,174,1);
+            border-radius:8px;
+            .el-radio-button{
+                border: none;
+                .el-radio-button__inner{
+                    background: transparent;
+                    border: none;
+                    font-size:16px;
+                    color: #F1F1F2; 
+                }
+            }
+            .el-radio-button.is-active{
+                background:linear-gradient(0deg,rgba(0,79,177,1),rgba(16,137,172,1));
+                border-radius:8px;
+                .el-radio-button__inner{
+                    color: #F1F1F2; 
+                }
+            }
+            .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+                box-shadow: none;
+            }
+        }
+        .el-date-editor--datetimerange.el-date-editor {
             width: 380px;
-            .el-range-input{
+            .el-range-input , .el-range-separator{
                 background: none;
                 color: #A5EFFC
             }

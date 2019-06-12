@@ -72,5 +72,8 @@ export default {
 .map{
     width: 100%;
     height: 100%;
+    .anchorBL{
+      display:none;
+    } 
 }
 </style>

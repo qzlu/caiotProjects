@@ -233,8 +233,8 @@ export default {
             .then((data) => {
                 this.deviceMonitorInfo = data.FObject[0]||{}
                 if(this.deviceInfo.DeviceTypeID ==500){
-                    let type = this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition
-                    this.queryUAlarmByDate(type)
+                    /* let type = this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition */
+                    this.queryUAlarmByDate(0)
                 }else{
                     this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
                 }
@@ -258,7 +258,7 @@ export default {
         selectItem(item){
 
             if(this.deviceInfo.DeviceTypeID ==500){
-                this.queryUAlarmByDate(item.ShowPosition)
+               /*  this.queryUAlarmByDate(item.ShowPosition) */
             }else{
                 this.queryLineData(item.ShowPosition,i)
             }
@@ -269,7 +269,9 @@ export default {
                 FAction:'QueryUAlarmByDate',
                 ID:this.deviceInfo.DeviceID,
                 FDateTime:this.time.toLocaleDateString(),
-                FType:type
+                FType:type,
+                PageIndex:this.pageIndex,
+                PageSize:20
             })
             .then((data) => {
                 this.record = data.FObject
@@ -313,7 +315,7 @@ export default {
         },
         timeChange(){
             if(this.deviceInfo.DeviceTypeID ==500){
-                this.queryUAlarmByDate()
+                this.queryUAlarmByDate(1)
             }else{
                  this.queryLineData()
             }

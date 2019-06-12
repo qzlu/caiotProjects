@@ -41,8 +41,8 @@
                             <ul class="device">
                                 <li :class="{alarm:device.DeviceStatusName === '告警'}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
                                     <router-link :to="`/deviceDetaile/${formID}/${device.DeviceID}`">
-                                        <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]">
-                                            <p><i :class="['iconfont',device.IconName]"></i></p>
+                                        <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]" :style="{'color':colors[device.DeviceColor]}">
+                                            <p><i :class="['iconfont',device.IconName]" ></i></p>
                                             <p class="device-status">{{device.DeviceStatusName}}</p>
                                         </div>
                                         <div class="device-info">
@@ -80,6 +80,7 @@ export default {
             fireAlarmData:null,
             wariningData:null,
             timer:null,
+            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#9c1428'],
             tableLabel:[
                 {
                     label:'告警时间',
@@ -108,11 +109,11 @@ export default {
                     prop:'AlarmText',
                     width:'45%'
                 },
-                {
+/*                 {
                     label:'类型',
                     prop:'AlarmTypeName',
                     width:'20%'
-                }
+                } */
             ],
             tableLabel2:[
                 {

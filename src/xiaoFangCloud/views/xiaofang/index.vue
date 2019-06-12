@@ -47,8 +47,14 @@
                 </swiper> -->
                  <el-scrollbar>
                      <transition-group tag="ul" name="list" class="list">
-                         <li :class="{alarm:item.isAlarm,unnormal:item.isNormal,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
-                             <h4>{{item.ProjectName}}</h4>
+                         <li :class="{alarm:item.isAlarm,unnormal:item.unNormal,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
+                             <div class="clearfix">
+                                 <h4 class="l">{{item.ProjectName}}</h4>
+                                 <div class="r" style="margin-right:20px;line-height:36px;font-size:16px;">
+                                     <i class="iconfont icon-Equipment"></i>
+                                     {{item.DeviceCount||0}}
+                                 </div>
+                             </div>
                              <div class="list-content">
                                 <div class="statu"></div>
                                 <ul  class="param clearfix">
@@ -112,6 +118,7 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
 export default {
     data(){
         return{
@@ -152,9 +159,10 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前值',
-                    prop:'AlarmData',
-                    width:'15%'
+                    label:'当前状态',
+                    prop:'OrderState',
+                    width:'15%',
+                    formatter:(val)=>orderState[val]
                 }
             ],
             tableLabel1:[
@@ -174,13 +182,15 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前值',
-                    prop:'AlarmData',
-                    width:'15%'
+                    label:'当前状态',
+                    prop:'OrderState',
+                    width:'15%',
+                    formatter:(val)=>orderState[val]
                 }
             ]
         }
     },
+    props:['isOpen'],
     components:{
         number,
         zwTable,
@@ -188,6 +198,9 @@ export default {
         leftSide
     },
     computed:{
+        myAudio(){
+            return document.getElementById('myAudio')
+        }
 /*         swiper(){
             return  this.$refs.mySwiper.swiper
         } */
@@ -223,15 +236,17 @@ export default {
                 [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
                 this.fireList.forEach(item => {
                     let isAlarm = false
-                    let isNormal = item.mBlocHomePageProjectItems.some(obj => obj.ItemCount>0)
+                    let unNormal = item.mBlocHomePageProjectItems.some(obj => obj.ItemCount>0)
                     if(this.formID == 1){
                         isAlarm = item.mBlocHomePageProjectItems.some(obj => obj.ItemName == '火警数'&&obj.ItemCount>0)
                     }
                     item.isAlarm = isAlarm
-                    item.isNormal = isNormal
+                    item.unNormal = unNormal
                 })
-                this.fireList.sort((a,b) =>b.isAlarm - a.isAlarm ).sort((a,b) => b.isNormal -a.isNormal)
+                this.fireList.sort((a,b) =>b.isAlarm - a.isAlarm ).sort((a,b) => b.unNormal -a.unNormal)
+                let isAlarm = this.fireList.some((item) => item.isAlarm)
                 this.$nextTick(() => {
+                    this.isOpen ==1 && isAlarm && this.myAudio.play()
                     if(!this.$refs.map) return
                     this.showMarks(resetView) 
                 })
@@ -248,7 +263,7 @@ export default {
                         <li><span>项目地址：</span>${item.Address}</li>
                         <li><span>安全负责人：</span>${item.PropertyLeader||'--'}　${item.PropertyPhone||'--'}</li>
                        `
-            if(item.FireCount > 0){
+            if(item.isAlarm||item.unNormal){
                 temp += ` <li><span>设备名称：</span>${item.DeviceName}</li>
                 <li><span>报警时间：</span>${item.AlarmTime}</li>`
             }
@@ -270,17 +285,40 @@ export default {
                 }
                 const point = new BMap.Point(item.Flat,item.Flng)
                 let marker,icon,img,temp
-                if(item.FireCount>0){
-                    img = require('@/assets/image/cloud/index/bMap_icon_alarm.png')
+                if(item.isAlarm||item.unNormal){
+                    img = require(`@/assets/image/marker/icon_wrong_${this.formID}.png`)
+                    icon = Map.setIcon(img,40,54)
                 }else{
-                    img = require('@/assets/image/cloud/index/bMap_icon.png')
+                    img = require(`@/assets/image/marker/icon_normal_${this.formID}.png`)
+                    icon = Map.setIcon(img,34,40)
                 }
-                icon = Map.setIcon(img,34,40)
                 marker = new BMap.Marker(point,{icon:icon})
+                if(item.isAlarm||item.unNormal){
+                    marker.setZIndex({zIndex:10})
+                }
                 temp = this.content(item)
                 Map.map.addOverlay(marker)
                 resetView && Map.map.centerAndZoom(point, 11);
-                Map.setLabel(marker,item.ProjectName)
+                /* Map.setLabel(marker,item.ProjectName) */
+                let label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(20,20)})
+                if(item.isAlarm||item.unNormal){
+                    // Map.map.centerAndZoom(point, 11)
+                    label.setStyle({
+                      color:'red',
+                      borderColor:'white',
+                      padding:'4px 10px',
+                    })
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                    Map.openInfoWindow(temp,point)
+                }else{
+                    label.setStyle({
+                      color:'#999999 ',
+                      backgroundColor:'rgb(227, 228, 228)',
+                      borderColor:'rgb(227, 228, 228)',
+                      padding:'0 10px',
+                    })
+                }
+                marker.setLabel(label)
                 marker.addEventListener('mouseover',e => {
                   Map.openInfoWindow(temp,point)
                 })

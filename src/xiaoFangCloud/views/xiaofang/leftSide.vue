@@ -1,22 +1,22 @@
 <template>
     <div>
         <ul class="list">
-            <li :class="{unnormal:item.AlarmCount}" v-for="(item,i) in systemList" :key="i">
+            <li :class="{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}" v-for="(item,i) in systemList" :key="i">
                 <h4>
-                   <i :class="['iconfont',item.iconName]"></i>
+                   <i :class="['iconfont',item.IconName]"></i>
                    <span>{{item.SystemParamName}}</span>
                </h4>
                <div class="list-content">
                    <div class="statu">
                    </div>
                    <ul class="param">
-                       <li v-for="(obj,j) in item.data" :key="j">
+                       <li v-for="(obj,j) in item.mBlocHomePageCounts" :key="j">
                            <p class="l">
                                <i :class="['iconfont',obj.IconName]"></i>
                                {{obj.CountName}}
                            </p>
                            <span class="value">
-                               {{obj.DeviceCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
+                               <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}} </span>/ {{obj.DeviceCount}}
                            </span>
                        </li>
                    </ul>
@@ -39,7 +39,7 @@ export default {
     },
     computed:{
         systemList(){
-            if(!Array.isArray(this.$props.data)) return []
+/*             if(!Array.isArray(this.$props.data)) return []
             let arr = this.$props.data.map((item,i) => {
                 let alarmObj = item.find(obj => obj.AlarmCount )
                 return {
@@ -48,9 +48,8 @@ export default {
                     AlarmCount:alarmObj?alarmObj.AlarmCount:0,
                     data:item
                 }
-            })
-            arr.sort((a,b) => b.AlarmCount - a.AlarmCount)
-            return arr
+            }) */
+            return this.$props.data.sort((a,b) => b.AlarmKind - a.AlarmKind)
         }
     }
 }

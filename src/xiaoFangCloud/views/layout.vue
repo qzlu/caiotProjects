@@ -4,6 +4,9 @@
             <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
             </el-button>
+            <audio id="myAudio">
+                <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
+            </audio>
             <span class="title">{{projectName}}</span>
             <ul class="clearfix">
                 <li  class="l icon" v-if="$route.path !=='/'">
@@ -15,6 +18,9 @@
                     <router-link :to="`/manage`"  class="icon-item">
                         <i class="iconfont icon-zs-backstage"></i>
                     </router-link>
+                </li>
+                <li class="l icon" @click="switchAudio">
+                    <i :class="['iconfont', {'icon-ZS-news':isOpen == 1,'icon-Soundoff':isOpen == 0}]"></i>
                 </li>
                 <li class="l icon">
                     <el-dropdown>
@@ -31,7 +37,7 @@
                 <set-password :show.sync='show' @confirm="changePassword"></set-password>
             </ul>
         </div>
-        <router-view>
+        <router-view :isOpen = 'isOpen'>
 
         </router-view>
     </div>
@@ -44,6 +50,7 @@ export default {
     data(){
         return{
             show:false,
+            isOpen:localStorage.getItem('open')||1,
             formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
         }
     },
@@ -98,6 +105,19 @@ export default {
             }).catch((err) => {
                 
             });
+        },
+        /**
+         * 切换声音开关
+         */
+        switchAudio(){
+            if(this.isOpen == 1){
+                this.isOpen = 0
+                localStorage.setItem('open',0)
+                document.getElementById('myAudio').pause()
+            }else{
+                this.isOpen = 1
+                localStorage.setItem('open',1)
+            }
         }
     }
 }

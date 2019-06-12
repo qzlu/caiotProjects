@@ -13,19 +13,19 @@
             <th v-for="(item,i) in labels" :key="i" :width='item.width'>{{item.label}}</th>
           </tr>
         </table>
-        <div class="table-body" v-if="data.length>0" :style="style1" @mouseenter="enter" @mouseleave="leave">
-            <swiper  :ref="id" :options='swiperOption'>
+        <div class="table-body" v-if="data.length>0" :style="style1">
+<!--             <swiper  :ref="id" :options='swiperOption'>
                  <swiper-slide class="tr" v-for="(obj,i) in data" :key="i">
-                    <p class="td" v-for="(item,j) in labels" :key="j" :title="obj[item.prop]" :style="{width:item['width']}">{{obj[item.prop]}}</p>
+                    <p class="td" v-for="(item,j) in labels" :key="j" :title="obj[item.prop]" :style="{width:item['width']}">{{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}</p>
                  </swiper-slide>
-            </swiper>
-<!--             <el-scrollbar>
+            </swiper> -->
+            <el-scrollbar>
                 <table>
-                  <tr v-for="(obj,i) in data" :key="i">
-                    <td v-for="(item,j) in labels" :key="j" :width='item["width"]'>{{obj[item.prop]}}</td>
+                  <tr v-for="(obj,i) in data" :key="i" @click="rowClick(obj)">
+                    <td v-for="(item,j) in labels" :key="j" :width='item["width"]'>{{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}</td>
                   </tr>
                 </table>
-            </el-scrollbar> -->
+            </el-scrollbar>
         </div>
     </div>
 </template>
@@ -74,15 +74,15 @@ export default {
         style1(){
             return {height:this.$props.bodyHeight+'px'}
         },
-        swiper(){
+/*         swiper(){
             return  this.$refs[this.id].swiper
-        },
+        }, */
         swiperOption(){
             return {
                 init:false,
-                autoplay: {
+/*                 autoplay: {
                     disableOnInteraction: false,
-                },
+                }, */
                 direction : 'vertical',
                 speed:300,
                 loop:true,
@@ -93,13 +93,13 @@ export default {
         }
     },
     watch:{
-        data(){
-            if(this.$props.data.length>0){
-                this.$nextTick(() =>{
+/*         data(value){
+            this.$nextTick(() =>{
+                if(this.$props.data.length>0){
                     this.swiper.init()
-                })
-            }
-        }
+                }
+            })
+        } */
     },
     updated(){
     },
@@ -111,7 +111,6 @@ export default {
     },
     methods:{
         show(){
-            console.log(123)
             this.$emit('click')
         },
         enter(){
@@ -119,6 +118,12 @@ export default {
         },
         leave(){
             this.swiper.autoplay.start()
+        },
+        /**
+         * 
+         */
+        rowClick(row){
+            this.$emit('rowClick',row)
         }
     }
 }
@@ -157,7 +162,7 @@ export default {
             font-size: 14px;
         }
     }
-    .table-body{
+/*     .table-body{
         .tr{
             width: 100%;
             line-height: 42px;
@@ -175,14 +180,21 @@ export default {
         .tr:nth-of-type(2n){
             background:rgba(7,148,207,0.14);
         }
-    }
-/*     .table-body{
+    } */
+    .table-body{
           table{
               width: 100%;
               tr{
-                  td.warning{
-                      color: #E0E213
-                  }
+                line-height: 42px;
+                cursor: pointer;
+                td{
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                td.warning{
+                    color: #E0E213
+                }
               }
               tr:nth-of-type(2n+1){
                   background:rgba(158,229,243,0.3);
@@ -191,7 +203,7 @@ export default {
                   background:rgba(7,148,207,0.3);
               }
           }
-    } */
+    }
 
 }
 </style>
