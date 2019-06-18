@@ -16,12 +16,12 @@
                     <el-option v-for="role in roleList" :key="role.FGUID" :label="role.FName" :value="role.FGUID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="性别" prop="FGender" :rules="[{ required: true, message: '请选择'}]">
+<!--                 <el-form-item label="性别" prop="FGender" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FGender"   placeholder="请选择性别">
                     <el-option  label="男" :value="1"></el-option>
                     <el-option  label="女" :value="0"></el-option>
                   </el-select>
-                </el-form-item>
+                </el-form-item> -->
 <!--                 <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FUserType"   placeholder="请选择角色">
                     <el-option key="1" label="运营管理" :value="1"></el-option>
@@ -98,8 +98,9 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'RowNum',
-                    label: '序号'
+                    prop: 'RowIndex',
+                    label: '序号',
+                    width:80
                 },
                 {
                     prop: 'FContacts',
@@ -110,19 +111,27 @@ export default {
                     label: '账号'
                 },
                 {
-                    prop: 'FTelephone',
-                    label: '联系电话'
-                },
-                {
                     prop: 'FSimpleName',
-                    label: '角色'
+                    label: '所属角色'
+                },
+ /*                {
+                    prop: 'ProjectName',
+                    label: '所属项目',
+                    width:400
                 },
                 {
-                    prop: 'LastLoginDate',
-                    label: '最近登录时间',
-                    width:160,
-                    formatter:(row) => row.LastLoginDate != null?row.LastLoginDate.replace(/T/ig,' '):''
-                }
+                    prop: 'FCreateUser',
+                    label: '创建人',
+                }, */
+                {
+                    prop: 'FCreateTime',
+                    label: '创建时间',
+                    width:'160'
+                },
+/*                 {
+                    prop: 'FPassword',
+                    label: '密码'
+                } */
             ],
             roleList:[],
             defaultData:{
@@ -137,7 +146,8 @@ export default {
                 FGender:null,
                 FIsOwners:0,
                 FRoleGUID:'',
-                FGUID:'00000000-0000-0000-0000-000000000000'
+                FGUID:'00000000-0000-0000-0000-000000000000',
+                FDescribe:''
             },
             addData:{
                 FUserName:'',
@@ -151,7 +161,8 @@ export default {
                 FGender:null,
                 FIsOwners:0,
                 FRoleGUID:'',
-                FGUID:'00000000-0000-0000-0000-000000000000'
+                FGUID:'00000000-0000-0000-0000-000000000000',
+                FDescribe:''
             },
             FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
         }
@@ -202,7 +213,7 @@ export default {
                 PageSize:10000
             })
             .then((data) => {
-                this.roleList = data.FObject.Table1 ? data.FObject.Table1 : []
+                this.roleList = data.FObject.Data || []
             }).catch((err) => {
                 
             });
@@ -237,9 +248,10 @@ export default {
                 });
             })
             this.show  = false
+            this.addData.FUserNickname =  this.addData.FContacts
             System({
-                FAction:'AddorUpdateTUsers',
-                FType:this.type,
+                FAction:'AddOrUpdateTUsers',
+                RoleID:this.addData.FRoleGUID,
                 tUsers:this.addData
             })
             .then((data) => {
@@ -265,7 +277,6 @@ export default {
                   });
             })
             System({
-                FRouteName:'System',
                 FAction:'InitializePassword',
                 FType:0,
                 FGuid:row.FGUID,

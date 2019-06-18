@@ -34,11 +34,11 @@
                 <div class="monitor">
                     <div class="device-statu">
                         <div class="l">
-                            <i :class="['iconfont',deviceInfo.IconName]"></i>
+                            <i :class="['iconfont',deviceInfo.IconName]" :style="{'color':colors[deviceMonitorInfo.DeviceColor]}"></i>
                         </div>
                         <div>
                             <p>{{deviceInfo.DeviceName}}</p>
-                            <p>{{deviceMonitorInfo.DeviceStatusName}}</p>
+                            <p :style="{'color':colors[deviceMonitorInfo.DeviceColor]}">{{deviceMonitorInfo.DeviceStatusName}}</p>
                         </div>
                     </div>
                     <ul v-if="deviceMonitorInfo.mDeviceHomePageShowPositions">
@@ -55,7 +55,7 @@
                         <line-chart v-if="deviceInfo.DeviceTypeID !=500&&lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
                         <div class="alarm-list" v-else>
                             <el-scrollbar>
-                                <ul>
+                                <ul v-infinite-scroll="loadMore">
                                     <li v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span class="">{{item.AlarmText}}</span></li>
                                 </ul>
                             </el-scrollbar>
@@ -160,12 +160,14 @@ export default {
             deviceMonitorInfo:{},
             active:0,
             showPosition:null,
+            pageIndex:1,
             time:new Date(),
             lineData:{
             },
             record:[] ,//消防主机记录
             deviceEvent:[],
             type:1,
+            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#9c1428'],
             swiperOption:{
                 init:false,
                 autoplay: {
@@ -214,7 +216,6 @@ export default {
                 this.deviceInfo = data
                 this.queryMonitorData(data)
                 this.queryUDeviceEvents(data)
-                console.log( this.deviceInfo)
             }else{
                 this.deviceInfo = {}
                 this.deviceMonitorInfo = {}
@@ -234,7 +235,7 @@ export default {
                 this.deviceMonitorInfo = data.FObject[0]||{}
                 if(this.deviceInfo.DeviceTypeID ==500){
                     /* let type = this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition */
-                    this.queryUAlarmByDate(0)
+                    this.queryUAlarmByDate()
                 }else{
                     this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
                 }
@@ -263,21 +264,35 @@ export default {
                 this.queryLineData(item.ShowPosition,i)
             }
         },
-        queryUAlarmByDate(type = this.type){
-            this.type = type
+        queryUAlarmByDate(scroll = false){
+            if(!scroll){
+              this.pageIndex1 = 1
+            }
             Alarm({
                 FAction:'QueryUAlarmByDate',
                 ID:this.deviceInfo.DeviceID,
                 FDateTime:this.time.toLocaleDateString(),
-                FType:type,
+                FType:0,
                 PageIndex:this.pageIndex,
                 PageSize:20
             })
             .then((data) => {
-                this.record = data.FObject
+                if(scroll){
+                    if(data.FObject.length>0){
+                        this.record.push(...data.FObject)
+                    }else{
+                        this.pageIndex --
+                    }
+                }else{
+                    this.record  = data.FObject
+                }
             }).catch((err) => {
                 
             });
+        },
+        loadMore(){
+            this.pageIndex ++
+            this.queryUAlarmByDate(true)
         },
         /**
          * 查询曲线图数据
@@ -315,7 +330,7 @@ export default {
         },
         timeChange(){
             if(this.deviceInfo.DeviceTypeID ==500){
-                this.queryUAlarmByDate(1)
+                this.queryUAlarmByDate()
             }else{
                  this.queryLineData()
             }

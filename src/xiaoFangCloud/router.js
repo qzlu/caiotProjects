@@ -39,6 +39,7 @@ export default new Router({
         {
             path:'/manage',
             component:() => import('./views/manage/layout/index.vue'),
+            redirect:'/manage/alarmList',
             children:[
                 {
                     path:'alarmList', //告警管理（告警列表）
@@ -69,7 +70,7 @@ export default new Router({
                     component: () => import('./views/manage/project/deviceMeter.vue')
                 },
                 {
-                    path:'user' , //用户管理
+                    path:'UserManagement' , //用户管理
                     component:() => import('./views/manage/system/user.vue')
                 },
                 {

@@ -1,15 +1,23 @@
 <template>
     <div class="report">
-        <h3 style="margin-bottom:20px">项目列表</h3>
-<!--         <ul class="operation clearfix">
-            <li class="l" @click="beforeAdd"><el-button type='primary'><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l" ><el-button type='primary'><i class="iconfont icon-Export"></i>导出</el-button></li>
-            <li class="r">
-                <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
-                    <i class="el-icon-search" slot="suffix"></i>
-                </el-input>
-            </li>
-        </ul> -->
+        <!-- <h3 style="margin-bottom:20px">基本信息</h3> -->
+        <ul class="operation clearfix">
+            <li class="l"><h3 style="line-height:45px;">基本信息</h3></li>
+            <li class="l" style="margin-left:20px;"><el-button type='primary'><i class="iconfont icon-Edit" style="position: relative;top:-4px;font-size:24px;"></i></el-button></li>
+        </ul>
+        <div class="project-info">
+            <div class="l">
+                <img  src="@/assets/image/logo.png" alt="" width="310" height="383">
+                <br><span style="margin-top:20px;font-size:20px;">宣传图</span> 
+            </div>
+            <ul>
+                <li v-for="(item,i) in tableLabel" :key="i">
+                    <span class="label">{{item.label}}:</span>
+                    <span class="project-item" v-if="item.formatter">{{item.formatter(tableData)}}</span>
+                    <span class="project-item" v-else>{{tableData[item.prop]}}</span>
+                </li>
+            </ul>
+        </div>
         <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body :title="type?'编辑':'新增'">
             <el-form :model="addData"  inline ref="form">
                 <el-form-item label="项目全称" prop='ProjectName'>
@@ -68,34 +76,6 @@
                 <el-button @click="show = false">取 消</el-button>
             </span>
         </el-dialog>                               
-        <div>
-            <div class="table-header"></div>
-            <el-table
-             :data='tableData'
-             :row-class-name="tableRowClassName"
-            >
-                <el-table-column
-                  v-for="item in tableLabel"
-                  show-overflow-tooltip
-                  :key="item.prop"
-                  :prop="item.prop"
-                  :label="item.label"
-                  :width="item.width"
-                 >
-                </el-table-column>
-                <el-table-column
-                    label="操作"
-                >
-                    <template slot-scope="scoped">
-                        <div>
-                            <span @click="updated(scoped.row)" title="编辑"><i class="el-icon-document"></i></span>
-                            <span @click="deleteProject(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
-                        </div>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </div>
-        <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination> 
     </div>
 </template>
 <script>
@@ -108,8 +88,8 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'RowNum',
-                    label: '序号'
+                    prop: 'BlocName',
+                    label: '所属集团'
                 },
                 {
                     prop: 'ProjectName',
@@ -128,18 +108,36 @@ export default {
                     label: '负责人'
                 },
                 {
+                    prop: 'PropertyPhone',
+                    label: '联系电话'
+                },
+                {
                     prop: 'BuildArea',
                     label: '建筑面积（m²）'
                 },
                 {
-                    prop: 'County',
-                    label: '地区'
+                    prop: 'PropertyLeader',
+                    label: '建筑类型'
+                },
+                {
+                    prop: 'City',
+                    label: '城市'
                 },
                 {
                     prop: 'Address',
                     label: '地址',
                     width:'350'
                 },
+                {
+                    prop: '',
+                    label: '经纬度',
+                    formatter:(val) =>  `${val['Flng']}　${val['Flat']}`
+                },
+                {
+                    prop: 'County',
+                    label: '所属平台类型'
+                },
+
             ],
             defaultAddData:{
                 ID:0,
@@ -201,32 +199,12 @@ export default {
         queryData(){
             Project({
                 FAction:'QueryUProject',
-                SearchKey:this.filterText,
-                PageIndex:1,
-                PageSize:10
             })
             .then((data) => {
-                console.log(data)
-                this.total =  data.FObject.length>0&&1
-                this.tableData = data.FObject||[]
-                /**
-                 * 删除操作时，当前页面无数据时跳到上一页
-                 */
-                if(this.tableData.length === 0&&this.pageIndex > 1){
-                    --this.pageIndex
-                    this.queryData()
-                }
+                this.tableData = (data.FObject&&data.FObject[0])||{}
             }).catch((err) => {
                 
             });
-        },
-        /**
-         * 点击新增
-         */
-        beforeAdd(){
-            this.addData = Object.assign({},this.defaultAddData)
-            this.type = 0
-            this.show = true
         },
         /**
          * 点击编辑
@@ -248,19 +226,6 @@ export default {
                 FAction:'AddOrUpdateUProject',
                 ID:this.addData.ID,
                 uProject:this.addData
-            })
-            .then((data) => {
-                this.queryData()
-            }).catch((err) => {
-                
-            });
-        },
-        async deleteProject(row){
-            await this.beforeDelete()
-            Project({
-                FRouteName:'Project',
-                FAction:'DeleteUProjectByID',
-                ID:row.ID
             })
             .then((data) => {
                 this.queryData()
@@ -308,6 +273,48 @@ export default {
 }
 </script>
 <style lang="scss">
+.project-info{
+    margin-top: 80px;
+    img{
+        margin: 20px 0;
+    }
+    ul{
+        width: 1200px;
+        height: 455px;
+        margin-left: 415px;
+        background:rgba(14,49,83,1);
+        border:1px solid rgba(101,168,224,1);
+        border-radius:6px;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        li{
+            width: 50%;
+            height: 16.66%;
+            line-height: 73px;
+            box-sizing: border-box;
+            border-bottom: 2px solid #65A8E0;
+            display: flex;
+            overflow: hidden;
+            span{
+                display: inline-block;
+                box-sizing: border-box;
+                height: 100%;
+            }
+            .label{
+                width: 172px;
+                padding-right: 10px;
+                text-align: right;
+                background: #0D3F72;
+            }
+            .project-item{
+                width: 426px;
+                padding-left: 10px;
+                text-align: left;
+            }
+        }
+    }
+}
 .city-list{
     width: 512px!important;
     background: #05203C;

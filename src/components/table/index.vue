@@ -10,7 +10,8 @@
         <slot v-else name="title"></slot>
         <table class="table-header">
           <tr>
-            <th v-for="(item,i) in labels" :key="i" :width='item.width'>{{item.label}}</th>
+            <th v-for="(item,i) in labels" :key="i" :width='item.width' :style="{'text-align':item.align}">{{item.label}}</th>
+            <th v-if="showOperation">操作</th>
           </tr>
         </table>
         <div class="table-body" v-if="data.length>0" :style="style1">
@@ -22,7 +23,8 @@
             <el-scrollbar>
                 <table>
                   <tr v-for="(obj,i) in data" :key="i" @click="rowClick(obj)">
-                    <td v-for="(item,j) in labels" :key="j" :width='item["width"]'>{{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}</td>
+                    <td v-for="(item,j) in labels" :key="j" :width='item["width"]' :style="{'text-align':item.align,'color':item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">{{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}</td>
+                    <td v-if="showOperation" style="color:#60e5f7"><span @click="misreport(obj)">误报</span> <span style="margin-left:20px">派单</span></td>
                   </tr>
                 </table>
             </el-scrollbar>
@@ -31,8 +33,6 @@
 </template>
 <script>
 import uuidv1 from 'uuid/v1'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
 export default {
     data(){
         return{
@@ -40,8 +40,6 @@ export default {
         }
     },
     components:{
-        swiper,
-        swiperSlide
     },
     props:{
         data:{ //表格数据
@@ -58,6 +56,10 @@ export default {
         },
         width:Number,
         bodyHeight:Number,
+        showOperation:{
+            type:Boolean,
+            default:false
+        },
         pageSize:{
             default:4,
             type:Number
@@ -74,9 +76,6 @@ export default {
         style1(){
             return {height:this.$props.bodyHeight+'px'}
         },
-/*         swiper(){
-            return  this.$refs[this.id].swiper
-        }, */
         swiperOption(){
             return {
                 init:false,
@@ -124,6 +123,12 @@ export default {
          */
         rowClick(row){
             this.$emit('rowClick',row)
+        },
+        /**
+         * 误报
+         */
+        misreport(row){
+            this.$emit('misreport',row)
         }
     }
 }
@@ -160,6 +165,7 @@ export default {
         line-height: 36px;
         th{
             font-size: 14px;
+            text-align: left;
         }
     }
 /*     .table-body{
@@ -187,7 +193,9 @@ export default {
               tr{
                 line-height: 42px;
                 cursor: pointer;
+                text-align: left;
                 td{
+                    display: inline-block;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
@@ -197,10 +205,10 @@ export default {
                 }
               }
               tr:nth-of-type(2n+1){
-                  background:rgba(158,229,243,0.3);
+                  background:rgba(158,229,243,0.2);
               }
               tr:nth-of-type(2n){
-                  background:rgba(7,148,207,0.3);
+                  background:rgba(7,148,207,0.14);
               }
           }
     }

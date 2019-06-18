@@ -20,7 +20,7 @@
         <span class="label">平台类型</span>
         <el-select v-model="systemId">
             <el-option :value="0" label="全部"></el-option>
-          <el-option v-for="(item,index) in sysTemList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
+            <el-option v-for="(item,index) in sysTemList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
         </el-select>
       </li>
       <li class="l">
@@ -74,15 +74,20 @@
 <script>
 import table from "@/xiaoFangCloud/mixins/table"; //表格混入数据
 import { Alarm, Device ,Project} from "@/xiaoFangCloud/request/api.js";
+const alarmLevel = ["全部", "提示", "一般", "严重"]
 export default {
   mixins: [table],
   data() {
     return {
       tableLabel: [
         {
-          prop: "RowNum",
+          prop: "RowIndex",
           label: "序号",
           width: 80
+        },
+        {
+          prop:"FormName",
+          label:"平台类型"
         },
         {
           prop: "AlarmTime",
@@ -90,16 +95,13 @@ export default {
           width: 160
         },
         {
-          prop: "AreaName",
-          label: "区域名称"
-        },
-        {
           prop: "DeviceName",
           label: "设备名称"
         },
         {
           prop: "AlarmLevel",
-          label: "告警级别"
+          label: "告警级别",
+          formatter: (row)=> alarmLevel[row['AlarmLevel']]
         },
         {
           prop: "AlarmTypeName",
@@ -116,19 +118,20 @@ export default {
           label: "告警值"
         },
         {
-          prop: "LimitValue",
-          label: "告警条件"
-        },
-        {
           prop: "RecoveryTime",
           label: "恢复时间",
           width: 160
-        }
+        },
+        {
+          prop: "IsRecovery",
+          label: "告警状态",
+          formatter: (row)=> row.IsRecovery?'已恢复':'未恢复'
+        },
       ],
       time: [new Date(), new Date()], //时间选择参数
       AlarmType: {}, //告警类型
       Alarm_Typeid: 0, //告警类型id,默认为0，
-      Alarm_lev: ["全部", "提示", "一般", "严重"], //告警级别
+      Alarm_lev: alarmLevel, //告警级别
       Alarm_levid: 0, //告警级别 对应id,默认为0
       sysTemList:[],
       systemId:0
@@ -137,7 +140,7 @@ export default {
   created() {
     this.queryData();
     this.querySystemAlarmType();
-    /* this.querySForm() */
+    this.querySForm()
   },
   methods: {
     /*查询数据按钮*/
@@ -155,10 +158,8 @@ export default {
           FormID:this.systemId
         })
         .then(data => {
-            this.total = data.FObject.Table
-              ? data.FObject.Table[0].FTotalCount
-              : 0;
-            this.tableData = data.FObject.Table1 ? data.FObject.Table1 : [];
+          this.total = data.FObject.FTotalCount || 0
+          this.tableData = data.FObject.Data || []
         })
         .catch(err => {});
     },

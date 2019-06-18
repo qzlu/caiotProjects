@@ -4,7 +4,7 @@
             <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
             </el-button>
-            <audio id="myAudio">
+            <audio id="myAudio" autoplay="false">
                 <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
             </audio>
             <span class="title">{{projectName}}</span>

@@ -11,7 +11,7 @@
                         <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[0]" :key="i">
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
-                                   <i :class="['iconfont','icon-'+item.IconName]"></i>
+                                   <i :class="['iconfont',item.IconName]"></i>
                                    <span>{{item.FormName}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
@@ -56,7 +56,7 @@
                         <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[1]" :key="i">
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
-                                   <i :class="['iconfont','icon-'+item.IconName]"></i>
+                                   <i :class="['iconfont',item.IconName]"></i>
                                    <span>{{item.FormName}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
@@ -132,7 +132,7 @@
                            <el-radio-button label="本月"></el-radio-button>
                         </el-radio-group>
                         <span style="margin:0 10px">时间段</span>
-                        <el-date-picker ref="pick" v-model="time1" type="datetimerange" @change="queryMonitorData" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                        <el-date-picker ref="pick" v-model="time1" type="daterange" @change="queryMonitorData" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                         </el-date-picker>
                     </div>
                 </div>
@@ -182,7 +182,7 @@ export default {
                 {
                     label:'序号',
                     prop:'RowIndex',
-                    width:'10%'
+                    width:'10%',
                 },
                 {
                     label:'项目',
@@ -200,7 +200,7 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前状态',
+                    label:'工单状态',
                     prop:'OrderState',
                     width:'10%',
                     formatter:(val)=>orderState[val]
@@ -210,7 +210,8 @@ export default {
                 {
                     label:'序号',
                     prop:'RowIndexs',
-                    width:'10%'
+                    width:'10%',
+                    align:'center'
                 },
                 {
                     label:'项目',
@@ -228,9 +229,10 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前状态',
+                    label:'工单状态',
                     prop:'OrderState',
                     width:'10%',
+                    color:'#FBA31E',
                     formatter:(val)=>orderState[val]
                 }
             ]
@@ -277,7 +279,7 @@ export default {
                 let arr1 = systemList.slice(0,len)
                 let arr2 = systemList.slice(len)
                 this.systemList = [arr1,arr2]
-                let isAlarm = this.fireList.some((item) => item.FireCount>0)
+                let isAlarm = this.fireList.some((item) => item.FireCount>0||item.WarningCount>0)
                 this.$nextTick(() => {
                     this.isOpen ==1 && isAlarm && this.myAudio.play()
                     if(!this.$refs.map) return
@@ -319,8 +321,8 @@ export default {
                 }
                 const point = new BMap.Point(item.Flat,item.Flng)
                 let marker,icon,img,temp
-                if(item.FireCount>0){
-                    img = require('@/assets/image/marker/333(1).gif')
+                if(item.FireCount>0 || item.WarningCount>0){
+                    img = require('@/assets/image/marker/Qi.gif')
                     icon = Map.setIcon(img,75,75)
                 }else{
                     img = require('@/assets/image/marker/bMap_icon.png')
@@ -333,7 +335,7 @@ export default {
                 resetView && Map.map.centerAndZoom(point, 11);
                 /* Map.setLabel(marker,item.ProjectName) */
                 let label
-                if(item.FireCount>0){
+                if(item.FireCount>0 || item.WarningCount>0){
                     /* Map.map.centerAndZoom(point, 11) */
                     label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(50,40)})
                     label.setStyle({
@@ -356,9 +358,9 @@ export default {
                 marker.addEventListener('mouseover',e => {
                   Map.openInfoWindow(temp,point)
                 })
-                marker.addEventListener('dblclick',e => {
+/*                 marker.addEventListener('dblclick',e => {
                   this.changeRouter(item)
-                })
+                }) */
             })
         },
         selectProject(item,i){
@@ -477,10 +479,13 @@ export default {
                     .list-content{
                         height: 390px;
                         .param{
+                            /* width: 180px; */
                             height: 100%;
+                            padding-left: 20px;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-evenly;
+                            left:92px;
                             li{
                                 width: 100%;
                                 height: 60px;
@@ -501,6 +506,9 @@ export default {
                                         vertical-align: middle;
                                     }
                                 }
+                                .value{
+                                    margin-left: 30px;
+                                }
                             }
                         }
                     }
@@ -513,67 +521,6 @@ export default {
         .main{
             margin: 0 423px;
         }
-    }
-}
-.zw-dialog .el-dialog__body {
-    .shuzi-yy{
-        height: 40px;
-        color: #A5EFFC;
-        font-size: 16px;
-        .el-radio-group{
-            color: #F1F1F2; 
-            background:rgba(5,28,74,1);
-            border:1px solid rgba(83,123,174,1);
-            border-radius:8px;
-            .el-radio-button{
-                border: none;
-                .el-radio-button__inner{
-                    background: transparent;
-                    border: none;
-                    font-size:16px;
-                    color: #F1F1F2; 
-                }
-            }
-            .el-radio-button.is-active{
-                background:linear-gradient(0deg,rgba(0,79,177,1),rgba(16,137,172,1));
-                border-radius:8px;
-                .el-radio-button__inner{
-                    color: #F1F1F2; 
-                }
-            }
-            .el-radio-button__orig-radio:checked+.el-radio-button__inner{
-                box-shadow: none;
-            }
-        }
-        .el-date-editor--datetimerange.el-date-editor {
-            width: 380px;
-            .el-range-input , .el-range-separator{
-                background: none;
-                color: #A5EFFC
-            }
-        }
-    }
-    .table{
-        height: 510px;
-        tr{
-            th,td{
-                height: 44px;
-                line-height: 44px;
-                text-align: center;
-            }
-        }
-        tbody{
-            tr:nth-of-type(2n+1){
-                background: #0A3F8A
-            }
-            tr:nth-of-type(2n){
-                background: #052A57
-            }
-        }
-        .zw-pagination{
-            bottom: 10px;
-        }
-
     }
 }
 

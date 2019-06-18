@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="zw-nav">
         <div v-for="menu in menus" :key="menu.FGUID" :class="`menu-list-${menu.FMenuLevle}`" >
           <el-submenu v-if="menu.FChildMenu&&menu.FChildMenu.length"  :index='menu.FFunctionURLAddress'>
             <template slot="title" >
@@ -8,10 +8,10 @@
                 {{menu.FMenuName}}
               </router-link>
               <span v-else>{{menu.FMenuName}}</span> -->
-                <i class="el-icon-message" v-if="menu.FMenuLevle==1"></i>
+                <i :class="['iconfont',menu.FICONURLAddress]" v-if="menu.FMenuLevle==1" style="position:relative;top:-2px;font-size:22px;margin-right:4px;color:#48B3C8"></i>
                 {{menu.FMenuName}}
             </template>
-            <zw-nav :menus="menu.FChildMenu">
+            <zw-nav :menus="menu.FChildMenu" style="padding:0 10px;">
             </zw-nav>
           </el-submenu>
           <el-menu-item v-else  :index="`/manage/${menu.FFunctionURLAddress}`" @click="chageRouter(menu)">
@@ -40,5 +40,6 @@ export default {
   }
 }
 </script>
-<style >
+<style lang="scss" >
+
 </style>

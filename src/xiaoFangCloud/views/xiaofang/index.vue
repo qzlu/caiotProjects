@@ -17,34 +17,6 @@
                 <span>预警总数</span>
             </div>
             <div class="side-content">
-<!--                 <swiper class="list" ref="mySwiper"  :options="swiperOption">
-                    <swiper-slide :class="{alarm:item.FireCount>0,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" >
-                        <div style="width:100%;height:100%" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
-                            <h4>{{item.ProjectName}}</h4>
-                            <div class="list-content">
-                               <div class="statu"></div>
-                               <ul  class="param clearfix">
-                                   <li class="l" style="margin-bottom: 30px;">
-                                       <i class="iconfont icon-FireAlarm"></i>
-                                       <span class="value">{{item.FireCount}}</span>
-                                   </li>
-                                   <li class="l" style="margin-bottom: 30px;">
-                                       <i class="iconfont icon-Fault"></i>
-                                       <span class="value">{{item.FaultCount}}</span>
-                                   </li>
-                                   <li class="l">
-                                       <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                                       <span class="value">{{item.WarningCount}}</span>
-                                   </li>
-                                   <li class="l">
-                                       <i class="iconfont icon-SZXFY-Operations"></i>
-                                       <span class="value">{{item.MaintenanceCount}}</span>
-                                   </li>
-                               </ul>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                </swiper> -->
                  <el-scrollbar>
                      <transition-group tag="ul" name="list" class="list">
                          <li :class="{alarm:item.isAlarm,unnormal:item.unNormal,'active':active === i}" v-for="(item,i) in fireList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
@@ -104,11 +76,11 @@
                 <b-map ref="map"></b-map>
             </div>
             <div class="main-footer" v-if="formID == 1">
-                <zw-table icon='icon-FireAlarm' title="实时火警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
-                <zw-table icon='icon-SZXFY-Earlywarning' title="实时预警" :width='545' :bodyHeight='170' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                <zw-table icon='icon-FireAlarm' title="实时火警" @rowClick='rowClick' :width='545' :bodyHeight='170' :labels='tableLabel' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                <zw-table icon='icon-SZXFY-Earlywarning' title="实时预警" @rowClick='rowClick' :width='545' :bodyHeight='170' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
             </div>
             <div class="main-footer" v-else>
-                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" :width='1100' :bodyHeight='170' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                <zw-table icon='icon-SZXFY-Earlywarning' title="实时告警" @rowClick='rowClick' :width='1100' :bodyHeight='170' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
         </div>
     </div>
@@ -159,9 +131,10 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前状态',
+                    label:'工单状态',
                     prop:'OrderState',
                     width:'15%',
+                    color:'#FBA31E',
                     formatter:(val)=>orderState[val]
                 }
             ],
@@ -182,9 +155,10 @@ export default {
                     width:'40%'
                 },
                 {
-                    label:'当前状态',
+                    label:'工单状态',
                     prop:'OrderState',
                     width:'15%',
+                    color:'#FBA31E',
                     formatter:(val)=>orderState[val]
                 }
             ]
@@ -286,8 +260,8 @@ export default {
                 const point = new BMap.Point(item.Flat,item.Flng)
                 let marker,icon,img,temp
                 if(item.isAlarm||item.unNormal){
-                    img = require(`@/assets/image/marker/icon_wrong_${this.formID}.png`)
-                    icon = Map.setIcon(img,40,54)
+                    img = require(`@/assets/image/marker/icon_wrong_${this.formID}.gif`)
+                    icon = Map.setIcon(img,75,75)
                 }else{
                     img = require(`@/assets/image/marker/icon_normal_${this.formID}.png`)
                     icon = Map.setIcon(img,34,40)
@@ -300,17 +274,19 @@ export default {
                 Map.map.addOverlay(marker)
                 resetView && Map.map.centerAndZoom(point, 11);
                 /* Map.setLabel(marker,item.ProjectName) */
-                let label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(20,20)})
+                let label
                 if(item.isAlarm||item.unNormal){
                     // Map.map.centerAndZoom(point, 11)
+                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(50,40)})
                     label.setStyle({
                       color:'red',
                       borderColor:'white',
                       padding:'4px 10px',
                     })
-                    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                    Map.openInfoWindow(temp,point)
+                    /* marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画 */
+                    /* Map.openInfoWindow(temp,point) */
                 }else{
+                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(20,20)})
                     label.setStyle({
                       color:'#999999 ',
                       backgroundColor:'rgb(227, 228, 228)',
@@ -343,6 +319,11 @@ export default {
             sessionStorage.setItem('projectName',item.ProjectName)
             this.$router.push(`/indexItem/${this.formID}`)
         },
+        rowClick(row){
+            sessionStorage.setItem('projectID',row.ProjectID)
+            sessionStorage.setItem('projectName',row.ShortName)
+            this.$router.push(`/indexItem/${row.FormID}`)
+        }
 /*         enter(){
             this.swiper&&this.swiper.autoplay.stop()
         },

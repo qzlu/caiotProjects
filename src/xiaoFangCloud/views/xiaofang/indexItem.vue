@@ -17,17 +17,217 @@
                 <span>预警总数</span>
             </div>
             <div class="side-content" v-if="formID == 1">
-                <div style="height:450px">
-                    <zw-table icon='icon-FireAlarm' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+<!--                 <div style="height:450px">
+                    <zw-table icon='icon-FireAlarm' showOperation @misreport='changeAlarmState' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
+                </div> -->
+                <div class="table">
+                    <div class="title">
+                      <i class="iconfont icon-FireAlarm"></i>
+                      实时火警
+                      <span class="r" @click="show1 = true;queryHistoryPageAlarm()">历史记录</span>
+                    </div>
+                    <ul class="table-header">
+                        <li v-for="(item,i) in tableLabel1" :key="i" :style="{'width':item.width}">{{item.label}}</li>
+                    </ul>
+                    <div style="height:356px">
+                        <el-scrollbar>
+                            <ul class="table-body">
+                                <li class="clearfix" v-for="(obj,i) in fireAlarmData?fireAlarmData.Data:[]" :key="i">
+                                    <div>
+                                        <span v-for="(item,j) in tableLabel1" :key="j" :style="{'width':item.width,color:item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">
+                                            {{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}
+                                        </span>
+                                    </div>
+                                    <div class="r" v-if='obj.OrderState == 4'>
+                                        <el-button @click="changeAlarmState(obj,7)">误报</el-button>
+                                        <el-button @click="dispatchOrder(obj)">派单</el-button>
+                                    </div>
+                                    <div class="r" v-else>
+                                        <el-button @click="queryOrderRecord(obj)">记录</el-button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </el-scrollbar>
+                    </div>
                 </div>
-                <div style="height:450px;margin-top:11px">
+<!--                 <div style="height:450px;margin-top:11px">
                     <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
+                </div> -->
+                <div class="table" style="margin-top:11px">
+                    <div class="title">
+                      <i class="iconfont icon-SZXFY-Earlywarning"></i>
+                      实时预警
+                      <span class="r" @click="show1 = true;queryHistoryPageAlarm()">历史记录</span>
+                    </div>
+                    <ul class="table-header">
+                        <li v-for="(item,i) in tableLabel1" :key="i" :style="{'width':item.width}">{{item.label}}</li>
+                    </ul>
+                    <div style="height:356px">
+                        <el-scrollbar>
+                            <ul class="table-body">
+                                <li class="clearfix" v-for="(obj,i) in wariningData?wariningData.Data:[]" :key="i">
+                                    <div>
+                                        <span v-for="(item,j) in tableLabel1" :key="j" :style="{'width':item.width,color:item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">
+                                            {{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}
+                                        </span>
+                                    </div>
+                                    <div class="r" v-if='obj.OrderState == 4'>
+                                        <el-button @click="changeAlarmState(obj,7)">误报</el-button>
+                                        <el-button @click="dispatchOrder(obj)">派单</el-button>
+                                    </div>
+                                    <div class="r" v-else>
+                                        <el-button @click="queryOrderRecord(obj)">记录</el-button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </el-scrollbar>
+                    </div>
                 </div>
             </div>
             <div class="side-content" v-else>
                 <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='18' title="实时告警" :width='414' :bodyHeight='800' :labels='tableLabel2' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
             </div>
         </div>
+        <!-- 派单弹框 -->
+        <el-dialog class="zw-dialog" title="派单" append-to-body :visible.sync="show" width="240px">
+            <el-select v-model="UserGUID">
+                <el-option v-for="(item,i) in userList" :key="i" :value="item.FGUID" :label="item.FContacts"></el-option>
+            </el-select>
+            <div slot="footer">
+                <el-button type="primary" @click="changeAlarmState(order,4)">确 定</el-button>
+                <el-button @click="show = false">取 消</el-button>
+            </div>
+        </el-dialog>
+        <!-- 历史记录 -->
+        <el-dialog class="zw-dialog" :visible.sync = 'show1' title="历史告警" append-to-body width="910px">
+            <div class="clearfix">
+                <div class="shuzi-yy r">
+                    <el-radio-group v-model="time" @change="selectDate">
+                       <el-radio-button label="今日"></el-radio-button>
+                       <el-radio-button label="本周"></el-radio-button>
+                       <el-radio-button label="本月"></el-radio-button>
+                    </el-radio-group>
+                    <span style="margin:0 10px">时间段</span>
+                    <el-date-picker ref="pick" v-model="time1" type="daterange" @change="queryHistoryPageAlarm" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                    </el-date-picker>
+                </div>
+            </div>
+            <div class="table" style="margin-top:20px">
+                <table style="width:100%;color:white">
+                    <thead>
+                        <tr>
+                            <th v-for="(item,i) in tableLabel3" :width='item.width' :key="i">{{item.label}}</th>
+                            <th width='5%'>查看</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,i) in record" :key="i">
+                            <td v-for="(obj,j) in tableLabel3" :key="j" :width='obj.width'>{{obj.formatter?obj.formatter.call(null,item[obj.prop]):item[obj.prop]}}</td>
+                            <td width='5%' style="cursor:pointer" @click="queryOrderRecord(item)">记录</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination> 
+            </div>
+        </el-dialog>
+        <!-- 工单记录 -->
+        <el-dialog title="工单记录" class="zw-dialog show-detail" width="1050px" append-to-body :visible.sync="showDetail">
+            <el-scrollbar>
+                <div>
+                    <div>
+                        <p class="title"><span class="icon-title"></span>基本信息</p>
+                        <ul class="info" v-if="workInfo">
+                            <li class="l">
+                                <span class="item-title">告警内容:</span>
+                                <span class="item-info">{{workInfo.Data[0].OrderContent}}</span>
+                            </li>
+                            <li class="l">
+                                <span class="item-title">告警地址:</span>
+                                <span class="item-info">{{workInfo.Data[0].Address}}</span>
+                            </li>
+                            <li class="l">
+                                <span class="item-title">告警时间:</span>
+                                <span class="item-info">{{workInfo.Data[0].OrderCreateDateTime}}</span>
+                            </li>
+                            <li class="l">
+                                <span class="item-title">恢复方式:</span>
+                                <span class="item-info">{{workInfo.OrderStateList.length === 0 ? '自动恢复':'手动恢复'}}</span>
+                            </li>
+                            <li class="l">
+                                <span class="item-title">恢复时间:</span>
+                                <span class="item-info">{{workInfo.Data[0].RecoveryTime}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-top:39px;">
+                        <p class="title"><span class="icon-title"></span>工单进度</p>
+                        <ul class="progress clearfix" v-if="workInfo">
+                            <li class="clearfix" v-for="(item,index) in workInfo.OrderStateList" :key="index">
+                                <div v-if="item.OrderState !=='处理'">
+                                    <div class="l area-name">
+                                        <div>
+                                            <span>{{item.OrderState}}</span>
+                                            <div :class="['circle',{'finish':item.Date,'waiting':!item.Date}] ">
+                                                <div class="circle-inner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="border r"></div>
+                                    </div>
+                                    <ul class="area-info clearfix">
+                                        <li class="l "><span>{{item.OrderUserName}}　</span>{{item.Date}}</li>
+                                    </ul>
+                                </div>
+                                <div  v-else style="display:flex">
+                                    <div class="l area-name">
+                                        <div>
+                                            <span>{{item.OrderState}}</span>
+                                            <div :class="['circle',{'finish':item.Date,'waiting':!item.Date}] ">
+                                                <div class="circle-inner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="border r" style="height: calc(100% - 24px)"></div>
+                                    </div>
+                                    <div class="clearfix collapse" >
+                                        <el-collapse accordion v-if="item.Date">
+                                          <el-collapse-item name="1">
+                                            <template slot="title">
+                                                <ul class="area-info clearfix">
+                                                    <li class="l "><span>{{item.OrderUserName}}　</span>{{item.Date}}</li>
+                                                </ul>
+                                            </template>
+                                            <div class="collapse-content">
+                                                <div class="collapse-content-item" v-if="workInfo.OrderFiles">
+                                                    <h5>处理前</h5>
+                                                    <ul class="clearfix">
+                                                        <li class="l" v-for="img in workInfo.OrderFiles">
+                                                            <img :src="'http://www.szqianren.com/'+img" alt="">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="collapse-content-item" v-if="workInfo.OrderFiles">
+                                                    <h5>处理后</h5>
+                                                    <ul class="clearfix">
+                                                        <li class="l" v-for="img in workInfo.OrderFiles">
+                                                            <img :src="'http://www.szqianren.com/'+img" alt="">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="collapse-content-item">
+                                                    <h5>处理情况</h5>
+                                                    <p>{{}}</p>
+                                                </div>
+                                            </div>
+                                          </el-collapse-item>
+                                        </el-collapse>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </el-scrollbar>
+        </el-dialog>
         <div class="main">
             <div class="device-list">
                 <h4>设备总况</h4>
@@ -67,10 +267,12 @@
 <script>
 import '@/assets/css/index.scss'
 import {number,zwTable} from '@/components/index.js'
-import {HomePage} from '@/xiaoFangCloud/request/api.js'
+import {HomePage, Orders, Alarm} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
-import { setTimeout, clearTimeout } from 'timers';
+import table from '@/xiaoFangCloud/mixins/table.js'
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
 export default {
+    mixins:[table],
     data(){
         return{
             formID:1,
@@ -80,6 +282,15 @@ export default {
             fireAlarmData:null,
             wariningData:null,
             timer:null,
+            show1:false,
+            showDetail:false,
+            userList:[],
+            UserGUID:null,
+            order:null,
+            workInfo:null,
+            time:'今日',
+            time1:[new Date(),new Date()],
+            record:[],
             colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#9c1428'],
             tableLabel:[
                 {
@@ -107,8 +318,15 @@ export default {
                 {
                     label:'告警内容',
                     prop:'AlarmText',
-                    width:'45%'
+                    width:'50%'
                 },
+                {
+                    label:'当前状态',
+                    prop:'OrderState',
+                    width:'15%',
+                    formatter:(val)=>orderState[val],
+                    color:'#FBA31E'
+                }
 /*                 {
                     label:'类型',
                     prop:'AlarmTypeName',
@@ -136,6 +354,34 @@ export default {
                     prop:'AlarmData',
                     width:'15%'
                 }
+            ],
+            tableLabel3:[
+                {
+                    label:'序号',
+                    prop:'RowIndex',
+                    width:'5%'
+                },
+                {
+                    label:'告警时间',
+                    prop:'AlarmTime',
+                    width:'20%'
+                },
+                {
+                    label:'告警内容',
+                    prop:'AlarmText',
+                    width:'30%'
+                },
+                {
+                    label:'恢复时间',
+                    prop:'RecoveryTime',
+                    width:'20%'
+                },
+                {
+                    label:'恢复方式',
+                    prop:'ModeType',
+                    width:'20%',
+                    formatter: val => val == 1?'手动恢复':'自动恢复'
+                }
             ]
         }
     },
@@ -155,6 +401,7 @@ export default {
     created(){
         this.formID = this.$route.params.formID
         this.queryData()
+        this.queryOrderyUser()
     },
     mounted(){
 
@@ -172,6 +419,98 @@ export default {
                 console.log(err)
             });
         },
+        queryOrderyUser(){
+            Orders({
+                FAction:'GerUser',
+                IDStr:4
+            })
+            .then((data) => {
+                this.userList = data.FObject
+            }).catch((err) => {
+                
+            });
+        },
+        dispatchOrder(row){
+            this.show = true
+            this.order = row
+        },
+        async changeAlarmState(row,state){
+            if(state ==7){
+                await new Promise((resolve,reject) => {
+                    this.$confirm('确认误报？', '提示', {
+                      confirmButtonText: '确定',
+                      cancelButtonText: '取消',
+                      type: 'warning'
+                    }).then(() => {
+                        resolve()
+                    }).catch(() => {
+                        reject()
+                    });
+                })
+            }
+            this.show = false
+            Orders({
+                FAction:'UpdateOrderState',
+                ID:row.ID,
+                FState:state,
+                UserGUID:this.UserGUID
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        },
+        selectDate(val){
+            const end = new Date();
+            if(val === '今日'){
+                const start = new Date();
+                this.time1 = [new Date(start.toLocaleDateString()),end]
+            }else if(val === '本周'){
+                const start = new Date(new Date().toLocaleDateString()).getTime() - 3600*1000 *24*(new Date().getDay()-1);
+                this.time1 = [new Date(start),end]
+            }else{
+                const start = new Date(new Date().toLocaleDateString()).getTime() - 3600*1000 *24*(new Date().getDate()-1);
+                this.time1 = [new Date(start),end]
+            }
+            this.queryHistoryPageAlarm()
+        },
+        /**
+         * 查询工单记录
+         */
+        queryOrderRecord(row){
+            Orders({
+                FAction:'QueryOrderRecord',
+                ID:row.ID
+            })
+            .then((data) => {
+                this.workInfo = data.FObject
+                this.showDetail = true      
+            }).catch((err) => {
+                
+            });
+        },
+        queryHistoryPageAlarm(){
+            Alarm({
+                FAction:'QueryHistoryPageAlarm',
+                StartDateTime:this.time1[0].toLocaleDateString() + ' 00:00',
+                EndDateTime:this.time1[1].toLocaleDateString() + ' 23:59',
+                PageIndex:this.pageIndex,
+                PageSize:10
+            })
+            .then((data) => {
+                console.log(data)
+                this.total = data.FObject.FTotalCount||0
+                this.record = data.FObject.Data
+            }).catch((err) => {
+                
+            });
+        },
+        handleCurrentChange(val){
+            this.pageIndex = val
+            this.queryHistoryPageAlarm()
+        },
+
     },
     beforeDestroy(){
         clearTimeout(this.timer)
@@ -179,5 +518,345 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+    .right-side{
+        .side-content{
+            .table{
+                height: 450px;
+                background: rgba($color: #0E1C43, $alpha: 0.62);
+                border-radius: 6px;
+                .title{
+                    text-align: left;
+                    padding:19px 0 10px 7px ;
+                    font-size: 18px;
+                    .iconfont{
+                        font-size: 24px;
+                    }
+                    span.r{
+                        margin-right: 10px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                }
+                &-header{
+                    display: flex;
+                    height: 36px;
+                    line-height: 36px;
+                }
+                &-body{
+                    li{
+                        >div:first-of-type{
+                            height: 32px;
+                            line-height: 32px;
+                            span{
+                                display: inline-block;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        >div:last-of-type.r{
+                            margin-right: 20px;
+                            padding: 0 0 7px 0;
+                            .el-button{
+                                width: 60px;
+                                height:24px;
+                                line-height: 24px;
+                                padding: 0;
+                                font-size: 12px;
+                                background:linear-gradient(90deg,rgba(28,76,137,1),rgba(10,57,113,1),rgba(12,56,106,1),rgba(10,57,113,1),rgba(30,79,141,1));
+                                border:1px solid rgba(81, 128, 205, 0.82);
+                                border-radius:2px;
+                                color: #9EE5F3;
+                            }
+                        }
+                    }
+                    li:nth-of-type(2n+1){
+                        background:rgba(158,229,243,0.2);
+                    }
+                    li:nth-of-type(2n){
+                        background:rgba(7,148,207,0.14);
+                    }
+                }
+            }
+        }
+    }
 </style>
+<style lang="scss">
+        .show-detail {
+            .el-dialog{
+                &__title{
+                    font-size:26px;
+                    font-family:MicrosoftYaHei-Bold;
+                    font-weight:bold;
+                    color:#AEE4F0;
+                }
+                .el-dialog__body{
+                    height: 760px;
+                }
+                .title{
+                    font-size:24px;
+                    color:#AEE4F0;
+                    text-align: left;
+                    line-height: 30px;
+                    .icon-title{
+                        width:4px;
+                        height:19px;
+                        margin-right: 10px;
+                        vertical-align: middle;
+                        display: inline-block;
+                        background:rgba(44,146,252,1);
+                    }
+                }
+                .info{
+                    width: 982px;
+                    height: 228px;
+                    margin-left: 14px;
+                    margin-top: 17px;
+                    background:rgba(243,246,247,1);
+                    border:1px solid rgba(223,221,221,1);
+                    border-radius:6px;
+                    li{
+                        width: 50%;
+                        height: 76px;
+                        line-height: 76px;
+                        box-sizing: border-box;
+                        text-align: left;
+                        font-size:20px;
+                        .item-title{
+                            width: 172px;
+                            height: 100%;
+                            display: inline-block;
+                            background: #D9EAF4;
+                            text-align: center;
+                            color: #000000
+                        }
+                        .item-info{
+                            padding-left: 10px;
+                            color: #6D6D6D
+                        }
+                        .collapse-content{
+
+                        }
+                    }
+                    li:nth-of-type(3),li:nth-of-type(4){
+                        border-top: 2px solid #EDEDED;
+                        border-bottom: 2px solid #EDEDED;
+                    }
+                }
+                .progress{
+                    width: 990px;
+                    margin-top: 14px;
+                    padding: 30px 20px 20px 20px;
+                    box-sizing: border-box;
+                    /* border:1px solid rgba(223,221,221,1); */
+                    li:first-of-type,li:last-of-type{
+                        .area-name{
+                            >div:first-child{
+                                height: 30px;
+                                line-height: 30px;
+                            }
+                            span{
+                                margin-right: 20px;
+                            }
+                            .circle{
+                                width:30px;
+                                height:30px;
+                                line-height: 25px;
+                                &-inner{
+                                    width:22px;
+                                    height:22px;
+                                }
+                            }
+                        }
+                        .area-info{
+                            margin-left: 250px;
+                        }
+                    }
+                    li:last-of-type{
+                        .area-name{
+                            .border{
+                                display: none
+                            }
+                        }
+                    }
+                    li{
+                        .area-name{
+                            >div:first-child{
+                                width: 240px;
+                                height: 22px;
+                                line-height: 22px;
+                                display: flex;
+                            }
+                            span{
+                                width:183px;
+                                display: inline-block;
+                                font-size:24px;
+                                font-family:MicrosoftYaHei;
+                                font-weight:bold;
+                                color:#AEE4F0;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                text-align: right;
+                                margin-right: 24px;
+                            }
+                            .circle{
+                                width:24px;
+                                height:24px;
+                                border:1px solid ;
+                                box-sizing: border-box;
+                                border-radius:50%;
+                                vertical-align: middle;
+                                line-height: 20px;
+                                text-align: center;
+                                &-inner{
+                                    width:18px;
+                                    height:18px;
+                                    display: inline-block;
+                                    border-radius:50%;
+                                    vertical-align: middle;
+                                }
+                            }
+                            .circle.finish{
+                                border-color: rgba(0,210,148,1);
+                                .circle-inner{
+                                    background:rgba(0,210,148,1);
+                                }
+                            }
+                            .circle.error{
+                                border-color: #EF0F24;
+                                .circle-inner{
+                                    background:#EF0F24;
+                                }
+                            }
+                            .circle.running{
+                                border-color: #2C92FC;
+                                .circle-inner{
+                                    background:#2C92FC;
+                                }
+                            }
+                            .circle.waiting{
+                                border-color: #D7D3D3;
+                                .circle-inner{
+                                    background:#D7D3D3;
+                                }
+                            }
+                            .border{
+                                width:2px;
+                                height:121px;
+                                background:rgba(215,211,211,1);
+                                border-radius:1px;
+                                margin-right: 20px;
+                            }
+                        }
+                        .area-info{
+                            position: relative;
+                            margin-left: 252px;
+                            font-size:22px;
+                            font-family:MicrosoftYaHei;
+                            font-weight:400;
+                            color:#AEE4F0;
+                            li{
+                                margin-left: 20px;
+                            }
+                            li.time{
+                                margin-top: 28px;
+                                text-align: left;
+                                color: #6D6D6D;
+                                span+span{
+                                    margin-left: 28px;
+                                }
+                            }
+                        }
+                        .collapse{
+                            width: 100%;
+                            min-height: 210px;
+                            padding-left: 22px;
+                            .area-info{
+                                margin-left: -12px
+                            }
+                        }
+                        .el-collapse{
+                            border: none
+                        }
+                        .el-collapse-item{
+                            .area-name {
+                                .circle{
+                                    line-height: 18px;
+                                }
+                            }
+                            
+                        }
+                        .el-collapse-item.is-active{
+                            .area-name{
+                                .border{
+                                   height: 637px;
+                                }
+                            }
+                        }
+                        .el-collapse-item__header,.el-collapse-item__wrap{
+                            background: none;
+                            border: none;
+                        }
+                        .el-collapse-item__header{
+                            height: 20px;
+                            span{
+                                font-size: 22px;
+                            }
+                        }
+                        .el-collapse-item__arrow.el-icon-arrow-right{
+                            font-size: 30px;
+                            font-weight: bold;
+                            color: #AEE4F0;
+                        }
+                        .collapse-content{
+                            background: #f2f2f2;
+                            padding-left: 40px;
+                            &-item{
+                                h5{
+                                    font-size: 18px;
+                                    text-align: left;
+                                    margin: 10px 0px;
+                                    color: #646464
+                                }
+                                p{
+                                    text-align:left;
+                                    padding-left:20px;
+                                    font-size:18px;
+                                    font-weight:bold
+                                }
+                                img{
+                                    width: 110px;
+                                    height: 90px;
+                                    margin-left: 20px;
+                                }
+                                table{
+                                    margin-left: 20px;
+                                    border: 1px solid #f3afaf;
+                                    font-size:18px;
+                                    font-weight:bold
+                                }
+                                .table-header{
+                                    height: 36px;
+                                    line-height: 36px;
+                                    background: #f5c8c8;
+                                }
+                                tr{
+                                    border: 1px solid #f3afaf;
+                                }
+                                td{
+                                    height: 36px;
+                                    border: 1px solid #f3afaf;
+                                }
+                                .odd-row{
+                                    background: #f9e6e8
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+</style>
+

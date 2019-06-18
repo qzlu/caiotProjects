@@ -83,7 +83,7 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'RowNum',
+                    prop: 'RowIndex',
                     label: '序号',
                     width:80
                 },

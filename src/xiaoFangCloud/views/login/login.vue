@@ -68,6 +68,7 @@ export default {
                     sessionStorage.setItem('FToken',data.FObject.FToken)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
                     sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
+                    this.$store.state.projectList = data.FObject.Project
                     this.$store.state.token = data.FObject.FToken
                     if(this.loginState){
                         localStorage.setItem('userName',this.userName)

@@ -403,3 +403,64 @@ $url:'../image/cloud/index';
         }
     }
 }
+.zw-dialog .el-dialog__body {
+    .shuzi-yy{
+        height: 40px;
+        color: #A5EFFC;
+        font-size: 16px;
+        .el-radio-group{
+            color: #F1F1F2; 
+            background:rgba(5,28,74,1);
+            border:1px solid rgba(83,123,174,1);
+            border-radius:8px;
+            .el-radio-button{
+                border: none;
+                .el-radio-button__inner{
+                    background: transparent;
+                    border: none;
+                    font-size:16px;
+                    color: #F1F1F2; 
+                }
+            }
+            .el-radio-button.is-active{
+                background:linear-gradient(0deg,rgba(0,79,177,1),rgba(16,137,172,1));
+                border-radius:8px;
+                .el-radio-button__inner{
+                    color: #F1F1F2; 
+                }
+            }
+            .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+                box-shadow: none;
+            }
+        }
+        .el-date-editor--daterange.el-date-editor {
+            width: 300px;
+            .el-range-input , .el-range-separator{
+                background: none;
+                color: #A5EFFC
+            }
+        }
+    }
+    .table{
+        height: 510px;
+        tr{
+            th,td{
+                height: 44px;
+                line-height: 44px;
+                text-align: center;
+            }
+        }
+        tbody{
+            tr:nth-of-type(2n+1){
+                background: #0A3F8A
+            }
+            tr:nth-of-type(2n){
+                background: #052A57
+            }
+        }
+        .zw-pagination{
+            bottom: 10px;
+        }
+
+    }
+}

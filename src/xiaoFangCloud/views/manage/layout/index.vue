@@ -11,12 +11,12 @@
               <el-option
                 v-for="item in projectList"
                 :key="item.ProjectID"
-                :label="item.ProjectName"
+                :label="item.ProjectName||0"
                 :value="item">
               </el-option>
             </el-select>
         </div>
-        <div style="height:800px;">
+        <div style="height:780px;">
             <el-scrollbar>
                 <el-menu unique-opened :default-active="$route.path" router>
                   <zw-nav :menus="menus">
@@ -45,14 +45,16 @@
                     <set-password :show.sync='show' @confirm="changePassword"></set-password>
                 </ul>
             </div>
-            <ul class="route-list">
-                <li v-for="(route,i) in routeList" :key="route.FGUID">
-                    <i class="el-icon-circle-close" @click="deleteRoute(i)"></i>
-                    <router-link :to="`/manage/${route.FFunctionURLAddress}`">
-                         {{route.FMenuName}}
-                    </router-link>
-                </li>
-            </ul>
+            <el-scrollbar>
+              <ul class="route-list">
+                  <li v-for="(route,i) in routeList" :key="route.FGUID">
+                      <router-link :to="`/manage/${route.FFunctionURLAddress}`">
+                           {{route.FMenuName}}
+                      </router-link>
+                      <i class="el-icon-circle-close" @click="deleteRoute(i)"></i>
+                  </li>
+              </ul>
+            </el-scrollbar>
         </el-header>
         <el-main>
             <router-view :id='project.ProjectID'>
@@ -86,7 +88,9 @@ export default {
             return this.$store.state.routeList
         },
         projectList(){
-          this.project = JSON.parse(sessionStorage.getItem('project')) || this.$store.state.projectList[0]
+          if(this.$store.state.projectList.length === 0) return []
+          let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
+          this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID)
           return this.$store.state.projectList
         }
         
@@ -113,8 +117,8 @@ export default {
         },
         select(item){
           this.project = item
-          sessionStorage.setItem('project',JSON.stringify(item))
-          windows.reload()
+          sessionStorage.setItem('projectID',item.ProjectID)
+          location.reload()
         },
         getSystemList(){
           System({
@@ -171,35 +175,68 @@ $url:'../../../../assets/image/';
     color: white;
   }
   .project-list{
+      margin-bottom: 23px;
       .el-select{
           .el-input__inner{
               background: none;
-              color: white;
+              color: #9EE5F3;
+              font-size:18px;
               border:none;
-              text-align: center;
+              text-align: left;
+          }
+          .el-icon-arrow-up{
+            font-size: 20px;
+            color: #9EE5F3
+          }
+          .el-icon-arrow-up:before{
+            content: "\e78f";
           }
       }
+      
   }
   .el-menu{
     background: none;
     border-right: none;
-    i{
-      color: white;
+    .menu-list-1{
+      margin-top: 27px;
+      .el-submenu__title{
+        height: 66px;
+        line-height: 66px;
+        text-indent: 10px;
+        background: url(#{$url}nav/leftbar_bg_nor_blue_1.png) no-repeat;
+        background-size: 100% 100%;
+      }
+      .el-submenu.is-active .el-submenu__title,.el-submenu__title:hover,.el-submenu__title:focus{
+          background: url(#{$url}nav/leftbar_bg_sel_yellow_1.png) 4px no-repeat;
+      }
     }
     .el-submenu__title,.el-menu-item{
-      color:white;
+      color: #48B3C8;
       font-size: 18px;
       text-align: left;
     }
-    .el-submenu__title:hover,.el-menu-item:hover,.el-submenu__title:focus,.el-menu-item:focus{
-        background: linear-gradient(90deg,rgba(159,144,20,.13),rgba(255,247,24,.33),rgba(255,247,24,.33),rgba(255,247,24,.33),rgba(159,144,20,.13));
+    .el-submenu .el-menu-item{
+      min-width: 100px;
+      background: url(#{$url}nav/leftbar_bg_nor_blue.png)  no-repeat;
     }
-    .el-menu-item.is-active{
-        background: linear-gradient(90deg,rgba(159,144,20,.13),rgba(255,247,24,.33),rgba(255,247,24,.33),rgba(255,247,24,.33),rgba(159,144,20,.13));
+    .el-menu-item{
+      height: 45px;
+      margin-top: 20px;
     }
-    
+    .el-menu-item.is-active,.el-menu-item:hover,.el-menu-item:focus{
+      background: url(#{$url}nav/leftbar_bg_sel_yellow_2.png) no-repeat;
+    }
+    .el-icon-arrow-down{
+      font-size: 20px;
+      right: 28px;
+      color:#9EE5F3;
+      transform-origin: 70% 50%;
+    }
+    .el-icon-arrow-down:before{
+      content: "\e790";
+    }
   }
-  .header{
+  .el-header{
       position: relative;
       >div.clearfix{
         margin-top: 28px;
@@ -208,23 +245,28 @@ $url:'../../../../assets/image/';
           text-align: left;
         }
       }
+      .el-scrollbar{
+        width: 100%;
+        height: 60px;
+        top:34px;
+      }
       .route-list{
-          width: 100%;
+          position: static;
           padding-left: 20px;
           box-sizing: border-box;
-          top:110px;
-          bottom: 0;
-          left: 0;
-          display: flex;
+          white-space: nowrap;
+          text-align: left;
           li{
-            height: 32px;
-            line-height: 32px;
+            width: 163px;
+            height: 45px;
+            line-height: 45px;
+            display: inline-block;
             position: relative;
             white-space: nowrap;
             .el-icon-circle-close{
                 position: absolute;
-                top: -14px;
-                right: -14px;
+                top: 4px;
+                right: 20px;
                 color: white;
                 font-size: 18px;
                 cursor: pointer;
@@ -236,15 +278,16 @@ $url:'../../../../assets/image/';
                 padding:  0 10px;
                 box-sizing: border-box;
                 text-align: center;
-                border: 2px solid;
-                border-radius: 4px;
+                background: url(#{$url}nav/nav_bg_nor_blue.png) no-repeat;
                 color: #fff;
             }
             a.router-link-active{
                 border-color: #b6cd61;
-                background: -webkit-gradient(linear,left top,right top,from(#5c5712),color-stop(#9e942f),to(#5c5712));
-                background: linear-gradient(90deg,#5c5712,#9e942f,#5c5712);
+                background: url(#{$url}nav/nav_bg_sel_yellow.png) no-repeat;
             }
+          }
+          li+li{
+            margin-left: 10px;
           }
       }
   }
