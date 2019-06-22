@@ -39,11 +39,14 @@
                                         </span>
                                     </div>
                                     <div class="r" v-if='obj.OrderState == 4'>
-                                        <el-button @click="changeAlarmState(obj,7)">误报</el-button>
-                                        <el-button @click="dispatchOrder(obj)">派单</el-button>
+                                        <el-button  @click="changeAlarmState(obj,7)">误报</el-button>
+                                        <el-button  @click="dispatchOrder(obj)">派单</el-button>
+                                        <el-button  @click="changeAlarmState(obj,0)">解除</el-button>
+
                                     </div>
                                     <div class="r" v-else>
                                         <el-button @click="queryOrderRecord(obj)">记录</el-button>
+                                        <el-button v-if="obj.OrderState == 7" @click="changeAlarmState(obj,0)">解除</el-button>
                                     </div>
                                 </li>
                             </ul>
@@ -74,9 +77,11 @@
                                     <div class="r" v-if='obj.OrderState == 4'>
                                         <el-button @click="changeAlarmState(obj,7)">误报</el-button>
                                         <el-button @click="dispatchOrder(obj)">派单</el-button>
+                                        <el-button @click="changeAlarmState(obj,0)">解除</el-button>
                                     </div>
                                     <div class="r" v-else>
                                         <el-button @click="queryOrderRecord(obj)">记录</el-button>
+                                        <el-button v-if="obj.OrderState == 7" @click="changeAlarmState(obj,0)">解除</el-button>
                                     </div>
                                 </li>
                             </ul>
@@ -123,7 +128,8 @@
                     <tbody>
                         <tr v-for="(item,i) in record" :key="i">
                             <td v-for="(obj,j) in tableLabel3" :key="j" :width='obj.width'>{{obj.formatter?obj.formatter.call(null,item[obj.prop]):item[obj.prop]}}</td>
-                            <td width='5%' style="cursor:pointer" @click="queryOrderRecord(item)">记录</td>
+                            <td width='5%' v-if="item.ID" style="cursor:pointer" @click="queryOrderRecord(item)">记录</td>
+                            <td width='5%' v-else>--</td>
                         </tr>
                     </tbody>
                 </table>
@@ -151,7 +157,7 @@
                             </li>
                             <li class="l">
                                 <span class="item-title">恢复方式:</span>
-                                <span class="item-info">{{workInfo.OrderStateList.length === 0 ? '自动恢复':'手动恢复'}}</span>
+                                <span class="item-info">{{workInfo.OrderStateName}}</span>
                             </li>
                             <li class="l">
                                 <span class="item-title">恢复时间:</span>
@@ -380,9 +386,9 @@ export default {
                 },
                 {
                     label:'恢复方式',
-                    prop:'ModeType',
+                    prop:'OrderStateName',
                     width:'20%',
-                    formatter: val => val == 1?'手动恢复':'自动恢复'
+                    /* formatter: val => val == 1?'手动恢复':'自动恢复' */
                 }
             ]
         }
@@ -514,9 +520,10 @@ export default {
             this.order = row
         },
         async changeAlarmState(row,state){
-            if(state ==7){
+            if(state ==7 || state == 0){
+                let text = state == 7 ? '确认误报？':'确认解除？'
                 await new Promise((resolve,reject) => {
-                    this.$confirm('确认误报？', '提示', {
+                    this.$confirm(text, '提示', {
                       confirmButtonText: '确定',
                       cancelButtonText: '取消',
                       type: 'warning'
@@ -564,6 +571,7 @@ export default {
             })
             .then((data) => {
                 this.workInfo = data.FObject
+                this.workInfo.OrderStateName = row.OrderStateName
                 this.showDetail = true      
             }).catch((err) => {
                 
