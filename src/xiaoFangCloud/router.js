@@ -41,6 +41,7 @@ export default new Router({
             component:() => import('./views/manage/layout/index.vue'),
             redirect:'/manage/alarmList',
             children:[
+                /************************************告警管理 ********************************************/
                 {
                     path:'alarmList', //告警管理（告警列表）
                     component:() => import('./views/manage/alarm/alarmList.vue')
@@ -49,6 +50,8 @@ export default new Router({
                     path:'alarmConfig', //告警管理（告警配置）
                     component:() => import('./views/manage/alarm/alarmConfig.vue')
                 },
+
+                /************************************项目管理 ********************************************/
                 {
                     path:'projectInfo', //项目信息
                     component:() => import('./views/manage/project/projectInfo.vue')
@@ -69,6 +72,8 @@ export default new Router({
                     path:'deviceMeter', //设备仪表
                     component: () => import('./views/manage/project/deviceMeter.vue')
                 },
+
+                /************************************系统管理 ********************************************/
                 {
                     path:'UserManagement' , //用户管理
                     component:() => import('./views/manage/system/user.vue')
@@ -76,7 +81,30 @@ export default new Router({
                 {
                     path:'role', //角色管理
                     component:() => import('./views/manage/system/role.vue')
-                }
+                },
+
+                /************************************通用配置 ********************************************/
+                {
+                    path:'meterType', //仪表类型
+                    component:() => import('./views/manage/config/meterType.vue')
+                },
+                {
+                    path:'meterModel',//仪表型号
+                    component:() => import('./views/manage/config/meterModel.vue')
+                },
+                {
+                    path:'MeterProto', //仪表协议
+                    component: () => import('./views/manage/config/meterProto.vue')
+                },
+                {
+                    path:'protocol', //协议解析
+                    component: () => import('./views/manage/config/protocol.vue')
+                },
+                /************************************通用配置 ********************************************/
+                {
+                    path:'workList',//工单列表
+                    component: () => import('./views/manage/taskManage/workList.vue')
+                },
             ]
         }
     ]

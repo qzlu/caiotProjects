@@ -3,7 +3,7 @@
         <!-- <h3 style="margin-bottom:20px">基本信息</h3> -->
         <ul class="operation clearfix">
             <li class="l"><h3 style="line-height:45px;">基本信息</h3></li>
-            <li class="l" style="margin-left:20px;"><el-button type='primary'><i class="iconfont icon-Edit" style="position: relative;top:-4px;font-size:24px;"></i></el-button></li>
+            <li class="l" style="margin-left:20px;" @click="updated(tableData)"><el-button type='primary'><i class="iconfont icon-Edit" style="position: relative;top:-4px;font-size:24px;"></i></el-button></li>
         </ul>
         <div class="project-info">
             <div class="l">
@@ -39,6 +39,20 @@
                   <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
                      <span slot="suffix">m²</span>
                   </el-input>
+                </el-form-item>
+                <el-form-item label="建筑类型">
+                    <el-select v-model="addData.BuildTypeName">
+                        <el-option value="综合" label="综合"></el-option>
+                        <el-option value="物业" label="物业"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="所属平台">
+                    <el-select v-model="selectFrom" multiple collapse-tags>
+                        <el-option value="1" label="数字消防"></el-option>
+                        <el-option value="2" label="数字电梯"></el-option>
+                        <el-option value="3" label="数字充电桩"></el-option>
+                        <el-option value="4" label="数字有限空间"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="地区" prop='County'>
                     <el-popover
@@ -116,7 +130,7 @@ export default {
                     label: '建筑面积（m²）'
                 },
                 {
-                    prop: 'PropertyLeader',
+                    prop: 'BuildTypeName',
                     label: '建筑类型'
                 },
                 {
@@ -134,40 +148,57 @@ export default {
                     formatter:(val) =>  `${val['Flng']}　${val['Flat']}`
                 },
                 {
-                    prop: 'County',
+                    prop: 'FormName',
                     label: '所属平台类型'
                 },
 
             ],
+            selectFrom:[],
             defaultAddData:{
-                ID:0,
+                ProjectID:'',
                 ProjectName:'',
                 ShortName:'',
+                BlocID:null,
                 Address:'',
                 BuildArea:'',
+                BuildTypeName:null,
+                OtherSourceID:0,
+                SystemType:null,
+                OnlineDateTime:null,
                 Province:'',
                 City:'',
                 County:'',
+                Flng:'',
+                Flat:'',
                 FState:1,
                 FDescribe:'',
                 PropertyName:'',
                 PropertyLeader:'',
-                PropertyPhone:''
+                PropertyPhone:'',
+                FDescribe:''
             },
             addData:{ //添加设备对象参数
-                ID:0,
+                ProjectID:'',
                 ProjectName:'',
                 ShortName:'',
+                BlocID:null,
                 Address:'',
                 BuildArea:'',
+                BuildTypeName:null,
+                OtherSourceID:0,
+                SystemType:null,
+                OnlineDateTime:null,
                 Province:'',
                 City:'',
                 County:'',
+                Flng:'',
+                Flat:'',
                 FState:1,
                 FDescribe:'',
                 PropertyName:'',
                 PropertyLeader:'',
-                PropertyPhone:''
+                PropertyPhone:'',
+                FDescribe:''
             },
             typeList:[{name:'烟感',addDataTypeID:1}],
             provins:[],
@@ -213,18 +244,29 @@ export default {
             Object.keys(this.addData).forEach(key  => {
                 this.addData[key] = row[key]
             })
-            this.type = 1
+            this.selectFrom = row.FormID?row.FormID.split(','):[]
+            console.log(this.selectFrom,row.FormID)
             this.show = true
         },
         /**
-         * 新增或编辑项目
+         * 编辑项目
          */
-        addOrUpdate(){
+        async addOrUpdate(){
             this.show = false
+            //地址编译成经纬度
+            let myGeo = new BMap.Geocoder()
+            let address = this.addData.Province + this.addData.City + this.addData.County + this.addData.Address
+            await new Promise((resolve) => {
+                myGeo.getPoint(address,point => {
+                    this.addData.Flng = point.lng||this.addData.Flng
+                    this.addData.Flat = point.lat||this.addData.Flng
+                    resolve()
+                })
+            })
             Project({
                 FRouteName:'Project',
                 FAction:'AddOrUpdateUProject',
-                ID:this.addData.ID,
+                IDStr:this.selectFrom.join(','),
                 uProject:this.addData
             })
             .then((data) => {
@@ -312,6 +354,9 @@ export default {
                 padding-left: 10px;
                 text-align: left;
             }
+        }
+        li:last-of-type,li:nth-last-of-type(2){
+            border-bottom: none;
         }
     }
 }

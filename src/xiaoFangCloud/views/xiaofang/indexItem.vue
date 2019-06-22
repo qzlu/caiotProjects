@@ -3,7 +3,7 @@
         <div class="left-side l">
             <div class="side-header clearfix">
                 <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
-                <span>火警总数</span>
+                <span>实时火警</span>
             </div>
             <div class="side-content">
                  <el-scrollbar>
@@ -14,7 +14,7 @@
         <div class="right-side r">
             <div class="side-header clearfix">
                 <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
-                <span>预警总数</span>
+                <span>实时预警</span>
             </div>
             <div class="side-content" v-if="formID == 1">
 <!--                 <div style="height:450px">
@@ -199,8 +199,8 @@
                                                 <div class="collapse-content-item" v-if="workInfo.OrderFiles">
                                                     <h5>处理前</h5>
                                                     <ul class="clearfix">
-                                                        <li class="l" v-for="img in workInfo.OrderFiles">
-                                                            <img :src="'http://www.szqianren.com/'+img" alt="">
+                                                        <li class="l" v-for="img in workInfo.OrderFiles[0].FilePath.split(',')" :key="img">
+                                                            <img :src="'http://www.caszyj.com/'+img" alt="">
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -208,14 +208,14 @@
                                                 <div class="collapse-content-item" v-if="workInfo.OrderFiles">
                                                     <h5>处理后</h5>
                                                     <ul class="clearfix">
-                                                        <li class="l" v-for="img in workInfo.OrderFiles">
-                                                            <img :src="'http://www.szqianren.com/'+img" alt="">
+                                                        <li class="l" v-for="img in workInfo.OrderFiles[1].FilePath.split(',')" :key="img">
+                                                            <img :src="'http://www.caszyj.com/'+img" alt="">
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="collapse-content-item">
                                                     <h5>处理情况</h5>
-                                                    <p>{{}}</p>
+                                                    <p>{{item.FDescription}}</p>
                                                 </div>
                                             </div>
                                           </el-collapse-item>
@@ -249,7 +249,7 @@
                                             <h6>{{device.DeviceName}}</h6>
                                             <ul class="data-item">
                                                 <li v-for="(obj,m) in device.mDeviceHomePageShowPositions" :key="m">
-                                                    <p>{{obj.ShowData}}</p>
+                                                    <p :style="{'color':colors[device.DeviceColor]}">{{obj.ShowData}}</p>
                                                     <p>{{obj.ShowName}}<span v-if="obj.Unit">（{{obj.Unit}}）</span></p>
                                                 </li>
                                             </ul>
@@ -270,7 +270,7 @@ import {number,zwTable} from '@/components/index.js'
 import {HomePage, Orders, Alarm} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
 import table from '@/xiaoFangCloud/mixins/table.js'
-let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成','误报']
 export default {
     mixins:[table],
     data(){
@@ -291,7 +291,9 @@ export default {
             time:'今日',
             time1:[new Date(),new Date()],
             record:[],
-            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#9c1428'],
+            alarmTimes:0,
+            lastAlarmTime:'',
+            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#FC0404'],
             tableLabel:[
                 {
                     label:'告警时间',
@@ -385,6 +387,7 @@ export default {
             ]
         }
     },
+    props:['isOpen'],
     components:{
         number,
         zwTable,
@@ -393,6 +396,9 @@ export default {
     computed:{
         projectName(){
           return  sessionStorage.getItem('projectName')
+        },
+        myAudio(){
+            return document.getElementById('myAudio')
         }
     },
     watch:{
@@ -402,23 +408,96 @@ export default {
         this.formID = this.$route.params.formID
         this.queryData()
         this.queryOrderyUser()
+        this.$websocket.onclose = () => {
+            this.$initWebSocket()
+            this.queryData()
+        }
     },
     mounted(){
 
     },
     methods:{
         queryData(){
+            this.$socket({
+                FRouterName:'QueryProjectHomePageCount',
+                FAction:'QueryProjectHomePageCount',
+                FormID:this.formID
+            },this.handleData)
+        },
+        handleData(data){
+            [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+            let lastAlarmTime
+            //获取最新报警时间
+            if(this.wariningData.Data.length>0&&this.fireAlarmData.Data.length>0){
+               lastAlarmTime = this.wariningData.Data[0].AlarmTime > this.fireAlarmData.Data[0].AlarmTime? this.wariningData.Data[0].AlarmTime:this.fireAlarmData.Data[0].AlarmTime
+            }else if(this.wariningData.Data.length>0){
+                lastAlarmTime = this.wariningData.Data[0].AlarmTime
+            }else if(this.fireAlarmData.Data.length>0){
+                lastAlarmTime = this.fireAlarmData.Data[0].AlarmTime
+            }else{
+                lastAlarmTime = ''
+            }
+            if(this.lastAlarmTime ==''){
+                this.lastAlarmTime = lastAlarmTime
+            }
+            if(new Date(this.lastAlarmTime) < new Date(lastAlarmTime)){
+                this.lastAlarmTime = lastAlarmTime
+                this.alarmTimes = 0
+            }
+            let isAlarm = this.systemList.some(item => item.AlarmKind>0)
+            this.$nextTick(() => {
+                if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                    this.playWarn()
+                }
+            })
+        },
+        /**
+         * 播放报警声
+         */
+        playWarn(){
+            if(this.alarmTimes < 3){
+                this.myAudio.play()
+                this.alarmTimes ++ //只报警三次
+                setTimeout(this.playWarn,3000)
+            }
+        },
+/*         queryData(){
             HomePage({
                 FAction:'QueryProjectHomePageCount',
                 FormID:this.formID
             })
             .then((data) => {
                 [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+                let lastAlarmTime
+                //获取最新报警时间
+                if(this.wariningData.Data.length>0&&this.fireAlarmData.Data.length>0){
+                   lastAlarmTime = this.wariningData.Data[0].AlarmTime > this.fireAlarmData.Data[0].AlarmTime? this.wariningData.Data[0].AlarmTime:this.fireAlarmData.Data[0].AlarmTime
+                }else if(this.wariningData.Data.length>0){
+                    lastAlarmTime = this.wariningData.Data[0].AlarmTime
+                }else if(this.fireAlarmData.Data.length>0){
+                    lastAlarmTime = this.fireAlarmData.Data[0].AlarmTime
+                }else{
+                    lastAlarmTime = ''
+                }
+                if(this.lastAlarmTime ==''){
+                    this.lastAlarmTime = lastAlarmTime
+                }
+                if(new Date(this.lastAlarmTime) < new Date(lastAlarmTime)){
+                    this.lastAlarmTime = lastAlarmTime
+                    this.alarmTimes = 0
+                }
+                let isAlarm = this.systemList.some(item => item.AlarmKind>0)
+                this.$nextTick(() => {
+                    if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                        this.myAudio.play()
+                        this.alarmTimes ++ //只报警三次
+                    }
+                })
                 this.timer = setTimeout(this.queryData,3000)
             }).catch((err) => {
                 console.log(err)
             });
-        },
+        }, */
         queryOrderyUser(){
             Orders({
                 FAction:'GerUser',
@@ -536,6 +615,7 @@ export default {
                         margin-right: 10px;
                         font-size: 16px;
                         cursor: pointer;
+                        opacity: 0.64;
                     }
                 }
                 &-header{
@@ -586,7 +666,7 @@ export default {
         .show-detail {
             .el-dialog{
                 &__title{
-                    font-size:26px;
+                    font-size:18px;
                     font-family:MicrosoftYaHei-Bold;
                     font-weight:bold;
                     color:#AEE4F0;
@@ -595,7 +675,7 @@ export default {
                     height: 760px;
                 }
                 .title{
-                    font-size:24px;
+                    font-size:18px;
                     color:#AEE4F0;
                     text-align: left;
                     line-height: 30px;
@@ -691,7 +771,7 @@ export default {
                             span{
                                 width:183px;
                                 display: inline-block;
-                                font-size:24px;
+                                font-size:20px;
                                 font-family:MicrosoftYaHei;
                                 font-weight:bold;
                                 color:#AEE4F0;
@@ -753,7 +833,7 @@ export default {
                         .area-info{
                             position: relative;
                             margin-left: 252px;
-                            font-size:22px;
+                            font-size:20px;
                             font-family:MicrosoftYaHei;
                             font-weight:400;
                             color:#AEE4F0;
@@ -802,7 +882,7 @@ export default {
                         .el-collapse-item__header{
                             height: 20px;
                             span{
-                                font-size: 22px;
+                                font-size: 20px;
                             }
                         }
                         .el-collapse-item__arrow.el-icon-arrow-right{
@@ -815,7 +895,7 @@ export default {
                             padding-left: 40px;
                             &-item{
                                 h5{
-                                    font-size: 18px;
+                                    font-size: 16px;
                                     text-align: left;
                                     margin: 10px 0px;
                                     color: #646464

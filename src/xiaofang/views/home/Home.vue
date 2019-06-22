@@ -326,7 +326,6 @@
 </template>
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
-import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import {Alarm} from '@/xiaofang/request/api.js';
 import './index.scss'
 export default {

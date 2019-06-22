@@ -3,7 +3,7 @@
         <div class="left-side l">
             <div class="side-header clearfix">
                 <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
-                <span>当前告警</span>
+                <span>实时告警</span>
             </div>
             <div class="side-content">
                  <el-scrollbar>
@@ -80,7 +80,7 @@
                                                 {{obj.ItemName}}
                                             </p>
                                             <span class="value">
-                                                {{obj.ItemCount}} / <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span>
+                                                <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span> / {{obj.ItemCount}}
                                             </span>
                                         </li>
                                     </ul>
@@ -160,7 +160,8 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage,Alarm} from '@/xiaoFangCloud/request/api.js'
 import {zwPagination} from '@/components/index'
-let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
+import { setTimeout } from 'timers';
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成' ,'误报']
 export default {
     data(){
         return{
@@ -178,6 +179,9 @@ export default {
             total:0,
             pageIndex:1,
             monitorData:[],
+            alarmTimes:0, //响铃报警次数
+            lastAlarmTime:'',
+            resetView:true,
             tableLabel:[
                 {
                     label:'序号',
@@ -254,7 +258,11 @@ export default {
 
     },
     created(){
-        this.queryData(true)
+        this.queryData()
+        this.$websocket.onclose = () => {
+            this.$initWebSocket()
+            this.queryData()
+        }
     },
     updated(){
     },
@@ -265,10 +273,53 @@ export default {
         this.timer = null
     },
     methods:{
+        queryData(){
+            this.$socket({
+                FRouterName:'QueryDigtalHomePageCount',
+                FAction:'QueryDigtalHomePageCount'
+            },this.handleData)
+        },
+        handleData(data){
+            console.log(new Date(),data)
+            let systemList
+            [this.count,systemList,this.fireAlarmData,this.fireList] = data.FObject&&data.FObject
+            let len = Math.ceil(systemList.length/2)
+            let arr1 = systemList.slice(0,len)
+            let arr2 = systemList.slice(len)
+            this.systemList = [arr1,arr2]
+            if(this.lastAlarmTime ==''){
+                this.lastAlarmTime = this.count.LastAlarmTime
+            }
+            if(new Date(this.lastAlarmTime) < new Date(this.count.LastAlarmTime)){
+                this.lastAlarmTime = this.count.LastAlarmTime
+                this.alarmTimes = 0
+            }
+            let isAlarm = this.fireList.some((item) => item.FireCount>0||item.WarningCount>0)
+            this.$nextTick(() => {
+                if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                    this.playWarn()
+                }
+                if(!this.$refs.map) return
+                this.showMarks(this.resetView)
+                if(this.resetView){
+                    this.resetView = false
+                } 
+            })
+        },
+        /**
+         * 播放报警声
+         */
+        playWarn(){
+            if(this.alarmTimes < 3){
+                this.myAudio.play()
+                this.alarmTimes ++ //只报警三次
+                setTimeout(this.playWarn,3000)
+            }
+        },
         /**
          * @param {Boolean} resetView 改变中心位置
          */
-        queryData(resetView = false){
+/*         queryData(resetView = false){
             HomePage({
                 FAction:'QueryDigtalHomePageCount'
             })
@@ -279,9 +330,19 @@ export default {
                 let arr1 = systemList.slice(0,len)
                 let arr2 = systemList.slice(len)
                 this.systemList = [arr1,arr2]
+                if(this.lastAlarmTime ==''){
+                    this.lastAlarmTime = this.count.LastAlarmTime
+                }
+                if(new Date(this.lastAlarmTime) < new Date(this.count.LastAlarmTime)){
+                    this.lastAlarmTime = this.count.LastAlarmTime
+                    this.alarmTimes = 0
+                }
                 let isAlarm = this.fireList.some((item) => item.FireCount>0||item.WarningCount>0)
                 this.$nextTick(() => {
-                    this.isOpen ==1 && isAlarm && this.myAudio.play()
+                    if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                        this.myAudio.play()
+                        this.alarmTimes ++ //只报警三次
+                    }
                     if(!this.$refs.map) return
                     this.showMarks(resetView) 
                 })
@@ -289,7 +350,7 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
-        },
+        }, */
         content(item){
             let temp = `
                 <div class = 'info-window'>
@@ -319,7 +380,7 @@ export default {
                 if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
                   return
                 }
-                const point = new BMap.Point(item.Flat,item.Flng)
+                const point = new BMap.Point(item.Flng,item.Flat)
                 let marker,icon,img,temp
                 if(item.FireCount>0 || item.WarningCount>0){
                     img = require('@/assets/image/marker/Qi.gif')
@@ -365,7 +426,7 @@ export default {
         },
         selectProject(item,i){
             this.active = i
-            const point = new BMap.Point(item.Flat,item.Flng)
+            const point = new BMap.Point(item.Flng,item.Flat)
             let Map = this.$refs.map
             Map.map.centerAndZoom(point,15)
             let temp = this.content(item)

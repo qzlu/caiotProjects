@@ -13,12 +13,16 @@ import '@/assets/css/reset.css'
 import '@/assets/css/reset-el-table.scss'
 import '@/assets/css/common.scss'
 Vue.config.productionTip = false
-
+import {sendSock,websock,initWebSocket} from '@/xiaoFangCloud/request/socket.js'
+Vue.prototype.$socket = sendSock
+Vue.prototype.$websocket = websock
+Vue.prototype.$initWebSocket = initWebSocket
+/* import {sendSock,closeSocket} from '@/xiaoFangCloud/request/socket.js' */
 /* import VueSocketio from 'vue-socket.io'
 import socketio from 'socket.io-client' */
 /* Vue.use(VueSocketio, socketio('http://cazsyj.com/'), store); */
 router.beforeEach((to, from, next) => {
-  let token = sessionStorage.getItem('FToken')
+  let token = sessionStorage.getItem('FToken')||window.location.search
   if(to.name !== 'login'&&!token){
     next({name:'login'})
   }else{

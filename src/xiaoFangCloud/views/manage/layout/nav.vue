@@ -35,7 +35,7 @@ export default {
   },
   methods:{
     chageRouter(item){
-      this.$store.dispatch('addRoute',item)
+      item.FFunctionURLAddress!=='alarmList' && this.$store.dispatch('addRoute',item)
     } 
   }
 }

@@ -127,6 +127,11 @@ export default {
                     prop:'AlarmLevel',
                     label:'告警级别',
                     formatter:(row, column, cellValue, index) => this.alarmLevel[row.AlarmLevel]
+                },
+                {
+                    prop:'AlarmKind',
+                    label:'告警种类',
+                    formatter:(row, column, cellValue, index) => row.AlarmKind == 1?'预警':'火警'
                 }
             ],
             alarmLevel:['','提示','一般','严重'],

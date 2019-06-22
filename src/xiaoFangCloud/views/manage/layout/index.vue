@@ -45,8 +45,13 @@
                     <set-password :show.sync='show' @confirm="changePassword"></set-password>
                 </ul>
             </div>
-            <el-scrollbar>
+            <el-scrollbar class="horizental-scrollbar">
               <ul class="route-list">
+                  <li>
+                      <router-link to="/manage/alarmList">
+                          告警列表
+                      </router-link>
+                  </li>
                   <li v-for="(route,i) in routeList" :key="route.FGUID">
                       <router-link :to="`/manage/${route.FFunctionURLAddress}`">
                            {{route.FMenuName}}
@@ -131,7 +136,16 @@ export default {
           });
         },
         deleteRoute(index){
+            let isActive = false
+            if(`/manage/${this.routeList[index].FFunctionURLAddress}` == this.$route.path){
+              isActive = true
+            }
             this.$store.dispatch('deleteRoute',index)
+            if(isActive){
+              let  route= this.routeList[index-1]
+              this.$router.push(`/manage/${route?route.FFunctionURLAddress:'alarmList'}`)
+            }
+
         },
         logOut(){
             this.$router.push('/login')
@@ -245,10 +259,16 @@ $url:'../../../../assets/image/';
           text-align: left;
         }
       }
-      .el-scrollbar{
+      .horizental-scrollbar{
         width: 100%;
         height: 60px;
         top:34px;
+        .el-scrollbar__wrap{
+          text-align: left;
+          .el-scrollbar__view{
+            display: inline-block;
+          }
+        }
       }
       .route-list{
           position: static;

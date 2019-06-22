@@ -1,12 +1,12 @@
 <template>
-    <div class="home cloud">
-        <div class="header">
+    <div :class="['home','cloud',{inIframe}]" style="position:relative">
+        <audio id="myAudio" autoplay="false">
+            <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
+        </audio>
+        <div class="header" v-if="inIframe != 1">
             <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
             </el-button>
-            <audio id="myAudio" autoplay="false">
-                <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
-            </audio>
             <span class="title">{{projectName}}</span>
             <ul class="clearfix">
                 <li  class="l icon" v-if="$route.path !=='/'">
@@ -52,6 +52,7 @@ export default {
             show:false,
             isOpen:localStorage.getItem('open')||1,
             formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
+            inIframe:sessionStorage.getItem('inIframe')
         }
     },
     components:{
@@ -77,6 +78,20 @@ export default {
         }
     },
     watch:{
+    },
+    beforeCreate(){
+        if(this.$route.query.token){
+            let token = sessionStorage.getItem('FToken')
+            let projectID = sessionStorage.getItem('projectID')
+            if(token == "undefined" || token == null){
+                sessionStorage.setItem('FToken',this.$route.query.token)
+                sessionStorage.setItem('inIframe',1)
+                this.inIframe = 1
+            }
+            if(projectID == "undefined" || projectID == null){
+                sessionStorage.setItem('projectID',this.$route.query.projectID)
+            }
+        }
     },
     created(){
     },
@@ -141,5 +156,9 @@ export default {
                 }
             }
         }
+    }
+    .home.cloud.inIframe{
+        padding-top: 84px;
+        background: url('#{$url}bg_1.jpg');
     }
 </style>

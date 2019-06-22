@@ -46,8 +46,7 @@
                     </el-input>
                 </li>
             </ul>       
-            <div>
-                <div class="table-header"></div>
+            <div class="zw-table">
                 <el-table
                  :data='tableData'
                  :row-class-name="tableRowClassName"

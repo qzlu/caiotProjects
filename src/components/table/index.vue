@@ -148,7 +148,9 @@ export default {
         span{
             cursor: pointer;
             line-height: 30px;
-            margin-left: 10px;
+            margin-left: 20px;
+            font-size: 16px;
+            opacity: 0.64;
             .icon-Up{
                 display: inline-block;
                 vertical-align: middle;

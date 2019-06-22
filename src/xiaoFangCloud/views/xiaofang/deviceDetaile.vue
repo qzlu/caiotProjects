@@ -42,21 +42,21 @@
                         </div>
                     </div>
                     <ul v-if="deviceMonitorInfo.mDeviceHomePageShowPositions">
-                        <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="active = i;selectItem(item)" :key="i">
+                        <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="selectItem(item,i)" :key="i">
                             <span class="label">{{item.ShowName}}<span v-if="item.Unit">（{{item.Unit}}）</span></span> {{item.ShowData}}
                         </li>
                     </ul>
                     <div class="chart">
-                        <div v-if="deviceInfo.DeviceTypeID ==500" style="margin-top:16px;padding-left:30px;line-height:40px;text-align:left">{{type===1?'火警数':'故障数'}}</div>
+                        <div v-if="deviceInfo.DeviceTypeID ==500" style="margin-top:16px;padding-left:30px;line-height:40px;text-align:left"></div>
                         <div :class="['time-select',{right:deviceInfo.DeviceTypeID ==500}]">
                             <span>时间　</span>
                             <el-date-picker v-model="time" type="date" @change="timeChange"></el-date-picker>
                         </div>
                         <line-chart v-if="deviceInfo.DeviceTypeID !=500&&lineData.columns&&lineData.columns.length>0" :data='lineData' :color='["#FBA31E","#5FCDF2","#FF3600"]'></line-chart>
-                        <div class="alarm-list" v-else>
-                            <el-scrollbar>
-                                <ul v-infinite-scroll="loadMore">
-                                    <li v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span class="">{{item.AlarmText}}</span></li>
+                        <div class="alarm-list"  v-else>
+                            <el-scrollbar v-loadmore="loadMore">
+                                <ul>
+                                    <li  v-for="(item,i) in record" :key="i"><span class="l">{{item.AlarmTime}}</span><span>{{item.eventTypeName}}</span><span class="">{{item.AlarmText}}</span></li>
                                 </ul>
                             </el-scrollbar>
                         </div>
@@ -72,7 +72,7 @@
                         大事记
                     </p>
                 </div>
-                <div class="basi-info l">
+                <div class="basi-info l" v-if="deviceInfo.index">
                     <ul class="basi-info-list l">
                         <li class="l" v-for="(item,i) in basiInfo" :key="i">
                             <span class="label">{{item.label}}　</span>
@@ -100,13 +100,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="event-record">
+                <div class="event-record" v-if="deviceInfo.index">
                     <el-scrollbar>
                         <ul>
                             <li v-for="(item,i) in deviceEvent" :key="i">
                                 <p class="event-text">{{item.EventsText}}</p>
                                 <div class="icon-time">
-                                    <p class="event-time">{{item.EventsTime&&item.EventsTime.split(' ')[0]}}</p>
+                                    <p class="event-time" :title="item.EventsTime&&item.EventsTime.split(' ')[0]">{{item.EventsTime&&item.EventsTime.split(' ')[0]}}</p>
                                     <div>
                                         <div class="circle">
                                         </div>
@@ -167,7 +167,8 @@ export default {
             record:[] ,//消防主机记录
             deviceEvent:[],
             type:1,
-            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#9c1428'],
+            timer:null,
+            colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#FC0404'],
             swiperOption:{
                 init:false,
                 autoplay: {
@@ -185,6 +186,31 @@ export default {
         lineChart,
     },
     computed:{
+    },
+    directives:{
+        loadmore:{
+            bind(el, binding){
+                var p = 0;
+                var t = 0;   
+                var down = true;
+                var selectWrap = el.querySelector('.el-scrollbar__wrap')    
+                selectWrap.addEventListener('scroll', function() {      
+                  //判断是否向下滚动      
+                  p = this.scrollTop;      // 
+                  if ( t < p){
+                    down=true
+                  }else{
+                    down=false
+                  }      
+                  t = p;      //判断是否到底      
+                  const sign = 10;      
+                  const scrollDistance = this.scrollHeight - this.scrollTop - this.clientHeight      
+                  if (scrollDistance <= sign && down) {        
+                    binding.value()      
+                  }    
+                })  
+            }
+        }
     },
     created(){
         this.formID = this.$route.params.formID
@@ -212,6 +238,8 @@ export default {
             });
         },
         handleClick(data){
+            this.active = 0
+            this.showPosition = null
             if(data.index === 2){
                 this.deviceInfo = data
                 this.queryMonitorData(data)
@@ -220,16 +248,21 @@ export default {
                 this.deviceInfo = {}
                 this.deviceMonitorInfo = {}
                 this.lineData = {}
+                this.deviceEvent = []
+                this.record = []
             }
         },
         /**
          * 查询设备实时数据
          */
-        queryMonitorData(obj){
+        queryMonitorData(){
+            if(!this.deviceInfo.DeviceID){
+                return
+            }
             Project({
                 FAction:'QueryDeviceRealData',
-                DeviceID:obj.DeviceID,
-                SystemParamID:obj.SystemParamID
+                DeviceID:this.deviceInfo.DeviceID,
+                SystemParamID:this.deviceInfo.SystemParamID
             })
             .then((data) => {
                 this.deviceMonitorInfo = data.FObject[0]||{}
@@ -237,8 +270,16 @@ export default {
                     /* let type = this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition */
                     this.queryUAlarmByDate()
                 }else{
-                    this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition,0)
+                    if(this.showPosition){
+                        console.log(this.showPosition)
+                        this.queryLineData(this.showPosition)
+                    }else{
+                        this.queryLineData(this.deviceMonitorInfo.mDeviceHomePageShowPositions[0].ShowPosition)
+                    }
                 }
+                this.timer = setTimeout(() => {
+                    this.queryMonitorData()
+                },3000)
             }).catch((err) => {
                 
             });
@@ -256,17 +297,17 @@ export default {
             }).catch((err) => {
             });
         },
-        selectItem(item){
-
+        selectItem(item,i){
             if(this.deviceInfo.DeviceTypeID ==500){
                /*  this.queryUAlarmByDate(item.ShowPosition) */
             }else{
-                this.queryLineData(item.ShowPosition,i)
+                this.active = i;
+                this.queryLineData(item.ShowPosition)
             }
         },
         queryUAlarmByDate(scroll = false){
             if(!scroll){
-              this.pageIndex1 = 1
+              this.pageIndex = 1
             }
             Alarm({
                 FAction:'QueryUAlarmByDate',
@@ -335,6 +376,10 @@ export default {
                  this.queryLineData()
             }
         }
+    },
+    beforeDestroy(){
+        clearTimeout(this.timer)
+        this.timer = null
     }
 }
 </script>
@@ -512,14 +557,20 @@ $url:'../../../assets/image/cloud/index/';
                         left: 600px;
                     }
                     .alarm-list{
+                        margin-top: 60px;
                         margin-left: 30px;
                         height: 200px;
                         li{
                             line-height: 39px;
                             border-bottom: 1px solid #5F6B91;
+                            text-align: left;
                             span.l{
                                 width: 200px;
 
+                            }
+                            span:nth-of-type(2){
+                                width: 200px;
+                                display: inline-block;
                             }
                         }
                     }
@@ -605,6 +656,12 @@ $url:'../../../assets/image/cloud/index/';
                             text-overflow: ellipsis;
                         }
                         .icon-time{
+                            .event-time{
+                                width: 80px;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
                             >div{
                                 display: flex;
                                 .circle{

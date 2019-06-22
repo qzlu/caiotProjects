@@ -7,7 +7,7 @@ var global_callback = null;
  
 function initWebSocket(){ //初始化weosocket
     //ws地址
-    var wsuri = "ws://47.106.64.130:56091/CaiotZSYJ/WebSocket";
+    var wsuri = "ws://www.caszyj.com/DigitalAPI/WebSocket/";
     websock = new WebSocket(wsuri);
     websock.onmessage = function(e){
         websocketonmessage(e);
@@ -35,8 +35,8 @@ function sendSock(agentData,callback){
         data = agentData
     }else{
         data = Object.assign({
-            FTokenID:store.state.token?store.state.token:'',
-            ProjectID:store.state.projectId,
+            FTokenID:sessionStorage.getItem('FToken'),
+            ProjectID:sessionStorage.getItem('projectID')||58,
             FVersion:'1.0.0'
         },agentData)
     }
@@ -77,11 +77,9 @@ function closeSocket(){
 //关闭
 function websocketclose(e){  
     console.log("connection closed (" + e.code + ")");
-    initWebSocket();
 }
- 
 function websocketOpen(e){
 	console.log("连接成功");
 }
 initWebSocket()
-export{sendSock,closeSocket}
+export{sendSock,closeSocket,initWebSocket,websock}

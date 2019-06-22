@@ -3,7 +3,7 @@
         <div class="left-side l">
             <div class="side-header clearfix">
                 <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
-                <span>火警总数</span>
+                <span>实时火警</span>
             </div>
             <div class="side-content">
                  <el-scrollbar>
@@ -14,7 +14,7 @@
         <div class="right-side r">
             <div class="side-header clearfix">
                 <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
-                <span>预警总数</span>
+                <span>实时预警</span>
             </div>
             <div class="side-content">
                  <el-scrollbar>
@@ -90,7 +90,7 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
-let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成']
+let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成','误报']
 export default {
     data(){
         return{
@@ -103,7 +103,9 @@ export default {
             wariningData:null,
             active:null,
             timer:null,
-            test:1,
+            alarmTimes:0, //响铃报警次数，只报三次
+            resetView:true,
+            lastAlarmTime:'',
 /*             swiperOption:{
                 init:false,
                 autoplay: {
@@ -184,7 +186,11 @@ export default {
     },
     created(){
         this.formID = this.$route.params.formID
-        this.queryData(true)
+        this.queryData()
+        this.$websocket.onclose = () => {
+            this.$initWebSocket()
+            this.queryData()
+        }
     },
     updated(){
 /*         if(this.fireList.length>0){
@@ -198,10 +204,57 @@ export default {
         this.timer = null
     },
     methods:{
+        queryData(){
+            this.$socket({
+                FRouterName:'QueryBlocHomePageCount',
+                FAction:'QueryBlocHomePageCount',
+                FormID:this.formID
+            },this.handleData)
+        },
+        handleData(data){
+            console.log(new Date(),data);
+            [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+            this.fireList.forEach(item => {
+                let isAlarm = false
+                let unNormal = item.mBlocHomePageProjectItems.some(obj => obj.ItemCount>0)
+                if(this.formID == 1){
+                    isAlarm = item.mBlocHomePageProjectItems.some(obj => obj.ItemName == '火警数'&&obj.ItemCount>0)
+                }
+                item.isAlarm = isAlarm
+                item.unNormal = unNormal
+            })
+            this.fireList.sort((a,b) =>b.isAlarm - a.isAlarm ).sort((a,b) => b.unNormal -a.unNormal)
+            if(this.lastAlarmTime ==''){
+                this.lastAlarmTime = this.count.LastAlarmTime
+            }
+            if(new Date(this.lastAlarmTime) < new Date(this.count.LastAlarmTime)){
+                this.lastAlarmTime = this.count.LastAlarmTime
+                this.alarmTimes = 0
+            }
+            let isAlarm = this.fireList.some((item) => item.isAlarm)
+            this.$nextTick(() => {
+                if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                    this.playWarn()
+                }
+                if(!this.$refs.map) return
+                this.showMarks(this.resetView)
+                this.resetView = false 
+            })
+        },
+        /**
+         * 播放报警声
+         */
+        playWarn(){
+            if(this.alarmTimes < 3){
+                this.myAudio.play()
+                this.alarmTimes ++ //只报警三次
+                setTimeout(this.playWarn,3000)
+            }
+        },
         /**
          * @param {Boolean} resetView 改变中心位置
          */
-        queryData(resetView = false){
+/*         queryData(resetView = false){
             HomePage({
                 FAction:'QueryBlocHomePageCount',
                 FormID:this.formID
@@ -218,9 +271,19 @@ export default {
                     item.unNormal = unNormal
                 })
                 this.fireList.sort((a,b) =>b.isAlarm - a.isAlarm ).sort((a,b) => b.unNormal -a.unNormal)
+                if(this.lastAlarmTime ==''){
+                    this.lastAlarmTime = this.count.LastAlarmTime
+                }
+                if(new Date(this.lastAlarmTime) < new Date(this.count.LastAlarmTime)){
+                    this.lastAlarmTime = this.count.LastAlarmTime
+                    this.alarmTimes = 0
+                }
                 let isAlarm = this.fireList.some((item) => item.isAlarm)
                 this.$nextTick(() => {
-                    this.isOpen ==1 && isAlarm && this.myAudio.play()
+                    if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
+                        this.myAudio.play()
+                        this.alarmTimes ++ //只报警三次
+                    }
                     if(!this.$refs.map) return
                     this.showMarks(resetView) 
                 })
@@ -228,7 +291,7 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
-        },
+        }, */
         content(item){
             let temp = `
                 <div class = 'info-window'>
@@ -257,7 +320,7 @@ export default {
                 if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
                   return
                 }
-                const point = new BMap.Point(item.Flat,item.Flng)
+                const point = new BMap.Point(item.Flng,item.Flat)
                 let marker,icon,img,temp
                 if(item.isAlarm||item.unNormal){
                     img = require(`@/assets/image/marker/icon_wrong_${this.formID}.gif`)
@@ -308,7 +371,7 @@ export default {
             if(item.Flat < 0 || item.Flat == null ||item.Flng < 0 || item.Flng == null){
               return
             }
-            const point = new BMap.Point(item.Flat,item.Flng)
+            const point = new BMap.Point(item.Flng,item.Flat)
             let Map = this.$refs.map
             Map.map.centerAndZoom(point,15)
             let temp = this.content(item)

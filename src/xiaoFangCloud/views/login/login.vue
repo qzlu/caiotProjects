@@ -12,7 +12,7 @@
             <p>{{passwordErr}}</p>
             <div class="login-item" style="text-align:left">
                 <el-checkbox v-model="loginState">
-                    记住用户名和密码
+                    记住账号和密码
                 </el-checkbox>
             </div>
             <el-button class="login-item" type="primary" @click="login" >登　录</el-button>
@@ -64,7 +64,6 @@ export default {
                     TerminalType:'PC'
                 })
                 .then((data) => {
-                    console.log(data);
                     sessionStorage.setItem('FToken',data.FObject.FToken)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
                     sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
