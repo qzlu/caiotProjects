@@ -291,9 +291,8 @@
           </li>
         </ul>
       </div>
-        <zw-card class="map-container" :width='944' :height='774'>
+        <zw-card class="map-container" ref="map-container" :width='944' :height='774'>
           <div id="map" class="map">
-
           </div>
         </zw-card>
       <set-password :show.sync="show1" @confirm="changePassword"></set-password>
@@ -306,6 +305,7 @@ import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import {Alarm,System} from '@/xiaofang/request/api.js';
 import styleJson  from './custom_map_config.json';
 import './index.scss';
+import { setTimeout } from 'timers';
 export default {
   name: 'home',
   data(){
@@ -354,9 +354,11 @@ export default {
   },
   mounted(){
     this.$nextTick(() => {
+      setTimeout(() => {
         this.initMap()
         this.initMap1()
         this.queryData()
+      },100)
     })
   },
   methods:{

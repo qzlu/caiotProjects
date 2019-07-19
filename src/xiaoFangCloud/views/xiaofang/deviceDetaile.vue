@@ -43,7 +43,7 @@
                     </div>
                     <ul v-if="deviceMonitorInfo.mDeviceHomePageShowPositions">
                         <li :class="{active:active == i}" v-for="(item,i) in deviceMonitorInfo.mDeviceHomePageShowPositions" @click="selectItem(item,i)" :key="i">
-                            <span class="label">{{item.ShowName}}<span v-if="item.Unit">（{{item.Unit}}）</span></span> {{item.ShowData}}
+                            <span class="label">{{item.ShowName}}<span v-if="item.Unit">（{{item.Unit}}）</span></span> {{(formID==2&&i==0)?statu[item.ShowData]:item.ShowData}}
                         </li>
                     </ul>
                     <div class="chart">
@@ -144,12 +144,12 @@ export default {
             basiInfo:[ //基本信息字段
                 {label:'设备名称',prop:'DeviceName'},
                 {label:'设备编码',prop:'DeviceCode'},
-                {label:'规格类型',prop:'DeviceName'},
+                {label:'规格类型',prop:'SpecificationsCode'},
                 {label:'设备类型',prop:'DeviceTypeName'},
                 {label:'生产厂商',prop:'Manufacturer'},
                 {label:'系统类型',prop:'SystemParamName'},
-                {label:'保质年限',prop:'DeviceName'},
-                {label:'安装位置',prop:'DeviceName'},
+                {label:'保质年限',prop:'ServiceLife'},
+                {label:'安装位置',prop:'Address'},
                 {label:'出厂日期',prop:'ManufacturingTime'},
                 {label:'启用日期',prop:'OperatingDateTime'},
                 {label:'相关参数',prop:'DeviceLedgerParam'},
@@ -169,6 +169,7 @@ export default {
             type:1,
             timer:null,
             colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#FC0404'],
+            statu:{'-1':'下行','1':'上行','0':'停止'}, //电梯状态
             swiperOption:{
                 init:false,
                 autoplay: {

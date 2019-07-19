@@ -4,7 +4,6 @@ $img-url:'../image/';
     height: 100%;
     padding: 23px 18px 0 19px;
     box-sizing: border-box;
-    background: url(#{$img-url}device/bg_2.png);
     position: relative;
     .zw-table{
         position: relative;
@@ -25,6 +24,7 @@ $img-url:'../image/';
         content: ''
     }
     h3{
+        margin-bottom: 20px;
         padding-left: 14px;
         text-align: left;
         font-size:22px;

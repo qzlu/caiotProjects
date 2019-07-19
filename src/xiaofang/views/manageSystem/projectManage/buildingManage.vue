@@ -174,7 +174,7 @@
         </ul>
         <div class="clearfix" style="height:785px">
             <div class="buildings l">
-                <h3>{{$store.state.projectName}}</h3>
+                <h3>{{projectName}}</h3>
                 <div class="border"></div>
                 <div class="tree">
                     <el-scrollbar>
@@ -227,62 +227,64 @@
                             <ul class="operation">
                                 <li class="l" @click="show5 = true"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
                             </ul>
-                            <div class="table-header"></div>
-                            <el-table
-                             :data='tableData'
-                             :row-class-name="tableRowClassName"
-                            >
-                                <el-table-column
-                                  v-for="item in tableLabel"
-                                  show-overflow-tooltip
-                                  :key="item.prop"
-                                  :prop="item.prop"
-                                  :label="item.label"
-                                  :width="item.width"
-                                  :formatter="item.formatter"
-                                 >
-                                </el-table-column>
-                                <el-table-column
-                                    label="操作"
+                            <div class="building-table">
+                                <el-table
+                                 :data='tableData'
+                                 :row-class-name="tableRowClassName"
                                 >
-                                    <template slot-scope="scoped">
-                                        <div>
-                                            <span @click="deleteDevice(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
-                                        </div>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
+                                    <el-table-column
+                                      v-for="item in tableLabel"
+                                      show-overflow-tooltip
+                                      :key="item.prop"
+                                      :prop="item.prop"
+                                      :label="item.label"
+                                      :width="item.width"
+                                      :formatter="item.formatter"
+                                     >
+                                    </el-table-column>
+                                    <el-table-column
+                                        label="操作"
+                                    >
+                                        <template slot-scope="scoped">
+                                            <div>
+                                                <span @click="deleteDevice(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
+                                            </div>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
                         </div>
                         <div class="tab-item" v-if="roomActive == 2">
                             <ul class="operation">
                                 <li class="l" @click="beforeAddMember"><el-button type='primary'><i class="el-icon-plus"></i></el-button></li>
                             </ul>
-                            <div class="table-header"></div>
-                            <el-table
-                             :data='tableData1'
-                             :row-class-name="tableRowClassName"
-                            >
-                                <el-table-column
-                                  v-for="item in tableLabel1"
-                                  show-overflow-tooltip
-                                  :key="item.prop"
-                                  :prop="item.prop"
-                                  :label="item.label"
-                                  :width="item.width"
-                                  :formatter="item.formatter"
-                                 >
-                                </el-table-column>
-                                <el-table-column
-                                    label="操作"
+                            <div class="building-table">
+                                <el-table
+                                 :data='tableData1'
+                                 :row-class-name="tableRowClassName"
                                 >
-                                    <template slot-scope="scoped">
-                                        <div>
-                                            <span @click="updateMember(scoped.row)" title="编辑"><i class="iconfont icon-Edit"></i></span>
-                                            <span @click="deleteMember(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
-                                        </div>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
+                                    <el-table-column
+                                      v-for="item in tableLabel1"
+                                      show-overflow-tooltip
+                                      :key="item.prop"
+                                      :prop="item.prop"
+                                      :label="item.label"
+                                      :width="item.width"
+                                      :formatter="item.formatter"
+                                     >
+                                    </el-table-column>
+                                    <el-table-column
+                                        label="操作"
+                                    >
+                                        <template slot-scope="scoped">
+                                            <div>
+                                                <span @click="updateMember(scoped.row)" title="编辑"><i class="iconfont icon-Edit"></i></span>
+                                                <span @click="deleteMember(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
+                                            </div>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -389,6 +391,7 @@ export default {
                     formatter:(row) => row.FIsOwners ==0?'否':'是'
                 }
             ],
+            projectName:sessionStorage.getItem('projectName'),
             data:[],
             tableData1:[],
             treeProp:{
@@ -1168,6 +1171,22 @@ $img-url:'../../../../assets/image/';
                 li.active{
                     background:linear-gradient(94deg,rgba(26,85,149,1),rgba(17,136,175,1),rgba(26,85,149,1));
                 }
+            }
+            .building-table{
+                position: relative;
+                .el-table{
+                    width: 1200px;
+                    margin:0 auto;
+                }
+            }
+            .building-table::before{
+                display: block;
+                position: absolute;
+                width: 1225px;
+                height: 82px;
+                background: url(#{$img-url}/device/bg_3.png);
+                background-size: 100% 100%;
+                content: ''
             }
         }
     }

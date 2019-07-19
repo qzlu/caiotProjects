@@ -240,7 +240,7 @@
                 <div class="type-list">
                     <el-scrollbar>
                         <div v-for="(item,i) in count" :key="i">
-                            <h5 v-if="item.mProjectHomePageShowDevices.length">
+                            <h5 v-if="item.mProjectHomePageShowDevices.length&&formID != 2">
                                 <i :class="['iconfont',item.SystemParamIconName]"></i>
                                 <span>{{item.SystemParamName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
                             </h5>
@@ -255,7 +255,7 @@
                                             <h6>{{device.DeviceName}}</h6>
                                             <ul class="data-item">
                                                 <li v-for="(obj,m) in device.mDeviceHomePageShowPositions" :key="m">
-                                                    <p :style="{'color':colors[device.DeviceColor]}">{{obj.ShowData}}</p>
+                                                    <p :style="{'color':colors[device.DeviceColor]}">{{(formID==2&&m==0)?statu[obj.ShowData]:obj.ShowData}}</p>
                                                     <p>{{obj.ShowName}}<span v-if="obj.Unit">（{{obj.Unit}}）</span></p>
                                                 </li>
                                             </ul>
@@ -300,6 +300,7 @@ export default {
             alarmTimes:0,
             lastAlarmTime:'',
             colors:['','#1bd1a1', '#73777a', '#0091fe', '#fef500', '#FC0404'],
+            statu:{'-1':'下行','1':'上行','0':'停止'}, //电梯状态
             tableLabel:[
                 {
                     label:'告警时间',
@@ -431,7 +432,17 @@ export default {
             },this.handleData)
         },
         handleData(data){
+            console.log(data)
+            if(data.FAction !="QueryProjectHomePageCount"){
+                this.setDeviceStatus(data)
+                return
+            }
             [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+            if(this.formID == 2&&this.count.length>1){
+                for(let i = 1; i<this.count.length ; i++ ){
+                    this.count[0].mProjectHomePageShowDevices.push(this.count[i].mProjectHomePageShowDevices)
+                }
+            }
             let lastAlarmTime
             //获取最新报警时间
             if(this.wariningData.Data.length>0&&this.fireAlarmData.Data.length>0){
@@ -456,6 +467,22 @@ export default {
                     this.playWarn()
                 }
             })
+        },
+        /**
+         * 设置电梯的状态
+         */
+        setDeviceStatus(data){
+            let device = data.FObject
+            if(this.count[0]&&device){
+                this.count[0].mProjectHomePageShowDevices.forEach(item => {
+                    if(item.DeviceID = device.DeviceID){
+                        item.mDeviceHomePageShowPositions[0].ShowData = device.Direction
+                        item.mDeviceHomePageShowPositions[1].ShowData = device.Speed
+                        item.mDeviceHomePageShowPositions[2].ShowData = device.Floor
+                    }
+                })
+            }
+            
         },
         /**
          * 播放报警声

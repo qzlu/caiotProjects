@@ -291,7 +291,7 @@
         <zw-card :width='326' :height='774' title="楼层分布" :titleWidth='224'>
           <div class="floor-list">
             <el-scrollbar>
-              <ul class="clearfix">
+              <ul class="clearfix" v-if="rooms.length>0">
                 <li v-for="(item,n) in floors" :key="n" :class="['l',{active:item.ID == rooms[0].FloorID,help:item.HelpCount>0,alarm:item.FireAlarmCount>0}]" @click="queryData(item.FlatsID,item.ID)">
                   <div class="icon"></div>
                   <p>{{item.FloorCode}}</p>
@@ -327,6 +327,7 @@
 <script>
 import {zwCard,setPassword} from '@/components/index.js';
 import {Alarm} from '@/xiaofang/request/api.js';
+import {sendSock,closeSocket} from '@/xiaofang/request/socket.js'
 import './index.scss'
 export default {
   name: 'home',
@@ -378,6 +379,7 @@ export default {
       this.floors = data.FObject&&data.FObject.Table3?data.FObject.Table3.reverse():[]
       this.rooms = data.FObject&&data.FObject.Table4?data.FObject.Table4:[]
       this.$store.state.projectName = this.count.ProjectName
+      sessionStorage.setItem('projectName', this.count.ProjectName)
     },
     queryData(flatsID = 0,floorID = 0){
       sendSock({

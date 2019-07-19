@@ -7,7 +7,7 @@
         </ul>
         <div class="project-info">
             <div class="l">
-                <img  src="@/assets/image/logo.png" alt="" width="310" height="383">
+                <img  src="@/assets/image/shuziYy/info.png" alt="" width="310" height="383">
                 <br><span style="margin-top:20px;font-size:20px;">宣传图</span> 
             </div>
             <ul>

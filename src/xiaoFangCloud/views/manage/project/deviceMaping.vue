@@ -1,5 +1,5 @@
 <template>
-    <div class="report device-maping inspection-item">
+    <div class="report">
         <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="750px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
                 <el-form-item label="设备名称" prop="DeviceID" :rules="[{ required: true, message: '请选择'}]">
@@ -12,7 +12,7 @@
                     <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="仪表" prop="meter">
+<!--                 <el-form-item label="仪表" prop="meter">
                   <el-select v-model="meter"  value-key="MeterID" filterable  placeholder="请选择"  @change="selectMeter">
                     <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
                   </el-select>
@@ -21,7 +21,7 @@
                   <el-select v-model="meterDataItemID"  value-key="" filterable  placeholder="请选择" >
                     <el-option v-for="list in meterItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="计算公式" prop="Expression" >
                     <el-input v-model="addInfo.Expression">
                     </el-input>
@@ -29,12 +29,12 @@
             </el-form>
             <div slot="footer">
                 <el-button  @click="addOrUpdateUDeviceMapingData()">确定</el-button>
-                <el-butto @click="show = false ">取消</el-butto>
+                <el-button @click="show = false ">取消</el-button>
             </div>
         </el-dialog>    
-        <ul class="report-header clearfix">
-            <li class="l"><el-button  @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l"><el-button  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
+        <ul class="operation clearfix">
+            <li class="l"><el-button class="zw-btn zw-btn-add" @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
+            <li class="l"><el-button class="zw-btn zw-btn-export" @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
             <li class="r">
                 <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
@@ -139,22 +139,22 @@ export default {
     created(){
         this.queryData()
         this.queryUDevice()
-        this.queryUMeter()
+        /* this.queryUMeter() */
     },
     methods:{
         /**
          *287.分页查询设备映射
          */
         queryData(){
-            Device({
+            Project({
                 FAction:'QueryPageUDeviceMapingData',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
             })
             .then((data) => {
-                this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
-                this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
+                this.total = data.FObject.FTotalCount || 0
+                this.tableData = data.FObject.Data || []
                 /**
                  * 删除操作时，当前页面无数据时跳到上一页
                  */
@@ -168,13 +168,6 @@ export default {
             });
         },
         /**
-         * handleCurrentChange 页码改变时触发
-         */
-        handleCurrentChange(val){
-            this.pageIndex = val
-            this.queryData()
-        },
-        /**
          * 选择项目（新增弹框）
          */
         selectProject(id){
@@ -185,11 +178,10 @@ export default {
         /**
          * 292.查询所有物联设备列表
          */
-        queryUDevice(id = localStorage.getItem('projectid')){
+        queryUDevice(){
             return new Promise((resolve,reject) => {
                 Device({
                     FAction:'QueryUDeviceList',
-                    ProjectID:id,
                     SearchKey:''
                 })
                 .then(data => {
@@ -209,12 +201,12 @@ export default {
          */
         querySDataItemsByDeviceTypeID(type){
             return new Promise((resolve,reject) => {
-                system({
-                    FAction:'QuerySDataItemsByDeviceTypeID',
+                Device({
+                    FAction:'QuerySDataItemList',
                     DeviceTypeID:type
                 })
                 .then(data => {
-                    this.dataItemList = data.FObject
+                    this.dataItemList = data.FObject || []
                     resolve()
                 })
                 .catch(err => {reject()})
@@ -224,15 +216,15 @@ export default {
          * 查询仪表
          */
         queryUMeter(){
-            system({
-                FAction:'QueryUMeter',
+            Project({
+                FAction:'QueryPageUMeter',
                 SearchKey:'',
                 PageIndex:1,
                 PageSize:10000
             })
             .then((data) => {
                 console.log(data)
-                this.meterList = data.FObject.Table1 ? data.FObject.Table1 : []
+                this.meterList = data.FObject.Data || []
             }).catch((err) => {
                 
             });
@@ -252,7 +244,6 @@ export default {
                 ID:id
             })
             .then((data) => {
-                console.log(data)
                 this.meterItemList = data.FObject
             }).catch((err) => {
                 
@@ -276,7 +267,7 @@ export default {
             this.show = true
             this.type = 1
             this.selectDevice = {}
-            await this.queryUDevice(row.ProjectID)
+            await this.queryUDevice()
             await this.querySDataItemsByDeviceTypeID(row.DeviceTypeID)
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
@@ -290,7 +281,7 @@ export default {
          */
         addOrUpdateUDeviceMapingData(){
             this.show = false
-            Device({
+            Project({
                 FAction:'AddOrUPdateUDeviceMapingData',
                 uDeviceMapingData:this.addInfo
             })
@@ -320,12 +311,12 @@ export default {
          * exportFile 导出
          */
         exportFile(){
-            Device({
-                FAction:'QueryExportUDeviceMapingData',
+            Project({
+                FAction:'ExportExcelUDeviceMapingData',
                 SearchKey:this.filterText,
             })
             .then(data => {
-                window.location = "http://www.szqianren.com/" + data.FObject;
+                this.downloadFile(data)
             })
             .catch(error => {
                 this.$message({
@@ -338,11 +329,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.device-maping.inspection-item{
-    .el-form-item{
-        .el-form-item__label{
-            width: 120px;
-        }
-    }
-}
 </style>

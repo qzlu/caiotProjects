@@ -267,6 +267,7 @@ export default {
     updated(){
     },
     mounted(){
+
     },
     beforeDestroy(){
         clearTimeout(this.timer)
@@ -483,7 +484,7 @@ export default {
 .home{
     .yingji{
         .left-side,.right-side{
-            width: 413px;
+            width: 412px;
             .list{
                 >li.system-card{
                     height: 446px;

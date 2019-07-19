@@ -59,5 +59,8 @@ export default {
     width: 1695px;
     height: 953px;
     margin-left: 210px;
+    box-sizing: border-box;
+    padding: 20px;
+    background: url(../../../assets/image/device/bg_2.png);
 }
 </style>

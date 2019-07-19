@@ -314,6 +314,7 @@ $url:'../../../../assets/image/';
   .el-main{
     background: url(#{$url}device/bg_2.png);
     background-size: 100% 100%;
+    height: 906px;
     .report{
         background: none;
     }

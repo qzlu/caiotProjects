@@ -13,13 +13,28 @@
             </div>
         </el-dialog>    
         <ul class="operation clearfix">
-<!--             <li class="l"><el-button  @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l"><el-button  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
+            <li class="l">
+                <span class="label">工单状态</span>
+                <el-select v-model="state" @change="queryData">
+                    <el-option v-for="(item,i) in orderState" :key="i" :value="i" :label="item"></el-option>
+                </el-select>
+            </li>
+            <li class="l">
+                <span class="label">时间</span>
+                <el-date-picker
+                  v-model="time"
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  @change="queryData"
+                ></el-date-picker>
+            </li>
             <li class="r">
                 <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
                 </el-input>
-            </li> -->
+            </li>
         </ul>
         <div class="zw-table">
             <el-table
@@ -39,7 +54,7 @@
                  show-overflow-tooltip
                 >
                </el-table-column>
-               <el-table-column
+<!--                <el-table-column
                  prop=""
                  label="操作">
                  <template slot-scope="scoped">
@@ -48,7 +63,7 @@
                         <span class="pointer" @click="deleteItem(scoped.row)">删除</span>
                      </div>
                  </template>
-               </el-table-column>
+               </el-table-column> -->
             </el-table>
         </div>
         <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination>
@@ -56,8 +71,7 @@
 </template>
 <script>
 import table from '@/xiaoFangCloud/mixins/table' //表格混入数据
-import {Project,System} from '@/xiaoFangCloud/request/api.js';
-const orderState = ['','待完成', '已完成 ', '待接单', '待派单', '已逾期', '未完成', '误报', '转单']
+import {Orders,System} from '@/xiaoFangCloud/request/api.js';
 export default {
     mixins:[table],
     data(){
@@ -87,13 +101,16 @@ export default {
                 {
                     prop:'OrderState',
                     label:'工单状态',
-                    formatter:row => orderState[row.OrderState]
+                    formatter:row => this.orderState[row.OrderState]
                 }
             ],
+            orderState:['全部','待完成', '已完成 ', '待接单', '待派单', '已逾期', '未完成', '误报', '转单'],
             type:0,
             ID:0,
             FName:null,
             title:'新增',
+            state:0 , //查询的工单状态
+            time:[new Date(), new Date()]
     
         }
     },
@@ -112,11 +129,14 @@ export default {
          * 任务管理-任务列表
          */
         queryData(){
-            System({
-                FAction:'QueryPageUOrders',
+            Orders({
+                FAction:'QueryPageAlarmOrder',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
-                PageSize:10
+                PageSize:10,
+                StartDateTime:this.time[0].toLocaleDateString() + ' 00:00',
+                EndDateTime:this.time[1].toLocaleDateString() + " 23:59",
+                FState:this.state
             })
             .then((data) => {
                 this.total = data.FObject.FTotalCount || 0
@@ -132,80 +152,6 @@ export default {
             .catch((err) => {
                 
             });
-        },
-        /**
-         * 点击新增
-         */
-        beforeAdd(){
-            this.show =true
-            this.type = 0
-            this.ID = 0
-            this.FName =null
-        },
-        /**
-         * 编辑
-         */
-        updatedProject(row) {
-            this.show = true
-            this.type = 1
-            this.FName = row.MeterTypeName
-            this.ID = row.MeterTypeID
-        },
-        /**
-         * 338.标准配置-新增/修改仪表类型
-         */
-        addOrUpdate(){
-            if(this.FName === ''|| this.FName ===null) return
-            this.show = false
-            System({
-                FAction:'AddOrUpdateSMeterType',
-                sMeterType:{
-                    MeterTypeName:this.FName,
-                    MeterTypeID:this.ID||0
-                }
-            })
-            .then(data => {
-                this.$message({
-                  type: 'success',
-                  message: '配置成功！'
-                });
-                this.queryData()
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        },
-        /**
-         * 268.删除仪表类型
-         */
-        async deleteItem(row){
-            await this.beforeDelete()
-            System({
-                FAction:'DeleteSMeterType',
-                ID:row.MeterTypeID
-            })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {})
-        },
-        /**
-         * exportFile 导出
-         */
-        exportFile(){
-            System({
-                FAction:'ExportSMeterType',
-                SearchKey:this.filterText,
-            })
-            .then(data => {
-               this.downloadFile(data)
-            })
-            .catch(error => {
-                this.$message({
-                  type: 'error',
-                  message: '导出失败!请重试'
-                });
-            })
         },
     }
 }

@@ -312,8 +312,8 @@ export default {
         async deleteSet(row){
             await this.beforeDelete()
             Alarm({
-                FAction:'DeleteDeviceAndDataItem',
-                IDStr:`${row.ProjectID}_${row.DeviceID}_${row.DataItemID}_${row.AlarmType}`
+                FAction:'DeleteUAlarmSet',
+                ID:row.ID
             })
             .then(data => {
                 this.$message({

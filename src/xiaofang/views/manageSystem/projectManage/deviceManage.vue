@@ -29,8 +29,7 @@
                 <el-button @click="show = false">取 消</el-button>
             </span>
         </el-dialog>                               
-        <div>
-            <div class="table-header"></div>
+        <div class="zw-table">
             <el-table
              :data='tableData'
              :row-class-name="tableRowClassName"

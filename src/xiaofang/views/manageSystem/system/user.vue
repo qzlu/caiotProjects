@@ -50,8 +50,7 @@
                     </el-input>
                 </li>
             </ul>       
-            <div>
-                <div class="table-header"></div>
+            <div class="zw-table">
                 <el-table
                  :data='tableData'
                  :row-class-name="tableRowClassName"
@@ -90,8 +89,7 @@
                     </el-input>
                 </li>
             </ul>       
-            <div>
-                <div class="table-header"></div>
+            <div class="zw-table">
                 <el-table
                  :data='tableData1'
                  :row-class-name="tableRowClassName"
@@ -425,7 +423,7 @@ export default {
         height: 62px;
         box-sizing: border-box;
         line-height: 62px;
-        margin: 20px auto;
+        margin: -10px auto ;
         font-size:22px;
         li{
             width: 50%;

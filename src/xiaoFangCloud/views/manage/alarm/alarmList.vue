@@ -3,9 +3,9 @@
 <template>
   <div class="report">
     <ul class="operation clearfix">
-      <li class="l" style="margin-right:286px;">
+<!--       <li class="l" style="margin-right:286px;">
         <el-button @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button>
-      </li>
+      </li> -->
       <li class="l">
         <span class="label">设备名称</span>
         <el-input class="search-input" v-model="filterText"></el-input>
@@ -23,7 +23,7 @@
             <el-option v-for="(item,index) in sysTemList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
         </el-select>
       </li>
-      <li class="l">
+<!--       <li class="l">
         <span class="label">告警类型</span>
         <el-select v-model="Alarm_Typeid">
           <el-option :value="0" label="全部"></el-option>
@@ -34,7 +34,7 @@
             :label="item.AlarmTypeName"
           ></el-option>
         </el-select>
-      </li>
+      </li> -->
       <li class="l">
         <span class="label">时间段</span>
         <el-date-picker

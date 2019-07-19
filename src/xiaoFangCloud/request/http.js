@@ -9,7 +9,7 @@ else if (process.env.NODE_ENV == 'debug') {
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
 } 
 else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
+    axios.defaults.baseURL = '/DigitalAPI/';
 }
 //设置请求超时时间
 axios.defaults.timeout = 10000;

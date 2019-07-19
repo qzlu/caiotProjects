@@ -1,44 +1,37 @@
 <template>
-    <div class="report">
-        <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="700px" class="zw-dialog">
+    <div class="report"> 
+        <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="720px" class="zw-dialog device-type">
             <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请输入'}]">
-                    <el-select v-model="addInfo.MeterModelID">
-                        <el-option v-for="(item,i) in systemModelList" :key="i" :label="item.MeterModelName" :value="item.MeterModelID"></el-option>
+                <el-form-item label="设备类型名称" prop="DeviceTypeName" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input v-model="addInfo.DeviceTypeName">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="系统类型" prop="DeviceItemID" :rules="[{ required: true, message: '请输入'}]">
+                    <el-select v-model="addInfo.DeviceItemID" filterable  placeholder="请选择">
+                      <el-option v-for="item in systemList" :key="item.ParamID" :label="item.Value" :value="item.ParamID"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="数据顺序" prop="DataSort">
-                    <el-input type="number" v-model="addInfo.DataSort"></el-input>
+                <el-form-item label="能源类型" prop="EnergyTypeID" :rules="[{ required: true, message: '请输入'}]">
+                  <el-select v-model="addInfo.EnergyTypeID" filterable  placeholder="请选择">
+                    <el-option v-for="item in energyTypeList" :key="item.ID" :label="item.EnergyTypeName" :value="item.ID"></el-option>
+                  </el-select>
                 </el-form-item>
-                <el-form-item label="寄存地址" prop="Regaddr">
-                    <el-input  v-model="addInfo.Regaddr"></el-input>
-                </el-form-item>
-                <el-form-item label="数据类型" prop="DataType">
-                    <el-select v-model="addInfo.DataType">
-                        <el-option v-for="(item,i) in dataTypeList" :key="i" :label="item.name" :value="item.value"></el-option>
+                <el-form-item label="是否物联设备" prop="IsIOTDeviceType">
+                    <el-select v-model="addInfo.IsIOTDeviceType">   
+                        <el-option label="是" :value="1"></el-option>
+                        <el-option label="否" :value="0"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="计算类型" prop="CalType">
-                    <el-select v-model="addInfo.CalType">
-                        <el-option v-for="(item,i) in calTypeList" :key="i" :label="item" :value="i"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="系数" prop="Factor">
-                    <el-input v-model="addInfo.Factor"></el-input>
-                </el-form-item>
-                <el-form-item label="数据标识" prop="DataItemID">
-                   <el-select v-model="addInfo.DataItemID">
-                       <el-option v-for="(item,i) in dataItemList" :key="i" :label="item.DataItemName" :value="item.DataItemID"></el-option>
-                   </el-select>
-                </el-form-item>
-                <el-form-item label="是否采集" prop="IsCapture">
-                    <el-select v-model="addInfo.IsCapture">
-                        <el-option  label="是" :value="1"></el-option>
-                        <el-option  label="否" :value="0"></el-option>
-                    </el-select>
+                <el-form-item label="图标" prop="IconName">
+                  <el-select v-model="addInfo.IconName" filterable placeholder="请选择">
+                    <el-option v-for="(item,i) in iconList"  :key="i" :value="item.name">
+                        <i :class="['iconfont',item.name]" style="font-size:24px;"></i>
+                        <span>{{item.name}}</span>
+                    </el-option>
+                  </el-select>
                 </el-form-item>
             </el-form>
-            <div slot="footer">
+            <div class="submit" slot="footer">
                 <el-button  @click="addOrUpdate()">确定</el-button>
                 <el-button @click="show = false">取消</el-button>
             </div>
@@ -72,6 +65,15 @@
                </el-table-column>
                <el-table-column
                  prop=""
+                 label="图标">
+                 <template slot-scope="scoped">
+                     <div>
+                         <i :class="['iconfont',scoped.row.IconName]"></i>
+                     </div>
+                 </template>
+               </el-table-column>
+               <el-table-column
+                 prop=""
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
@@ -88,6 +90,7 @@
 <script>
 import table from '@/xiaoFangCloud/mixins/table' //表格混入数据
 import {System} from '@/xiaoFangCloud/request/api.js';
+import iconJson from '@/assets/css-font/iconfont.json'
 export default {
     mixins:[table],
     data(){
@@ -98,85 +101,52 @@ export default {
                     label: '序号',
                     width:80
                 },
-/*                 {
-                    prop:'MeterModelID',
-                    label:'仪表型号ID'
-                }, */
                 {
-                    prop:'MeterModelName',
-                    label:'仪表型号名称'
+                    prop:'DeviceTypeID',
+                    label:'设备类型ID'
                 },
                 {
-                    prop: 'DataSort',
-                    label: '数据顺序',
+                    prop: 'DeviceTypeName',
+                    label: '设备类型名称',
                 },
                 {
-                    prop: 'Regaddr',
-                    label: '寄存地址',
+                    prop: 'SystemParamName',
+                    label: '所属系统类型',
                 },
                 {
-                    prop: 'DataType',
-                    label: '数据类型',
+                    prop: 'EnergyTypeName',
+                    label: '所属能源类型',
                 },
                 {
-                    prop: 'CalType',
-                    label: '计算类型',
-                },
-                {
-                    prop: 'DataItemName',
-                    label: '数据标识',
-                },
-                {
-                    prop: 'IsCapture',
-                    label: '是否采集',
-                    formatter:row => row.IsCapture?'是':'否'
-                },
+                    prop: 'IsIOTDeviceType',
+                    label: '是否物联设备',
+                    formatter:row => row.IsIOTDeviceType?'是':'否'
+                }
             ],
             type:0,
             defaultAddInfo:{//新增项目参数默认数据
-                ProtocolDetailID:0,
-                DataSort:null,
-                Regaddr:null,
-                DataType:null,
-                CalType:null,
-                Factor:null,
-                MeterModelID:null,
-                DataItemID:null,
-                DataItemName:'',
-                IsCapture:1
+                DeviceTypeID:0,
+                ParentID:0,
+                DeviceTypeName:null,
+                DeviceItemID:null,
+                IconName:'',
+                EnergyTypeID:null,
+                IsIOTDeviceType:1
             },
             addInfo:{ //新增或修改项目参数
-                ProtocolDetailID:0,
-                DataSort:null,
-                Regaddr:null,
-                DataType:null,
-                CalType:null,
-                Factor:null,
-                MeterModelID:null,
-                DataItemID:null,
-                DataItemName:'',
-                IsCapture:1
+                DeviceTypeID:0,
+                ParentID:0,
+                DeviceTypeName:null,
+                DeviceItemID:null,
+                IconName:'',
+                EnergyTypeID:null,
+                IsIOTDeviceType:1
             },
-            calTypeList:['无','+','-','*','/','x²','LN(x)','log(x)','位取'],//计算类型
-            dataTypeList:[
-                {value:0,name:'bit'},
-                {value:1,name:'unsigned short'},
-                {value:2,name:'short'},
-                {value:3,name:'int'},
-                {value:4,name:'uint'},
-                {value:5,name:'float'},
-                {value:6,name:'double'},
-                {value:7,name:'long'},
-                {value:8,name:'vint'},
-                {value:9,name:'vfloat'},
-                {value:93,name:'oint'},
-                {value:94,name:'ouint'},
-                {value:98,name:'ovint'}],
             title:'新增',
             show:false,
-            systemModelList:[],
-            dataItemList:[]
-    
+            systemList:[],
+            energyTypeList:[],
+            iconList:[]
         }
     },
     computed:{
@@ -188,16 +158,17 @@ export default {
     },
     created(){
         this.queryData()
-        this.queryPageSMeterModel()
-        this.queryPageSDataItem()
+        this.querySEnergyType()
+        this.queryPageSSystemParam()
+        this.iconList = iconJson.map(item => JSON.parse(item))
     },
     methods:{
         /**
-         * 320.标准配置-分页查询协议明细
+         * 269.分页查询系统分类
          */
         queryData(){
             System({
-                FAction:'QueryPageSProtocolDetail',
+                FAction:'QueryPageSDeviceType',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
@@ -218,37 +189,30 @@ export default {
             });
         },
         /**
-         * 340.标准配置-分页查询仪表型号
+         * 查询能耗类型
          */
-        queryPageSMeterModel(){
+        querySEnergyType(){
             System({
-                FAction:'QueryPageSMeterModel',
-                SearchKey:'',
-                PageIndex:1,
-                PageSize:10000
+                FAction:'QuerySEnergyType',
             })
-            .then((data) => {
-                this.systemModelList = data.FObject.Data || []
+            .then(data => {
+                this.energyTypeList = data.FObject
             })
-            .catch((err) => {
-                
-            });
+            .catch(error => {
+
+            })
         },
         /**
-         * 335.标准配置-分页查询数据标识
+         * 查询系统类型
          */
-        queryPageSDataItem(){
+        queryPageSSystemParam(){
             System({
-                FAction:'QueryPageSDataItem',
-                PageIndex:1,
-                PageSize:10000,
-                SearchKey:''
+                FAction:'GetSystemParam',
+                FName:'系统分类'
             })
             .then((data) => {
-                console.log(data)
-                this.dataItemList = data.FObject.Data || []
-            })
-            .catch((err) => {
+                this.systemList = data.FObject || []
+            }).catch((err) => {
                 
             });
         },
@@ -261,7 +225,7 @@ export default {
             this.addInfo = Object.assign({},this.defaultAddInfo)
         },
         /**
-         * 编辑
+         * 修改系统分类
          */
         updatedProject(row) {
             this.show = true
@@ -271,7 +235,7 @@ export default {
             })
         },
         /**
-         * 321.标准配置-新增/修改仪表协议明细
+         * 265.新增/修改系统分类
          */
         async addOrUpdate(){
             await new Promise(resolve => {
@@ -283,9 +247,8 @@ export default {
             })
             this.show = false
             System({
-                FAction:'AddOrUpdateSProtocolDetail',
-                FType:this.type,
-                sProtocolDetail:this.addInfo
+                FAction:'AddOrUpdateSDeviceType',
+                sDeviceType:this.addInfo
             })
             .then(data => {
                 this.$message({
@@ -299,13 +262,13 @@ export default {
             })
         },
         /**
-         * 322.标准配置-删除协议明细
+         * 268.删除设备类型
          */
         async deleteItem(row){
             await this.beforeDelete()
             System({
-                FAction:'DeleteSProtocolDetail',
-                ID:row.ProtocolDetailID
+                FAction:'DeleteSDeviceType',
+                ID:row.DeviceTypeID
             })
             .then(data => {
                 this.queryData()
@@ -317,11 +280,11 @@ export default {
          */
         exportFile(){
             System({
-                FAction:'ExportSProtocolDetail',
+                FAction:'ExportSDeviceType',
                 SearchKey:this.filterText,
             })
             .then(data => {
-               this.downloadFile(data)
+                this.downloadFile(data)
             })
             .catch(error => {
                 this.$message({
@@ -334,5 +297,12 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.device-type.zw-dialog {
+    .el-form-item {
+        .el-form-item__label{
+            width: 120px
+        }
+    }
+    
+}
 </style>

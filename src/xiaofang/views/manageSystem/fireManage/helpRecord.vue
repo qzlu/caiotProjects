@@ -41,8 +41,7 @@
                 <li class="l descripe"><span class="label l">处理描述</span><p>{{record.ProcessingContent}}</p></li>
             </ul>
         </el-dialog>                               
-        <div>
-            <div class="table-header"></div>
+        <div class="zw-table">
             <el-table
              :data='tableData'
              :row-class-name="tableRowClassName"

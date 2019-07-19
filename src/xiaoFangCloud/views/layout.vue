@@ -80,17 +80,13 @@ export default {
     watch:{
     },
     beforeCreate(){
-        if(this.$route.query.token){
-            let token = sessionStorage.getItem('FToken')
-            let projectID = sessionStorage.getItem('projectID')
-            if(token == "undefined" || token == null){
-                sessionStorage.setItem('FToken',this.$route.query.token)
-                sessionStorage.setItem('inIframe',1)
-                this.inIframe = 1
-            }
-            if(projectID == "undefined" || projectID == null){
-                sessionStorage.setItem('projectID',this.$route.query.projectID)
-            }
+        let {token, projectID}= this.$route.query
+        if(token){
+            sessionStorage.setItem('FToken',token)
+            sessionStorage.setItem('inIframe',1)
+        }
+        if(projectID){
+            sessionStorage.setItem('projectID', projectID)
         }
     },
     created(){
