@@ -92,7 +92,8 @@ $img-url:'../../../assets/image/';
 .login{
     width: 100%;
     height: 100%;
-    background: url(#{$img-url}shuziYy/login.jpg);
+    /* background: url(#{$img-url}shuziYy/login.jpg); */
+    background: url(#{$img-url}cloud/login.jpg);
     position: relative;
     &-box{
         width: 651px;

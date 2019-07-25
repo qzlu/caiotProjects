@@ -133,14 +133,17 @@ export default {
       Alarm_Typeid: 0, //告警类型id,默认为0，
       Alarm_lev: alarmLevel, //告警级别
       Alarm_levid: 0, //告警级别 对应id,默认为0
-      sysTemList:[],
       systemId:0
     };
+  },
+  computed:{
+    sysTemList(){
+      return this.$store.state.sysTemList
+    }
   },
   created() {
     this.queryData();
     this.querySystemAlarmType();
-    this.querySForm()
   },
   methods: {
     /*查询数据按钮*/
@@ -174,19 +177,6 @@ export default {
           this.AlarmType = data.FObject;
         })
         .catch(err => {});
-    },
-    /**
-     * 获取平台列表
-     */
-    querySForm(){
-        Project({
-            FAction:'QuerySForm'
-        })
-        .then((data) => {
-            this.sysTemList = data.FObject
-        }).catch((err) => {
-            
-        });
     },
     /**
      * 导出

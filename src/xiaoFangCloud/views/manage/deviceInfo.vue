@@ -4,6 +4,11 @@
             <!-- <el-scrollbar> -->
                <!--  <h5><span class="icon-border"></span>设备铭牌</h5> -->
                 <el-form inline :model='deviceInfo' ref="form">
+                    <el-form-item label="平台类型" prop="FormID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="deviceInfo.FormID">
+                            <el-option v-for="(item,index) in formList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
+                        </el-select>
+                    </el-form-item>
                     <el-form-item label="设备名称" prop="DeviceLedgerName" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceLedgerName"></el-input></el-form-item>
                     <el-form-item label="设备编码" prop="DeviceCode" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceCode"></el-input></el-form-item>
                     <el-form-item label="规格型号" prop="SpecificationsCode"><el-input v-model="deviceInfo.SpecificationsCode"></el-input></el-form-item>
@@ -343,7 +348,8 @@ export default {
                 SystemParamID:'',
                 DeviceTypeName:'',
                 AcsDeviceLedgerParam:'',
-                IsIOTDevice:1
+                IsIOTDevice:1,
+                FormID:null
             },
             deviceInfo:{ //详情请看接口文档
                 DeviceLedgerID:'',
@@ -367,7 +373,8 @@ export default {
                 SystemParamID:'',
                 DeviceTypeName:'',
                 AcsDeviceLedgerParam:'',
-                IsIOTDevice:1
+                IsIOTDevice:1,
+                FormID:null
             },
             projectId:localStorage.getItem('projectid'),
             projectName:localStorage.getItem('projectname'),
@@ -393,6 +400,9 @@ export default {
     computed:{
         token(){
             return this.$store.state.token
+        },
+        formList(){
+            return this.$store.state.sysTemList
         }
     },
     created(){
@@ -453,6 +463,7 @@ export default {
             this.deviceInfo.DeviceLedgerQrCode = ''
             Device({
                 FAction:'AddOrUpdateUDeviceLedger',
+                FormID:this.deviceInfo.FormID,
                 uDeviceLedger:this.deviceInfo
             })
             .then(data => {

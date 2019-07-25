@@ -18,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body :title="type?'编辑':'新增'">
+        <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body title="编辑">
             <el-form :model="addData"  inline ref="form">
                 <el-form-item label="项目全称" prop='ProjectName'>
                   <el-input v-model="addData.ProjectName" autocomplete="off"></el-input>

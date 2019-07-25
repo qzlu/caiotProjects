@@ -276,6 +276,7 @@ import {number,zwTable} from '@/components/index.js'
 import {HomePage, Orders, Alarm} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
 import table from '@/xiaoFangCloud/mixins/table.js'
+import formatDate from '@/utils/formatDate.js'
 let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成','误报']
 export default {
     mixins:[table],
@@ -305,7 +306,8 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'35%'
+                    width:'35%',
+                    formatter:(val) => formatDate(val,'YYYY-MM-DD HH:mm')
                 },
                 {
                     label:'告警内容',
@@ -322,7 +324,8 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'35%'
+                    width:'35%',
+                    formatter:(val) => formatDate(val,'YYYY-MM-DD HH:mm')
                 },
                 {
                     label:'告警内容',

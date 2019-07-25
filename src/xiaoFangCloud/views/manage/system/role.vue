@@ -62,7 +62,7 @@
         <el-dialog class="zw-dialog role-config" title="权限修改" :visible.sync="show1" append-to-body width="560px">
             <ul class="tab-header clearfix">
                 <li :class="{'active': tabIndex === 1,'l':true}" @click="tabIndex = 1"><div>PC功能点</div></li>
-                <!-- <li :class="{'active': tabIndex === 3,'l':true}" @click="tabIndex = 3"><div>APP功能点</div></li> -->
+                <li :class="{'active': tabIndex === 2,'l':true}" @click="tabIndex = 2"><div>项目权限</div></li>
                 <li class="l"></li>
             </ul>
             <div class="tab-content clearfix" v-show="tabIndex === 1">
@@ -86,7 +86,24 @@
                 </div>
             </div>
             <div class="tab-content clearfix" v-show="tabIndex === 2">
-                app功能点
+                <tree-transfer
+                    :data='projectList'
+                    :data1='projectList'
+                    :checkStrictly="false"
+                    leftTitle='所有权限'
+                    rightTitle='已选权限'
+                    nodeKey="ProjectID"
+                    :defaultProps="defaultProps1"
+                    :filterNode="filterNode"
+                    :defaultChecked="defaultCheckProject"
+                     @check-change="checkChange1"
+                    ref="transfer1"
+                >
+                </tree-transfer>
+                <div class="submit">
+                    <el-button class="zw-btn zw-btn-primary" @click="UpdateTRoleProject()">确定</el-button>
+                    <el-button class="zw-btn zw-btn-primary" @click="show1 = false">取消</el-button>
+                </div>
             </div>
         </el-dialog> 
     </div>
@@ -146,7 +163,13 @@ export default {
                 children: 'list',
                 label: 'FMenuName'
             },
+            defaultProps1:{
+                children: 'Data',
+                label: 'Name'
+            },
+            defaultCheckProject: [], //已有权限的项目
             role:null,
+            projectList:[]
         }
     },
     components:{ 
@@ -240,6 +263,23 @@ export default {
             this.show1 = true
             this.role = row
             this.queryUsersMenuTree()
+            this.queryTRoleBloc()
+        },
+        /**
+         * 递归树 查询已选中的
+         * @param {Array} data Tree Data
+         * @param {Array} result 结果
+         */
+        findExist(data,children,id,result = []){
+            data.forEach(item => {
+                if(item.IsExist == 1&&(!item[children]||!item[children].length)){
+                    item[id] && result.push(item[id])
+                } 
+                if(item[children]){
+                    this.findExist(item[children], children, id, result)
+                }
+            })
+            return result
         },
         /**
          * 查询菜单权限
@@ -252,22 +292,10 @@ export default {
                 FmenuLevle:0
             })
             .then(data =>{
-                console.log(data)
                 this.defaultCheckedMenu = []
-                let _this = this
-                //递归获取树形菜单已有权限的菜单
-                function findTree(data) {
-                    data.forEach(item => {
-                        if(item.IsExist == 1&&(!item.list||!item.list.length)){
-                            _this.defaultCheckedMenu.push(item.FGUID)
-                        } 
-                        if(item.list){
-                            findTree(item.list)
-                        }
-                    })
-                }
                 this.menuData = data.FObject||[]
-                findTree(this.menuData)
+                this.defaultCheckedMenu = this.findExist(this.menuData,'list','FGUID')
+                console.log(this.defaultCheckedMenu);
                 this.$nextTick(() => {
                     this.$refs.transfer.$refs.tree1.filter()
                 })
@@ -277,18 +305,46 @@ export default {
             })
         },
         /**
+         * 查询项目权限
+         */
+        queryTRoleBloc(){
+            System({
+                FAction:'QueryTRoleBloc',
+                FGUID:this.role.FGUID,
+            })
+            .then((data) => {
+                console.log(data);
+                this.projectList = data.FObject||[]
+                this.defaultCheckProject = this.findExist(this.projectList,'Data','ProjectID')
+                console.log(this.defaultCheckProject)
+                this.$nextTick(() => {
+                    this.$refs.transfer1.$refs.tree1.filter()
+                })
+            }).catch((err) => {
+                
+            });
+        },
+        /**
          * 菜单选择发生改变
          */
         checkChange(data,check){
-            if(data.IsExist == null){
-                data.IsExist = '0'
-            }
-            if(data.IsExist&&check){
+            if(check){
                 data.IsExist = '1'
-            }else if(data.IsExist&&!check){
+            }else{
                 data.IsExist = '0'
             }
             this.$refs.transfer.$refs.tree1.filter()
+        },
+        /**
+         * 项目选择发生改变
+         */
+        checkChange1(data,check){
+            if(check){
+                data.IsExist = '1'
+            }else{
+                data.IsExist = '0'
+            }
+            this.$refs.transfer1.$refs.tree1.filter()
         },
         /**
          * 修改菜单权限
@@ -297,7 +353,7 @@ export default {
          */
         updateTRoleMenu(){
             let menuArr = [], halfMenuArr = []
-            this.findTree(this.menuData,'list','FGUID',menuArr)
+            menuArr = this.findTree(this.menuData,'list','FGUID')
             halfMenuArr = this.$refs.transfer.$refs.tree.getHalfCheckedNodes().map(item => item.FGUID)
             menuArr.push(...halfMenuArr)
             System({
@@ -320,6 +376,31 @@ export default {
                 });
             })
         },
+        /**
+         * 修改项目权限
+         */
+        UpdateTRoleProject(){
+            let projectArr = this.findTree(this.projectList, 'Data', 'ProjectID')
+            console.log(projectArr)
+            System({
+                FAction: 'UpdateTRoleProject',
+                FGUID:this.role.FGUID,
+                IDStr:projectArr.join(',')
+            })
+            .then((data) => {
+                this.$message({
+                  type: 'success',
+                  message: '设置成功!'
+                });
+                this.show1 = false
+            }).catch((err) => {
+                console.log('错误',error);
+                this.$message({
+                  type: 'error',
+                  message: '设置失败!'
+                });
+            });
+        },
                 /**
          * 过滤树形结构
          */
@@ -329,10 +410,10 @@ export default {
         /**
          * 循环树形结构
          */
-        findTree(data,children,id,arr){
+        findTree(data,children,id,arr = []){
             data.forEach(item => {
                 if(item.IsExist&&item.IsExist==1){
-                    arr.push(item[id])
+                    item[id]&&arr.push(item[id])
                 }
                 if(item.IsExist&&item[children]){
                     this.findTree(item[children],children,id,arr)
@@ -341,6 +422,7 @@ export default {
                     if(item[children]) this.findTree(item[children],children,id,arr)
                 }
             })
+            return arr
         },
     }
 }

@@ -95,14 +95,14 @@ export default {
         projectList(){
           if(this.$store.state.projectList.length === 0) return []
           let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
-          this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID)
+          this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
           return this.$store.state.projectList
         }
         
     },
     created(){
         this.getMenus()
-        this.getSystemList()
+        this.$store.dispatch('querySForm')
     },
     mounted(){
     },
@@ -124,16 +124,6 @@ export default {
           this.project = item
           sessionStorage.setItem('projectID',item.ProjectID)
           location.reload()
-        },
-        getSystemList(){
-          System({
-            FAction:'GetSystemParam'
-          })
-          .then((data) => {
-            console.log(data)
-          }).catch((err) => {
-            
-          });
         },
         deleteRoute(index){
             let isActive = false

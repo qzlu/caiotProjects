@@ -161,6 +161,7 @@ import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage,Alarm} from '@/xiaoFangCloud/request/api.js'
 import {zwPagination} from '@/components/index'
 import { setTimeout } from 'timers';
+import formatDate from '@/utils/formatDate.js'
 let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成' ,'误报']
 export default {
     data(){
@@ -196,7 +197,7 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'20%'
+                    width:'20%',
                 },
                 {
                     label:'告警内容',
@@ -225,7 +226,8 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'20%'
+                    width:'20%',
+                    formatter:(val) => formatDate(val,'YYYY-MM-DD HH:mm')
                 },
                 {
                     label:'告警内容',

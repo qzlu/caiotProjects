@@ -9,7 +9,7 @@
             </el-button>
             <span class="title">{{projectName}}</span>
             <ul class="clearfix">
-                <li  class="l icon" v-if="$route.path !=='/'">
+                <li  class="l icon" v-if="false">
                     <router-link to='/'>
                         <i class="iconfont icon-ZS-bloc"></i>
                     </router-link>

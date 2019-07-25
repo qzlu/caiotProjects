@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Index from './views/layout.vue'
 Vue.use(Router)
 export default new Router({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
     routes:[
         {
@@ -17,10 +17,7 @@ export default new Router({
             children:[
                 {
                     path:'/',
-                    component:() => import('./views/shuziYy/index.vue'),//数字应急页面
-                    meta:{
-                        title:'数字应急云平台'
-                    }
+                    redirect:'index/1'
                 },
                 {
                     path:'index/:formID',

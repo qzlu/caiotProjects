@@ -90,6 +90,7 @@ import '@/assets/css/index.scss'
 import {number,zwTable,bMap} from '@/components/index.js'
 import {HomePage} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
+import formatDate from '@/utils/formatDate.js'
 let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成','误报']
 export default {
     data(){
@@ -125,7 +126,8 @@ export default {
                 {
                     label:'告警时间',
                     prop:'AlarmTime',
-                    width:'25%'
+                    width:'25%',
+                    formatter:(val) => formatDate(val,'YYYY-MM-DD HH:mm')
                 },
                 {
                     label:'告警内容',
@@ -185,7 +187,7 @@ export default {
 
     },
     created(){
-        this.formID = this.$route.params.formID
+        this.formID = this.$route.params.formID || 1
         this.queryData()
         this.$websocket.onclose = () => {
             this.$initWebSocket()
