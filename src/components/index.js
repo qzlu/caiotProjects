@@ -7,6 +7,8 @@ const setPassword = () => import('./setPassword/index.vue')
 const bMap = () => import('./baiduMap/index.vue')
 const lineChart = () => import('./lineChart//index.vue')
 const treeTransfer = () => import('./tree-Transfer/index')  //树形穿梭框
+const pieChart = () => import('./pieChart')
+import barChart from './barChart'
 export{
     zwCard,
     zwPagination,
@@ -15,5 +17,7 @@ export{
     zwTable,
     bMap,
     lineChart,
-    treeTransfer
+    treeTransfer,
+    pieChart,
+    barChart
 }

@@ -17,9 +17,6 @@
                 <span>实时预警</span>
             </div>
             <div class="side-content" v-if="formID == 1">
-<!--                 <div style="height:450px">
-                    <zw-table icon='icon-FireAlarm' showOperation @misreport='changeAlarmState' :pageSize='9' title="实时火警" :width='414' :bodyHeight='370' :labels='tableLabel1' :data='fireAlarmData?fireAlarmData.Data:[]' ></zw-table>
-                </div> -->
                 <div class="table">
                     <div class="title">
                       <i class="iconfont icon-FireAlarm"></i>
@@ -53,9 +50,6 @@
                         </el-scrollbar>
                     </div>
                 </div>
-<!--                 <div style="height:450px;margin-top:11px">
-                    <zw-table icon='icon-SZXFY-Earlywarning' :pageSize='9' title="实时预警" :width='414' :bodyHeight='370' :labels='tableLabel' :data='wariningData?wariningData.Data:[]' ></zw-table>
-                </div> -->
                 <div class="table" style="margin-top:11px">
                     <div class="title">
                       <i class="iconfont icon-SZXFY-Earlywarning"></i>
@@ -245,7 +239,7 @@
                                 <span>{{item.SystemParamName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
                             </h5>
                             <ul class="device">
-                                <li :class="{alarm:device.DeviceStatusName === '告警'}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
+                                <li :class="{alarm:device.DeviceColor == 5}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
                                     <router-link :to="`/deviceDetaile/${formID}/${device.DeviceID}`">
                                         <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]" :style="{'color':colors[device.DeviceColor]}">
                                             <p><i :class="['iconfont',device.IconName]" ></i></p>
@@ -417,7 +411,6 @@ export default {
     created(){
         this.formID = this.$route.params.formID
         this.queryData()
-        this.queryOrderyUser()
         this.$websocket.onclose = () => {
             this.$initWebSocket()
             this.queryData()
@@ -534,13 +527,16 @@ export default {
                 console.log(err)
             });
         }, */
-        queryOrderyUser(){
+        queryOrderyUser(item){
+            console.log(item)
             Orders({
-                FAction:'GerUser',
-                IDStr:4
+                FAction:'QueryOrderyUser',
+                ID:item.ID,
+                IDStr:''
             })
             .then((data) => {
                 this.userList = data.FObject
+                console.log(this.userList)
             }).catch((err) => {
                 
             });
@@ -548,6 +544,7 @@ export default {
         dispatchOrder(row){
             this.show = true
             this.order = row
+            this.queryOrderyUser(row)
         },
         async changeAlarmState(row,state){
             if(state ==7 || state == 0){

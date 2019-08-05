@@ -7,14 +7,15 @@ const config = {
     /**数字消防云平台 */
     'xiaoFangCloud':{
         entry:'./src/xiaoFangCloud/',
+        baseUrl:'/xf/'
     },
     /**数字应急云平台 */
     'shuziYy':{
         entry:'./src/shuziYy/'
     },
-    /**后台管理系统 */
-    'manage':{
-        entry:'./src/manage/'
+    /**千仞集团页面 */
+    'qianren':{
+        entry:'./src/qianren/'
     }
 }
 const configObj = config[projectName.name]

@@ -52,7 +52,7 @@
                     </el-form-item>
                     <el-form-item label="设备图片">
                         <el-upload
-                          action="http://47.106.64.130:56090/Caiot/FileUploadContext"
+                          action="http://www.caszyj.com/DigitalAPI/FileUploadContext"
                           list-type="picture-card"
                           :limit = '1'
                           :on-success="handleSuccess1"

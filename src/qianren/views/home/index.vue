@@ -1,19 +1,11 @@
 <template>
-    <div :class="['home','cloud',{inIframe}]" style="position:relative">
-        <audio id="myAudio" autoplay="false">
-            <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
-        </audio>
-        <div class="header" v-if="inIframe != 1">
+    <div class="home qianren">
+        <div class="header">
             <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
             </el-button>
             <span class="title">{{projectName}}</span>
             <ul class="clearfix">
-                <li  class="l icon" v-if="false">
-                    <router-link to='/'>
-                        <i class="iconfont icon-ZS-bloc"></i>
-                    </router-link>
-                </li>
                 <li class="l icon" v-if="$route.path !=='/'">
                     <router-link :to="`/manage`"  class="icon-item">
                         <i class="iconfont icon-zs-backstage"></i>
@@ -34,47 +26,46 @@
                     </el-dropdown>
                 </li>
                 <li class="l user-name">{{user}}</li>
-                <set-password :show.sync='show' @confirm="changePassword"></set-password>
+                <!-- <set-password :show.sync='show' @confirm="changePassword"></set-password> -->
+            </ul>
+            <ul class="menu">
+                <li class="menu-item">
+                    <router-link to="/comprehensive">
+                    综合态势
+                    </router-link>
+                </li>
+                <li class="menu-item">
+                    <router-link to="/systemBrowse">
+                    系统态势
+                    </router-link>
+                </li>
+                <li class="menu-item">
+                    <router-link to="/">
+                    综合排名
+                    </router-link>
+                </li>
+                <li class="menu-item">
+                    项目导航
+                </li>
             </ul>
         </div>
-        <router-view :isOpen = 'isOpen'>
+        <router-view>
         </router-view>
     </div>
 </template>
 <script>
 import {setPassword} from '@/components/index.js'
-import {System} from '@/xiaoFangCloud/request/api.js'
-import '@/assets/css/index.scss'
+import('@/assets/css/index.scss')
 export default {
     data(){
         return{
-            show:false,
-            isOpen:localStorage.getItem('open')||1, //控制报警声音
-            formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
-            inIframe:sessionStorage.getItem('inIframe')
+            user:'caiot', //用户名
+            projectName: '中物互联集团',
+            isOpen:1
         }
     },
     components:{
         setPassword
-    },
-    computed:{
-        user(){
-            return sessionStorage.getItem('FContacts')
-        },
-        projectName(){
-            let name
-            if(this.$route.path === '/'){
-                name = '中物互联数字应急云平台'
-            }else if(this.$route.params.formID&&(this.$route.path.match(/indexItem/)||this.$route.path.match(/deviceDetaile/))){
-                name = sessionStorage.getItem('projectName') + this.formList[this.$route.params.formID]
-            }else if(this.$route.params.formID){
-                name = '中物互联' + this.formList[this.$route.params.formID]
-            }
-            return  name
-        },
-        formID(){
-            return this.$route.params.formID||0
-        }
     },
     watch:{
     },
@@ -133,27 +124,38 @@ export default {
 }
 </script>
 <style lang="scss">
-    $url:'../../assets/image/cloud/index/';
-    .home.cloud{
-        padding: 2px;
-        background: url('#{$url}bg_img.jpg');
-        .info-window{
-            margin-bottom: 10px;
-            margin-left: 16px;
-            color: #5fbef9;
-            ul{
-                li{
-                  max-width: 400px;
-                  height: 24px;
-                  line-height: 24px;
-                  margin-top: 10px;
-                  white-space: nowrap;
+$url:'../../../assets/image/';
+.home.qianren{
+    padding: 2px;
+    background: url('#{$url}qianren/index-bg.jpg');
+    .header{
+        position: relative; 
+        ul.menu{
+            margin-top: -60px;
+            .menu-item{
+                width:170px;
+                height:44px;
+                line-height: 44px;
+                display: inline-block;
+                a{
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    background: url(#{$url}qianren/menu-bg.png);
+                    color: #84F2FF;
+                    font-size:20px;
                 }
+                a.router-link-active{
+                    background: url(#{$url}qianren/menu-active.png);
+                }
+            }
+            .menu-item:nth-of-type(3){
+                margin-left: 512px;
+            }
+            .menu-item:nth-of-type(4){
+                background: url(#{$url}qianren/menu-bg.png);
             }
         }
     }
-    .home.cloud.inIframe{
-        padding-top: 84px;
-        background: url('#{$url}bg_1.jpg');
-    }
+}
 </style>

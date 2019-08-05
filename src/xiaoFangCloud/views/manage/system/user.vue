@@ -22,14 +22,14 @@
                     <el-option  label="女" :value="0"></el-option>
                   </el-select>
                 </el-form-item> -->
-<!--                 <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FUserType"   placeholder="请选择角色">
                     <el-option key="1" label="运营管理" :value="1"></el-option>
                     <el-option key="2" label="集团管理" :value="2"></el-option>
                     <el-option key="3" label="项目管理" :value="3"></el-option>
                     <el-option key="4" label="项目现场运维" :value="4"></el-option>
                   </el-select>
-                </el-form-item> -->
+                </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="addOrUpdate()">确 定</el-button>
