@@ -185,17 +185,16 @@
                 <p class="l">{{count.MaintenanceCount}}</p>
             </li>
         </ul>
-        <div id="map" style="width:1080px;height:800px">
-
+        <div id="map" style="width:1080px;height:600px">
+          <echarts-map @ready1="ready1"></echarts-map>
         </div>
     </div>
   </div>
 </template>
 <script>
 import { number, pieChart, barChart } from "@/components/index.js";
-import echarts from 'echarts'
-import theme from './allCity.js'
-/* import 'echarts/map/js/china.js'; */
+import echartsMap from '../component/map.vue'
+import { Promise } from 'q';
 export default {
   data() {
     return {
@@ -262,6 +261,8 @@ export default {
                 ]
             }
         ],
+        levelArr:[], //行政架构等级
+        activeLevel:{}, //当前选中的架构等级
         count:{},//设备统计  告警统计 工单统计
         sortType:0,//设备完好率排序方式
         intactRate: [],//完好率排名
@@ -275,22 +276,25 @@ export default {
   components: {
     number,
     pieChart,
-    barChart
+    barChart,
+    echartsMap
   },
   created(){
-    this.$nextTick(() => {
-      this.showMap()
-    })
-    this.queryDeviceTypeRanking()
   },
   methods:{
+    ready1(level){
+      this.activeLevel = level
+      this.queryDeviceTypeRanking()
+      this.queryBlocAlarmRanking()
+    },
     /**
      * 综合态势（设备类型完好率 top 5）
      */
     queryDeviceTypeRanking(){
       this.$post('QueryBlocQueryDeviceTypeRanking',{
-        FSort: this.sortType?'asc':'desc',
-        BlocID: 1
+        Sort: this.sortType?'asc':'desc',
+        BlocID: 1,
+        IDStr: this.activeLevel.TORGNodeGuid
       })
       .then((result) => {
         console.log(result);
@@ -298,109 +302,59 @@ export default {
         
       });
     },
+    /**
+     * 集团首页—综合态势（告警类型排名）
+     */
+    queryBlocAlarmRanking(){
+      this.$post('/QueryBlocAlarmRanking',{
+        Sort: this.sortType?'asc':'desc',
+        IDStr: this.activeLevel.TORGNodeGuid
+      })
+      .then((result) => {
+       console.log(result) 
+      }).catch((err) => {
+        
+      });
+    },  
     showMap(){
-      /* require('echarts/map/js/china.js') */
-      let chinaJson = require('./zhejiang.json') 
-      let yunnan = require('./gx.json')
-      /* chinaJson.features.push(...yunnan.features) */
-      let arr = []
-      yunnan.features.forEach(item => arr.push(...item.geometry.coordinates))
+      let areaArr = [
+        {name:'华南区',children:['guangxi','guangdong']},
+        {name:'东北区',children:['heilongjiang','jilin','liaoning']},
+        {name:'华北区',children:['beijing','tianjin','shanxi','hebei','neimenggu']},
+        {name:'华东区',children:['shanghai','zhejiang','jiangsu','anhui','fujian','shandong','jiangxi']},
+        {name:'华中区',children:['henan','hubei','hunan']},
+        {name:'西南区',children:['sichuan','guizhou','yunnan','xizang','chongqing']},
+        {name:'西北区',children:['gansu','qinghai','shanxi1','ningxia','xinjiang']},
+        {name:'海南',children:['hainan']}
+      ]
+/*       let mapArr = areaArr.map(item => {
+        let arr = []
+        item.children.forEach(json => {
+          let data = require(`@/qianren/mapJson/${json}.json`)
+          data.features.forEach(obj => arr.push(...obj.geometry.coordinates))
+        })
+        return {
+            "type": "Feature",
+            "properties": {
+              "name": item.name,
+              "childNum": 3
+            },
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates":arr,
+            }
+        }
+      })
       let obj = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "云南",
-/*         "cp": [
-            128.1445,
-            45.5156
-        ], */
-        "childNum": 3
-      },
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates":arr,
-/*         "encodeOffsets": 
-          yunnan.features[1].geometry.encodeOffsets */
-      }
-    },
-  ],
-  /* "UTF8Encoding": true */
-      }
-      console.log(obj)
-      echarts.registerMap('china',theme)
+        "type": "FeatureCollection",
+        "features":mapArr
+      } */
+     /*  console.log(obj)
+      echarts.registerMap('china',obj) */
       var dom = document.getElementById("map");
       var myChart = echarts.init(dom);
       var app = {};
       var option = null;
-      function randomData() {
-          return Math.round(Math.random()*1000);
-      }
-      var mydata = [  
-                {name: '北京',value: '100' },{name: '天津',value: randomData() },  
-                {name: '上海',value: randomData() },{name: '重庆',value: randomData() },  
-                {name: '河北',value: randomData() },{name: '河南',value: randomData() },  
-                {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },  
-                {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },  
-                {name: '安徽',value: randomData() },{name: '山东',value: randomData() },  
-                {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },  
-                {name: '浙江',value: randomData() },{name: '江西',value: randomData() },  
-                {name: '湖北',value: randomData() },{name: '广西',value: randomData() },  
-                {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },  
-                {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },  
-                {name: '吉林',value: randomData() },{name: '福建',value: randomData() },  
-                {name: '贵州',value: randomData() },{name: '广东',value: randomData() },  
-                {name: '青海',value: randomData() },{name: '西藏',value: randomData() },  
-                {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },  
-                {name: '海南',value: randomData() },{name: '台湾',value: randomData() },  
-                {name: '香港',value: randomData() },{name: '澳门',value: randomData() }  
-        ];
-        var data = [
-          {name: '海门', value: 9},
-          {name: '鄂尔多斯', value: 12},
-          {name: '招远', value: 12},
-          {name: '舟山', value: 12},
-          {name: '齐齐哈尔', value: 14},
-          {name: '盐城', value: 15},
-          {name: '赤峰', value: 16},
-          {name: '青岛', value: 18},
-          {name: '乳山', value: 18},
-          {name: '金昌', value: 19},
-          {name: '泉州', value: 21},
-          {name: '莱西', value: 21},
-          {name: '日照', value: 21},
-          {name: '胶南', value: 22},
-        ]
-        var geoCoordMap = {
-          '海门':[121.15,31.89],
-          '鄂尔多斯':[109.781327,39.608266],
-          '招远':[120.38,37.35],
-          '舟山':[122.207216,29.985295],
-          '齐齐哈尔':[123.97,47.33],
-          '盐城':[120.13,33.38],
-          '赤峰':[118.87,42.28],
-          '青岛':[120.33,36.07],
-          '乳山':[121.52,36.89],
-          '金昌':[102.188043,38.520089],
-          '泉州':[118.58,24.93],
-          '莱西':[120.53,36.86],
-          '日照':[119.46,35.42],
-          '胶南':[119.97,35.88],
-        }
-        var convertData = function (data) {
-            var res = [];
-            for (var i = 0; i < data.length; i++) {
-                var geoCoord = geoCoordMap[data[i].name];
-                if (geoCoord) {
-                    res.push({
-                        name: data[i].name,
-                        value: geoCoord.concat(data[i].value)
-                    });
-                }
-            }
-            return res;
-        };
       option = {
           /* backgroundColor: '#001869', */
           tooltip: {
@@ -450,6 +404,20 @@ export default {
                       show: false
                   }
               },
+              regions: [
+              {
+                  name: '南海诸岛', 
+                  value: 0, 
+                  itemStyle: 
+                      {normal: 
+                          {opacity: 0,
+                          label: {
+                              show: false
+                              
+                          }
+                      }
+                  }
+              }],
               itemStyle: {
                   normal: {
                       areaColor: '#001869',
@@ -465,7 +433,7 @@ export default {
                     name: '',
                     type: 'scatter',
                     coordinateSystem: 'geo',
-                    /* data:convertData(data).concat([{name:'中物互联',value:[118.316364,32.303627,100],id:4}]), */
+                    data:[{name:'中物互联',value:[118.316364,32.303627,100],id:4}],
                     symbol:'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAdCAYAAACqhkzFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMzSURBVEhLzZX5U1JRFMchtVWn1QUds82QcC0XltgERlniiU9CEcSHySKglc3YWNNMm1rRoi0uOY5N/Z/fzn2Ygb6hyF/64QO8w7kf7j333IusrCoOeUUIsrMTkNVMQV6bJBI4VEufFTvUJHbjMkWc8mgMixGyvZScikDGhOcmKTmZhcTil9X0LrKTrCBEKYPijFwZo0SRgpxmJ6+O0mzoV/ewb8CfKFPOo6HNj6FAJwZGTOACA4gkPHD5B9FtH0a1WkBpHVumxGApjrUvoN3MYyrVhEisE+n7dmysG7G8bMCbjBHPFywYnbiFurZxqutfiMt73qPD6kd6pgm+oBaBCTfW14z4vt2zy8eVm4imHbjcNSYtyaVCv4I22yhSMyr0e43o5XgsvbbmCRmrX3QYi7mh1IRw4mJUWsao0C+jzRpAalqFXrcF180jePi4b5+Q8eGDAdOzfXDdHsQN6whU+iAudoapHAKOnI9lheVdGbSafSRsgslhRWN3CPEZF3582y/8xeaGFq9emzD32IbEXQfCNHNFi5AVHlM/RYvei2RaCaPThvp2AaFJT0GhFO2WAEpYN5Q2zKJZ40EypYTJZUVtqwBfeEByUCF6uSGUX6LDIa+OQ60lIc3QTEJFswA+VLyQH+NQeY1OnaxykoQcklRDo8Mm1sIvcEUvOZpy4HxHmAmjUOuyQkO/Tdy1yXThTZFi/okNKl2QhFWxXaGTN6GP55F5Z8lL3ljX4SuxvaXJi+fCWqrbPkJCVkMd1ZCEo4IG43E3llcsyLw14uWiGXOPbBiOeETYs5SMsbWpRf8QT0K6237NMBjRwu7l4Q3ycPu9MHt8UFPzHqWmPVwfo9ggFpfM+PxJj7VVHdbo9Hz5rBdZp2dfmGPCRM6SDTh5ZadBJTijnIDO4RcbOT7jEM+3kHAhMuWiBu+HhfPlC11DepxqpJ3aIyoK9vL/C6908UikVLBzRhy/QN2+N6komiMwOFyYfaDCcFiPqz0BnL5659/+TxhjsVt0/5mQedOBZy80SN7rg83r+32/FUuUjll61knb7iRZFiddoEcbCtzKhZAMHgTJ4EGQDB4EyeA/k8BPtvcXUxtnVqUAAAAASUVORK5CYII=',
 /*                     symbolSize: function (val) {
                         return val[2] / 10;

@@ -16,6 +16,10 @@ const config = {
     /**千仞集团页面 */
     'qianren':{
         entry:'./src/qianren/'
+    },
+    /**智维 */
+    'zhiwei':{
+        entry: './src/zhiwei/'
     }
 }
 const configObj = config[projectName.name]

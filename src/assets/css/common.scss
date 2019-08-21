@@ -167,6 +167,13 @@ $img-url:'../image/';
                     color: #9EE5F3;
                 }
             }
+            .el-checkbox{
+                color: #9EE5F3
+            }
+            .el-checkbox__inner{
+                background-color: #092D53;
+                border-color: rgba(158, 229, 243, 0.27);
+            }
             .str-length{
                 position: absolute;
                 top: 60px;
@@ -220,5 +227,8 @@ $img-url:'../image/';
 }
 .red{
     color: #FC0404
+}
+.height-100{
+    height: 100%;
 }
 //el-inupt

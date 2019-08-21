@@ -1,5 +1,5 @@
 <template>
-    <div class="compre-hensive">
+    <div class="ranking">
        <div class="left-side aside l">
             <div class="side-header clearfix">
                 <number class="l" :data="0"></number>
@@ -45,7 +45,7 @@ export default {
 <style lang="scss">
 $url:'../../../assets/image/';
 .home{
-    .compre-hensive{
+    .ranking{
         .aside{
             width: 413px;
             .side-content{

@@ -40,7 +40,7 @@
                     </router-link>
                 </li>
                 <li class="menu-item">
-                    <router-link to="/">
+                    <router-link to="/ranking">
                     综合排名
                     </router-link>
                 </li>

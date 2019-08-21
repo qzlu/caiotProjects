@@ -5,7 +5,7 @@ import router from '../router'
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
     /* axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/'; */
-    axios.defaults.baseURL = 'http://172.172.172.20:8080/'
+    axios.defaults.baseURL = 'http://172.172.172.80:8088/'
     
 } 
 else if (process.env.NODE_ENV == 'debug') {    
@@ -62,8 +62,8 @@ export function post(url, params) {
     return new Promise((resolve, reject) => {
         let obj = {
             FTokenID:sessionStorage.getItem('FToken')||'1C49B3DE-C244-4D91-B1E3-10ABFE56EA56',
-            ProjectID:sessionStorage.getItem('projectID'),
-            FVersion:"1.0.0",		
+            /* ProjectID:sessionStorage.getItem('projectID')||1, */
+            /* FVersion:"1.0.0", */		
         }
         axios.post(url,Object.assign(obj,params))
         .then(res => {

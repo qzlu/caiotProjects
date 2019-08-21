@@ -4,7 +4,7 @@
  * 详情请看接口文档
  */
 import {post } from './http';
-const Login = p => post('Check', p);
+const Login = p => post('checklogin', p); //登录接口
 const HomePage = p => post('HomePage',p)
 const Project = p => post('Project',p)
 const Alarm = p => post('Alarm',p)

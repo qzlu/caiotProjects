@@ -21,7 +21,7 @@
 </template>
 <script>
 import {zwCard} from '@/components/index.js';
-import {Login} from '@/xiaoFangCloud/request/api.js'
+import {Login} from '@/qianren/request/api.js'
 import Md5 from 'js-md5'
 export default {
     data(){
@@ -58,13 +58,12 @@ export default {
             }
             if(this.userName != ''&&this.password != ''){
                 Login({
-                    FAction:'Login',
                     FUserName:this.userName,
-                    FPassword:Md5(this.password),
+                    FPassword:this.password,
                     TerminalType:'PC'
                 })
                 .then((data) => {
-                    sessionStorage.setItem('FToken',data.FObject.FToken)
+                    sessionStorage.setItem('FToken',data.FObject.FTokenID)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
                     sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
                     this.$store.state.projectList = data.FObject.Project
