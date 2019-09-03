@@ -18,12 +18,15 @@
                 <div class="tree-content">
                     <el-scrollbar>
                         <el-tree
+                            ref="tree"
                            :data="treeData"
                            :props="treeProp"
                            default-expand-all
+                           node-key='FGUID'
                            highlight-current
                            @node-click="QueryMainDBTORGArea"
                            :expand-on-click-node='false'
+                           :filter-node-method="filterNode"
                         >
                         <template v-slot="{node,data}">
                             <span class="node-row">
@@ -120,7 +123,6 @@
 import province from '@/mapJson/province.js'
 import theme from '@/mapJson/allCity.js'
 import echarts from 'echarts'
-import { write } from 'fs';
 const Map = {
 }
 province.forEach(item => {
@@ -160,7 +162,10 @@ export default {
     watch:{
         activeLevel(){
             this.queryMapData()
-        }
+        },
+        filterText(val){
+            this.$refs.tree.filter(val);
+        },
     },
     async created(){
         this.queryData()
@@ -263,6 +268,7 @@ export default {
               },
               legend: {
                   show:false,
+                  itemHeight:20
               },
               visualMap: {
                   show:true,
@@ -281,7 +287,7 @@ export default {
                   show:false,
                   orient: 'horizontal',
                   min: 0,
-                  max: 55000,
+                  max: 100,
                   text: ['高', '低'],           // 文本，默认为数值文本
                   splitList: [   
                    {start: 0, end: 50},
@@ -296,7 +302,6 @@ export default {
                         name: '',
                         type: 'map',
                         map: 'china',
-                        coordinateSystem: 'geo',
                         data:areaArr.map(item => {return {name:item.FORGName,value:item.ProjectCount}}),
                         markPoint:{
                             symbol:'roundRect',
@@ -322,7 +327,6 @@ export default {
         	                    shadowBlur : 0
         	                },
                         },
-                        symbolSize: 50, 
                         label: {
                             normal: {
                                 color:'white',
@@ -338,19 +342,6 @@ export default {
                             }
                         },
                         zoom:1.2,
-                        regions: [
-                        {
-                            name: '南海诸岛', 
-                            value: 0, 
-                            itemStyle: 
-                                {normal: 
-                                    {opacity: 0,
-                                    label: {
-                                        show: false  
-                                    }
-                                }
-                            }
-                        }],
                         itemStyle: {
                             normal: {
                                 areaColor: '#001869',
@@ -385,6 +376,7 @@ export default {
               },
               legend: {
                   show:false,
+                  
               },
               visualMap: {
                   show:true,
@@ -421,9 +413,10 @@ export default {
                   label: {
                     show:false,
                     color:'white',
-                      emphasis: {
-                          show: false
-                      }
+                    emphasis: {
+                        show: true,
+                        color:'white',
+                    }
                   },
                   zoom:1.2,
                   itemStyle: {
@@ -448,7 +441,7 @@ export default {
                             normal: {
                                 formatter: '{b}',
                                 position: 'right',
-                                color:write,
+                                color:'white',
                                 fontSize:16,
                                 show: true
                             },
@@ -751,7 +744,11 @@ export default {
             }).catch((err) => {
                 
             });
-        }
+        },
+        filterNode(value, data) {
+            if (!value) return true;
+            return data.FORGName.indexOf(value) !== -1;
+        },
     }
 }
 </script>
@@ -786,7 +783,7 @@ export default {
                         border:2px solid #33C4F1;
                         border-radius:10px;
                         background: #092D53;
-                        color: #9EE5F3;
+                        color: #C7FEFF;
                     }
                 }
                 .el-input__suffix{
@@ -805,7 +802,7 @@ export default {
                     padding: 0;
                     background:#1E3E67;
                     border: 1px solid #33C4F1;
-                    color: #9EE5F3;
+                    color: #C7FEFF;
                     font-size: 16px;
                 }
                 .el-button:hover{
@@ -820,7 +817,7 @@ export default {
                         background: none;
                         border: none;
                         font-size: 16px;
-                        color: #9EE5F3
+                        color: #C7FEFF
                     }
                     .el-tree-node:focus {
                         >.el-tree-node__content {
@@ -832,7 +829,7 @@ export default {
                         line-height: 40px;
                         span{
                             font-size: 16px;
-                            color: #9EE5F3
+                            color: #C7FEFF
                         }
                         .node-row{
                             width: 100%;
@@ -906,7 +903,7 @@ export default {
         li{
             margin-bottom:10px;
             .iconfont{
-                color: #9EE5F3;
+                color: #C7FEFF;
                 font-size: 24px;
                 cursor: pointer;
                 margin-left: 14px;
@@ -923,7 +920,7 @@ export default {
         cursor: pointer;
         text-align: center;
         font-size: 16px;
-        color: #9EE5F3
+        color: #C7FEFF
     }
 }
 </style>

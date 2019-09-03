@@ -54,6 +54,9 @@
                         <el-option value="4" label="数字有限空间"></el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="第三方ID" prop='OtherSourceID'>
+                    <el-input v-model="addData.OtherSourceID" type="number" autocomplete="off"></el-input>
+                </el-form-item>
                 <el-form-item label="地区" prop='County'>
                     <el-popover
                       placement="bottom"
@@ -151,7 +154,10 @@ export default {
                     prop: 'FormName',
                     label: '所属平台类型'
                 },
-
+                {
+                    prop:"OtherSourceID",
+                    label:'第三方ID'
+                },
             ],
             selectFrom:[],
             defaultAddData:{
@@ -322,7 +328,7 @@ export default {
     }
     ul{
         width: 1200px;
-        height: 455px;
+        /* height: 455px; */
         margin-left: 415px;
         background:rgba(14,49,83,1);
         border:1px solid rgba(101,168,224,1);
@@ -332,8 +338,8 @@ export default {
         flex-wrap: wrap;
         li{
             width: 50%;
-            height: 16.66%;
-            line-height: 73px;
+            height: 60px;
+            line-height: 60px;
             box-sizing: border-box;
             border-bottom: 2px solid #65A8E0;
             display: flex;
@@ -355,7 +361,7 @@ export default {
                 text-align: left;
             }
         }
-        li:last-of-type,li:nth-last-of-type(2){
+        li:last-of-type/* ,li:nth-last-of-type(2) */{
             border-bottom: none;
         }
     }

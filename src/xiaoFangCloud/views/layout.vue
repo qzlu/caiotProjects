@@ -3,12 +3,22 @@
         <audio id="myAudio" autoplay="false">
             <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
         </audio>
-        <div class="header" v-if="inIframe != 1">
-            <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
+        <div class="header">
+            <el-button v-if="$route.path !=='/' " @click="routerBack()" class="back">
                     <i class="icon el-icon-arrow-left"></i>返回
             </el-button>
             <span class="title">{{projectName}}</span>
             <ul class="clearfix">
+                <li class="l project-list" v-if="$route.path.match(/indexItem/ig)">
+                    <el-select v-model="project" value-key='ProjectID' placeholder="请选择" @change="select">
+                      <el-option
+                        v-for="item in projectList"
+                        :key="item.ProjectID"
+                        :label="item.ProjectName||0"
+                        :value="item">
+                      </el-option>
+                    </el-select>
+                </li>
                 <li  class="l icon" v-if="false">
                     <router-link to='/'>
                         <i class="iconfont icon-ZS-bloc"></i>
@@ -51,7 +61,8 @@ export default {
             show:false,
             isOpen:localStorage.getItem('open')||1, //控制报警声音
             formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
-            inIframe:sessionStorage.getItem('inIframe')
+            inIframe:sessionStorage.getItem('inIframe'),
+            project:null,
         }
     },
     components:{
@@ -74,19 +85,18 @@ export default {
         },
         formID(){
             return this.$route.params.formID||0
+        },
+        projectList(){
+          if(this.$store.state.projectList.length === 0) return []
+          let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
+          console.log(this.$store.state.projectList)
+          this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
+          return this.$store.state.projectList
         }
     },
     watch:{
     },
     beforeCreate(){
-        let {token, projectID}= this.$route.query
-        if(token){
-            sessionStorage.setItem('FToken',token)
-            sessionStorage.setItem('inIframe',1)
-        }
-        if(projectID){
-            sessionStorage.setItem('projectID', projectID)
-        }
     },
     created(){
     },
@@ -128,6 +138,30 @@ export default {
                 this.isOpen = 1
                 localStorage.setItem('open',1)
             }
+        },
+        /**
+         * 
+         */
+        select(project){
+            console.log(project)
+            sessionStorage.setItem('projectID',project.ProjectID)
+            sessionStorage.setItem('projectName',project.ProjectName)
+            location.reload()
+        },
+        routerBack(){
+            let otherLogin = sessionStorage.getItem('otherLogin'),
+            TRoleType = sessionStorage.getItem('TRoleType')
+            if(otherLogin == 1){
+                if(TRoleType == 2&&this.$route.name == 'system'){
+                    location.href = 'https://xymind.net:3000/#/monit/equip/fireFightingEquipment'
+                }else if(TRoleType == 3&&this.$route.name == 'indexItem'){
+                    location.href = 'https://xymind.net:3000/#/monit/equip/fireFightingEquipment'
+                }else{
+                    window.history.back()
+                }
+            }else{
+                window.history.back()
+            }
         }
     }
 }
@@ -137,6 +171,28 @@ export default {
     .home.cloud{
         padding: 2px;
         background: url('#{$url}bg_img.jpg');
+        .header{
+            .project-list{
+                .el-select{
+                    .el-input{
+                        &__inner{
+                            border:none;
+                            background-color: transparent;
+                            color: #5fbef9;
+                            font-size: 18px;
+                            text-align: right;
+                        }
+                    }
+                    .el-icon-arrow-up{
+                      font-size: 20px;
+                      color: #9EE5F3
+                    }
+                    .el-icon-arrow-up:before{
+                      content: "\e78f";
+                    }
+                }
+            }
+        }
         .info-window{
             margin-bottom: 10px;
             margin-left: 16px;
@@ -152,8 +208,8 @@ export default {
             }
         }
     }
-    .home.cloud.inIframe{
+/*     .home.cloud.inIframe{
         padding-top: 84px;
         background: url('#{$url}bg_1.jpg');
-    }
+    } */
 </style>

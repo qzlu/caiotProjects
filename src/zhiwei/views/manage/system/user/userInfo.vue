@@ -375,7 +375,7 @@ export default {
                     border:2px solid #33C4F1;
                     border-radius:10px;
                     background: #092D53;
-                    color: #9EE5F3;
+                    color: #C7FEFF;
                 }
             }
             .el-input__suffix{
@@ -395,7 +395,7 @@ export default {
                     background: none;
                     border: none;
                     font-size: 16px;
-                    color: #9EE5F3
+                    color: #C7FEFF
                 }
                 .el-tree-node:focus {
                     >.el-tree-node__content {
@@ -407,7 +407,7 @@ export default {
                     line-height: 40px;
                     span{
                         font-size: 16px;
-                        color: #9EE5F3
+                        color: #C7FEFF
                     }
                     .el-tree-node__expand-icon.is-leaf{
                         color: transparent

@@ -17,14 +17,20 @@ Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
 Vue.prototype.$initWebSocket = initWebSocket
 router.beforeEach((to, from, next) => {
-/*   let token = sessionStorage.getItem('FToken')||window.location.search
-  if(to.name !== 'login'&&!token){
-    next({name:'login'})
+  let {token, projectID}= to.query
+  if(token){
+      sessionStorage.setItem('FToken',token)
+      sessionStorage.setItem('inIframe',1)
+  }
+  if(projectID){
+      sessionStorage.setItem('projectID', projectID)
+  }
+  token = token || sessionStorage.getItem('FToken')
+  if(to.path !== '/login'&&!token){
+    next({path:'/login'})
   }else{
     next()
-  } */
-  next()
-  
+  }
 })
 new Vue({
   router,

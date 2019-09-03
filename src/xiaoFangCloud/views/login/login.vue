@@ -23,6 +23,7 @@
 import {zwCard} from '@/components/index.js';
 import {Login} from '@/xiaoFangCloud/request/api.js'
 import Md5 from 'js-md5'
+import { join } from 'path';
 export default {
     data(){
         return{
@@ -67,13 +68,24 @@ export default {
                     sessionStorage.setItem('FToken',data.FObject.FToken)
                     sessionStorage.setItem('FContacts',data.FObject.FContacts)
                     sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
+                    sessionStorage.setItem('FUserType',data.FObject.FUserType)
+                    sessionStorage.setItem('TRoleType',data.FObject.TRoleType)
                     this.$store.state.projectList = data.FObject.Project
                     this.$store.state.token = data.FObject.FToken
                     if(this.loginState){
                         localStorage.setItem('userName',this.userName)
                         localStorage.setItem('password',this.password)
                     }
-                    this.$router.push('/')
+                    if(data.FObject.TRoleType == 1){
+                        this.$router.push('/')
+                    }else if(data.FObject.TRoleType == 2){
+                        this.$router.push('/index/1')
+                    }else{ 
+                        let project = data.FObject.Project[0]
+                        sessionStorage.setItem('projectID',project.ProjectID)
+                        sessionStorage.setItem('projectName',project.ProjectName)
+                        this.$router.push('/indexItem/1')
+                    }
                 }).catch((err) => {
                     console.log(err);
                     if(err.Result == 103){

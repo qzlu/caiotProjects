@@ -113,7 +113,8 @@ export default {
           },
           axisLabel: {
             color: "#FFFFFF",
-            interval: 0
+            interval: 0,
+            rotate:"45"
           },
           axisTick: {
             show: false

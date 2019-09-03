@@ -19,7 +19,7 @@
                     </el-dropdown>
                </div>
             </el-header>
-            <el-container style="height: 977px;margin-right: 12px;">
+            <el-container style="height: 900px;margin-right: 12px;">
                 <el-aside width="210px">
                   <div class="menu">
                       <el-scrollbar>
@@ -217,7 +217,7 @@ $url:'../../../assets/image/';
                       margin-top: 20px;
                   }
                   .el-submenu__title,.el-menu-item{
-                    color: #48B3C8;
+                    color: #C7FEFF;
                     font-size: 18px;
                     text-align: left;
                     background: url(#{$url}menu-2.png)  no-repeat;
@@ -241,8 +241,8 @@ $url:'../../../assets/image/';
             }
         }
         .el-main{
+            /* height: 960px; */
             border:1px solid rgba(95,205,242,1);
-            opacity:0.7;
             border-radius:10px;
             overflow: hidden;
         }

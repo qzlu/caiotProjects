@@ -5,18 +5,6 @@
  */
 import {post } from './http';
 const Login = p => post('checklogin', p); //登录接口
-const HomePage = p => post('HomePage',p)
-const Project = p => post('Project',p)
-const Alarm = p => post('Alarm',p)
-const System = p => post('System', p)
-const Device = p => post('Device',p)
-const Orders = p => post('Orders',p)
 export{
-    Login,
-    HomePage,
-    Project,
-    Alarm,
-    System,
-    Device,
-    Orders
+    Login
 }

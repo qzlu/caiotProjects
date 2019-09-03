@@ -8,11 +8,15 @@
                 <el-form-item label="角色简称" prop="FSimpleName" >
                     <el-input v-model="addData.FSimpleName"></el-input>
                 </el-form-item>
+                <el-form-item label="角色编码" prop="FOtherRoleName" >
+                    <el-input v-model="addData.FOtherRoleName"></el-input>
+                </el-form-item>
                 <el-form-item label="角色类型" prop="FType" >
                     <el-select v-model="addData.FType"   placeholder="请选择角色类型">
-                      <el-option  label="中物管理员" :value="1"></el-option>
+<!--                       <el-option  label="中物管理员" :value="1"></el-option>
                       <el-option  label="集团管理员" :value="2"></el-option>
-                      <el-option  label="项目管理员" :value="3"></el-option>
+                      <el-option  label="项目管理员" :value="3"></el-option> -->
+                      <el-option v-for="(item,i) in userType" :key="i" :value="item.id" :label="item.name"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -24,6 +28,7 @@
         <ul class="operation clearfix">
             <li class="l" @click="beforeAdd"><el-button type='primary'><i class="el-icon-plus"></i>新增</el-button></li>
             <li class="l" ><el-button type='primary'><i class="iconfont icon-Export"></i>导出</el-button></li>
+            <li class="l" @click="importRole()" ><el-button type='primary'><i class="el-icon-download"></i>导入角色</el-button></li>
             <li class="r">
                 <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
@@ -112,6 +117,7 @@
 import table from '@/xiaoFangCloud/mixins/table.js'
 import {System} from '@/xiaoFangCloud/request/api.js';
 import {treeTransfer} from '@/components/index.js'
+const userType = ['',{id:1,name:'运营管理'},{id:2, name:'集团管理'},{id:3,name:'项目管理'},{id:4,name:'项目现场运维'}]
 export default {
     mixins:[table],
     data(){
@@ -131,6 +137,10 @@ export default {
                     label: '角色简称'
                 },
                 {
+                    prop: 'FOtherRoleName',
+                    label: '角色编码'
+                },
+                {
                     prop: 'CreatorBy',
                     label: '创建人'
                 },
@@ -145,7 +155,8 @@ export default {
                 FName:'',
                 FSimpleName:'',
                 FType:'',
-                FDescription:''
+                FDescription:'',
+                FOtherRoleName:''
             },
             //新增角色数据
             addData:{
@@ -153,7 +164,8 @@ export default {
                 FName:'',
                 FSimpleName:'',
                 FType:'',
-                FDescription:''
+                FDescription:'',
+                FOtherRoleName:''
             },
             show1:false,
             tabIndex:1,
@@ -169,7 +181,8 @@ export default {
             },
             defaultCheckProject: [], //已有权限的项目
             role:null,
-            projectList:[]
+            projectList:[],
+            userType:userType.slice(sessionStorage.getItem('FUserType')),
         }
     },
     components:{ 
@@ -424,6 +437,19 @@ export default {
             })
             return arr
         },
+        /**
+         * 导入角色
+         */
+        importRole(){
+            System({
+                FAction:'ImportXHRoles'
+            })
+            .then((data) => {
+                this.queryData()
+            }).catch((err) => {
+                
+            });
+        }
     }
 }
 </script>

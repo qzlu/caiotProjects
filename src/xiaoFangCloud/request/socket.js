@@ -40,7 +40,6 @@ function sendSock(agentData,callback){
             FVersion:'1.0.0'
         },agentData)
     }
-    console.log(JSON.stringify(data));
     if (websock.readyState === websock.OPEN) {
         //若是ws开启状态
         websocketsend(data)

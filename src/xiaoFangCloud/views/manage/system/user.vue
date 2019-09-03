@@ -8,6 +8,9 @@
                 <el-form-item label="账号" prop="FUserName" :rules="[{ required: true, message: '请输入账号'}]">
                     <el-input v-model="addData.FUserName"></el-input>
                 </el-form-item>
+                <el-form-item label="第三方账号" prop="FOtherAccount">
+                    <el-input v-model="addData.FOtherAccount"></el-input>
+                </el-form-item>
                 <el-form-item label="电话号码" prop="FTelephone" :rules="FTelephoneRule">
                     <el-input v-model="addData.FTelephone"></el-input>
                 </el-form-item>
@@ -24,10 +27,11 @@
                 </el-form-item> -->
                 <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FUserType"   placeholder="请选择角色">
-                    <el-option key="1" label="运营管理" :value="1"></el-option>
+<!--                     <el-option key="1" label="运营管理" :value="1"></el-option>
                     <el-option key="2" label="集团管理" :value="2"></el-option>
                     <el-option key="3" label="项目管理" :value="3"></el-option>
-                    <el-option key="4" label="项目现场运维" :value="4"></el-option>
+                    <el-option key="4" label="项目现场运维" :value="4"></el-option> -->
+                    <el-option v-for="(item,i) in userType" :key="i" :value="item.id" :label="item.name"></el-option>
                   </el-select>
                 </el-form-item>
             </el-form>
@@ -81,6 +85,7 @@
 <script>
 import table from '@/xiaoFangCloud/mixins/table.js'
 import {System} from '@/xiaoFangCloud/request/api.js';
+const userType = ['',{id:1,name:'运营管理'},{id:2, name:'集团管理'},{id:3,name:'项目管理'},{id:4,name:'项目现场运维'}]
 export default {
     mixins:[table],
     data(){
@@ -113,12 +118,11 @@ export default {
                     prop: 'FSimpleName',
                     label: '所属角色'
                 },
- /*                {
-                    prop: 'ProjectName',
-                    label: '所属项目',
-                    width:400
-                },
                 {
+                    prop: 'FOtherAccount',
+                    label: '第三方账号',
+                },
+/*                 {
                     prop: 'FCreateUser',
                     label: '创建人',
                 }, */
@@ -133,6 +137,7 @@ export default {
                 } */
             ],
             roleList:[],
+            userType:userType.slice(sessionStorage.getItem('FUserType')),
             defaultData:{
                 FUserName:'',
                 FUserNickname:'',
@@ -146,7 +151,8 @@ export default {
                 FIsOwners:0,
                 FRoleGUID:'',
                 FGUID:'00000000-0000-0000-0000-000000000000',
-                FDescribe:''
+                FDescribe:'',
+                FOtherAccount:''
             },
             addData:{
                 FUserName:'',
@@ -161,7 +167,8 @@ export default {
                 FIsOwners:0,
                 FRoleGUID:'',
                 FGUID:'00000000-0000-0000-0000-000000000000',
-                FDescribe:''
+                FDescribe:'',
+                FOtherAccount:''
             },
             FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
         }

@@ -23,7 +23,15 @@ import socketio from 'socket.io-client' */
 /* Vue.use(VueSocketio, socketio('http://cazsyj.com/'), store); */
 const title = ['', '数字消防', '数字电梯', '数字充电桩', '数字有限空间']
 router.beforeEach((to, from, next) => {
-  let token = sessionStorage.getItem('FToken')||window.location.search
+  let {token, projectID}= to.query
+  if(token){
+    sessionStorage.setItem('FToken',token)
+    sessionStorage.setItem('inIframe',1)
+  }
+  if(projectID){
+      sessionStorage.setItem('projectID', projectID)
+  }
+  token = token || sessionStorage.getItem('FToken')
   if(to.path.match(/index/ig)){
     document.title = title[to.params.formID]
   }else{
@@ -36,8 +44,6 @@ router.beforeEach((to, from, next) => {
   }else{
     next()
   }
-  next()
-  
 })
 new Vue({
   router,

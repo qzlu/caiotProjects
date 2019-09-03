@@ -17,6 +17,7 @@ export default new Router({
             children:[
                 {
                     path:'/',
+                    name:'block',
                     component:() => import('@/xiaoFangCloud/views/shuziYy/index.vue'),//数字应急页面
                     meta:{
                         title:'数字应急云平台'
@@ -24,6 +25,7 @@ export default new Router({
                 },
                 {
                     path:'index/:formID',
+                    name:'system',
                     component:() => import('@/xiaoFangCloud/views/xiaofang/index.vue'), //数字消防页面
                     meta:{
                         title:'数字消防'
