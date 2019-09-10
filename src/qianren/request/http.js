@@ -5,8 +5,8 @@ import router from '../router'
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
     /* axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/'; */
-    axios.defaults.baseURL = 'http://172.172.172.80:8088/'
-    /* axios.defaults.baseURL = 'http://47.107.224.8:8080/' */
+    /* axios.defaults.baseURL = 'http://172.172.172.80:8088/' */
+    axios.defaults.baseURL = 'http://47.107.224.8:8080/'
     
 } 
 else if (process.env.NODE_ENV == 'debug') {    
@@ -29,7 +29,7 @@ axios.interceptors.request.use(function (config) {
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if (response.data.Result===200||response.data.Result===201){            
+    if (response.data.Result===200||response.data.Result===201||response.status === 200){            
         return Promise.resolve(response);        
     } else {  
         return Promise.reject(response);        
@@ -68,10 +68,19 @@ export function post(url, params) {
         }
         axios.post(url,Object.assign(obj,params))
         .then(res => {
+           if(res.data.Result===200||res.data.Result===201){
             resolve(res.data);
+           }else{
+            messageErr(res.data?res.data.Result:100,res.data?res.data.Message:res,router)
+           }
         })
         .catch(err =>{
-            messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
+            console.log(err)
+            if(err.message.includes('timeout')){
+                /* messageErr(105,'连接超时，请勿频繁操作',router) */
+            }else{
+                messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
+            }
             reject(err.data?err.data:err)
         })
     });

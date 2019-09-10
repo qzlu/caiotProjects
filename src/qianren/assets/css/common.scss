@@ -1,0 +1,20 @@
+.zhiwei-table{
+    position: relative;
+    width: 100%;
+    .role-operation{
+        .iconfont{
+            font-size: 24px;
+        }
+    }
+}
+.zhiwei-table::before{
+    display: block;
+    position: absolute;
+    width: calc(100% + 20px);
+    height: 80px;
+    left: -10px;
+    content: '';
+    border:1px solid rgba(47,169,213,1);
+    border-radius:10px;
+    background:#05325D;
+}

@@ -445,9 +445,18 @@ export default {
                 FAction:'ImportXHRoles'
             })
             .then((data) => {
-                this.queryData()
+                if(data.FObject){
+                    this.$message({
+                      type: 'success',
+                      message: '导入成功!'
+                    });
+                    this.queryData()
+                }
             }).catch((err) => {
-                
+                this.$message({
+                  type: 'error',
+                  message: '导入失败!'
+                });
             });
         }
     }

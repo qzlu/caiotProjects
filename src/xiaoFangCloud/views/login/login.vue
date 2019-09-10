@@ -70,6 +70,7 @@ export default {
                     sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
                     sessionStorage.setItem('FUserType',data.FObject.FUserType)
                     sessionStorage.setItem('TRoleType',data.FObject.TRoleType)
+                    sessionStorage.setItem('FBlocName',data.FObject.FBlocName)
                     this.$store.state.projectList = data.FObject.Project
                     this.$store.state.token = data.FObject.FToken
                     if(this.loginState){

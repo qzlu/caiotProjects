@@ -3,7 +3,7 @@
       <el-aside width="200px">
         <div class="app-logo">
             <router-link to="/">
-                <img src="../../../../assets/image/shuziYy/logo.png" alt="">
+                <img src="../../../../assets/image/shuziYy/logo_xf.png" alt="">
             </router-link>
         </div>
         <div class="project-list">

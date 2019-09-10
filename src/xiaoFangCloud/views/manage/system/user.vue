@@ -25,12 +25,8 @@
                     <el-option  label="女" :value="0"></el-option>
                   </el-select>
                 </el-form-item> -->
-                <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item v-if="!type" label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FUserType"   placeholder="请选择角色">
-<!--                     <el-option key="1" label="运营管理" :value="1"></el-option>
-                    <el-option key="2" label="集团管理" :value="2"></el-option>
-                    <el-option key="3" label="项目管理" :value="3"></el-option>
-                    <el-option key="4" label="项目现场运维" :value="4"></el-option> -->
                     <el-option v-for="(item,i) in userType" :key="i" :value="item.id" :label="item.name"></el-option>
                   </el-select>
                 </el-form-item>
@@ -141,7 +137,7 @@ export default {
             defaultData:{
                 FUserName:'',
                 FUserNickname:'',
-                FUserType:0,
+                FUserType:4,
                 FContacts:'',
                 FTelephone:'',
                 FEMailAddress:'',
@@ -157,7 +153,7 @@ export default {
             addData:{
                 FUserName:'',
                 FUserNickname:'',
-                FUserType:0,
+                FUserType:4,
                 FContacts:'',
                 FTelephone:'',
                 FEMailAddress:'',

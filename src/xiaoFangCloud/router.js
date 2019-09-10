@@ -21,6 +21,7 @@ export default new Router({
                 },
                 {
                     path:'index/:formID',
+                    name:'system',
                     component:() => import('./views/xiaofang/index.vue'), //数字消防页面
                     meta:{
                         title:'数字消防'

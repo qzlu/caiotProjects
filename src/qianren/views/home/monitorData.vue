@@ -38,52 +38,65 @@
 </template>
 <script>
 const OrderState = ['','待完成', '已完成', '待接单', '待派单', '已逾期']
+import formatDate from '../../../utils/formatDate';
 export default {
     data(){
         return{
             alarmLabels:[
                 {
+                    prop: 'ProjectName',
+                    label: '项目名称',
+                    width: '20%'
+                },
+                {
                     prop: 'AlarmTime',
                     label: '告警时间',
-                    width: '25%'
+                    width: '20%',
+                    formatter:val => formatDate(val,'MM-DD HH:mm:ss')
                 },
                 {
                     prop: 'AlarmText',
                     label: '告警内容',
-                    width: '25%'
+                    width: '30%'
                 },
                 {
                     prop: 'AlarmData',
                     label: '当前值',
-                    width: '25%'
+                    width: '15%'
                 },
                 {
                     prop: 'OrderState',
                     label: '工单状态',
-                    width: '25%',
+                    width: '15%',
                     formatter:val => OrderState[val]
                 },
             ],
             orderLabels:[
                 {
+                    prop: 'ProjectName',
+                    label: '项目名称',
+                    width: '20%'
+                },
+                {
                     prop: 'OrderTypeName',
                     label: '工单类型',
-                    width: '25%'
+                    width: '15%'
                 },
                 {
                     prop: 'RunningOrderDateTime',
                     label: '计划时间',
-                    width: '25%'
+                    width: '20%',
+                    formatter:val => formatDate(val,'MM-DD HH:mm')
                 },
                 {
                     prop: 'OrderContent',
                     label: '工单内容',
-                    width: '25%'
+                    width: '30%'
                 },
                 {
                     prop: 'OrderState',
                     label: '工单状态',
-                    width: '25%',
+                    width: '15%',
                     formatter:val => OrderState[val]
                 },
             ],

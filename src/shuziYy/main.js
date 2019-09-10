@@ -17,11 +17,12 @@ Vue.prototype.$initWebSocket = initWebSocket
 import {System} from './request/api'
 const title = ['', '数字消防', '数字电梯', '数字充电桩', '数字有限空间']
 router.beforeEach(async (to, from, next) => {
-  let {token, FUserType,TRoleType}= to.query
+  let {token, FUserType,TRoleType,link}= to.query
   //url携带token登录
   if(token){
     sessionStorage.setItem('FToken',token)
     sessionStorage.setItem('otherLogin',1) //记录是通过token登录
+    sessionStorage.setItem('link',link+to.hash)
     await System({
       FAction:'QueryTokenInfo'
     })
@@ -62,7 +63,7 @@ router.beforeEach(async (to, from, next) => {
     //角色权限限制
     if(TRoleType == 2&&to.name == 'block'){
       next({path:'/index/1'})
-    }else if(TRoleType == 3&&(to.name == 'block'||to.name == 'system')){
+    }else if((TRoleType == 3||TRoleType == 4)&&(to.name == 'block'||to.name == 'system')){
       next({path:'/indexItem/1'})
     }else{
       next()

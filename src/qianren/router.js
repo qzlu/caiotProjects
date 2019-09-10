@@ -13,6 +13,54 @@ export default new Router({
         {
             path:'',
             component: Index,//集团首页
+        },
+        {
+            path:'/manage', //后台管理系统
+            component:() => import('./views/manage/layout/index'),
+            children:[
+                {
+                    path:'system', //系统管理
+                    component:() => import('./views/manage/system/index'),
+                    children:[
+                        {
+                            path:'organizational', //组织管理
+                            component: () => import('./views/manage/system/organizational/index'),
+                            children:[
+                                {
+                                    path:'', //行政架构
+                                    component: () => import('./views/manage/system/organizational/framework')
+
+                                },
+                                {
+                                    path:'group', //组织架构
+                                    component: () => import('./views/manage/system/organizational/group'),
+                                },
+                                {
+                                    path: 'projectInfo',
+                                    component: () => import('./views/manage/system/organizational/projectInfo')
+                                }
+                            ]
+                        },
+                        {
+                            path:'user',//用户管理
+                            component: () => import('./views/manage/system/user/index'),
+                            children:[
+                                {
+                                    path:'',
+                                    name:'用户信息',
+                                    component: () => import('./views/manage/system/user/userInfo')
+                                },
+                                {
+                                    path:'role',
+                                    name:'功能角色',
+                                    component: () => import('./views/manage/system/user/role')
+                                }
+                            ]
+
+                        }
+                    ]
+                }
+            ]
         }
     ]
 })

@@ -73,13 +73,13 @@ export default {
             return sessionStorage.getItem('FContacts')
         },
         projectName(){
-            let name
+            let name,blockName = sessionStorage.getItem('FBlocName')||''
             if(this.$route.path === '/'){
-                name = '中物互联数字应急云平台'
+                name = blockName +'数字应急云平台'
             }else if(this.$route.params.formID&&(this.$route.path.match(/indexItem/)||this.$route.path.match(/deviceDetaile/))){
                 name = sessionStorage.getItem('projectName') + this.formList[this.$route.params.formID]
             }else if(this.$route.params.formID){
-                name = '中物互联' + this.formList[this.$route.params.formID]
+                name = blockName + this.formList[this.$route.params.formID]
             }
             return  name
         },
@@ -150,12 +150,13 @@ export default {
         },
         routerBack(){
             let otherLogin = sessionStorage.getItem('otherLogin'),
-            TRoleType = sessionStorage.getItem('TRoleType')
+            TRoleType = sessionStorage.getItem('TRoleType'),
+            link = sessionStorage.getItem('link')
             if(otherLogin == 1){
                 if(TRoleType == 2&&this.$route.name == 'system'){
-                    location.href = 'https://xymind.net:3000/#/monit/equip/fireFightingEquipment'
+                    location.href = link
                 }else if(TRoleType == 3&&this.$route.name == 'indexItem'){
-                    location.href = 'https://xymind.net:3000/#/monit/equip/fireFightingEquipment'
+                    location.href = link
                 }else{
                     window.history.back()
                 }

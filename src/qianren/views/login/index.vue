@@ -95,6 +95,8 @@ export default {
           .then(data => {
             sessionStorage.setItem("FToken", data.FObject.FTokenID);
             sessionStorage.setItem("FContacts", data.FObject.FContacts);
+            sessionStorage.setItem("FUserType", data.FObject.FUserType)
+            sessionStorage.setItem("FGroupName",data.FObject.FGroupName)
             sessionStorage.setItem(
               "projectList",
               JSON.stringify(data.FObject.Project)

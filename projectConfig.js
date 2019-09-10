@@ -15,7 +15,8 @@ const config = {
     },
     /**千仞集团页面 */
     'qianren':{
-        entry:'./src/qianren/'
+        entry:'./src/qianren/',
+        /* baseUrl:'/qianren/' */
     },
     /**智维 */
     'zhiwei':{

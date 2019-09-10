@@ -4,12 +4,17 @@
       <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
         <i class="icon el-icon-arrow-left"></i>返回
       </el-button>
-      <span class="title">{{projectName}}</span>
+      <span class="title">{{projectName}}智服云平台</span>
       <ul class="clearfix">
         <li class="l icon" v-if="$route.path !=='/'">
           <router-link :to="`/manage`" class="icon-item">
             <i class="iconfont icon-zs-backstage"></i>
           </router-link>
+        </li>
+        <li class="l icon">
+            <router-link :to="`/manage`"  class="icon-item">
+                <i class="iconfont icon-zs-backstage"></i>
+            </router-link>
         </li>
         <li class="l icon" @click="switchAudio">
           <i :class="['iconfont', {'icon-ZS-news':isOpen == 1,'icon-Soundoff':isOpen == 0}]"></i>
@@ -29,8 +34,8 @@
         <!-- <set-password :show.sync='show' @confirm="changePassword"></set-password> -->
       </ul>
       <ul class="menu">
-        <li :class="['menu-item',{'active':activeIndex ==0}]" @click="changeRoute(0)">综合态势</li>
-        <li :class="['menu-item',{'active':activeIndex ==1}]" @click="changeRoute(1)">系统态势</li>
+        <li :class="['menu-item',{'active':activeIndex ==0}]" @click="changeRoute(0)">集团态势</li>
+        <li :class="['menu-item',{'active':activeIndex ==1}]" @click="changeRoute(1)">系统总览</li>
         <li :class="['menu-item',{'active':activeIndex ==2}]" @click="changeRoute(2)">综合排名</li>
         <li id="tree-project" class="menu-item" >
             <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
@@ -49,13 +54,14 @@
                            :data="treeData"
                            :props="treeProp"
                            default-expand-all
-                           @node-click="linkTo"
+                           @node-click="slectBlock"
+                           :expand-on-click-node="false"
                            :filter-node-method="filterNode"
                         >
                           <template v-slot="{node,data}">
                             <div>
-                              <span v-if="data.FNodeType == 1">{{data.FORGName}}</span>
-                              <a v-if="data.FNodeType == 2" :href="`https://www.szqianren.com/#/monitoring/systemBrowse?token=${token}&projectID=${data.FSubGUID}&showMenu=2`" target="_blank">{{data.FORGName}}</a>
+                              <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span>
+                              <a v-if="data.FNodeType == 2" :href="`https://www.szqianren.com/#/monitoring/systemBrowse?token=${token}&projectID=${data.ProjectID}&showMenu=2`" target="_blank">{{data.FSimpleName}}</a>
                             </div>
                           </template>
                         </el-tree>
@@ -79,10 +85,14 @@
                 设备态势
                 <i class="iconfont icon-Up"></i>
               </h4>
+              <div class="border">
+              </div>
+              <div class="icon">
+              </div>
               <div class="pie-chart">
                 <pie-chart
                   :data="deviceCount"
-                  :color="['#00D294','#747474','#F19E40','#2A91FC', '#F1E240']"
+                  :color='["#03cd82","#b2b2b2","#Fe0000","#fe9a00", "#0eaff8"]'
                   :setting="{center:['98','50%']}"
                 ></pie-chart>
                 <div class="border-dashed">
@@ -123,24 +133,28 @@
                 能耗态势
                 <i class="iconfont icon-Up"></i>
               </h4>
+              <div class="border">
+              </div>
+              <div class="icon">
+              </div>
               <ul class="item-list">
                 <li>
                   <p class="label">计划电耗</p>
                   <p
                     class="value"
-                  >{{energyCount.PlanEnergy>10000?`${(energyCount.PlanEnergy/10000).toFixed(1)}万`:energyCount.PlanEnergy||'--'}}</p>
+                  >{{count.PlanElectrics>10000?`${(count.PlanElectrics/10000).toFixed(1)}万`:count.PlanElectrics||'--'}}</p>
                 </li>
                 <li>
                   <p class="label">本月电耗</p>
                   <p
                     class="value"
-                  >{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}万`:energyCount.CurEnergy||'--'}}</p>
+                  >{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
                 </li>
                 <li>
                   <p class="label">上月电耗</p>
                   <p
                     class="value"
-                  >{{energyCount.PriorEnergy>10000?`${(energyCount.PriorEnergy/10000).toFixed(1)}万`:energyCount.PriorEnergy||'--'}}</p>
+                  >{{count.LastMonthElectric>10000?`${(count.LastMonthElectric/10000).toFixed(1)}万`:count.LastMonthElectric||'--'}}</p>
                 </li>
               </ul>
               <div class="chart">
@@ -150,18 +164,25 @@
           </ul>
           <div class="side-content" v-if="activeIndex ==1">   
             <ul class="list" >
-                <li :class="{alarm:item.FState == 2,unnormal:item.FState == 1}" v-for="(item,i) in systemList[0]||[]" :key="i">
+                <li :class="{alarm:item.FState>0}" v-for="(item,i) in systemList[0]||[]" :key="i">
+                    <a v-if="item.FUrl" :href="item.FUrl" target="_blank">
+                    </a>
                     <h4>
                        <i :class="['iconfont',item.IconName]"></i>
                        <span>{{item.SystemParamName}}</span>
                        <i class="iconfont icon-Up"></i>
                         <p class="r">
                             <i class="iconfont icon-Equipment"></i>
-                            <span :class="{err:item.AlarmCount>0}">{{item.AlarmCount}}</span>/{{item.DeviceCount}}
+                            <span :class="{red:item.AlarmCount>0}">{{item.AlarmCount}}</span> / {{item.DeviceCount}}
                         </p>
                     </h4>
+                    <div class="border">
+                    </div>
+                    <div class="icon">
+                    </div>
                     <div class="list-content">
-                        <div class="statu">
+                        <div :class="['statu1',{alarm:item.FState>0}]">
+                          {{item.FState>0?'告警':'正常'}}
                         </div>
                         <ul class="param">
                             <li v-for="(obj,j) in item.DeviceTypeInfo.slice(0,4)" :key="j">
@@ -193,6 +214,10 @@
                     </span>TOP10
                   </p>
                 </h4>
+                <div class="border">
+                </div>
+                <div class="icon">
+                </div>
                 <div class="top5">
                     <ul>
                         <li>
@@ -229,6 +254,10 @@
                     </span>TOP10
                   </p>
                 </h4>
+                <div class="border">
+                </div>
+                <div class="icon">
+                </div>
                 <div class="top5 energy-rate">
                     <ul>
                         <li>
@@ -266,10 +295,14 @@
                 告警态势
                 <i class="iconfont icon-Up"></i>
               </h4>
+              <div class="border">
+              </div>
+              <div class="icon">
+              </div>
               <div class="pie-chart">
                 <pie-chart
                   :series="alarmCount"
-                  :color="['#00D294','#747474','#89192E','#F19E40']"
+                  :color='["#03cd82","#b2b2b2","#fe0000","#fde801"]'
                   :setting="{center:['98','50%']}"
                 ></pie-chart>
                 <div class="border-dashed">
@@ -311,6 +344,10 @@
                 工单态势
                 <i class="iconfont icon-Up"></i>
               </h4>
+              <div class="border">
+              </div>
+              <div class="icon">
+              </div>
               <ul class="item-list">
                 <li>
                   <p class="label">今日工单</p>
@@ -332,18 +369,25 @@
           </ul>
           <div class="side-content" v-if="activeIndex ==1">   
             <ul class="list" >
-                <li :class="{alarm:item.FState == 2,unnormal:item.FState == 1}" v-for="(item,i) in systemList[1]||[]" :key="i">
+                <li :class="{alarm:item.FState>1}" v-for="(item,i) in systemList[1]||[]" :key="i">
+                    <a v-if="item.FUrl" :href="item.FUrl" target="_blank">
+                    </a>
                     <h4>
                        <i :class="['iconfont',item.IconName]"></i>
                        <span>{{item.SystemParamName}}</span>
                        <i class="iconfont icon-Up"></i>
                         <p class="r">
                             <i class="iconfont icon-Equipment"></i>
-                            <span :class="{err:item.AlarmCount>0}">{{item.AlarmCount}}</span>/{{item.DeviceCount}}
+                            <span :class="{red:item.AlarmCount>0}">{{item.AlarmCount}}</span> / {{item.DeviceCount}}
                         </p>
                     </h4>
+                    <div class="border">
+                    </div>
+                    <div class="icon">
+                    </div>
                     <div class="list-content">
-                        <div class="statu">
+                        <div :class="['statu1',{alarm:item.FState>0}]">
+                          {{item.FState>0?'告警':'正常'}}
                         </div>
                         <ul class="param">
                             <li v-for="(obj,j) in item.DeviceTypeInfo.slice(0,4)" :key="j">
@@ -363,7 +407,7 @@
           <ul class="side-content" v-if="activeIndex ==2">
               <li class="card">
                 <h4 class="title">
-                  <i class="icon-type iconfont icon-Equipment"></i>
+                  <i class="icon-type iconfont icon-SZXFY-Earlywarning"></i>
                   告警恢复率排名
                   <i class="iconfont icon-Up"></i>
                   <p class="r">
@@ -375,6 +419,10 @@
                     </span>TOP10
                   </p>
                 </h4>
+                <div class="border">
+                </div>
+                <div class="icon">
+                </div>
                 <div class="top5">
                     <ul>
                         <li>
@@ -412,6 +460,10 @@
                     </span>TOP10
                   </p>
                 </h4>
+                <div class="border">
+                </div>
+                <div class="icon">
+                </div>
                 <div class="top5 energy-rate">
                     <ul>
                         <li>
@@ -426,7 +478,7 @@
                     <ul class="list-body">
                         <li v-for="(item,i) in orderRate" :key="i">
                             <span class="index">{{i+1}}</span>
-                            <span class="device-type" :title="item.GroupName">{{item.GroupName}}</span>
+                            <span class="device-type" :title="item.GroupName">{{item.FORGName}}</span>
                             <div class="bar-out">
                               <span :class="item.NotRecoveryCount>0&&'red'">{{item.NotRecoveryCount}}</span> / {{item.RecoveryCount}}
                             </div>
@@ -482,11 +534,11 @@
                 </p>
                 <p>本月电耗</p>
               </div>
-              <p class="l">{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}万`:energyCount.CurEnergy||'--'}}</p>
+              <p class="l">{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
             </li>
           </ul>
           <div id="map" style="100%;height:600px">
-            <echarts-map @ready1="ready1" @change="queryData" @click-area="areaClick"></echarts-map>
+            <echarts-map ref="map" @ready1="ready1" @change="queryData" @click-area="areaClick" :block="currentBlock"></echarts-map>
             <div style="height:310px">
                 <monitorData :alarmData='alarmData' :orderData='orderData'></monitorData>
             </div>
@@ -505,11 +557,13 @@ import("@/assets/css/index.scss");
 export default {
   data() {
     return {
-      user: "caiot", //用户名
-      projectName: "中物互联运营中心",
+      user: sessionStorage.getItem("FContacts"), //用户名
+      projectName: sessionStorage.getItem("FGroupName")||'中物运营',
       token:sessionStorage.getItem('FToken'),
       isOpen: 1,
-      guid:{IDStr:''}, //查询的IDStr
+      guid:{IDStr:0}, //查询的IDStr
+      currentBlock:{},
+      userType:sessionStorage.getItem('FUserType'),
       activeIndex:sessionStorage.getItem('activeIndex')||0,
       deviceCount: {
         colums: ["运行", "停止", "告警", "维修", "保养"],
@@ -591,7 +645,7 @@ export default {
       showProjectList:false, //项目导航下拉
       treeProp:{
           children:'ListData',
-          label:'FORGName'
+          label:'FSimpleName'
       },
       filterText:'',
       intactRateTop10:[], //综合排名设备完好率排名
@@ -602,6 +656,7 @@ export default {
       sortType3:0, //能耗排名排序方式
       sortType4:0, //告警恢复率排序方式
       sortType5:0, //工单数量排名排序方式
+      timer:null
     };
   },
   components: {
@@ -628,6 +683,10 @@ export default {
         }
       })
     })
+  },
+  beforeDestroy(){
+    clearTimeout(this.timer)
+    this.timer = null
   },
   methods: {
     /**
@@ -680,39 +739,42 @@ export default {
       }
     },
     ready1(level) {
-      this.activeLevel = level;
-      this.guid.IDStr = level.TORGNodeGuid
+      this.queryProject()
       this.queryData()
+      this.queryBlocEnergyByMonth();
+      this.queryBlocQueryEnergyByMonth()
     },
     /**
      * 点击地图上的区域时
+     * @param {String} FAreaCode 区域，城市，编码
      */
-    areaClick(data){
-        this.guid.IDStr = data.id
+    areaClick(FAreaCode){
+        this.guid.IDStr = FAreaCode
         this.queryData()
+        this.queryBlocEnergyByMonth();
+        this.queryBlocQueryEnergyByMonth()
     },
-    queryData(level){
-      if(level){
-        this.activeLevel = level
-        this.guid.IDStr = level.TORGNodeGuid
-      }
+    queryData(){
+      clearTimeout(this.timer)
+      this.timer = null
       this.queryDeviceTypeRanking();
       this.queryBlocAlarmRanking();
       this.queryBlocCompleteOrder();
       this.queryUSituationStatistics()
       this.queryBlocAlarmRealData()
       this.queryBlocPageUOrdersByDate()
-      this.queryProject()
-      this.queryBlocEnergyByMonth();
       if(this.activeIndex == 1){
         this.queryBlocSystemAlarmByCount()
       }
       if(this.activeIndex == 2){
         this.queryBlocQueryDeviceRanking()
         this.queryBlocQueryAlarmRanking()
-        this.queryBlocQueryEnergyByMonth()
         this.queryBlocQueryOrderByCount()
       }
+      /* console.log(this.timer,new Date(),'测试'); */
+      this.timer = setTimeout(() => {
+        this.queryData()
+      },1000*10)
     },
     /**
      * 综合态势（设备类型完好率 top 5）
@@ -720,7 +782,7 @@ export default {
     queryDeviceTypeRanking() {
       this.$post("QueryBlocQueryDeviceTypeRanking", {
         Sort: this.sortType ? "asc" : "desc",
-        BlocID: 1,
+        FORGGroupGUID: this.currentBlock.FGUID||'',
         ...this.guid
       })
         .then(result => {
@@ -734,6 +796,7 @@ export default {
     queryBlocAlarmRanking() {
       this.$post("/QueryBlocAlarmRanking", {
         Sort: this.sortType1 ? "asc" : "desc",
+        FORGGroupGUID: this.currentBlock.FGUID||'',
         ...this.guid
       })
         .then(result => {
@@ -746,34 +809,35 @@ export default {
      */
     queryBlocEnergyByMonth() {
       this.$post("/QueryBlocEnergyByMonth", {
+        FORGGroupGUID: this.currentBlock.FGUID||'',
         ...this.guid
       })
         .then(result => {
           this.energyCount = result.FObject || {};
-          let columns = result.FObject.Data.map(item => item.DeviceItemName);
-          let rows = [
-            {
-              name: "上月",
-              type: "bar",
-              barWidth: 10,
-              data: result.FObject.Data.map(item => item.PriorEnergy)
-            },
-            {
-              name: "本月",
-              type: "bar",
-              barWidth: 10,
-              data: result.FObject.Data.map(item => item.CurEnergy)
+            let columns = result.FObject.Data ? result.FObject.Data.map(item => item.DeviceItemName):[];
+            let rows = [
+              {
+                name: "上月",
+                type: "bar",
+                barWidth: 10,
+                data: result.FObject.Data ? result.FObject.Data.map(item => item.PriorEnergy):[]
+              },
+              {
+                name: "本月",
+                type: "bar",
+                barWidth: 10,
+                data: result.FObject.Data ? result.FObject.Data.map(item => item.CurEnergy):[]
+              }
+            ];
+            this.energyChartData = {
+              title: "分项能耗（kwh）",
+              rows,
+              columns,
+              colorsArr: ["#2A91FC", "#18DE94"]
             }
-          ];
-          this.energyChartData = {
-            title: "分项能耗（kwh）",
-            rows,
-            columns,
-            colorsArr: ["#2A91FC", "#18DE94"]
-          };
         })
         .catch(err => {
-
+          console.log(err)
         });
     },
     /**
@@ -781,6 +845,7 @@ export default {
      */
     queryBlocCompleteOrder() {
       this.$post("/QueryBlocCompleteOrder", {
+        FORGGroupGUID: this.currentBlock.FGUID||'',
         ...this.guid
       })
         .then(result => {
@@ -814,6 +879,7 @@ export default {
      */
     queryUSituationStatistics() {
         this.$post('/QueryBlocUSituationStatistics',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
           ...this.guid
         })
         .then(result => {
@@ -889,9 +955,11 @@ export default {
      */
     queryBlocSystemAlarmByCount(){
         this.$post('/QueryBlocSystemAlarmByCount',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid
         })
         .then((result) => {
+          /* console.log(result); */
             this.systemList = []
             let data = result.FObject || []
             this.systemList.push(...[data.slice(0,4),data.slice(4)])
@@ -904,6 +972,7 @@ export default {
      */
     queryBlocAlarmRealData(){
         this.$post('/QueryBlocAlarmRealData',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid
         })
         .then((result) => {
@@ -917,27 +986,36 @@ export default {
      */
     queryBlocPageUOrdersByDate(){
         this.$post('/QueryBlocPageUOrdersByDate',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid,
             OrderState:-1,
             PageIndex:1,
             PageSize:1000
         })
         .then((result) => {
-            console.log(result)
             this.orderData = result.FObject||[]
         }).catch((err) => {
             
         });
     },
     /**
-     * 查询左边树形数据(220.组织架构--查询树状组织) 查询项目
+     * 查询左边树形数据(258.组织架构--查询树状集团项目)
      */
     queryProject(){
-        this.$post('/QueryTORGNodeTree',{
-            FNodeType:'2'
+        this.$post('/QueryTORGGroupProjectTree',{
+          FORGGroupGUID: '',
         })
         .then((result) => {
-            this.treeData = result.FObject||[]
+          this.treeData = result.FObject||[]
+          if(this.userType == 1){
+            this.treeData.unshift({
+              FGUID: "",
+              FGroupCode: "",
+              FGroupName: "中物运营",
+              FNodeType: 1,
+              FSimpleName: "中物运营",
+            })
+          }
         }).catch((err) => {
             
         });
@@ -951,8 +1029,9 @@ export default {
      */
     queryBlocQueryDeviceRanking(){
         this.$post('/QueryBlocQueryDeviceRanking',{
-            ...this.guid,
-            Sort: this.sortType2 ? "asc" : "desc",
+          FORGGroupGUID: this.currentBlock.FGUID||'',
+          ...this.guid,
+          Sort: this.sortType2 ? "asc" : "desc",
         })
         .then((result) => {
             this.intactRateTop10 = result.FObject||[]
@@ -965,6 +1044,7 @@ export default {
      */
     queryBlocQueryAlarmRanking(){
         this.$post('/QueryBlocQueryAlarmRanking',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid,
             Sort: this.sortType4 ? "asc" : "desc",
         })
@@ -979,6 +1059,7 @@ export default {
      */
     queryBlocQueryEnergyByMonth(){
         this.$post('/QueryBlocQueryEnergyByMonth',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid,
             Sort: this.sortType3 ? "asc" : "desc",
         })
@@ -993,6 +1074,7 @@ export default {
      */
     queryBlocQueryOrderByCount(){
         this.$post('/QueryBlocQueryOrderByCount',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
             ...this.guid,
             Sort: this.sortType5 ? "asc" : "desc",
         })
@@ -1003,10 +1085,16 @@ export default {
         });
     },
     /**
-     * 项目
+     * 选择集团
      */
-    linkTo(node){
-      console.log(node)
+    slectBlock(node){
+      if(node.FNodeType == 1){
+        this.currentBlock = node
+        this.queryData()
+        this.$refs.map.queryMapData(node.FGUID)
+        this.queryBlocEnergyByMonth();
+        this.queryBlocQueryEnergyByMonth()
+      }
     }
   }
 };
@@ -1088,14 +1176,37 @@ $url: "../../../assets/image/";
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        .border{
+            height: 1px;
+            margin: 9px 25px 0 13px;
+            background: #07A6FF;
+        }
+        .icon{
+            width: 100px;
+            height: 6px;
+            margin-left:13px;
+            position: relative;
+            background: #07A6FF;
+        }
+        .icon:after{
+            display: block;
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            right: -6px;
+            border: 3px solid transparent;
+            border-top-color: #07A6FF;
+            border-left-color: #07A6FF;
+            content: ""
+        }
         .card {
           width: 100%;
           height: 446px;
           background: url(#{$url}cloud/index/leftbar.png);
           background-size: 100% 100%;
           h4.title {
-            line-height: 60px;
-            padding: 0 37px 0 6px;
+            /* line-height: 40px; */
+            padding: 20px 37px 0 6px;
             text-align: left;
             font-size: 18px;
             font-weight: 400;
@@ -1112,7 +1223,7 @@ $url: "../../../assets/image/";
                 height: 18px;
                 line-height: 18px;
                 left: -20px;
-                top: 12px;
+                top: -10px;
                 cursor: pointer;
                 background: rgba(170, 29, 48, 1);
                 border-radius: 4px;
@@ -1166,6 +1277,9 @@ $url: "../../../assets/image/";
               display: flex;
               flex-direction: column;
               justify-content: center;
+              li{
+                line-height: 24px;
+              }
             }
           }
           .top5 {
@@ -1277,8 +1391,18 @@ $url: "../../../assets/image/";
             flex-direction: column;
             justify-content: space-between;
             >li{
+                position: relative;
                 height: 219px;
+                a{
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  color: #a5effc;
+                  position: absolute;
+                  z-index: 10;
+                }
                 h4{
+                    padding-top: 10px;
                     .iconfont.icon-Up{
                         display: inline-block;
                         transform: rotate(90deg);
@@ -1286,10 +1410,54 @@ $url: "../../../assets/image/";
                     }
                     p.r{
                         margin-right: 20px;
+                        .iconfont{
+                          font-size: 20px;
+                        }
                     }
                 }
                 .list-content{
                     height: 170px;
+                    display: flex;
+                    align-items: center;
+                    .statu1{
+                        width:72px;
+                        height:124px;
+                        line-height: 124px;
+                        border:1px solid rgba(1,150,7,1);
+                        border-radius:9px;
+                        box-shadow:  0 0 14px rgba(1,150,7,1);
+                        position: relative;
+                        left:14px;
+                        font-size: 28px;
+                        font-weight: 500;
+                        color: #02CD35;
+                    }
+                    .statu1::after{
+                        content: "";
+                        display: block;
+                        background-image: linear-gradient(44deg, rgba(0, 255, 51, 0) 42%, #00ff33 100%);
+                        width: 36px;
+                        height: 36px;
+                        position: absolute;
+                        top: 26px;
+                        left: 0;
+                        animation: radar-beam 3s infinite;
+                        animation-timing-function: linear;
+                        transform-origin: bottom right;
+                        border-radius: 100% 0 0 0;
+                    }
+                    .statu1.alarm{
+                        border:1px solid #fb0d0d;
+                        box-shadow:  0 0 14px #fb0d0d;
+                        color: #fb0d0d;
+                    }
+                    .statu1.alarm::after{
+                        background-image: linear-gradient(44deg, rgba($color: #fb0d0d,$alpha:0) 42%,rgba($color: #fb0d0d,$alpha:1));
+                    }
+                    @keyframes radar-beam {
+                        from{transform: rotate(0deg)}
+                        to{transform: rotate(360deg)}
+                    }
                     .param {
                         right: 38px;
                         li{

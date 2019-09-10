@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import Element from 'element-ui'
 Vue.use(Element)
+import {System} from './request/api'
 /**webSocket */
 /* import {sendSock} from '@/xiaofang/request/socket.js'
 Vue.prototype.socket = sendSock */
@@ -22,16 +23,39 @@ Vue.prototype.$initWebSocket = initWebSocket
 import socketio from 'socket.io-client' */
 /* Vue.use(VueSocketio, socketio('http://cazsyj.com/'), store); */
 const title = ['', '数字消防', '数字电梯', '数字充电桩', '数字有限空间']
-router.beforeEach((to, from, next) => {
-  let {token, projectID}= to.query
+router.beforeEach(async (to, from, next) => {
+  let {token, FUserType,TRoleType}= to.query
+  //url携带token登录
   if(token){
     sessionStorage.setItem('FToken',token)
-    sessionStorage.setItem('inIframe',1)
-  }
-  if(projectID){
-      sessionStorage.setItem('projectID', projectID)
+    sessionStorage.setItem('otherLogin',1) //记录是通过token登录
+    await System({
+      FAction:'QueryTokenInfo'
+    })
+    .then((data) => {
+      sessionStorage.setItem('FContacts',data.FObject.FContacts)
+      sessionStorage.setItem('projectList',JSON.stringify(data.FObject.Project))
+      sessionStorage.setItem('FUserType',FUserType)
+      sessionStorage.setItem('TRoleType',TRoleType)
+      store.state.projectList = data.FObject.Project
+      store.state.token = data.FObject.FToken
+      if(TRoleType == 1){
+        next({path:'/'})
+      }else if(TRoleType == 2){
+        next({path:'/index/1'})
+      }else{ 
+          let project = data.FObject.Project[0]
+          sessionStorage.setItem('projectID',project.ProjectID)
+          sessionStorage.setItem('projectName',project.ProjectName)
+          next({path:'/indexItem/1'})
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+    return
   }
   token = token || sessionStorage.getItem('FToken')
+  TRoleType = TRoleType || sessionStorage.getItem('TRoleType')
   if(to.path.match(/index/ig)){
     document.title = title[to.params.formID]
   }else{
@@ -42,7 +66,12 @@ router.beforeEach((to, from, next) => {
   if(to.name !== 'login'&&!token){
     next({name:'login'})
   }else{
-    next()
+    //角色权限限制
+    if(TRoleType > 2 &&(to.name == 'system')){
+      next({path:'/indexItem/1'})
+    }else{
+      next()
+    }
   }
 })
 new Vue({
