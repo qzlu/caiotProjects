@@ -18,9 +18,16 @@ const config = {
         entry:'./src/qianren/',
         /* baseUrl:'/qianren/' */
     },
+    'caiot':{
+        entry:'./src/caiot/',
+    },
     /**智维 */
     'zhiwei':{
         entry: './src/zhiwei/'
+    },
+    /** 第三屏 */
+    'disanping':{
+        entry: './src/disanping/'
     }
 }
 const configObj = config[projectName.name]

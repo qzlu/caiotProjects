@@ -92,7 +92,7 @@ const param = {
     PageSize:1000,
     SearchKey:''
 }
-import provinceList from '@/mapJson/provinceList.json'
+/* import provinceList from '@/mapJson/provinceList.json' */
 export default {
     data(){
         return{

@@ -120,8 +120,8 @@
     </div>
 </template>
 <script>
-import province from '@/mapJson/province.js'
-import theme from '@/mapJson/allCity.js'
+/* import province from '@/mapJson/province.js'
+import theme from '@/mapJson/allCity.js' */
 import echarts from 'echarts'
 const Map = {
 }

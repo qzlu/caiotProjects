@@ -1,1 +1,2382 @@
-["{\"name\":\"icon-Staircase\"}","{\"name\":\"icon-Lift\"}","{\"name\":\"icon-FirePump\"}","{\"name\":\"icon-Inundate\"}","{\"name\":\"icon-PressurizedPump\"}","{\"name\":\"icon-pool\"}","{\"name\":\"icon-SewagePump\"}","{\"name\":\"icon-Spray\"}","{\"name\":\"icon-WaterMeter\"}","{\"name\":\"icon-WaterPump\"}","{\"name\":\"icon-WetAlarmValve\"}","{\"name\":\"icon-Alternator\"}","{\"name\":\"icon-Condenser\"}","{\"name\":\"icon-Contact\"}","{\"name\":\"icon-DCScreen\"}","{\"name\":\"icon-HSwitchgear\"}","{\"name\":\"icon-Feeder\"}","{\"name\":\"icon-Switchgear\"}","{\"name\":\"icon-Transformer\"}","{\"name\":\"icon-Electricity\"}","{\"name\":\"icon-Incoming\"}","{\"name\":\"icon-co\"}","{\"name\":\"icon-illumination\"}","{\"name\":\"icon-co2\"}","{\"name\":\"icon-Noise\"}","{\"name\":\"icon-TemperatureHumidi\"}","{\"name\":\"icon-ntrude\"}","{\"name\":\"icon-Video\"}","{\"name\":\"icon-ElectricValve\"}","{\"name\":\"icon-SmokeSence\"}","{\"name\":\"icon-Park\"}","{\"name\":\"icon-EntranceGuard\"}","{\"name\":\"icon-Lamp\"}","{\"name\":\"icon-FireControl\"}","{\"name\":\"icon-Chiller\"}","{\"name\":\"icon-ColingPump\"}","{\"name\":\"icon-FreezingStation\"}","{\"name\":\"icon-FreezingPump\"}","{\"name\":\"icon-CoolingTower\"}","{\"name\":\"icon-Offline\"}","{\"name\":\"icon-Thunder\"}","{\"name\":\"icon-Alarm\"}","{\"name\":\"icon-IPAD\"}","{\"name\":\"icon-Groupplatform\"}","{\"name\":\"icon-Projectplatform\"}","{\"name\":\"icon-Bigscreen\"}","{\"name\":\"icon-PC\"}","{\"name\":\"icon-APP\"}","{\"name\":\"icon-Incident\"}","{\"name\":\"icon-IoOnLine\"}","{\"name\":\"icon-Maintain\"}","{\"name\":\"icon-Scrap\"}","{\"name\":\"icon-Distributionbox\"}","{\"name\":\"icon-Airquality\"}","{\"name\":\"icon-PM\"}","{\"name\":\"icon-Plash\"}","{\"name\":\"icon-Down\"}","{\"name\":\"icon-Itsmine\"}","{\"name\":\"icon-Home\"}","{\"name\":\"icon-Classification\"}","{\"name\":\"icon-News\"}","{\"name\":\"icon-Regional\"}","{\"name\":\"icon-Share\"}","{\"name\":\"icon-About\"}","{\"name\":\"icon-Setup\"}","{\"name\":\"icon-Godown\"}","{\"name\":\"icon-Goup\"}","{\"name\":\"icon-Refresh\"}","{\"name\":\"icon-Up\"}","{\"name\":\"icon-Task-\"}","{\"name\":\"icon-BusinessDistributio\"}","{\"name\":\"icon-ResidentialDistribu\"}","{\"name\":\"icon-FreezerRoom\"}","{\"name\":\"icon-ReadMeter\"}","{\"name\":\"icon-Pipeline\"}","{\"name\":\"icon-Numberofentry\"}","{\"name\":\"icon-CooperativeEnterpri\"}","{\"name\":\"icon-Equipment\"}","{\"name\":\"icon-Numberofwarning\"}","{\"name\":\"icon-Thetotalamount\"}","{\"name\":\"icon-Turnoverrate_huaban\"}","{\"name\":\"icon-Workingodd\"}","{\"name\":\"icon-Usage\"}","{\"name\":\"icon-Freeparking\"}","{\"name\":\"icon-Entryandexitvehic\"}","{\"name\":\"icon-Totalspace\"}","{\"name\":\"icon-Camera\"}","{\"name\":\"icon-Workorders\"}","{\"name\":\"icon-Service\"}","{\"name\":\"icon-FireAlarm\"}","{\"name\":\"icon-ElectricInstrument\"}","{\"name\":\"icon-PressureGage\"}","{\"name\":\"icon-Gateway\"}","{\"name\":\"icon-RadioStation\"}","{\"name\":\"icon-MainEngine\"}","{\"name\":\"icon-FaceRecognition\"}","{\"name\":\"icon-ContentGauge\"}","{\"name\":\"icon-Maintenance\"}","{\"name\":\"icon-Positioning\"}","{\"name\":\"icon-Newspaper\"}","{\"name\":\"icon-Export\"}","{\"name\":\"icon-Calendar\"}","{\"name\":\"icon-Inspectionreport\"}","{\"name\":\"icon-Oneclickinspection\"}","{\"name\":\"icon-examineandverify_hua\"}","{\"name\":\"icon-Automaticinspection\"}","{\"name\":\"icon-Fault\"}","{\"name\":\"icon-repair\"}","{\"name\":\"icon-vidicon\"}","{\"name\":\"icon-Wheat\"}","{\"name\":\"icon-Airconditioner\"}","{\"name\":\"icon-Roadgate\"}","{\"name\":\"icon-Cloudy\"}","{\"name\":\"icon-rainstorm\"}","{\"name\":\"icon-Sunny\"}","{\"name\":\"icon-Snow\"}","{\"name\":\"icon-Thundershower\"}","{\"name\":\"icon-Fog\"}","{\"name\":\"icon-Wind\"}","{\"name\":\"icon-Sandstorm\"}","{\"name\":\"icon-FogandHaze\"}","{\"name\":\"icon-Hightemperature\"}","{\"name\":\"icon-Rain\"}","{\"name\":\"icon-Rainandsnowmixed\"}","{\"name\":\"icon-Lowtemperature\"}","{\"name\":\"icon-Hurricane\"}","{\"name\":\"icon-Coldwatermainengi\"}","{\"name\":\"icon-Home1\"}","{\"name\":\"icon-mine\"}","{\"name\":\"icon-News1\"}","{\"name\":\"icon-Task\"}","{\"name\":\"icon-Flowmeter\"}","{\"name\":\"icon-Green\"}","{\"name\":\"icon-Safety\"}","{\"name\":\"icon-Efficient\"}","{\"name\":\"icon-Expand\"}","{\"name\":\"icon-Rightparentheses\"}","{\"name\":\"icon-Leftparentheses\"}","{\"name\":\"icon-Bluetooth\"}","{\"name\":\"icon-Keepwatch\"}","{\"name\":\"icon-EnvironmentalScienc\"}","{\"name\":\"icon-search\"}","{\"name\":\"icon-CH\"}","{\"name\":\"icon-NFC\"}","{\"name\":\"icon-QRcode\"}","{\"name\":\"icon-Box\"}","{\"name\":\"icon-gas\"}","{\"name\":\"icon-water\"}","{\"name\":\"icon-Electric\"}","{\"name\":\"icon-SewagePumpingHouse\"}","{\"name\":\"icon-FireCenter\"}","{\"name\":\"icon-DistributionRoom\"}","{\"name\":\"icon-Air-conditionedRoom\"}","{\"name\":\"icon-PumpRoom\"}","{\"name\":\"icon-Videosurveillance\"}","{\"name\":\"icon-Rooftop\"}","{\"name\":\"icon-Exit\"}","{\"name\":\"icon-Lock\"}","{\"name\":\"icon-Receivingorders\"}","{\"name\":\"icon-Favorites-Lines\"}","{\"name\":\"icon-Sweep\"}","{\"name\":\"icon-Favorites-Noodles\"}","{\"name\":\"icon-KnowledgeEncyclopedia\"}","{\"name\":\"icon-Focusonmonitoring\"}","{\"name\":\"icon-Calendar1\"}","{\"name\":\"icon-Escape\"}","{\"name\":\"icon-Game\"}","{\"name\":\"icon-Hiddentrouble\"}","{\"name\":\"icon-Help\"}","{\"name\":\"icon-Escape1\"}","{\"name\":\"icon-Hiddentrouble1\"}","{\"name\":\"icon-Knowledge\"}","{\"name\":\"icon-Information\"}","{\"name\":\"icon-Questions\"}","{\"name\":\"icon-Help1\"}","{\"name\":\"icon-Policy\"}","{\"name\":\"icon-Shares\"}","{\"name\":\"icon-Mydevice\"}","{\"name\":\"icon-Knowledge1\"}","{\"name\":\"icon-Switch\"}","{\"name\":\"icon-Fire\"}","{\"name\":\"icon-Fire1\"}","{\"name\":\"icon-Buy\"}","{\"name\":\"icon-Commissioning\"}","{\"name\":\"icon-Install\"}","{\"name\":\"icon-Lock1\"}","{\"name\":\"icon-User\"}","{\"name\":\"icon-Return\"}","{\"name\":\"icon-ZS-Equipmentassociated\"}","{\"name\":\"icon-ZS-Generatefloor\"}","{\"name\":\"icon-ZS-Generatehouse\"}","{\"name\":\"icon-ZS-Addmembers\"}","{\"name\":\"icon-ZS-Thestairs\"}","{\"name\":\"icon-ZS-Ownermanagement\"}","{\"name\":\"icon-ZS-Overallnumberofpeople\"}","{\"name\":\"icon-ZS-Thetotalnumberofbuildings\"}","{\"name\":\"icon-ZS-Thetotalnumberofunits\"}","{\"name\":\"icon-ZS-Countoffbymistake\"}","{\"name\":\"icon-ZS-Online\"}","{\"name\":\"icon-ZS-Off-lineequipment\"}","{\"name\":\"icon-Edit\"}","{\"name\":\"icon-Photo\"}","{\"name\":\"icon-Guardian\"}","{\"name\":\"icon-Family\"}","{\"name\":\"icon-Contacts\"}","{\"name\":\"icon-TrashBins\"}","{\"name\":\"icon-Timeout\"}","{\"name\":\"icon-ZS-Initialization\"}","{\"name\":\"icon-ZS-Limitsofauthority\"}","{\"name\":\"icon-ZS-Firemanagement\"}","{\"name\":\"icon-ZS-Projectmanagement\"}","{\"name\":\"icon-ZS-Systemmanagement\"}","{\"name\":\"icon-ZS-location\"}","{\"name\":\"icon-Timeout1\"}","{\"name\":\"icon-Play\"}","{\"name\":\"icon-ZS-Owner\"}","{\"name\":\"icon-ZS-themanonwatch\"}","{\"name\":\"icon-ZS-certifiedproperty\"}","{\"name\":\"icon-ZS-item\"}","{\"name\":\"icon-zs-backstage\"}","{\"name\":\"icon-ZS-bloc\"}","{\"name\":\"icon-ZS-headportrait\"}","{\"name\":\"icon-ZS-news\"}","{\"name\":\"icon-ZS-arrows\"}","{\"name\":\"icon-Positioning1\"}","{\"name\":\"icon-Powerdistributioncabinet\"}","{\"name\":\"icon-Electricalsystems\"}","{\"name\":\"icon-Firesystem\"}","{\"name\":\"icon-FireDoor\"}","{\"name\":\"icon-Monitoring\"}","{\"name\":\"icon-Notice\"}","{\"name\":\"icon-FirewaterSystem\"}","{\"name\":\"icon-Monitoring1\"}","{\"name\":\"icon-Fireescape\"}","{\"name\":\"icon-PipeNetwork\"}","{\"name\":\"icon-SZXFY-Operations\"}","{\"name\":\"icon-SZYJY-Timeout\"}","{\"name\":\"icon-SZYJY-over-temperature\"}","{\"name\":\"icon-SZYJY-Overcurrent\"}","{\"name\":\"icon-SZYJY-Electricleakage\"}","{\"name\":\"icon-SZXFY-Earlywarning\"}","{\"name\":\"icon-SZXFY-Monitor\"}","{\"name\":\"icon-SZXFY-basicinformation\"}","{\"name\":\"icon-SZXFY-date\"}","{\"name\":\"icon-SZXFY-Top\"}","{\"name\":\"icon-Over-streaming\"}","{\"name\":\"icon-Automatic\"}","{\"name\":\"icon-Manual\"}","{\"name\":\"icon-Over-temperature\"}","{\"name\":\"icon-State\"}","{\"name\":\"icon-Oil\"}","{\"name\":\"icon-SZYJY-Chargingpile\"}","{\"name\":\"icon-SZYJY--Overvoltage\"}","{\"name\":\"icon-Elevatorproblems\"}","{\"name\":\"icon-Takegoodcareoflift\"}","{\"name\":\"icon-Elevatormaintenance\"}","{\"name\":\"icon-SZYJY-CO\"}","{\"name\":\"icon-SZYJY-CH\"}","{\"name\":\"icon-SZYJY-HS\"}","{\"name\":\"icon-SZYJY-O2\"}","{\"name\":\"icon-SZYJY-Confinedspace\"}","{\"name\":\"icon-Limitedspace\"}","{\"name\":\"icon-ChargingPile\"}","{\"name\":\"icon-Outerring\"}","{\"name\":\"icon-Trappedinaladder\"}","{\"name\":\"icon-Taskmanagement\"}","{\"name\":\"icon-GeneralConfiguration\"}","{\"name\":\"icon-Alarmmanagement\"}","{\"name\":\"icon-Basement\"}","{\"name\":\"icon-Alarm1\"}","{\"name\":\"icon-Timeout2\"}","{\"name\":\"icon-OvercurrentAlarm\"}","{\"name\":\"icon-Over-temperature1\"}","{\"name\":\"icon-SZYJY-Basement\"}","{\"name\":\"icon-Soundoff\"}","{\"name\":\"icon-Freightelevator\"}","{\"name\":\"icon-Passengerlift\"}","{\"name\":\"icon-Fireladder\"}"]
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6164065",
+      "name": "Staircase",
+      "font_class": "Staircase",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "6164066",
+      "name": "Lift",
+      "font_class": "Lift",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "6164072",
+      "name": "FirePump",
+      "font_class": "FirePump",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "6164073",
+      "name": "Inundate",
+      "font_class": "Inundate",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "6164074",
+      "name": "PressurizedPump",
+      "font_class": "PressurizedPump",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "6164075",
+      "name": "pool",
+      "font_class": "pool",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "6164076",
+      "name": "SewagePump",
+      "font_class": "SewagePump",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "6164077",
+      "name": "Spray",
+      "font_class": "Spray",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "6164078",
+      "name": "WaterMeter",
+      "font_class": "WaterMeter",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "6164079",
+      "name": "WaterPump",
+      "font_class": "WaterPump",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "6164080",
+      "name": "WetAlarmValve",
+      "font_class": "WetAlarmValve",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "6164081",
+      "name": "Alternator",
+      "font_class": "Alternator",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "6164082",
+      "name": "Condenser",
+      "font_class": "Condenser",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "6164083",
+      "name": "Contact",
+      "font_class": "Contact",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "6164084",
+      "name": "DCScreen",
+      "font_class": "DCScreen",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "6164085",
+      "name": "HSwitchgear",
+      "font_class": "HSwitchgear",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "6164086",
+      "name": "Feeder",
+      "font_class": "Feeder",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "6164087",
+      "name": "Switchgear",
+      "font_class": "Switchgear",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "6164088",
+      "name": "Transformer",
+      "font_class": "Transformer",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "6164089",
+      "name": "Electricity",
+      "font_class": "Electricity",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "6164090",
+      "name": "Incoming",
+      "font_class": "Incoming",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "6164092",
+      "name": "co",
+      "font_class": "co",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "6164093",
+      "name": "illumination",
+      "font_class": "illumination",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "6164094",
+      "name": "co2",
+      "font_class": "co2",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "6164095",
+      "name": "Noise",
+      "font_class": "Noise",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "6164096",
+      "name": "TemperatureHumidi",
+      "font_class": "TemperatureHumidi",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "6164097",
+      "name": "intrude",
+      "font_class": "ntrude",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "6164098",
+      "name": "Video",
+      "font_class": "Video",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "6164099",
+      "name": "ElectricValve",
+      "font_class": "ElectricValve",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "6164100",
+      "name": "SmokeSence",
+      "font_class": "SmokeSence",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "6164101",
+      "name": "Park",
+      "font_class": "Park",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "6164102",
+      "name": "EntranceGuard",
+      "font_class": "EntranceGuard",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "6164103",
+      "name": "Lamp",
+      "font_class": "Lamp",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "6164104",
+      "name": "FireControl",
+      "font_class": "FireControl",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "6164106",
+      "name": "Chiller",
+      "font_class": "Chiller",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "6164107",
+      "name": "ColingPump",
+      "font_class": "ColingPump",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "6164108",
+      "name": "FreezingStation",
+      "font_class": "FreezingStation",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "6164109",
+      "name": "FreezingPump",
+      "font_class": "FreezingPump",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "6164110",
+      "name": "CoolingTower",
+      "font_class": "CoolingTower",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "6181599",
+      "name": "Offline",
+      "font_class": "Offline",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "6181600",
+      "name": "Thunder",
+      "font_class": "Thunder",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "6181644",
+      "name": "Alarm",
+      "font_class": "Alarm",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "6186285",
+      "name": "IPAD",
+      "font_class": "IPAD",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "6186286",
+      "name": "Group platform",
+      "font_class": "Groupplatform",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "6186288",
+      "name": "Project platform",
+      "font_class": "Projectplatform",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "6186338",
+      "name": "Big screen",
+      "font_class": "Bigscreen",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "6186381",
+      "name": "PC",
+      "font_class": "PC",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "6186399",
+      "name": "APP",
+      "font_class": "APP",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "6193412",
+      "name": "Incident",
+      "font_class": "Incident",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "6193414",
+      "name": "IoOnLine",
+      "font_class": "IoOnLine",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "6193415",
+      "name": "Maintain",
+      "font_class": "Maintain",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "6193416",
+      "name": "Scrap",
+      "font_class": "Scrap",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "6229867",
+      "name": "Distribution box",
+      "font_class": "Distributionbox",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "6229868",
+      "name": "Air quality",
+      "font_class": "Airquality",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "6229870",
+      "name": "PM",
+      "font_class": "PM",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "6229914",
+      "name": "Plash",
+      "font_class": "Plash",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "6300236",
+      "name": "Down",
+      "font_class": "Down",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "6300238",
+      "name": "It's mine",
+      "font_class": "Itsmine",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "6300239",
+      "name": "Home",
+      "font_class": "Home",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "6300240",
+      "name": "Classification",
+      "font_class": "Classification",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "6300242",
+      "name": "News",
+      "font_class": "News",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "6300243",
+      "name": "Regional",
+      "font_class": "Regional",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "6300244",
+      "name": "Share",
+      "font_class": "Share",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "6300476",
+      "name": "About",
+      "font_class": "About",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "6301086",
+      "name": "Set up",
+      "font_class": "Setup",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
+      "icon_id": "6301159",
+      "name": "Go down",
+      "font_class": "Godown",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "6301160",
+      "name": "Go up",
+      "font_class": "Goup",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "6301161",
+      "name": "Refresh",
+      "font_class": "Refresh",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "6301620",
+      "name": "Up",
+      "font_class": "Up",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "6301625",
+      "name": "Task-01",
+      "font_class": "Task-",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "6367142",
+      "name": "Business Distributio",
+      "font_class": "BusinessDistributio",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    },
+    {
+      "icon_id": "6367143",
+      "name": "Residential Distribu",
+      "font_class": "ResidentialDistribu",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "6367144",
+      "name": "Freezer Room",
+      "font_class": "FreezerRoom",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "6367216",
+      "name": "ReadMeter",
+      "font_class": "ReadMeter",
+      "unicode": "e6a4",
+      "unicode_decimal": 59044
+    },
+    {
+      "icon_id": "6496532",
+      "name": "Pipeline",
+      "font_class": "Pipeline",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "6532802",
+      "name": "Number of entry",
+      "font_class": "Numberofentry",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "6532803",
+      "name": "Cooperative Enterpri",
+      "font_class": "CooperativeEnterpri",
+      "unicode": "e6a7",
+      "unicode_decimal": 59047
+    },
+    {
+      "icon_id": "6532804",
+      "name": "Equipment",
+      "font_class": "Equipment",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    },
+    {
+      "icon_id": "6532805",
+      "name": "Number of warning",
+      "font_class": "Numberofwarning",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "6532806",
+      "name": "The total amount",
+      "font_class": "Thetotalamount",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
+      "icon_id": "6532807",
+      "name": "Turnover rate_画板 1",
+      "font_class": "Turnoverrate_huaban",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "6532809",
+      "name": "Working odd",
+      "font_class": "Workingodd",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "6532810",
+      "name": "Usage",
+      "font_class": "Usage",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "6532990",
+      "name": "Free parking",
+      "font_class": "Freeparking",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "6533318",
+      "name": "Entry and exit vehic",
+      "font_class": "Entryandexitvehic",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "6533444",
+      "name": "Total space",
+      "font_class": "Totalspace",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
+      "icon_id": "6537357",
+      "name": "Camera",
+      "font_class": "Camera",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "6537358",
+      "name": "Work orders",
+      "font_class": "Workorders",
+      "unicode": "e6b2",
+      "unicode_decimal": 59058
+    },
+    {
+      "icon_id": "6537359",
+      "name": "Service",
+      "font_class": "Service",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "6547482",
+      "name": "Fire Alarm",
+      "font_class": "FireAlarm",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
+      "icon_id": "6596323",
+      "name": "Electric Instrument",
+      "font_class": "ElectricInstrument",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "6596354",
+      "name": "Pressure Gage",
+      "font_class": "PressureGage",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "6596456",
+      "name": "Gateway",
+      "font_class": "Gateway",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "6596500",
+      "name": "Radio Station",
+      "font_class": "RadioStation",
+      "unicode": "e6b8",
+      "unicode_decimal": 59064
+    },
+    {
+      "icon_id": "6596518",
+      "name": "Main Engine",
+      "font_class": "MainEngine",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "6596552",
+      "name": "Face Recognition",
+      "font_class": "FaceRecognition",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "6597287",
+      "name": "Content Gauge",
+      "font_class": "ContentGauge",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "6757352",
+      "name": "Maintenance",
+      "font_class": "Maintenance",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "6757353",
+      "name": "Positioning",
+      "font_class": "Positioning",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "6757354",
+      "name": "Newspaper",
+      "font_class": "Newspaper",
+      "unicode": "e6be",
+      "unicode_decimal": 59070
+    },
+    {
+      "icon_id": "6820775",
+      "name": "Export",
+      "font_class": "Export",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "6820793",
+      "name": "Calendar",
+      "font_class": "Calendar",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "6820839",
+      "name": "Inspection report",
+      "font_class": "Inspectionreport",
+      "unicode": "e6c1",
+      "unicode_decimal": 59073
+    },
+    {
+      "icon_id": "6820874",
+      "name": "One click inspection",
+      "font_class": "Oneclickinspection",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    },
+    {
+      "icon_id": "6820933",
+      "name": "examine and verify",
+      "font_class": "examineandverify_hua",
+      "unicode": "e6c3",
+      "unicode_decimal": 59075
+    },
+    {
+      "icon_id": "6820971",
+      "name": "Automatic inspection",
+      "font_class": "Automaticinspection",
+      "unicode": "e6c4",
+      "unicode_decimal": 59076
+    },
+    {
+      "icon_id": "6822689",
+      "name": "Fault",
+      "font_class": "Fault",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    },
+    {
+      "icon_id": "6823167",
+      "name": "repair",
+      "font_class": "repair",
+      "unicode": "e6c6",
+      "unicode_decimal": 59078
+    },
+    {
+      "icon_id": "6960731",
+      "name": "vidicon",
+      "font_class": "vidicon",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "6960732",
+      "name": "Wheat",
+      "font_class": "Wheat",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "7114960",
+      "name": "Air conditioner",
+      "font_class": "Airconditioner",
+      "unicode": "e6c9",
+      "unicode_decimal": 59081
+    },
+    {
+      "icon_id": "7158002",
+      "name": "Road gate",
+      "font_class": "Roadgate",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
+      "icon_id": "7159136",
+      "name": "Cloudy",
+      "font_class": "Cloudy",
+      "unicode": "e6cb",
+      "unicode_decimal": 59083
+    },
+    {
+      "icon_id": "7159293",
+      "name": "rainstorm",
+      "font_class": "rainstorm",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "7159401",
+      "name": "Sunny",
+      "font_class": "Sunny",
+      "unicode": "e6cd",
+      "unicode_decimal": 59085
+    },
+    {
+      "icon_id": "7178457",
+      "name": "Snow",
+      "font_class": "Snow",
+      "unicode": "e6ce",
+      "unicode_decimal": 59086
+    },
+    {
+      "icon_id": "7178675",
+      "name": "Thundershower",
+      "font_class": "Thundershower",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "7178822",
+      "name": "Fog",
+      "font_class": "Fog",
+      "unicode": "e6d0",
+      "unicode_decimal": 59088
+    },
+    {
+      "icon_id": "7179338",
+      "name": "Wind",
+      "font_class": "Wind",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
+      "icon_id": "7179624",
+      "name": "Sand storm",
+      "font_class": "Sandstorm",
+      "unicode": "e6d2",
+      "unicode_decimal": 59090
+    },
+    {
+      "icon_id": "7190207",
+      "name": "Fog and Haze",
+      "font_class": "FogandHaze",
+      "unicode": "e6d3",
+      "unicode_decimal": 59091
+    },
+    {
+      "icon_id": "7190627",
+      "name": "High temperature",
+      "font_class": "Hightemperature",
+      "unicode": "e6d4",
+      "unicode_decimal": 59092
+    },
+    {
+      "icon_id": "7190928",
+      "name": "Rain",
+      "font_class": "Rain",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "7191549",
+      "name": "Rain and snow mixed",
+      "font_class": "Rainandsnowmixed",
+      "unicode": "e6d6",
+      "unicode_decimal": 59094
+    },
+    {
+      "icon_id": "7191635",
+      "name": "Low temperature",
+      "font_class": "Lowtemperature",
+      "unicode": "e6d7",
+      "unicode_decimal": 59095
+    },
+    {
+      "icon_id": "7192480",
+      "name": "Hurricane",
+      "font_class": "Hurricane",
+      "unicode": "e6d8",
+      "unicode_decimal": 59096
+    },
+    {
+      "icon_id": "7348892",
+      "name": "Cold water main engi",
+      "font_class": "Coldwatermainengi",
+      "unicode": "e6d9",
+      "unicode_decimal": 59097
+    },
+    {
+      "icon_id": "7367539",
+      "name": "Home1",
+      "font_class": "Home1",
+      "unicode": "e6da",
+      "unicode_decimal": 59098
+    },
+    {
+      "icon_id": "7367540",
+      "name": "mine1",
+      "font_class": "mine",
+      "unicode": "e6db",
+      "unicode_decimal": 59099
+    },
+    {
+      "icon_id": "7367541",
+      "name": "News1",
+      "font_class": "News1",
+      "unicode": "e6dc",
+      "unicode_decimal": 59100
+    },
+    {
+      "icon_id": "7367542",
+      "name": "Task1",
+      "font_class": "Task",
+      "unicode": "e6dd",
+      "unicode_decimal": 59101
+    },
+    {
+      "icon_id": "7383528",
+      "name": "Flowmeter",
+      "font_class": "Flowmeter",
+      "unicode": "e6de",
+      "unicode_decimal": 59102
+    },
+    {
+      "icon_id": "7401124",
+      "name": "Green",
+      "font_class": "Green",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
+      "icon_id": "7401125",
+      "name": "Safety",
+      "font_class": "Safety",
+      "unicode": "e6e0",
+      "unicode_decimal": 59104
+    },
+    {
+      "icon_id": "7401126",
+      "name": "Efficient",
+      "font_class": "Efficient",
+      "unicode": "e6e1",
+      "unicode_decimal": 59105
+    },
+    {
+      "icon_id": "7417852",
+      "name": "Expand",
+      "font_class": "Expand",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    },
+    {
+      "icon_id": "7546426",
+      "name": "Right parentheses",
+      "font_class": "Rightparentheses",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "7546427",
+      "name": "Left parentheses",
+      "font_class": "Leftparentheses",
+      "unicode": "e6e4",
+      "unicode_decimal": 59108
+    },
+    {
+      "icon_id": "7560395",
+      "name": "Bluetooth",
+      "font_class": "Bluetooth",
+      "unicode": "e6e5",
+      "unicode_decimal": 59109
+    },
+    {
+      "icon_id": "7560396",
+      "name": "Keep  watch",
+      "font_class": "Keepwatch",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "7566779",
+      "name": "Environmental Scienc",
+      "font_class": "EnvironmentalScienc",
+      "unicode": "e6e7",
+      "unicode_decimal": 59111
+    },
+    {
+      "icon_id": "7568062",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "7674487",
+      "name": "CH4",
+      "font_class": "CH",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "7789524",
+      "name": "NFC",
+      "font_class": "NFC",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "7789526",
+      "name": "QR code",
+      "font_class": "QRcode",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "7796894",
+      "name": "Box",
+      "font_class": "Box",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "7858822",
+      "name": "gas",
+      "font_class": "gas",
+      "unicode": "e6ed",
+      "unicode_decimal": 59117
+    },
+    {
+      "icon_id": "7859247",
+      "name": "water",
+      "font_class": "water",
+      "unicode": "e6ee",
+      "unicode_decimal": 59118
+    },
+    {
+      "icon_id": "7860585",
+      "name": "Electric",
+      "font_class": "Electric",
+      "unicode": "e6ef",
+      "unicode_decimal": 59119
+    },
+    {
+      "icon_id": "7915332",
+      "name": "Sewage Pumping House",
+      "font_class": "SewagePumpingHouse",
+      "unicode": "e6f0",
+      "unicode_decimal": 59120
+    },
+    {
+      "icon_id": "7915333",
+      "name": "Fire Center",
+      "font_class": "FireCenter",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    },
+    {
+      "icon_id": "7915334",
+      "name": "Distribution Room",
+      "font_class": "DistributionRoom",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "7915335",
+      "name": "Air-conditioned Room",
+      "font_class": "Air-conditionedRoom",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "7915336",
+      "name": "Pump Room",
+      "font_class": "PumpRoom",
+      "unicode": "e6f4",
+      "unicode_decimal": 59124
+    },
+    {
+      "icon_id": "7915337",
+      "name": "Video surveillance",
+      "font_class": "Videosurveillance",
+      "unicode": "e6f5",
+      "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "7915338",
+      "name": "Rooftop",
+      "font_class": "Rooftop",
+      "unicode": "e6f6",
+      "unicode_decimal": 59126
+    },
+    {
+      "icon_id": "8140113",
+      "name": "Exit",
+      "font_class": "Exit",
+      "unicode": "e6f7",
+      "unicode_decimal": 59127
+    },
+    {
+      "icon_id": "8140133",
+      "name": "Lock",
+      "font_class": "Lock",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "8153538",
+      "name": "Receiving orders",
+      "font_class": "Receivingorders",
+      "unicode": "e6f9",
+      "unicode_decimal": 59129
+    },
+    {
+      "icon_id": "8194547",
+      "name": "Favorites-Lines",
+      "font_class": "Favorites-Lines",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
+      "icon_id": "8194548",
+      "name": "Sweep",
+      "font_class": "Sweep",
+      "unicode": "e6fb",
+      "unicode_decimal": 59131
+    },
+    {
+      "icon_id": "8194549",
+      "name": "Favorites-Noodles",
+      "font_class": "Favorites-Noodles",
+      "unicode": "e6fc",
+      "unicode_decimal": 59132
+    },
+    {
+      "icon_id": "8202100",
+      "name": "Knowledge Encyclopedia",
+      "font_class": "KnowledgeEncyclopedia",
+      "unicode": "e6fd",
+      "unicode_decimal": 59133
+    },
+    {
+      "icon_id": "8202101",
+      "name": "Focus on monitoring",
+      "font_class": "Focusonmonitoring",
+      "unicode": "e6fe",
+      "unicode_decimal": 59134
+    },
+    {
+      "icon_id": "8335807",
+      "name": "Calendar",
+      "font_class": "Calendar1",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    },
+    {
+      "icon_id": "8394369",
+      "name": "Escape1",
+      "font_class": "Escape",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "8394371",
+      "name": "Game",
+      "font_class": "Game",
+      "unicode": "e701",
+      "unicode_decimal": 59137
+    },
+    {
+      "icon_id": "8394372",
+      "name": "Hidden trouble2",
+      "font_class": "Hiddentrouble",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "8394373",
+      "name": "Help1",
+      "font_class": "Help",
+      "unicode": "e703",
+      "unicode_decimal": 59139
+    },
+    {
+      "icon_id": "8394374",
+      "name": "Escape2",
+      "font_class": "Escape1",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "8394375",
+      "name": "Hidden trouble1",
+      "font_class": "Hiddentrouble1",
+      "unicode": "e705",
+      "unicode_decimal": 59141
+    },
+    {
+      "icon_id": "8394377",
+      "name": "Knowledge1",
+      "font_class": "Knowledge",
+      "unicode": "e706",
+      "unicode_decimal": 59142
+    },
+    {
+      "icon_id": "8394379",
+      "name": "Information",
+      "font_class": "Information",
+      "unicode": "e707",
+      "unicode_decimal": 59143
+    },
+    {
+      "icon_id": "8394380",
+      "name": "Questions",
+      "font_class": "Questions",
+      "unicode": "e708",
+      "unicode_decimal": 59144
+    },
+    {
+      "icon_id": "8394381",
+      "name": "Help2",
+      "font_class": "Help1",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "8394382",
+      "name": "Policy2",
+      "font_class": "Policy",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    },
+    {
+      "icon_id": "8394383",
+      "name": "Shares",
+      "font_class": "Shares",
+      "unicode": "e70b",
+      "unicode_decimal": 59147
+    },
+    {
+      "icon_id": "8394384",
+      "name": "My device",
+      "font_class": "Mydevice",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "8394385",
+      "name": "Knowledge2",
+      "font_class": "Knowledge1",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "8394387",
+      "name": "Switch",
+      "font_class": "Switch",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "8394455",
+      "name": "Fire2",
+      "font_class": "Fire",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "8394479",
+      "name": "Fire2",
+      "font_class": "Fire1",
+      "unicode": "e710",
+      "unicode_decimal": 59152
+    },
+    {
+      "icon_id": "8434873",
+      "name": "Buy",
+      "font_class": "Buy",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "8434877",
+      "name": "Commissioning",
+      "font_class": "Commissioning",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "8434880",
+      "name": "Install",
+      "font_class": "Install",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "8449787",
+      "name": "Lock",
+      "font_class": "Lock1",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "8449788",
+      "name": "User",
+      "font_class": "User",
+      "unicode": "e715",
+      "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "8475470",
+      "name": "Return",
+      "font_class": "Return",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "8487603",
+      "name": "ZS-Equipment associated",
+      "font_class": "ZS-Equipmentassociated",
+      "unicode": "e717",
+      "unicode_decimal": 59159
+    },
+    {
+      "icon_id": "8487713",
+      "name": "ZS-Generate floor",
+      "font_class": "ZS-Generatefloor",
+      "unicode": "e718",
+      "unicode_decimal": 59160
+    },
+    {
+      "icon_id": "8488010",
+      "name": "ZS-Generate house",
+      "font_class": "ZS-Generatehouse",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "8490353",
+      "name": "ZS-Add members",
+      "font_class": "ZS-Addmembers",
+      "unicode": "e71a",
+      "unicode_decimal": 59162
+    },
+    {
+      "icon_id": "8498999",
+      "name": "ZS-The stairs",
+      "font_class": "ZS-Thestairs",
+      "unicode": "e71b",
+      "unicode_decimal": 59163
+    },
+    {
+      "icon_id": "8499642",
+      "name": "ZS-Owner management",
+      "font_class": "ZS-Ownermanagement",
+      "unicode": "e71c",
+      "unicode_decimal": 59164
+    },
+    {
+      "icon_id": "8499703",
+      "name": "ZS-Overall number of people",
+      "font_class": "ZS-Overallnumberofpeople",
+      "unicode": "e71d",
+      "unicode_decimal": 59165
+    },
+    {
+      "icon_id": "8499893",
+      "name": "ZS-The total number of buildings",
+      "font_class": "ZS-Thetotalnumberofbuildings",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "8499941",
+      "name": "ZS-The total number of units",
+      "font_class": "ZS-Thetotalnumberofunits",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
+      "icon_id": "8499986",
+      "name": "ZS-Count off by mistake",
+      "font_class": "ZS-Countoffbymistake",
+      "unicode": "e720",
+      "unicode_decimal": 59168
+    },
+    {
+      "icon_id": "8500049",
+      "name": "ZS-On line",
+      "font_class": "ZS-Online",
+      "unicode": "e721",
+      "unicode_decimal": 59169
+    },
+    {
+      "icon_id": "8500105",
+      "name": "ZS-Off-line equipment",
+      "font_class": "ZS-Off-lineequipment",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "8514698",
+      "name": "Edit",
+      "font_class": "Edit",
+      "unicode": "e723",
+      "unicode_decimal": 59171
+    },
+    {
+      "icon_id": "8514699",
+      "name": "Photo",
+      "font_class": "Photo",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "8514701",
+      "name": "Guardian",
+      "font_class": "Guardian",
+      "unicode": "e725",
+      "unicode_decimal": 59173
+    },
+    {
+      "icon_id": "8514702",
+      "name": "Family",
+      "font_class": "Family",
+      "unicode": "e726",
+      "unicode_decimal": 59174
+    },
+    {
+      "icon_id": "8514703",
+      "name": "Contacts",
+      "font_class": "Contacts",
+      "unicode": "e727",
+      "unicode_decimal": 59175
+    },
+    {
+      "icon_id": "8514704",
+      "name": "Trash Bins",
+      "font_class": "TrashBins",
+      "unicode": "e728",
+      "unicode_decimal": 59176
+    },
+    {
+      "icon_id": "8534723",
+      "name": "Timeout",
+      "font_class": "Timeout",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    },
+    {
+      "icon_id": "8553754",
+      "name": "ZS-Initialization",
+      "font_class": "ZS-Initialization",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "8553865",
+      "name": "ZS-Limits of authority",
+      "font_class": "ZS-Limitsofauthority",
+      "unicode": "e72b",
+      "unicode_decimal": 59179
+    },
+    {
+      "icon_id": "8554060",
+      "name": "ZS-Fire management",
+      "font_class": "ZS-Firemanagement",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "8554103",
+      "name": "ZS-Project management",
+      "font_class": "ZS-Projectmanagement",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "8555676",
+      "name": "ZS-System management",
+      "font_class": "ZS-Systemmanagement",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    },
+    {
+      "icon_id": "8721058",
+      "name": "ZS-location",
+      "font_class": "ZS-location",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "8738970",
+      "name": "Time out",
+      "font_class": "Timeout1",
+      "unicode": "e730",
+      "unicode_decimal": 59184
+    },
+    {
+      "icon_id": "8739449",
+      "name": "Play",
+      "font_class": "Play",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "8743530",
+      "name": "ZS-Owner",
+      "font_class": "ZS-Owner",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "8743561",
+      "name": "ZS-the man on watch",
+      "font_class": "ZS-themanonwatch",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "8743602",
+      "name": "ZS-certified property",
+      "font_class": "ZS-certifiedproperty",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "8744365",
+      "name": "ZS-item",
+      "font_class": "ZS-item",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "8744389",
+      "name": "ZS-backstage",
+      "font_class": "zs-backstage",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
+      "icon_id": "8744455",
+      "name": "ZS-bloc",
+      "font_class": "ZS-bloc",
+      "unicode": "e737",
+      "unicode_decimal": 59191
+    },
+    {
+      "icon_id": "8745625",
+      "name": "ZS-head portrait",
+      "font_class": "ZS-headportrait",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "8745842",
+      "name": "ZS-news",
+      "font_class": "ZS-news",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "8746065",
+      "name": "ZS-arrows",
+      "font_class": "ZS-arrows",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "8821539",
+      "name": "Positioning",
+      "font_class": "Positioning1",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "8842691",
+      "name": "Power distribution cabinet",
+      "font_class": "Powerdistributioncabinet",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "8850684",
+      "name": "Electrical systems",
+      "font_class": "Electricalsystems",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "8850685",
+      "name": "Fire system",
+      "font_class": "Firesystem",
+      "unicode": "e73e",
+      "unicode_decimal": 59198
+    },
+    {
+      "icon_id": "8850686",
+      "name": "Fire Door",
+      "font_class": "FireDoor",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "8850687",
+      "name": "Monitoring2",
+      "font_class": "Monitoring",
+      "unicode": "e740",
+      "unicode_decimal": 59200
+    },
+    {
+      "icon_id": "8850688",
+      "name": "Notice",
+      "font_class": "Notice",
+      "unicode": "e741",
+      "unicode_decimal": 59201
+    },
+    {
+      "icon_id": "8850689",
+      "name": "Fire water System",
+      "font_class": "FirewaterSystem",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
+      "icon_id": "8850690",
+      "name": "Monitoring1",
+      "font_class": "Monitoring1",
+      "unicode": "e743",
+      "unicode_decimal": 59203
+    },
+    {
+      "icon_id": "8850691",
+      "name": "Fire escape",
+      "font_class": "Fireescape",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
+      "icon_id": "8850692",
+      "name": "Pipe Network",
+      "font_class": "PipeNetwork",
+      "unicode": "e745",
+      "unicode_decimal": 59205
+    },
+    {
+      "icon_id": "8877489",
+      "name": "SZXFY-Operations",
+      "font_class": "SZXFY-Operations",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "8877805",
+      "name": "SZYJY-Timeout",
+      "font_class": "SZYJY-Timeout",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "8877842",
+      "name": "SZYJY-over-temperature",
+      "font_class": "SZYJY-over-temperature",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "8877852",
+      "name": "SZYJY-Overcurrent",
+      "font_class": "SZYJY-Overcurrent",
+      "unicode": "e749",
+      "unicode_decimal": 59209
+    },
+    {
+      "icon_id": "8877922",
+      "name": "SZYJY-Electric leakage",
+      "font_class": "SZYJY-Electricleakage",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "8888544",
+      "name": "SZXFY-Early warning",
+      "font_class": "SZXFY-Earlywarning",
+      "unicode": "e74b",
+      "unicode_decimal": 59211
+    },
+    {
+      "icon_id": "8934278",
+      "name": "SZXFY-Monitor",
+      "font_class": "SZXFY-Monitor",
+      "unicode": "e74c",
+      "unicode_decimal": 59212
+    },
+    {
+      "icon_id": "8934527",
+      "name": "SZXFY-basic information",
+      "font_class": "SZXFY-basicinformation",
+      "unicode": "e74d",
+      "unicode_decimal": 59213
+    },
+    {
+      "icon_id": "8934578",
+      "name": "SZXFY-date",
+      "font_class": "SZXFY-date",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
+      "icon_id": "8934649",
+      "name": "SZXFY-Top",
+      "font_class": "SZXFY-Top",
+      "unicode": "e74f",
+      "unicode_decimal": 59215
+    },
+    {
+      "icon_id": "8980359",
+      "name": "Over-streaming",
+      "font_class": "Over-streaming",
+      "unicode": "e750",
+      "unicode_decimal": 59216
+    },
+    {
+      "icon_id": "8980360",
+      "name": "Automatic",
+      "font_class": "Automatic",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "8980361",
+      "name": "Manual",
+      "font_class": "Manual",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "8980362",
+      "name": "Over-temperature",
+      "font_class": "Over-temperature",
+      "unicode": "e753",
+      "unicode_decimal": 59219
+    },
+    {
+      "icon_id": "8984565",
+      "name": "State",
+      "font_class": "State",
+      "unicode": "e754",
+      "unicode_decimal": 59220
+    },
+    {
+      "icon_id": "8996144",
+      "name": "Oil",
+      "font_class": "Oil",
+      "unicode": "e755",
+      "unicode_decimal": 59221
+    },
+    {
+      "icon_id": "9018067",
+      "name": "SZYJY-Charging pile",
+      "font_class": "SZYJY-Chargingpile",
+      "unicode": "e756",
+      "unicode_decimal": 59222
+    },
+    {
+      "icon_id": "9018191",
+      "name": "SZYJY--Overvoltage",
+      "font_class": "SZYJY--Overvoltage",
+      "unicode": "e757",
+      "unicode_decimal": 59223
+    },
+    {
+      "icon_id": "9018270",
+      "name": "Elevator problems",
+      "font_class": "Elevatorproblems",
+      "unicode": "e758",
+      "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "9018373",
+      "name": "Take good care of lift",
+      "font_class": "Takegoodcareoflift",
+      "unicode": "e759",
+      "unicode_decimal": 59225
+    },
+    {
+      "icon_id": "9018389",
+      "name": "Elevator maintenance",
+      "font_class": "Elevatormaintenance",
+      "unicode": "e75a",
+      "unicode_decimal": 59226
+    },
+    {
+      "icon_id": "9018499",
+      "name": "SZYJY-CO",
+      "font_class": "SZYJY-CO",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "9018568",
+      "name": "SZYJY-CH4",
+      "font_class": "SZYJY-CH",
+      "unicode": "e75c",
+      "unicode_decimal": 59228
+    },
+    {
+      "icon_id": "9018669",
+      "name": "SZYJY-H2S",
+      "font_class": "SZYJY-HS",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
+      "icon_id": "9018784",
+      "name": "SZYJY-O2",
+      "font_class": "SZYJY-O2",
+      "unicode": "e75e",
+      "unicode_decimal": 59230
+    },
+    {
+      "icon_id": "9018864",
+      "name": "SZYJY-Confined space",
+      "font_class": "SZYJY-Confinedspace",
+      "unicode": "e75f",
+      "unicode_decimal": 59231
+    },
+    {
+      "icon_id": "9132298",
+      "name": "Limited space",
+      "font_class": "Limitedspace",
+      "unicode": "e760",
+      "unicode_decimal": 59232
+    },
+    {
+      "icon_id": "9132299",
+      "name": "Charging Pile",
+      "font_class": "ChargingPile",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    },
+    {
+      "icon_id": "9132398",
+      "name": "Outer ring",
+      "font_class": "Outerring",
+      "unicode": "e762",
+      "unicode_decimal": 59234
+    },
+    {
+      "icon_id": "9140671",
+      "name": "Trapped in a ladder",
+      "font_class": "Trappedinaladder",
+      "unicode": "e763",
+      "unicode_decimal": 59235
+    },
+    {
+      "icon_id": "9171652",
+      "name": "Task management",
+      "font_class": "Taskmanagement",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "9171689",
+      "name": "General Configuration",
+      "font_class": "GeneralConfiguration",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "9171720",
+      "name": "Alarm management",
+      "font_class": "Alarmmanagement",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "9262878",
+      "name": "Basement",
+      "font_class": "Basement",
+      "unicode": "e767",
+      "unicode_decimal": 59239
+    },
+    {
+      "icon_id": "9262902",
+      "name": "Alarm2",
+      "font_class": "Alarm1",
+      "unicode": "e768",
+      "unicode_decimal": 59240
+    },
+    {
+      "icon_id": "9263029",
+      "name": "Timeout",
+      "font_class": "Timeout2",
+      "unicode": "e769",
+      "unicode_decimal": 59241
+    },
+    {
+      "icon_id": "9263064",
+      "name": "Overcurrent Alarm",
+      "font_class": "OvercurrentAlarm",
+      "unicode": "e76a",
+      "unicode_decimal": 59242
+    },
+    {
+      "icon_id": "9263186",
+      "name": "Over-temperature",
+      "font_class": "Over-temperature1",
+      "unicode": "e76b",
+      "unicode_decimal": 59243
+    },
+    {
+      "icon_id": "9263314",
+      "name": "SZYJY-Basement",
+      "font_class": "SZYJY-Basement",
+      "unicode": "e76c",
+      "unicode_decimal": 59244
+    },
+    {
+      "icon_id": "9328986",
+      "name": "Sound off",
+      "font_class": "Soundoff",
+      "unicode": "e76d",
+      "unicode_decimal": 59245
+    },
+    {
+      "icon_id": "9329023",
+      "name": "Freight elevator",
+      "font_class": "Freightelevator",
+      "unicode": "e76e",
+      "unicode_decimal": 59246
+    },
+    {
+      "icon_id": "9329039",
+      "name": "Passenger lift",
+      "font_class": "Passengerlift",
+      "unicode": "e76f",
+      "unicode_decimal": 59247
+    },
+    {
+      "icon_id": "9329144",
+      "name": "Fire ladder",
+      "font_class": "Fireladder",
+      "unicode": "e770",
+      "unicode_decimal": 59248
+    },
+    {
+      "icon_id": "9360259",
+      "name": "路线-01",
+      "font_class": "luxian-",
+      "unicode": "e771",
+      "unicode_decimal": 59249
+    },
+    {
+      "icon_id": "9475893",
+      "name": "Done",
+      "font_class": "Done",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "9477836",
+      "name": "Unfinished",
+      "font_class": "Unfinished",
+      "unicode": "e773",
+      "unicode_decimal": 59251
+    },
+    {
+      "icon_id": "9478409",
+      "name": "Misinformation",
+      "font_class": "Misinformation",
+      "unicode": "e774",
+      "unicode_decimal": 59252
+    },
+    {
+      "icon_id": "9500309",
+      "name": "Keys",
+      "font_class": "Keys",
+      "unicode": "e775",
+      "unicode_decimal": 59253
+    },
+    {
+      "icon_id": "9571428",
+      "name": "False positives",
+      "font_class": "Falsepositives",
+      "unicode": "e776",
+      "unicode_decimal": 59254
+    },
+    {
+      "icon_id": "9571429",
+      "name": "Transfer",
+      "font_class": "Transfer",
+      "unicode": "e777",
+      "unicode_decimal": 59255
+    },
+    {
+      "icon_id": "9849414",
+      "name": "Accuracy",
+      "font_class": "Accuracy",
+      "unicode": "e778",
+      "unicode_decimal": 59256
+    },
+    {
+      "icon_id": "9849504",
+      "name": "Online rate",
+      "font_class": "Onlinerate",
+      "unicode": "e779",
+      "unicode_decimal": 59257
+    },
+    {
+      "icon_id": "9849708",
+      "name": "Number of abnormal",
+      "font_class": "Numberofabnormal",
+      "unicode": "e77a",
+      "unicode_decimal": 59258
+    },
+    {
+      "icon_id": "9855484",
+      "name": "Storage",
+      "font_class": "Storage",
+      "unicode": "e77b",
+      "unicode_decimal": 59259
+    },
+    {
+      "icon_id": "9855509",
+      "name": "Internal storage",
+      "font_class": "Internalstorage",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
+      "icon_id": "9855580",
+      "name": "Cloud platform",
+      "font_class": "Cloudplatform",
+      "unicode": "e77d",
+      "unicode_decimal": 59261
+    },
+    {
+      "icon_id": "9855604",
+      "name": "Database",
+      "font_class": "Database",
+      "unicode": "e77e",
+      "unicode_decimal": 59262
+    },
+    {
+      "icon_id": "9857720",
+      "name": "Server",
+      "font_class": "Server",
+      "unicode": "e77f",
+      "unicode_decimal": 59263
+    },
+    {
+      "icon_id": "9858800",
+      "name": "Collection software",
+      "font_class": "Collectionsoftware",
+      "unicode": "e780",
+      "unicode_decimal": 59264
+    },
+    {
+      "icon_id": "9859360",
+      "name": "Gateway",
+      "font_class": "Gateway1",
+      "unicode": "e781",
+      "unicode_decimal": 59265
+    },
+    {
+      "icon_id": "9859448",
+      "name": "cpu",
+      "font_class": "cpu",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    },
+    {
+      "icon_id": "9859516",
+      "name": "Sensor",
+      "font_class": "Sensor",
+      "unicode": "e783",
+      "unicode_decimal": 59267
+    },
+    {
+      "icon_id": "9879384",
+      "name": "Abnormal2",
+      "font_class": "Abnormal",
+      "unicode": "e784",
+      "unicode_decimal": 59268
+    },
+    {
+      "icon_id": "9879385",
+      "name": "Delete number",
+      "font_class": "Deletenumber",
+      "unicode": "e785",
+      "unicode_decimal": 59269
+    },
+    {
+      "icon_id": "9879387",
+      "name": "Hook",
+      "font_class": "Hook",
+      "unicode": "e786",
+      "unicode_decimal": 59270
+    },
+    {
+      "icon_id": "9879388",
+      "name": "Installation",
+      "font_class": "Installation",
+      "unicode": "e787",
+      "unicode_decimal": 59271
+    },
+    {
+      "icon_id": "9879389",
+      "name": "Help",
+      "font_class": "Help2",
+      "unicode": "e788",
+      "unicode_decimal": 59272
+    },
+    {
+      "icon_id": "9879391",
+      "name": "Gateway",
+      "font_class": "Gateway2",
+      "unicode": "e789",
+      "unicode_decimal": 59273
+    },
+    {
+      "icon_id": "9879393",
+      "name": "Installation2",
+      "font_class": "Installation1",
+      "unicode": "e78a",
+      "unicode_decimal": 59274
+    },
+    {
+      "icon_id": "9879394",
+      "name": "Manual",
+      "font_class": "Manual1",
+      "unicode": "e78b",
+      "unicode_decimal": 59275
+    },
+    {
+      "icon_id": "9879395",
+      "name": "Instrument",
+      "font_class": "Instrument",
+      "unicode": "e78c",
+      "unicode_decimal": 59276
+    },
+    {
+      "icon_id": "9879396",
+      "name": "Run2",
+      "font_class": "Run",
+      "unicode": "e78d",
+      "unicode_decimal": 59277
+    },
+    {
+      "icon_id": "9879397",
+      "name": "Run",
+      "font_class": "Run1",
+      "unicode": "e78e",
+      "unicode_decimal": 59278
+    },
+    {
+      "icon_id": "9879399",
+      "name": "System",
+      "font_class": "System",
+      "unicode": "e78f",
+      "unicode_decimal": 59279
+    },
+    {
+      "icon_id": "9879400",
+      "name": "Debugging",
+      "font_class": "Debugging",
+      "unicode": "e790",
+      "unicode_decimal": 59280
+    },
+    {
+      "icon_id": "9879475",
+      "name": "Debugging2",
+      "font_class": "Debugging1",
+      "unicode": "e791",
+      "unicode_decimal": 59281
+    },
+    {
+      "icon_id": "9879576",
+      "name": "Offline",
+      "font_class": "Offline1",
+      "unicode": "e792",
+      "unicode_decimal": 59282
+    },
+    {
+      "icon_id": "9879590",
+      "name": "Signal",
+      "font_class": "Signal",
+      "unicode": "e793",
+      "unicode_decimal": 59283
+    },
+    {
+      "icon_id": "9968001",
+      "name": "JTJC-Total energy consumption",
+      "font_class": "JTJC-Totalenergyconsumption",
+      "unicode": "e794",
+      "unicode_decimal": 59284
+    },
+    {
+      "icon_id": "9968265",
+      "name": "JTJC-Account receivable",
+      "font_class": "JTJC-Accountreceivable",
+      "unicode": "e795",
+      "unicode_decimal": 59285
+    },
+    {
+      "icon_id": "9968360",
+      "name": "JTJC-actual payment",
+      "font_class": "JTJC-actualpayment",
+      "unicode": "e796",
+      "unicode_decimal": 59286
+    },
+    {
+      "icon_id": "9968481",
+      "name": "JTJC-Price spread",
+      "font_class": "JTJC-Pricespread",
+      "unicode": "e797",
+      "unicode_decimal": 59287
+    },
+    {
+      "icon_id": "9968527",
+      "name": "JTJC-Boundary",
+      "font_class": "JTJC-Boundary",
+      "unicode": "e798",
+      "unicode_decimal": 59288
+    },
+    {
+      "icon_id": "9968581",
+      "name": "JTJC-Keep out",
+      "font_class": "JTJC-Keepout",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "9968676",
+      "name": "JTJC-Go out",
+      "font_class": "JTJC-Goout",
+      "unicode": "e79a",
+      "unicode_decimal": 59290
+    },
+    {
+      "icon_id": "9968701",
+      "name": "JTJC-Enter the door",
+      "font_class": "JTJC-Enterthedoor",
+      "unicode": "e79b",
+      "unicode_decimal": 59291
+    },
+    {
+      "icon_id": "9972529",
+      "name": "JTJC-Liquid level",
+      "font_class": "JTJC-Liquidlevel",
+      "unicode": "e79c",
+      "unicode_decimal": 59292
+    },
+    {
+      "icon_id": "10019835",
+      "name": "Index",
+      "font_class": "Index",
+      "unicode": "e79d",
+      "unicode_decimal": 59293
+    },
+    {
+      "icon_id": "10019836",
+      "name": "program",
+      "font_class": "program",
+      "unicode": "e79e",
+      "unicode_decimal": 59294
+    },
+    {
+      "icon_id": "10022149",
+      "name": "List",
+      "font_class": "List",
+      "unicode": "e79f",
+      "unicode_decimal": 59295
+    },
+    {
+      "icon_id": "10053947",
+      "name": "Flat light",
+      "font_class": "Flatlight",
+      "unicode": "e7a0",
+      "unicode_decimal": 59296
+    },
+    {
+      "icon_id": "10114584",
+      "name": "Task management",
+      "font_class": "Taskmanagement1",
+      "unicode": "e7a1",
+      "unicode_decimal": 59297
+    },
+    {
+      "icon_id": "10115172",
+      "name": "Energy management",
+      "font_class": "Energymanagement",
+      "unicode": "e7a2",
+      "unicode_decimal": 59298
+    },
+    {
+      "icon_id": "10115671",
+      "name": "Statement statistics",
+      "font_class": "Statementstatistics",
+      "unicode": "e7a3",
+      "unicode_decimal": 59299
+    },
+    {
+      "icon_id": "10116576",
+      "name": "Real-time monitor",
+      "font_class": "Real-timemonitor",
+      "unicode": "e7a4",
+      "unicode_decimal": 59300
+    },
+    {
+      "icon_id": "10116944",
+      "name": "System Settings",
+      "font_class": "SystemSettings",
+      "unicode": "e7a5",
+      "unicode_decimal": 59301
+    },
+    {
+      "icon_id": "10128853",
+      "name": "Camera Fill",
+      "font_class": "CameraFill",
+      "unicode": "e7a6",
+      "unicode_decimal": 59302
+    },
+    {
+      "icon_id": "10130038",
+      "name": "power",
+      "font_class": "power",
+      "unicode": "e7a7",
+      "unicode_decimal": 59303
+    },
+    {
+      "icon_id": "10130082",
+      "name": "Voltage",
+      "font_class": "Voltage",
+      "unicode": "e7a8",
+      "unicode_decimal": 59304
+    },
+    {
+      "icon_id": "10425766",
+      "name": "Added",
+      "font_class": "Added",
+      "unicode": "e7a9",
+      "unicode_decimal": 59305
+    },
+    {
+      "icon_id": "10425775",
+      "name": "Edit",
+      "font_class": "Edit1",
+      "unicode": "e7aa",
+      "unicode_decimal": 59306
+    },
+    {
+      "icon_id": "10572772",
+      "name": "Pressure",
+      "font_class": "Pressure",
+      "unicode": "e7ab",
+      "unicode_decimal": 59307
+    },
+    {
+      "icon_id": "10572864",
+      "name": "The temperature",
+      "font_class": "Thetemperature",
+      "unicode": "e7ac",
+      "unicode_decimal": 59308
+    },
+    {
+      "icon_id": "10934969",
+      "name": "Noise",
+      "font_class": "Noise1",
+      "unicode": "e7ad",
+      "unicode_decimal": 59309
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+.report-dialog{
+    .el-dialog{
+        width: 1250px;
+        &__header{
+            .el-dialog__title{
+                font-size: 22px;
+                font-weight: bold;
+            }
+        }
+        .el-dialog__body{
+            padding: 0px 50px 50px 50px;
+            color: #303133;
+            font-size: 16px;
+            font-weight: bold;
+            .export-container{
+                text-align: left;
+                position: absolute;
+                .zw-btn.export{
+                    height: 40px;
+                    line-height: 40px;
+                    border: 1px solid #2c78aa;
+                    color: #2c78aa;
+                    background: none;
+                    border-radius: 4px;
+                    .icon-Export{
+                        font-size: 18px;
+                        margin-right: 6px;
+                    }
+                }
+            }
+            #record{
+                width: 1150px;
+                margin-left: -50px;
+                padding: 50px 50px;
+            }
+            .project-name{
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
+            h4{
+                text-align: center;
+                font-size: 24px;
+            }
+            ul.report-info{
+                background: #e4e4e4;
+                li{
+                    width: 50%;
+                    height: 58px;
+                    box-sizing: border-box;
+                    line-height:58px;
+                    text-align: left;
+                    padding-left: 50px;
+                    span{
+                        margin-left: 20px;
+                        color: #3977c2
+                    }
+                }
+            }
+            .zw-table{
+                margin-top: 20px;
+                table{
+                    border:1px solid #96b9cf;
+                    .table-header{
+                        height: 36px;
+                        line-height: 36px;
+                        background: #addbf5;
+                    }
+                    tr{
+                        border-bottom:1px solid #96b9cf;
+                    }
+                    td{
+                        height: 36px;
+                        border-right:1px solid #96b9cf;
+                    }
+                    .none-border{
+                        border: none
+                    }
+                    .odd-row{
+                        background:#dbe9f6;
+                    }
+                }
+                .descripe{
+                    line-height: 30px;
+                    padding-left: 10px;
+                    text-align: left;
+                    border:1px solid #96b9cf;
+                    border-top: none;
+                }
+            }
+            h5{
+                text-align: left;
+                margin-bottom: 10px;
+            }
+            .use-info{
+                margin-top: 10px;
+                table{
+                    border: 1px solid #f3afaf;
+                }
+                .table-header{
+                    height: 36px;
+                    line-height: 36px;
+                    background: #f5c8c8;
+                }
+                tr{
+                    border: 1px solid #f3afaf;
+                }
+                td{
+                    height: 36px;
+                    border: 1px solid #f3afaf;
+                }
+                .odd-row{
+                    background: #f9e6e8
+                }
+            }
+            .maintenance-img{
+                margin-top: 10px;
+                ul{
+                    li{
+                        margin-left: 20px;
+                        img{
+                            width: 200px;
+                            height: 160px;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

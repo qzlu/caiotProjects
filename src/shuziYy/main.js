@@ -57,6 +57,10 @@ router.beforeEach(async (to, from, next) => {
       document.title = to.meta.title
     }
   }
+  if(to.path == '/403'){
+    next()
+    return
+  }
   if(to.name !== 'login'&&!token){
     next({name:'login'})
   }else{

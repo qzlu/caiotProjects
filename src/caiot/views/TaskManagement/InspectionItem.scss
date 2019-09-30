@@ -1,0 +1,58 @@
+$img-url:'../../static/image/';
+.inspection-item{
+    .el-dialog{
+        width: 426px;
+        // height: 367px;
+        background: url(#{$img-url}task/inspection.png);
+        background-size: 100% 100%;
+        padding-left: 48px!important;
+        &__header{
+            text-align: left
+        }
+    }
+    .el-form{
+        &-item{
+            .el-form-item__label{
+                width: 94px;
+                color: #F1F1F2;
+            }
+            .el-input{
+                width: 165px;
+                .el-input__inner{
+                    background: #05679E;
+                    border-color: #18406B;
+                    color: #F1F1F2;
+                }
+            }
+            &__error{
+                left: 50%;
+                transform: translateX(-50%)
+            }
+            .unit{
+                display: inline-block;
+                padding: 0 20px;
+                background: #2a90fb;
+                border-radius: 4px;
+                position: relative;
+                left: 4px;
+            }
+        }
+    }
+    .zw-dialog.import-point{
+        .el-dialog{
+            height: 500px;
+            background-size: 100% 100%;
+            .zw-tree{
+                width:270px;
+                margin: 0 auto;
+                .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+                    background-color: #999999;
+                    color: #999999
+                }
+            }
+            .submit{
+                margin-top: 20px;
+            }
+        }
+    }
+}

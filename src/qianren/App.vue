@@ -17,7 +17,7 @@ export default {
   computed:{
     style(){
       return {
-        transform: "scale("+ this.ratioWidth + ',' + this.ratioHeigt + ")",
+        transform: "scale("+ this.ratioWidth + ',' + this.ratioHeigt + ") translate3d(0,0,0)",
         transformOrigin: "left top ",
         backgroundSize: "100%" + ' 100%',
       }

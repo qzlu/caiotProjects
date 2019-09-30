@@ -49,7 +49,7 @@
       class="set_ICP"
       style="position: absolute; height: 25px; text-align: center; left: 0; bottom:60px; right: 0; font-size: 22px;"
     >
-      <a href="http://www.miitbeian.gov.cn" :target="_self" style="color: #fff;">粤ICP备18129652号</a>
+     <!--  <a href="http://www.miitbeian.gov.cn" :target="_self" style="color: #fff;">粤ICP备18129652号</a> -->
     </div>
   </div>
 </template>
@@ -373,7 +373,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(#{$url}bg_02.jpg);
+  background: url(#{$url}bg.jpg);
   background-size: 100% 100%;
   min-width: 1900px;
   min-height: 1080px;

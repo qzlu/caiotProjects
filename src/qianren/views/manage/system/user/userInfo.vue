@@ -386,7 +386,8 @@ export default {
             }
         }
         .tree-content{
-            height: 760px;
+            height: 750px;
+            padding-bottom: 10px;
             .el-tree{
                 margin-top: 20px;
                 background: none;

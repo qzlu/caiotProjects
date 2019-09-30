@@ -69,6 +69,7 @@
                                 <span title="初始化" @click="resetUser(scoped.row)"><i class="iconfont icon-ZS-Initialization"></i></span>
                                 <span @click="update(scoped.row)" title="编辑"><i class="el-icon-document"></i></span>
                                 <span @click="deleteUser(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
+                                <span @click="queryTRoleBloc(scoped.row)">权限</span>
                             </div>
                         </template>
                     </el-table-column>
@@ -76,11 +77,38 @@
             </div>
             <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination> 
         </div>
+        <el-dialog class="zw-dialog role-config" title="权限修改" :visible.sync="show1" append-to-body width="560px">
+            <ul class="tab-header clearfix">
+                <li class="active l"><div>项目权限</div></li>
+                <li class="l"></li>
+            </ul>
+            <div class="tab-content clearfix">
+                <tree-transfer
+                    :data='projectList'
+                    :data1='projectList'
+                    :checkStrictly="false"
+                    leftTitle='所有权限'
+                    rightTitle='已选权限'
+                    nodeKey="ProjectID"
+                    :defaultProps="defaultProps1"
+                    :filterNode="filterNode"
+                    :defaultChecked="defaultCheckProject"
+                     @check-change="checkChange1"
+                    ref="transfer1"
+                >
+                </tree-transfer>
+            </div>
+            <div slot="footer">
+                <el-button class="zw-btn zw-btn-primary" @click="UpdateTRoleProject()">确定</el-button>
+                <el-button class="zw-btn zw-btn-primary" @click="show1 = false">取消</el-button>
+            </div>
+        </el-dialog> 
     </div>
 </template>
 <script>
 import table from '@/xiaoFangCloud/mixins/table.js'
 import {System} from '@/xiaoFangCloud/request/api.js';
+import {treeTransfer} from '@/components/index.js'
 const userType = ['',{id:1,name:'运营管理'},{id:2, name:'集团管理'},{id:3,name:'项目管理'},{id:4,name:'项目现场运维'}]
 export default {
     mixins:[table],
@@ -167,7 +195,17 @@ export default {
                 FOtherAccount:''
             },
             FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
+            show1:false,
+            projectList:[],
+            defaultProps1:{
+                children: 'Data',
+                label: 'Name'
+            },
+            defaultCheckProject: [], //已有权限的项目
         }
+    },
+    components:{
+        treeTransfer
     },
     created(){
 
@@ -290,6 +328,102 @@ export default {
                 })
             }).catch((err) => {
                 
+            });
+        },
+        /**
+         * 递归树 查询已选中的
+         * @param {Array} data Tree Data
+         * @param {Array} result 结果
+         */
+        findExist(data,children,id,result = []){
+            data.forEach(item => {
+                if(item.IsExist == 1&&(!item[children]||!item[children].length)){
+                    item[id] && result.push(item[id])
+                } 
+                if(item[children]){
+                    this.findExist(item[children], children, id, result)
+                }
+            })
+            return result
+        },
+        /**
+         * 查询项目权限
+         */
+        queryTRoleBloc(row){
+            this.user = row
+            this.show1 = true
+            System({
+                FAction:'QueryTRoleBloc',
+                FGUID:this.user.FGUID,
+            })
+            .then((data) => {
+                console.log(data);
+                this.projectList = data.FObject||[]
+                this.defaultCheckProject = this.findExist(this.projectList,'Data','ProjectID')
+                console.log(this.defaultCheckProject)
+                this.$nextTick(() => {
+                    this.$refs.transfer1.$refs.tree1.filter()
+                })
+            }).catch((err) => {
+                
+            });
+        },
+                /**
+         * 过滤树形结构
+         */
+        filterNode(value, data, node){
+            return data.IsExist == 1
+        },
+        /**
+         * 项目选择发生改变
+         */
+        checkChange1(data,check){
+            if(check){
+                data.IsExist = '1'
+            }else{
+                data.IsExist = '0'
+            }
+            this.$refs.transfer1.$refs.tree1.filter()
+        },
+        /**
+         * 循环树形结构
+         */
+        findTree(data,children,id,arr = []){
+            data.forEach(item => {
+                if(item.IsExist&&item.IsExist==1){
+                    item[id]&&arr.push(item[id])
+                }
+                if(item.IsExist&&item[children]){
+                    this.findTree(item[children],children,id,arr)
+                }
+                if(!item.IsExist){
+                    if(item[children]) this.findTree(item[children],children,id,arr)
+                }
+            })
+            return arr
+        },
+        /**
+         * 修改项目权限
+         */
+        UpdateTRoleProject(){
+            let projectArr = this.findTree(this.projectList, 'Data', 'ProjectID')
+            System({
+                FAction: 'UpdateTUserProject',
+                UserGUID:this.user.FGUID,
+                IDStr:projectArr.join(',')
+            })
+            .then((data) => {
+                this.$message({
+                  type: 'success',
+                  message: '设置成功!'
+                });
+                this.show1 = false
+            }).catch((err) => {
+                console.log('错误',error);
+                this.$message({
+                  type: 'error',
+                  message: '设置失败!'
+                });
             });
         },
         /**

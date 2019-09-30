@@ -61,7 +61,7 @@
                           <template v-slot="{node,data}">
                             <div>
                               <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span>
-                              <a v-if="data.FNodeType == 2" :href="`https://www.szqianren.com/#/monitoring/systemBrowse?token=${token}&projectID=${data.ProjectID}&showMenu=2`" target="_blank">{{data.FSimpleName}}</a>
+                              <a v-if="data.FNodeType == 2" :href="`https://www.szqianren.com/#/monitoring/systemBrowse?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
                             </div>
                           </template>
                         </el-tree>
@@ -558,7 +558,7 @@ export default {
   data() {
     return {
       user: sessionStorage.getItem("FContacts"), //用户名
-      projectName: sessionStorage.getItem("FGroupName")||'中物运营',
+      projectName: sessionStorage.getItem("FGroupName"),
       token:sessionStorage.getItem('FToken'),
       isOpen: 1,
       guid:{IDStr:0}, //查询的IDStr

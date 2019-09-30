@@ -67,7 +67,7 @@
         <el-dialog class="zw-dialog role-config" title="权限修改" :visible.sync="show1" append-to-body width="560px">
             <ul class="tab-header clearfix">
                 <li :class="{'active': tabIndex === 1,'l':true}" @click="tabIndex = 1"><div>PC功能点</div></li>
-                <li :class="{'active': tabIndex === 2,'l':true}" @click="tabIndex = 2"><div>项目权限</div></li>
+               <!--  <li :class="{'active': tabIndex === 2,'l':true}" @click="tabIndex = 2"><div>项目权限</div></li> -->
                 <li class="l"></li>
             </ul>
             <div class="tab-content clearfix" v-show="tabIndex === 1">

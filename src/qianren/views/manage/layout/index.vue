@@ -35,7 +35,6 @@
                 </el-aside>
                 <el-main>
                     <router-view>
-
                     </router-view>
                 </el-main>
              </el-container>
@@ -54,12 +53,18 @@ export default {
             menuData:[
                 {
                     FGUID:'1',
-                    FMenuName:'系统管理',
+                    FMenuName:'运营管理',
                     FMenuLevle:1,
                     FICONURLAddress:'icon-SZXFY-basicinformation',
-                    FFunctionURLAddress:'system',
+                    FFunctionURLAddress:'operation',
                     FChildMenu:[
                         {
+                            FGUID:'1-1',
+                            FMenuName:'行政架构',
+                            FMenuLevle:2,
+                            FFunctionURLAddress:'system/organizational/',
+                        },
+/*                         {
                             FGUID:'1-1',
                             FMenuName:'组织管理',
                             FMenuLevle:2,
@@ -85,28 +90,97 @@ export default {
                                     FFunctionURLAddress:'system/organizational/projectInfo',
                                 }
                             ]
+                        }, */
+                        {
+                            FGUID:'2',
+                            FMenuName:'组织架构',
+                            FMenuLevle:3,
+                            FFunctionURLAddress:'system/organizational/group',
                         },
                         {
                             FGUID: '1-2',
+                            FMenuName:'集团信息',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/block',
+                        },
+                        {
+                            FGUID: '1-3',
+                            FMenuName:'巡检标准',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'inspecttionStandard/1',
+                        },
+                        {
+                            FGUID: '1-4',
+                            FMenuName:'保养标准',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'maintenanceStandard/1',
+                        },
+                        {
+                            FGUID: '1-5',
+                            FMenuName:'工单配置',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/signInfo',
+                        },
+                        {
+                            FGUID: '1-6',
+                            FMenuName:'告警配置',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/alarmConfig',
+                        },
+                        {
+                            FGUID: '1-7',
+                            FMenuName:'参数配置',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/paramConfig',
+                        },
+                        {
+                            FGUID: '1-8',
+                            FMenuName:'能源类型',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/energyType',
+                        },
+                        {
+                            FGUID: '1-9',
+                            FMenuName:'设备类型',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/deviceType',
+                        },
+                        {
+                            FGUID: '1-10',
+                            FMenuName:'告警类型',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/alarmType',
+                        },
+                        {
+                            FGUID: '1-11',
                             FMenuName:'用户管理',
                             FMenuLevle:2,
                             FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/user',
+                        },
+                        {
+                            FGUID: '1-12',
+                            FMenuName:'角色管理',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
+                            FFunctionURLAddress:'operation/role',
+                        },
+                        {
+                            FGUID: '1-13',
+                            FMenuName:'操作日志',
+                            FMenuLevle:2,
+                            FICONURLAddress:'icon-SZXFY-basicinformation',
                             FFunctionURLAddress:'system/user',
-                            FChildMenu:[
-                                {
-                                    FGUID: '1-2-1',
-                                    FMenuName:'用户信息',
-                                    FMenuLevle:3,
-                                    FFunctionURLAddress:'system/user/',
-                                },
-                                {
-                                    FGUID: '1-2-2',
-                                    FMenuName:'功能角色',
-                                    FMenuLevle:3,
-                                    FFunctionURLAddress:'system/user/role',
-                                }
-                            ]
-                        }
+                        },
                     ]
                 },
             ]
@@ -178,7 +252,7 @@ $url:'../../../assets/images/';
         .el-aside{
             padding-top: 30px;
             .menu{
-                height: 100%;
+                height: 922px;
                 padding: 0 20px;
                 .el-menu{
                   background: none;
@@ -195,14 +269,16 @@ $url:'../../../assets/images/';
                   }
                   .menu-list-1{
                     margin-top: 27px;
+                    /* background: url(#{$url}menu-1.png) no-repeat; */
                     >.el-submenu{
                         >.el-submenu__title{
                           height: 66px;
                           line-height: 66px;
                           text-indent: 10px;
-                          background: url(#{$url}menu-1.png) no-repeat;
                           background-size: 100% 100%;
                           padding-right: 0px;
+                          background: url(#{$url}menu-1.png) no-repeat;
+                          background-size: 100% 100%;
                           .el-icon-arrow-down{
                               transform-origin: 70% 50%;
                           }
@@ -246,7 +322,8 @@ $url:'../../../assets/images/';
             }
         }
         .el-main{
-            /* height: 960px; */
+            height: 960px;
+            box-sizing: border-box;
             border:1px solid rgba(95,205,242,1);
             border-radius:10px;
             overflow: hidden;

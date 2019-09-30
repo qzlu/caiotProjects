@@ -1,12 +1,12 @@
 <template>
     <div class="report">
        <ul class="operation">
-           <li class="l">
+           <li class="l" v-if="showAdd">
                <el-button :disabled="disabledAdd" @click="beforeAdd">
                    <i class="iconfont icon-Added"></i>新增
                </el-button>
            </li>
-            <li class="l"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
+            <li class="l" v-if="exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
             <li class="l"><el-button @click="queryData"><i class="iconfont icon-Refresh"></i>刷新</el-button></li>
             <li class="r">
                 <el-input v-if="filter" class="search-input" placeholder="搜索关键字" v-model="filterText">
@@ -47,13 +47,14 @@
                  show-overflow-tooltip
                 >
                </el-table-column>
+               <slot></slot>
                <el-table-column
                  prop=""
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
                         <span class="pointer iconfont icon-Edit" title="编辑" @click="editItem(scoped.row)"></span>
-                        <span class="pointer iconfont icon-TrashBins" title="删除" @click="deleteItem(scoped.row)"></span>
+                        <span class="pointer iconfont icon-TrashBins" title="删除" v-if="deleteRow" @click="deleteItem(scoped.row)"></span>
                         <slot name="row-operation" v-bind:row="scoped.row"></slot>
                      </div>
                  </template>
@@ -89,7 +90,11 @@ export default {
             type:Function
         },
         'disabled-add':Boolean,
-        filter:{
+        filter:{ //是否显示搜索框
+            default:true,
+            type:Boolean
+        },
+        showAdd:{ //是否显示新增按钮
             default:true,
             type:Boolean
         },

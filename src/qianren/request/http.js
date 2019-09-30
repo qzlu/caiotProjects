@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {messageErr} from '@/plugins/statusCode.js'
 import router from '../router'
+import { Loading } from 'element-ui';
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
     /* axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/'; */
@@ -59,8 +60,14 @@ export function get(url, params){
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
  */
-export function post(url, params) {
+export function post(url, params,load = false) {
     return new Promise((resolve, reject) => {
+        let loadingInstance
+        if(load){
+            loadingInstance = Loading.service({
+                background: 'rgba(0, 0, 0, 0.7)'
+            })
+        }
         let obj = {
             FTokenID:sessionStorage.getItem('FToken')||'1C49B3DE-C244-4D91-B1E3-10ABFE56EA56',
             /* ProjectID:sessionStorage.getItem('projectID')||1, */
@@ -82,6 +89,13 @@ export function post(url, params) {
                 messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
             }
             reject(err.data?err.data:err)
+        })
+        .finally(() => {
+            if(load){
+                setTimeout(() => {
+                    loadingInstance.close()
+                },200)
+            }
         })
     });
 }

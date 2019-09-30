@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/xiaoFangCloud/views/layout.vue'
+import notAllowed from '@/xiaoFangCloud/views/403.vue'
 Vue.use(Router)
 export default new Router({
     mode: 'hash',
@@ -128,6 +129,10 @@ export default new Router({
                     component: () => import('@/xiaoFangCloud/views/manage/taskManage/workList.vue')
                 },
             ]
+        },
+        {
+            path:'/403',
+            component:notAllowed
         }
     ]
 })
