@@ -1,17 +1,17 @@
 //配置axios
 import axios from 'axios';
-import {messageErr} from '@/plugins/statusCode.js'
-import store from '@/xiaofang/store.js';
-/* import router from '../router' */
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
-    axios.defaults.baseURL = 'http://47.106.64.130:56091/CaiotZSYJ/';} 
+    /* axios.defaults.baseURL = 'http://172.172.172.37:8080/Caiot/'; */
+    axios.defaults.baseURL = 'http://www.szqianren.com/Caiot/'
+} 
 else if (process.env.NODE_ENV == 'debug') {    
-    axios.defaults.baseURL = 'http://47.106.64.130:56091/CaiotZSYJ/';
+    axios.defaults.baseURL = 'http://172.172.172.37:8080/Caiot/';
 } 
 else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://47.106.64.130:56091/CaiotZSYJ/';
+    axios.defaults.baseURL = '/Caiot/';
 }
+
 //设置请求超时时间
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
@@ -26,7 +26,7 @@ axios.interceptors.request.use(function (config) {
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if (response.data.Result===200||response.data.Result===201){            
+    if (response.data.Result===200){            
         return Promise.resolve(response);        
     } else {  
         return Promise.reject(response);        
@@ -59,21 +59,17 @@ export function get(url, params){
 export function post(url, params) {
     return new Promise((resolve, reject) => {
         let obj = {
-            FTokenID:store.state.token?store.state.token:'',
-            ProjectID:store.state.projectId,
-            FVersion:"1.0.0",		
+            FTokenID:localStorage.getItem("Token"),
+            FVersion:"1.0.0",
+            ProjectID:localStorage.getItem('projectid')		
         }
         axios.post(url,Object.assign(obj,params))
         .then(res => {
             resolve(res.data);
         })
         .catch(err =>{
-            if(err.data.Result == 107){
-                let router = require('../router')
-                messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err,router)
-            }
-            messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
-            reject(err.data?err.data:err)
+            console.log('err',err)
+            reject(err.data?err.data.Message:err)
         })
     });
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="monitor-data">
         <div class="monitor-data-item">
-            <h5  @click="$router.push({name:'now_count'})"><i class="iconfont icon-SZXFY-Earlywarning"></i> 实时告警 <i class="iconfont icon-Up"></i></h5>
+            <h5  @click="$router.push('/foreshow/')"><i class="iconfont icon-SZXFY-Earlywarning"></i> 实时告警 <i class="iconfont icon-Up"></i></h5>
             <div class="border">
             </div>
             <div class="icon">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="monitor-data-item">
-            <h5 @click="$router.push('/TaskManagement/Worklist')"><i class="iconfont icon-Workingodd" ></i> 实时工单 <i class="iconfont icon-Up"></i></h5>
+            <h5 @click="$router.push('/TaskManagement/Worklist')"><i class="iconfont icon-Workingodd" ></i> 实时任务 <i class="iconfont icon-Up"></i></h5>
             <div class="border">
             </div>
             <div class="icon">
@@ -33,7 +33,7 @@
               </tr>
             </table>
             <div class="table-body" v-if="orderData.length>0">
-                <el-scrollbar>
+                <el-scrollbar v-loadmore="loadMore">
                     <table>
                       <tr v-for="(obj,i) in orderData" :key="i" @click="$router.push('/TaskManagement/Worklist')">
                         <td v-for="(item,j) in orderLabels" :key="j" :width='item["width"]' :style="{'text-align':item.align,'color':item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">{{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}</td>
@@ -69,7 +69,7 @@ export default {
                 },
                 {
                     prop: 'OrderState',
-                    label: '工单状态',
+                    label: '任务状态',
                     width: '25%',
                     formatter:val => OrderState[val]
                 },
@@ -77,7 +77,7 @@ export default {
             orderLabels:[
                 {
                     prop: 'OrderTypeName',
-                    label: '工单类型',
+                    label: '任务类型',
                     width: '25%'
                 },
                 {
@@ -87,19 +87,20 @@ export default {
                 },
                 {
                     prop: 'OrderContent',
-                    label: '工单内容',
+                    label: '任务内容',
                     width: '25%'
                 },
                 {
                     prop: 'OrderState',
-                    label: '工单状态',
+                    label: '任务状态',
                     width: '25%',
                     formatter:val => OrderState[val]
                 },
             ],
             alarmData:[],//实时告警数据
-            orderData:[], //实时工单数据
+            orderData:[], //实时任务数据
             timer:null,
+            pageIndex:1
         }
     },
     components:{
@@ -114,9 +115,10 @@ export default {
     },
     methods:{
         queryData(){
+            this.pageIndex = 1
             this.getAlarmRealData()
             this.queryPageUOrdersByDate()
-            this.timer = setTimeout(this.queryData,5000)
+            this.timer = setTimeout(this.queryData,10000)
         },
         /**
          * 7.获取项目实时未恢复告警
@@ -132,25 +134,37 @@ export default {
                 
             });
         },
+        loadMore(){
+            this.pageIndex++
+            this.queryPageUOrdersByDate(true)
+        },
         /**
-         * 实时工单
+         * 实时任务
          */
-        queryPageUOrdersByDate(){
+        queryPageUOrdersByDate(scroll = false){
             Orders({
                 FAction: 'QueryPageUOrdersByDate',
                 FState: -1,
-                PageIndex:1,
-                PageSize: 1000
+                PageIndex:this.pageIndex,
+                PageSize: 20
             })
             .then((result) => {
-                this.orderData = result.FObject
-                this.$emit('orderChange',this.orderData.length)
+                if(scroll){
+                    if(!result.FObject.length){
+                      this.pageIndex1 --
+                    }else{
+                        this.orderData.push(...result.FObject)
+                    }
+                }else{
+                    this.orderData = result.FObject
+                }
+                /* this.$emit('orderChange',this.orderData.length) */
             }).catch((err) => {
                 
             });
         },
         rowClick(){
-            this.$router.push({name:'now_count'})
+            this.$router.push('/foreshow/')
         }
 
     }
@@ -163,7 +177,7 @@ export default {
     display: flex;
     justify-content: space-between;
     &-item{
-        width: 584px;
+        width: 590px;
         height: 100%;
         border-radius: 10px;
         background: rgba($color: #112D45, $alpha: 0.34);

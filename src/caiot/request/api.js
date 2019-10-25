@@ -8,7 +8,7 @@
  */
 import { get, post } from './http';
 const login = p => post('Check', p);
-const project = p => post('Project', p)
+const project = (p,showError) => post('Project', p, showError)
 const system = p => post('System', p)
 const Alarm = p => post('Alarm', p)
 const Inspection = p => post('Inspection', p)
@@ -26,6 +26,7 @@ const HandlingEvents = p => post('HandlingEvents',p)
 const FileUploadContext = p => post('FileUploadContext', p)
 const Energy = p => post('Energy', p)
 const ProjectTrend = p => post('ProjectTrend', p)
+const Control = p => post('Control',p)
 export{
     login,
     project,
@@ -45,5 +46,6 @@ export{
     HandlingEvents,
     FileUploadContext,
     Energy,
-    ProjectTrend
+    ProjectTrend,
+    Control
 }

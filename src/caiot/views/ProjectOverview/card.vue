@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
     .card{
         width: 100%;
-        height: 446px;
+        height: 450px;
         background: url(../../static/image/index/leftbar_bg_1.png);
         background-size:100% 100%;
         h4{

@@ -36,15 +36,15 @@
                 <ul class="item-list">
                     <li>
                         <p class="label">计划电耗</p>
-                        <p class="value">{{energyCount.PlanEnergy>10000?`${(energyCount.PlanEnergy/10000).toFixed(1)}W`:energyCount.PlanEnergy||'--'}}</p>
+                        <p class="value">{{energyCount.PlanEnergy>10000?`${(energyCount.PlanEnergy/10000).toFixed(1)}万`:energyCount.PlanEnergy||'--'}}</p>
                     </li>
                     <li>
                         <p class="label">本月电耗</p>
-                        <p class="value">{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}W`:energyCount.CurEnergy||'--'}}</p>
+                        <p class="value">{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}万`:energyCount.CurEnergy||'--'}}</p>
                     </li>
                     <li>
                         <p class="label">上月电耗</p>
-                        <p class="value">{{energyCount.PriorEnergy>10000?`${(energyCount.PriorEnergy/10000).toFixed(1)}W`:energyCount.PriorEnergy||'--'}}</p>
+                        <p class="value">{{energyCount.PriorEnergy>10000?`${(energyCount.PriorEnergy/10000).toFixed(1)}万`:energyCount.PriorEnergy||'--'}}</p>
                     </li>
                 </ul>
                 <div class="chart">
@@ -71,7 +71,7 @@
                             <p><i class="iconfont icon-JTJC-Totalenergyconsumption"></i></p>
                             <p>本月电耗</p>
                         </div>
-                        <p class="value">{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}W`:energyCount.CurEnergy||'--'}}</p>
+                        <p class="value">{{energyCount.CurEnergy>10000?`${(energyCount.CurEnergy/10000).toFixed(1)}万`:energyCount.CurEnergy||'--'}}</p>
                     </div>
                 </div>
                 <div class="main-top-center">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="main-top-right main-top-side">
                     <div class="number-container">
-                        <h5>实时工单</h5>
+                        <h5>实时任务</h5>
                         <number :data="count.RealOrderCount"></number>
                     </div>
                     <div class="button first">
@@ -121,7 +121,7 @@
                         <p class="value">{{count.TodayOrder||0}}</p>
                         <div class="icon">
                             <p><i class="iconfont icon-Workingodd"></i></p>
-                            <p>今日工单</p>
+                            <p>今日任务</p>
                         </div>
                     </div>
                 </div>
@@ -165,10 +165,10 @@
                     </ul>
                 </div>
             </card>
-            <card title="工单态势">
+            <card title="任务态势">
                 <ul class="item-list">
                     <li>
-                        <p class="label">今日工单</p>
+                        <p class="label">今日任务</p>
                         <p class="value">{{this.count.TodayOrder}}</p>
                     </li>
                     <li>
@@ -220,14 +220,14 @@ export default {
                     }
                 ]
             },
-            count:{},//设备统计  告警统计 工单统计
+            count:{},//设备统计  告警统计 任务统计
             sortType:0,//设备完好率排序方式
             intactRate: [],//完好率排名
             sortType1:0,//告警排名排序方式 0 为降序
             alarmIntactRate: [], //告警排名
             energyCount:{}, //能耗统计
             energyChartData:{}, //分项能耗
-            orderChartData:{},//工单类型柱形图数据
+            orderChartData:{},//任务类型柱形图数据
             alarmCount:[
                 {
                     type:'pie',
@@ -298,7 +298,7 @@ export default {
             this.queryAlarmRanking()
             this.queryEnergyByMonth()
             this.queryCompleteOrder()
-            this.timer = setTimeout(this.queryData,5000)
+            this.timer = setTimeout(this.queryData,10000)
         },
         /**
          * 获取随机数
@@ -330,7 +330,7 @@ export default {
             });
         },
         /**
-         * 386.综合态势（设备统计  告警统计 工单统计）
+         * 386.综合态势（设备统计  告警统计 任务统计）
          */
         queryUSituationStatistics(){
             ProjectTrend({
@@ -441,6 +441,7 @@ export default {
                 FAction: 'QueryEnergyByMonth'
             })
             .then((data) => {
+                console.log(data);
                 this.energyCount = data.FObject.Table[0]||{}
                 let columns = data.FObject.Table1.map(item => item.DeviceItemName)
                 let rows = [
@@ -468,7 +469,7 @@ export default {
             });
         },
         /**
-         * 384.综合态势柱形（工单类型完成率及时率）
+         * 384.综合态势柱形（任务类型完成率及时率）
          */
         queryCompleteOrder(){
             ProjectTrend({
@@ -492,7 +493,7 @@ export default {
                     }
                 ]
                 this.orderChartData = {
-                    title:'工单类型（%）',
+                    title:'任务类型（%）',
                     rows,
                     columns,
                     colorsArr:['#2A91FC','#18DE94']
@@ -637,7 +638,7 @@ export default {
         }
     }
     .main{
-        width: 1177px;
+        width: 1194px;
         height: 100%;
         &-top{
             width: 100%;

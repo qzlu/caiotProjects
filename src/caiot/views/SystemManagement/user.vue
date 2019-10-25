@@ -35,6 +35,11 @@
                         <el-option v-for="(item,i) in userType" :key="i" :value="item.id" :label="item.name"></el-option>
                       </el-select>
                     </el-form-item>
+                    <el-form-item label="所属集团" prop="FBlocID" :rules="[{ required: true, message: '请选择'}]">
+                      <el-select v-model="addFormData.FBlocID"   placeholder="请选择集团">
+                        <el-option v-for="block in blockList" :key="block.BlocID" :label="block.ShortName" :value="block.BlocID"></el-option>
+                      </el-select>
+                    </el-form-item>
                 </el-form>
                 <div class="submit">
                     <button class="zw-btn zw-btn-primary" @click="submit()">确定</button>
@@ -162,6 +167,10 @@ export default {
                     label: '所属角色'
                 },
                 {
+                    prop:'BlocName',
+                    label:'所属集团'
+                },
+                {
                     prop: 'ProjectName',
                     label: '所属项目',
                     width:400
@@ -201,7 +210,8 @@ export default {
                 FTelephone:'',
                 FEMailAddress:'',
                 FIMG:'',
-                FRoleGUID:null
+                FRoleGUID:null,
+                FBlocID:''
             },
             //新增或修改用户数据
             addFormData:{
@@ -215,7 +225,8 @@ export default {
                 FTelephone:'',
                 FEMailAddress:'',
                 FIMG:'',
-                FRoleGUID:null
+                FRoleGUID:null,
+                FBlocID:''
             },
             userType:userType.slice(localStorage.getItem('FUserType')),
             title:'新增', //新增或修改用户弹框标题
@@ -223,6 +234,7 @@ export default {
             type:0,  // 0 :新增用户 1：修改用户
             FUserNameRule: [{required: true, validator: validateUserName}],//用户名规则
             FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
+            blockList:[]//所有集团
         }
     },
     components:{
@@ -249,6 +261,7 @@ export default {
     created(){
         this.queryData()
         this.queryRoleData()
+        this.queryBlock()
     },
     mounted(){
 
@@ -303,6 +316,23 @@ export default {
             .catch(err => {
 
             })
+        },
+        /**
+         * 288.分页查询集团信息
+         */
+        queryBlock(){
+            system({
+                FAction:'QueryPageUBloc',
+                SearchKey:this.filterText,
+                PageIndex:1,
+                PageSize:1000
+            })
+            .then((data) => {
+                this.blockList =data.FObject.Table1 || []
+            })
+            .catch((err) => {
+                
+            });
         },
         /**
          * handleCurrentChange 页码改变时触发

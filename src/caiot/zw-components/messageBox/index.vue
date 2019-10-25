@@ -52,7 +52,7 @@ export default {
         height:254px;
         box-sizing: border-box;
         padding: 20px;
-        background: url(/static/image/task/messageBox.png) center no-repeat;
+        background: url(../../static/image/task/messageBox.png) center no-repeat;
         &__header {
             .el-dialog__title{
                 font-size: 17px;

@@ -11,15 +11,15 @@
           @submit="addOrUpdate"
         >
             <el-form slot="dialog" :model="addData" inline ref="form">
-                <el-form-item label="设备名称"  prop='DeviceID'  :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="device"  value-key="DeviceTypeID" filterable  placeholder="请选择">
+                <el-form-item label="设备类型"  prop='DeviceTypeID'  :rules="[{ required: true, message: '请选择'}]" >
+                  <el-select v-model="device"  value-key="DeviceTypeID" filterable  placeholder="请选择" @change="selectDeviceType">
                     <el-option v-for="item in deviceTypeList" :key="item.DeviceTypeID" :label="item.DeviceTypeName" :value="item"></el-option>
                   </el-select>
                  <!--  <span v-else>{{device.DeviceName}}</span> -->
                 </el-form-item>
                 <el-form-item label="数据标识" prop="DataItemID" filterable :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.DataItemID" filterable  placeholder="请选择">
-                    <el-option v-for="item in device.mDeviceDataItems?device.mDeviceDataItems:[]" :key="item.DataItemID" :label="item.DataItemName" :value="item.DataItemID"></el-option>
+                    <el-option v-for="item in device.listDataItem?device.listDataItem:[]" :key="item.DataItemID" :label="item.DataItemName" :value="item.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="告警类型" prop="AlarmType" :rules="[{ required: true, message: '请选择'}]">
@@ -27,10 +27,10 @@
                     <el-option v-for="type in alarmTypeList" :key="type.AlarmTypeID" :label="type.AlarmTypeName" :value="type.AlarmTypeID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="限制值" prop="LimitValue" :rules="[{ required: true, message: '请输入'}]">
+                <el-form-item label="限制值" prop="LimitValue">
                     <el-input type="number" v-model="addData.LimitValue"></el-input>
                 </el-form-item>
-                <el-form-item label="告警条件" prop="TriggerType" :rules="[{ required: true, message: '请输入'}]">
+                <el-form-item label="告警条件" prop="TriggerType" :rules="[{ required: true, message: '请选择'}]">
                     <el-select v-model="addData.TriggerType" class="condition" filterable   placeholder="请选择">
                         <el-option v-for="(item,index) in type" :key="index" :label="item" :value="index+1"></el-option>
                     </el-select>
@@ -40,9 +40,9 @@
                         <i slot="suffix">S</i>
                     </el-input>
                 </el-form-item>
-                <el-form-item label="是否启用" prop="IsEnable">
+<!--                 <el-form-item label="是否启用" prop="IsEnable">
                     <el-switch v-model="addData.IsEnable"></el-switch>
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
         </Table>
     </div>
@@ -54,7 +54,7 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop:'DeviceName',
+                    prop:'DeviceTypeName',
                     label:'设备类型'
                 },
                 {
@@ -96,14 +96,13 @@ export default {
             device:{},//所选设备
             defaultAddData:null, //新增默认数据
             addData:{ //新增或修改项目参数
-                DeviceID:null,
+                FGUID:"",
+                DeviceTypeID:null,
                 DataItemID:null,
                 AlarmType:null,
                 Duration:null,
                 TriggerType:null,
                 LimitValue:0,
-                IsEnable:true,
-                IDStr:null
             },
         }
     },
@@ -113,6 +112,7 @@ export default {
     created(){
         this.defaultAddData = Object.assign({},this.addData)
         this.queryDeviceTypeAndDataItem()
+        this.querySystemAlarmType()
     },
     methods:{
         /**
@@ -125,7 +125,7 @@ export default {
                 PageSize:10,
                 SearchKey:that.filterText
             }
-            return this.$post('/QueryPageUAlarmSet',param,true)
+            return this.$post('/QueryPageTAlarmSet',param,true)
         },
         /**
          * 287.查询设备类型数据标识树状
@@ -149,11 +149,15 @@ export default {
             }
             this.$post('/QueryPageSAlarmType',param)
             .then((data) => {
-                this.alarmTypeList = data.FObject
+                this.alarmTypeList = data.FObject.Data||[]
             })
             .catch((err) => {
                 
             });
+        },
+        selectDeviceType(){
+            this.addData.DeviceTypeID = this.device.DeviceTypeID
+            console.log(this.addData.DeviceTypeID);
         },
         /**
          * 点击新增
@@ -173,11 +177,18 @@ export default {
          * 新增或编辑
          */
         async addOrUpdate(){
-            this.$post('/AddOrUpdateUAlarmSet',{
-                MUAlarmSet:this.addData
+            await new Promise(resolve => {
+                this.$refs.form.validate((valid) => {
+                  if (valid) {
+                      resolve()
+                  } 
+                });
+            })
+            this.$refs.table.show = false
+            this.$post('/AddUpdateTAlarmSet',{
+                TAlarmSet:this.addData
             })
             .then((result) => {
-                this.$refs.table.show = false
                 this.$refs.table.queryData()
             }).catch((err) => {
                 
@@ -187,13 +198,13 @@ export default {
          * 删除告警配置
          */
         deleteItem(item){
-            return this.$post('/DeleteUAlarmSet',{IDStr:item.IDStr})
+            return this.$post('/DeleteTGroupAlarmSet',{FGUID:item.FGUID})
         },
         /**
          * 导出告警配置
          */
         exportFile(that){
-            return this.$post('/QueryExportUAlarmSet',{SearchKey:''})
+            return this.$post('/ExportTAlarmSet',{SearchKey:''})
         }
     }
 }

@@ -5,6 +5,7 @@ $img-url:'../../static/image/';
     box-sizing: border-box;
     position: relative;
     background: url('#{$img-url}index/count_back.png') center no-repeat; 
+    background-size: 100% 100%;
 }
 .report-header{
     margin-bottom: 15px;

@@ -19,12 +19,13 @@
                 <i class="iconfont icon-ZS-news"></i>
                 热烈欢迎天安智慧园区领导莅临新都汇交流指导
               </div>
-              <img src="./assets/image/main-img.jpg" alt="">
+              <img :src="imgList[activeImgIndex]" alt="">
             </div>
             <div class="image-list r">
-              <img src="./assets/image/bg_img_2.jpg" alt="">
-              <img src="./assets/image/bg_img_3.jpg" alt="">
-              <img src="./assets/image/bg_img_4.jpg" alt="">
+              <div class="image-container">
+                <img v-for="(url,i) in imgList" :key="i" :src="url" @click="selectImg(i)" alt="">
+               <!--  <img src="./assets/image/bg_img_4.jpg" alt=""> -->
+              </div>
             </div>
           </div>
           <ul class="system border r">
@@ -81,7 +82,7 @@
   </div>
 </template>
 <script>
-import {project,ProjectTrend,Orders} from '../caiot/request/api'
+import {project,ProjectTrend,Orders} from './request/api'
 import formatDate from '@/utils/formatDate'
 import lunarDateString from '@/utils/lunarDateString.js';
 import Calendar from 'himmas-vue-calendar'
@@ -107,11 +108,14 @@ export default {
       },
       systemList:[],
       weekTitle:['SUN 日','MON 一','TUE 二','WED 三','THU 四','FRI 五','SAT 六'],
-      activities: []
+      activities: [],
+      imgList:[require('./assets/image/main-img.jpg'),require('./assets/image/bg_img_2.jpg'),require('./assets/image/bg_img_3.jpg')],
+      activeImgIndex:0,
+      timer2:null
     }
   },
   components:{
-    Calendar
+    Calendar,
   },
   computed:{
     style(){
@@ -124,6 +128,7 @@ export default {
   },
   created(){
     window.addEventListener('resize',this.getHeight)
+    this.switchImg()
     this.getHeight()
     this.getTime()
     this.getWeather()
@@ -152,6 +157,23 @@ export default {
           </span>
         </div>
       )
+    },
+    selectImg(index){
+      this.activeImgIndex = index;
+      clearInterval(this.timer2)
+      this.switchImg()
+    },
+    /**
+     * 大图切换
+     */
+    switchImg(){
+      this.timer2 = setInterval(() => {
+        if(this.activeImgIndex<this.imgList.length-1){
+          this.activeImgIndex++
+        }else{
+          this.activeImgIndex = 0
+        }
+      },5000)
     },
     /**
      * 获取时间
@@ -186,7 +208,6 @@ export default {
       })
       .then((result) => {
           this.systemList = result.FObject
-          console.log(result);
       }).catch((err) => {
           console.log(err)
       });
@@ -199,7 +220,6 @@ export default {
         FAction: 'QueryOrderByMonth',
       })
       .then((result) => {
-        console.log(result);
         this.activities = result.FObject.Table || []
         this.eventList = result.FObject.Table1 || []
       }).catch((err) => {
@@ -301,10 +321,15 @@ $url:'./assets/image/';
         .image-list{
           width: 219px;
           height: 100%;
+          position: relative;
+          overflow: hidden;
           border-left: 1px solid rgba(47,23,247,1);
-          img{
-            width: 100%;
-            height: 184px;
+          .image-container{
+            img{
+              width: 100%;
+              height: 184px;
+              cursor: pointer;
+            }
           }
         }
       }

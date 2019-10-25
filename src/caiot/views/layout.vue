@@ -1,8 +1,13 @@
 <template>
   <div class="layout">
-    <left-side></left-side>
-    <div class="layout-main">
+    <div v-if="$route.name === 'SystemBrowse'||$route.name === 'AreaBrowse'">
       <router-view></router-view>
+    </div>
+    <div v-else>
+      <left-side></left-side>
+      <div class="layout-main">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -22,10 +27,14 @@ export default {
 <style lang="scss">
 .layout{
   height: 912px;
-  display: flex;
-  justify-content: space-around;
+  >div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
   &-main{
-    width: 1565px;
+    width: 1590px;
   }
 }
 /* .monitoring .m_right .fin_item ul {

@@ -123,7 +123,7 @@ export default {
   data() {
     return {
       currt: 1,
-      img_url: '../../static/imgage',
+      img_url: 'http://47.106.64.130:56090/',
       data_information: [],
       tableData: [
         {

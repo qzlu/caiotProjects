@@ -2,14 +2,14 @@
     <div class="manage">
         <el-container>
             <el-header height="82px">
-               <div class="l">
+               <div class="l logo">
                    <router-link to="/">
-                        <img src="@/assets/image/qianren/logo-qianren.png" alt="">
-                        <span>集团智服后台管理系统</span>
+                        <img :src="logoImg" alt="">
+                        <span>后台管理系统</span>
                    </router-link>
                </div>
                <div class="r">
-                   <span>{{date}}</span>
+                   <!-- <span>{{date}}</span> -->
                     <el-dropdown>
                       <div class="el-dropdown-link icon-item">
                         <i class="iconfont icon-User"></i>
@@ -22,7 +22,7 @@
                     <span style="margin-left:20px;">{{user}}</span>
                </div>
             </el-header>
-            <el-container style="height: 900px;margin-right: 12px;">
+            <el-container style="margin-right: 12px;">
                 <el-aside width="210px">
                   <div class="menu">
                       <el-scrollbar>
@@ -34,8 +34,9 @@
                   </div>
                 </el-aside>
                 <el-main>
-                    <router-view>
-                    </router-view>
+                  <h4 class="router-name">{{$route.meta.name}}</h4>
+                  <router-view>
+                  </router-view>
                 </el-main>
              </el-container>
         </el-container>
@@ -50,139 +51,8 @@ export default {
             user:sessionStorage.getItem("FContacts"), //用户名
             date:null,
             timer:null,
+            logoImg:sessionStorage.getItem('logo')?`http://47.107.224.8:8080/${sessionStorage.getItem('logo')}`:require("@/assets/image/logo-caiot.png"),
             menuData:[
-                {
-                    FGUID:'1',
-                    FMenuName:'运营管理',
-                    FMenuLevle:1,
-                    FICONURLAddress:'icon-SZXFY-basicinformation',
-                    FFunctionURLAddress:'operation',
-                    FChildMenu:[
-                        {
-                            FGUID:'1-1',
-                            FMenuName:'行政架构',
-                            FMenuLevle:2,
-                            FFunctionURLAddress:'system/organizational/',
-                        },
-/*                         {
-                            FGUID:'1-1',
-                            FMenuName:'组织管理',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'system/organizational',
-                            FChildMenu:[
-                                {
-                                    FGUID:'1-1-1',
-                                    FMenuName:'行政架构',
-                                    FMenuLevle:3,
-                                    FFunctionURLAddress:'system/organizational/',
-                                },
-                                {
-                                    FGUID:'1-1-2',
-                                    FMenuName:'组织架构',
-                                    FMenuLevle:3,
-                                    FFunctionURLAddress:'system/organizational/group',
-                                },
-                                {
-                                    FGUID:'1-1-3',
-                                    FMenuName:'项目信息',
-                                    FMenuLevle:3,
-                                    FFunctionURLAddress:'system/organizational/projectInfo',
-                                }
-                            ]
-                        }, */
-                        {
-                            FGUID:'2',
-                            FMenuName:'组织架构',
-                            FMenuLevle:3,
-                            FFunctionURLAddress:'system/organizational/group',
-                        },
-                        {
-                            FGUID: '1-2',
-                            FMenuName:'集团信息',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/block',
-                        },
-                        {
-                            FGUID: '1-3',
-                            FMenuName:'巡检标准',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'inspecttionStandard/1',
-                        },
-                        {
-                            FGUID: '1-4',
-                            FMenuName:'保养标准',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'maintenanceStandard/1',
-                        },
-                        {
-                            FGUID: '1-5',
-                            FMenuName:'工单配置',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/signInfo',
-                        },
-                        {
-                            FGUID: '1-6',
-                            FMenuName:'告警配置',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/alarmConfig',
-                        },
-                        {
-                            FGUID: '1-7',
-                            FMenuName:'参数配置',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/paramConfig',
-                        },
-                        {
-                            FGUID: '1-8',
-                            FMenuName:'能源类型',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/energyType',
-                        },
-                        {
-                            FGUID: '1-9',
-                            FMenuName:'设备类型',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/deviceType',
-                        },
-                        {
-                            FGUID: '1-10',
-                            FMenuName:'告警类型',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/alarmType',
-                        },
-                        {
-                            FGUID: '1-11',
-                            FMenuName:'用户管理',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/user',
-                        },
-                        {
-                            FGUID: '1-12',
-                            FMenuName:'角色管理',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'operation/role',
-                        },
-                        {
-                            FGUID: '1-13',
-                            FMenuName:'操作日志',
-                            FMenuLevle:2,
-                            FICONURLAddress:'icon-SZXFY-basicinformation',
-                            FFunctionURLAddress:'system/user',
-                        },
-                    ]
-                },
             ]
         }
     },
@@ -190,7 +60,17 @@ export default {
         zwNav
     },
     created(){
-        this.getTime()
+      this.menuData = [
+        {
+          FGUID:'0000-0000-0000',
+          FMenuName:sessionStorage.getItem('FUserType') == 1?'运营管理':'集团管理',
+          FICONURLAddress:'icon-OperationsManagement',
+          FMenuLevle:0,
+          FURL:'/manage',
+          FChildMenu:JSON.parse(sessionStorage.getItem('systemMenu'))
+        }
+      ]
+      this.getTime()
     },
     methods:{
         getTime(){
@@ -216,16 +96,20 @@ $url:'../../../assets/images/';
         .el-header{
             line-height: 82px;
             padding: 0 52px 0 36px;
-            div.l{
-                img{
-                    width: 34px;
-                    height: 34px;
-                    margin-right: 20px;
-                    vertical-align: middle;
-                }
-                span{
+            div.logo{
+                /* width: 160px; */
+                height: 82px;
+                a{
+                  img{
+                    max-width: 160px;
+                    max-height: 100%;
+                    vertical-align: top;
+                  }
+                  span{
                     font-size: 20px;
                     color: #C7FEFF;
+                    margin-left: 10px;
+                  }
                 }
             }
             div.r{
@@ -250,83 +134,90 @@ $url:'../../../assets/images/';
             }
         }
         .el-aside{
-            padding-top: 30px;
+            height: 960px;
+            margin-left: 10px;
+            border: 1px solid rgba($color: #5fcdf2, $alpha: 0.4);
+            border-radius: 10px 6px 6px 10px;
+            box-shadow: 0 0 10px 2px rgba($color: #5fcdf2, $alpha: 0.4) inset;
             .menu{
-                height: 922px;
-                padding: 0 20px;
-                .el-menu{
-                  background: none;
-                  border-right: none;
-                  .el-icon-arrow-down{
-                    font-size: 20px;
-                    right: 10px;
-                    margin-top:-10px;
-                    color:#9EE5F3;
-
-                  }
-                  .el-icon-arrow-down:before{
-                    content: "\e790";
-                  }
-                  .menu-list-1{
-                    margin-top: 27px;
-                    /* background: url(#{$url}menu-1.png) no-repeat; */
-                    >.el-submenu{
-                        >.el-submenu__title{
-                          height: 66px;
-                          line-height: 66px;
-                          text-indent: 10px;
-                          background-size: 100% 100%;
-                          padding-right: 0px;
-                          background: url(#{$url}menu-1.png) no-repeat;
-                          background-size: 100% 100%;
-                          .el-icon-arrow-down{
-                              transform-origin: 70% 50%;
-                          }
-                        }
-
-                    }
-                     >.el-submenu.is-active>.el-submenu__title,>.el-submenu>.el-submenu__title:hover,>.el-submenu>.el-submenu__title:focus{
-                        background: url(#{$url}menu-1-active.png) 4px no-repeat;
-                        background-size: 100% 100%;
-                     }
-/*                     .el-submenu.is-active .el-submenu__title,.el-submenu__title:hover,.el-submenu__title:focus{
-                        background: url(#{$url}menu-1-active.png) 4px no-repeat;
-                        background-size: 100% 100%;
-                    } */
-                  }
-                  .menu-list{
-                      margin-top: 20px;
-                  }
-                  .el-submenu__title,.el-menu-item{
-                    color: #C7FEFF;
-                    font-size: 18px;
-                    text-align: left;
-                    background: url(#{$url}menu-2.png)  no-repeat;
-                  }
-                  .el-submenu .el-menu-item{
-                    min-width: 100px;
-                    background: url(#{$url}menu-2.png)  no-repeat;
-                  }
-                  .el-menu-item{
-                    height: 45px;
-                    margin-top: 20px;
-                  }
-                  .menu-list-children{
-                    .el-submenu.is-active>.el-submenu__title,.el-submenu>.el-submenu__title:hover,
-                    .el-submenu>.el-submenu__title:focus,
-                    .el-menu-item.is-active,.el-menu-item:hover,.el-menu-item:focus{
-                      background: url(#{$url}menu-2-active.png) no-repeat;
-                    }
-                  }
-                }
+              height: 920px;
             }
+          .el-menu{
+              height: 100%;
+              /* padding: 0 20px; */
+              background: none;
+              border-right: none;
+              .el-icon-arrow-down{
+                font-size: 20px;
+                right: 10px;
+                margin-top:-10px;
+                color:#ffffff
+              }
+              .el-icon-arrow-down:before{
+                content: "\e790";
+              }
+              .menu-list-1{
+                >.el-submenu{
+/*                     >.el-submenu__title{
+                      height: 66px;
+                      line-height: 66px;
+                      background-size: 100% 100%;
+                      padding-right: 0px;
+                    } */
+
+                }
+                >.el-submenu.is-active>.el-submenu__title,>.el-submenu>.el-submenu__title:hover,>.el-submenu>.el-submenu__title:focus{
+                   background: linear-gradient(90deg,rgba(42,145,252,0.5),rgba(33,111,193,0.5),rgba(5,30,63,0.5));
+                   color: #ffffff;
+                   i{
+                     color: #ffffff;
+                   }
+                }
+              }
+              .menu-list{
+                  margin-top: 20px;
+              }
+              .el-submenu__title,.el-menu-item{
+                color: #2a91fc;
+                font-size: 18px;
+                text-align: left;
+                i{
+                  color: #2a91fc;
+                }
+              }
+              .el-submenu .el-menu-item{
+                text-indent: 14px;
+                min-width: 100px;
+              }
+              .el-menu-item{
+                height: 45px;
+                margin-top: 20px;
+              }
+              .menu-list-children{
+                .el-submenu.is-active>.el-submenu__title,.el-submenu>.el-submenu__title:hover,
+                .el-submenu>.el-submenu__title:focus,
+                .el-menu-item.is-active,.el-menu-item:hover,.el-menu-item:focus{
+                  color: #ffffff;
+                  background: linear-gradient(90deg,rgba(42,145,252,0.5),rgba(33,111,193,0.5),rgba(5,30,63,0.5));
+                }
+              }
+          }
         }
         .el-main{
             height: 960px;
+            margin-left: 10px;
             box-sizing: border-box;
-            border:1px solid rgba(95,205,242,1);
+            border:1px solid rgba($color: #5fcdf2, $alpha: 0.4);
             border-radius:10px;
             overflow: hidden;
+            box-shadow: 0 0 10px 2px rgba($color: #5fcdf2, $alpha: 0.4) inset;
+            h4.router-name{
+              padding-left: 10px;
+              text-align: left;
+              line-height: 44px;
+              font-size: 22px;
+              border-bottom: 1px solid #8f9cbf;
+            }
         }
     }
 }

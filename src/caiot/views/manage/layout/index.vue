@@ -2,20 +2,20 @@
     <el-container style="height:100%">
       <el-header height="85px">
         <div class="app-logo l">
-          <router-link to="/">
-            <img src="../../../static/image/index/logo-caiot.png" alt="">
+          <router-link :to="homPath">
+            <img :src="logoImg" alt="">
+            <span class="r">
+              后台管理系统
+            </span>
           </router-link>
-          <p class="r">
-            千仞智服后台管理系统
-          </p>
         </div>
-        <operation></operation>
+        <operation className="l"></operation>
       </el-header>
       <el-container>
         <el-aside width="310px">
           <el-scrollbar>
             <el-menu unique-opened :default-active="$route.path"  router>
-              <zw-nav :menus="menus">
+              <zw-nav :menus="menuData">
               </zw-nav>
             </el-menu>
           </el-scrollbar>
@@ -33,220 +33,25 @@ import operation from '../../home/operation.vue';
 export default {
     data(){
       return{
-        menus:[
-          {
-            FGUID:1,
-            FMenuLevle:1,
-            FMenuName:'设备管理',
-            FFunctionURLAddress:'/manage/DeviceManagement',
-            icon:'icon-System',
-            FChildMenu:[
-              {
-                FGUID:1-1,
-                FMenuLevle:2,
-                FMenuName:'设备台账',
-                FFunctionURLAddress:'/manage/DeviceManagement/',
-              },
-              {
-                FGUID:1-2,
-                FMenuLevle:2,
-                FMenuName:'物联设备',
-                FFunctionURLAddress:'/manage/DeviceManagement/Device',
-              },
-              {
-                FGUID:1-3,
-                FMenuLevle:2,
-                FMenuName:'设备统计',
-                FFunctionURLAddress: '/manage/DeviceManagement/EquipmentStatistics2'
-              }
-            ]
-          },
-          {
-            FGUID:2,
-            FMenuLevle:1,
-            FMenuName:'项目管理',
-            FFunctionURLAddress:'/manage/projectManagement',
-            icon:'el-icon-message',
-            FChildMenu:[
-              {
-                FGUID:2-1,
-                FMenuLevle:2,
-                FMenuName:'项目信息',
-                FFunctionURLAddress:'/manage/projectManagement/',
-              },
-              {
-                FGUID:2-2,
-                FMenuLevle:2,
-                FMenuName:'区域信息',
-                FFunctionURLAddress:'/manage/projectManagement/AreaInfo',
-              },
-              {
-                FGUID:2-3,
-                FMenuLevle:2,
-                FMenuName:'巡检标准',
-                FFunctionURLAddress:'/manage/projectManagement/InspectionDeviceTypeDataItem',
-              },
-              {
-                FGUID:2-4,
-                FMenuLevle:2,
-                FMenuName:'保养标准',
-                FFunctionURLAddress:'/manage/projectManagement/BasisMaintenanceStandards',
-              },
-              {
-                FGUID:2-5,
-                FMenuLevle:2,
-                FMenuName:'工单配置',
-                FFunctionURLAddress:'/manage/projectManagement/SignInfo',
-              },
-              {
-                FGUID:2-6,
-                FMenuLevle:2,
-                FMenuName:'告警配置',
-                FFunctionURLAddress:'/manage/projectManagement/AlarmConfig',
-              },
-              {
-                FGUID:2-7,
-                FMenuLevle:2,
-                FMenuName:'用户管理',
-                FFunctionURLAddress:'/manage/projectManagement/user',
-              },
-              {
-                FGUID:2-8,
-                FMenuLevle:2,
-                FMenuName:'角色管理',
-                FFunctionURLAddress:'/manage/projectManagement/role',
-              },
-              {
-                FGUID:2-9,
-                FMenuLevle:2,
-                FMenuName:'操作日志',
-                FFunctionURLAddress:'/manage/projectManagement/SystemLog',
-              },
-            ]
-          },
-          {
-            FGUID:3,
-            FMenuLevle:1,
-            FMenuName:'标准配置',
-            FFunctionURLAddress:'/manage/SystemManagement',
-            icon:'el-icon-message',
-            FChildMenu:[
-              {
-                FGUID:3-1,
-                FMenuLevle:2,
-                FMenuName:'集团信息',
-                FFunctionURLAddress:'/manage/SystemManagement/Block',
-              },
-              {
-                FGUID:3-2,
-                FMenuLevle:2,
-                FMenuName:'系统分类',
-                FFunctionURLAddress:'/manage/SystemManagement/SystemType',
-              },
-/*               {
-                FGUID:3-3,
-                FMenuLevle:2,
-                FMenuName:'项目信息',
-                FFunctionURLAddress:'/manage/SystemManagement/ProjectInfo',
-              }, */
-              {
-                FGUID:3-4,
-                FMenuLevle:2,
-                FMenuName:'设备分类',
-                FFunctionURLAddress:'/manage/SystemManagement/DeviceType',
-              },
-              {
-                FGUID:3-5,
-                FMenuLevle:2,
-                FMenuName:'告警类型',
-                FFunctionURLAddress:'/manage/SystemManagement/AlarmType',
-              },
-              {
-                FGUID:3-6,
-                FMenuLevle:2,
-                FMenuName:'能源类型',
-                FFunctionURLAddress:'/manage/SystemManagement/EnergyType',
-              },
-              {
-                FGUID:3-7,
-                FMenuLevle:2,
-                FMenuName:'数据标识',
-                FFunctionURLAddress:'/manage/SystemManagement/DataItem',
-              },
-              {
-                FGUID:3-8,
-                FMenuLevle:2,
-                FMenuName:'仪表类型',
-                FFunctionURLAddress:'/manage/SystemManagement/MeterType',
-              },
-              {
-                FGUID:3-9,
-                FMenuLevle:2,
-                FMenuName:'仪表型号',
-                FFunctionURLAddress:'/manage/SystemManagement/MeterModel',
-              },
-              {
-                FGUID:3-10,
-                FMenuLevle:2,
-                FMenuName:'仪表协议',
-                FFunctionURLAddress:'/manage/SystemManagement/MeterProto',
-              },
-              {
-                FGUID:3-11,
-                FMenuLevle:2,
-                FMenuName:'协议解析',
-                FFunctionURLAddress:'/manage/SystemManagement/Protocol',
-              },
-              {
-                FGUID:3-12,
-                FMenuLevle:2,
-                FMenuName:'配置管理',
-                FFunctionURLAddress:'/manage/SystemManagement/ConfigurationManagement',
-              },
-              {
-                FGUID:3-13,
-                FMenuLevle:2,
-                FMenuName:'项目流程',
-                FFunctionURLAddress:'/manage/SystemManagement/ProjectConfig',
-              },
-              {
-                FGUID:3-14,
-                FMenuLevle:2,
-                FMenuName:'网关信息',
-                FFunctionURLAddress:'/manage/SystemManagement/GateWay',
-              },
-              {
-                FGUID:3-15,
-                FMenuLevle:2,
-                FMenuName:'仪表信息',
-                FFunctionURLAddress:'/manage/SystemManagement/Meter',
-              },
-              {
-                FGUID:3-16,
-                FMenuLevle:2,
-                FMenuName:'蓝牙信息',
-                FFunctionURLAddress:'/manage/SystemManagement/Bluetooth',
-              },
-              {
-                FGUID:3-17,
-                FMenuLevle:2,
-                FMenuName:'设备仪表',
-                FFunctionURLAddress:'/manage/SystemManagement/DeviceMeter',
-              },
-              {
-                FGUID:3-18,
-                FMenuLevle:2,
-                FMenuName:'区域映射',
-                FFunctionURLAddress:'/manage/SystemManagement/AreaMaping',
-              },
-            ]
-          },
-        ]
+        logoImg:`http://47.106.64.130:56090/${localStorage.getItem('logo')}`,
+        homPath:localStorage.getItem('homePath')||'/'
       }
     },
     components:{
       zwNav,
       operation
+    },
+    computed: {
+      menuData(){
+        if(this.$store.state.systemMenu.length>0){
+          console.log(this.$store.state.systemMenu);
+          return this.$store.state.systemMenu
+        }else{
+          this.$store.dispatch('getMenu')
+        }
+      }
+    },
+    created(){
     }
 }
 </script>
@@ -260,19 +65,26 @@ export default {
     }
   }
   .app-logo{
-    height: 48px;
-    padding-top: 15px;
+    height: 82px;
+    line-height: 82px;
     /* padding-left: 50px; */
     box-sizing: border-box;
-    text-align: left;
+    text-align: center;
     color: white;
-    >p{
-      margin-left: 10px;
-      line-height: 50px;
+    a{
+      line-height: 82px;
       font-size:26px;
       font-family:JZunYuan;
       font-weight:bold;
       color:rgba(42,145,252,1);
+      img{
+        max-width: 150px;
+        max-height: 82px;
+        vertical-align: top;
+      }
+      span{
+        margin-left: 10px;
+      }
     }
   }
   .el-aside{

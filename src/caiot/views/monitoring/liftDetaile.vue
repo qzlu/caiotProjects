@@ -199,6 +199,7 @@ export default {
             })
             /** 加入频道 */
             await new Promise((resolve,reject) => {
+                console.log('ceshi',this.liftInfo.OtherSourceID);
                 this.client.join('ce1902b6be334d6a8ad60f313b222eea', this.liftInfo.OtherSourceID, undefined, (uid) => {
                   console.log("User " + uid + " join channel successfully");
                   this.isJoining = true;

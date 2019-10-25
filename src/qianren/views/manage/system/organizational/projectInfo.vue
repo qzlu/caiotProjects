@@ -67,7 +67,7 @@
                     <el-form-item label="排序" prop="FSortID" :rules="[{ required: true, message: '请输入'}]">
                         <el-input v-model="addData.FSortID" type="number"></el-input>
                     </el-form-item>
-                    <el-form-item label="地区" prop="FAreaCode">
+<!--                     <el-form-item label="地区" prop="FAreaCode">
                         <el-cascader
                             ref="project"
                             v-model="FAreaCode"
@@ -76,7 +76,7 @@
                             collapse-tags
                             clearable>
                         </el-cascader>
-                    </el-form-item>
+                    </el-form-item> -->
                     <el-form-item label="详细地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
                         <el-input class="block" type="textarea" v-model="addData.Address"></el-input>
                     </el-form-item>
@@ -87,12 +87,12 @@
 </template>
 <script>
 import Table from '../../components/table.vue'
+import provinceList from '@/mapJson/provinceList.json'
 const param = {
     PageIndex:1,
     PageSize:1000,
     SearchKey:''
 }
-/* import provinceList from '@/mapJson/provinceList.json' */
 export default {
     data(){
         return{
@@ -123,7 +123,7 @@ export default {
             treeData:[],
             treeProp:{
                 children:'ListData',
-                label:'FORGName'
+                label:'FAreaName'
             },
             defaultAddData:{ //新增默认数据
             },
@@ -167,7 +167,6 @@ export default {
     created(){
         this.defaultAddData = JSON.parse(JSON.stringify(this.addData))
         this.provinces = provinceList
-        console.log(this.provinces)
         this.queryTreeData()
     },
     methods:{
@@ -175,9 +174,7 @@ export default {
          * 查询左边树形数据
          */
         queryTreeData(){
-            this.$post('/QueryTORGNodeTree',{
-                FNodeType:'1'
-            })
+            this.$post('/QueryTOPEAreaProjectTree')
             .then((result) => {
                 this.treeData = result.FObject||[]
                 if(this.treeData[0]){
@@ -193,7 +190,7 @@ export default {
         },
         filterNode(value, data) {
             if (!value) return true;
-            return data.FORGName.indexOf(value) !== -1;
+            return data.FAreaName.indexOf(value) !== -1;
         },
         /**
          * 选中节点的时候
@@ -210,6 +207,8 @@ export default {
             let param = {
                 FGUID: this.currentNode.FGUID,
                 PageIndex:that.pageIndex,
+                FAreaCode:this.currentNode.FAreaCode,
+                FAreaLevel:this.currentNode.FAreaLevel,
                 PageSize:10,
                 SearchKey:''
             }
@@ -239,7 +238,7 @@ export default {
          */
         async addOrUpdate(){
             this.addData.FORGNodeGUID = this.currentNode.FGUID
-            this.addData.FAreaCode = this.FAreaCode[0]
+            this.addData.FAreaCode = this.currentNode.FAreaCode
             await new Promise(resolve => {
                 this.$refs.form.validate((valid) => {
                   if (valid) {

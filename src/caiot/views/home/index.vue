@@ -4,27 +4,24 @@
     <div class="home_center">
       <header>
         <div class="logo l">
-          <img src="../../static/image/index/logo-caiot.png" alt="">
-        </div>
-        <div class="l block-name">
-          中物互联
+          <img :src="logoImg" alt="">
         </div>
         <div class="system-name">
-          中物互联智服云平台
+          {{formName}}
         </div>
-        <operation>
-          <li class="l icon">
-              <router-link :to="`/manage`"  class="icon-item">
-                  <i class="iconfont icon-zs-backstage"></i>
-              </router-link>
+        <operation :top="20" className="home-project-list">
+          <li class="l icon" @click="goManage()" v-if="systemMenu.length>0">
+              <i class="iconfont icon-zs-backstage"></i>
           </li>
           <li class="l icon" @click="switchAudio">
               <i :class="['iconfont', {'icon-ZS-news':isOpen == 1,'icon-Soundoff':isOpen == 0}]"></i>
           </li>
         </operation>
         <div class="menu">
-            <el-menu unique-opened :default-active="$route.path" router mode="horizontal">
-              <zw-nav :menus="menuList">
+            <el-menu unique-opened :default-active="$route.path" ref="menu"  mode="horizontal">
+              <zw-nav class="menu-left" :menus="leftMenuData">
+              </zw-nav>
+              <zw-nav class="menu-right" :menus="rightMenuData">
               </zw-nav>
             </el-menu>
         </div>
@@ -48,311 +45,45 @@ export default {
       alarmTimes:0, //报警次数
       lastAlarmTime:null, //记录最后报警时间
       timer:null,
-      menuList:[{
-        FMenuName:'项目态势',
-        FGUID:'1',
-        FMenuLevle:1,
-        FFunctionURLAddress:'/ProjectBrowse/comprehensive',
-        FChildMenu:[
-          {
-            FMenuName: '综合态势',
-            FGUID:'1-1',
-            FMenuLevle:2,
-            FFunctionURLAddress:'/ProjectBrowse/comprehensive',
-          },
-          {
-            FMenuName: '系统态势',
-            id:'1-2',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/ProjectBrowse/systemBrowse'
-          },
-          {
-            FMenuName: '区域监测',
-            FGUID:'1-3',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/ProjectBrowse/areaBrowse'
-          },
-          {
-            FMenuName: '重点监测',
-            FGUID:'1-4',
-            FMenuLevle:3,
-            FFunctionURLAddress: '/monitoring/KeyEquipment'
-          },
-          {
-            FMenuName: '第三屛',
-            FGUID:'1-5',
-            FMenuLevle:3,
-            blank:true,
-            FFunctionURLAddress: 'http://localhost:8080/#/'
-          }
-        ]
-      },{
-        FMenuName: '告警管理',
-        FGUID:'2',
-        FMenuLevle:1,
-        FFunctionURLAddress: '/foreshow/',
-        FChildMenu:[
-          {
-            FMenuName: '实时告警',
-            FGUID:'2-1',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/foreshow/'
-          },
-          {
-            FMenuName: '历史告警',
-            FGUID:'2-2',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/foreshow/history_count'
-          },
-          {
-            FMenuName: '告警统计',
-            FGUID:'2-3',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/foreshow/foreshow_count'
-          }
-        ]
-      },{
-        FMenuName: '能源管理',
-        FGUID:'3',
-        FMenuLevle:1,
-        FFunctionURLAddress: '/energy/',
-        FChildMenu:[
-          {
-            FMenuName: '能源配置',
-            FGUID:'3-1',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/energy/CalculationSettings'
-          },
-          {
-            FMenuName: '能源计划',
-            FGUID:'3-2',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/energy/EnergyPlan'
-          },
-          {
-            FMenuName: '能源统计',
-            FGUID:'3-3',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/energy/EnergyStatistics'
-          }
-        ]
-      },{
-        FMenuName: '任务管理',
-        FGUID:'4',
-        FMenuLevle:1,
-        FFunctionURLAddress: '/TaskManagement/Worklist',
-        FChildMenu:[
-          {
-            FMenuName: '工单池',
-            FGUID:'4-1',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/Worklist'
-          },
-          {
-            FMenuName: '巡检管理',
-            FGUID:'4-2',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/InspectionItem',
-            FChildMenu:[
-              {
-                FMenuName: '巡检点',
-                FGUID:'4-2-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/InspectionItem'
-              },
-              {
-                FMenuName: '巡检路线',
-                FGUID:'4-2-2',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/InspectionRoad'
-              },
-              {
-                FMenuName: '巡检计划',
-                FGUID:'4-2-3',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/InspectionPlan'
-              },
-              {
-                FMenuName: '巡检标准',
-                FGUID:'4-2-4',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/InspectionStandard'
-              },
-              {
-                FMenuName: '巡检记录',
-                FGUID:'4-2-5',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/InspectionRecords'
-              },
-            ]
-          },
-          {
-            FMenuName: '巡更管理',
-            FGUID:'4-3',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/PatrolPoint',
-            FChildMenu:[
-              {
-                FMenuName: '巡更点',
-                FGUID:'4-3-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/PatrolPoint'
-              },
-              {
-                FMenuName: '巡更路线',
-                FGUID:'4-3-2',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/PatrolLine'
-              },
-              {
-                FMenuName: '巡更计划',
-                FGUID:'4-3-3',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/UPatrolPlan'
-              },
-              {
-                FMenuName: '巡更记录',
-                FGUID:'4-3-4',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/PatrolPlanRecord'
-              },
-              {
-                FMenuName: '巡更报告',
-                FGUID:'4-2-5',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/QueryPatrolPlanRecord'
-              },
-            ]
-          },
-          {
-            FMenuName: '抄表管理',
-            FGUID:'4-4',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/MeterReadingPoint',
-            FChildMenu:[
-              {
-                FMenuName: '抄表点',
-                FGUID:'4-4-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MeterReadingPoint'
-              },
-              {
-                FMenuName: '抄表路线',
-                FGUID:'4-4-2',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MeterReadingLine'
-              },
-              {
-                FMenuName: '抄表计划',
-                FGUID:'4-4-3',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MeterReadingPlan'
-              },
-              {
-                FMenuName: '抄表记录',
-                FGUID:'4-4-4',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MeterReadingRecords'
-              },
-            ]
-          },
-          {
-            FMenuName: '保养管理',
-            FGUID:'4-5',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/MaintenanceStandard',
-            FChildMenu:[
-              {
-                FMenuName: '保养标准',
-                FGUID:'4-5-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MaintenanceStandard'
-              },
-              {
-                FMenuName: '保养计划',
-                FGUID:'4-5-2',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MaintenancePlan'
-              },
-              {
-                FMenuName: '保养记录',
-                FGUID:'4-5-3',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MaintenanceRecords'
-              },
-              {
-                FMenuName: '维保耗材库',
-                FGUID:'4-5-4',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/Supplies'
-              },
-            ]
-          },
-          {
-            FMenuName: '报事管理',
-            FGUID:'4-6',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/MatterRecord',
-            FChildMenu:[
-              {
-                FMenuName: '报事记录',
-                FGUID:'4-6-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/MatterRecord'
-              }
-            ]
-          },
-          {
-            FMenuName: '维修管理',
-            FGUID:'4-7',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/',
-            FChildMenu:[
-              {
-                FMenuName: '维修记录',
-                FGUID:'4-7-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/'
-              }
-            ]
-          },
-          {
-            FMenuName: '告警处理',
-            FGUID:'4-8',
-            FMenuLevle:2,
-            FFunctionURLAddress: '/TaskManagement/AlarmRecord',
-            FChildMenu:[
-              {
-                FMenuName: '告警记录',
-                FGUID:'4-8-1',
-                FMenuLevle:3,
-                FFunctionURLAddress: '/TaskManagement/AlarmRecord'
-              }
-            ]
-          }
-        ]
-      }]
+      logoImg:localStorage.getItem('logo')?`http://47.106.64.130:56090/${localStorage.getItem('logo')}`:require("../../static/image/index/logo-caiot.png"),
+      formName:localStorage.getItem("formName")||"千仞智服设施管控云平台",
+      BlocName:localStorage.getItem("BlocName")||"中物互联"
     };
   },
   components: { zwNav,operation },
   computed: {
-    projectList() {
-      let projectID = localStorage.getItem("projectid");
-      if (projectID > 0 && this.inIframe == 1) { 
-        let projectList = this.$store.state.projectList.filter(
-          item => item.ProjectID == projectID
-        );
-        this.curr_selectdata = projectList[0];
-        return projectList;
-      } else {
-        this.curr_selectdata = this.$store.state.projectList.find(
-          item => item.ProjectID == projectID
-        );
-        return this.$store.state.projectList;
-      }
-    },
     myAudio(){
         return document.getElementById('myAudio')
+    },
+    leftMenuData(){
+      let len = this.$store.state.menuData.length
+      if(len > 0){
+        let center = Math.ceil(len/2)
+        return this.$store.state.menuData.slice(0,center)
+      }else{
+        this.$store.dispatch('getMenu')
+      }
+    },
+    rightMenuData(){
+      let len = this.$store.state.menuData.length
+      let center = Math.ceil(len/2)
+      return this.$store.state.menuData.slice(center)
+    },
+    systemMenu(){
+      return this.$store.state.systemMenu
+    }
+  },
+  watch:{
+    $route(route){
+      if(route.name == 'detail_info_list'){
+        this.$nextTick(() => {
+          this.$refs.menu.activeIndex = '/monitoring/systemBrowse'
+        })
+      }else if(route.name == 'DeviceInfo'){
+        this.$nextTick(() => {
+          this.$refs.menu.activeIndex = '/DeviceManagement/'
+        })
+      }
     }
   },
   beforeCreate() {
@@ -361,12 +92,25 @@ export default {
     this.getAlarmData()
   },
   mounted: function() {
+    let route = this.$route
+    if(route.name == 'detail_info_list'){
+      this.$nextTick(() => {
+        this.$refs.menu.activeIndex = '/monitoring/systemBrowse'
+      })
+    }else if(route.name == 'DeviceInfo'){
+      this.$nextTick(() => {
+        this.$refs.menu.activeIndex = '/DeviceManagement/'
+      })
+    }
   },
   beforeDestroy(){
     clearTimeout(this.timer)
     this.timer = null
   },
   methods: {
+    goManage(){
+      this.$router.push('/manage')
+    },
     /**
      * 切换声音开关
      */
@@ -433,19 +177,22 @@ $img-url: "../../static/image/";
     header{
       width: 100%;
       height: 130px;
-      margin-bottom: 24px;
+      margin-top: 10px;
+      margin-bottom: 14px;
       position: relative;
-      background: url(#{$img-url}index/nav-header.png) center no-repeat;
+      background: url(#{$img-url}index/nav-header.png) 100px no-repeat;
       .logo{
-        margin-top: 46px;
-        margin-left: 20px;
+        width: 160px;
+        height: 120px;
+        /* line-height: 120px; */
         img{
-          width: 96px;
-          height: 48px;
+          max-width: 100%;
+          max-height: 100%;
+          vertical-align: middle;
         }
       }
       .block-name{
-        margin-top: 60px;
+        margin-top: 24px;
         margin-left: 10px;
         font-size:22px;
         font-weight:400;
@@ -454,17 +201,35 @@ $img-url: "../../static/image/";
       .system-name{
         width: 524px;
         height: 120px;
-        line-height: 120px;
-        margin-left: 634px;
+        line-height: 130px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -262px;
         font-size:38px;
         font-weight:bold;
         letter-spacing: 4px;
         color:rgba(132,192,255,1);
       }
-      .menu{
+      .home-project-list{
         position: absolute;
-        top:60px;
-        left: 290px;
+        top:50px;
+        right: 0;
+      }
+      .menu{
+        width: 100%;
+        position: absolute;
+        top:70px;
+        /* left: 290px; */
+        .zw-nav{
+          position: absolute;
+        }
+        .menu-left{
+          right: 1216px;
+        }
+        .menu-right{
+          left: 1216px;
+        }
         .el-menu--horizontal{
           background: none;
           border-bottom: none;

@@ -2,7 +2,7 @@
     <div class="report inspection-item meter">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="450px" class="zw-dialog">
             <el-form :model="addInfo" ref="form">
-                <el-form-item label="工单类型"  prop='ObjectType'  :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item label="任务类型"  prop='ObjectType'  :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.ObjectType"   filterable  placeholder="请选择">
                     <el-option v-for="(list,i) in objectType" :key="i" :label="list" :value="i+1"></el-option>
                   </el-select>
@@ -84,7 +84,7 @@ export default {
                 },
                 {
                     prop: 'ObjectName',
-                    label: '工单类型',
+                    label: '任务类型',
                 },
                 {
                     prop: 'SignTypeName',

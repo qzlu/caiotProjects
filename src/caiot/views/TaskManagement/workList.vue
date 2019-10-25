@@ -8,14 +8,14 @@
             <li :class="{active:tabIndex === 3}" @click="tabIndex = 3">已完成</li>
             <!-- <li :class="{active:tabIndex === 6}" @click="tabIndex = 6">其他</li> -->
             <li class="select">
-                <span>工单类型</span> 
+                <span>任务类型 </span> 
                 <div class="select-box" @click="showSelectOption = !showSelectOption">{{selectType.name}}<i :class="{'el-icon-caret-bottom':!showSelectOption,'el-icon-caret-top':showSelectOption}"></i></div>
                 <ul class="select-option" v-if="showSelectOption">
                     <li v-for="item in workTypeList" :key="item.value" @click="selectType = item;showSelectOption = false">{{item.name}}</li>
                 </ul>
             </li>
             <li class="select-time">
-                <span>时间段</span>
+                <span>时间段 </span>
                 <el-date-picker
                   v-model="time"
                   type="daterange"
@@ -215,7 +215,7 @@
         <el-dialog title="派单" class="zw-dialog order-dialog" :visible.sync="showOrder">
             <ul>
                 <li>
-                    <span>工单情况</span>
+                    <span>任务情况</span>
                     <el-input v-model="workObj.OrderContent"></el-input>
                 </li>
                 <li>
@@ -234,23 +234,23 @@
                 <button class="zw-btn zw-btn-primary" style="margin-left:20px" v-if="workObj.OrderType == 5" @click="deleteOrdersByAlarm()">误报</button>
             </div>
         </el-dialog>
-        <el-dialog title="工单详情" class="show-detail" :visible.sync="showDetail">
+        <el-dialog title="任务详情" class="show-detail" :visible.sync="showDetail">
             <div style="height:760px">
             <el-scrollbar>
                 <div>
                     <div>
-                        <p class="title"><span class="icon-title"></span>工单信息</p>
+                        <p class="title"><span class="icon-title"></span>任务信息</p>
                         <ul class="info" v-if="workInfo">
                             <li class="l">
-                                <span class="item-title">工单类型:</span>
+                                <span class="item-title">任务类型:</span>
                                 <span class="item-info">{{workInfo.OrderTypeName}}</span>
                             </li>
                             <li class="l">
-                                <span class="item-title">工单进度:</span>
+                                <span class="item-title">任务进度:</span>
                                 <span class="item-info">{{workInfo.OrderStateName}}</span>
                             </li>
                             <li class="l">
-                                <span class="item-title">工单名称:</span>
+                                <span class="item-title">任务名称:</span>
                                 <span class="item-info">{{workInfo.OrderContent}}</span>
                             </li>
                             <li class="l" v-if="workInfo.OrderType==9">
@@ -272,7 +272,7 @@
                         </ul>
                     </div>
                     <div style="margin-top:39px;">
-                        <p class="title"><span class="icon-title"></span>工单进度</p>
+                        <p class="title"><span class="icon-title"></span>任务进度</p>
                         <!-- 巡检 -->
                         <ul class="progress clearfix" v-if="areaArr.Table2&&workInfo.OrderType==1">
                             <li class="clearfix" v-for="(item,index) in areaArr.Table2" :key="index">
@@ -568,16 +568,16 @@ export default {
                 },
                 {
                     prop: 'OrderTypeName',
-                    label: '工单类型',
+                    label: '任务类型',
                 },
                 {
                     prop: 'OrderContent',
-                    label: '工单名称',
+                    label: '任务名称',
                     width:'160'
                 },
                 {
                     prop: 'OrderStateName',
-                    label: '工单状态',
+                    label: '任务状态',
                 },
                 {
                     prop: 'OrderCreateDateTime',
@@ -612,11 +612,11 @@ export default {
                 },
                 {
                     prop: 'OrderTypeName',
-                    label: '工单类型',
+                    label: '任务类型',
                 },
                 {
                     prop: 'OrderContent',
-                    label: '工单名称',
+                    label: '任务名称',
                 },
                 {
                     prop: 'OrderCreateDateTime',
@@ -677,7 +677,7 @@ export default {
                     value:5
                 },
 /*                 {
-                    name:'工单池',
+                    name:'任务池',
                     value:7
                 },
                 {
@@ -740,7 +740,7 @@ export default {
             this.queryOrders(val, this.tabIndex-1)
         },
         /**
-         * 分页查询工单列表
+         * 分页查询任务列表
          * 
          * state 状态 0全部 1处理中 2已完成 3已接单 4未派单 5已派单
          */
@@ -829,7 +829,7 @@ export default {
             })
         },
         /**
-         * 误报（255.删除工单告警）
+         * 误报（255.删除任务告警）
          */
         deleteOrdersByAlarm(){
             Orders({
@@ -845,7 +845,7 @@ export default {
             })
         },
         /**
-         * 导出工单
+         * 导出任务
          */
         exportFile(){
             Orders({
@@ -929,6 +929,12 @@ export default {
                 width: auto;
                 margin-left: 10px;
                 background: none;
+                span{
+                    margin-right: 10px;
+                }
+                .zw-btn{
+                    margin-left: 10px;
+                }
                 .el-date-editor--daterange.el-input__inner{
                     width: 250px;
                     height: 46px;

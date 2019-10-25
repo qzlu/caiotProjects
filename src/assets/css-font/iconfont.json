@@ -2377,6 +2377,76 @@
       "font_class": "Noise1",
       "unicode": "e7ad",
       "unicode_decimal": 59309
+    },
+    {
+      "icon_id": "10956445",
+      "name": "Abnormal",
+      "font_class": "Abnormal1",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "10956446",
+      "name": "Not open",
+      "font_class": "Notopen",
+      "unicode": "e7af",
+      "unicode_decimal": 59311
+    },
+    {
+      "icon_id": "10956447",
+      "name": "Normal11",
+      "font_class": "Normal",
+      "unicode": "e7b0",
+      "unicode_decimal": 59312
+    },
+    {
+      "icon_id": "11202167",
+      "name": "Control-Surface",
+      "font_class": "Control-Surface",
+      "unicode": "e7b1",
+      "unicode_decimal": 59313
+    },
+    {
+      "icon_id": "11202172",
+      "name": "Control-Line",
+      "font_class": "Control-Line",
+      "unicode": "e7b2",
+      "unicode_decimal": 59314
+    },
+    {
+      "icon_id": "11223755",
+      "name": "plus-s",
+      "font_class": "plus-s",
+      "unicode": "e7b3",
+      "unicode_decimal": 59315
+    },
+    {
+      "icon_id": "11340625",
+      "name": "Project management",
+      "font_class": "Projectmanagement",
+      "unicode": "e7b4",
+      "unicode_decimal": 59316
+    },
+    {
+      "icon_id": "11340682",
+      "name": "Standard Configuration",
+      "font_class": "StandardConfiguration",
+      "unicode": "e7b5",
+      "unicode_decimal": 59317
+    },
+    {
+      "icon_id": "11340808",
+      "name": "Engineering Management",
+      "font_class": "EngineeringManagement",
+      "unicode": "e7b6",
+      "unicode_decimal": 59318
+    },
+    {
+      "icon_id": "11350399",
+      "name": "Operations Management",
+      "font_class": "OperationsManagement",
+      "unicode": "e7b7",
+      "unicode_decimal": 59319
     }
   ]
 }

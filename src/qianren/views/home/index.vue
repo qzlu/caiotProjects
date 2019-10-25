@@ -1,17 +1,15 @@
 <template>
   <div class="home qianren">
     <div class="header">
-      <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
+<!--       <el-button v-if="$route.path !=='/' " @click="$router.back()" class="back">
         <i class="icon el-icon-arrow-left"></i>返回
-      </el-button>
-      <span class="title">{{projectName}}智服云平台</span>
-      <ul class="clearfix">
-        <li class="l icon" v-if="$route.path !=='/'">
-          <router-link :to="`/manage`" class="icon-item">
-            <i class="iconfont icon-zs-backstage"></i>
-          </router-link>
-        </li>
-        <li class="l icon">
+      </el-button> -->
+      <div class="logo">
+        <img :src="logoImg" alt="">
+      </div>
+      <span class="title">{{formName}}</span>
+      <ul class="clearfix" style="top:10px;right:16px">
+        <li class="l icon" v-if="systemMenu&&systemMenu.length>0">
             <router-link :to="`/manage`"  class="icon-item">
                 <i class="iconfont icon-zs-backstage"></i>
             </router-link>
@@ -33,11 +31,17 @@
         <li class="l user-name">{{user}}</li>
         <!-- <set-password :show.sync='show' @confirm="changePassword"></set-password> -->
       </ul>
-      <ul class="menu">
+      <ul class="menu menu-left">
         <li :class="['menu-item',{'active':activeIndex ==0}]" @click="changeRoute(0)">集团态势</li>
         <li :class="['menu-item',{'active':activeIndex ==1}]" @click="changeRoute(1)">系统总览</li>
         <li :class="['menu-item',{'active':activeIndex ==2}]" @click="changeRoute(2)">综合排名</li>
-        <li id="tree-project" class="menu-item" >
+      </ul>
+      <ul class="menu menu-right">
+        <li :class="['menu-item']" >告警管理</li>
+        <li :class="['menu-item']" >能源管理</li>
+        <li :class="['menu-item']" >任务管理</li>
+      </ul>
+      <div id="tree-project" class="r" >
             <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
             <div class="tree-project" v-if="showProjectList">
                 <div class="filter-box">
@@ -59,17 +63,16 @@
                            :filter-node-method="filterNode"
                         >
                           <template v-slot="{node,data}">
-                            <div>
-                              <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span>
-                              <a v-if="data.FNodeType == 2" :href="`https://www.szqianren.com/#/monitoring/systemBrowse?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
+                            <div style="width:100%;text-align:left">
+                              <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span><!-- www.szqianren.com -->
+                              <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`http://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
                             </div>
                           </template>
                         </el-tree>
                     </el-scrollbar>
                 </div>
             </div>
-        </li>
-      </ul>
+      </div>
     </div>
     <div>
       <div class="compre-hensive">
@@ -286,7 +289,7 @@
         <div class="left-side aside r">
           <div class="side-header clearfix" style="margin-left: 54px;">
             <number class="l" :data="count.RealOrderCount"></number>
-            <span>实时工单</span>
+            <span>实时任务</span>
           </div>
           <ul class="side-content" v-if="activeIndex ==0">
             <li class="card">
@@ -341,7 +344,7 @@
             <li class="card">
               <h4 class="title">
                 <i class="icon-type iconfont icon-Workingodd"></i>
-                工单态势
+                任务态势
                 <i class="iconfont icon-Up"></i>
               </h4>
               <div class="border">
@@ -350,7 +353,7 @@
               </div>
               <ul class="item-list">
                 <li>
-                  <p class="label">今日工单</p>
+                  <p class="label">今日任务</p>
                   <p class="value">{{this.count.TodayOrder}}</p>
                 </li>
                 <li>
@@ -449,7 +452,7 @@
               <li class="card">
                 <h4 class="title">
                   <i class="icon-type iconfont icon-Workingodd"></i>
-                  工单数量排名
+                  任务数量排名
                   <i class="iconfont icon-Up"></i>
                   <p class="r">
                     <span
@@ -472,7 +475,7 @@
                             <div class="bar-out">
                               未完成 / 已完成
                             </div>
-                            <span class="value">工单数量</span>
+                            <span class="value">任务数量</span>
                         </li>
                     </ul>
                     <ul class="list-body">
@@ -523,7 +526,7 @@
                 <p>
                   <i class="iconfont icon-Workingodd"></i>
                 </p>
-                <p>今日工单</p>
+                <p>今日任务</p>
               </div>
               <p class="l">{{count.TodayOrder}}</p>
             </li>
@@ -630,14 +633,14 @@ export default {
       ],
       levelArr: [], //行政架构等级
       activeLevel: {}, //当前选中的架构等级
-      count: {}, //设备统计  告警统计 工单统计
+      count: {}, //设备统计  告警统计 任务统计
       sortType: 0, //设备完好率排序方式
       intactRate: [], //完好率排名
       sortType1: 0, //告警排名排序方式 0 为降序
       alarmIntactRate: [], //告警排名
       energyCount: {}, //能耗统计
       energyChartData: {}, //分项能耗
-      orderChartData: {}, //工单类型柱形图数据
+      orderChartData: {}, //任务类型柱形图数据
       alarmData:[],
       orderData:[],
       systemList:[], //系统态势列表
@@ -651,12 +654,15 @@ export default {
       intactRateTop10:[], //综合排名设备完好率排名
       recoverRate:[], //恢复率
       energyRate:[], //本月能耗排名
-      orderRate:[], //工单数量排名
+      orderRate:[], //任务数量排名
       sortType2:0, //完好率排序方式
       sortType3:0, //能耗排名排序方式
       sortType4:0, //告警恢复率排序方式
-      sortType5:0, //工单数量排名排序方式
-      timer:null
+      sortType5:0, //任务数量排名排序方式
+      timer:null,
+      systemMenu:JSON.parse(sessionStorage.getItem('systemMenu')),//后台管理菜单
+      formName:sessionStorage.getItem("formName")||'中物运营智服云平台',
+      logoImg:sessionStorage.getItem('logo')?`http://47.107.224.8:8080/${sessionStorage.getItem('logo')}`:require("@/assets/image/logo-caiot.png"),
     };
   },
   components: {
@@ -841,7 +847,7 @@ export default {
         });
     },
     /**
-     * 53.集团首页--综合态势柱形（工单类型完成率及时率)
+     * 53.集团首页--综合态势柱形（任务类型完成率及时率)
      */
     queryBlocCompleteOrder() {
       this.$post("/QueryBlocCompleteOrder", {
@@ -866,7 +872,7 @@ export default {
             }
           ];
           this.orderChartData = {
-            title: "工单类型（%）",
+            title: "任务类型（%）",
             rows,
             columns,
             colorsArr: ["#2A91FC", "#18DE94"]
@@ -875,7 +881,7 @@ export default {
         .catch(err => {});
     },
     /**
-     * 386.综合态势（设备统计  告警统计 工单统计）
+     * 386.综合态势（设备统计  告警统计 任务统计）
      */
     queryUSituationStatistics() {
         this.$post('/QueryBlocUSituationStatistics',{
@@ -982,7 +988,7 @@ export default {
         });
     },
     /**
-     * 56查询未恢复工单
+     * 56查询未恢复任务
      */
     queryBlocPageUOrdersByDate(){
         this.$post('/QueryBlocPageUOrdersByDate',{
@@ -1070,7 +1076,7 @@ export default {
         });
     },
     /**
-     * 集团首页—综合排名—查询工单排名
+     * 集团首页—综合排名—查询任务排名
      */
     queryBlocQueryOrderByCount(){
         this.$post('/QueryBlocQueryOrderByCount',{
@@ -1106,14 +1112,29 @@ $url: "../../../assets/image/";
   background: url("#{$url}qianren/index-bg.jpg");
   .header {
     position: relative;
+    .logo{
+      width:160px;
+      height: 60px;
+      line-height: 60px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      img{
+        max-width: 160px;
+        max-height: 60px;
+        vertical-align: middle;
+      }
+    }
     ul.menu {
-      margin-top: -60px;
+      position: absolute;
+      top: 48px;
       .menu-item {
         width: 170px;
         height: 44px;
         line-height: 44px;
         position: relative;
-        display: inline-block;
+        float: left;
+        /* display: inline-block; */
         background: url(#{$url}qianren/menu-bg.png);
         color: #84f2ff;
         font-size: 20px;
@@ -1123,56 +1144,63 @@ $url: "../../../assets/image/";
         background: url(#{$url}qianren/menu-active.png);
         color: #F5DCAD
       }
-      .menu-item:nth-of-type(3) {
-        margin-left: 512px;
-      }
-      .menu-item:nth-of-type(4){
-        .tree-project{
-            position: absolute;
-            width: 282px;
-            height: 320px;
-            top: 60px;
-            z-index: 100;
-            background: #0D2F60;
-            .filter-box{
-                padding: 10px;
-            }
-            .tree-content{
-                height: 280px;
-                .el-tree{
-                    color:#F1F1F2;
-                    font-size: 18px;
-                    background: #0D2F60;
-                    &-node__content{
-                        height: 40px;
-                        line-height: 40px;
-                        span{
-                            font-size: 16px;
-                        }
-                        a{
-                          color:#F1F1F2;
+    }
+    .menu-left{
+      right: 1226px;
+    }
+    .menu-right{
+      left:1226px;
+    }
+    #tree-project{
+      right: 90px;
+      top: 60px;
+      position: absolute;
+      .tree-project{
+          position: absolute;
+          width: 164px;
+          height: 320px;
+          top: 20px;
+          z-index: 100;
+          background: #0D2F60;
+          .filter-box{
+              padding: 10px;
+              .el-input__suffix{
+                line-height: 34px;
+              }
+          }
+          .tree-content{
+              height: 280px;
+              .el-tree{
+                  color:#F1F1F2;
+                  font-size: 18px;
+                  background: #0D2F60;
+                  &-node__content{
+                      height: 40px;
+                      line-height: 40px;
+                      span{
                           font-size: 16px;
-                        }
-                    }
-                    .el-tree-node:hover,.el-tree-node:focus {
-                        >.el-tree-node__content {
-                            background:#355B95;
-                        }
-                    }
-                }
-            }
-        }
-      }
-      .menu-item:nth-of-type(4):hover {
-        background: url(#{$url}qianren/menu-active.png);
-        color: #F5DCAD;
+                      }
+                      a{
+                        color:#F1F1F2;
+                        font-size: 16px;
+                      }
+                  }
+                  .el-tree-node:hover,.el-tree-node:focus {
+                      >.el-tree-node__content {
+                          background:#355B95;
+                      }
+                  }
+              }
+          }
       }
     }
   }
   .compre-hensive {
+    margin-top: 16px;
     .aside {
       width: 413px;
       .side-content {
+        height: 890px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -1201,7 +1229,7 @@ $url: "../../../assets/image/";
         }
         .card {
           width: 100%;
-          height: 446px;
+          height: 440px;
           background: url(#{$url}cloud/index/leftbar.png);
           background-size: 100% 100%;
           h4.title {

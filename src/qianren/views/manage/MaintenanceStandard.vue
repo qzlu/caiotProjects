@@ -1,7 +1,7 @@
 <template>
     <div class="standard">
         <div class="l device-type">
-            <h3 v-if="standardType > 1"><el-button type="primary"  @click="importMaintenance">导入标准</el-button></h3>
+            <h3 v-if="userType != 1"><el-button type="primary"  @click="importMaintenance">导入标准</el-button></h3>
             <h3>设备类型</h3>
             <div class="device-container">
                 <el-scrollbar>
@@ -280,10 +280,10 @@
                           </div>
                       </template>
                     </el-table-column>
-                <el-table-column prop="FNoticeTime" label="计划提醒时间" :formatter="(row)=>'提前'+(row.FNoticeTime||0)+'小时'" show-overflow-tooltip>
+<!--                 <el-table-column prop="FNoticeTime" label="计划提醒时间" :formatter="(row)=>'提前'+(row.FNoticeTime||0)+'小时'" show-overflow-tooltip>
                 </el-table-column>
                 <el-table-column prop="FPlanUseTimes" label="计划工时" :formatter="(row)=> (row.FPlanUseTimes||0)+'小时'"  show-overflow-tooltip>
-                </el-table-column>
+                </el-table-column> -->
                     <el-table-column
                       prop=""
                       label="操作">
@@ -361,6 +361,7 @@ export default {
             inspectionItem:'',
             type:0, //0为新增 1编辑
             cycle:'1',
+            userType:sessionStorage.getItem('FUserType'),
             defaultAddStandard:{
                 ProjectID:localStorage.getItem('projectid'),
                 DeviceTypeID:'',
@@ -369,8 +370,6 @@ export default {
                 FMaintenanceRate:0,
                 DateTimeStr:'',
                 ContentStr:'',
-                FNoticeTime:'',
-                FPlanUseTimes:''
             },
             addStandard:{
                 ProjectID:localStorage.getItem('projectid'),
@@ -380,8 +379,6 @@ export default {
                 FMaintenanceRate:0,
                 DateTimeStr:'',
                 ContentStr:'',
-                FNoticeTime:'',
-                FPlanUseTimes:''
             },
             showPopover:false,
             timeArr:[],
@@ -473,8 +470,8 @@ export default {
          */
         queryUMaintenanceContent(row){
             this.maintenanceItem = row
-            Maintenance({
-                ID:row.ID
+            this.$post('/QueryMaintenanceContent',{
+                FGUID:row.FGUID
             })
             .then(data => {
                 this.tableData1 = data.FObject
@@ -662,9 +659,8 @@ export default {
          * 修改保养内容
          */
         updatedContent(){
-            Maintenance({
-                FAction:this.standardType==1?'UpdateMaintenanceContent':'UpdateUBasisMaintenanceContent',
-                ID:this.maintenanceItem.ID,
+            this.$post('/UpdateMaintenanceContent',{
+                FGUID:this.maintenanceItem.FGUID,
                 ContentStr:this.addStandard.ContentStr
             })
             .then(data => {
@@ -689,7 +685,7 @@ export default {
                 type: 'warning'
             })
             this.$post('/DeleteMaintenanceStandards',{
-                FGUID:row.ID
+                FGUID:row.FGUID
             })
             .then(data => {
                 this.$message({
@@ -715,7 +711,7 @@ export default {
                 type: 'warning'
             })
             this.$post('/DeleteMaintenanceContent',{
-                FGUID:row.ID
+                FGUID:row.FGUID
             })
             .then(data => {
                 this.queryUMaintenanceContent(this.maintenanceItem)

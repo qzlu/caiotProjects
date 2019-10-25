@@ -17,9 +17,10 @@ Vue.prototype.$post = post
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
 Vue.prototype.$initWebSocket = initWebSocket */
+store.dispatch('addRoute')
 router.beforeEach((to, from, next) => {
   let {token, projectID,link}= to.query
-  console.log(to,link);
+  console.log(to);
   if(token){
       sessionStorage.setItem('FToken',token)
       sessionStorage.setItem('inIframe',1)

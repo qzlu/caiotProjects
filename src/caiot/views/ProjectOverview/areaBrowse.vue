@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="main-bottom">
-                <device-list :data="areaDevice" :width="382" @change="getPrjSingleInfo()"></device-list>
+                <device-list :data="areaDevice" :width="388" @change="getPrjSingleInfo()"></device-list>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@ export default {
         },
         queryData(){
             this.queryUAreaDeviceByCount()
-            this.timer = setTimeout(this.queryData,5000)
+            this.timer = setTimeout(this.queryData,10000)
         },
         /**
          * 390.区域态势（区域设备统计）
@@ -164,11 +164,12 @@ export default {
 <style lang="scss">
 $url:'../../static/image';
 .area-browse{
+    width: 100%;
     display: flex;
     height: 912px;
     justify-content: space-around;
     .main{
-        width: 1540px;
+        width: 1576px;
         height: 100%;
         &-top{
             width: 100%;
@@ -196,15 +197,8 @@ $url:'../../static/image';
             .operation.next{
                 right: 4px;
             }
-/*             .operation.no-click{
-                cursor: not-allowed;
-                .iconfont{
-                    color: #6f757d
-                }
-            } */
             .area-container{
                 height: 230px;
-               /*  margin: 0 62px; */
                 overflow: hidden;
                 position: relative;
                 top: -15px;
@@ -214,7 +208,7 @@ $url:'../../static/image';
                     transition:all 0.5s;
                     .item{
                         display: inline-block;
-                        width: 304px;
+                        width: 316px;
                         height: 230px;
                         background: url(#{$url}/index/content_bg_1.png);
                         background-size: 100% 100%;
@@ -293,7 +287,7 @@ $url:'../../static/image';
                         }
                     }
                     .item+.item{
-                        margin-left: 6px
+                        margin-left: 0px
                     }
                     .item.alarm{
                         background: url(#{$url}/index/content_bg_2.png);
@@ -308,9 +302,9 @@ $url:'../../static/image';
             }
         }
         &-bottom{
-            width:1550px;
-            height:662px;
-            margin-top: 36px;
+            width:1574px;
+            height:688px;
+            margin-top: 10px;
         }
     }
 }

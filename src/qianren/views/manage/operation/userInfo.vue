@@ -92,7 +92,7 @@
     </div>
 </template>
 <script>
-import Table from '../../components/table.vue'
+import Table from '../components/table.vue'
 const param = {
     PageIndex:1,
     PageSize:1000,

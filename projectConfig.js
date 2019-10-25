@@ -27,7 +27,8 @@ const config = {
     },
     /** 第三屏 */
     'disanping':{
-        entry: './src/disanping/'
+        entry: './src/disanping/',
+        baseUrl:'/Thirdscreen/'
     }
 }
 const configObj = config[projectName.name]

@@ -22,16 +22,14 @@ Vue.use(htmlToPdf)
 
 import caito from './static/js/caito.js' /*引入插件*/
 Vue.use(caito)
-
-
 /*引入videojs视频播放器*/
 import 'video.js/dist/video-js.css'
 Vue.config.productionTip = false
-Vue.directive('loadmore', {  bind(el, binding) {    
+Vue.directive('loadmore', {  bind(el, binding) {  
   var p = 0;
   var t = 0;   
   var down = true;    
-  var selectWrap = el.querySelector('.el-table__body-wrapper')    
+  var selectWrap = el.querySelector('.el-table__body-wrapper')||el.querySelector('.el-scrollbar__wrap')
   selectWrap.addEventListener('scroll', function() {      
     //判断是否向下滚动      
     p = this.scrollTop;      // 
@@ -42,14 +40,15 @@ Vue.directive('loadmore', {  bind(el, binding) {   
     }      
     t = p;      //判断是否到底      
     const sign = 10;      
-    const scrollDistance = this.scrollHeight - this.scrollTop - this.clientHeight      
-    if (scrollDistance <= sign && down) {        
+    const scrollDistance = this.scrollHeight - this.scrollTop - this.clientHeight
+    if (scrollDistance <= sign && down) {  
       binding.value()      
     }    
   })  
 }})
-
+store.dispatch('addRoute')
 /* eslint-disable no-new */
+
 new Vue({
   router,
   store,

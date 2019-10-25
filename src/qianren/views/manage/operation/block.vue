@@ -10,7 +10,7 @@
           :exportData="exportFile" 
           @submit="addOrUpdate"
         >
-            <el-form slot="dialog" :model="addData" inline ref="form">
+            <el-form slot="dialog" :model="addData" inline ref="form" class="add-block">
                 <el-form-item label="集团编码" prop="FGroupCode" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addData.FGroupCode"></el-input>
                 </el-form-item>
@@ -26,8 +26,32 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="集团平台名称" prop="PlatformName">
+                    <el-input v-model="addData.PlatformName"></el-input>
+                </el-form-item>
+                <el-form-item label="项目平台名称" prop="ProjectPlatFormName">
+                    <el-input v-model="addData.ProjectPlatFormName"></el-input>
+                </el-form-item>
                 <el-form-item  label="详细地址" prop="FAddress" :rules="[{ required: true, message: '请输入'}]">
                     <el-input class="block" v-model="addData.FAddress"></el-input>
+                </el-form-item>
+                <el-form-item label="集团LOGO">
+                    <div class="thumb-img" v-if="fileList[0]">
+                        <div class="delete">
+                            <i class="el-icon-delete" @click="fileList = [] "></i>
+                        </div>
+                        <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                    </div>
+                    <el-upload
+                      v-else
+                      action="http://47.107.224.8:8080/UploadFile"
+                      list-type="picture-card"
+                      :limit = '1'
+                      :on-success="handleSuccess1"
+                      :data="{FTokenID:token}"
+                     >
+                        <p><i class="el-icon-plus"></i><br><span>上传(160*60)</span></p>
+                    </el-upload>                
                 </el-form-item>
             </el-form>
         </Table>
@@ -112,8 +136,13 @@ export default {
                 FGrouplat:null,
                 FAddress:null,
                 FAreaCode:null,
-                FDescription:null
+                FDescription:null,
+                FGroupLogo:'',
+                PlatformName:'千仞智服设施管控云平台',
+                ProjectPlatFormName:'千仞智服设施管控云平台'
             },
+            token:sessionStorage.getItem('FToken'),
+            fileList:[]
         }
     },
     components:{
@@ -140,14 +169,23 @@ export default {
          */
         beforeAdd(){
            this.addData = Object.assign({},this.defaultAddData)
+           this.fileList = []
         },
         /**
          * 编辑
          */
         editItem(row){
+            this.fileList = []
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
+            this.fileList.push(row.FGroupLogo)
+        },
+        /**
+         * 上传集团LOGO图片
+         */
+        handleSuccess1(res,file){
+            this.fileList.push(res.FObject)
         },
         /**
          * 新增或编辑
@@ -155,6 +193,7 @@ export default {
         async addOrUpdate(){
             let myGeo = new BMap.Geocoder()
             let address = this.addData.FAddress
+            this.addData.FGroupLogo = this.fileList[0]
             await new Promise((resolve) => {
                 myGeo.getPoint(address,point => {
                     this.addData.FGrouplng = point.lng||this.addData.FGrouplng
@@ -187,3 +226,49 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+.el-dialog{
+    .add-block{
+        .thumb-img{
+            width: 165px;
+            height:128px;
+            position: relative;
+            border: 1px solid #05679e;
+            border-radius: 6px;
+            .delete{
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                line-height: 128px;
+                left: 0;
+                top: 0;
+                background: rgba($color: #000000, $alpha: 0.3);
+                cursor: pointer;
+                font-size: 40px;
+                text-align: center;
+                color: white;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .thumb-img:hover{
+            .delete{
+                display: block;
+            }
+        }
+        .el-upload--picture-card{
+            width:165px;
+            height:128px;
+            background:rgba(24,64,107,1);
+            border:1px solid rgba(5,103,158,1);
+            p{
+                line-height: 26px;
+                display: inline-block;
+            }
+        }
+    }
+}
+</style>

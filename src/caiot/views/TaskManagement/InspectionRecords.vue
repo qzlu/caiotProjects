@@ -20,12 +20,12 @@
             </div>
             <div class="ng_item">
               <img
-                src="/static/image/task/bicon_1.png"
+                src="../../static/image/task/bicon_1.png"
                 class="pimg"
                 :class="{nnor:Dialog_table2.length>0}"
               >
               <img
-                src="/static/image/task/bicon_2.png"
+                src="../../static/image/task/bicon_2.png"
                 class="pimg"
                 :class="{nnor:Dialog_table2.length==0}"
               >
@@ -129,12 +129,12 @@
             </div>
             <div class="ng_item">
               <img
-                src="/static/image/task/bicon_1.png"
+                src="../../static/image/task/bicon_1.png"
                 class="pimg"
                 :class="{nnor:dateReport.Table[0].FaultCount>0}"
               >
               <img
-                src="/static/image/task/bicon_2.png"
+                src="../../static/image/task/bicon_2.png"
                 class="pimg"
                 :class="{nnor:dateReport.Table[0].FaultCount==0}"
               >
@@ -336,7 +336,7 @@
             @click="li_item_click(key,item.InspectionTime,item.ID)"
           >
             <section class="ui_box">
-              <img src="/static/image/task/icon_1.png" class="l" style="margin: 5px 0 0 12px;">
+              <img src="../../static/image/task/icon_1.png" class="l" style="margin: 5px 0 0 12px;">
               <div class="r itext">
                 <p>
                   <span class="colors"></span>

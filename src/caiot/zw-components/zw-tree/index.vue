@@ -65,7 +65,7 @@ export default {
 };
 </script>
 <style lang="scss">
-$img-url: "/static/image/";
+$img-url: "../../static/image/";
 .zw-tree {
   width: 173px;
   height: 283px;

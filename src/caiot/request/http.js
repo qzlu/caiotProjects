@@ -57,7 +57,7 @@ export function get(url, params){
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
  */
-export function post(url, params) {
+export function post(url, params,showError = true) {
     return new Promise((resolve, reject) => {
         let obj = {
             FTokenID:localStorage.getItem("Token"),
@@ -70,7 +70,9 @@ export function post(url, params) {
         })
         .catch(err =>{
             console.log('err',err)
-            messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
+            if(showError){
+                messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
+            }
             reject(err.data?err.data.Message:err)
         })
     });

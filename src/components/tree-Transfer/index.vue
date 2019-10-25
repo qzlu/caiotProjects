@@ -150,7 +150,7 @@ $img-url: "../../assets/image/";
       margin-top: 10px;
     }
     .el-tree {
-      height: 232px;
+      /* height: 232px; */
       // overflow: auto;
       background: #18406b;
       margin-top: 19px;

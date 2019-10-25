@@ -26,26 +26,6 @@
                     <el-button class="zw-btn zw-btn-primary" @click="show1 = false">取消</el-button>
                 </div>
             </div>
-<!--             <div class="tab-content clearfix" v-show="tabIndex === 2">
-                <tree-transfer
-                    :data='projectList'
-                    :data1='projectList'
-                    :checkStrictly="false"
-                    leftTitle='所有权限'
-                    rightTitle='已选权限'
-                    nodeKey="ProjectID"
-                    :defaultProps="defaultProps1"
-                    :filterNode="filterNode"
-                    :defaultChecked="defaultCheckProject"
-                     @check-change="checkChange1"
-                    ref="transfer1"
-                >
-                </tree-transfer>
-                <div class="submit">
-                    <el-button class="zw-btn zw-btn-primary" @click="UpdateTRoleProject()">确定</el-button>
-                    <el-button class="zw-btn zw-btn-primary" @click="show1 = false">取消</el-button>
-                </div>
-            </div> -->
         </el-dialog> 
         <Table
           ref='table'
@@ -65,9 +45,8 @@
                    <el-input v-model="addData.FSimpleName"></el-input>
                </el-form-item>
            </el-form>
-           <template v-slot:row-operation="row">
+           <template v-slot:row-operation="{row}">
                 <span class="iconfont icon-System" title="权限"  @click="updateConfig(row)">
-                    {{row.FName}}
                 </span>
            </template>
         </Table>
@@ -75,7 +54,7 @@
 </template>
 <script>
 import formatDate from '@/utils/formatDate.js'
-import Table from '../../components/table.vue'
+import Table from '../components/table.vue'
 import {treeTransfer} from '@/components/index.js'
 export default {
     data(){
@@ -216,7 +195,7 @@ export default {
          */
         queryUsersMenuTree(){
             this.$post('/QueryTMenuTree',{
-                FRoleGUID:this.role.FGUID,
+                FGUID:this.role.FGUID,
             })
             .then(data =>{
                 console.log(data);
@@ -235,6 +214,7 @@ export default {
         updateConfig(row){
             this.show1 = true
             this.role = row
+            console.log(this.role);
             this.queryUsersMenuTree()
             /* this.queryTRoleBloc() */
         },
@@ -250,13 +230,30 @@ export default {
             this.$refs.transfer.$refs.tree1.filter()
         },
         /**
+         * 循环树形结构
+         */
+        findTree(data,children,id,arr = []){
+            data.forEach(item => {
+                if(item.IsExist&&item.IsExist==1){
+                    arr.push(item[id])
+                }
+                if(item.IsExist&&item[children]){
+                    this.findTree(item[children],children,id,arr)
+                }
+                if(!item.IsExist){
+                    if(item[children]) this.findTree(item[children],children,id,arr)
+                }
+            })
+            return arr
+        },
+        /**
          * 修改菜单权限
          * menuArr全√菜单
          * halfMenuArr 半选中菜单
          */
         updateTRoleMenu(){
             let menuArr = [], halfMenuArr = []
-            menuArr = this.findTree(this.menuData,'list','FGUID')
+            menuArr = this.findTree(this.menuData,'ListData','FGUID')
             halfMenuArr = this.$refs.transfer.$refs.tree.getHalfCheckedNodes().map(item => item.FGUID)
             menuArr.push(...halfMenuArr)
             this.$post('/UpadteTRoleMenu',{

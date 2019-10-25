@@ -1,0 +1,26 @@
+$img-url:'../../../static/image/';
+.control-cmd{
+    .tab-header{
+        >li{
+            width: 100px;
+            height: 46px;
+            line-height: 46px;
+            font-size: 16px;
+            margin: 0 3px;
+            float: left;
+            background: url(#{$img-url}task/t2.png);
+            background-size: 100% 100%;
+            cursor: pointer;
+        }
+        >li.active{
+            background: url(#{$img-url}task/t1.png);
+            background-size: 100% 100%;
+        }
+    }
+    .tab-content{
+        height: 876px;
+        .report{
+            height: 100%;
+        }
+    }
+}

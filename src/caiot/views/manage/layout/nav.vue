@@ -8,13 +8,13 @@
                 {{menu.FMenuName}}
               </router-link>
               <span v-else>{{menu.FMenuName}}</span> -->
-                <i :class="['iconfont',menu.icon]" v-if="menu.FMenuLevle==1" style="font-size:28px;"></i>
+                <i :class="['iconfont',menu.FICONURLAddress]" v-if="menu.FMenuLevle==2" style="font-size:28px"></i>
                 {{menu.FMenuName}}
             </template>
             <zw-nav :menus="menu.FChildMenu">
             </zw-nav>
           </el-submenu>
-          <el-menu-item v-else :index='menu.FFunctionURLAddress'>
+          <el-menu-item v-else :index='menu.FURL'>
             {{menu.FMenuName}}
           </el-menu-item>
         </div>

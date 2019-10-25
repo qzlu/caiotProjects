@@ -7,8 +7,8 @@
                     <ul class="clearfix device-list">
                         <li class="l" v-for="device in item.data" :key="device.DeviceID" :class="{alarm:device.IsAlarm}" :style="{width:width+'px'}">
                             <i :class="{r:true,'el-icon-star-off':!device.IsFocus,'el-icon-star-on':device.IsFocus}" @click="addOrDeleteUFocusMonitor(device)"></i>
-                            <router-link :to="{ name: 'detail_info_list',params:{ id:device.DeviceID,PossionID:device.DataDetail[0].SDataID,getalldata:device}}">
-                                <h4>
+                            <router-link :to="`/monitoring/detail_info_list/${device.DeviceID}/${device.DataDetail[0]?device.DataDetail[0].SDataID:0}/${device}`">
+                                <h4><!-- { name: 'detail_info_list',params:{ id:device.DeviceID,PossionID:device.DataDetail[0]?device.DataDetail[0].SDataID:0,getalldata:device}} -->
                                         {{device.DeviceName}}
                                 </h4>
                                 <el-row>
@@ -57,8 +57,8 @@
                     <i
                       :class="{r:true, 'el-icon-star-off':!item.IsFocus,'el-icon-star-on':item.IsFocus}"
                       @click.stop="addOrDeleteUFocusMonitor(item)"
-                    ></i>
-                    <router-link :to="{ name: 'detail_info_list',params:{ id:item.DeviceID,PossionID:item.DataDetail[0].SDataID,getalldata:item}}">
+                    ></i>           
+                    <router-link :to="`/monitoring/detail_info_list/${item.DeviceID}/${item.DataDetail[0]?item.DataDetail[0].SDataID:0}/${item}/`">
                       <h5>
                         {{item.DeviceName}}
                       </h5>

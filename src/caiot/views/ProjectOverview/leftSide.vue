@@ -1,20 +1,20 @@
 <template>
     <div class="left-aside-common">
-        <card title="天气信息" :showMoreIcon = 'false' :height='214'>
+        <card title="天气信息" :showMoreIcon = 'false' :height='218'>
             <div class="weather">
                 <p class="time">{{time}}</p>
                 <p class="date">{{date}}</p>
                 <p>
                   <i :class="['iconfont', weather.WeatherIconID]"></i>
-                  <i class="high-temp"><span>{{weather.HighTemp}}</span>℃</i>/<i class="" style="margin-left: 5px;">{{weather.LowTemp}}℃</i>
+                  <i><span>{{weather.LowTemp}}</span>℃</i>~<i class="" style="margin-left: 5px;">{{weather.HighTemp}}℃</i>
                 </p>
             </div>
         </card>
-        <card title="实时告警"  :height='328' @click="$router.push('/foreshow')">
+        <card title="实时告警"  :height='332' @click="$router.push('/foreshow/')">
             <div class="alarm-list">
                 <el-scrollbar v-if="alarmData.length">
                     <ul>
-                        <li v-for="(item,i) in alarmData" :key="i" @click="$router.push('/foreshow')">
+                        <li v-for="(item,i) in alarmData" :key="i" @click="$router.push('/foreshow/')">
                             <span>{{item.AlarmTime}}</span>
                             <span>{{item.AlarmText}}</span>
                         </li>
@@ -25,9 +25,9 @@
                 </div>
             </div>
         </card>
-        <card title="实时工单"  :height='331' @click="$router.push('/TaskManagement/Worklist')">
+        <card title="实时任务"  :height='335' @click="$router.push('/TaskManagement/Worklist')">
             <div class="alarm-list">
-                <el-scrollbar>
+                <el-scrollbar v-loadmore="loadMore">
                     <ul>
                         <li v-for="(item,i) in orderData" :key="i" @click="$router.push('/TaskManagement/Worklist')">
                             <span>{{item.OrderCreateDateTime}}</span>
@@ -56,7 +56,8 @@ export default {
                 WhetherIconID:null
             },
             alarmData:[], //实时告警数据
-            orderData: [], //实时工单数据
+            orderData: [], //实时任务数据
+            pageIndex:1
         }
     },
     components:{
@@ -82,10 +83,11 @@ export default {
             this.timer = setTimeout(this.getTime,1000)
         },
         queryData(){
+            this.pageIndex = 1
             this.getWeather()
             this.getAlarmRealData()
             this.queryPageUOrdersByDate()
-            this.timer1 = setTimeout(this.queryData,5000)
+            this.timer1 = setTimeout(this.queryData,10000)
         },
         /**
          * getWeather 获取天气信息
@@ -114,18 +116,31 @@ export default {
                 
             });
         },
+        loadMore(){
+            this.pageIndex++
+            this.queryPageUOrdersByDate(true)
+        },
         /**
-         * 实时工单
+         * 实时任务
          */
-        queryPageUOrdersByDate(){
+        queryPageUOrdersByDate(scroll = false){
             Orders({
                 FAction: 'QueryPageUOrdersByDate',
                 FState: -1,
-                PageIndex:1,
-                PageSize: 1000
+                PageIndex:this.pageIndex,
+                PageSize: 20
             })
             .then((result) => {
-                this.orderData = result.FObject
+                if(scroll){
+                    if(!result.FObject.length){
+                      this.pageIndex1 --
+                    }else{
+                        this.orderData.push(...result.FObject)
+                    }
+                }else{
+                    this.orderData = result.FObject
+                }
+                /* this.$emit('orderChange',this.orderData.length) */
             }).catch((err) => {
                 
             });

@@ -1,7 +1,7 @@
 <template>
     <div class="standard">
         <div class="l device-type">
-            <h3 v-if="standardType > 1"><el-button type="primary" @click="importInsepection">导入标准</el-button></h3>
+            <h3 v-if="userType != 1"><el-button type="primary" @click="importInsepection">导入标准</el-button></h3>
             <h3>设备类型</h3>
             <div class="device-container">
                 <el-scrollbar>
@@ -121,6 +121,7 @@ export default {
                 children:'ListData'
             },
             tableData1:[],
+            userType:sessionStorage.getItem('FUserType'),
             device:null,
             allItem:[],
             show:false,
@@ -240,9 +241,7 @@ export default {
             .then((result) => {
                 this.show = false
                 this.show1 = false
-                setTimeout(() => {
-                    this.queryInspectionStandards()
-                },2000)
+                this.queryInspectionStandards(this.device.DeviceTypeID)
             }).catch((err) => {
                 
             });

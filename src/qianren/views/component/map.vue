@@ -6,7 +6,7 @@
             </li>
         </ul> -->
         <el-button v-if="mapDataStack.length>0" @click="back()">返回</el-button>
-        <div class="slect-block" v-if="block.FSimpleName">
+        <div class="slect-block" v-if="block&&block.FSimpleName">
             <i class="iconfont icon-Positioning1"></i>
            {{block.FSimpleName}}
         </div>
@@ -121,6 +121,7 @@ export default {
                 this.$nextTick(() => {
                     if(!this.myChart){
                       var dom = document.getElementById(this.id);
+                      console.log(this.id);
                       this.myChart = echarts.init(dom);
                     }
                     this.myChart.showLoading({

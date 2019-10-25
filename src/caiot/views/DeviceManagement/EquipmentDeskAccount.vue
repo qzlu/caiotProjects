@@ -190,9 +190,9 @@
                <el-table-column label="操作" width="160">
                    <template slot-scope="scoped">
                        <div>
-                            <router-link :to="{name:'DeviceInfo',params:{deviceID:scoped.row.DeviceLedgerID}}">
-                                <span style="color:white">详情</span>
-                            </router-link>
+                           <!--  <router-link :to="`/DeviceManagement/DeviceInfo/${scoped.row.DeviceLedgerID}`"> -->
+                                <span style="color:white" @click="$router.push(`/DeviceManagement/DeviceInfo/${scoped.row.DeviceLedgerID}`)">详情</span>
+                           <!--  </router-link> -->
                             <span class="pointer" style="margin-left:16px;" @click="editDevice(scoped.row)">编辑</span>  
                             <span class="pointer" @click="deleteDeviceInfo(scoped.row)">删除</span>    
                        </div>

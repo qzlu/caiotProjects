@@ -195,12 +195,20 @@ export default {
             await this.beforeDelete()
             this.deleteRow(item)
             .then((result) => {
-                this.queryData()
-                this.$message({
-                    message:'删除成功',
-                    type:'success',
-                    duration:'500'
-                })
+                if(result.FObject>0){
+                    this.queryData()
+                    this.$message({
+                        message:'删除成功',
+                        type:'success',
+                        duration:'500'
+                    })
+                }else{
+                    this.$message({
+                        message:'删除失败',
+                        type:'error',
+                        duration:'500'
+                    })
+                }
             }).catch((err) => {
                 this.$message({
                     message:'删除失败',

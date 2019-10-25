@@ -109,7 +109,7 @@ export default {
 };
 </script>
 <style lang="scss">
-$img-url: "/static/image/";
+$img-url: "../../static/image/";
 .transfer {
   position: relative;
   &-item-head{
@@ -150,7 +150,7 @@ $img-url: "/static/image/";
       margin-top: 10px;
     }
     .el-tree {
-      height: 232px;
+      /* height: 232px; */
       // overflow: auto;
       background: #18406b;
       margin-top: 19px;

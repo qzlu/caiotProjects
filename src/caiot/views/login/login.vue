@@ -11,7 +11,7 @@
 
       <div class="login_item">
         <div class="title">
-          <router-link :to="{ name: 'home',}">
+          <router-link to="/">
             <img src="../../static/image/user/new/logo_1.png">
           </router-link>
         </div>
@@ -97,19 +97,6 @@ export default {
     };
   },
   beforeCreate: function() {
-    /*如果用户登录后，就不能返回到登录页面了，除非退出跳到登录页面*/
-    let tokens = localStorage.getItem("Token");
-    let name = localStorage.getItem("iuserName");
-    if (tokens && name) {
-      this.$router.push({ path: "home" });
-    }
-
-    /*判断用户是否点击退出铵钮，如果是，就刷新页面，避免里面的ajax定时器继续执行*/
-    let refreshs = localStorage.getItem("refresh");
-    if (refreshs == 1) {
-      localStorage.setItem("refresh", 0);
-      location.reload();
-    }
   },
   methods: {
     submitForm(formName) {
@@ -120,7 +107,7 @@ export default {
             FPassword: this.ruleForm2.checkPass,
             FAction: "Web"
           })
-            .then(data => {
+            .then(async data => {
               this.$message({
                 message: "登录成功！",
                 type: "success",
@@ -130,13 +117,34 @@ export default {
               localStorage.setItem("iuserName", this.ruleForm2.username); //用户账号
               localStorage.setItem("Token", data.FObject[0].FToken); //用户Token
               localStorage.setItem("FUserType",data.FObject[0].FUserType)//用户管理角色
+              localStorage.setItem("logo",data.FObject[0].BlocLogo)
+              localStorage.setItem("formName",data.FObject[0].PlatformName)
+              localStorage.setItem("BlocName",data.FObject[0].BlocName)
               localStorage.setItem(
                 "FUserNickname",
                 data.FObject[0].FUserNickname
               ); //用户别名，每个账号都有个中文名
-              setTimeout(() => {
-                this.$router.push({ path: "/" });
-              }, 300);
+              await this.$store.dispatch("getProject")
+              .then((result) => {
+                let projectID = localStorage.getItem("projectid");
+                let project = result.find(item => item.ProjectID == projectID)
+                if(!projectID||!project){
+                  localStorage.setItem("projectid",result[0].ProjectID)
+                  localStorage.setItem("projectname",result[0].ShortName)
+                }else if(project){
+                  localStorage.setItem("projectname", project.ShortName);
+                }
+              }).catch((err) => {
+                this.$message.error(err);
+              });
+              this.$store.dispatch('getMenu')
+              .then((result) => {
+                this.$store.dispatch('addRoute')
+                this.$router.push(result.FURL)
+                localStorage.setItem('homePath',result.FURL)
+              }).catch((err) => {
+                console.log(err,'12');
+              });
             })
             .catch(function(err) {});
         } else {

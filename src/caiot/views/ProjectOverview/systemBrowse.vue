@@ -15,7 +15,7 @@
                             <span>
                                 <i :class="['iconfont',obj.IconName]"></i>{{obj.DeviceTypeName}}
                             </span>
-                            <span :class="['value',{'err':obj.AlarmCount>0}]"><span>{{obj.AlarmCount}}</span>/{{obj.DeviceCount}}</span>
+                            <span :class="['value']"><span :class="{'err':obj.AlarmCount>0}">{{obj.AlarmCount}}</span>/{{obj.DeviceCount}}</span>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
                             <span>
                                 <i :class="['iconfont',obj.IconName]"></i>{{obj.DeviceTypeName}}
                             </span>
-                            <span :class="['value',{'err':obj.AlarmCount>0}]"><span>{{obj.AlarmCount}}</span>/{{obj.DeviceCount}}</span>
+                            <span :class="['value']"><span :class="{'err':obj.AlarmCount>0}">{{obj.AlarmCount}}</span>/{{obj.DeviceCount}}</span>
                         </li>
                     </ul>
                 </div>
@@ -73,6 +73,11 @@ export default {
         deviceList
     },
     created(){
+        try {
+            this.activeSystem = JSON.parse(sessionStorage.getItem('activeSystem'))
+        } catch (error) {
+            this.activeSystem = null
+        }
         this.querySystemAlarmByCount()
     },
     beforeDestroy(){
@@ -89,12 +94,16 @@ export default {
             })
             .then((result) => {
                 let data = result.FObject || []
-                !this.activeSystem && (this.activeSystem = result.FObject[0])
+                if(!this.activeSystem){
+                    this.activeSystem = data[0]
+                }else{
+                    this.activeSystem = data.find(item => this.activeSystem.ParamID == item.ParamID)||data[0]
+                }
                 this.systemList.push(...[data.slice(0,4),data.slice(4)])
                 this.getPrjSingleInfo()
                 this.timer = setTimeout(() => {
                     this.querySystemAlarmByCount()
-                }, 5000);
+                }, 10000);
             }).catch((err) => {
                 
             });
@@ -117,22 +126,22 @@ export default {
                     })
                 })
                 this.systemDevice = systemDevice.filter(item => item.data.length>0)
-                console.log(this.systemDevice)
             }).catch((err) => {
                 
             });
         },
         selectSystem(item){
             this.activeSystem = item
+            sessionStorage.setItem('activeSystem',JSON.stringify(item))
             this.getPrjSingleInfo()
         },
-        
     }
 }
 </script>
 <style lang="scss">
 $url:'../../static/image';
 .system-browse{
+    width: 100%;
     display: flex;
     height: 912px;
     justify-content: space-around;
@@ -147,7 +156,9 @@ $url:'../../static/image';
         justify-content: space-between;
         .card.active{
             border-radius: 10px;
-            box-shadow:  0 0 8px 8px rgba($color: #0E49A8, $alpha: 0.5) inset;
+            /* box-shadow:  0 0 20px 20px rgba($color: #0E49A8, $alpha: 0.5) inset; */
+            background: url(#{$url}/index/active.png) center no-repeat;
+            background-size: 100% 100%;
         }
         .header-r{
             /* margin-top: -10px; */
@@ -255,18 +266,21 @@ $url:'../../static/image';
                             margin-right: 10px;
                         }
                     }
-                    span:last-of-type{
+                    .value{
                         width: 80px;
                         color: #02CD35;
                         font-size: 20px;
                         text-align: right;
+                        span{
+                            font-size: 20px;
+                        }
                     }
                 }
             }
         }
     }
     .main{
-        width: 1177px;
+        width: 1194px;
         height: 100%;
         &-top{
             width: 100%;

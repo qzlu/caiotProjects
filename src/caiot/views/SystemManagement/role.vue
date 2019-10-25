@@ -32,7 +32,7 @@
                     
                     </div> -->
                 </ul>
-                <div class="tab-content clearfix" v-show="tabIndex === 1">
+<!--                 <div class="tab-content clearfix" v-show="tabIndex === 1">
                     <tree-transfer
                     :data="data"
                     :data1="data1"
@@ -50,8 +50,8 @@
                     <div class="submit">
                         <button class="zw-btn zw-btn-primary" @click="updateTRoleProject()">确定</button>
                     </div>
-                </div>
-                <div class="tab-content clearfix" v-show="tabIndex === 2">
+                </div> -->
+                <div class="tab-content clearfix">
                     <tree-transfer
                         :data='menuData'
                         :data1='menuData'

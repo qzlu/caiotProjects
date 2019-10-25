@@ -55,7 +55,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="第三方ID" prop='OtherSourceID'>
-                    <el-input v-model="addData.OtherSourceID" type="number" autocomplete="off"></el-input>
+                    <el-input v-model="addData.OtherSourceID"  autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="地区" prop='County'>
                     <el-popover

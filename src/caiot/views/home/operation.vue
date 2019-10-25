@@ -1,7 +1,7 @@
 <template>
-    <div class="header-operation">
-        <ul class="r clearfix">
-          <li class="l project-list">
+    <div class="header-operation clearfix">
+        <ul class="r clearfix" :style="{top:top+'px'}">
+          <li :class="['project-list',className]">
             <el-select v-model="project" @change="selectProject">
               <el-option
                 v-for="item in projectList"
@@ -69,10 +69,16 @@ export default {
             },
         }
     },
+    props:{
+      top:Number,
+      className:String
+    },
     computed: {
       projectList() {
         let projectID = localStorage.getItem("projectid");
-        if (projectID > 0 && this.inIframe == 1) { 
+        if(this.$store.state.projectList.length == 0){
+          this.$store.dispatch("getProject")
+        }else if (projectID > 0 && this.inIframe == 1) { 
           let projectList = this.$store.state.projectList.filter(
             item => item.ProjectID == projectID
           );
@@ -83,7 +89,6 @@ export default {
       }
     },
     created(){
-        this.$store.commit("getProject");
     },
     methods:{
         /**
@@ -91,6 +96,7 @@ export default {
          */
         logOut() {
           this.$router.push({ path: "/login" });
+          localStorage.clear()
         },
         /**
          * 选择项目时
@@ -99,7 +105,8 @@ export default {
           let project = this.projectList.find(item => item.ProjectID == projectID)
           localStorage.setItem("projectid", project.ProjectID);
           localStorage.setItem("projectname", project.ShortName);
-          location.reload();
+          this.$router.push(this.$route.path)
+          location.reload()
         },
         beforeUpdatedPassword() {
           this.show = true;

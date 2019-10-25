@@ -261,7 +261,7 @@ export default {
             project({
                 FAction:'CreateLdasConfig',
                 ID:row.LDasID
-            })
+            },false)
             .then(data => {
                 this.$message({
                   type: 'success',
@@ -269,7 +269,12 @@ export default {
                 });
                 this.queryData()
             })
-            .catch(err => {})
+            .catch(err => {
+                this.$message({
+                    type: 'error',
+                    message:err
+                })
+            })
         },
         /**
          * 309.发送文件命令

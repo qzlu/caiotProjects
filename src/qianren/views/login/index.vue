@@ -93,21 +93,30 @@ export default {
           TerminalType: "PC"
         })
           .then(data => {
-            sessionStorage.setItem("FToken", data.FObject.FTokenID);
-            sessionStorage.setItem("FContacts", data.FObject.FContacts);
-            sessionStorage.setItem("FUserType", data.FObject.FUserType)
-            sessionStorage.setItem("FGroupName",data.FObject.FGroupName)
+            let userInfo = data.FObject
+            sessionStorage.setItem("FToken", userInfo.FTokenID);
+            sessionStorage.setItem("FContacts", userInfo.FContacts);
+            sessionStorage.setItem("FUserType", userInfo.FUserType)
+            sessionStorage.setItem("FGroupName",userInfo.FGroupName)
             sessionStorage.setItem(
               "projectList",
-              JSON.stringify(data.FObject.Project)
+              JSON.stringify(userInfo.Project)
             );
-            this.$store.state.projectList = data.FObject.Project;
-            this.$store.state.token = data.FObject.FToken;
+            sessionStorage.setItem("logo",userInfo.FGroupLogo)
+            sessionStorage.setItem('formName',userInfo.PlatformName)
+            this.$store.state.projectList = userInfo.Project;
+            this.$store.state.token = userInfo.FToken;
             if (this.isActive) {
               localStorage.setItem("userName", this.user.userName);
               localStorage.setItem("password", this.user.password);
             }
-            this.$router.push("/");
+            this.$store.dispatch('getMenus')
+            .then((result) => {
+              this.$store.dispatch('addRoute')
+              this.$router.push("/");
+            }).catch((err) => {
+              
+            });
           })
           .catch(err => {
             if (err.Result == 103) {

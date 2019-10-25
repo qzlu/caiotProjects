@@ -1,7 +1,6 @@
 <template>
     <div class="group height-100">
         <header>
-            <span class="name">组织架构</span>
             <ul class="clearfix">
                 <li :class="['l',{active:active === 0}]" @click="active = 0">
                     部门信息
@@ -41,18 +40,18 @@ export default {
         }
     },
     created(){
-        this.$store.dispatch('queryMainDBTORGLevel')
+        /* this.$store.dispatch('queryMainDBTORGLevel') */
     }
 }
 </script>
 <style lang="scss" scoped>
 .group{
+    margin-top:-66px;
     padding: 7px 27px;
     box-sizing:border-box;
     header{
         position: relative;
         height: 57px;
-        border-bottom: 1px solid rgba(143,156,191,1);
         .name{
             position: absolute;
             left: 14px;
@@ -70,7 +69,6 @@ export default {
                 height:57px;
                 line-height: 57px;
                 border:1px solid rgba(143,156,191,1);
-                border-bottom: none;
                 font-size: 20px;
                 cursor: pointer;
             }
