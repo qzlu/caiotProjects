@@ -8,7 +8,8 @@ import echarts from 'echarts'
 export default {
   data() {
     return {
-        id:''
+        id:'',
+        myChart:null
     };
   },
   props: {
@@ -21,6 +22,18 @@ export default {
     },
     setting:{
         type:Object
+    },
+    showLegend:{
+      default:true,
+      type:Boolean
+    },
+    label:{
+      type:Object,
+      default:() => {
+        return {
+          show:false
+        }
+      }
     }
   },
   created(){
@@ -51,7 +64,7 @@ export default {
      */
     showPieChart() {
       var dom = document.getElementById(this.id);
-      var myChart = echarts.init(dom);
+      !this.myChart&&(this.myChart = echarts.init(dom));
       var app = {};
       var option = null;
       app.title = "环形图"
@@ -61,6 +74,7 @@ export default {
           formatter: "{b}: {c} ({d}%)"
         },
         legend: {
+          show:this.showLegend,
           orient: "vertical",
           x: this.$props.setting&&this.$props.setting.legend?this.$props.setting.legend.x:'195px',
           y: "center",
@@ -74,13 +88,10 @@ export default {
             name: "访问来源",
             type: "pie",
             radius: ["50", "60"],
-            avoidLabelOverlap: false,
+            avoidLabelOverlap: true,
             center:this.setting&&this.setting.center||['50%','50%'],
             label: {
-              normal: {
-                show: false,
-                position: "center"
-              },
+              normal: this.label,
               emphasis: {
                 show: true,
                 textStyle: {
@@ -91,7 +102,7 @@ export default {
             },
             labelLine: {
               normal: {
-                show: false
+                show: true
               }
             },
             data:this.$props.data.rows
@@ -100,7 +111,7 @@ export default {
         color:this.$props.color && this.$props.color
       };
       if (option && typeof option === "object") {
-        myChart.setOption(option, true);
+        this.myChart.setOption(option, true);
       }
     }
   },

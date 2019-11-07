@@ -10,6 +10,12 @@
                     <el-input v-model="addInfo.CMDShortName">
                     </el-input>
                 </el-form-item>
+                <el-form-item label="指令模式" prop="CMDMode" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.CMDMode"  placeholder="请选择" >
+                    <el-option  label="开关" :value="1"></el-option>
+                    <el-option  label="遥控" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item label="设备名称" prop="DeviceID" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.DeviceID"  value-key="DeviceID" filterable  placeholder="请选择" >
                     <el-option v-for="list in deviceList" :key="list.DeviceID" :label="list.DeviceName" :value="list.DeviceID"></el-option>
@@ -29,6 +35,10 @@
                   <el-select v-model="ReadMapTab"  value-key="MapTabID" filterable  placeholder="请选择" @change="selectReadMap">
                     <el-option v-for="list in meterMapList" :key="list.MapTabID" :label="list.VarName" :value="list"></el-option>
                   </el-select>
+                </el-form-item>
+                <el-form-item label="设置值" prop="Value">
+                    <el-input type="number" v-model="addInfo.Value">
+                    </el-input>
                 </el-form-item>
                 <el-form-item label="延迟时间" prop="Delay">
                     <el-input type="number" v-model="addInfo.Delay">
@@ -161,7 +171,8 @@ export default {
                 Value:0,
                 CMDName:'',
                 CMDShortName:'',
-                Detail:''
+                Detail:'',
+                CMDMode:''
             },
             title:'新增',
             show:false,

@@ -53,11 +53,23 @@
             <li class="l"><button class="zw-btn zw-btn-primary" @click="deletePlans()"><i class="el-icon-delete"></i> 删除</button></li>
             <li class="l select-plan-time">
                 <span class="label">生成计划</span>
+                <ul class="select-plan-type">
+                    <li :class="{active:planType == 1}" @click="planType = 1">年</li>
+                    <li :class="{active:planType == 2}" @click="planType = 2">月</li>
+                </ul>
                 <el-date-picker
+                  v-show="planType==1"
                   v-model="year"
                   type="year"
                   @change='selectYear'
                   placeholder="选择年">
+                </el-date-picker>
+                <el-date-picker
+                  v-show="planType == 2"
+                  v-model="year"
+                  type="month"
+                  @change="selectMonth"
+                  placeholder="选择月">
                 </el-date-picker>
             </li>
 <!--             <li class="l">
@@ -185,6 +197,7 @@ import table from '@/caiot/mixins/table' //表格混入数据
 import {zwTree} from '@/caiot/zw-components/index'
 import * as comm from "@/caiot/assets/js/pro_common";
 import '../InspectionPlan.scss'
+import formatDate from '@/utils/formatDate.js';
 export default {
     mixins:[table],
     data(){
@@ -321,6 +334,7 @@ export default {
                   }
                 }]
             },
+            planType:1
         }
     },
     computed:{
@@ -447,6 +461,27 @@ export default {
             })
         },
         /**
+         * 根据月份一键生成巡更计划
+         */
+        createPlanByMonth(month){
+            Patrol({
+                FAction:'CreatePlanByMonth',
+                FDateTime:month
+            })
+            .then((result) => {
+                this.$message({
+                  type: 'success',
+                  message: '生成成功!'
+                });
+                this.queryData()
+            }).catch((err) => {
+                this.$message({
+                  type: 'error',
+                  message: '生成失败!'
+                });
+            });
+        },
+        /**
          * 选择年份
          */
         selectYear(val){
@@ -454,6 +489,16 @@ export default {
             this.$DeleteMessage([`确认生成　　${year}年巡更计划`,'确认信息'])
             .then(() => {
                 this.createPlanByYear(year)
+            })
+            .catch(error => {
+                this.year = ''
+            })
+        },
+        selectMonth(val){
+            let time = formatDate(val,'YYYY-MM')
+            this.$DeleteMessage([`确认生成　　${time}巡更计划`,'确认信息'])
+            .then(() => {
+                this.createPlanByMonth(time)
             })
             .catch(error => {
                 this.year = ''

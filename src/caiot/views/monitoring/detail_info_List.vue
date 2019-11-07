@@ -225,7 +225,6 @@ export default {
       })
       .then(data => {
         this.datalist02 = data.FObject[0]||{}
-        console.log(this.datalist02);
         if(this.datalist02.DataDetail&&this.datalist02.DataDetail.length>0){
           !this.activeItem&&(this.activeItem = this.datalist02.DataDetail[0])
           this.clickDeviceItem(this.activeItem)

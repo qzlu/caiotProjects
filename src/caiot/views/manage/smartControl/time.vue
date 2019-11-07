@@ -250,6 +250,11 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
+            let today = formatDate(new Date(),'YYYY-MM-DD')
+            this.addInfo.TimeStart = today + ' ' + row.TimeStart
+            if(row.TimeEnd){
+                this.addInfo.TimeEnd = today + ' ' + row.TimeEnd
+            }
             this.checkWeek = row.Week.split(',')
         },
         /**
@@ -306,4 +311,7 @@ export default {
 }
 </script>
 <style lang="scss">
+.el-time-spinner{
+    display: flex
+}
 </style>

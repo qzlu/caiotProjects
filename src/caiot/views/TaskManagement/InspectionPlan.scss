@@ -72,14 +72,48 @@ $img-url:'../../static/image/';
                 margin-left: 20px;
                 margin-right: 4px;
             }
+            ul.select-plan-type{
+                margin: 0 6px;
+                display: inline-block;
+                border: 1px solid rgba(143, 156, 191, 1);
+                border-radius: 5px;
+                li{
+                    display: inline-block;
+                    cursor: pointer;
+                    width: 34px;
+                    height: 25px;
+                    line-height: 25px;
+                    box-sizing: border-box;
+                }
+                li:first-of-type{
+                    border-right: 1px solid rgba(143, 156, 191, 1);
+                }
+                li.active{
+                    background: #0f7ae2;
+                }
+            }
+            .el-date-editor.el-input{
+                width: 122px;
+            }
             .el-input__inner{
                 width: 122px;
                 height: 46px;
                 background:rgba(0,80,153,1);
                 border:1px solid rgba(12,55,110,1);
+/*                 .el-range-input{
+                    color: white;
+                    background: none;
+                }
+                .el-range-separator{
+                    line-height: 40px;
+                    color: white;
+                } */
             }
         }
         li.r{
+            .label{
+                margin-right: 10px;
+            }
             .el-button.el-button--primary{
                 width:94px;
                 height:46px;

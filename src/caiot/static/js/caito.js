@@ -25,10 +25,7 @@ export default{
 					  localStorage.setItem("projectid","");
 					  localStorage.setItem("projectname","");
 					  localStorage.setItem("refresh",1);//用户退出时，刷新登录页面，避免项目定时器ajax继续执行
-					  setTimeout(function(){
-					  	 router.push('/login') //跳至登录页面
-					  },1000)
-					 
+					  router.push('/login') //跳至登录页面
 					  break;
 					case 105:
 					  Message('添加/修改/删除数据错误');

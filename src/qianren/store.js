@@ -35,14 +35,14 @@ const generaMenu = function(data,arr = []){
           }
           return {
               path:'/'+menu.FFunctionURLAddress,
-              component:lazyLoad(menu.FComponent||'common.vue'),
+              component:lazyLoad(menu.FComponent||'/404.vue'),
               redirect:menu.FURL,
               children:children,
           }
       }else{
           return {
               path:menu.FURL,
-              component:lazyLoad(menu.FComponent||'common.vue'),
+              component:lazyLoad(menu.FComponent||'/404.vue'),
               children:menu.FChildMenu&&menu.FChildMenu.length>0?generaMenu(menu.FChildMenu,[]):[],
               meta:{
                 name:menu.FMenuName

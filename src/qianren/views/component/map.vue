@@ -46,7 +46,7 @@ export default {
     async created(){
         this.id = uuidv1()
         await this.queryMainDBTORGLevel()
-        this.queryProvinceData()
+        await this.queryProvinceData()
         this.queryAllProvince()
         this.queryMapData()
     },
@@ -83,28 +83,34 @@ export default {
          * 获取所有省份数据
          */
         queryProvinceData(){
-            axios.get(url+'province.json')
-            .then((result) => {
-                let province = result.data
-                province.forEach(item => {
-                    myMap[item.id] = item.jsonName
-                })
-
-            }).catch((err) => {
-                console.log(err)
-            });
+            return new Promise((resolve,reject) => {
+                axios.get(url+'province.json')
+                .then((result) => {
+                    let province = result.data
+                    province.forEach(item => {
+                        myMap[item.id] = item.jsonName
+                    })
+                    resolve()
+                }).catch((err) => {
+                    reject(err)
+                    console.log(err)
+                });
+            })
         },
         /**
          * 获取所有省份的边界经纬度
          */
         queryAllProvince(){
-            axios.get(url+'allCity.json')
-            .then((result) => {
-                this.provinceData = result.data
-
-            }).catch((err) => {
-                console.log(err)
-            });
+            return new Promise((resolve,reject) => {
+                axios.get(url+'allCity.json')
+                .then((result) => {
+                    this.provinceData = result.data
+                    resolve()
+                }).catch((err) => {
+                    console.log(err)
+                    reject(err)
+                });
+            })
         },
         /**
          * 获取已配置地图数据
@@ -117,11 +123,9 @@ export default {
             .then((result) => {
                 let response = result.FObject
                 this.projectList = response.ProjectData
-                console.log(result.FObject.ListData);
                 this.$nextTick(() => {
                     if(!this.myChart){
                       var dom = document.getElementById(this.id);
-                      console.log(this.id);
                       this.myChart = echarts.init(dom);
                     }
                     this.myChart.showLoading({

@@ -2,27 +2,30 @@
     <div class="device-ctr">
         <div class="l device-ctr-left">
             <div class="mode-ctr box-shadow">
-                <h4>控制模式 <button class="r operation">群控策略</button></h4>
+                <h4>控制模式 <button class="r operation-btn">群控策略</button></h4>
                 <div class="border">
                 </div>
                 <div class="icon">
                 </div>
                 <ul class="tab-header">
-                    <li :class="{active:activeIndex == i}" v-for="(item,i) in tabList" :key="i" @click="activeIndex = i">{{item}}</li>
+                    <li :class="{active:activeIndex == i+1}" v-for="(item,i) in tabList" :key="i" @click="activeIndex = i+1">{{item}}</li>
                 </ul>
                 <div class="tab-content">
                     <ul class="operation-list clearfix">
                         <li v-for="(item,i) in operationList" :key="i">
-                            <button class="operation">{{item}}</button>
+                            <button class="operation-btn" @click="item.GroupMode==2?sendCMD('GroupCMD',item.GroupID):queryControlProjectAdjust(item.GroupID)">{{item.GroupShortName}}</button>
                         </li>
                     </ul>
                     <div class="mode">
                         <div class="title">
                             当前模式
                         </div>
-                        <div class="mode-type-name">
-                            上班模式
-                            <button class="operation">场景模式</button>
+                        <div v-if="currentMode">
+                            <div class="mode-type-name">
+                                {{currentMode.SceneName}}
+                            </div>
+                            <p>{{currentMode.Week}} <span class="badge">重复</span></p>
+                            <p>{{currentMode.TimeStart}}<span v-if="currentMode.TimeEnd">~{{currentMode.TimeEnd}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -36,10 +39,10 @@
                 <div class="mode-record">
                     <el-scrollbar>
                         <ul>
-                            <li :class="{unstart:!item.state}" v-for="(item,i) in modeList" :key="i">
-                                <p class="mode-name">{{item.modeName}}</p>
+                            <li :class="{unstart:!item.IsRun}" v-for="(item,i) in modeList" :key="i">
+                                <p class="mode-name">{{item.SceneName}}</p>
                                 <div class="icon-time">
-                                    <p class="mode-time">{{item.EventsTime}}</p>
+                                    <p class="mode-time">{{item.TimeStart}}</p>
                                     <div>
                                         <div class="circle">
                                         </div>
@@ -50,8 +53,8 @@
                                 <div class="mode-item">
                                     <i>{{i+1}}</i>
                                 </div>
-                                <span class="mode-state">{{item.state?'已完成':'未开始'}}</span>
-                                <button class="operation">立即执行</button>
+                                <span class="mode-state">{{item.IsRun?'已完成':'未开始'}}</span>
+                                <button class="operation-btn" @click="sendCMD('GroupCMD',item.TimeCMDID)">立即执行</button>
                             </li>
                         </ul>
                     </el-scrollbar>
@@ -73,79 +76,80 @@
                 </div>
                 <div class="area-container">
                     <ul class="area-list l" :style="{left:-(lastIndex-3)*310+'px'}">
-                        <li :class="['item']" v-for="(item,i) in areaCount" :key="i" @click="selectArea(item)">
+                        <li :class="['item',{alarm:item.AlarmCount>0,active:activeArea&&item.AreaID == activeArea.AreaID}]" v-for="(item,i) in areaCount" :key="i" @click="selectArea(item)">
+                            <p class="area-name">{{item.AreaName}}</p>
+                            <div class="area-param">
+                                <ul class="data-item">
+                                    <li v-for="(obj,j) in item.DataDetail" :key="j">
+                                        <div class="item-name">
+                                            <p>{{obj.ShowName}}</p>
+                                            <p>({{obj.ShowUnit}})</p>
+                                        </div>
+                                        <p class="value">{{obj.CollectData}}</p>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li v-for="(obj,j) in item.GroupCMDs" :key="j">
+                                        <button class="operation-btn" @click.stop="obj.GroupMode==2?sendCMD('GroupCMD',obj.GroupID):queryControlProjectAdjust(obj.GroupID)">{{obj.GroupShortName}}</button>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
                 <div class="device-container">
                     <el-scrollbar>
-                        <div class="device-type-list l" v-for="(item,i) in deviceTypes" :key="i">
-                            <h5>{{item.DeviceTypeName}}({{item.data.length}})</h5>
-                            <ul class="device-list clearfix">
-                                <li :class="['l',{'top10':j>3,'opening':j == 1}]" v-for="(device,j) in item.data" :key="j">
-                                    <div class="device-aside">
-                                        <p>{{device.DeviceName}}</p>
-                                        <ul>
-                                            <li>
-                                                <span>80</span>
-                                                <br><span>亮度(cd/m²)</span>
-                                            </li>
-                                            <li>
-                                                <span>冷光</span>
-                                                <br><span>灯光模式</span>
-                                            </li>
-                                            <li>
-                                                <span>冷光</span>
-                                                <br><span>灯光模式</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="device-control">
-                                        <div style="display:flex">
-                                            <div class="control">
-                                                <span><i class="iconfont icon-zs-backstage"></i></span>
-                                                <br><span>调节</span>
+                        <div>
+                            <div class="device-type-list l" v-for="(item,i) in deviceTypes" :key="i">
+                                <h5>{{item.DeviceType}}({{item.data.length}})</h5>
+                                <ul class="device-list clearfix">
+                                    <li :class="['l',{'top10':j>3,'opening':device.DeviceStatus}]" v-for="(device,j) in item.data" :key="j">
+                                        <h5>
+                                            <span>{{device.DeviceName}}</span>
+                                            <button class="operation-btn"  v-for="(obj,j) in device.BaseCMDs" :key='j' @click="obj.CMDMode==1?sendCMD('BaseCMD',obj.CmdID):queryControlDeviceAdjust(device.DeviceID)">{{obj.CMDShortName}}</button>
+                                        </h5>
+                                        <div class="device-list-content">
+                                            <div class="device-aside">
+                                                <ul>
+                                                    <li v-for="(obj,j) in device.DataDetail?device.DataDetail.slice(0,3):[]" :key="j">
+                                                        <span>{{obj.SDataTitle}}</span>
+                                                        <br><span>{{obj.SDataUnit||'--'}}</span>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div class="switch">
-                                                <el-switch
-                                                  :width="45"
-                                                  v-model="device.state"
-                                                  active-color="RGBA(32, 184, 202, 1)"
-                                                  inactive-color="rgba(146, 146, 146, 1)"
-                                                  >
-                                                </el-switch>
-                                                <br><span>开关</span>
+                                            <div class="device-control">
+                                                <div class="device-statu">
+                                                    <p><i class="iconfont icon-Flatlight"></i></p>
+                                                    <p>{{device.DeviceStatusTitle}}</p>
+                                                </div>
                                             </div>
-                                         </div>
-                                        <div>
-                                            <p><i class="iconfont icon-Flatlight"></i></p>
-                                            <p>{{device.state>0?'开启':'关闭'}}</p>
+                                            <div class="device-aside">
+                                                <p></p>
+                                                <ul>
+                                                    <li v-for="(obj,j) in device.DataDetail?device.DataDetail.slice(3):[]" :key="j">
+                                                        <span>{{obj.SDataTitle}}</span>
+                                                        <br><span>{{obj.SDataUnit||'--'}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="device-aside">
-                                        <p></p>
-                                        <ul>
-                                            <li>
-                                                <span>80</span>
-                                                <br><span>亮度(cd/m²)</span>
-                                            </li>
-                                            <li>
-                                                <span>冷光</span>
-                                                <br><span>灯光模式</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </el-scrollbar>
                 </div>
             </div>
         </div>
+        <el-dialog title="全部遥调" class="zw-dialog" width="400px" :visible.sync="show">
+            <ul>
+                <li v-for="(item,i) in remoteControlList" :key="i"></li>
+            </ul>
+        </el-dialog>
     </div>
 </template>
 <script>
-import card from './card.vue'
+import {Control} from '@/caiot/request/api.js'
 export default {
     data(){
         return{
@@ -154,129 +158,19 @@ export default {
             activeArea:null,
             areaDevice:[], //区域设备
             tabList:['就地', '远程', '群控'],
-            activeIndex:0,
-            operationList:['全部开启','全部关闭','全部遥调'],
-            modeList:[
-                {
-                    modeName:"上班模式",
-                    EventsTime:'08:50',
-                    state:1,
-                },
-                {
-                    modeName:"会议模式",
-                    EventsTime:'10:00',
-                    state:2,
-                },
-                {
-                    modeName:"休息模式",
-                    EventsTime:'12:00',
-                    state:0,
-                },
-                {
-                    modeName:"会议模式",
-                    EventsTime:'14:00',
-                    state:0,
-                },
-                {
-                    modeName:"下班模式",
-                    EventsTime:'18:30',
-                    state:0,
-                }
-            ],
-            deviceTypes:[
-                {
-                    DeviceTypeName:'灯光',
-                    IconName:'icon-Transformer',
-                    data:[
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:1,
-                        },
-                    ]
-                },
-                {
-                    DeviceTypeName:'灯光',
-                    IconName:'icon-Transformer',
-                    data:[
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:1,
-                        },
-                    ]
-                },
-                {
-                    DeviceTypeName:'灯光',
-                    IconName:'icon-Transformer',
-                    data:[
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        },
-                        {
-                            DeviceName:'1#灯光',
-                            modeType:'冷光',
-                            type:'灯光模式',
-                            state:0,
-                        }
-                    ]
-                },
-            ]
+            activeIndex:1,
+            operationList:[],
+            modeList:[],
+            currentMode:null,
+            deviceTypes:[],
+            show:false,
+            remoteControlList:[]
 
         }
+    },
+    created(){
+        this.queryControlModeData()
+        this.queryAreaControl()
     },
     methods:{
         /**
@@ -296,7 +190,124 @@ export default {
          */
         selectArea(item){
             this.activeArea = item
+            this.queryAreaControlDetail(item.AreaID)
         },
+        /**
+         *34.PC前端—查询控制模式数据
+         */
+        queryControlModeData(){
+            Control({
+                FAction:'QueryControlModeData'
+            })
+            .then((result) => {
+                console.log(result);
+                let data = result.FObject
+                this.activeIndex = data.Table[0]&&data.Table[0].AutoMode
+                this.operationList = data.Table1
+                this.currentMode = data.Table2[0]||null
+                this.modeList = data.Table3
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 35.PC前端—查询区域控制
+         */
+        queryAreaControl(){
+            Control({
+                FAction:'QueryAreaControl',
+            })
+            .then((result) => {
+                console.log(result);
+                let data = result.FObject
+                this.areaCount = data
+                if(data&&data.length>0){
+                    if(this.activeArea){
+                        this.queryAreaControlDetail(this.activeArea.AreaID)
+                    }else{
+                        this.queryAreaControlDetail(data[0].AreaID)
+                    }
+                }
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 36.PC前端—查询该区域控制设备详情
+         */
+        queryAreaControlDetail(id){
+            Control({
+                FAction:'QueryAreaControlDetail',
+                ID:id
+            })
+            .then((result) => {
+                console.log(result);
+                let data =  result.FObject
+                let areaDevice = data.ProjectDeviceTypeValue.map(item => {
+                    return Object.assign(item,{
+                        data:data.ProjectDeviceDataDetail
+                        .filter(obj => obj.DeviceTypeID == item.DeviceTypeID)
+                        .map(obj =>{
+                            return {
+                                ...obj,
+                                DeviceStatus:Boolean(obj.DeviceStatus)
+                            }
+                        })
+                    })
+                })
+                this.deviceTypes = areaDevice.filter(item => item.data.length>0)
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 37.PC前端—查询项目级全部摇调
+         */
+        queryControlProjectAdjust(id){
+            this.show = true
+            Control({
+                FAction:'QueryControlProjectAdjust',
+                GroupID:id
+            })
+            .then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         *38.PC前端—查询设备摇调
+         */
+        queryControlDeviceAdjust(id){
+            Control({
+                FAction:'QueryControlDeviceAdjust',
+                DeviceID:id
+            })
+            .then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 发送指令
+         * @param {String} type GroupCMD:群控指令，BaseCMD:单控指令
+         * @param {Int} ID  群控/单控指令ID
+         */
+        sendCMD(type,ID,data = ''){
+            Control({
+                FAction:'SendCMD',
+                FType:type,
+                ID:ID,
+                FData:data
+            })
+            .then((result) => {
+                console.log(result);
+                /* this.queryAreaControl() */
+            }).catch((err) => {
+                
+            });
+        }
     }
 }
 </script>
@@ -343,9 +354,9 @@ $url:'../../static/image';
             content: ""
         }
     }
-    button.operation{
-        width:70px;
+    button.operation-btn{
         height:30px;
+        padding: 0 10px;
         background:linear-gradient(90deg,rgba(28,76,137,1),rgba(10,57,113,1),rgba(12,56,106,1),rgba(10,57,113,1),rgba(30,79,141,1));
         border:1px solid rgba(81, 128, 205, 0.82);
         border-radius:2px;
@@ -424,10 +435,23 @@ $url:'../../static/image';
                         position:relative;
                         font-size: 20px;
                         color: rgba(209, 219, 230, 1);
-                        button{
+                    }
+                    p{
+                        line-height: 40px;
+                        font-size: 20px;
+                        color: #84F2FF;
+                        position: relative;
+                        .badge{
                             position: absolute;
-                            right: 22px;
-                            top:0;
+                            width: 40px;
+                            height: 25px;
+                            margin-left: 20px;
+                            line-height: 25px;
+                            top: 8px;
+                            background:rgba(53,131,214,1);
+                            border-radius:5px;
+                            font-size: 14px;
+                            color: white;
                         }
                     }
                 }
@@ -604,7 +628,7 @@ $url:'../../static/image';
                         }
                         .area-param{
                             padding: 0 40px;
-                            height: 200px;
+                            height: 190px;
                             display: flex;
                             justify-content: space-between;
                             ul{
@@ -615,14 +639,14 @@ $url:'../../static/image';
                                 justify-content: center;
                                 li{
                                     width: 100%;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-between;
                                 }
                             }
                             ul.data-item{
                                 li{
                                     height: 60px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
                                     .item-name{
                                         text-align: left;
                                     }
@@ -633,37 +657,9 @@ $url:'../../static/image';
                                 }
                             }
                             ul:last-of-type{
-                                li{
-                                    .statu{
-                                        font-size: 14px;
-                                        line-height: 18px;
-                                        .icon{
-                                            display: inline-block;
-                                            width: 12px;
-                                            height: 12px;
-                                            border-radius: 4px;
-                                            vertical-align: middle;
-                                            margin-right: 4px;
-                                        }
-                                        .run{
-                                            background: #03cd82;                                       
-                                        }
-                                        .stop{
-                                            background: #b2b2b2;      
-                                        }
-                                        .alarm{
-                                            background: #fe0000;   
-                                        }
-                                        .repair{
-                                            background: #fe9a00;   
-                                        }
-                                        .maintain{
-                                            background: #0eaff8;   
-                                        }
-                                    }
-                                    .value{
-                                        font-size: 20px
-                                    }
+                                text-align: right;
+                                li+li{
+                                    margin-top: 10px;
                                 }
                             }
                         }
@@ -687,7 +683,7 @@ $url:'../../static/image';
             height: 610px;
             margin-top: 4px;
             .device-type-list{
-                h5{
+                >h5{
                     padding-left: 20px;
                     line-height: 38px;
                     text-align: left;
@@ -700,97 +696,80 @@ $url:'../../static/image';
                         width:329px;
                         height:208px;
                         margin-left:16px;
-                        display: flex;
                         box-sizing: border-box;
                         border-radius:8px;
                         background:RGBA(8, 34, 82, 0.37);
-                        >div{
-                            height: 100%;
-                        }
-                        .device-aside{
-                            width: 120px;
-                            margin-top: 10px;
-                            color: rgba(170, 190, 210, 1);
-                            font-size: 20px;
-                            >p{
-                                width: 100%;
-                                height: 24px;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                padding-left: 10px;
-                                text-align: left;
-                                box-sizing: border-box;
+                        >h5{
+                            height: 40px;
+                            line-height: 50px;
+                            padding-left: 10px;
+                            text-align: left;
+                            span{
+                                font-size:20px;
+                                font-weight:400;
+                                color:rgba(170,190,210,1);
                             }
-                            >ul{
-                                margin-top: 14px;
-                                padding-left: 20px;
-                                li{
-                                    text-align: left;
-                                    width: 100px;
-                                    line-height: 20px;
+                            button{
+                                margin-left: 10px;
+                            }
+                        }
+                        .device-list-content{
+                            display: flex;
+                            height: 168px;
+                            overflow: hidden;
+                            .device-aside{
+                                width: 120px;
+                                color: rgba(170, 190, 210, 1);
+                                font-size: 20px;
+                                >p{
+                                    width: 100%;
+                                    height: 24px;
                                     overflow: hidden;
-                                    white-space: nowrap;
                                     text-overflow: ellipsis;
-                                    span{
-                                        line-height: 0;
-                                    }
-                                    span:first-of-type{
-                                        font-size: 20px;
-                                        color: rgba(3, 205, 130, 1);
-                                    }
-                                    span:last-of-type{
-                                        font-size: 14px;
-                                        color: rgba(169, 168, 168, 1)
-                                    }
+                                    padding-left: 10px;
+                                    text-align: left;
+                                    box-sizing: border-box;
                                 }
-                                li+li{
-                                    margin-top: 12px;
-                                }
-                            }
-                        }
-                        .device-control{
-                            width: 100px;
-                            padding-top: 10px;
-                            >div:first-of-type{
-                                display: flex;
-                                .control{
-                                    font-size: 14px;
-                                    span:first-of-type{
-                                        display: inline-block;
-                                        width:32px;
-                                        height: 32px;
-                                        line-height: 32px;
-                                        border:1px solid rgba(183,176,176,1);
-                                        border-radius:50%;
-                                        text-align: center;
-                                        i{
-                                            font-size: 22px;
+                                >ul{
+                                    margin-top: 14px;
+                                    padding-left: 20px;
+                                    li{
+                                        text-align: left;
+                                        width: 100px;
+                                        line-height: 20px;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        span{
+                                            line-height: 0;
+                                        }
+                                        span:first-of-type{
+                                            font-size: 20px;
+                                            color: rgba(3, 205, 130, 1);
+                                        }
+                                        span:last-of-type{
+                                            font-size: 14px;
+                                            color: rgba(169, 168, 168, 1)
                                         }
                                     }
-                                    span:last-of-type{
-                                        display: inline-block;
-                                        margin-top: 4px;
-                                    }
-                                }
-                                .switch{
-                                    margin-left: 16px;
-                                    span:last-of-type{
-                                        display: inline-block;
-                                        margin-top: 18px;
-                                        font-size: 14px;
+                                    li+li{
+                                        margin-top: 12px;
                                     }
                                 }
                             }
-                            >div:last-of-type{
-                                p{
-                                    font-size: 16px;
-                                    .iconfont{
-                                        font-size: 60px;
+                            .device-control{
+                                width: 100px;
+                                padding-top: 10px;
+                                >div{
+                                    p{
+                                        font-size: 16px;
+                                        .iconfont{
+                                            font-size: 60px;
+                                        }
                                     }
                                 }
                             }
                         }
-
                     }
                     li.top10{
                         margin-top: 14px;
@@ -798,9 +777,39 @@ $url:'../../static/image';
                     li.opening{
                         border: 1px solid RGBA(3, 131, 163, 1);
                         background:RGBA(7, 43, 75, 1);
-                        box-shadow: 0 0 10px 10px RGBA(5, 104, 128, 1) inset;
+                        box-shadow: 0 0 16px 4px RGBA(5, 104, 128, 1) inset;
+                        .device-control{
+                            .device-statu{
+                                color: RGBA(84, 250, 188, 1)
+                            }
+                        }
                     }
                 }
+            }
+        }
+    }
+    .el-dialog{
+        background: url(#{$url}/task/inspection.png);
+        background-size: 100% 100%;
+        padding-left: 48px!important;
+        &__header{
+            text-align: left
+        }
+    }
+    .zw-dialog{
+        .el-dialog{
+            height: 500px;
+            background-size: 100% 100%;
+            .zw-tree{
+                width:270px;
+                margin: 0 auto;
+                .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+                    background-color: #999999;
+                    color: #999999
+                }
+            }
+            .submit{
+                margin-top: 20px;
             }
         }
     }

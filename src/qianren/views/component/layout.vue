@@ -1,11 +1,47 @@
 <template>
-  <div class="home qianren">
+  <div class="home qianren child-system">
     <div class="header">
-      <div class="logo">
-        <img :src="logoImg" alt="">
-      </div>
+      <router-link to="/">
+        <div class="logo">
+          <img :src="logoImg" alt="">
+        </div>
+      </router-link>
       <span class="title">{{formName}}</span>
       <ul class="clearfix" style="top:10px;right:16px">
+        <li class="l">
+            <div id="tree-project" class="r" >
+                  <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
+                  <div class="tree-project" v-if="showProjectList">
+                      <div class="filter-box">
+                          <el-input
+                            placeholder="搜索关键字"
+                            v-model="filterText">
+                            <i class="el-icon-search" slot="suffix"></i>
+                          </el-input>
+                      </div>
+                      <div class="tree-content">
+                          <el-scrollbar>
+                              <el-tree
+                                  ref="tree"
+                                 :data="treeData"
+                                 :props="treeProp"
+                                 default-expand-all
+                                 @node-click="slectBlock"
+                                 :expand-on-click-node="false"
+                                 :filter-node-method="filterNode"
+                              >
+                                <template v-slot="{node,data}">
+                                  <div style="width:100%;text-align:left">
+                                    <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span><!-- www.szqianren.com -->
+                                    <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`http://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
+                                  </div>
+                                </template>
+                              </el-tree>
+                          </el-scrollbar>
+                      </div>
+                  </div>
+            </div>
+        </li>
         <li class="l icon" v-if="systemMenu&&systemMenu.length>0">
             <router-link :to="`/manage`"  class="icon-item">
                 <i class="iconfont icon-zs-backstage"></i>
@@ -28,77 +64,13 @@
         <li class="l user-name">{{user}}</li>
         <!-- <set-password :show.sync='show' @confirm="changePassword"></set-password> -->
       </ul>
-      <ul class="menu menu-left">
-        <li :class="['menu-item']">
-          <router-link to="/blockSituation">集团态势</router-link>
-        </li>
-        <li :class="['menu-item']">
-          <router-link to="/systemOverview">系统总览</router-link>
-        </li>
-        <li :class="['menu-item']">
-          <router-link to="/comprehensiveRanking">综合排名</router-link>
-        </li>
-      </ul>
-      <ul class="menu menu-right">
-        <li :class="['menu-item']" >
-          <router-link to="/404">
-            告警管理
-          </router-link>
-          
-        </li>
-        <li :class="['menu-item']" >
-          <router-link to="/404">
-            能源管理
-          </router-link>
-        </li>
-        <li :class="['menu-item']" >
-          <router-link to="/404">
-            任务管理
-          </router-link>
-        </li>
-      </ul>
-      <div id="tree-project" class="r" >
-            <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
-            <div class="tree-project" v-if="showProjectList">
-                <div class="filter-box">
-                    <el-input
-                      placeholder="搜索关键字"
-                      v-model="filterText">
-                      <i class="el-icon-search" slot="suffix"></i>
-                    </el-input>
-                </div>
-                <div class="tree-content">
-                    <el-scrollbar>
-                        <el-tree
-                            ref="tree"
-                           :data="treeData"
-                           :props="treeProp"
-                           default-expand-all
-                           @node-click="slectBlock"
-                           :expand-on-click-node="false"
-                           :filter-node-method="filterNode"
-                        >
-                          <template v-slot="{node,data}">
-                            <div style="width:100%;text-align:left">
-                              <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span><!-- www.szqianren.com -->
-                              <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`http://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
-                            </div>
-                          </template>
-                        </el-tree>
-                    </el-scrollbar>
-                </div>
-            </div>
-      </div>
     </div>
-    <div>
-      <router-view :alarmData="alarmData" :orderData="orderData" :currentBlock="currentBlock"></router-view>
+    <div class="compre-hensive">
+        <slot></slot>
     </div>
   </div>
 </template>
 <script>
-import { number, pieChart, barChart } from "@/components/index.js";
-import echartsMap from "../component/map.vue";
-import monitorData from "./monitorData.vue"
 import { setPassword } from "@/components/index.js";
 import("@/assets/css/index.scss");
 export default {
@@ -106,13 +78,7 @@ export default {
     return {
       user: sessionStorage.getItem("FContacts"), //用户名
       projectName: sessionStorage.getItem("FGroupName"),
-      token:sessionStorage.getItem('FToken'),
       isOpen: 1,
-      guid:{IDStr:0}, //查询的IDStr
-      currentBlock:{},
-      userType:sessionStorage.getItem('FUserType'),
-      alarmData:[],
-      orderData:[],
       treeData:[],
       showProjectList:false, //项目导航下拉
       treeProp:{
@@ -120,11 +86,14 @@ export default {
           label:'FSimpleName'
       },
       filterText:'',
-      timer:null,
       systemMenu:JSON.parse(sessionStorage.getItem('systemMenu')),//后台管理菜单
-      formName:sessionStorage.getItem("formName")||'中物运营智服云平台',
       logoImg:sessionStorage.getItem('logo')?`http://47.107.224.8:8080/${sessionStorage.getItem('logo')}`:require("@/assets/image/logo-caiot.png"),
     };
+  },
+  props:{
+      formName:{
+        type:String
+      }
   },
   components: {
     setPassword,
@@ -135,10 +104,7 @@ export default {
     },
   },
   beforeCreate() {},
-  created() {
-    this.queryProject()
-    this.queryData()
-  },
+  created() {},
   mounted() {
     this.$nextTick(() => {
       let el = document.querySelector('#tree-project')
@@ -194,49 +160,6 @@ export default {
         localStorage.setItem("open", 1);
       }
     },
-    queryData(){
-      clearTimeout(this.timer)
-      this.timer = null
-      this.queryBlocAlarmRealData()
-      this.queryBlocPageUOrdersByDate()
-      this.timer = setTimeout(() => {
-        this.queryData()
-      },1000*10)
-    },
-    /**
-     * 57.集团首页--查询集团实时未恢复告警
-     */
-    queryBlocAlarmRealData(){
-        this.$post('/QueryBlocAlarmRealData',{
-          FORGGroupGUID: this.currentBlock.FGUID||'',
-            ...this.guid
-        })
-        .then((result) => {
-            this.alarmData = result.FObject||[]
-        }).catch((err) => {
-            
-        });
-    },
-    /**
-     * 56查询未恢复任务
-     */
-    queryBlocPageUOrdersByDate(){
-        this.$post('/QueryBlocPageUOrdersByDate',{
-          FORGGroupGUID: this.currentBlock.FGUID||'',
-            ...this.guid,
-            OrderState:-1,
-            PageIndex:1,
-            PageSize:1000
-        })
-        .then((result) => {
-            this.orderData = result.FObject||[]
-        }).catch((err) => {
-            
-        });
-    },
-    /**
-     * 查询左边树形数据(258.组织架构--查询树状集团项目)
-     */
     queryProject(){
         this.$post('/QueryTORGGroupProjectTree',{
           FORGGroupGUID: '',
@@ -260,6 +183,7 @@ export default {
         if (!value) return true;
         return data.FORGName.indexOf(value) !== -1;
     },
+
     /**
      * 选择集团
      */
@@ -267,6 +191,9 @@ export default {
       if(node.FNodeType == 1){
         this.currentBlock = node
         this.queryData()
+        this.$refs.map.queryMapData(node.FGUID)
+        this.queryBlocEnergyByMonth();
+        this.queryBlocQueryEnergyByMonth()
       }
     }
   }
@@ -302,21 +229,14 @@ $url: "../../../assets/image/";
         position: relative;
         float: left;
         /* display: inline-block; */
+        background: url(#{$url}qianren/menu-bg.png);
         color: #84f2ff;
         font-size: 20px;
         cursor: pointer;
-        a{
-          display: block;
-          width: 100%;
-          height: 100%;
-          color: #84f2ff;
-          font-size: 20px;
-          background: url(#{$url}qianren/menu-bg.png);
-        }
-        a.router-link-active{
-          background: url(#{$url}qianren/menu-active.png);
-          color: #F5DCAD
-        }
+      }
+      .menu-item.active {
+        background: url(#{$url}qianren/menu-active.png);
+        color: #F5DCAD
       }
     }
     .menu-left{
@@ -378,6 +298,7 @@ $url: "../../../assets/image/";
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow: hidden;
         .border{
             height: 1px;
             margin: 9px 25px 0 13px;
@@ -595,10 +516,9 @@ $url: "../../../assets/image/";
             >li{
                 position: relative;
                 height: 219px;
-                overflow: hidden;
                 a{
                   width: 100%;
-                  height: 219px;
+                  height: 100%;
                   display: block;
                   color: #a5effc;
                   position: absolute;
@@ -680,6 +600,321 @@ $url: "../../../assets/image/";
     }
     .main {
       margin: 0 423px;
+    }
+  }
+}
+.child-system{
+  .header{
+    >ul{
+      >li{
+        >#tree-project{
+          position: absolute;
+          left: -120px;
+          top: 17px;
+          cursor: pointer;
+          font-size: 16px;
+          .tree-project{
+              position: absolute;
+              width: 164px;
+              height: 320px;
+              top: 34px;
+              z-index: 100;
+              background: #0D2F60;
+              .filter-box{
+                  padding: 10px;
+                  .el-input__suffix{
+                    line-height: 34px;
+                  }
+              }
+              .tree-content{
+                  height: 280px;
+                  .el-tree{
+                      color:#F1F1F2;
+                      font-size: 18px;
+                      background: #0D2F60;
+                      &-node__content{
+                          height: 40px;
+                          line-height: 40px;
+                          span{
+                              font-size: 16px;
+                          }
+                          a{
+                            color:#F1F1F2;
+                            font-size: 16px;
+                          }
+                      }
+                      .el-tree-node:hover,.el-tree-node:focus {
+                          >.el-tree-node__content {
+                              background:#355B95;
+                          }
+                      }
+                  }
+              }
+          }
+        }
+      }
+    }
+  }
+  .aside{
+    .side-content{
+      ul{
+        li{
+          .chart{
+            height:180px;
+            position:relative;
+            .border-dashed{
+              width: 162px;
+              height: 162px;
+              position:absolute;
+              top: 0;
+              left: 118px;
+              border: 1px dashed #1A478BFF;
+              border-radius:50%;
+              z-index: 5;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              .title {
+                font-size: 12px;
+                color: #f1f1f2;
+              }
+              .value {
+                margin-top: 10px;
+                font-size: 22px;
+                color: #00d294;
+              }
+            }
+            ul {
+              margin-top: 10px;
+              li {
+                display: flex;
+                align-items: center;
+                line-height: 20px;
+                font-size: 14px;
+                .index {
+                    display: inline-block;
+                    width: 40px;
+                    margin-right: 10px;
+                }
+                .device-type {
+                  width: 100px;
+                  text-align: left;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+                .bar-out {
+                  width: 190px;
+                  height: 10px;
+                  .bar-inner {
+                    width: 0;
+                    height: 100%;
+                    transition: 0.3s;
+                    background: #18de94;
+                    border-radius: 2px;
+                  }
+                }
+                .value {
+                  width: 50px;
+                  text-align: right;
+                }
+              }
+            }
+          }
+          .video-container{
+            height: 620px;
+            .video-list{
+              padding: 10px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content:space-between;
+              li{
+                width: 192px;
+                height: 190px;
+                margin-top: 0px;
+                img{
+                  width: 192px;
+                  height: 190px;
+                }
+              }
+              li.top10{
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .aside.project-list{
+    .side-content{
+      ul.list{
+        >li{
+          h4{
+            width: 188px;
+            height: 44px;
+            line-height: 36px;
+            padding-top: 0!important;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            background: url('../../../assets/image/cloud/index/bg_4.png') no-repeat;
+            font-size: 18px;
+            font-weight: 400;
+            color: #9ee5f3;
+            text-align: center;
+          }
+          .project-video{
+            height: 180px;
+            padding: 0 8px 0 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img{
+              width: 360px;
+              height: 150px;
+            }
+            >div.more{
+              width: 21px;
+              height: 115px;
+              line-height: 30px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              background: #3968AF;
+            }
+          }
+        }
+      }
+    }
+  }
+  .main{
+    .monitor-alarm{
+        width: 100%;
+        height: 288px;
+        border-radius: 10px;
+        background: rgba($color: #14336B, $alpha: 0.34);
+        h5{
+            padding-left: 30px;
+            line-height: 38px;
+            /* color: #18A1EC; */
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            .iconfont:first-of-type{
+                font-size: 20px;
+                margin-right: 10px;
+            }
+            .icon-Up{
+                margin-left: 10px;
+                display: inline-block;
+                transform: rotate(90deg);
+            }
+        }
+        .border{
+            height: 1px;
+            margin: 0px 25px 0 13px;
+            background: #07A6FF;
+        }
+        .icon{
+            width: 100px;
+            height: 6px;
+            margin-left:13px;
+            position: relative;
+            background: #07A6FF;
+        }
+        .icon:after{
+            display: block;
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            right: -6px;
+            border: 3px solid transparent;
+            border-top-color: #07A6FF;
+            border-left-color: #07A6FF;
+            content: ""
+        }
+        .table-header{
+            width: 100%;
+            tr{
+                th{
+                    font-size: 16px;
+                }
+            }
+        }
+        tr{
+            height: 38px;
+            line-height: 38px;
+            th{
+                font-size: 14px;
+                text-align: center;
+                color: #F1F1F2
+            }
+        }
+        .table-body{
+            height: 200px;
+            table{
+                width: 100%;
+                tr{
+                    line-height: 38px;
+                    cursor: pointer;
+                    text-align: center;
+                    td{
+                        display: inline-block;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                    td.warning{
+                      color: #E0E213
+                    }
+                }
+                tr:nth-of-type(2n+1){
+                    background: rgba(158,229,243,.2);
+                }
+                tr:nth-of-type(2n){
+                    background:rgba($color: #102E58, $alpha: .2);
+                }
+              }
+        }
+    }
+    #map{
+      height: 600px;
+      position: relative;
+      ul.map-aside{
+        position: absolute;
+        bottom: 20px;
+        li{
+          width:254px;
+          height:78px;
+          margin-top: 40px;
+          background:linear-gradient(90deg,rgba(3,20,50,0.5),rgba(24,90,157,0.5));
+          border-radius:39px;
+          color: #2A91FC;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          .icon{
+              font-size: 14px;
+              .iconfont{
+                  font-size: 36px;
+              }
+          }
+          .value{
+              font-size: 30px;
+              font-weight:bold;
+          }
+        }
+      }
+      ul.map-left{
+        left: 0px;
+      }
+      ul.map-right{
+        right: 0px;
+        li{
+          background:linear-gradient(90deg,rgba(24,90,157,0.5),rgba(3,20,50,0.5));
+        }
+      }
     }
   }
 }

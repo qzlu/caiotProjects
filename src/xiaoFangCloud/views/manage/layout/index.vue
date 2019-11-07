@@ -95,6 +95,9 @@ export default {
         projectList(){
           if(this.$store.state.projectList.length === 0) return []
           let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
+          if(!sessionStorage.getItem('projectID')){
+            sessionStorage.setItem('projectID',projectID)
+          }
           this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
           return this.$store.state.projectList
         }

@@ -52,7 +52,7 @@
                             <span class="label">保养时间</span>
                             <div class="date-select"  v-if="addStandard.FMaintenanceCycle == 1">
                                 <ul class="l clearfix time-content">
-                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr',i)"></i></li>
+                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-error" @click="deleteTime('timeArr',i)"></i></li>
                                 </ul>
                                 <el-popover
                                   placement="bottom"
@@ -87,7 +87,7 @@
                             </div>
                             <div class="date-select"  v-else-if="addStandard.FMaintenanceCycle == 2">
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr2',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-error" @click="deleteTime('timeArr2',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"
@@ -134,7 +134,7 @@
                             </div>
                             <div class="date-select"  v-else>
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr3" :key="i">{{time[0]}}月 {{time[1]}}号　{{time[2]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr3',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr3" :key="i">{{time[0]}}月 {{time[1]}}号　{{time[2]}}<i class="el-icon-error" @click="deleteTime('timeArr3',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"
@@ -870,7 +870,7 @@ export default {
             position: relative;
             margin-right: 20px;
             display: inline-block;
-            .el-icon-circle-close-outline{
+            .el-icon-error{
                 width: 14px;
                 height: 14px;
                 position: absolute;

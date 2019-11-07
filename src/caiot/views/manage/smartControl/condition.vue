@@ -257,7 +257,6 @@ export default {
             reg1 = /(\w|[\u4e00-\u9fa5]*)\s*([><]=*)\s*(\d+)([\&\|]*)/,
             express = row.Express.replace(/[\(\)]/ig,''),
             expressionList = express.match(reg)
-            console.log(express,expressionList);
             if(expressionList&&Array.isArray(expressionList)){
                 this.expressionList = expressionList.map(item => {
                     let match = item.match(reg1)

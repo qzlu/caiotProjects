@@ -8,7 +8,8 @@ import echarts from 'echarts'
 export default {
   data() {
     return {
-        id:''
+        id:'',
+        myChart:null
     };
   },
   props: {
@@ -21,6 +22,34 @@ export default {
     },
     setting:{
         type:Object
+    },
+    yFormatter:{
+    },
+    grid:{
+      type:Object,
+      default:() => {
+        return {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true
+        }
+      }
+    },
+    legend:{
+      type:Object,
+      default:() => {
+        return {
+          top:'20px',
+          right:'96px',
+          icon:'circle',
+          itemWidth:10,
+          textStyle: {
+            fontWeight: "normal", //标题颜色
+            color: "#F1F2F2"
+          }
+        }
+      }
     }
   },
   created(){
@@ -45,7 +74,7 @@ export default {
     showChart() {
           //生成line 坐标图
           var dom = document.getElementById(this.id);
-          var myChart = echarts.init(dom);
+          !this.myChart&&(this.myChart = echarts.init(dom));
           var app = {};
           var option = null;
           option = {
@@ -59,22 +88,8 @@ export default {
               fontWeight: "normal", //标题颜色
               color: "#fff"
             },
-            legend: {
-              top:'20px',
-              right:'96px',
-              icon:'circle',
-              itemWidth:10,
-              textStyle: {
-                fontWeight: "normal", //标题颜色
-                color: "#F1F2F2"
-              }
-            },
-            grid: {
-              left: "3%",
-              right: "4%",
-              bottom: "3%",
-              containLabel: true
-            },
+            legend: this.legend,
+            grid: this.grid,
             toolbox: {
               feature: {
               }
@@ -104,14 +119,15 @@ export default {
                 }
               },
               axisLabel:{
-                color:'#A5EFFC'
+                color:'#A5EFFC',
+                formatter: this.yFormatter
               },
             },
             series: this.$props.data.rows,
             color: this.$props.color
           };
           if (option && typeof option === "object") {
-            myChart.setOption(option, true);
+            this.myChart.setOption(option, true);
           }
     }
   },

@@ -1,5 +1,6 @@
 <template>
     <div id="test" class="height-100" style="background:#ccc">
+        <canvas id="canvas" width="500" height="500"></canvas>
     </div>
 </template>
 <script>
@@ -11,10 +12,30 @@ export default {
     },
     created (){
     	this.$nextTick(() => {
-            this.addGraphView()
+            /* this.addGraphView() */
+            this.drawCanva()
         })
     },
     methods:{
+        drawCanva(){
+            let canvas = document.getElementById('canvas')
+            let ctx = canvas.getContext('2d');
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#000';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(565,250,250)
+            this.$post('/QuerySystemDeviceTypeToTree')
+            .then(data => {
+                console.log(data);
+                ctx.clearRect(0,0,500,500)
+                ctx.fillText(data.FObject,250,250)
+                this.deviceData = data.FObject
+            })
+            .catch(error => {
+
+            })
+        },
         	addGraphView() {
                 var dataModel = new ht.DataModel();  // 数据容器
                 var graphView = new ht.graph.GraphView(dataModel); // 2d 绑定数据模型

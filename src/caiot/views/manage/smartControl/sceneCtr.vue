@@ -7,14 +7,14 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="网关名称" prop="LDasID">
-                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" @change="selectLDs">
+                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" clearable>
                     <el-option v-for="item in LDasList" :key="item.LDasID" :label="item.LDasName"  :value="item.LDasID"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="控制策略" prop="FType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.FType"  placeholder="请选择">
-                    <el-option label="时间策略"  value="1"></el-option>
-                     <el-option label="条件策略"  value="2"></el-option>
+                    <el-option label="条件策略"  value="1"></el-option>
+                    <el-option label="时间策略"  value="2"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="执行时间" prop="TimeID">
@@ -113,7 +113,7 @@ export default {
                 {
                     prop: 'FType',
                     label: '控制策略',
-                    formatter:row => row.FType == 1 ? '时间策略' : '条件策略'
+                    formatter:row => row.FType == 2 ? '时间策略' : '条件策略'
                 },
                 {
                     prop: 'TimeDetail',
@@ -225,13 +225,6 @@ export default {
             }).catch((err) => {
                 
             });
-        },
-        /**
-         * 网关发生改变时
-         */
-        selectLDs(val){
-            this.addInfo.CmdID = ''
-            this.queryUBaseCmdUGroupByLDasID(val)
         },
         /**
          * 32.管理后台—根据网关查询所有单控和群控指令

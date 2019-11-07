@@ -50,7 +50,7 @@
                             <span class="label">保养时间</span>
                             <div class="date-select"  v-if="addStandard.MaintenanceCycle == 1">
                                 <ul class="l clearfix time-content">
-                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr',i)"></i></li>
+                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-error" @click="deleteTime('timeArr',i)"></i></li>
                                 </ul>
                                 <el-popover
                                   placement="bottom"
@@ -85,7 +85,7 @@
                             </div>
                             <div class="date-select"  v-else-if="addStandard.MaintenanceCycle == 2">
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr2',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-error" @click="deleteTime('timeArr2',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"
@@ -132,7 +132,7 @@
                             </div>
                             <div class="date-select"  v-else>
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr3" :key="i">{{time[0]}}月 {{time[1]}}号　{{time[2]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr3',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr3" :key="i">{{time[0]}}月 {{time[1]}}号　{{time[2]}}<i class="el-icon-error" @click="deleteTime('timeArr3',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"
@@ -268,10 +268,8 @@
                       show-overflow-tooltip
                       label="保养时间">
                       <template slot-scope="scope">
-                          <div v-if="scope.row.MaintenanceDateTime">
-                             <!--  <span v-if="scope.row.MaintenanceDateTime.split('-')[0] != 0">{{scope.row.MaintenanceDateTime.split('-')[0]}}月</span>
-                              <span v-if="scope.row.MaintenanceDateTime.split('-')[1] != 0">{{scope.row.MaintenanceDateTime.split('-')[1]}}号</span> -->
-                              <span v-for="time in scope.row.MaintenanceDateTime.split('、')">
+                          <div class="maintenance-time" v-if="scope.row.MaintenanceDateTime">
+                              <span v-for="(time,i) in scope.row.MaintenanceDateTime.split('、')" :key="i">
                                   <span v-if="time.split('-')[0] != 0">{{time.split('-')[0]}}月</span><span v-if="time.split('-')[1] != 0">{{time.split('-')[1]}}号</span><span>{{time.split('-')[2].slice(0,5)}}</span>
                                   <span>&nbsp;&nbsp;</span>
                               </span>
@@ -418,7 +416,6 @@ export default {
     },
     created(){
         this.standardType = this.$route.name == 'BasisMaintenanceStandards'? 2 : 1
-        console.log(this.$route.name,this.standardType)
         this.queryDeviceType()
     },
     mounted(){
@@ -603,6 +600,7 @@ export default {
                     let arr = item.split('-')
                     return [arr[1],arr[2].slice(0,5)]
                 })
+                console.log(this.timeArr2);
             }else{
                 this.timeArr3 = row.MaintenanceDateTime.split('、').map(item => {
                     let arr = item.split('-')
@@ -884,6 +882,13 @@ $img-url:'../../../static/image/';
         }
         &-item{
             padding: 0 30px;
+            .el-table td .maintenance-time{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                span + span{
+                    margin-left: 0
+                }
+            }
         }
     }
     .el-dialog{
@@ -968,7 +973,7 @@ $img-url:'../../../static/image/';
             position: relative;
             margin-right: 20px;
             display: inline-block;
-            .el-icon-circle-close-outline{
+            .el-icon-error{
                 width: 14px;
                 height: 14px;
                 position: absolute;

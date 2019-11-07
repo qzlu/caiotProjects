@@ -18,6 +18,22 @@ export default {
     },
     setting: {
       type: Object
+    },
+    grid:{
+      type:Object,
+      default:() =>{
+        return{
+          top: "60",
+          left: "10",
+          right: "10",
+          bottom: "40",
+          containLabel: true
+        }
+      }
+    },
+    lableRotate:{
+      type:String,
+      default:'45'
     }
   },
   created() {
@@ -79,13 +95,7 @@ export default {
             fontSize: '12px'
           }
         },
-        grid: {
-          top: "60",
-          left: "10",
-          right: "10",
-          bottom: "40",
-          containLabel: true
-        },
+        grid: this.grid,
         toolbox: {
           feature: {}
         },
@@ -114,7 +124,7 @@ export default {
           axisLabel: {
             color: "#FFFFFF",
             interval: 0,
-            rotate:"45"
+            rotate:this.lableRotate
           },
           axisTick: {
             show: false
@@ -122,7 +132,7 @@ export default {
           nameTextStyle: {
             fontSize: 12
           },
-          data: this.$props.data.columns
+          data:this.$props.data.columns
         },
         yAxis: [
           {
@@ -148,7 +158,7 @@ export default {
             }
           }
         ],
-        series: this.$props.data.rows,
+        series:this.$props.data.rows,
         color: this.$props.data.colorsArr || ["#1bd1a1"]
       };
       if (option && typeof option === "object") {

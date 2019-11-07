@@ -18,7 +18,7 @@
                             <div class="date-select"  v-if="addRoadData.MeterReadingCycle === 1">
 
                                 <ul class="l clearfix time-content">
-                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr',i)"></i></li>
+                                    <li  style="margin-top:0" v-for="(time, i) in timeArr" :key="i">{{time}}<i class="el-icon-error" @click="deleteTime('timeArr',i)"></i></li>
                                 </ul>
                                 <el-popover
                                   placement="bottom"
@@ -53,7 +53,7 @@
                             </div>
                             <div class="date-select"  v-if="addRoadData.MeterReadingCycle === 2">
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr1" :key="i">{{weekArr[time[0]-1]}}　{{time[1]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr1',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr1" :key="i">{{weekArr[time[0]-1]}}　{{time[1]}}<i class="el-icon-error" @click="deleteTime('timeArr1',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"
@@ -100,7 +100,7 @@
                             </div>
                             <div class="date-select"  v-if="addRoadData.MeterReadingCycle === 3">
                                     <ul class="l clearfix time-content">
-                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-circle-close-outline" @click="deleteTime('timeArr2',i)"></i></li>
+                                        <li  style="margin-top:0" v-for="(time, i) in timeArr2" :key="i">{{time[0]}}号　{{time[1]}}<i class="el-icon-error" @click="deleteTime('timeArr2',i)"></i></li>
                                     </ul>
                                 <el-popover
                                   placement="bottom"

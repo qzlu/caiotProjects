@@ -2,7 +2,7 @@
     <div class="header-operation clearfix">
         <ul class="r clearfix" :style="{top:top+'px'}">
           <li :class="['project-list',className]">
-            <el-select v-model="project" @change="selectProject">
+            <el-select class="project-popper" v-model="project" @change="selectProject">
               <el-option
                 v-for="item in projectList"
                 :key="item.ProjectID"

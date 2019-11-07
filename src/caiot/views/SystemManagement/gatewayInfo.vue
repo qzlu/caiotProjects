@@ -127,6 +127,10 @@ export default {
                     prop: 'IsEnableName',
                     label: '是否启用',
                 },
+                {
+                    prop:'',
+                    label:'当前模式'
+                }
             ],
             type:0,
             projectName:localStorage.getItem('projectname'),

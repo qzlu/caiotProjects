@@ -252,10 +252,10 @@ $img-url: "../../static/image/";
     background: rgba(53, 91, 149, 1)
   }
 }
-.el-popper[x-placement^=bottom] .popper__arrow{
+.el-select-dropdown.el-popper[x-placement^=bottom] .popper__arrow{
   border-bottom-color:rgba(13, 47, 96, 1)
 }
-.el-popper[x-placement^=bottom] .popper__arrow::after{
+.el-select-dropdown.el-popper[x-placement^=bottom] .popper__arrow::after{
   border-bottom-color:rgba(13, 47, 96, 1)
 }
 .el-menu--horizontal{

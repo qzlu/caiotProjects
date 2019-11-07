@@ -23,7 +23,7 @@
         </div>
         <div class="main">
             <div class="main-top">
-                <device-list :data="systemDevice" :width="289" @change="getPrjSingleInfo()"></device-list>
+                <device-list  :data="systemDevice" :width="289" @change="getPrjSingleInfo()"></device-list>
             </div>
             <div class="main-footer">
                 <monitorData></monitorData>

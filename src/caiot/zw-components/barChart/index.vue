@@ -139,7 +139,7 @@ export default {
               color: "#FFFFFF",
               interval: 0,
               formatter:val => {
-                return val>10000?val/10000+'w':val
+                return val>=10000?val/10000+'w':val
               },
             },
             axisTick: {

@@ -58,7 +58,7 @@
                </el-table-column>
                <el-table-column label="控制明细">
                    <template v-slot={row}>
-                        <el-button type="primary" round @click="queryGroupCmdDetail(row)">执行指令</el-button>
+                        <el-button type="primary" round @click="queryGroupCmdDetail(row)">查看明细</el-button>
                    </template>
                </el-table-column>
                <el-table-column
@@ -98,7 +98,6 @@
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Control,system} from '@/caiot/request/api.js';
 import {treeTransfer} from '@/caiot/zw-components/index.js';
-import { throttle } from 'throttle-debounce';
 export default {
     mixins:[table],
     data(){
@@ -253,19 +252,27 @@ export default {
                 data.forEach(item => {
                     if(item.GroupFlag){
                         this.allCmd[1].children.forEach(obj => {
-                            if(obj.id == item.Cmd_1){
+                            if(obj.id == '1-'+item.Cmd_1){
                                 obj.checked = true
                             }
                         })
                     }else{
                         this.allCmd[0].children.forEach(obj => {
-                            if(obj.id == item.Cmd_1){
+                            if(obj.id == '0-'+item.Cmd_1){
                                 obj.checked = true
                             }
                         })
                     }
                 })
-                this.defaultCheck = data.map(item => item.Cmd_1)
+                console.log(this.allCmd);
+                this.defaultCheck = data.map(item => {
+                    if(item.GroupFlag){
+                        return '1-'+item.Cmd_1
+                    }else{
+                        return '0-'+item.Cmd_1
+                    }
+                })
+                console.log(this.defaultCheck);
                 this.$nextTick(() => {
                     this.$refs.treeTransfer.$refs.tree1.filter()
                 })
@@ -294,7 +301,7 @@ export default {
                             children:data.Table.map(item => {
                                 return {
                                     label:item.CMDName,
-                                    id:item.CmdID,
+                                    id:'0-'+item.CmdID,
                                     level:2,
                                     checked:false,
                                     ...item
@@ -303,13 +310,13 @@ export default {
                         },
                         {
                             label:'群控指令',
-                            id:'0-1',
+                            id:'1-0',
                             level:1,
                             checked:false,
                             children:data.Table1.map(item => {
                                 return {
                                     label:item.GroupName,
-                                    id:item.GroupID,
+                                    id:'1-'+item.GroupID,
                                     level:2,
                                     checked:false,
                                     ...item
@@ -389,7 +396,7 @@ export default {
                 cmds.push({
                     GroupCMDID:0,
                     GroupID:this.activeCmd.GroupID,
-                    LDasID:this.activeCmd.LDasID,
+                    LDasID:item.LDasID,
                     Cmd_1:item.CmdID?item.CmdID:item.GroupID,
                     Cmd_2:'',
                     GroupFlag:item.CmdID?false:true,

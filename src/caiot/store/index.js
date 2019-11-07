@@ -52,19 +52,6 @@ const generaMenu = function(data,arr = []){
             let children
             if(menu.FChildMenu&&menu.FChildMenu.length>0){
                 children = generaMenu(menu.FChildMenu,[])
-                if(menu.FMenuName == '项目态势'){
-                    children.push(
-                        {
-                            path: 'deviceControl',
-                            name: 'deviceControl', //设备管控
-                            component: () => import('@/caiot/views/ProjectOverview/deviceControl.vue'),
-                            meta: {
-                                title: '千仞云平台',
-                                requireAuth: true,
-                            },
-                        }
-                    )
-                }
                 if(menu.FMenuName == '实时监测'){
                     children.push(...detail)
                 }
