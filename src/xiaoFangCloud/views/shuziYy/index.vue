@@ -12,7 +12,8 @@
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
                                    <i :class="['iconfont',item.IconName]"></i>
-                                   <span>{{item.FormName}}</span>
+                                   <!-- <span>{{item.FormName}}</span> -->
+                                   <span>{{item.FormID == 1?'智慧消防子平台':'特种设备子平台'}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
                                        <li>
@@ -57,7 +58,7 @@
                             <router-link :to="`/index/${item.FormID}`">
                                 <h3>
                                    <i :class="['iconfont',item.IconName]"></i>
-                                   <span>{{item.FormName}}</span>
+                                   <span>{{item.FormID == 3?'数字应急子平台':item.FormName}}</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
                                        <li>

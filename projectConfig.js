@@ -11,7 +11,8 @@ const config = {
     },
     /**数字应急云平台 */
     'shuziYy':{
-        entry:'./src/shuziYy/'
+        entry:'./src/shuziYy/',
+        baseUrl:'/Test/'
     },
     /**千仞集团页面 */
     'qianren':{

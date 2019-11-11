@@ -20,7 +20,7 @@ export default {
 .shuzi-yy{
     height: 100%;
     .login{
-        background: url(../../../assets/image/shuziYy/login.jpg);
+        background: url(../../../assets/image/shuziYy/login1.jpg);
     }
 }
 </style>

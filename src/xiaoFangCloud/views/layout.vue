@@ -60,7 +60,7 @@ export default {
         return{
             show:false,
             isOpen:localStorage.getItem('open')||1, //控制报警声音
-            formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字有限空间云平台'],
+            formList:['','智慧消防子平台','特种设备子平台','数字应急子平台','数字有限空间云平台'],
             inIframe:sessionStorage.getItem('inIframe'),
             project:null,
         }
@@ -75,7 +75,7 @@ export default {
         projectName(){
             let name,blockName = sessionStorage.getItem('FBlocName')||''
             if(this.$route.path === '/'){
-                name = blockName +'数字应急云平台'
+                name = blockName +'智慧应急平台'
             }else if(this.$route.params.formID&&(this.$route.path.match(/indexItem/)||this.$route.path.match(/deviceDetaile/))){
                 name = sessionStorage.getItem('projectName') + this.formList[this.$route.params.formID]
             }else if(this.$route.params.formID){
