@@ -70,7 +70,9 @@ export function post(url, params,showError = true) {
         })
         .catch(err =>{
             console.log('err',err)
-            if(showError){
+            if(err.message.includes('timeout')){
+                /* messageErr(105,'连接超时，请勿频繁操作',router) */
+            }else if(showError){
                 messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
             }
             reject(err.data?err.data.Message:err)

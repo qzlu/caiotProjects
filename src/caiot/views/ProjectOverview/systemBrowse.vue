@@ -95,9 +95,9 @@ export default {
             .then((result) => {
                 let data = result.FObject || []
                 if(!this.activeSystem){
-                    this.activeSystem = data[0]
+                    this.activeSystem = data.find(item => item.DeviceCount>0)||data[0]
                 }else{
-                    this.activeSystem = data.find(item => this.activeSystem.ParamID == item.ParamID)||data[0]
+                    this.activeSystem = data.find(item => this.activeSystem.ParamID == item.ParamID&&item.DeviceCount>0)||data.find(item => item.DeviceCount>0)||data[0]
                 }
                 this.systemList.push(...[data.slice(0,4),data.slice(4)])
                 this.getPrjSingleInfo()

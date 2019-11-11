@@ -50,6 +50,25 @@
                     >
                     </el-date-picker>
                 </el-form-item>
+                <el-form-item label="设备图片">
+                    <div class="image" v-if="addProject.FigureImg">
+                        <img :src="`http://47.106.64.130:56090/${addProject.FigureImg}`" alt="">
+                        <i class="el-icon-delete" @click="addProject.FigureImg = ''"></i>
+                    </div>
+                    <el-upload
+                      v-else
+                      action="http://47.106.64.130:56090/Caiot/FileUploadContext"
+                      list-type="picture-card"
+                      :limit = '1'
+                      :on-success="handleSuccess"
+                      :data="{FAction:'UpLoadFile',FVersion:'1.0.0',FTokenID:token,ProjectID:projectId,FName:''}"
+                     >
+                        <p><i class="el-icon-plus"></i><br><span>上传</span></p>
+                    </el-upload>                
+                </el-form-item>
+                <el-form-item label="项目描述" prop="Detail">
+                    <el-input type="textarea"  v-model="addProject.Detail"></el-input>
+                </el-form-item>
             </el-form>
             <div class="submit">
                 <button class="zw-btn zw-btn-primary" @click="addOrUpdateUProject()">确定</button>
@@ -149,7 +168,9 @@ export default {
                 OtherSourceID:0,
                 SystemType:null,
                 OnlineDateTime:null,
-                ProjectID:0
+                ProjectID:0,
+                FigureImg:'',
+                Detail:''
             },
             addProject:{ //新增或修改项目参数
                 ProjectName:null,
@@ -162,7 +183,9 @@ export default {
                 OtherSourceID:0,
                 SystemType:null,
                 OnlineDateTime:null,
-                ProjectID:0
+                ProjectID:0,
+                FigureImg:'',
+                Detail:''
             },
             device:{},//所选设备
             title:'新增',
@@ -171,7 +194,9 @@ export default {
             cityList:[],
             systemList:[],
             systemType:[],
-            buildTypeList:[]
+            buildTypeList:[],
+            token:localStorage.getItem("Token"),
+            projectId:localStorage.getItem('projectid'),
         }
     },
     watch:{
@@ -299,6 +324,12 @@ export default {
                 this.addProject[key] = row[key]
             })
         },
+            /**
+         * 上传设备图片
+         */
+        handleSuccess(res,file){
+            this.addProject.FigureImg = res.FObject.FilePath
+        },
         /**
          * 256.新增/修改项目
          */
@@ -384,6 +415,52 @@ export default {
             position: relative;
             left: -8px;
             border-radius: 4px;
+        }
+        .el-input__inner,.el-textarea__inner{
+            height:39px;
+            background:rgba(24,64,107,1);
+            border:1px solid rgba(5,103,158,1);
+        }
+        .el-textarea__inner{
+            height: 60px;
+            color: #F1F1F2
+        }
+        .el-upload--picture-card{
+            width:165px;
+            height:128px;
+            background:rgba(24,64,107,1);
+            border:1px solid rgba(5,103,158,1);
+            p{
+                line-height: 26px;
+                display: inline-block;
+            }
+        }
+        .image{
+            width:165px;
+            height:128px;
+            border:1px solid rgba(5,103,158,1);
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+            image{
+                max-width: 165px;
+                max-height: 128px;
+                vertical-align: middle;
+            }
+            .el-icon-delete{
+                position: absolute;
+                font-size: 30px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                cursor: pointer;
+                display: none
+            }
+        }
+        .image:hover{
+            .el-icon-delete{
+                display: block
+            }
         }
     }
 }

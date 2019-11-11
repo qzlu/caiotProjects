@@ -128,7 +128,7 @@ export default {
                     label: '是否启用',
                 },
                 {
-                    prop:'',
+                    prop:'AutoModeName',
                     label:'当前模式'
                 }
             ],

@@ -19,6 +19,12 @@
                 <el-form-item label="读取个数" prop="ReadCount">
                     <el-input v-model="addInfo.ReadCount"></el-input>
                 </el-form-item>
+                <el-form-item label="是否只读" prop="PrioRead">
+                    <el-select v-model="addInfo.PrioRead">
+                        <el-option label="否" :value="false"></el-option>
+                        <el-option label="是" :value="true"></el-option>
+                    </el-select>
+                </el-form-item>
             </el-form>
             <div class="submit">
                 <button class="zw-btn zw-btn-primary" @click="addOrUpdate()">确定</button>
@@ -99,6 +105,11 @@ export default {
                     prop: 'ReadCount',
                     label: '读取个数',
                 },
+                {
+                    prop: 'PrioRead',
+                    label: '是否只读',
+                    formatter:row => row.PrioRead == 1 ?'是':'否'
+                }
             ],
             type:0,
             defaultAddInfo:{//新增项目参数默认数据
@@ -107,7 +118,8 @@ export default {
                 Beginaddr:null,
                 ReadCount:null,
                 MeterModelID:null,
-                MeterModelName:null
+                MeterModelName:null,
+                PrioRead:0
             },
             addInfo:{ //新增或修改项目参数
                 ProtocolID:0,
@@ -115,7 +127,8 @@ export default {
                 Beginaddr:null,
                 ReadCount:null,
                 MeterModelID:null,
-                MeterModelName:null
+                MeterModelName:null,
+                PrioRead:0
             },
             title:'新增',
             show:false,

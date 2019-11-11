@@ -1,5 +1,5 @@
 <template>
-    <div class="report inspection-item system-type">
+    <div class="report inspection-item protocol">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
                 <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请输入'}]">
@@ -35,6 +35,21 @@
                     <el-select v-model="addInfo.IsCapture">
                         <el-option  label="是" :value="1"></el-option>
                         <el-option  label="否" :value="0"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="变化范围" prop="UpDateScale" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input type="number"  v-model="addInfo.UpDateScale"></el-input>
+                </el-form-item>
+                <el-form-item label="报警最小值" prop="AlarmMax" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input type="number" v-model="addInfo.AlarmMax"></el-input>
+                </el-form-item>
+                <el-form-item label="报警最大值" prop="AlarmMin" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input type="number" v-model="addInfo.AlarmMin"></el-input>
+                </el-form-item>
+                <el-form-item label="是否可写" prop="WFlag">
+                    <el-select v-model="addInfo.WFlag">
+                        <el-option  label="是" :value="true"></el-option>
+                        <el-option  label="否" :value="false"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -103,7 +118,8 @@ export default {
                 },
                 {
                     prop:'MeterModelName',
-                    label:'仪表型号名称'
+                    label:'仪表型号名称',
+                    width:'150'
                 },
                 {
                     prop: 'DataSort',
@@ -130,6 +146,23 @@ export default {
                     label: '是否采集',
                     formatter:row => row.IsCapture?'是':'否'
                 },
+                {
+                    prop: 'UpDateScale',
+                    label: '变化范围',
+                },
+                {
+                    prop: 'AlarmMax',
+                    label: '报警最大值',
+                },
+                {
+                    prop: 'AlarmMin',
+                    label: '报警最小值',
+                },
+                {
+                    prop: '',
+                    label: '是否可写',
+                    formatter:row => row.WFlag?'是':'否'
+                },
             ],
             type:0,
             defaultAddInfo:{//新增项目参数默认数据
@@ -142,7 +175,11 @@ export default {
                 MeterModelID:null,
                 DataItemID:null,
                 DataItemName:'',
-                IsCapture:1
+                IsCapture:1,
+                UpDateScale:'',
+                AlarmMax:'',
+                AlarmMin:'',
+                WFlag:''
             },
             addInfo:{ //新增或修改项目参数
                 ProtocolDetailID:0,
@@ -154,7 +191,11 @@ export default {
                 MeterModelID:null,
                 DataItemID:null,
                 DataItemName:'',
-                IsCapture:1
+                IsCapture:1,
+                UpDateScale:'',
+                AlarmMax:'',
+                AlarmMin:'',
+                WFlag:''
             },
             calTypeList:['无','+','-','*','/','x²','LN(x)','log(x)','位取'],//计算类型
             dataTypeList:[
@@ -328,12 +369,17 @@ export default {
 }
 </script>
 <style lang="scss">
-.system-type.inspection-item {
-    .el-form-item {
-        .el-form-item__label{
-            width: 120px
+.inspection-item.protocol{
+    .zw-dialog{
+        .el-dialog{
+            .el-form{
+                &-item{
+                    .range.el-input{
+                        width: 82px;
+                    }
+                }
+            }
         }
     }
-    
 }
 </style>

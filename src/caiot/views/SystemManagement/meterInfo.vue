@@ -43,6 +43,9 @@
                     <el-input v-model="addInfo.OtherSourceID">
                     </el-input>
                 </el-form-item>
+                <el-form-item label="是否有效" prop="EnReg">
+                    <el-input v-model="addInfo.EnReg" placeholder="true/false/寄存器地址"></el-input>
+                </el-form-item>
                 <el-form-item label="是否为识别ID" prop="IsDISId" >
                     <el-switch v-model="addInfo.IsDISId"></el-switch>
                 </el-form-item>
@@ -127,6 +130,10 @@ export default {
                     label: 'Modbus通讯',
                 },
                 {
+                    prop:'EnReg',
+                    label:'是否有效'
+                },
+                {
                     prop: 'IsDISId',
                     label: '是否为识别ID',
                     formatter:(row, column, cellValue, index) => row.IsDISId?'是':'否'
@@ -149,7 +156,8 @@ export default {
                 Port:0,
                 ModbusAddr:null,
                 IsDISId:false,
-                OtherSourceID:0
+                OtherSourceID:0,
+                EnReg:''
             },
             addInfo:{ //新增或修改仪表信息参数
                 ProjectID:parseInt(localStorage.getItem('projectid')),
@@ -162,7 +170,8 @@ export default {
                 Port:0,
                 ModbusAddr:null,
                 IsDISId:false,
-                OtherSourceID:0
+                OtherSourceID:0,
+                EnReg:''
             },
             title:'新增',
             show:false,

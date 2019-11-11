@@ -36,6 +36,10 @@
                     <el-option v-for="list in meterMapList" :key="list.MapTabID" :label="list.VarName" :value="list"></el-option>
                   </el-select>
                 </el-form-item>
+                <el-form-item label="单位" prop="Unit">
+                    <el-input type="text" v-model="addInfo.Unit">
+                    </el-input>
+                </el-form-item>
                 <el-form-item label="设置值" prop="Value">
                     <el-input type="number" v-model="addInfo.Value">
                     </el-input>
@@ -147,11 +151,17 @@ export default {
                 {
                     prop: 'BuiltTime',
                     label: '创建时间（ms）',
+                    width:150
                 },
-/*                 {
+                {
+                    prop:'Unit',
+                    label:'单位'
+                },
+                {
                     prop:'CheckTime',
-                    label: '检查时间(ms)'
-                } */
+                    label: '检查时间(ms)',
+                    width:130
+                }
             ],
             type:0,
             defaultAddInfo:{//新增参数默认数据
@@ -172,7 +182,8 @@ export default {
                 CMDName:'',
                 CMDShortName:'',
                 Detail:'',
-                CMDMode:''
+                CMDMode:'',
+                Unit:''
             },
             title:'新增',
             show:false,
