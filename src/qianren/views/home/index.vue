@@ -41,20 +41,21 @@
       </ul>
       <ul class="menu menu-right">
         <li :class="['menu-item']" >
-          <router-link to="/404">
-            告警管理
-          </router-link>
+         <!--  <router-link to="/404"> -->
+         <a href="javascript:viod(0)">告警管理</a>
+            
+         <!--  </router-link> -->
           
         </li>
         <li :class="['menu-item']" >
-          <router-link to="/404">
-            能源管理
-          </router-link>
+          <!-- <router-link to="/404"> -->
+            <a href="javascript:viod(0)">能源管理</a>
+          <!-- </router-link> -->
         </li>
         <li :class="['menu-item']" >
-          <router-link to="/404">
-            任务管理
-          </router-link>
+          <!-- <router-link to="/404"> -->
+            <a href="javascript:viod(0)">任务管理</a>
+          <!-- </router-link> -->
         </li>
       </ul>
       <div id="tree-project" class="r" >
@@ -425,7 +426,7 @@ $url: "../../../assets/image/";
                 height: 18px;
                 line-height: 18px;
                 left: -20px;
-                top: -10px;
+                top: -4px;
                 cursor: pointer;
                 background: rgba(170, 29, 48, 1);
                 border-radius: 4px;

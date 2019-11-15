@@ -1,13 +1,12 @@
 <template>
     <div class="report inspection-item">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
-            <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="项目名称"  prop='ProjectID'  :rules="[{ required: true, message: '请选择'}]">
+            <el-form :model="addInfo" inline ref="form" label-width="100px">
+<!--                 <el-form-item label="项目名称"  prop='ProjectID'  :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.ProjectID"  value-key="ProjectID" filterable  placeholder="请选择" @change="queryUAreaList">
                     <el-option v-for="list in projectList" :key="list.ProjectID" :label="list.ShortName" :value="list.ProjectID"></el-option>
                   </el-select>
-                  <!-- <el-input readonly :value="projectName"></el-input> -->
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="设备编码" prop="DeviceCode" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.DeviceCode">
                     </el-input>
@@ -33,6 +32,12 @@
                   <el-select v-model="addInfo.AreaID"   filterable  placeholder="请选择" >
                     <el-option v-for="list in areaList" :key="list.AreaID" :label="list.AreaName" :value="list.AreaID"></el-option>
                   </el-select>
+                </el-form-item>
+                <el-form-item label="是否控制设备" prop="IsControl">
+                    <el-select v-model="addInfo.IsControl">
+                        <el-option  label="是" :value="true"></el-option>
+                        <el-option  label="否" :value="false"></el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -118,11 +123,12 @@ export default {
                     prop:'SystemParamName',
                     label:'系统类型',
                     width:120
-                }
-/*                 {
-                    prop: 'ProjectName',
-                    label: '系统名称',
-                }, */
+                },
+                {
+                    prop: 'IsControl',
+                    label: '是否控制设备',
+                    formatter:row => row.IsControl?'是':'否'
+                },
             ],
             type:0,
             projectName:localStorage.getItem('projectname'),
@@ -138,7 +144,8 @@ export default {
                 ExtendAddress:null,
                 OtherSourceID:null,
                 DeviceCode:null,
-                IDStr:null
+                IDStr:null,
+                IsControl:''
             },
             addInfo:{ //新增或修改项目参数
                 ProjectID:null,
@@ -152,7 +159,8 @@ export default {
                 ExtendAddress:null,
                 OtherSourceID:null,
                 DeviceCode:null,
-                IDStr:null
+                IDStr:null,
+                IsControl:''
             },
             title:'新增',
             show:false,

@@ -69,9 +69,8 @@ export function post(url, params,showError = true) {
             resolve(res.data);
         })
         .catch(err =>{
-            console.log('err',err)
-            if(err.message.includes('timeout')){
-                /* messageErr(105,'连接超时，请勿频繁操作',router) */
+            if(err.message&&err.message.includes('timeout')){
+                /* messageErr(105,'连接超时，请勿频繁操作') */
             }else if(showError){
                 messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
             }

@@ -1,23 +1,34 @@
 <template>
     <div class="report inspection-item system-type">
-        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
+        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" :close-on-click-modal='false' width="700px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="仪表类型" prop="MeterTypeID" :rules="[{ required: true, message: '请输入'}]">
-                    <el-select v-model="addInfo.MeterTypeID">
-                        <el-option v-for="(item,i) in systemTypeList" :key="i" :label="item.MeterTypeName" :value="item.MeterTypeID"></el-option>
+                <el-form-item label="设备类型" prop="DeviceTypeID" :rules="[{ required: true, message: '请选择'}]">
+                    <el-select v-model="addInfo.DeviceTypeID" rules="[{ required: true, message: '请选择'}]">
+                        <el-option v-for="(item,i) in deviceTypeList" :key="i" :label="item.DeviceTypeName" :value="item.DeviceTypeID"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="仪表型号名称" prop="MeterModelName">
-                    <el-input v-model="addInfo.MeterModelName"></el-input>
+                <el-form-item label="数据标识" prop="DataItemID" :rules="[{ required: true, message: '请选择'}]">
+                   <el-select v-model="dataItem" value-key="DataItemID" @change="addInfo.DataItemID = dataItem.DataItemID">
+                       <el-option v-for="(item,i) in dataItemList" :key="i" :label="item.DataItemName" :value="item"></el-option>
+                   </el-select>
                 </el-form-item>
-                <el-form-item label="供应商名称" prop="Provider">
-                    <el-input  v-model="addInfo.Provider"></el-input>
+                <el-form-item label="数据组名称" prop="DataGroupText">
+                    <el-input  v-model="addInfo.DataGroupText"></el-input>
                 </el-form-item>
-                <el-form-item label="联系人" prop="Contact">
-                    <el-input  v-model="addInfo.Contact"></el-input>
+                <el-form-item label="状态1" prop="ZeroShowText">
+                    <el-input v-model="addInfo.ZeroShowText"></el-input>
                 </el-form-item>
-                <el-form-item label="联系电话" prop="ContactPhone">
-                    <el-input v-model="addInfo.ContactPhone"></el-input>
+                <el-form-item label="状态2" prop="OneShowText">
+                    <el-input  v-model="addInfo.OneShowText"></el-input>
+                </el-form-item>
+                <el-form-item label="展示位置" prop="ShowPosition">
+                    <el-input  v-model="addInfo.ShowPosition"></el-input>
+                </el-form-item>
+                <el-form-item label="是否检查" prop="IsInspection">
+                    <el-select v-model="addInfo.IsInspection">
+                        <el-option  label="是" :value="true"></el-option>
+                        <el-option  label="否" :value="false"></el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -26,7 +37,7 @@
         </el-dialog>    
         <ul class="report-header clearfix">
             <li class="l"><button class="zw-btn zw-btn-add" @click="beforeAdd">新增</button></li>
-            <li class="l"><button class="zw-btn zw-btn-export" @click="exportFile">导出</button></li>
+            <!-- <li class="l"><button class="zw-btn zw-btn-export" @click="exportFile">导出</button></li> -->
             <li class="r">
                 <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
@@ -80,52 +91,53 @@ export default {
                     width:80
                 },
                 {
-                    prop:'MeterModelID',
-                    label:'仪表型号ID'
+                    prop:'DeviceTypeName',
+                    label:'设备类型'
                 },
                 {
-                    prop:'MeterTypeName',
-                    label:'仪表类型'
+                    prop: 'DataItemName',
+                    label: '数据标识',
                 },
                 {
-                    prop:'MeterModelName',
-                    label:'仪表型号名称'
+                    prop: 'DataGroupText',
+                    label: '数据组名称',
                 },
                 {
-                    prop: 'Provider',
-                    label: '供应商名称',
+                    prop: 'ZeroShowText',
+                    label: '状态1',
                 },
                 {
-                    prop: 'Contact',
-                    label: '联系人',
+                    prop: 'OneShowText',
+                    label: '状态2',
                 },
                 {
-                    prop: 'ContactPhone',
-                    label: '联系电话',
+                    prop: 'ShowPosition',
+                    label: '展示位置',
                 },
+                {
+                    prop: 'IsInspection',
+                    label: '是否检查',
+                    formatter:row => row.IsInspection?'是':'否'
+                }
             ],
             type:0,
-            defaultAddInfo:{//新增项目参数默认数据
-                MeterModelID:0,
-                MeterTypeID:null,
-                MeterModelName:null,
-                Provider:null,
-                Contact:null,
-                ContactPhone:null,
-                WXNum:null
-            },
+            defaultAddInfo:null,
             addInfo:{ //新增或修改项目参数
-                MeterModelID:0,
-                MeterTypeID:null,
-                MeterModelName:null,
-                Provider:null,
-                Contact:null,
-                ContactPhone:null,
-                WXNum:null
+                ID:'',
+                DeviceTypeID:'',
+                DataItemID:'',
+                DataItemName:null,
+                OneShowText:null,
+                ZeroShowText:null,
+                DataGroupText:null,
+                ShowPosition:0,
+                IsInspection:null
             },
             title:'新增',
             show:false,
-            systemTypeList:[]
+            deviceTypeList:[],
+            dataItemList:[],
+            dataItem:null
     
         }
     },
@@ -137,16 +149,18 @@ export default {
         }
     },
     created(){
+        this.defaultAddInfo = JSON.parse(JSON.stringify(this.addInfo))
         this.queryData()
-        this.queryPageSMeterType()
+        this.queryDeviceType()
+        this.querySDataItemList()
     },
     methods:{
         /**
-         * 340.标准配置-分页查询仪表型号
+         * 334.标准配置-分页查询数据标识
          */
         queryData(){
             system({
-                FAction:'QueryPageSMeterModel',
+                FAction:'QueryPageSDeviceTypeDataItem',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
@@ -174,19 +188,28 @@ export default {
             this.queryData()
         },
         /**
-         * 337.标准配置-分页查询仪表类型
+         * 241.获取设备类型
          */
-        queryPageSMeterType(){
+        queryDeviceType(){
             system({
-                FAction:'QueryPageSMeterType',
-                SearchKey:'',
-                PageIndex:1,
-                PageSize:10000
+                FAction:'QueryDeviceType',
             })
-            .then((data) => {
-                this.systemTypeList = data.FObject.Table1 ? data.FObject.Table1 : []
+            .then((result) => {
+                this.deviceTypeList = result.FObject
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 67.获取所有数据标识
+         */
+        querySDataItemList(){
+            system({
+                FAction:'QuerySDataItemList'
             })
-            .catch((err) => {
+            .then((result) => {
+                this.dataItemList = result.FObject
+            }).catch((err) => {
                 
             });
         },
@@ -197,6 +220,7 @@ export default {
             this.show =true
             this.type = 0
             this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.dataItem = null
         },
         /**
          * 编辑
@@ -207,11 +231,17 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
+            this.dataItem = {
+                DataItemID:row.DataItemID,
+                DataItemName:row.DataItemName
+            }
         },
         /**
-         * 341.标准配置-新增/修改仪表型号
+         * 335.标准配置-新增/修改数据标识
          */
         async addOrUpdate(){
+            this.addInfo.DataItemID = this.dataItem.DataItemID
+            this.addInfo.DataItemName = this.dataItem.DataItemName
             await new Promise(resolve => {
                 this.$refs.form.validate((valid) => {
                   if (valid) {
@@ -220,11 +250,10 @@ export default {
                 });
             })
             this.show = false
-            this.addInfo.WXNum = this.addInfo.ContactPhone
             system({
-                FAction:'AddOrUpdateSMeterModel',
+                FAction:'AddOrUpdateSDeviceTypeDataItem',
                 FType:this.type,
-                mSMeterModel:this.addInfo
+                sDeviceTypeDataItem:this.addInfo
             })
             .then(data => {
                 this.$message({
@@ -238,11 +267,11 @@ export default {
             })
         },
         /**
-         * 342.标准配置-删除仪表型号
+         * 336.标准配置-删除数据标识
          */
         async deleteItem(row){
             await new Promise(resove => {
-                this.$DeleteMessage([`确认删除`,'删除仪表型号'])
+                this.$DeleteMessage([`确认删除`,'删除数据标识'])
                 .then(() => {
                     resove()
                 })
@@ -250,8 +279,8 @@ export default {
                 })
             })
             system({
-                FAction:'DeleteSMeterModel',
-                ID:row.MeterModelID
+                FAction:'DeleteSDeviceTypeDataItem',
+                ID:row.ID
             })
             .then(data => {
                 this.queryData()
@@ -280,12 +309,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.system-type.inspection-item {
-    .el-form-item {
-        .el-form-item__label{
-            width: 120px
-        }
-    }
-    
-}
 </style>

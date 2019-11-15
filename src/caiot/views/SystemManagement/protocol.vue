@@ -110,11 +110,12 @@ export default {
                 {
                     prop: 'RowNum',
                     label: '序号',
-                    width:80
+                    width:70
                 },
                 {
                     prop:'MeterModelID',
-                    label:'仪表型号ID'
+                    label:'仪表型号ID',
+                    width:110
                 },
                 {
                     prop:'MeterModelName',
@@ -124,39 +125,48 @@ export default {
                 {
                     prop: 'DataSort',
                     label: '数据顺序',
+                    width:'100'
                 },
                 {
                     prop: 'Regaddr',
                     label: '寄存地址',
+                    width:'100'
                 },
                 {
                     prop: 'DataType',
                     label: '数据类型',
+                    width:'100'
                 },
                 {
                     prop: 'CalType',
                     label: '计算类型',
+                    width:'100'
                 },
                 {
                     prop: 'DataItemName',
                     label: '数据标识',
+                    width:'100'
                 },
                 {
                     prop: 'IsCapture',
                     label: '是否采集',
+                    width:'100',
                     formatter:row => row.IsCapture?'是':'否'
                 },
                 {
                     prop: 'UpDateScale',
                     label: '变化范围',
+                    width:'100'
                 },
                 {
                     prop: 'AlarmMax',
                     label: '报警最大值',
+                    width:'110'
                 },
                 {
                     prop: 'AlarmMin',
                     label: '报警最小值',
+                    width:'110'
                 },
                 {
                     prop: '',

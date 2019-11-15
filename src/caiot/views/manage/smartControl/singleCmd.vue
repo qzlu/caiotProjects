@@ -21,43 +21,49 @@
                     <el-option v-for="list in deviceList" :key="list.DeviceID" :label="list.DeviceName" :value="list.DeviceID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="网关名称" prop="LDasID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" @change="selectLdas">
-                    <el-option v-for="item in LDasList" :key="item.LDasID" :label="item.LDasName"  :value="item.LDasID"></el-option>
+                <el-form-item label="仪表名称" prop="MeterID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.MeterID"  filterable placeholder="请选择">
+                    <el-option v-for="item in meterList" :key="item.MeterID" :label="item.MeterName" :value="item.MeterID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="写入仪表关系名称" prop="WriteMapTabID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="WriteMapTab" value-key="MapTabID" filterable placeholder="请选择" @change="selectWriteMap">
-                    <el-option v-for="item in meterMapList" :key="item.MapTabID" :label="item.VarName"  :value="item"></el-option>
+                <el-form-item label="寄存器仪表型号" prop="RegMeterModelID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.RegMeterModelID"  filterable placeholder="请选择">
+                    <el-option v-for="item in regMeterModelList" :key="item.RegMeterModelID" :label="item.VarName" :value="item.RegMeterModelID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="读取仪表关系名称" prop="ReadMapTabID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="ReadMapTab"  value-key="MapTabID" filterable  placeholder="请选择" @change="selectReadMap">
-                    <el-option v-for="list in meterMapList" :key="list.MapTabID" :label="list.VarName" :value="list"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="单位" prop="Unit">
-                    <el-input type="text" v-model="addInfo.Unit">
+                <el-form-item label="遥调单位" prop="Unit">
+                    <el-input v-model="addInfo.Unit">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="设置值" prop="Value">
-                    <el-input type="number" v-model="addInfo.Value">
+                <el-form-item label="写入值" prop="WriteValue">
+                    <el-input v-model="addInfo.WriteValue">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="延迟时间" prop="Delay">
-                    <el-input type="number" v-model="addInfo.Delay">
-                        <i slot="suffix" class="unit">s</i>
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="创建时间" prop="BuiltTime">
+                <el-form-item label="建立时长" prop="BuiltTime">
                     <el-input type="number" v-model="addInfo.BuiltTime">
                         <i slot="suffix" class="unit">ms</i>
                     </el-input>
                 </el-form-item>
-                <el-form-item label="检查时间" prop="CheckTime">
-                    <el-input type="number" v-model="addInfo.CheckTime">
+                <el-form-item label="指令延迟" prop="Delay">
+                    <el-input type="number" v-model="addInfo.Delay">
                         <i slot="suffix" class="unit">ms</i>
                     </el-input>
+                </el-form-item>
+                <el-form-item label="关系寄存器表达式" >
+                    <ul class="express">
+                        <li v-for="(item,i) in expressionList" :key="i">
+                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择" @change="selectMeter(i)">
+                              <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
+                            </el-select>
+                            <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" filterable  placeholder="请选择">
+                              <el-option v-for="list in item.Meter.ListData||[]" :key="list.DataItemID" :label="list.DataItemName" :value="list"></el-option>
+                            </el-select>
+                        </li>
+                        <li class="add">
+                           <i class="el-icon-minus" v-if="expressionList.length>1" @click="removeExpress()"></i>
+                           <i class="el-icon-plus" @click="addExpress()"></i>
+                        </li>
+                    </ul>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -108,6 +114,7 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Control,system,Device} from '@/caiot/request/api.js';
+import './condition.scss'
 export default {
     mixins:[table],
     data(){
@@ -119,12 +126,21 @@ export default {
                     width:80
                 },
                 {
+                    prop: 'ProjectName',
+                    label:'项目名称'
+                },
+                {
                     prop:'CMDName',
                     label:'指令全称'
                 },
                 {
                     prop: 'CMDShortName',
                     label: '指令简称',
+                },
+                {
+                    prop: 'CMDMode',
+                    label: '指令模式',
+                    formatter:row=>row.CMDMode == 1?'开关':'遥调'
                 },
                 {
                     prop: 'DeviceName',
@@ -135,32 +151,30 @@ export default {
                     label: '网关名称',
                 },
                 {
-                    prop: 'WriteReg',
-                    label: '写入仪表关系名称',
-                    width:160
+                    prop: 'MeterName',
+                    label: '关联仪表',
                 },
                 {
-                    prop: 'ReadReg',
-                    label: '读取仪表关系名称',
-                    width:160
+                    prop: 'Unit',
+                    label: '遥调单位',
                 },
                 {
-                    prop: 'Delay',
-                    label: '延时(s)',
+                    prop: 'RegMeterModelName',
+                    label: '控制名称',
+                },
+                {
+                    prop: 'WriteValue',
+                    label: '写入值',
                 },
                 {
                     prop: 'BuiltTime',
-                    label: '创建时间（ms）',
-                    width:150
+                    label: '建立时长(ms)',
+                    width:140
                 },
                 {
-                    prop:'Unit',
-                    label:'单位'
-                },
-                {
-                    prop:'CheckTime',
-                    label: '检查时间(ms)',
-                    width:130
+                    prop: 'Delay',
+                    label: '指令延迟(ms)',
+                    width:140
                 }
             ],
             type:0,
@@ -168,17 +182,14 @@ export default {
             },
             addInfo:{ //新增或修改
                 CmdID:0,
-                LDasID:null,
+                LDasID:1,
                 DeviceID:null,
                 Delay:0,
-                WriteMapTabID:'',
-                WriteReg:'',
-                CheckTime:0,
-                ReadMapTabID:'',
+                WriteValue:'',
+                MeterID:'',
+                RegMeterModelID:'',
                 Detail:'',
                 BuiltTime:0,
-                ReadReg:'',
-                Value:0,
                 CMDName:'',
                 CMDShortName:'',
                 Detail:'',
@@ -187,11 +198,16 @@ export default {
             },
             title:'新增',
             show:false,
-            LDasList:[], //网关列表
-            meterMapList:[], //所有仪表关系
+            regMeterModelList:[], //
+            meterList:[], //所有仪表关系
             deviceList:[], //设备列表
             WriteMapTab:null,
-            ReadMapTab:null
+            ReadMapTab:null,
+            expressItem:{
+                DataItem:'',
+                Meter:'',
+            },
+            expressionList:[]
 
         }
     },
@@ -206,7 +222,8 @@ export default {
         this.defaultAddInfo = JSON.parse(JSON.stringify(this.addInfo))
         this.queryData()
         this.queryUDevice()
-        this.queryLDasByProjectID()
+        this.queryUMeterList()
+        this.queryURegMeterModelList()
     },
     methods:{
         /**
@@ -247,6 +264,7 @@ export default {
         queryUDevice(){
             Device({
                 FAction:'QueryUDeviceList',
+                FType:1,
                 SearchKey:''
             })
             .then(data => {
@@ -255,50 +273,46 @@ export default {
             .catch(err => {})
         },
         /**
-         * 13.管理后台--根据项目ID查询网关
+         * 277.查询仪表列表
          */
-        queryLDasByProjectID(){
-            Control({
-                FAction:'QueryLDasByProjectID'
+        queryUMeterList(){
+            Device({
+                FAction:'QueryUMeterList',
+                SearchKey:''
             })
             .then((result) => {
-                this.LDasList = result.FObject||[]
+                this.meterList = result.FObject||[]
             }).catch((err) => {
                 
             });
         },
         /**
-         * 33.管理后台—根据网关查询所有寄存器仪表关系映射数据
+         * 42. 分页查询寄存器仪表型号
          */
-        queryUMapTabByLDasID(id){
+        queryURegMeterModelList(){
             Control({
-                FAction:'QueryUMapTabByLDasID',
-                LDasID:id
+                FAction:'QueryURegMeterModelList',
             })
-            .then((result) => {
-                this.meterMapList = result.FObject||[]
-            }).catch((err) => {
+            .then((data) => {
+                this.regMeterModelList = data.FObject || []
+            })
+            .catch((err) => {
                 
             });
         },
         /**
-         * 网关选择发生改变
+         * 仪表选择发生改变
          */
-        selectLdas(id){
-            this.addInfo.WriteMapTabID = ''
-            this.addInfo.ReadMapTabID = ''
-            this.WriteMapTab = null
-            this.ReadMapTab = null
-            this.meterMapList = []
-            this.queryUMapTabByLDasID(id)
+        selectMeter(i){
+            this.expressionList[i].DataItem = ''
         },
-        selectWriteMap(item){
-            this.addInfo.WriteMapTabID = item.MapTabID
-            this.addInfo.WriteReg = item.VarName
+        addExpress(){
+            this.expressionList.push({
+                ...this.expressItem
+            })
         },
-        selectReadMap(item){
-            this.addInfo.ReadMapTabID = item.MapTabID
-            this.addInfo.ReadReg = item.VarName
+        removeExpress(){
+            this.expressionList.pop()
         },
         /**
          * 点击新增
@@ -309,6 +323,7 @@ export default {
             this.WriteMapTab = null
             this.ReadMapTab = null
             this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.expressionList = [{...this.expressItem}]
         },
         /**
          * 修改
@@ -319,15 +334,18 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
-            this.WriteMapTab = {
-                MapTabID:row.WriteMapTabID,
-                VarName:row.WriteReg
+            if(!row.RelatedReg){
+                this.expressionList = [{...this.expressItem}]
+                return
             }
-            this.ReadMapTab = {
-                MapTabID:row.ReadMapTabID,
-                VarName: row.ReadReg
-            }
-            this.queryUMapTabByLDasID(row.LDasID)
+            this.expressionList = row.RelatedReg.split(',').map(item => {
+                return {
+                    Meter:this.meterList.find(meter => meter.MeterID == item.split('_')[0]),
+                    DataItem:{
+                        DataItemID:item.split('_')[1]
+                    }
+                }
+            })
         },
         /**
          * 新增/修改
@@ -340,6 +358,14 @@ export default {
                   } 
                 });
             })
+            let expressionList = []
+            this.expressionList.forEach(item => {
+                if(item.Meter.MeterID&&item.DataItem.DataItemID){
+                    let express = item.Meter.MeterID + '_' +item.DataItem.DataItemID
+                    expressionList.push(express)
+                }
+            })
+            this.addInfo.RelatedReg = expressionList.join(',')
             this.show = false
             Control({
                 FAction:'AddUpdateUBaseCmd',

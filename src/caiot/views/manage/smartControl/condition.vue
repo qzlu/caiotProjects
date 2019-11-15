@@ -7,20 +7,23 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="网关名称" prop="LDasID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" @change="selectLdas">
+                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择">
                     <el-option v-for="item in LDasList" :key="item.LDasID" :label="item.LDasName"  :value="item.LDasID"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="条件表达式" >
                     <ul class="express">
                         <li v-for="(item,i) in expressionList" :key="i">
-                            <el-select class="condition" v-model="item.condition" value-key="MapTabID" filterable placeholder="请选择">
-                              <el-option v-for="item in meterMapList" :key="item.MapTabID" :label="item.VarName"  :value="item.VarName"></el-option>
+                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择" @change="selectMeter(i)">
+                              <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
+                            </el-select>
+                            <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" filterable  placeholder="请选择">
+                              <el-option v-for="list in item.Meter.ListData||[]" :key="list.DataItemID" :label="list.DataItemName" :value="list"></el-option>
                             </el-select>
                             <el-select class="expression" v-model="item.express">
                                 <el-option label=">" value=">"></el-option>
                                 <el-option label=">=" value=">="></el-option>
-                                <el-option label="=" value="="></el-option>
+                                <el-option label="==" value="=="></el-option>
                                 <el-option label="<=" value="<="></el-option>
                                 <el-option label="<" value="<"></el-option>
                             </el-select>
@@ -86,6 +89,7 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Control,system,Device} from '@/caiot/request/api.js';
+import './condition.scss'
 export default {
     mixins:[table],
     data(){
@@ -97,6 +101,10 @@ export default {
                     width:80
                 },
                 {
+                    prop: 'ProjectName',
+                    label:'项目名称'
+                },
+                {
                     prop:'Detail',
                     label:'条件名称'
                 },
@@ -105,7 +113,7 @@ export default {
                     label: '网关名称',
                 },
                 {
-                    prop: 'Express',
+                    prop: 'ExpressName',
                     label: '条件表达式',
                 }
             ],
@@ -116,23 +124,23 @@ export default {
                 ConditionID:0,
                 LDasID:null,
                 Express:null,
-                Detail:''
+                Detail:'',
+                ExpressName:null
             },
             title:'新增',
             show:false,
             LDasList:[], //网关列表
-            meterMapList:[], //所有仪表关系
+            meterList:[], //所有仪表
             deviceList:[], //设备列表
-            WriteMapTab:null,
-            ReadMapTab:null,
-            expressionList:[
-                {
-                    condition:'',
-                    express:'',
-                    value:'',
-                    connectExpress:''
-                }
-            ]
+            dataItemList:[], //所有的数据标识
+            expressItem:{
+                DataItem:'',
+                Meter:'',
+                express:'',
+                value:'',
+                connectExpress:''
+            },
+            expressionList:[]
 
         }
     },
@@ -147,6 +155,7 @@ export default {
         this.defaultAddInfo = JSON.parse(JSON.stringify(this.addInfo))
         this.queryData()
         this.queryLDasByProjectID()
+        this.queryUMeterList()
     },
     methods:{
         /**
@@ -195,32 +204,22 @@ export default {
             });
         },
         /**
-         * 33.管理后台—根据网关查询所有寄存器仪表关系映射数据
+         * 277.查询仪表列表
          */
-        queryUMapTabByLDasID(id){
-            Control({
-                FAction:'QueryUMapTabByLDasID',
-                LDasID:id
+        queryUMeterList(){
+            Device({
+                FAction:'QueryUMeterList'
             })
-            .then((result) => {
-                this.meterMapList = result.FObject||[]
-            }).catch((err) => {
-                
-            });
-        },
-        /**
-         * 网关选择发生改变
-         */
-        selectLdas(id){
-            this.meterMapList = []
-            this.queryUMapTabByLDasID(id)
+            .then(data => {
+                this.meterList = data.FObject
+            })
+            .catch(err => {
+
+            })
         },
         addExpress(){
             this.expressionList.push({
-                    condition:'',
-                    express:'',
-                    value:'',
-                    connectExpress:''
+                ...this.expressItem
             })
         },
         removeExpress(){
@@ -232,14 +231,7 @@ export default {
         beforeAdd(){
             this.show =true
             this.type = 0
-            this.expressionList = [
-                {
-                    condition:'',
-                    express:'',
-                    value:'',
-                    connectExpress:''
-                }
-            ]
+            this.expressionList = [{...this.expressItem}]
             this.addInfo = Object.assign({},this.defaultAddInfo)
         },
         /**
@@ -252,23 +244,35 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
+            if(!row.Express||!row.ExpressName){
+                this.expressionList = [{...this.expressItem}]
+                return
+            }
             // 解析表达式
-            let reg = /(\w|[\u4e00-\u9fa5]*)\s*([><]=*)\s*(\d+)([\&\|]*)/ig,
-            reg1 = /(\w|[\u4e00-\u9fa5]*)\s*([><]=*)\s*(\d+)([\&\|]*)/,
+            let reg = /([\w|\u4e00-\u9fa5|-]*)\s*([><]?=*)\s*(\d+)([\&\|]*)/ig,
+            reg1 = /([\w|\u4e00-\u9fa5|-]*)\s*([><]?=*)\s*(\d+)([\&\|]*)/,
             express = row.Express.replace(/[\(\)]/ig,''),
-            expressionList = express.match(reg)
+            expressName = row.ExpressName.replace(/[\(\)]/ig,''),
+            expressionList = express.match(reg),
+            expressionNameList = expressName.match(reg)
             if(expressionList&&Array.isArray(expressionList)){
-                this.expressionList = expressionList.map(item => {
-                    let match = item.match(reg1)
+                this.expressionList = expressionList.map((item,i) => {
+                    let match = item.match(reg1),
+                    matchName = expressionNameList[i].match(reg1)
                     return {
-                        condition:match[1],
+                        Meter: this.meterList.find(meter => meter.MeterID == match[1].split('_')[0]),
+                        DataItem:{ 
+                            DataItemID:match[1].split('_')[1],
+                            DataItemName:matchName[1].split('_')[1]
+                        },
                         express:match[2],
                         value:match[3],
                         connectExpress:match[4]
                     }
                 })
+            }else{
+                this.expressionList = [{...this.expressItem}]
             }
-            this.queryUMapTabByLDasID(row.LDasID)
         },
         /**
          * 新增/修改
@@ -281,14 +285,30 @@ export default {
                   } 
                 });
             })
-            let list = this.expressionList.map((item,i) => {
+            let expressList = this.expressionList.map((item,i) => {
+                if(!item.DataItem.DataItemID||!item.Meter.MeterID){
+                    return
+                }
+                let express = '(' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID + item.express + item.value+')'
                 if(i<this.expressionList.length-1){
-                    return '(' + item.condition + item.express + item.value+')' + item.connectExpress
+                    return express + item.connectExpress
                 }else{
-                    return '(' + item.condition + item.express + item.value + ')'
+                    return express
                 }
             })
-            this.addInfo.Express = list.join('')
+            let expressNameList = this.expressionList.map((item,i) => {
+                if(!item.DataItem.DataItemName||!item.Meter.MeterName){
+                    return
+                }
+                let express = '(' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName + item.express + item.value+')'
+                if(i<this.expressionList.length-1){
+                    return express + item.connectExpress
+                }else{
+                    return express
+                }
+            })
+            this.addInfo.Express = expressList.join('')
+            this.addInfo.ExpressName = expressNameList.join('')
             this.show = false
             Control({
                 FAction:'AddOrUpdateUCondition',
@@ -330,39 +350,5 @@ export default {
 }
 </script>
 <style lang="scss">
-.zw-dialog{
-    .el-dialog{
-        ul.express{
-            width: 400px;
-            padding-left: 100px;
-            li{
-                text-align: center;
-                .el-select.condition{
-                    .el-input{
-                        width: 120px;
-                    }
-                }
-                .el-select.expression,{
-                    .el-input{
-                        width: 100px;
-                    }
-                }
-                .value.el-input{
-                    width: 80px;
-                }
-            }
-            li+li{
-                margin-top: 10px;
-            }
-            li.add{
-                i{
-                   font-size:30px;cursor:pointer 
-                }
-                i+i{
-                    margin-left: 10px;
-                }
-            }
-        }
-    }
-}
+
 </style>

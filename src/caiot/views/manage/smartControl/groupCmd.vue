@@ -109,6 +109,10 @@ export default {
                     width:80
                 },
                 {
+                    prop: 'ProjectName',
+                    label:'项目名称'
+                },
+                {
                     prop:'GroupName',
                     label:'指令全称'
                 },

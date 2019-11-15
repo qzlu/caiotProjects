@@ -2,12 +2,11 @@
     <div class="report inspection-item">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="项目名称"  prop='DeviceID'  :rules="[{ required: true, message: '请选择'}]">
+<!--                 <el-form-item label="项目名称"  prop='DeviceID'  :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.ProjectID"  value-key="ProjectID" filterable  placeholder="请选择" >
                     <el-option v-for="list in projectList" :key="list.ProjectID" :label="list.ShortName" :value="list.ProjectID"></el-option>
                   </el-select>
-                  <!-- <el-input readonly :value="projectName"></el-input> -->
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="网关名称" prop="LDasName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.LDasName">
                     </el-input>

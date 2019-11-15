@@ -69,6 +69,10 @@ export default {
                     width:80
                 },
                 {
+                    prop:'ProjectName',
+                    label:'项目名称'
+                },
+                {
                     prop:'BluetoothName',
                     label:'蓝牙名称'
                 },

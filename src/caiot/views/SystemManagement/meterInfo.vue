@@ -43,8 +43,10 @@
                     <el-input v-model="addInfo.OtherSourceID">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="是否有效" prop="EnReg">
-                    <el-input v-model="addInfo.EnReg" placeholder="true/false/寄存器地址"></el-input>
+                <el-form-item label="关系寄存器ID" prop="RelatedRegID">
+                    <el-select v-model="addInfo.RelatedRegID" filterable>
+                        <el-option v-for="(item,index) in regList" :key="index" :label="item.Detail" :value="item.RelatedRegID"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="是否为识别ID" prop="IsDISId" >
                     <el-switch v-model="addInfo.IsDISId"></el-switch>
@@ -98,7 +100,7 @@
 </template>
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
-import {project,system} from '@/caiot/request/api.js';
+import {project,system,Control} from '@/caiot/request/api.js';
 export default {
     mixins:[table],
     data(){
@@ -130,8 +132,8 @@ export default {
                     label: 'Modbus通讯',
                 },
                 {
-                    prop:'EnReg',
-                    label:'是否有效'
+                    prop:'Detail',
+                    label:'关系寄存器'
                 },
                 {
                     prop: 'IsDISId',
@@ -157,7 +159,7 @@ export default {
                 ModbusAddr:null,
                 IsDISId:false,
                 OtherSourceID:0,
-                EnReg:''
+                RelatedRegID:''
             },
             addInfo:{ //新增或修改仪表信息参数
                 ProjectID:parseInt(localStorage.getItem('projectid')),
@@ -171,13 +173,14 @@ export default {
                 ModbusAddr:null,
                 IsDISId:false,
                 OtherSourceID:0,
-                EnReg:''
+                RelatedRegID:''
             },
             title:'新增',
             show:false,
             areaList:[],//区域
             ldasList:[], //网关
             meterModel:[],//仪表型号列表
+            regList:[],//寄存器列表
         }
     },
     computed:{
@@ -195,6 +198,7 @@ export default {
         this.queryULdasByProjectID()
         this.queryUAreaList()
         this.queryPageSMeterModel()
+        this.queryURelatedRegList()
     },
     methods:{
         /**
@@ -275,6 +279,20 @@ export default {
                 this.ldasList = data.FObject
             })
             .catch(err => {})
+        },
+        /**
+         * 48. 查询关系寄存器列表
+         */
+        queryURelatedRegList(){
+            Control({
+                FAction:'QueryURelatedRegList'
+            })
+            .then((result) => {
+                console.log(result);
+                this.regList = result.FObject
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增

@@ -1,0 +1,35 @@
+.zw-dialog{
+    .el-dialog{
+        ul.express{
+            width: 440px;
+            padding-left: 100px;
+            li{
+                text-align: center;
+                .el-select.condition{
+                    .el-input{
+                        width: 100px;
+                    }
+                }
+                .el-select.expression{
+                    .el-input{
+                        width: 80px;
+                    }
+                }
+                .value.el-input{
+                    width: 80px;
+                }
+            }
+            li+li{
+                margin-top: 10px;
+            }
+            li.add{
+                i{
+                   font-size:30px;cursor:pointer 
+                }
+                i+i{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

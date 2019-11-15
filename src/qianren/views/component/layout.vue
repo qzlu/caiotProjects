@@ -346,7 +346,7 @@ $url: "../../../assets/image/";
                 height: 18px;
                 line-height: 18px;
                 left: -20px;
-                top: -10px;
+                top: -4px;
                 cursor: pointer;
                 background: rgba(170, 29, 48, 1);
                 border-radius: 4px;

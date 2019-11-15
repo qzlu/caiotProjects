@@ -1,42 +1,38 @@
 <template>
     <div class="report inspection-item system-type">
-        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
-            <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="场景名称" prop="SceneName" :rules="[{ required: true, message: '请输入'}]">
-                    <el-input v-model="addInfo.SceneName">
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="网关名称" prop="LDasID">
-                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" clearable>
+        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="720px"  class="zw-dialog">
+            <el-form :model="addInfo" inline ref="form" label-width="130px">
+                <el-form-item label="网关名称" prop="LDasID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择" >
                     <el-option v-for="item in LDasList" :key="item.LDasID" :label="item.LDasName"  :value="item.LDasID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="控制策略" prop="FType" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.FType"  placeholder="请选择">
-                    <el-option label="条件策略"  value="1"></el-option>
-                    <el-option label="时间策略"  value="2"></el-option>
+                <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请选择'}]" >
+                  <el-select v-model="addInfo.MeterModelID"  filterable placeholder="请选择">
+                    <el-option v-for="item in meterModelList" :key="item.MeterModelID" :label="item.MeterModelName" :value="item.MeterModelID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="执行时间" prop="TimeID">
-                  <el-select v-model="addInfo.TimeID" filterable placeholder="请选择">
-                    <el-option v-for="item in timeList" :key="item.TimeID" :label="item.Detail"  :value="item.TimeID"></el-option>
+                <el-form-item label="控制名称" prop="VarName" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input v-model="addInfo.VarName">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="写入数据标识" prop="DataItemIDW" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.DataItemIDW"  value-key="" filterable  placeholder="请选择" >
+                    <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="执行条件" prop="ConditionID" >
-                  <el-select v-model="addInfo.ConditionID" filterable placeholder="请选择">
-                    <el-option v-for="item in conditionList" :key="item.ConditionID" :label="item.Express"  :value="item.ConditionID"></el-option>
+                <el-form-item label="读取数据标识" prop="DataItemIDR" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.DataItemIDR"  value-key="" filterable  placeholder="请选择" >
+                    <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="是否群控" prop="GroupFlag" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.GroupFlag"  placeholder="请选择" @change="addInfo.CmdID = ''">
-                    <el-option label="否"  :value="false"></el-option>
-                     <el-option label="是"  :value="true"></el-option>
-                  </el-select>
+                <el-form-item label="读取延迟" prop="CheckTime" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input type="number" v-model="addInfo.CheckTime">
+                        <i slot="suffix" class="unit">ms</i>
+                    </el-input>
                 </el-form-item>
-                <el-form-item label="控制指令" prop="CmdID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.CmdID" filterable placeholder="请选择">
-                    <el-option v-for="item in cmdList" :key="item.id" :label="item.label"  :value="item.id"></el-option>
-                  </el-select>
+                <el-form-item label="初始值" prop="InitValue" >
+                    <el-input type="number" v-model="addInfo.InitValue"></el-input>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -69,17 +65,12 @@
                  show-overflow-tooltip
                 >
                </el-table-column>
-<!--                <el-table-column label="控制明细">
-                   <template v-slot={row}> 
-                        <el-button type="primary" round @click="queryUBaseCmdDetail(row)">查看</el-button>
-                   </template>
-               </el-table-column> -->
                <el-table-column
                  prop=""
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
-                        <span class="pointer" @click="updatedProject(scoped.row)">编辑</span>
+                        <span class="pointer" @click="updatedRow(scoped.row)">编辑</span>
                         <span class="pointer" @click="deleteItem(scoped.row)">删除</span>
                      </div>
                  </template>
@@ -91,7 +82,7 @@
 </template>
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
-import {Control} from '@/caiot/request/api.js';
+import {Control,system} from '@/caiot/request/api.js';
 export default {
     mixins:[table],
     data(){
@@ -107,69 +98,63 @@ export default {
                     label:'项目名称'
                 },
                 {
-                    prop:'SceneName',
-                    label:'场景名称'
-                },
-                {
                     prop: 'LDasName',
-                    label: '网关名称',
+                    label:'网关名称'
                 },
                 {
-                    prop: 'FType',
-                    label: '控制策略',
-                    formatter:row => row.FType == 2 ? '时间策略' : '条件策略'
+                    prop:'MeterModelName',
+                    label:'仪表型号'
                 },
                 {
-                    prop: 'TimeDetail',
-                    label: '执行时间',
+                    prop: 'VarName',
+                    label: '控制名称',
                 },
                 {
-                    prop: 'Express',
-                    label: '执行条件',
+                    prop: 'DataItemIDWName',
+                    label: '写入数据标识',
+                    width:'140'
                 },
                 {
-                    prop:'GroupFlag',
-                    label: '是否群控',
-                    formatter:row => row.GroupFlag?'是':'否'
+                    prop: 'DataItemIDRName',
+                    label: '读取数据标识',
+                    width:'140'
                 },
                 {
-                    prop: 'CMDShortName',
-                    label: '控制指令',
+                    prop: 'CheckTime',
+                    label: '回读时长（ms）',
+                    width:'150'
+                },
+                {
+                    prop: 'InitValue',
+                    label: '初始值',
                 },
             ],
             type:0,
             defaultAddInfo:{//新增参数默认数据
             },
             addInfo:{ //新增或修改
-                ConditionCMDID:0,
+                RegMeterModelID:0,
                 LDasID:null,
-                ConditionID:null,
-                CmdID:'',
-                TimeID:'',
-                GroupFlag:false,
+                MeterModelID:null,
+                WriteReg:'',
+                ReadReg:'',
+                DataItemIDW:'',
+                DataItemIDR:'',
+                InitValue:'',
+                CheckTime:0,
                 Detail:'',
-                FType:'',
-                SceneName:''
+                VarName:''
             },
             title:'新增',
             show:false,
             LDasList:[], //网关列表
-            conditionList:[], //条件列表
-            timeList:[], //时间列表
-            groupCmdList:[], //群控指令列表
-            singleCmdList:[], //单控指令列表
+            meterList:[], //所有仪表
+            dataItemList:[], //仪表所对应的数据标识
+            conditionList:[],
+            meterModelList:[] , //仪表型号
         }
     },
     computed:{
-        cmdList(){
-            if(this.addInfo.GroupFlag == 0){
-                return this.singleCmdList
-            }else if(this.addInfo.GroupFlag == 1){
-                return this.groupCmdList
-            }else{
-                return []
-            }
-        }
     },
     watch:{
         filterText(val){
@@ -180,17 +165,17 @@ export default {
         this.defaultAddInfo = JSON.parse(JSON.stringify(this.addInfo))
         this.queryData()
         this.queryLDasByProjectID()
-        this.queryUBaseCmdUGroupByLDasID()
-        this.queryConditionList()
-        this.queryUTimeList()
+        this.queryUMeter()
+        this.queryPageSMeterModel()
+        this.queryPageSDataItem()
     },
     methods:{
         /**
-         * 1.管理后台--查询分页场景控制
+         * 42. 分页查询寄存器仪表型号
          */
         queryData(){
             Control({
-                FAction:'QueryPageUConditionCmd',
+                FAction:'QueryPageURegMeterModel',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
@@ -231,70 +216,67 @@ export default {
             });
         },
         /**
-         * 32.管理后台—根据网关查询所有单控和群控指令
+         * 274.分页查询仪表信息
          */
-        queryUBaseCmdUGroupByLDasID(id = 0){
-                Control({
-                    FAction:'QueryUBaseCmdUGroupByLDasID',
-                    LDasID:id,
-                    ID:0
-                })
-                .then((result) => {
-                    let data =  result.FObject
-                    this.singleCmdList = data.Table.map(item => {
-                        return {
-                            label:item.CMDName,
-                            id:item.CmdID,
-                            ...item
-                        }
-                    })
-                    this.groupCmdList = data.Table1.map(item => {
-                        return {
-                            label:item.GroupName,
-                            id:item.GroupID,
-                            ...item
-                        }
-                    })
-                }).catch((err) => {
-                });
+        queryUMeter(){
+            system({
+                FAction:'QueryUMeter',
+                SearchKey:this.filterText,
+                PageIndex:1,
+                PageSize:1000
+            })
+            .then((data) => {
+                this.meterList =data.FObject.Table1 || []
+            })
+            .catch((err) => {
+                
+            });
         },
         /**
-         * 11.管理后台--查询项目条件列表
+         * 334.标准配置-分页查询数据标识
          */
-        queryConditionList(){
-            Control({
-                FAction:'QueryConditionList'
+        queryPageSDataItem(){
+            system({
+                FAction:'QueryPageSDataItem',
+                PageIndex:1,
+                PageSize:10000,
+                SearchKey:''
             })
             .then((result) => {
-                this.conditionList = result.FObject||[]
+                this.dataItemList = result.FObject.Table1 || []
+
             }).catch((err) => {
                 
             });
         },
         /**
-         * 12.管理后台--查询项目时间列表
+         * 10.管理后台—查询项目指令（条件指令 时间指令）列表
          */
-        queryUTimeList(){
+        queryConditionCmdOrTimeCmdList(type){
             Control({
-                FAction:'QueryUTimeList'
+                FAction:'QueryConditionCmdOrTimeCmdList',
+                FType:type
             })
             .then((result) => {
-                this.timeList = result.FObject||[]
+                this.cmdList = result.FObject
             }).catch((err) => {
                 
             });
         },
         /**
-         * 查看控制明细
+         * 340.标准配置-分页查询仪表型号
          */
-        queryUBaseCmdDetail(row){
-            Control({
-                FAction:'QueryUBaseCmdDetail',
-                ID:row.ConditionCMDID
+        queryPageSMeterModel(){
+            system({
+                FAction:'QueryPageSMeterModel',
+                SearchKey:'',
+                PageIndex:1,
+                PageSize:10000
             })
-            .then((result) => {
-                console.log(result);
-            }).catch((err) => {
+            .then((data) => {
+                this.meterModelList = data.FObject.Table1 ? data.FObject.Table1 : []
+            })
+            .catch((err) => {
                 
             });
         },
@@ -307,18 +289,18 @@ export default {
             this.addInfo = Object.assign({},this.defaultAddInfo)
         },
         /**
-         * 修改告警类型
+         * 修改
          */
-        updatedProject(row) {
+        updatedRow(row) {
             this.show = true
             this.type = 1
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
-            this.addInfo.FName = row.AlarmTypeName
+            this.queryDataItemByMeterID(row.MeterID)
         },
         /**
-         * 新增/修改场景控制
+         * 41. 新增/修改寄存器仪表型号
          */
         async addOrUpdate(){
             await new Promise(resolve => {
@@ -330,8 +312,8 @@ export default {
             })
             this.show = false
             Control({
-                FAction:'AddUpdateUConditionCmd',
-                mUConditionCmd:this.addInfo
+                FAction:'AddUpdateURegMeterModel',
+                mURegMeterModel:this.addInfo
             })
             .then(data => {
                 this.$message({
@@ -345,12 +327,11 @@ export default {
             })
         },
         /**
-         * 268.删除场景控制
+         * 268.删除
          */
         async deleteItem(row){
-            console.log(row);
             await new Promise(resove => {
-                this.$DeleteMessage([`确认删除`,'删除场景控制'])
+                this.$DeleteMessage([`确认删除?`])
                 .then(() => {
                     resove()
                 })
@@ -358,9 +339,8 @@ export default {
                 })
             })
             Control({
-                FAction:'DeleteUConditionCmd',
-                ID:row.ConditionCMDID,
-                FType:row.FType
+                FAction:'DeleteUMapTabByRegMeterModelID',
+                ID:row.RegMeterModelID
             })
             .then(data => {
                 this.queryData()

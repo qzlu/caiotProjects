@@ -210,6 +210,9 @@ $img-url: "../../static/image/";
         font-weight:bold;
         letter-spacing: 4px;
         color:rgba(132,192,255,1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
       }
       .home-project-list{
         position: absolute;

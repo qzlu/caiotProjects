@@ -1,34 +1,33 @@
 <template>
     <div class="report inspection-item system-type">
-        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px"  class="zw-dialog">
-            <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="寄存器名称" prop="VarName" :rules="[{ required: true, message: '请输入'}]">
+        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="750px"  class="zw-dialog">
+            <el-form :model="addInfo" inline ref="form" label-width="150px">
+                <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请选择'}]" >
+                  <el-select v-model="addInfo.MeterModelID"  filterable placeholder="请选择" @change="selectMeterModel">
+                    <el-option v-for="item in meterModelList" :key="item.MeterModelID" :label="item.MeterModelName" :value="item.MeterModelID"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="寄存器仪表型号名称" prop="VarName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.VarName">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="网关名称" prop="LDasID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.LDasID" filterable placeholder="请选择">
-                    <el-option v-for="item in LDasList" :key="item.LDasID" :label="item.LDasName"  :value="item.LDasID"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="仪表名称" prop="MeterID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.MeterID" filterable placeholder="请选择" @change="selectMeter">
-                    <el-option v-for="item in meterList" :key="item.MeterID" :label="item.MeterName"  :value="item.MeterID"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="数据标识" prop="DataItemID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.DataItemID"  value-key="" filterable  placeholder="请选择" >
+                <el-form-item label="写入数据标识" prop="DataItemIDW" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.DataItemIDW"  value-key="" filterable  placeholder="请选择" >
                     <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="初始值" prop="InitValue">
+                <el-form-item label="读取数据标识" prop="DataItemIDR" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.DataItemIDR"  value-key="" filterable  placeholder="请选择" >
+                    <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="读取延迟" prop="CheckTime" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input type="number" v-model="addInfo.CheckTime">
+                        <i slot="suffix" class="unit">ms</i>
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="初始值" prop="InitValue" >
                     <el-input type="number" v-model="addInfo.InitValue"></el-input>
-                </el-form-item>
-                <el-form-item label="读取模式" prop="ReadMode">
-                    <el-input type="number" v-model="addInfo.ReadMode"></el-input>
-                </el-form-item>
-                <el-form-item label="关系寄存器" prop="RelatedReg">
-                    <el-input type="number" v-model="addInfo.RelatedReg"></el-input>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -90,54 +89,53 @@ export default {
                     width:80
                 },
                 {
-                    prop:'VarName',
-                    label:'仪表关系名称'
+                    prop:'MeterModelName',
+                    label:'仪表型号'
                 },
                 {
-                    prop: 'LDasName',
-                    label: '网关名称',
+                    prop: 'VarName',
+                    label: '寄存器仪表型号名称',
                 },
                 {
-                    prop: 'MeterName',
-                    label: '仪表名称',
+                    prop: 'DataItemIDWName',
+                    label: '写入数据标识',
                 },
                 {
-                    prop: 'DataItemName',
-                    label: '数据标识',
+                    prop: 'DataItemIDRName',
+                    label: '读取数据标识',
+                },
+                {
+                    prop: 'CheckTime',
+                    label: '回读时长（ms）',
                 },
                 {
                     prop: 'InitValue',
                     label: '初始值',
-                },
-                {
-                    prop: 'ReadMode',
-                    label: '读取模式',
-                },
-                {
-                    prop: 'RelatedReg',
-                    label: '关系寄存器',
                 },
             ],
             type:0,
             defaultAddInfo:{//新增参数默认数据
             },
             addInfo:{ //新增或修改
-                MapTabID:0,
+                RegMeterModelID:0,
                 LDasID:null,
-                MeterID:null,
-                DataItemID:'',
-                VarName:'',
+                MeterModelID:null,
+                WriteReg:'',
+                ReadReg:'',
+                DataItemIDW:'',
+                DataItemIDR:'',
                 InitValue:'',
-                ReadMode:'',
-                RelatedReg:'',
-                Detail:''
+                CheckTime:0,
+                Detail:'',
+                VarName:''
             },
             title:'新增',
             show:false,
             LDasList:[], //网关列表
             meterList:[], //所有仪表
             dataItemList:[], //仪表所对应的数据标识
-            conditionList:[]
+            conditionList:[],
+            meterModelList:[] , //仪表型号
         }
     },
     computed:{
@@ -150,16 +148,16 @@ export default {
     created(){
         this.defaultAddInfo = JSON.parse(JSON.stringify(this.addInfo))
         this.queryData()
-        this.queryLDasByProjectID()
         this.queryUMeter()
+        this.queryPageSMeterModel()
     },
     methods:{
         /**
-         * 18.管理后台—分页查询寄存器仪表关系映射
+         * 42. 分页查询寄存器仪表型号
          */
         queryData(){
             Control({
-                FAction:'QueryPageUMapTab',
+                FAction:'QueryPageURegMeterModel',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
@@ -206,7 +204,7 @@ export default {
             system({
                 FAction:'QueryUMeter',
                 SearchKey:this.filterText,
-                PageIndex:this.pageIndex,
+                PageIndex:1,
                 PageSize:1000
             })
             .then((data) => {
@@ -217,37 +215,41 @@ export default {
             });
         },
         /**
-         * 15.管理后台--根据仪表ID查询数据标识
+         * 49. 根据仪表型号ID查询数据标识
          */
-        queryDataItemByMeterID(id){
+        queryDataItemByMeterModelID(id){
             Control({
-                FAction:'QueryDataItemByMeterID',
-                MeterID:id
+                FAction:'QueryDataItemByMeterModelID',
+                ID:id
             })
             .then((result) => {
-                this.dataItemList = result.FObject||[]
+                this.dataItemList = result.FObject || []
+
             }).catch((err) => {
                 
             });
-        },
-        selectMeter(id){
-            this.addInfo.DataItemID = ''
-            this.dataItemList = []
-            this.queryDataItemByMeterID(id)
         },
         /**
-         * 10.管理后台—查询项目指令（条件指令 时间指令）列表
+         * 340.标准配置-分页查询仪表型号
          */
-        queryConditionCmdOrTimeCmdList(type){
-            Control({
-                FAction:'QueryConditionCmdOrTimeCmdList',
-                FType:type
+        queryPageSMeterModel(){
+            system({
+                FAction:'QueryPageSMeterModel',
+                SearchKey:'',
+                PageIndex:1,
+                PageSize:10000
             })
-            .then((result) => {
-                this.cmdList = result.FObject
-            }).catch((err) => {
+            .then((data) => {
+                this.meterModelList = data.FObject.Table1 ? data.FObject.Table1 : []
+            })
+            .catch((err) => {
                 
             });
+        },
+        selectMeterModel(id){
+            this.addInfo.DataItemIDW = ''
+            this.addInfo.DataItemIDR = ''
+            this.queryDataItemByMeterModelID(id)
         },
         /**
          * 点击新增
@@ -266,11 +268,9 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
-            console.log(this.addInfo);
-            this.queryDataItemByMeterID(row.MeterID)
         },
         /**
-         * 新增/修改
+         * 41. 新增/修改寄存器仪表型号
          */
         async addOrUpdate(){
             await new Promise(resolve => {
@@ -282,8 +282,8 @@ export default {
             })
             this.show = false
             Control({
-                FAction:'AddUpdateUMapTab',
-                mUMapTab:this.addInfo
+                FAction:'AddUpdateURegMeterModel',
+                mURegMeterModel:this.addInfo
             })
             .then(data => {
                 this.$message({
@@ -309,8 +309,8 @@ export default {
                 })
             })
             Control({
-                FAction:'DeleteUMapTabByMapTabID',
-                ID:row.MapTabID
+                FAction:'DeleteUMapTabByRegMeterModelID',
+                ID:row.RegMeterModelID
             })
             .then(data => {
                 this.queryData()

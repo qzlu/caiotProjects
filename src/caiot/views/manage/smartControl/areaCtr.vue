@@ -79,6 +79,10 @@ export default {
                     width:80
                 },
                 {
+                    prop: 'ProjectName',
+                    label:'项目名称'
+                },
+                {
                     prop:'AreaName',
                     label:'区域名称'
                 },

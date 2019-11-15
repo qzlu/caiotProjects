@@ -12,7 +12,7 @@
       <div class="login_item">
         <div class="title">
           <router-link to="/">
-            <img src="../../static/image/user/new/logo_1.png">
+            <img src="../../static/image/user/new/logo_2.png">
           </router-link>
         </div>
         <div class="lcen">
@@ -52,7 +52,7 @@
       class="set_ICP"
       style="position: absolute; height: 25px; text-align: center; left: 0; bottom:60px; right: 0; font-size: 22px;"
     >
-      <a href="http://www.miitbeian.gov.cn" :target="_self" style="color: #fff;">粤ICP备18129652号</a>
+      <!-- <a href="http://www.miitbeian.gov.cn" :target="_self" style="color: #fff;">粤ICP备18129652号</a> -->
     </div>
   </div>
 </template>
@@ -140,8 +140,12 @@ export default {
               this.$store.dispatch('getMenu')
               .then((result) => {
                 this.$store.dispatch('addRoute')
-                this.$router.push(result.FURL)
-                localStorage.setItem('homePath',result.FURL)
+                if(result.FURL){
+                  this.$router.push(result.FURL)
+                  localStorage.setItem('homePath',result.FURL)
+                }else{
+                  this.$message.error("无菜单权限!");
+                }
               }).catch((err) => {
                 console.log(err,'12');
               });
@@ -473,7 +477,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(../../static/image/user/new/bg_02.jpg);
+  background: url(../../static/image/user/new/bg_3.jpg);
   background-size: 100% 100%;
   min-width: 1900px;
   min-height: 1080px;

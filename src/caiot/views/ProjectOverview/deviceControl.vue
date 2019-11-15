@@ -90,7 +90,7 @@
                                 </ul>
                                 <ul>
                                     <li v-for="(obj,j) in item.GroupCMDs" :key="j">
-                                        <button class="operation-btn" @click.stop="obj.GroupMode==2?sendCMD('GroupCMD',obj.GroupID):queryControlProjectAdjust(obj.GroupID)">{{obj.GroupShortName}}</button>
+                                        <button class="operation-btn" @click.stop="obj.GroupMode==2?sendCMD('GroupCMD',obj.GroupID):queryUGroupDetail(obj.GroupID)">{{obj.GroupShortName}}</button>
                                     </li>
                                 </ul>
                             </div>
@@ -268,6 +268,21 @@ export default {
             Control({
                 FAction:'QueryControlProjectAdjust',
                 GroupID:id
+            })
+            .then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 8.管理后台--查询区域控制明细
+         */
+        queryUGroupDetail(id){
+            this.show = true
+            Control({
+                FAction:'QueryUGroupDetail',
+                ID:id
             })
             .then((result) => {
                 console.log(result);

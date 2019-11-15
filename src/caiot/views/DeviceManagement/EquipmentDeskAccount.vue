@@ -191,7 +191,7 @@
                    <template slot-scope="scoped">
                        <div>
                            <!--  <router-link :to="`/DeviceManagement/DeviceInfo/${scoped.row.DeviceLedgerID}`"> -->
-                                <span style="color:white" @click="$router.push(`/DeviceManagement/DeviceInfo/${scoped.row.DeviceLedgerID}`)">详情</span>
+                                <span class="pointer" style="color:white" @click="$router.push(`/DeviceManagement/DeviceInfo/${scoped.row.DeviceLedgerID}`)">详情</span>
                            <!--  </router-link> -->
                             <span class="pointer" style="margin-left:16px;" @click="editDevice(scoped.row)">编辑</span>  
                             <span class="pointer" @click="deleteDeviceInfo(scoped.row)">删除</span>    
@@ -266,11 +266,12 @@ export default {
                     width:130,
                     formatter:(row, column, cellValue, index) => row.IsIOTDevice?'是':'否'
                 },
-/*                 {
-                    prop: 'stateText',
-                    label: '设备使用状态',
-                    width:130
-                } */
+                {
+                    prop: 'IsControl',
+                    label: '是否控制设备',
+                    width:130,
+                    /* formatter:row => row.IsControl?'是':'否' */
+                }
             ],
             show:false,
             defaultDeviceInfo:{
@@ -366,9 +367,6 @@ export default {
                 console.log(data);
                 this.total = data.FObject.Table[0].FTotalCount
                 this.tableData = data.FObject.Table1
-                this.tableData.forEach(element => {
-                    this.$set(element,'stateText',element.RunState?'启用':'停用')
-                });
                 /**
                  * 删除操作时，当前页面无数据时跳到上一页
                  */
