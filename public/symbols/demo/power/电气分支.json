@@ -1,0 +1,171 @@
+{
+  "modified": "Wed Dec 05 2018 23:17:34 GMT+0800 (China Standard Time)",
+  "width": 36,
+  "height": 190,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(96,194,21)",
+      "borderCap": "round",
+      "displayName": "411-2",
+      "points": [
+        18,
+        35.45765,
+        18,
+        77.81215
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(96,194,21)",
+      "borderCap": "round",
+      "points": [
+        18,
+        4,
+        18,
+        20.40058
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(96,194,21)",
+      "borderCap": "round",
+      "points": [
+        18,
+        89.71915,
+        18,
+        147.58022
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(96,194,21)",
+      "borderCap": "round",
+      "points": [
+        18,
+        157.30607,
+        18,
+        171.83441
+      ]
+    },
+    {
+      "type": "oval",
+      "borderWidth": 2,
+      "borderColor": "rgb(96,194,21)",
+      "dashColor": null,
+      "rect": [
+        7,
+        108.05607,
+        22,
+        22
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(201,2,2)",
+      "borderCap": "round",
+      "points": [
+        8,
+        35.0795,
+        18,
+        26.0795,
+        28,
+        34.29689
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(201,2,2)",
+      "borderCap": "round",
+      "points": [
+        8,
+        44.07951,
+        18,
+        35.0795,
+        28,
+        43.2969
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(201,2,2)",
+      "borderCap": "round",
+      "rotation": -3.14159,
+      "points": [
+        8,
+        157.48077,
+        18,
+        148.48077,
+        28,
+        156.69816
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(201,2,2)",
+      "borderCap": "round",
+      "rotation": -3.14159,
+      "points": [
+        8,
+        148.48078,
+        18,
+        139.48077,
+        28,
+        147.69817
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(189,189,189)",
+      "borderWidth": 1,
+      "borderColor": "rgb(133,133,133)",
+      "borderCap": "round",
+      "opacity": 0.3,
+      "displayName": "指示灯",
+      "rect": [
+        3,
+        67.97775,
+        30,
+        30
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(128,128,128)",
+      "borderWidth": 1,
+      "borderColor": "rgb(69,69,69)",
+      "borderCap": "round",
+      "rect": [
+        7.6875,
+        72.66522,
+        20.625,
+        20.625
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(96,194,21)",
+      "borderColor": "rgb(96,194,21)",
+      "gradientColor": "rgb(0,0,0)",
+      "points": [
+        11,
+        168.79571,
+        25,
+        168.79571,
+        17.81578,
+        184.79571,
+        11,
+        168.79571
+      ]
+    }
+  ]
+}

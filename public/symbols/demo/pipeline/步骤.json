@@ -1,0 +1,63 @@
+{
+  "modified": "Fri Dec 21 2018 11:47:28 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "顺序",
+      "valueType": "Number"
+    },
+    {
+      "attr": "说明",
+      "valueType": "String"
+    }
+  ],
+  "width": 400,
+  "height": 100,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "oval",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,255,238)",
+      "border3dColor": "rgb(255,130,130)",
+      "dashColor": "rgb(79,167,255)",
+      "dash3d": true,
+      "rect": [
+        5,
+        5,
+        40,
+        40
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@顺序",
+        "value": "1"
+      },
+      "align": "center",
+      "color": "rgb(224,224,224)",
+      "font": "30px arial, sans-serif",
+      "rect": [
+        11.87271,
+        13.25197,
+        24.25459,
+        28.05918
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@说明",
+        "value": "关闭球阀"
+      },
+      "color": "rgb(204,204,204)",
+      "font": "30px arial, sans-serif",
+      "rect": [
+        51.67012,
+        14.25197,
+        221.95583,
+        25
+      ]
+    }
+  ]
+}

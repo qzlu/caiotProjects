@@ -1,0 +1,140 @@
+{
+  "width": 50,
+  "height": 70,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 1,
+      "borderColor": "rgb(26,127,201)",
+      "closePath": true,
+      "points": [
+        5.72627,
+        2.08276,
+        5.72627,
+        68.11635,
+        44.27373,
+        68.11635,
+        44.27373,
+        2.08276
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        8.17261,
+        8.36025,
+        8.14962,
+        8.32518
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 1.5708,
+      "rect": [
+        22.18994,
+        36.0993,
+        4.22824,
+        1.39185
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        18.65148,
+        2.08276,
+        1,
+        66.03359
+      ]
+    },
+    {
+      "type": "text",
+      "text": "EPS",
+      "align": "center",
+      "color": "rgb(247,247,247)",
+      "scaleX": 0.6,
+      "scaleY": 0.6,
+      "rect": [
+        18.05133,
+        6.00818,
+        26.93293,
+        11.76037
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 1.5708,
+      "rect": [
+        30.69067,
+        9.37235,
+        0.59795,
+        14.02815
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        8.17261,
+        17.07466,
+        5.29457,
+        0.66168
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        14.10396,
+        17.07466,
+        2.21827,
+        0.66168
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        8.17261,
+        58.80155,
+        8.14962,
+        2.28819
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 4.71239,
+      "rect": [
+        24.47942,
+        -15.06589,
+        1,
+        38.5063
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 4.71239,
+      "rect": [
+        23.26998,
+        47.34921,
+        3.41888,
+        38.5063
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "width": 12,
+  "height": 12,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        0,
+        12,
+        0,
+        12,
+        12,
+        0,
+        12
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "6EEF"
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0,
+  "anchorY": 0,
+  "bound": {
+    "xMin": 0,
+    "yMin": -12,
+    "xMax": 12,
+    "yMax": 0,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true
+}

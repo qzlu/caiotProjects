@@ -1,0 +1,29 @@
+{
+  "modified": "Mon Nov 26 2018 13:27:43 GMT+0800 (中国标准时间)",
+  "width": 60,
+  "height": 60,
+  "comps": [
+    {
+      "type": "oval",
+      "borderWidth": 3.5,
+      "borderColor": "rgb(226,121,84)",
+      "rect": [
+        4.59016,
+        4.59016,
+        50.81968,
+        50.81968
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/气.json",
+      "displayName": "气",
+      "rect": [
+        13.70844,
+        14.0803,
+        32.04124,
+        32.04124
+      ]
+    }
+  ]
+}

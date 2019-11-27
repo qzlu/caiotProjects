@@ -1,0 +1,156 @@
+{
+  "modified": "Wed Dec 19 2018 13:50:46 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "透明度",
+      "valueType": "Opacity"
+    }
+  ],
+  "width": 200,
+  "height": 100,
+  "interactive": true,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        100,
+        54.27216,
+        44.87554,
+        42.67197
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        100,
+        3.05586,
+        44.87554,
+        42.67197
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        3.05586,
+        44.87554,
+        42.67197
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        54.27216,
+        44.87554,
+        4.57173
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        63.79723,
+        44.87554,
+        4.57173
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        73.32229,
+        44.87554,
+        4.57173
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        82.84735,
+        44.87554,
+        4.57173
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,166,255)",
+      "borderColor": "#979797",
+      "cornerRadius": 2,
+      "opacity": {
+        "func": "attr@透明度",
+        "value": 1
+      },
+      "rect": [
+        151.66328,
+        92.37241,
+        44.87554,
+        4.57173
+      ]
+    },
+    {
+      "type": "text",
+      "text": "二维",
+      "align": "center",
+      "color": "rgb(0,212,255)",
+      "font": "40px arial, sans-serif",
+      "rect": [
+        24.2973,
+        25,
+        50,
+        50
+      ]
+    }
+  ]
+}

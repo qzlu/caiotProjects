@@ -1,0 +1,65 @@
+{
+  "modified": "Sat Oct 06 2018 00:13:57 GMT+0800 (China Standard Time)",
+  "dataBindings": [
+    {
+      "attr": "remainingPower",
+      "valueType": "Percentage",
+      "name": "剩余电量",
+      "defaultValue": 1
+    },
+    {
+      "attr": "lineWidth",
+      "valueType": "String",
+      "name": "线宽"
+    },
+    {
+      "attr": "batteryColor",
+      "valueType": "Color"
+    }
+  ],
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "components/battery/battery.json",
+      "displayName": "battery",
+      "rect": [
+        0,
+        12.5,
+        100,
+        35
+      ],
+      "remainingPower": {
+        "func": "attr@remainingPower",
+        "value": 1
+      },
+      "lineWidth": {
+        "func": "attr@lineWidth",
+        "value": "2"
+      },
+      "batteryColor": {
+        "func": "attr@batteryColor",
+        "value": "#8BC44C"
+      }
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nvar remainingPower = data.getAttr('remainingPower')\r\nreturn parseFloat((remainingPower * 100).toFixed(10)) + \"%\"\n}",
+        "value": "100%"
+      },
+      "align": "center",
+      "color": {
+        "func": "__ht__function(data, view) {\nvar remainingPower = data.getAttr('remainingPower')\r\nif (remainingPower >= 0 && remainingPower <= 0.1) {\r\n    return '#ED5662';\r\n} else if (remainingPower > 0.1 && remainingPower <= 0.3) {\r\n    return '#F7BD32';\r\n} else if (remainingPower > 0.3 && remainingPower <= 1) {\r\n    return '#8BC44C';\r\n}\n}",
+        "value": "#8BC44C"
+      },
+      "font": "20px arial, sans-serif",
+      "rect": [
+        0,
+        56,
+        100,
+        24
+      ]
+    }
+  ]
+}

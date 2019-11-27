@@ -1,0 +1,128 @@
+{
+  "v": "6.2.6",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "width": 600,
+    "height": 350,
+    "previewURL": "display-keypad.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 9703,
+      "p": {
+        "layer": "background",
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 600,
+        "height": 350
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#C2CBC9",
+        "shape.border.color": "#979797",
+        "shape.gradient.color": "",
+        "2d.movable": false,
+        "pixelPerfect": false
+      },
+      "a": {
+        "onCancel": "__ht__function onCancel(data) {\r\n    var tools = new Tools();\r\n    var dm = data.getDataModel();\r\n    var inputButton = dm.getDataByTag('inputButton');\r\n    var title = dm.getDataByTag('title');\r\n    var distX = 350;\r\n    data.s({ '2d.visible': false });\r\n    tools.moveHorizontal([inputButton, title], distX);\r\n}",
+        "onConfirm": "__ht__function onConfirm(data) {\r\n    function createStartAnim(dataList, distX, finishFunc) {\r\n        ht.Default.startAnim({\r\n            duration: 500,\r\n            easing: function(t) {\r\n                return t * t;\r\n            },\r\n            finishFunc: finishFunc || null,\r\n            action: function(v) {\r\n                for (const item of dataList) {\r\n                    item.setX(item.getX() + (distX - item.getX()) * v);\r\n                }\r\n            }\r\n        });\r\n    }\r\n    var dm = data.getDataModel();\r\n    var outputVal = data.getAttr('outputVal');\r\n    var inputBtn = dm.getDataByTag('inputBtn');\r\n    var title = dm.getDataByTag('title');\r\n    inputBtn.setAttr('ht.text', outputVal);\r\n    data.s({ '2d.visible': false });\r\n    var distX = 350;\r\n    createStartAnim([inputBtn, title], distX);\r\n}"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 9704,
+      "p": {
+        "layer": "background",
+        "tag": "title",
+        "position": {
+          "x": 300,
+          "y": 124.52877
+        },
+        "width": 265.54463
+      },
+      "s": {
+        "text": "HT Keypad Demo",
+        "text.align": "center",
+        "text.font": "24px arial, sans-serif",
+        "text.color": "#6FA0A2",
+        "2d.movable": false
+      },
+      "a": {
+        "onCancel": "__ht__function onCancel(data) {\r\n    var tools = new Tools();\r\n    var dm = data.getDataModel();\r\n    var inputButton = dm.getDataByTag('inputButton');\r\n    var title = dm.getDataByTag('title');\r\n    var distX = 350;\r\n    data.s({ '2d.visible': false });\r\n    tools.moveHorizontal([inputButton, title], distX);\r\n}",
+        "onConfirm": "__ht__function onConfirm(data) {\r\n    function createStartAnim(dataList, distX, finishFunc) {\r\n        ht.Default.startAnim({\r\n            duration: 500,\r\n            easing: function(t) {\r\n                return t * t;\r\n            },\r\n            finishFunc: finishFunc || null,\r\n            action: function(v) {\r\n                for (const item of dataList) {\r\n                    item.setX(item.getX() + (distX - item.getX()) * v);\r\n                }\r\n            }\r\n        });\r\n    }\r\n    var dm = data.getDataModel();\r\n    var outputVal = data.getAttr('outputVal');\r\n    var inputBtn = dm.getDataByTag('inputBtn');\r\n    var title = dm.getDataByTag('title');\r\n    inputBtn.setAttr('ht.text', outputVal);\r\n    data.s({ '2d.visible': false });\r\n    var distX = 350;\r\n    createStartAnim([inputBtn, title], distX);\r\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 9705,
+      "p": {
+        "displayName": "button",
+        "layer": "input",
+        "tag": "inputButton",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 300,
+          "y": 191
+        },
+        "width": 160,
+        "height": 32
+      },
+      "s": {
+        "interactive": true,
+        "onDown": "__ht__function(event, data, view) {\n// 判断keypad是否隐藏\r\nvar dm = data.getDataModel();\r\nvar keypad = dm.getDataByTag('keypad');\r\nvar isVisible = keypad.s('2d.visible');\r\nif (isVisible) return;\r\n\r\n// 获取变量\r\nvar inputButton = dm.getDataByTag('inputButton');\r\nvar title = dm.getDataByTag('title');\r\nvar distX = 420;\r\nvar inputVal = inputButton.getAttr('ht.text') || '';\r\n\r\n// 动画\r\nmoveHorizontal([inputButton, title], distX, function () {\r\n    keypad.s({ '2d.visible': true });\r\n    keypad.a({ outputVal: inputVal });\r\n})\n}",
+        "2d.movable": false
+      },
+      "a": {
+        "ht.background": "",
+        "ht.font": "18px arial, sans-serif",
+        "onCancel": "__ht__function onCancel(data) {\r\n    var tools = new Tools();\r\n    var dm = data.getDataModel();\r\n    var inputButton = dm.getDataByTag('inputButton');\r\n    var title = dm.getDataByTag('title');\r\n    var distX = 350;\r\n    data.s({ '2d.visible': false });\r\n    tools.moveHorizontal([inputButton, title], distX);\r\n}",
+        "onConfirm": "__ht__function onConfirm(data) {\r\n    function createStartAnim(dataList, distX, finishFunc) {\r\n        ht.Default.startAnim({\r\n            duration: 500,\r\n            easing: function(t) {\r\n                return t * t;\r\n            },\r\n            finishFunc: finishFunc || null,\r\n            action: function(v) {\r\n                for (const item of dataList) {\r\n                    item.setX(item.getX() + (distX - item.getX()) * v);\r\n                }\r\n            }\r\n        });\r\n    }\r\n    var dm = data.getDataModel();\r\n    var outputVal = data.getAttr('outputVal');\r\n    var inputBtn = dm.getDataByTag('inputBtn');\r\n    var title = dm.getDataByTag('title');\r\n    inputBtn.setAttr('ht.text', outputVal);\r\n    data.s({ '2d.visible': false });\r\n    var distX = 350;\r\n    createStartAnim([inputBtn, title], distX);\r\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 9706,
+      "p": {
+        "displayName": "keypad",
+        "tag": "keypad",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/basic/keypad.json",
+        "position": {
+          "x": 180,
+          "y": 189
+        },
+        "width": 144,
+        "height": 240
+      },
+      "s": {
+        "interactive": true,
+        "2d.visible": false,
+        "2d.movable": false
+      },
+      "a": {
+        "onCancel": "__ht__function onCancel(data) {\r\n    var dm = data.getDataModel();\r\n    var inputButton = dm.getDataByTag('inputButton');\r\n    var title = dm.getDataByTag('title');\r\n    var distX = 300;\r\n    data.s({ '2d.visible': false });\r\n    moveHorizontal([inputButton, title], distX);\r\n}",
+        "onConfirm": "__ht__function onConfirm(data) {\r\n    var dm = data.getDataModel();\r\n    var outputVal = data.getAttr('outputVal');\r\n    var inputButton = dm.getDataByTag('inputButton');\r\n    var title = dm.getDataByTag('title');\r\n    var distX = 300;\r\n    inputButton.setAttr('ht.text', outputVal);\r\n    data.s({ '2d.visible': false });\r\n    moveHorizontal([inputButton, title], distX);\r\n}",
+        "backgroundColor": "#8CC1C2",
+        "buttonColor": "#285C64"
+      }
+    }
+  ],
+  "modified": "Tue Oct 02 2018 16:41:48 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": 0,
+    "y": 0,
+    "width": 600,
+    "height": 350
+  }
+}

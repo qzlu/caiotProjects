@@ -1,0 +1,33 @@
+{
+  "modified": "Fri Dec 07 2018 10:34:40 GMT+0800 (中国标准时间)",
+  "width": 1497,
+  "height": 45,
+  "interactive": true,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "text",
+      "text": "项目楼体分布",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "18px Arial",
+      "rect": [
+        553.33247,
+        4.27613,
+        274.37521,
+        31.24534
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/下导航/下图案.json",
+      "displayName": "下图案",
+      "rect": [
+        0,
+        1.17696,
+        1495.82637,
+        43.82304
+      ]
+    }
+  ]
+}

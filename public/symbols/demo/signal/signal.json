@@ -1,0 +1,38 @@
+{
+  "dataBindings": [
+    {
+      "attr": "signalLevel",
+      "valueType": "Number",
+      "name": "信号等级",
+      "description": "从0到5，共分为6级。"
+    },
+    {
+      "attr": "signalColor",
+      "valueType": "Color",
+      "name": "信号颜色"
+    }
+  ],
+  "gridBlockSize": 10,
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "components/signal/signal.json",
+      "displayName": "signal",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "signalLevel": {
+        "func": "attr@signalLevel",
+        "value": 5
+      },
+      "signalColor": {
+        "func": "attr@signalColor",
+        "value": "#8BC44C"
+      }
+    }
+  ]
+}

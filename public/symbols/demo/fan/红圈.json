@@ -1,0 +1,67 @@
+{
+  "background": "rgb(247,247,247)",
+  "width": 32,
+  "height": 32,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "shadow": true,
+      "shadowColor": "rgb(247,247,247)",
+      "shadowBlur": 38,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        13.61558,
+        13.61558,
+        4.76884,
+        4.76884
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "shadow": true,
+      "shadowColor": "rgb(247,247,247)",
+      "shadowBlur": 38,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        13.61558,
+        13.61558,
+        4.76884,
+        4.76884
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "shadow": true,
+      "shadowColor": "rgb(247,247,247)",
+      "shadowBlur": 38,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        13.61558,
+        13.61558,
+        4.76884,
+        4.76884
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "shadow": true,
+      "shadowColor": "rgb(247,247,247)",
+      "shadowBlur": 38,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        14.0186,
+        14.0186,
+        3.96281,
+        3.96281
+      ]
+    }
+  ]
+}

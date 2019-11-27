@@ -1,0 +1,84 @@
+{
+  "modified": "Thu Dec 13 2018 14:31:47 GMT+0800 (China Standard Time)",
+  "width": 17,
+  "height": 39,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "#e71f19",
+      "borderCap": "round",
+      "points": [
+        1.032,
+        8.484,
+        8.502,
+        1.012
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "#e71f19",
+      "borderCap": "round",
+      "points": [
+        8.502,
+        1.244,
+        8.502,
+        28.577
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1.5,
+      "borderColor": "#040000",
+      "borderCap": "round",
+      "points": [
+        13.155,
+        33.655,
+        13.155,
+        31.10134,
+        11.05366,
+        29,
+        8.5,
+        29,
+        5.94634,
+        29,
+        3.845,
+        31.10134,
+        3.845,
+        33.655,
+        3.845,
+        36.20866,
+        5.94634,
+        38.31,
+        8.5,
+        38.31,
+        11.05366,
+        38.31,
+        13.155,
+        36.20866,
+        13.155,
+        33.655
+      ],
+      "segments": [
+        1,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "#e71f19",
+      "borderCap": "round",
+      "points": [
+        15.972,
+        8.162,
+        8.821,
+        1.012
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@
                 </el-form-item>
                 <el-form-item label="执行条件" prop="ConditionID" >
                   <el-select v-model="addInfo.ConditionID" filterable placeholder="请选择">
-                    <el-option v-for="item in conditionList" :key="item.ConditionID" :label="item.Express"  :value="item.ConditionID"></el-option>
+                    <el-option v-for="item in conditionList" :key="item.ConditionID" :label="item.Detail"  :value="item.ConditionID"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="是否群控" prop="GroupFlag" :rules="[{ required: true, message: '请选择'}]">
@@ -124,7 +124,7 @@ export default {
                     label: '执行时间',
                 },
                 {
-                    prop: 'Express',
+                    prop: 'ConditionName',
                     label: '执行条件',
                 },
                 {

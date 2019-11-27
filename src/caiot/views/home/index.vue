@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <audio class="success" id="myAudio" loop="loop" src="../../static/mp3/new_warn.mp3"></audio>
+    <audio id="myAudio" autoplay="false">
+        <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
+    </audio>
     <div class="home_center">
       <header>
         <div class="logo l">

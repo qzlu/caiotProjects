@@ -23,9 +23,7 @@
                 <el-form-item label="结束时间" prop="TimeEnd">
                     <el-time-picker
                       v-model="addInfo.TimeEnd"
-                      :picker-options="{
-                        selectableRange: '00:00:00 - 23:59:00',
-                      }"
+                      :picker-options="pickerOptions"
                       placeholder="选择时间">
                     </el-time-picker>
                 </el-form-item>
@@ -176,6 +174,11 @@ export default {
         }
     },
     computed:{
+        pickerOptions(){
+            return {
+                selectableRange: `${formatDate(this.addInfo.TimeStart,'HH:mm:ss')||'00:00:00'} - 23:59:00`,
+            }
+        }
     },
     watch:{
         filterText(val){

@@ -9,7 +9,7 @@
                  <el-scrollbar>
                     <ul class="list">
                         <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[0]" :key="i">
-                            <router-link :to="`/index/${item.FormID}`">
+                            <router-link v-if="item.FormID != 2" :to="`/index/${item.FormID}`">
                                 <h3>
                                    <i :class="['iconfont',item.IconName]"></i>
                                    <span>{{item.FormName}}</span>
@@ -41,6 +41,38 @@
                                     </ul>
                                 </div>
                             </router-link>
+                            <a v-else href="https://dt.caszyj.com:8444/elevator-monitor/main/" target="_blank">
+                                <h3>
+                                   <i :class="['iconfont',item.IconName]"></i>
+                                   <span>{{item.FormName}}</span>
+                                   <i class="iconfont icon-Up"></i>
+                                   <ul class="r">
+                                       <li>
+                                           <i class="iconfont icon-Numberofentry"></i>
+                                           {{item.ProjectCount||0}}
+                                       </li>
+                                       <li style="margin-top:0">
+                                           <i class="iconfont icon-Equipment"></i>
+                                           {{item.DeviceCount}}
+                                       </li>
+                                   </ul>
+                                </h3>
+                                <div class="list-content">
+                                    <div class="statu">
+                                    </div>
+                                    <ul class="param">
+                                        <li v-for="(obj,j) in item.Items" :key="j">
+                                            <p class="l" :title="obj.ItemName">
+                                                <i :class="['iconfont',obj.IconName]"></i>
+                                                {{obj.ItemName}}
+                                            </p>
+                                            <span class="value">
+                                                <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span> / {{obj.ItemCount}}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                  </el-scrollbar>

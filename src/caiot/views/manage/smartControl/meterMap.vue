@@ -268,6 +268,7 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
+            this.queryDataItemByMeterModelID(row.MeterModelID)
         },
         /**
          * 41. 新增/修改寄存器仪表型号

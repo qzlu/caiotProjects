@@ -1,0 +1,979 @@
+{
+  "v": "6.3.1",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null,
+    "height": 22222,
+    "fitContent": true
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 8970,
+      "p": {
+        "displayName": "表单",
+        "tag": "form1",
+        "position": {
+          "x": -237.79077,
+          "y": 135.35523
+        },
+        "width": 500,
+        "height": 762.15537
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "#FEB64D",
+        "shape.border.3d.color": null,
+        "shape.depth": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8971,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "host": {
+          "__i": 8972
+        },
+        "position": {
+          "x": -422.71805,
+          "y": -170.91825
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Company",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8972,
+      "p": {
+        "displayName": "input",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/input.json",
+        "position": {
+          "x": -211.27139,
+          "y": -170.91825
+        },
+        "width": 267.16255,
+        "height": 32
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.placeholder": "Enter your company name",
+        "ht.borderRadius": "3",
+        "ht.padding": "0 42 0 2",
+        "ht.name": "company",
+        "ht.icon": "./symbols/basic/ht.json",
+        "ht.iconAlign": "right",
+        "ht.iconWidth": 42,
+        "ht.maxLength": 30,
+        "ht.font": "14px arial,  sans-serif",
+        "ht.textColor": "rgb(61,61,61)",
+        "ht.borderWidth": 1,
+        "ht.focusBorderColor": "rgb(51,153,255)",
+        "ht.inputType": "text"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8973,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "host": {
+          "__i": 8997
+        },
+        "position": {
+          "x": -422.71805,
+          "y": -113.28319
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Email",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8974,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": 54.92473
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Sex",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8975,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": 95.0141
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Product Content",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8976,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -282.70453,
+          "y": 95.72037
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.disabled": true,
+        "ht.label": "HT for Web SDK",
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.group": "productContent",
+        "ht.value": "sdk",
+        "ht.checked": true,
+        "ht.inputType": "checkbox"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8977,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -282.70453,
+          "y": 128.31701
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.disabled": false,
+        "ht.label": "HT 2D Editor",
+        "ht.checked": false,
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.group": "productContent",
+        "ht.value": "2d",
+        "ht.borderColor": "#32D3EB",
+        "ht.inputType": "checkbox"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8978,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -282.70453,
+          "y": 160.91366
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.disabled": false,
+        "ht.label": "HT 3D Editor",
+        "ht.checked": false,
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.group": "productContent",
+        "ht.value": "3d",
+        "ht.inputType": "checkbox",
+        "ht.activeBorderColor": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8979,
+      "p": {
+        "displayName": "radio-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/radio-label.json",
+        "position": {
+          "x": -200.3788,
+          "y": 54.92473
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.label": "Female",
+        "ht.activeColor": "rgb(239,0,247)",
+        "ht.group": "sex",
+        "ht.value": "female",
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.checked": false,
+        "ht.inputType": "radio"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8980,
+      "p": {
+        "displayName": "radio-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/radio-label.json",
+        "position": {
+          "x": -98.05307,
+          "y": 54.92546
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.label": "Secrecy",
+        "ht.activeColor": "rgb(239,0,247)",
+        "ht.group": "sex",
+        "ht.value": "secrecy",
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.checked": true,
+        "ht.disabled": true,
+        "ht.inputType": "radio"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8981,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -282.70453,
+          "y": 191.83226
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.disabled": false,
+        "ht.label": "UI",
+        "ht.checked": false,
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.group": "productContent",
+        "ht.value": "ui",
+        "ht.activeBackground": "rgb(51,153,255)",
+        "ht.inputType": "checkbox"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8982,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": -55.64813
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Theme",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8983,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": 1.98693
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Date",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8984,
+      "p": {
+        "displayName": "colorPicker",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/colorPicker.json",
+        "position": {
+          "x": -211.27139,
+          "y": -55.64813
+        },
+        "width": 267.16255,
+        "height": 32
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.fullMode": false,
+        "ht.name": "theme",
+        "ht.borderRadius": "3",
+        "ht.borderColor": "#737373",
+        "ht.value": "#60ACFC",
+        "ht.disabled": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8985,
+      "p": {
+        "displayName": "dateTimePicker",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/dateTimePicker.json",
+        "position": {
+          "x": -211.27139,
+          "y": 1.98693
+        },
+        "width": 267.16255,
+        "height": 32
+      },
+      "s": {
+        "interactive": true,
+        "pixelPerfect": false,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.focusBorderColor": "rgb(51,153,255)",
+        "ht.name": "endDate",
+        "ht.borderRadius": "3",
+        "ht.placeHolder": "Apply Date",
+        "ht.padding": "8",
+        "ht.placeholder": "Pick Date",
+        "ht.focusBackground": null,
+        "ht.dateType": "date"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8986,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": 247.88917
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Business Describe",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8987,
+      "p": {
+        "displayName": "textarea",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/textarea.json",
+        "position": {
+          "x": -210.19732,
+          "y": 263.88917
+        },
+        "width": 269.31068,
+        "height": 59.71002
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.padding": "5 8",
+        "ht.value": "web scada",
+        "ht.maxLength": 0,
+        "ht.borderWidth": 1,
+        "ht.background": null,
+        "ht.name": "describe",
+        "ht.borderRadius": "3",
+        "ht.font": "12px arial, sans-serif",
+        "ht.placeholder": "Please Enter"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8988,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -422.71805,
+          "y": 332.43291
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Industry",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8989,
+      "p": {
+        "displayName": "comboBox",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/comboBox.json",
+        "position": {
+          "x": -211.27139,
+          "y": 332.43291
+        },
+        "width": 265.01441,
+        "height": 32
+      },
+      "s": {
+        "interactive": true,
+        "pixelPerfect": false,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "",
+            "value": ""
+          },
+          {
+            "label": "Without Icon Test",
+            "value": "test"
+          },
+          {
+            "label": "Telecom",
+            "icon": "symbols/demo/topology/云.json",
+            "value": "telecom"
+          },
+          {
+            "label": "Traffic",
+            "icon": "symbols/demo/factory/卡车.json",
+            "value": "traffic"
+          },
+          {
+            "label": "Industrial",
+            "icon": "symbols/demo/factory/厂房.json",
+            "value": "industrial"
+          },
+          {
+            "label": "Power",
+            "icon": "symbols/demo/power/接地.json",
+            "value": "power1"
+          },
+          {
+            "label": "Water conservancy",
+            "icon": "symbols/demo/water treatment/水滴.json",
+            "value": "conservancy"
+          },
+          {
+            "label": "Medical treatment",
+            "icon": "symbols/demo/wharf/icon运行.json",
+            "value": "medical"
+          },
+          {
+            "label": "Finance",
+            "icon": "symbols/demo/wharf/表盘.json",
+            "value": "finance"
+          }
+        ],
+        "ht.dropBackground": "rgb(255,235,195)",
+        "ht.placeHolder": "Application industry",
+        "ht.name": "industry",
+        "ht.borderRadius": "3",
+        "ht.value": "power1",
+        "ht.textColor": "rgb(61,61,61)",
+        "ht.background": null,
+        "ht.activeBackground": null,
+        "ht.padding": "8",
+        "ht.placeholder": "Select Industry",
+        "ht.dataset": [
+          {
+            "label": "",
+            "value": ""
+          },
+          {
+            "label": "Without Icon Test",
+            "value": "test"
+          },
+          {
+            "label": "Telecom",
+            "icon": "symbols/demo/topology/云.json",
+            "value": "telecom"
+          },
+          {
+            "label": "Traffic",
+            "icon": "symbols/demo/factory/卡车.json",
+            "value": "traffic"
+          },
+          {
+            "label": "Industrial",
+            "icon": "symbols/demo/factory/厂房.json",
+            "value": "industrial"
+          },
+          {
+            "label": "Power",
+            "icon": "symbols/demo/power/接地.json",
+            "value": "power1"
+          },
+          {
+            "label": "Water conservancy",
+            "icon": "symbols/demo/water treatment/水滴.json",
+            "value": "conservancy"
+          },
+          {
+            "label": "Medical treatment",
+            "icon": "symbols/demo/wharf/icon运行.json",
+            "value": "medical"
+          },
+          {
+            "label": "Finance",
+            "icon": "symbols/demo/wharf/表盘.json",
+            "value": "finance"
+          }
+        ],
+        "ht.dropMaxHeight": 150
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8990,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 8970
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -140.3788,
+          "y": 191.83226
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.disabled": true,
+        "ht.label": "UI Editor",
+        "ht.checked": false,
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}",
+        "ht.group": "productContent",
+        "ht.value": "uieditor",
+        "ht.activeBackground": "rgb(51,153,255)",
+        "ht.inputType": "checkbox"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 8991,
+      "p": {
+        "parent": {
+          "__i": 8970
+        },
+        "position": {
+          "x": -424.43914,
+          "y": 376.43291
+        },
+        "width": 130.14544,
+        "height": 32
+      },
+      "s": {
+        "text": "Industry2",
+        "text.align": "right"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8992,
+      "p": {
+        "displayName": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 62.20923,
+          "y": 366.43291
+        },
+        "width": 100,
+        "height": 100
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.text": "Home",
+        "ht.icon": "./symbols/basic/sunrise.json",
+        "ht.iconWidth": 41,
+        "ht.iconHeight": 40,
+        "ht.disabled": false,
+        "ht.borderRadius": "0",
+        "ht.iconPosition": "top",
+        "ht.borderWidth": 1,
+        "ht.background": "#FEB64D",
+        "ht.onClick": "__ht__function(event, data, view) {location.href = 'http://www.hightopo.com';}",
+        "ht.textColor": "rgb(247,247,247)",
+        "ht.fontSize": 16
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8993,
+      "p": {
+        "displayName": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 62.20923,
+          "y": 466.43291
+        },
+        "width": 100,
+        "height": 100
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.text": "Apply for trial",
+        "ht.icon": "./symbols/basic/david.json",
+        "ht.iconWidth": 50,
+        "ht.iconHeight": 50,
+        "ht.disabled": false,
+        "ht.borderRadius": "0 0 25",
+        "ht.background": "rgb(242,83,75)",
+        "ht.onClick": "__ht__function(event, data, view) {alert('test')}",
+        "ht.iconPosition": "bottom",
+        "ht.fontSize": 16
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8994,
+      "p": {
+        "displayName": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 62.20923,
+          "y": 266.43291
+        },
+        "width": 100,
+        "height": 100
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.text": "Demos",
+        "ht.icon": "./symbols/basic/ht.json",
+        "ht.iconWidth": 38,
+        "ht.iconHeight": 50,
+        "ht.disabled": false,
+        "ht.borderRadius": "0 25 0 0",
+        "ht.onClick": "__ht__function(event, data, view) {location.href = 'http://www.hightopo.com/demos/index.html';}",
+        "ht.fontSize": 16,
+        "ht.background": "rgb(145,115,205)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8995,
+      "p": {
+        "displayName": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": -215.01576,
+          "y": 478.43291
+        },
+        "width": 288.70133,
+        "height": 47.82941
+      },
+      "s": {
+        "interactive": true
+      },
+      "a": {
+        "ht.text": "Submit",
+        "ht.background": "#32D3EB",
+        "ht.onClick": "__ht__function(event, data, view) {var formNode = graphView.dm().getDataByTag('form1');\nconsole.log(ht.vector.getFormData(formNode));}",
+        "ht.borderRadius": "8",
+        "ht.borderWidth": 0,
+        "ht.iconPosition": "left",
+        "ht.icon": "symbols/demo/network/笔记本.json",
+        "ht.iconHeight": 36,
+        "ht.iconWidth": 62,
+        "ht.font": "bold 20px Arial Rounded MT Bold"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 8996,
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8997,
+      "p": {
+        "displayName": "input",
+        "parent": {
+          "__i": 8996
+        },
+        "tag": "email",
+        "image": "symbols/ht/ui/input.json",
+        "position": {
+          "x": -233.78247,
+          "y": -113.28319
+        },
+        "width": 222.14038,
+        "height": 32
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.name": "email",
+        "ht.placeholder": "Enter your email",
+        "ht.borderRadius": "3 0 0 3",
+        "ht.padding": "0 2",
+        "ht.borderColor": null,
+        "ht.focusBorderColor": "rgb(51,153,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8998,
+      "p": {
+        "displayName": "button",
+        "parent": {
+          "__i": 8996
+        },
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": -100.2012,
+          "y": -113.28319
+        },
+        "width": 45.02216,
+        "height": 32
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.borderRadius": "0 3 3 0",
+        "ht.background": "rgb(247,247,247)",
+        "ht.text": "Check",
+        "ht.onClick": "__ht__function(e, data, view) {\nvar val  = view.dm().getDataByTag('email').a('ht.value');\n    var reg =  /^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$/;\n    if (!reg.test(val)){\n    alert('邮箱格式错误');\n    }\nelse {\nconsole.log('email right');\n}\n}",
+        "ht.textColor": "rgb(61,61,61)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8999,
+      "p": {
+        "displayName": "radio-label",
+        "image": "symbols/ht/ui/radio-label.json",
+        "position": {
+          "x": -302.70453,
+          "y": 54.92473
+        }
+      },
+      "s": {
+        "pixelPerfect": false,
+        "interactive": true
+      },
+      "a": {
+        "ht.inputType": "radio",
+        "ht.group": "sex",
+        "ht.value": "male",
+        "ht.label": "Male",
+        "ht.onChange": "__ht__function(value, data, view) {console.log(value)}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 9000,
+      "p": {
+        "displayName": "multipleValueComboBox",
+        "image": "symbols/ht/ui/multipleValueComboBox.json",
+        "position": {
+          "x": -212.61573,
+          "y": 405.55308
+        },
+        "width": 264.47386,
+        "height": 74.24035
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "Without Icon Test",
+            "value": "test"
+          },
+          {
+            "label": "Telecom",
+            "icon": "symbols/demo/topology/云.json",
+            "value": "telecom"
+          },
+          {
+            "label": "Traffic",
+            "icon": "symbols/demo/factory/卡车.json",
+            "value": "traffic"
+          },
+          {
+            "label": "Industrial",
+            "icon": "symbols/demo/factory/厂房.json",
+            "value": "industrial"
+          },
+          {
+            "label": "Power",
+            "icon": "symbols/demo/power/接地.json",
+            "value": "power1"
+          },
+          {
+            "label": "Water conservancy",
+            "icon": "symbols/demo/water treatment/水滴.json",
+            "value": "conservancy"
+          },
+          {
+            "label": "Medical treatment",
+            "icon": "symbols/demo/wharf/icon运行.json",
+            "value": "medical"
+          },
+          {
+            "label": "Finance",
+            "icon": "symbols/demo/wharf/表盘.json",
+            "value": "finance"
+          }
+        ],
+        "ht.value": [
+          "telecom"
+        ],
+        "placeholder": "please select",
+        "ht.placeholder": "please select",
+        "ht.maxSelection": 0,
+        "ht.hideSelected": false,
+        "ht.disabled": false
+      }
+    }
+  ],
+  "modified": "Fri Mar 15 2019 10:30:44 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": -489.51186,
+    "y": -247.22245,
+    "width": 603.72109,
+    "height": 765.65536
+  }
+}

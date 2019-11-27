@@ -1,0 +1,2003 @@
+{
+  "v": "6.1.0",
+  "p": {
+    "background": "rgb(10,20,56)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "width": 1800,
+    "height": 1080,
+    "previewURL": "display-it.html"
+  },
+  "d": [
+    {
+      "c": "ht.Group",
+      "i": 405,
+      "p": {
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 577.36587,
+          "y": 534.21491
+        },
+        "expanded": true
+      },
+      "s": {
+        "label": " ",
+        "group.title.background": "",
+        "group.background": "rgb(14,65,176)",
+        "shape": "rect",
+        "group.title.color": "",
+        "group.type": "rect"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 406,
+      "p": {
+        "displayName": "互联网（二区）",
+        "parent": {
+          "__i": 405
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 577.36586,
+          "y": 589.6459
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.background": "rgb(191,176,143)",
+        "group.title.background": "rgb(17,64,173)",
+        "shape": "rect"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 407,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 313.39762,
+          "y": 298.83238
+        },
+        "width": 313.44559,
+        "height": 439.11939,
+        "expanded": true
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(53,153,219)",
+        "group.background": "rgb(191,176,143)",
+        "shape.border.color": "rgb(255,255,255)",
+        "group.gradient.color": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 408,
+      "p": {
+        "parent": {
+          "__i": 407
+        },
+        "layer": "0",
+        "tag": "mana",
+        "image": "symbols/demo/it/电脑.json",
+        "position": {
+          "x": 137.47245,
+          "y": 298.83238
+        },
+        "width": 66.62775,
+        "height": 106.26161
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "管理终端",
+        "label.font": "14px arial, sans-serif",
+        "body.color": "",
+        "opacity": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 409,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 407
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 311.72563,
+          "y": 299.3094
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "运维管理系统",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 410,
+      "p": {
+        "parent": {
+          "__i": 407
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 483.99754,
+          "y": 308.82889
+        },
+        "width": 77.27827,
+        "height": 86.26859
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 411,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/demo/it/云.json",
+        "position": {
+          "x": 321.92577,
+          "y": 563.52052
+        },
+        "width": -76,
+        "expanded": true
+      },
+      "s": {
+        "label": " ",
+        "group.type": "rect",
+        "group.background": "rgb(191,176,143)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 412,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 158.0185,
+          "y": 492.08155
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "防病毒",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 413,
+      "p": {
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 380.79402,
+          "y": 492.08155
+        },
+        "width": 77.95275,
+        "height": 67.59895
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 414,
+      "p": {
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 483.99754,
+          "y": 492.08155
+        },
+        "width": 77.27827,
+        "height": 62.49233
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 415,
+      "p": {
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 484.33478,
+          "y": 634.95949
+        },
+        "width": 77.95275,
+        "height": 67.59895
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 416,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 268.10367,
+          "y": 492.08155
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "补丁分发",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 417,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 158.0185,
+          "y": 634.95949
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "终端安全管理",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 418,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 268.10367,
+          "y": 634.95949
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "运维管理系统",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 419,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 411
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 379.29575,
+          "y": 634.95949
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "运维管理系统",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 420,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 317.06952,
+          "y": 858.89227
+        },
+        "expanded": true
+      },
+      "s": {
+        "label": "办公二区用户区",
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 421,
+      "p": {
+        "parent": {
+          "__i": 420
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 486.93507,
+          "y": 827.32862
+        },
+        "width": 77.27827,
+        "height": 86.26858
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 422,
+      "p": {
+        "parent": {
+          "__i": 420
+        },
+        "tag": "mana",
+        "image": "symbols/demo/it/电脑.json",
+        "position": {
+          "x": 141.87872,
+          "y": 880.45942
+        },
+        "width": 66.62775,
+        "height": 106.26161
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 423,
+      "p": {
+        "parent": {
+          "__i": 420
+        },
+        "image": "symbols/demo/it/电脑.json",
+        "position": {
+          "x": 266.87696,
+          "y": 880.45942
+        },
+        "width": 66.62775,
+        "height": 106.26161
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 424,
+      "p": {
+        "parent": {
+          "__i": 420
+        },
+        "image": "symbols/demo/it/电脑.json",
+        "position": {
+          "x": 382.23328,
+          "y": 880.45942
+        },
+        "width": 66.62775,
+        "height": 106.26161
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 425,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 829.90187,
+          "y": 399.93576
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 426,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 519.62448
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 427,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 488.71189
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      },
+      "s": {
+        "label": "IPS",
+        "label.color": "rgb(0,0,0)",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 428,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 457.7993
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      },
+      "s": {
+        "label": "APT检测",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 429,
+      "p": {
+        "displayName": "四向",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 650.66151,
+          "y": 284.73411
+        },
+        "width": 69.94874,
+        "height": 65.08349
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 430,
+      "p": {
+        "displayName": "四向",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 278.24332
+        },
+        "width": 69.94874,
+        "height": 65.08349
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 431,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 426.88672
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      },
+      "s": {
+        "label": "防火墙",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 432,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 395.97413
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      },
+      "s": {
+        "label": "路负载均衡",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 433,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 650.66151,
+          "y": 365.06154
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      },
+      "s": {
+        "label": "路由器",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 434,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 523.25735
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 435,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 492.34477
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 436,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 457.7993
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 437,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 426.88672
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 438,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 395.97413
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 439,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 425
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1009.14223,
+          "y": 365.06154
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 440,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 822.31747,
+          "y": 684.28633
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 441,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 440
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 645.79774,
+          "y": 695.42255
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 442,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 440
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 998.8372,
+          "y": 699.22921
+        },
+        "width": 82.86186,
+        "height": 61.82517
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 443,
+      "p": {
+        "parent": {
+          "__i": 440
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 769.27131,
+          "y": 699.22921
+        },
+        "width": 77.27827,
+        "height": 86.26859
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 444,
+      "p": {
+        "parent": {
+          "__i": 440
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 883.79275,
+          "y": 697.06239
+        },
+        "width": 77.27827,
+        "height": 86.26859
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 445,
+      "p": {
+        "parent": {
+          "__i": 440
+        },
+        "position": {
+          "x": 807.91044,
+          "y": 643.06274
+        },
+        "width": 118.97813,
+        "height": 33.70718
+      },
+      "s": {
+        "text": "核心交换区",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.font": "16px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 446,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 918.52194,
+          "y": 764.31494
+        },
+        "width": 52.50202,
+        "height": 59.05608
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 447,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 713.47968,
+          "y": 764.31494
+        },
+        "width": 52.50202,
+        "height": 59.05608
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 448,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "source": {
+          "__i": 446
+        },
+        "target": {
+          "__i": 462
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.source.offset.x": 5,
+        "2d.selectable": false,
+        "edge.3d": true,
+        "edge.type": "ortho",
+        "edge.target.offset.x": 15,
+        "edge.source.offset.y": -3
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 449,
+      "p": {
+        "parent": {
+          "__i": 406
+        },
+        "source": {
+          "__i": 447
+        },
+        "target": {
+          "__i": 462
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho",
+        "edge.target.offset.x": -1,
+        "edge.source.offset.y": -2
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 450,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "position": {
+          "x": 666.81128,
+          "y": 170.26013
+        },
+        "width": 93.45555,
+        "height": 58.54891
+      },
+      "s": {
+        "text": "777",
+        "text.color": "rgb(211,214,17)",
+        "text.font": "32px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 451,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "position": {
+          "x": 517.28838,
+          "y": 167.63639
+        },
+        "width": 207.39231,
+        "height": 65.59358
+      },
+      "s": {
+        "text": "互联网（二区）",
+        "text.font": "24px arial, sans-serif",
+        "text.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 452,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 410
+        },
+        "target": {
+          "__i": 414
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho",
+        "edge.corner.radius": 1,
+        "edge.source.offset.y": -14,
+        "edge.target.offset.y": 4
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 453,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 414
+        },
+        "target": {
+          "__i": 415
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 454,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 426
+        },
+        "target": {
+          "__i": 443
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho",
+        "edge.source.offset.y": -4,
+        "edge.target.offset.y": 11
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 455,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 415
+        },
+        "target": {
+          "__i": 443
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.join": "bevel",
+        "edge.width.absolute": true,
+        "edge.type": "ortho",
+        "edge.ortho": 1,
+        "edge.target.offset.x": 14,
+        "edge.target.offset.y": -19
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 456,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 441
+        },
+        "target": {
+          "__i": 443
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 457,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 444
+        },
+        "target": {
+          "__i": 442
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 458,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 443
+        },
+        "target": {
+          "__i": 444
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 459,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 444
+        },
+        "target": {
+          "__i": 443
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 460,
+      "p": {
+        "parent": {
+          "__i": 405
+        },
+        "source": {
+          "__i": 434
+        },
+        "target": {
+          "__i": 444
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho",
+        "edge.target.offset.y": 14,
+        "edge.source.offset.y": -3
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 461,
+      "p": {
+        "position": {
+          "x": 645.79774,
+          "y": 589.29128
+        },
+        "width": 99.3272,
+        "height": 45.20415
+      },
+      "s": {
+        "text": "上网行为管理",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 462,
+      "p": {
+        "image": "symbols/demo/it/云.json",
+        "position": {
+          "x": 776.53414,
+          "y": 942.64284
+        },
+        "width": 72.74863,
+        "height": 49.06303
+      },
+      "s": {
+        "label": "互联网",
+        "label.font": "32px arial, sans-serif",
+        "label.position": 20,
+        "label.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 463,
+      "p": {
+        "displayName": "主数据中心",
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 1452.46345,
+          "y": 458.10481
+        },
+        "expanded": true
+      },
+      "s": {
+        "label": " ",
+        "group.background": "rgb(14,65,176)",
+        "group.type": "rect"
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 464,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 482
+        },
+        "target": {
+          "__i": 473
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 465,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 482
+        },
+        "target": {
+          "__i": 484
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 466,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 482
+        },
+        "target": {
+          "__i": 489
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 467,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 481
+        },
+        "target": {
+          "__i": 483
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 468,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 483
+        },
+        "target": {
+          "__i": 485
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 469,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 483
+        },
+        "target": {
+          "__i": 487
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 470,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 492
+        },
+        "target": {
+          "__i": 502
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho",
+        "edge.target.anchor.y": 0.6,
+        "edge.target.offset.x": -13
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 471,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 493
+        },
+        "target": {
+          "__i": 502
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1,
+        "edge.type": "ortho"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 472,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 1452.46345,
+          "y": 580.3776
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)",
+        "group.padding": 22
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 473,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1353.66844,
+          "y": 537.97679
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 474,
+      "p": {
+        "displayName": "存储备份区",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 1583.54502,
+          "y": 406.45091
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)",
+        "label": "存储备份区",
+        "group.padding": 22
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 475,
+      "p": {
+        "displayName": "存储",
+        "parent": {
+          "__i": 474
+        },
+        "image": "symbols/demo/it/存储.json",
+        "position": {
+          "x": 1518.098,
+          "y": 404.81107
+        },
+        "width": 49.75704,
+        "height": 101.41139
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 476,
+      "p": {
+        "displayName": "存储",
+        "parent": {
+          "__i": 474
+        },
+        "image": "symbols/demo/it/存储.json",
+        "position": {
+          "x": 1648.99203,
+          "y": 408.09075
+        },
+        "width": 49.75704,
+        "height": 101.41139
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Group",
+      "i": 477,
+      "p": {
+        "displayName": "服务器区",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/basic/group.json",
+        "position": {
+          "x": 1285.67941,
+          "y": 404.09785
+        },
+        "expanded": true
+      },
+      "s": {
+        "group.type": "rect",
+        "label.font": "16px arial, sans-serif",
+        "label.position": 11,
+        "group.background": "rgb(191,176,143)",
+        "label": "服务器区",
+        "group.padding": 22
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 478,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 477
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 1233.77498,
+          "y": 405.71176
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 479,
+      "p": {
+        "displayName": "主机",
+        "parent": {
+          "__i": 477
+        },
+        "image": "symbols/demo/it/主机.json",
+        "position": {
+          "x": 1337.58383,
+          "y": 402.48395
+        },
+        "width": 74.95622,
+        "height": 102.02698
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label.font": "14px arial, sans-serif",
+        "label.background": null,
+        "label.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 480,
+      "p": {
+        "displayName": "双向",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 1353.66844,
+          "y": 491.73193
+        },
+        "width": 76.48901,
+        "height": 60.71564
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "运维管理防病毒设备",
+        "label.position": 9
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 481,
+      "p": {
+        "displayName": "双向",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 1542.97652,
+          "y": 491.73193
+        },
+        "width": 76.48901,
+        "height": 60.71564
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 482,
+      "p": {
+        "displayName": "双向",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 1353.66844,
+          "y": 650.42491
+        },
+        "width": 76.48901,
+        "height": 60.71564
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 483,
+      "p": {
+        "displayName": "双向",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/双向.json",
+        "position": {
+          "x": 1545.30051,
+          "y": 644.5422
+        },
+        "width": 76.48901,
+        "height": 60.71564
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 484,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1210.58271,
+          "y": 645.09698
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "网络审计"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 485,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1694.34419,
+          "y": 653.3118
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "入侵检测"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 486,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1552.40817,
+          "y": 778.37216
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 487,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1552.40817,
+          "y": 745.29277
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 488,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1346.56078,
+          "y": 776.20536
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform",
+        "label": "VPN"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 489,
+      "p": {
+        "displayName": "服务器组件",
+        "parent": {
+          "__i": 472
+        },
+        "image": "symbols/demo/it/服务器组件.json",
+        "position": {
+          "x": 1346.56078,
+          "y": 745.29277
+        },
+        "width": 90.70432,
+        "height": 61.82517
+      },
+      "s": {
+        "image.stretch": "uniform"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 490,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "position": {
+          "x": 1301.94475,
+          "y": 115.24795
+        },
+        "width": 118.97813,
+        "height": 65.59358
+      },
+      "s": {
+        "text": "主数据中心",
+        "text.font": "24px arial, sans-serif",
+        "text.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 491,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "position": {
+          "x": 1467.14523,
+          "y": 115.24795
+        },
+        "width": 118.97813,
+        "height": 65.59358
+      },
+      "s": {
+        "text": "50",
+        "text.font": "32px arial, sans-serif",
+        "text.color": "rgb(211,214,17)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 492,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 1256.59258,
+          "y": 804.23042
+        },
+        "width": 52.50202,
+        "height": 59.05608
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 493,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "image": "symbols/demo/it/四向.json",
+        "position": {
+          "x": 1456.72462,
+          "y": 803.97235
+        },
+        "width": 52.50202,
+        "height": 59.05608
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 494,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 488
+        },
+        "target": {
+          "__i": 492
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 495,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 486
+        },
+        "target": {
+          "__i": 493
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 496,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 473
+        },
+        "target": {
+          "__i": 482
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 497,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 484
+        },
+        "target": {
+          "__i": 482
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 498,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 482
+        },
+        "target": {
+          "__i": 489
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 499,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 481
+        },
+        "target": {
+          "__i": 483
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 500,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 483
+        },
+        "target": {
+          "__i": 487
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Edge",
+      "i": 501,
+      "p": {
+        "parent": {
+          "__i": 463
+        },
+        "source": {
+          "__i": 483
+        },
+        "target": {
+          "__i": 485
+        }
+      },
+      "s": {
+        "edge.color": "rgb(0,183,250)",
+        "edge.width": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 502,
+      "p": {
+        "image": "symbols/demo/it/云.json",
+        "position": {
+          "x": 1440.75837,
+          "y": 1011.1323
+        },
+        "width": 74.93251,
+        "height": 50.53588
+      },
+      "s": {
+        "label": "互联网",
+        "label.font": "32px arial, sans-serif",
+        "label.color": "rgb(255,255,255)",
+        "label.position": 20
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 503,
+      "p": {
+        "tag": "warn",
+        "position": {
+          "x": 645.80377,
+          "y": 693.09146
+        },
+        "width": 74,
+        "height": 74
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgb(255,0,0)",
+        "shape.border.color": "#979797",
+        "shape.gradient.color": "rgba(255,255,255,0.5)",
+        "shape.gradient": "radial.center",
+        "select.color": "rgb(26,189,156)",
+        "2d.visible": false
+      }
+    }
+  ]
+}

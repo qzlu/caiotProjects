@@ -1,0 +1,108 @@
+{
+  "modified": "Wed Nov 07 2018 15:25:22 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "title",
+      "valueType": "String"
+    },
+    {
+      "attr": "header",
+      "valueType": "String"
+    },
+    {
+      "attr": "state",
+      "valueType": "Boolean",
+      "name": "开/关"
+    },
+    {
+      "attr": "left",
+      "valueType": "String",
+      "name": "左侧代表值"
+    },
+    {
+      "attr": "right",
+      "valueType": "String",
+      "name": "右侧代表值"
+    }
+  ],
+  "width": 80,
+  "height": 100,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "#000055",
+      "borderColor": "#979797",
+      "rect": [
+        0,
+        0,
+        80,
+        100
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(247,247,247)",
+      "borderColor": "#979797",
+      "rect": [
+        5,
+        16.17898,
+        70,
+        80
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@title",
+        "value": "Switch: State 1"
+      },
+      "align": "center",
+      "color": "rgb(247,247,247)",
+      "font": "10px Arial",
+      "rect": [
+        -0.59963,
+        2.54835,
+        75.59963,
+        11.46758
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@header",
+        "value": "Switch"
+      },
+      "align": "center",
+      "font": "8px arial, sans-serif",
+      "rect": [
+        11.79,
+        25.00292,
+        22.97016,
+        11.38344
+      ]
+    },
+    {
+      "type": "components/monitor/开关.json",
+      "displayName": "开关",
+      "rect": [
+        14.34016,
+        43.8286,
+        50,
+        40
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\ndata.a('state', !data.a('state'));\n}",
+      "state": {
+        "func": "attr@state",
+        "value": true
+      },
+      "left": {
+        "func": "attr@left",
+        "value": "0v"
+      },
+      "right": {
+        "func": "attr@right",
+        "value": "3.3v"
+      }
+    }
+  ]
+}

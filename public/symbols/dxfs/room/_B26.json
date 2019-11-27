@@ -1,0 +1,131 @@
+{
+  "width": 72,
+  "height": 22.69924,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        72,
+        0,
+        72,
+        5.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24AC1"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        3.62397,
+        72,
+        3.62397
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24AC2"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        1.87603,
+        72,
+        1.87603
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24AC3"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        0,
+        0,
+        5.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24AC4"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        8.23286,
+        10.69924,
+        4.76876,
+        16.69924,
+        8.23286,
+        22.69924,
+        15.16107,
+        22.69924,
+        18.62517,
+        16.69924,
+        15.16107,
+        10.69924
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24AD0"
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0,
+  "anchorY": 0.2423,
+  "bound": {
+    "xMin": 0,
+    "yMin": -17.19924,
+    "xMax": 72,
+    "yMax": 5.5,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

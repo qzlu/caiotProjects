@@ -19,7 +19,7 @@
                 <el-form-item label="读取个数" prop="ReadCount">
                     <el-input v-model="addInfo.ReadCount"></el-input>
                 </el-form-item>
-                <el-form-item label="是否只读" prop="PrioRead">
+                <el-form-item label="是否优先读" prop="PrioRead">
                     <el-select v-model="addInfo.PrioRead">
                         <el-option label="否" :value="false"></el-option>
                         <el-option label="是" :value="true"></el-option>

@@ -1,0 +1,363 @@
+{
+  "v": "6.2.5",
+  "p": {
+    "background": "rgb(124,145,155)",
+    "layers": [
+      {
+        "name": "background",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "circles",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "button",
+        "visible": true,
+        "selectable": true,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "text",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      }
+    ],
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "gridBlockSize": 50,
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "width": 0,
+    "height": 0,
+    "previewURL": "display-circleprogressbar.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 22442,
+      "p": {
+        "layer": "background",
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 1000,
+        "height": 600
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#444",
+        "shape.border.color": "#979797",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22443,
+      "p": {
+        "displayName": "circleProgressBarSymbol",
+        "layer": "circles",
+        "tag": "p1",
+        "image": "symbols/basic/circleProgressBar.json",
+        "position": {
+          "x": 325,
+          "y": 250
+        },
+        "width": 150,
+        "height": 150
+      },
+      "a": {
+        "linearOuter": [
+          "#EF3B36",
+          "#FFF"
+        ],
+        "showOrigin": false,
+        "progressPercentage": 0.32,
+        "isAnimate": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22444,
+      "p": {
+        "displayName": "circleProgressBarSymbol",
+        "layer": "circles",
+        "tag": "p2",
+        "image": "symbols/basic/circleProgressBar.json",
+        "position": {
+          "x": 500,
+          "y": 250
+        },
+        "width": 150,
+        "height": 150
+      },
+      "a": {
+        "linearOuter": [
+          "#45a247",
+          "#283c86"
+        ],
+        "showOrigin": true,
+        "progressPercentage": 0.48,
+        "isAnimate": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22445,
+      "p": {
+        "displayName": "circleProgressBarSymbol",
+        "layer": "circles",
+        "tag": "p3",
+        "image": "symbols/basic/circleProgressBar.json",
+        "position": {
+          "x": 675,
+          "y": 250
+        },
+        "width": 150,
+        "height": 150
+      },
+      "a": {
+        "linearOuter": [
+          "#F09819",
+          "#EDDE5D"
+        ],
+        "progressLineCap": "round",
+        "progressPercentage": 0.72,
+        "isAnimate": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22446,
+      "p": {
+        "displayName": "circleProgressBarSymbol",
+        "layer": "circles",
+        "tag": "p4",
+        "image": "symbols/basic/circleProgressBar.json",
+        "position": {
+          "x": 850,
+          "y": 250
+        },
+        "width": 150,
+        "height": 150
+      },
+      "a": {
+        "linearOuter": [
+          "#8A2387",
+          "#E94057",
+          "#F27121"
+        ],
+        "showOrigin": true,
+        "progressLineCap": "round",
+        "progressPercentage": 0.8,
+        "isAnimate": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22447,
+      "p": {
+        "displayName": "circleProgressBarSymbol",
+        "layer": "circles",
+        "tag": "p5",
+        "image": "symbols/basic/circleProgressBar.json",
+        "position": {
+          "x": 150,
+          "y": 250
+        },
+        "width": 150,
+        "height": 150
+      },
+      "a": {
+        "linearOuter": [
+          "#3f2b96",
+          "#a8c0ff"
+        ],
+        "showOrigin": false,
+        "progressPercentage": 0.16,
+        "isAnimate": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22448,
+      "p": {
+        "displayName": "button",
+        "layer": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 375,
+          "y": 475
+        },
+        "width": 150,
+        "height": 50
+      },
+      "s": {
+        "interactive": true,
+        "onDown": "__ht__function(event, data, view) {\nvar dataModel = data.getDataModel();\r\nvar circles = dataModel.getAttr('circles');\r\n// * 重置数据\r\nfunction reset(circles) {\r\n    var isAnimateDone = circles.every(function(item) {\r\n        return !item.data.getAnimation();\r\n    });\r\n    if (!isAnimateDone) return;\r\n    circles.forEach(function(item) {\r\n        item.data.setAttr('progressPercentage', 0);\r\n    });\r\n}\r\nreset(circles);\n}"
+      },
+      "a": {
+        "ht.borderWidth": 4,
+        "ht.borderColor": "#1d7db1",
+        "ht.background": "#444444",
+        "ht.text": "Reset",
+        "ht.textColor": "#1d7db1",
+        "ht.font": "32px arial, sans-serif",
+        "ht.onClick": "__ht__function(e, data, view) {\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22449,
+      "p": {
+        "displayName": "button",
+        "layer": "button",
+        "image": "symbols/ht/ui/button.json",
+        "position": {
+          "x": 625,
+          "y": 475
+        },
+        "width": 150,
+        "height": 50
+      },
+      "s": {
+        "interactive": true,
+        "onDown": "__ht__function(event, data, view) {\nvar dataModel = data.getDataModel();\r\nvar circles = dataModel.getAttr('circles')\r\n// * 增加数值\r\nfunction increasePer(data, targetPer, isAnimate) {\r\n    if (isAnimate) {\r\n        data.setAnimation({\r\n            show: {\r\n                from: 0,\r\n                to: targetPer,\r\n                easing: 'Circ.easeInOut',\r\n                onUpdate: function(v) {\r\n                    v = parseFloat(v).toFixed(2);\r\n                    this.setAttr('progressPercentage', v);\r\n                }\r\n            },\r\n            start: ['show']\r\n        });\r\n    } else {\r\n        data.setAttr('progressPercentage', targetPer);\r\n    }\r\n}\r\n// * 执行动画\r\nfunction play(circles) {\r\n    circles.forEach(function(item) {\r\n        increasePer(item.data, item.targetPer, item.isAnimate);\r\n    });\r\n    dataModel.enableAnimation();\r\n}\r\nplay(circles);\n}"
+      },
+      "a": {
+        "ht.borderWidth": 4,
+        "ht.borderColor": "#1d7db1",
+        "ht.background": "#444444",
+        "ht.text": "Play",
+        "ht.textColor": "#1d7db1",
+        "ht.font": "32px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22450,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 150,
+          "y": 375
+        },
+        "width": 150
+      },
+      "s": {
+        "text": "无动画",
+        "text.font": "bold 20px arial, sans-serif",
+        "text.align": "center",
+        "text.color": "#aaa"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22451,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 500,
+          "y": 375
+        },
+        "width": 150
+      },
+      "s": {
+        "text": "原始值",
+        "text.font": "bold 20px arial, sans-serif",
+        "text.align": "center",
+        "text.color": "#aaa"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22452,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 675,
+          "y": 375
+        },
+        "width": 150
+      },
+      "s": {
+        "text": "圆形线帽",
+        "text.font": "bold 20px arial, sans-serif",
+        "text.align": "center",
+        "text.color": "#aaa"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22453,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 850,
+          "y": 375
+        },
+        "width": 150
+      },
+      "s": {
+        "text": "原始值 + 圆形线帽",
+        "text.font": "bold 20px arial, sans-serif",
+        "text.align": "center",
+        "text.color": "#aaa"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22454,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 500,
+          "y": 75
+        },
+        "width": 700
+      },
+      "s": {
+        "text": "HT 带渐变色的圆形进度条",
+        "text.align": "center",
+        "text.color": "#FFF",
+        "text.font": "bold 32px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 22455,
+      "p": {
+        "layer": "text",
+        "position": {
+          "x": 325,
+          "y": 375
+        },
+        "width": 150
+      },
+      "s": {
+        "text": "有动画",
+        "text.font": "bold 20px arial, sans-serif",
+        "text.align": "center",
+        "text.color": "#aaa"
+      }
+    }
+  ],
+  "contentRect": {
+    "x": 0,
+    "y": 0,
+    "width": 1000,
+    "height": 600
+  }
+}

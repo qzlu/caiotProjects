@@ -82,7 +82,7 @@
                           <template v-slot="{node,data}">
                             <div style="width:100%;text-align:left">
                               <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span><!-- www.szqianren.com -->
-                              <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`http://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
+                              <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`https://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
                             </div>
                           </template>
                         </el-tree>

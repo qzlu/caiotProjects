@@ -1,0 +1,12 @@
+{
+  "width": 100,
+  "height": 100,
+  "func": "__ht__function(g, rect, comp, data, view) {\nvar x = rect.x;\nvar y = rect.y;\nvar width = rect.width;\nvar height = rect.height;\n\nvar background = comp.getColor('【 O(∩_∩)O 中文 % 路径 % 测试 ^_^ 】');\nvar image = {\n  \"width\": 44,\n  \"height\": 44,\n  \"fitSize\": false,\n  \"comps\": [\n    {\n      \"type\": \"rect\",\n      \"background\": \"rgb(56,55,59)\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        2,\n        3.5735826309076746,\n        40,\n        22.78088667200158\n      ]\n    },\n    {\n      \"type\": \"roundRect\",\n      \"background\": \"#D8D8D8\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        2,\n        27.266931752088365,\n        40,\n        4.787192324244765\n      ]\n    },\n    {\n      \"type\": \"rect\",\n      \"background\": \"#D8D8D8\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        2,\n        27.13046766318387,\n        40,\n        2\n      ]\n    },\n    {\n      \"type\": \"oval\",\n      \"background\": \"rgb(41,42,43)\",\n      \"borderWidth\": 0.4,\n      \"borderColor\": \"rgb(255,255,255)\",\n      \"rect\": [\n        20.89195052453263,\n        28.564819458755718,\n        2,\n        2\n      ]\n    },\n    {\n      \"type\": \"roundRect\",\n      \"background\": \"rgb(56,55,59)\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        2,\n        2.035432165958759,\n        40,\n        4.787192324244765\n      ]\n    },\n    {\n      \"type\": \"rect\",\n      \"background\": background,\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        3.570528421333023,\n        3.8586607643464585,\n        36.69127781838367,\n        20.21051751647241\n      ]\n    },\n    {\n      \"type\": \"trapezoid\",\n      \"background\": \"#D8D8D8\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        17.69834846793005,\n        32.98010784473808,\n        8.64307296452472,\n        4.0896757066559655\n      ]\n    },\n    {\n      \"type\": \"roundRect\",\n      \"background\": \"rgb(56,55,59)\",\n      \"borderColor\": \"#979797\",\n      \"rect\": [\n        12.581784363630653,\n        37.005666286504606,\n        18.923208753006556,\n        2.3545006282542715\n      ]\n    }\n  ]\n};\n\nht.Default.drawImage(g, image, x, y, width, height, data, view);\n}",
+  "properties": {
+    "【 O(∩_∩)O 中文 % 路径 % 测试 ^_^ 】": {
+      "valueType": "Color",
+      "defaultValue": "rgb(242,246,247)",
+      "name": "屏幕背景"
+    }
+  }
+}

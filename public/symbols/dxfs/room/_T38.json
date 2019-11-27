@@ -1,0 +1,1716 @@
+{
+  "width": 758.38767,
+  "height": 224.33571,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        1.05,
+        621.6914,
+        1.05
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB50"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        21.45,
+        621.6914,
+        21.45
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB51"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        39.19286,
+        621.6914,
+        39.19286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB52"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        56.93571,
+        621.6914,
+        56.93571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB53"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        85.47857,
+        621.6914,
+        85.47857
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB54"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        114.02143,
+        621.6914,
+        114.02143
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB55"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        142.56429,
+        621.6914,
+        142.56429
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB56"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        160.30714,
+        621.6914,
+        160.30714
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB57"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        178.05,
+        621.6914,
+        178.05
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB58"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        195.79286,
+        621.6914,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB59"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        224.33571,
+        621.6914,
+        224.33571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5A"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        1.05,
+        0,
+        224.33571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5B"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        45.17176,
+        21.45,
+        45.17176,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5C"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        105.00066,
+        21.45,
+        105.00066,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5D"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        189.12956,
+        21.45,
+        189.12956,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5E"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        270.94417,
+        21.45,
+        270.94417,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB5F"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        343.88735,
+        21.45,
+        343.88735,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB60"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        454.63054,
+        21.45,
+        454.63054,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB61"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        498.75877,
+        21.45,
+        498.75877,
+        195.79286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB62"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        558.58767,
+        21.45,
+        558.58767,
+        224.33571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB63"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        621.6914,
+        1.05,
+        621.6914,
+        224.33571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB64"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#808080",
+      "points": [
+        0,
+        1.05,
+        0,
+        1.05
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AB65"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAF5",
+      "color": "#000000",
+      "text": "WINDOW SCHEDULE",
+      "rotation": 6.28319,
+      "rect": [
+        310.8457,
+        12.1875,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "11.25px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAF6",
+      "color": "#000000",
+      "text": "SYM.",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAF7",
+      "color": "#000000",
+      "text": "WIDTH",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAF8",
+      "color": "#000000",
+      "text": "HEIGHT",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAF9",
+      "color": "#000000",
+      "text": "STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFA",
+      "color": "#000000",
+      "text": "REF#",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFB",
+      "color": "#000000",
+      "text": "MANUFACTURER",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFC",
+      "color": "#000000",
+      "text": "QTY",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFD",
+      "color": "#000000",
+      "text": "COST",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFE",
+      "color": "#000000",
+      "text": "TOTAL",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AAFF",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB00",
+      "color": "#000000",
+      "text": "2'-10\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB01",
+      "color": "#000000",
+      "text": "4'-0 1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB02",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB03",
+      "color": "#000000",
+      "text": "TW28310",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB04",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB05",
+      "color": "#000000",
+      "text": "3",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB06",
+      "color": "#000000",
+      "text": "169.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB07",
+      "color": "#000000",
+      "text": "$507.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        48.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0A",
+      "color": "#000000",
+      "text": "2",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0B",
+      "color": "#000000",
+      "text": "1'-9\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0C",
+      "color": "#000000",
+      "text": "4'-0 1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0D",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0E",
+      "color": "#000000",
+      "text": "CN14",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB0F",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB10",
+      "color": "#000000",
+      "text": "20",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB11",
+      "color": "#000000",
+      "text": "159.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB12",
+      "color": "#000000",
+      "text": "$3180.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        71.88214,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB15",
+      "color": "#000000",
+      "text": "3",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB16",
+      "color": "#000000",
+      "text": "6'-0\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB17",
+      "color": "#000000",
+      "text": "4'-0 1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB18",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB19",
+      "color": "#000000",
+      "text": "C34",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB1A",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB1B",
+      "color": "#000000",
+      "text": "7",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB1C",
+      "color": "#000000",
+      "text": "249.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB1D",
+      "color": "#000000",
+      "text": "$1743.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        100.425,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB20",
+      "color": "#000000",
+      "text": "4",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB21",
+      "color": "#000000",
+      "text": "2'-4\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB22",
+      "color": "#000000",
+      "text": "2'-0\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB23",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB24",
+      "color": "#000000",
+      "text": "CW12",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB25",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB26",
+      "color": "#000000",
+      "text": "7",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB27",
+      "color": "#000000",
+      "text": "159.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB28",
+      "color": "#000000",
+      "text": "$1113.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        128.96786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB2B",
+      "color": "#000000",
+      "text": "5",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB2C",
+      "color": "#000000",
+      "text": "1'-0\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB2D",
+      "color": "#000000",
+      "text": "4'-5 1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB2E",
+      "color": "#000000",
+      "text": "TILT-WASH",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB2F",
+      "color": "#000000",
+      "text": "DHP1041",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB30",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB31",
+      "color": "#000000",
+      "text": "2",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB32",
+      "color": "#000000",
+      "text": "109.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB33",
+      "color": "#000000",
+      "text": "$218.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        152.11071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB36",
+      "color": "#000000",
+      "text": "6",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB37",
+      "color": "#000000",
+      "text": "6'-0\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB38",
+      "color": "#000000",
+      "text": "3'-1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB39",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB3A",
+      "color": "#000000",
+      "text": "C33",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB3B",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB3C",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB3D",
+      "color": "#000000",
+      "text": "229.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB3E",
+      "color": "#000000",
+      "text": "$229.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        169.85357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB41",
+      "color": "#000000",
+      "text": "7",
+      "rotation": 6.28319,
+      "rect": [
+        22.58588,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB42",
+      "color": "#000000",
+      "text": "4'-9\"",
+      "rotation": 6.28319,
+      "rect": [
+        75.08621,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB43",
+      "color": "#000000",
+      "text": "4'-0 1/2\"",
+      "rotation": 6.28319,
+      "rect": [
+        147.06511,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB44",
+      "color": "#000000",
+      "text": "CASEMENT",
+      "rotation": 6.28319,
+      "rect": [
+        230.03686,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB45",
+      "color": "#000000",
+      "text": "W24",
+      "rotation": 6.28319,
+      "rect": [
+        307.41576,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB46",
+      "color": "#000000",
+      "text": "ANDERSEN",
+      "rotation": 6.28319,
+      "rect": [
+        399.25895,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB47",
+      "color": "#000000",
+      "text": "2",
+      "rotation": 6.28319,
+      "rect": [
+        476.69465,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB48",
+      "color": "#000000",
+      "text": "189.00",
+      "rotation": 6.28319,
+      "rect": [
+        528.67322,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB49",
+      "color": "#000000",
+      "text": "$378.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        187.59643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB4C",
+      "color": "#000000",
+      "text": "ESTIMATED COST OF WINDOWS",
+      "rotation": 6.28319,
+      "rect": [
+        555.88767,
+        210.73929,
+        0,
+        0
+      ],
+      "align": "right",
+      "vAlign": "bottom",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AB4D",
+      "color": "#000000",
+      "text": "$7368.00",
+      "rotation": 6.28319,
+      "rect": [
+        590.13954,
+        210.73929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    }
+  ],
+  "scale": 45,
+  "anchorX": 0,
+  "anchorY": 0.00468,
+  "bound": {
+    "xMin": 0,
+    "yMin": -4.9619,
+    "xMax": 16.85306,
+    "yMax": 0.02333,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 1
+}

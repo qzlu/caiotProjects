@@ -1,0 +1,191 @@
+{
+  "background": "rgb(196,190,190)",
+  "width": 64,
+  "height": 64,
+  "fitSize": true,
+  "visible": {
+    "func": "__ht__function(data, view) {\nif(view.getZoom && view.getZoom() < 0.2) return false;\nreturn true;\n}",
+    "value": true
+  },
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderColor": "rgb(26,127,201)",
+      "closePath": true,
+      "points": [
+        11.44954,
+        0,
+        0,
+        9.84616,
+        0,
+        64,
+        54.31193,
+        64,
+        64,
+        54.63414,
+        64,
+        0
+      ]
+    },
+    {
+      "type": "components/progressBar/progressBar.json",
+      "displayName": "progressBar",
+      "rotation": 4.71239,
+      "rect": [
+        -20.76197,
+        26.82573,
+        58.65798,
+        8.65027
+      ],
+      "background": "rgb(0,0,0)",
+      "foreColor": "rgb(34,89,143)",
+      "valueVisible": false
+    },
+    {
+      "type": "text",
+      "text": "1.20M",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "rect": [
+        22.56095,
+        10.30599,
+        35.23942,
+        19.00058
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        54.77866,
+        9.4684,
+        54.77866
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        43.1212,
+        9.4684,
+        43.1212
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        31.46374,
+        12.89604,
+        31.46374
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        25.63501,
+        9.4684,
+        25.63501
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        13.97755,
+        9.4684,
+        13.97755
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        19.80628,
+        9.4684,
+        19.80628
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        8.14882,
+        9.4684,
+        8.14882
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        2.32009,
+        12.92735,
+        2.32009
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        60.60739,
+        9.4684,
+        60.60739
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        48.94993,
+        9.4684,
+        48.94993
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        3.78501,
+        37.29247,
+        9.4684,
+        37.29247
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 1,
+      "borderColor": "rgb(51,153,255)",
+      "rect": [
+        16.49729,
+        16.91408,
+        6.06366,
+        5.78441
+      ]
+    }
+  ]
+}

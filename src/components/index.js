@@ -8,7 +8,8 @@ const bMap = () => import('./baiduMap/index.vue')
 const lineChart = () => import('./lineChart//index.vue')
 const treeTransfer = () => import('./tree-Transfer/index')  //树形穿梭框
 const pieChart = () => import('./pieChart')
-import barChart from './barChart'
+const barChart = () => import('./barChart')
+const AirConditioning = () => import('./airConditioning')
 export{
     zwCard,
     zwPagination,
@@ -19,5 +20,6 @@ export{
     lineChart,
     treeTransfer,
     pieChart,
-    barChart
+    barChart,
+    AirConditioning
 }

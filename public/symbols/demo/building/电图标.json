@@ -1,0 +1,29 @@
+{
+  "modified": "Mon Nov 26 2018 13:26:42 GMT+0800 (中国标准时间)",
+  "width": 60,
+  "height": 60,
+  "comps": [
+    {
+      "type": "oval",
+      "borderWidth": 3.5,
+      "borderColor": "rgb(44,177,126)",
+      "rect": [
+        4.59016,
+        4.59016,
+        50.81968,
+        50.81968
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/电.json",
+      "displayName": "电",
+      "rect": [
+        14.25379,
+        17.30829,
+        30.95054,
+        30.95054
+      ]
+    }
+  ]
+}

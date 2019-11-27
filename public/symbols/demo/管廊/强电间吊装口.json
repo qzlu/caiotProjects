@@ -1,0 +1,72 @@
+{
+  "width": 80,
+  "height": 80,
+  "fitSize": true,
+  "visible": {
+    "func": "__ht__function(data, view) {\nif(view.getZoom && view.getZoom() < 0.2) return false;\nreturn true;\n}",
+    "value": true
+  },
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 2,
+      "borderColor": "rgb(138,138,138)",
+      "rotation": 3.14159,
+      "closePath": true,
+      "points": [
+        2.5,
+        77.5,
+        77.5,
+        77.5,
+        77.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        77.5
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(138,138,138)",
+      "points": [
+        77.5001,
+        2.5001,
+        18.22826,
+        17.1606,
+        2.5001,
+        77.5001
+      ]
+    },
+    {
+      "type": "text",
+      "text": "弱电间吊装口",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "11px arial, sans-serif",
+      "rect": [
+        -2.50164,
+        15.13195,
+        85.00328,
+        49.73629
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(255,255,255,0.17)",
+      "borderColor": "rgb(124,145,155)",
+      "points": [
+        3.5001,
+        3.55247,
+        69.9967,
+        3.55247,
+        14.2175,
+        15.30964,
+        3.5001,
+        69.10417
+      ]
+    }
+  ]
+}

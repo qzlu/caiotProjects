@@ -1,0 +1,110 @@
+{
+  "v": "6.0.7",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": false
+  },
+  "a": {},
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 1210,
+      "p": {
+        "image": "symbols/basic/dashshape.json",
+        "position": {
+          "x": 139.91951,
+          "y": 280.97521
+        },
+        "scale": {
+          "x": -1,
+          "y": -1
+        },
+        "width": 220,
+        "height": 150
+      },
+      "s": {
+        "flip.y": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1211,
+      "p": {
+        "image": "symbols/basic/dashshape.json",
+        "position": {
+          "x": 143.10976,
+          "y": 96.08678
+        },
+        "width": 220,
+        "height": 150
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1212,
+      "p": {
+        "image": "symbols/basic/dashshape.json",
+        "position": {
+          "x": 395.75464,
+          "y": 94.60932
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 220,
+        "height": 150
+      },
+      "s": {
+        "flip.x": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1213,
+      "p": {
+        "image": "symbols/basic/dashshape.json",
+        "position": {
+          "x": 391.42304,
+          "y": 284.0099
+        },
+        "scale": {
+          "x": 1,
+          "y": -1
+        },
+        "width": 220,
+        "height": 150
+      },
+      "s": {
+        "flip.x": true,
+        "flip.y": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1221,
+      "p": {
+        "image": "symbols/basic/sunrise.json",
+        "position": {
+          "x": 424.42304,
+          "y": -117.30615
+        },
+        "width": 220,
+        "height": 150
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1222,
+      "p": {
+        "image": "symbols/basic/group-sunrise.json",
+        "position": {
+          "x": 148.42304,
+          "y": -117.54464
+        },
+        "width": 240,
+        "height": 160
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "v": "6.2.6",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "previewURL": "display-table-tooltip.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 6415,
+      "p": {
+        "displayName": "table",
+        "tag": "table",
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 698.60758,
+          "y": 211.95702
+        },
+        "width": 902.35509,
+        "height": 117.98714
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.showHead": false,
+        "ht.columnLineWidth": 0,
+        "ht.columnLineColor": "rgb(240,38,38)",
+        "ht.rowLineWidth": 0,
+        "ht.hoverBackground": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 6416,
+      "p": {
+        "displayName": "窗口",
+        "image": "symbols/demo/factory/窗口.json",
+        "position": {
+          "x": 591.28875,
+          "y": 66.78468
+        },
+        "anchor": {
+          "x": 0.27028,
+          "y": 0.95108
+        }
+      },
+      "s": {
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 6417,
+      "p": {
+        "position": {
+          "x": 698.60758,
+          "y": 127.96345
+        },
+        "width": 902.35509
+      },
+      "s": {
+        "text": "预览可以看到动态效果",
+        "text.font": "18px Arial"
+      }
+    }
+  ],
+  "contentRect": {
+    "x": 247.43003,
+    "y": 102.96345,
+    "width": 902.35509,
+    "height": 167.98714
+  }
+}

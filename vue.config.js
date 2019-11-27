@@ -17,7 +17,7 @@ module.exports = {
             }),
             /* new BundleAnalyzerPlugin(), */
             new CompressionPlugin({
-                test: /\.(js|css)/
+                test: /\.(js|css)$/
             })
         ],
         externals:{

@@ -1,0 +1,41 @@
+{
+  "modified": "Tue Nov 26 2019 16:40:24 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "DeviceName",
+      "valueType": "String",
+      "defaultValue": "柜"
+    }
+  ],
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgba(252,252,252,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        24.39241,
+        40,
+        50,
+        20
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@DeviceName",
+        "value": "文本"
+      },
+      "align": "center",
+      "color": "rgb(124,145,155)",
+      "rect": [
+        24.82278,
+        41,
+        50,
+        19
+      ]
+    }
+  ]
+}

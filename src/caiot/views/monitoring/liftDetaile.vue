@@ -216,8 +216,8 @@ export default {
                 /********** 初始化音视频流 **********/
                 this.localStream =  AgoraRTC.createStream({
                     streamID: uid,
-                    audio: true, 
-                    video: false,
+                    audio: true,
+                    video: true,
                     screen: false
                 });
             }).catch((err) => {

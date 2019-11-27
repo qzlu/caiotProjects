@@ -1,0 +1,114 @@
+{
+  "width": 34,
+  "height": 34,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        32.5,
+        0,
+        34,
+        0
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C27B"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        34,
+        0,
+        34,
+        34
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C27C"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        32.5,
+        33.96874,
+        32.5,
+        0
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C27D"
+    },
+    {
+      "type": "arc",
+      "cadType": "CIRCLE",
+      "handle": "2C284",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        11.54217,
+        6.67853,
+        13.85641,
+        13.85641
+      ],
+      "arcFrom": 0,
+      "arcTo": 6.28319,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "2C27A",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        0,
+        -34,
+        68,
+        68
+      ],
+      "arcFrom": 1.5708,
+      "arcTo": 3.14159,
+      "arcClose": false
+    }
+  ],
+  "scale": 1,
+  "anchorX": 1,
+  "anchorY": 0,
+  "bound": {
+    "xMin": -34,
+    "yMin": -34,
+    "xMax": 0,
+    "yMax": 0,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

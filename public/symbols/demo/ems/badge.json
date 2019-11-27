@@ -1,0 +1,34 @@
+{
+  "width": 15,
+  "height": 15,
+  "comps": [
+    {
+      "type": "oval",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar status = data.a('warnLevel') || 1;\nswitch (status) {\n\tcase 1:\n\t\treturn 'rgb(77,255,0)';\n\tcase 2:\n\t\treturn '#F8E81C';\n\tcase 3:\n\t\treturn '#F6A623';\n\tcase 4:\n\t\treturn '#D0011B';\n}\n}",
+        "value": "#F6A623"
+      },
+      "borderColor": "#979797",
+      "rect": [
+        0,
+        0,
+        15,
+        15
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.75,
+      "scaleY": 0.75,
+      "rect": [
+        -2.5,
+        -2.5,
+        20,
+        20
+      ]
+    }
+  ]
+}

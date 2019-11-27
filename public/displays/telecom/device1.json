@@ -1,0 +1,1255 @@
+{
+  "v": "6.2.0",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "previewURL": "display-ems.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2142,
+      "p": {
+        "position": {
+          "x": 512,
+          "y": 70
+        },
+        "width": 1024,
+        "height": 140
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(38,38,38)",
+        "shape.border.color": "#979797",
+        "shape.gradient": "radial.north",
+        "shape.gradient.color": "rgb(105,96,76)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2143,
+      "p": {
+        "position": {
+          "x": 511.79291,
+          "y": 67.45014
+        },
+        "width": 998.16287,
+        "height": 116.39376
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(0,0,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "linear.west",
+        "shape.gradient.color": "rgb(71,66,52)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2144,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 840.2379,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2145,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 828.96584,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2146,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 817.69377,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2147,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 806.4217,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2148,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 795.14963,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2149,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 783.87756,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2150,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 772.6055,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2151,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 761.33343,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2152,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/y.json",
+        "position": {
+          "x": 840.2379,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2153,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/y.json",
+        "position": {
+          "x": 828.96584,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2154,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/y.json",
+        "position": {
+          "x": 817.69377,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2155,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/y.json",
+        "position": {
+          "x": 806.4217,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2156,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 795.14963,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2157,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 783.87756,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2158,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 772.6055,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2159,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 761.33343,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2160,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 737.77068,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2161,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 726.49861,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2162,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 715.22654,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2163,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 703.95447,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2164,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 692.68241,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2165,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 681.41034,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2166,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 670.13827,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2167,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 658.8662,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2168,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 737.77068,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2169,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 726.49861,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2170,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 715.22654,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2171,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 703.95447,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2172,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 692.68241,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2173,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 681.41034,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2174,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 670.13827,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2175,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 658.8662,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2176,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 635.18359,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2177,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 623.91152,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2178,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 612.63945,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2179,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 601.36739,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2180,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 590.09532,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2181,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 578.82325,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2182,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 567.55118,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2183,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 556.27911,
+          "y": 65.38826
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2184,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 635.18359,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2185,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 623.91152,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2186,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 612.63945,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2187,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 601.36739,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2188,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 590.09532,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2189,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 578.82325,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2190,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 567.55118,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2191,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 556.27911,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2192,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 520.06512,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2193,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 508.79305,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2194,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 497.52099,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2195,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 486.24892,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2196,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/r.json",
+        "position": {
+          "x": 450.57253,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2197,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 414.64048,
+          "y": 83.0045
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2198,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/gray.json",
+        "position": {
+          "x": 450.57253,
+          "y": 69.42982
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2199,
+      "p": {
+        "displayName": "熄灯",
+        "image": "symbols/demo/ems/g.json",
+        "position": {
+          "x": 414.64048,
+          "y": 69.42982
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2200,
+      "p": {
+        "position": {
+          "x": 37.91177,
+          "y": 70
+        },
+        "width": 20.06965,
+        "height": 140
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "#F8E81C",
+        "shape.border.color": "#979797",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2201,
+      "p": {
+        "position": {
+          "x": 106.6631,
+          "y": 41.99941
+        },
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "width": 38.1955,
+        "height": 17.38885
+      },
+      "s": {
+        "text": "LOGO",
+        "type": "text",
+        "text.color": "#F8E81C",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2202,
+      "p": {
+        "position": {
+          "x": 210.45342,
+          "y": 41.99941
+        },
+        "width": 38.1955,
+        "height": 17.38885
+      },
+      "s": {
+        "text": "SICOM3448G",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#F8E81C",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2203,
+      "p": {
+        "displayName": "网口",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 902.22693,
+          "y": 73.38826
+        },
+        "width": 37,
+        "height": 28
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false,
+        "body.color": null
+      },
+      "a": {
+        "portName": "Vlan 1",
+        "portStatus": 2
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2204,
+      "p": {
+        "position": {
+          "x": 37.91177,
+          "y": 4.62663
+        },
+        "width": 20.06965,
+        "height": 9.25326
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(214,201,19)",
+        "shape.border.color": "#979797",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2205,
+      "p": {
+        "position": {
+          "x": 37.91177,
+          "y": 132.82351
+        },
+        "width": 20.06965,
+        "height": 14.35298
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(214,201,19)",
+        "shape.border.color": "#979797",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2206,
+      "p": {
+        "position": {
+          "x": 37.91177,
+          "y": 9.25326
+        },
+        "width": 20.06965,
+        "height": 1
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(156,146,11)",
+        "shape.border.color": "#979797",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2207,
+      "p": {
+        "position": {
+          "x": 37.91177,
+          "y": 125.64702
+        },
+        "width": 20.06965,
+        "height": 1
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(156,146,11)",
+        "shape.border.color": "#979797",
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.movable": false
+      }
+    }
+  ]
+}

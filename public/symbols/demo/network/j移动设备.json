@@ -1,0 +1,46 @@
+{
+  "width": 64,
+  "height": 64,
+  "comps": [
+    {
+      "type": "roundRect",
+      "borderWidth": 4,
+      "borderColor": "rgb(69,210,220)",
+      "cornerRadius": 3,
+      "rect": [
+        13.76823,
+        2,
+        36.46355,
+        60
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 4,
+      "borderColor": "rgb(69,210,220)",
+      "borderCap": "round",
+      "points": [
+        25.41802,
+        57.3784,
+        38.20414,
+        57.3784
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 4,
+      "borderColor": "rgb(69,210,220)",
+      "borderCap": "round",
+      "points": [
+        26.45035,
+        2.92442,
+        27.44073,
+        4.50703,
+        36.37851,
+        4.50703,
+        37.54965,
+        2.92442
+      ]
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "modified": "Fri Dec 07 2018 10:22:07 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "rotation",
+      "valueType": "Number"
+    },
+    {
+      "attr": "数值",
+      "valueType": "String"
+    },
+    {
+      "attr": "单位",
+      "valueType": "String"
+    },
+    {
+      "attr": "图例",
+      "valueType": "String"
+    },
+    {
+      "attr": "年数值",
+      "valueType": "String"
+    },
+    {
+      "attr": "status",
+      "valueType": "String",
+      "defaultValue": "0"
+    }
+  ],
+  "width": 400,
+  "height": 525,
+  "interactive": true,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        14.07578,
+        4.33119,
+        371.84843,
+        516.33761
+      ]
+    },
+    {
+      "type": "oval",
+      "borderWidth": 1,
+      "borderColor": "rgba(255,255,255,0.3)",
+      "rect": [
+        35.86289,
+        61.48169,
+        269.4675,
+        269.4675
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "anchorX": 0.3695,
+      "anchorY": 9.47302,
+      "rotation": {
+        "func": "attr@rotation",
+        "value": 0
+      },
+      "rect": [
+        164.32275,
+        55.76967,
+        14.94543,
+        14.94543
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(0,77,105,0.2)",
+      "rect": [
+        62.02426,
+        89.29451,
+        215.99647,
+        215.99647
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 0) {\r\n    return '500m³';\r\n}\r\nif(data.a('status') === 1) {\r\n    return '987KWh';\r\n}\r\nif(data.a('status') === 2) {\r\n    return '1234m³';\r\n}\n}",
+        "value": "500m³"
+      },
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "50px Arial",
+      "rect": [
+        132.60187,
+        166.32863,
+        78.38719,
+        59.77362
+      ]
+    },
+    {
+      "type": "text",
+      "text": "年累计 ：",
+      "align": "center",
+      "color": "rgba(255,255,255,0.8)",
+      "font": "16px Arial",
+      "anchorX": 0.47817,
+      "anchorY": 0.40856,
+      "rect": [
+        105.13941,
+        243.00337,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "能耗数据",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "20px Arial",
+      "rect": [
+        20.98674,
+        12.6315,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "oval",
+      "borderWidth": 1.5,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 0) {\r\n    return 'rgb(0,183,255)';\r\n}\r\nif(data.a('status') === 1) {\r\n    return 'rgb(44,177,126)';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'rgb(226,121,84)';\r\n}\n}",
+        "value": "rgb(0,183,255)"
+      },
+      "rect": [
+        61.72225,
+        89.29451,
+        215.99647,
+        215.99647
+      ]
+    },
+    {
+      "type": "image",
+      "name": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 0) {\r\n    return 'symbols/demo/building/水.json';\r\n}\r\nif(data.a('status') === 1) {\r\n    return 'symbols/demo/building/电.json';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'symbols/demo/building/气.json';\r\n}\n}",
+        "value": "symbols/demo/building/右面板/水.json"
+      },
+      "displayName": "水",
+      "rect": [
+        159.45764,
+        111.92946,
+        24.67565,
+        24.67565
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/水图标.json",
+      "displayName": "水图标",
+      "rect": [
+        319.16034,
+        64.84185,
+        60,
+        60
+      ],
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'pointer'\r\ndata.a('status', 0)\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'default'\n}"
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/电图标.json",
+      "displayName": "电图标",
+      "rect": [
+        318.8894,
+        163.1009,
+        60,
+        60
+      ],
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'pointer'\r\ndata.a('status', 1)\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'default'\n}"
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/气图标.json",
+      "displayName": "气图标",
+      "rect": [
+        318.8894,
+        263.74612,
+        60,
+        60
+      ],
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'pointer'\r\ndata.a('status', 2)\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nview.getView().style.cursor = 'default'\n}"
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 0) {\r\n    return '5000m³';\r\n}\r\nif(data.a('status') === 1) {\r\n    return '10101KWh';\r\n}\r\nif(data.a('status') === 2) {\r\n    return '23456m³';\r\n}\n}",
+        "value": "3000m³"
+      },
+      "align": "center",
+      "color": "rgba(255,255,255,0.8)",
+      "font": "16px Arial",
+      "anchorX": 0.47817,
+      "anchorY": 0.40856,
+      "rect": [
+        168.72048,
+        243.00337,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(0,183,255,0)",
+      "borderColor": "#979797",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgba(0,146,204,0.80)",
+      "rect": [
+        66.50538,
+        419.0998,
+        267.49462,
+        21.2978
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(0,183,255,0)",
+      "borderColor": "#979797",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(0,183,255)",
+      "rect": [
+        66,
+        418.87848,
+        267.49462,
+        1.22131
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(0,183,255,0)",
+      "borderColor": "#979797",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(0,183,255)",
+      "rect": [
+        66,
+        439.17629,
+        267.49462,
+        1.22131
+      ]
+    }
+  ]
+}

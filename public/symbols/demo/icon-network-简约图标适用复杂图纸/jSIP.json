@@ -1,0 +1,83 @@
+{
+  "background": "rgb(61,61,61)",
+  "width": 64,
+  "height": 64,
+  "comps": [
+    {
+      "type": "arc",
+      "borderWidth": 4,
+      "borderColor": "rgb(186,186,186)",
+      "arcClose": false,
+      "arcOval": true,
+      "rotation": 3.14159,
+      "rect": [
+        6.78975,
+        37.27791,
+        50.4205,
+        24.399
+      ]
+    },
+    {
+      "type": "oval",
+      "borderWidth": 4,
+      "borderColor": "rgb(186,186,186)",
+      "rect": [
+        6.78975,
+        2.32309,
+        50.4205,
+        24.399
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 4,
+      "borderColor": "rgb(186,186,186)",
+      "arcClose": false,
+      "arcOval": true,
+      "rotation": 3.14159,
+      "rect": [
+        6.78975,
+        20.45917,
+        50.4205,
+        24.399
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 4,
+      "borderColor": "rgb(186,186,186)",
+      "borderCap": "round",
+      "points": [
+        6.78975,
+        14.52259,
+        6.78975,
+        50.79474
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 4,
+      "borderColor": "rgb(186,186,186)",
+      "borderCap": "round",
+      "points": [
+        57.21025,
+        14.52259,
+        57.21025,
+        50.79474
+      ]
+    },
+    {
+      "type": "text",
+      "text": "SIP",
+      "color": "rgb(255,255,255)",
+      "scaleX": 1.5,
+      "scaleY": 1.5,
+      "rect": [
+        20.90389,
+        33.02206,
+        27.80778,
+        14.21814
+      ]
+    }
+  ]
+}

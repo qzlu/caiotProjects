@@ -1,0 +1,28 @@
+{
+  "width": 200,
+  "height": 100,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\ng.lineWidth = 1;\ng.lineCap = 'butt';\ng.strokeStyle = 'rgb(0,0,0)';\ng.fillStyle = 'rgb(0,0,0)';\n\n    var lineLength = comp.getValue('lineLength');\n    var triangleLength= comp.getValue('triangleLength');\n    var space = comp.getValue('space');\n    var offset = comp.getValue('offset');\n\n    g.lineWidth = 1;\n\n    g.save();\n    g.translate(rect.x + rect.width/2, rect.y+ rect.height/2);\n\n    var lineBeginX = -lineLength / 2;\n    var lineEndX = -lineBeginX;\n\n    g.beginPath();\n    g.rect(lineBeginX, -triangleLength/ 2, lineLength, triangleLength);\n    g.clip();\n\n    g.beginPath();\n    g.moveTo(lineBeginX, 0);\n    g.lineTo(lineEndX, 0);\n    g.stroke();\n\n    var trangleHeight = triangleLength * Math.sin(Math.PI / 3);\n    var trangleSpace = trangleHeight + space;\n    var trangleNums =  Math.ceil(lineLength / trangleSpace);// 获取当前线段长度最多能显示的三角形个数\n    for(var i = -1 ; i < trangleNums + 1 ; i++){\n        var moveSize = offset % trangleSpace;\n        var beginX = lineBeginX + i * trangleSpace + moveSize;\n        g.beginPath();\n        g.moveTo(beginX, -triangleLength/ 2);\n        g.lineTo(beginX, triangleLength/ 2);\n        g.lineTo(beginX + trangleHeight, 0);\n        g.fillStyle = 'red';\n        g.fill();\n    }\n\n    g.restore();\n}",
+  "properties": {
+    "lineLength": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 100,
+      "name": "直线长度"
+    },
+    "triangleLength": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 10,
+      "name": "三角形边长"
+    },
+    "space": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 5,
+      "name": "三角形间隔"
+    },
+    "offset": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 0,
+      "name": "偏移距离"
+    }
+  }
+}

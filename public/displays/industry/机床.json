@@ -1,0 +1,193 @@
+{
+  "v": "6.2.3",
+  "p": {
+    "background": "rgb(43,43,43)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": "copyStyle",
+    "height": 400,
+    "width": 1200
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 18306,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 100,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      },
+      "a": {
+        "leftTemperature": 19,
+        "leftSpeed": 19,
+        "rate": 0.63
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18576,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 300,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18587,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 100,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18588,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 300,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18621,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 500,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18622,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 700,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18623,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 500,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18624,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 700,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      },
+      "a": {
+        "leftTemperature": 29,
+        "leftSpeed": 25,
+        "rate": 0.75
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18697,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 900,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18698,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 1100,
+          "y": 100
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18699,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 900,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18700,
+      "p": {
+        "displayName": "机床",
+        "image": "symbols/demo/ems/机床.json",
+        "position": {
+          "x": 1100,
+          "y": 300
+        },
+        "width": 200,
+        "height": 200
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nreturn data.getAttr('isRecharging')\r\n    ? \"充电中\" \r\n    : \"使用中\"\n}",
+        "value": "文本"
+      },
+      "align": "center",
+      "color": "#E6EAEE",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        0,
+        0,
+        100,
+        40
+      ]
+    }
+  ]
+}

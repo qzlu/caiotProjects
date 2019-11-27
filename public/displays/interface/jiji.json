@@ -1,0 +1,1853 @@
+{
+  "v": "6.2.9",
+  "p": {
+    "layers": [
+      {
+        "name": "0",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "1",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "2",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "3",
+        "visible": true,
+        "selectable": true,
+        "movable": true,
+        "editable": true
+      }
+    ],
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 48667,
+      "p": {
+        "displayName": "背景",
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#0C1029",
+        "shape.border.width": 1,
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48668,
+      "p": {
+        "displayName": "标题",
+        "layer": "1",
+        "position": {
+          "x": -0.73873,
+          "y": -486.84965
+        },
+        "width": 1919.21462,
+        "height": 106.3007
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 48669,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": 0,
+          "y": -486.84965
+        },
+        "width": 721.36762,
+        "height": 106.3007,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -360.68381,
+              "y": -540
+            },
+            {
+              "x": -295.52803,
+              "y": -433.6993
+            },
+            {
+              "x": -250.6107,
+              "y": -433.6993
+            },
+            {
+              "x": -225.71826,
+              "y": -456.68324
+            },
+            {
+              "x": 225.71826,
+              "y": -456.68324
+            },
+            {
+              "x": 247.50731,
+              "y": -433.6993
+            },
+            {
+              "x": 292.42537,
+              "y": -433.6993
+            },
+            {
+              "x": 360.68381,
+              "y": -540
+            },
+            {
+              "x": -360.68381,
+              "y": -540
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(247,247,247)",
+        "shape.border.width": 1,
+        "shape.foreground": "#152556"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48670,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": 0,
+          "y": -499.20892
+        },
+        "width": 429.93953,
+        "height": 46.51511
+      },
+      "s": {
+        "text": "互联网应用监控系统",
+        "text.align": "center",
+        "text.color": "rgb(247,247,247)",
+        "text.font": "50px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 48671,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": -664.85495,
+          "y": -490.75794
+        },
+        "width": 590.98218,
+        "height": 97.13449,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -428.46208,
+              "y": -539.32518
+            },
+            {
+              "x": -369.36386,
+              "y": -442.1907
+            },
+            {
+              "x": -960.34604,
+              "y": -442.1907
+            },
+            {
+              "x": -960.34604,
+              "y": -539.32518
+            },
+            {
+              "x": -428.46208,
+              "y": -539.32518
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#56AAEA",
+        "shape.border.width": 1
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 48672,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": 661.94255,
+          "y": -492.12603
+        },
+        "width": 593.85206,
+        "height": 91.66212,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 421.17292,
+              "y": -537.95709
+            },
+            {
+              "x": 958.86858,
+              "y": -537.95709
+            },
+            {
+              "x": 958.86858,
+              "y": -446.29497
+            },
+            {
+              "x": 365.01653,
+              "y": -446.29497
+            },
+            {
+              "x": 421.17292,
+              "y": -537.95709
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#56AAEA",
+        "shape.border.width": 1
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48673,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": -694.39778,
+          "y": -488.16934
+        },
+        "width": 386.53669,
+        "height": 47.5121
+      },
+      "s": {
+        "text": "2018年12月17日 16:42",
+        "text.color": "#56AAEA",
+        "text.font": "35px arial, sans-serif",
+        "text.align": "center"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48674,
+      "p": {
+        "parent": {
+          "__i": 48668
+        },
+        "layer": "1",
+        "position": {
+          "x": 701.10812,
+          "y": -492.12603
+        },
+        "width": 386.53669,
+        "height": 47.5121
+      },
+      "s": {
+        "text": "天气   阵雨 20℃",
+        "text.color": "#56AAEA",
+        "text.font": "35px arial, sans-serif",
+        "text.align": "center"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48675,
+      "p": {
+        "displayName": "左上区域",
+        "layer": "1",
+        "position": {
+          "x": -741.86572,
+          "y": -296.78174
+        },
+        "width": 384.33873,
+        "height": 257.98108
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48676,
+      "p": {
+        "displayName": "pieChart",
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "image": "symbols/ht/chart/pieChart.json",
+        "position": {
+          "x": -809.246,
+          "y": -263.60174
+        },
+        "width": 186.8463,
+        "height": 191.62108
+      },
+      "a": {
+        "chart.hollow": true,
+        "chart.colors": [
+          "#4C88DF",
+          "#F4A642"
+        ],
+        "chart.values": [
+          68.19,
+          31.81
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48677,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -884.03509,
+          "y": -400.77228
+        }
+      },
+      "s": {
+        "text": "商户比例",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48678,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -659.63669,
+          "y": -308.85438
+        },
+        "width": 10.43653,
+        "height": 9.82261
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#6CA1FF",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48679,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -599.69636,
+          "y": -308.85438
+        }
+      },
+      "s": {
+        "text": "小微云商户占比",
+        "text.color": "rgb(247,247,247)",
+        "text.font": "15px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48680,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -599.69636,
+          "y": -278.94308
+        }
+      },
+      "s": {
+        "text": "68.19%",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48681,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -659.63669,
+          "y": -248.2604
+        },
+        "width": 10.43653,
+        "height": 9.82261
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#F4A642",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48682,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -599.69636,
+          "y": -248.2604
+        }
+      },
+      "s": {
+        "text": "扫码付商户占比",
+        "text.color": "rgb(247,247,247)",
+        "text.font": "15px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48683,
+      "p": {
+        "parent": {
+          "__i": 48675
+        },
+        "layer": "1",
+        "position": {
+          "x": -599.69636,
+          "y": -218.34909
+        }
+      },
+      "s": {
+        "text": "31.81%",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "#F4A642"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48684,
+      "p": {
+        "displayName": "左下区域",
+        "position": {
+          "x": -718.21292,
+          "y": 185.01223
+        },
+        "width": 438.9064,
+        "height": 632.15976
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48685,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -887.66612,
+          "y": -106.06765
+        }
+      },
+      "s": {
+        "text": "管辖行排名",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48686,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": -28.62194
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rand.color": "#D99B21"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48687,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 81.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "3",
+        "rand.color": "#0D4FA9",
+        "data.value": "145",
+        "data.percent": "10%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48688,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 135.73167
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "4",
+        "data.value": "143",
+        "data.percent": "8%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48689,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 191.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "5",
+        "data.value": "132",
+        "data.percent": "7%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48690,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 246.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "6",
+        "data.value": "131",
+        "data.percent": "6%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48691,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 301.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "7",
+        "data.value": "124",
+        "data.percent": "5%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48692,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 356.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "8",
+        "data.value": "113",
+        "data.percent": "4%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48693,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 411.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "9",
+        "data.value": "93",
+        "data.percent": "3%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48694,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 466.37806
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rank.value": "10",
+        "data.value": "87",
+        "data.percent": "2%"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48695,
+      "p": {
+        "displayName": "简单进度条",
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/简单进度条.json",
+        "position": {
+          "x": -724.57099,
+          "y": 23.27793
+        },
+        "width": 389.06907,
+        "height": 69.42809
+      },
+      "a": {
+        "rand.color": "#4B8D02",
+        "data.value": "198",
+        "data.percent": "20%",
+        "rank.value": "2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48696,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -694.24343,
+          "y": -106.06765
+        },
+        "width": 60.65512,
+        "height": 18.19654
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#4C88DF",
+        "shape.border.width": 1,
+        "shape.border.color": "#4C88DF"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48697,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -669.63441,
+          "y": -106.06765
+        }
+      },
+      "s": {
+        "text": "按商户数",
+        "text.shadow.color": "rgb(247,247,247)",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48698,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -633.5883,
+          "y": -106.06765
+        },
+        "width": 60.65512,
+        "height": 18.19654
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(247,247,247,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#4C88DF"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48699,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -610.09028,
+          "y": -106.06765
+        }
+      },
+      "s": {
+        "text": "按交易量",
+        "text.shadow.color": "rgb(247,247,247)",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48700,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -572.93318,
+          "y": -106.06765
+        },
+        "width": 60.65512,
+        "height": 18.19654
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(247,247,247,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#4C88DF"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48701,
+      "p": {
+        "parent": {
+          "__i": 48684
+        },
+        "layer": "3",
+        "position": {
+          "x": -548.75972,
+          "y": -106.06765
+        }
+      },
+      "s": {
+        "text": "按交易额",
+        "text.shadow.color": "rgb(247,247,247)",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48702,
+      "p": {
+        "displayName": "区域划分",
+        "layer": "2",
+        "position": {
+          "x": 1.01783,
+          "y": 46.73624
+        },
+        "width": 1898.06075,
+        "height": 964.76515
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48703,
+      "p": {
+        "displayName": "左下区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": -724.57099,
+          "y": 198.64804
+        },
+        "width": 446.88312,
+        "height": 660.94154
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48704,
+      "p": {
+        "displayName": "右上区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": 728.94399,
+          "y": -326.1699
+        },
+        "width": 442.20843,
+        "height": 218.95287
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48705,
+      "p": {
+        "displayName": "右中区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": 728.94399,
+          "y": -55.39093
+        },
+        "width": 442.20843,
+        "height": 299.33332
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48706,
+      "p": {
+        "displayName": "右下区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": 728.94399,
+          "y": 317.84407
+        },
+        "width": 442.20843,
+        "height": 422.54947
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48707,
+      "p": {
+        "displayName": "中上区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": 4.54561,
+          "y": -106.06765
+        },
+        "width": 980.84196,
+        "height": 612.82254
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48708,
+      "p": {
+        "displayName": "中下区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "2",
+        "position": {
+          "x": 4.54561,
+          "y": 371.84805
+        },
+        "width": 980.84196,
+        "height": 314.54151
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48709,
+      "p": {
+        "displayName": "左上区域",
+        "parent": {
+          "__i": 48702
+        },
+        "layer": "1",
+        "position": {
+          "x": -724.57099,
+          "y": -284.60579
+        },
+        "width": 446.88312,
+        "height": 282.33299
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.width": 1,
+        "shape.border.color": "#56AAEA",
+        "shape.border.3d.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48710,
+      "p": {
+        "displayName": "右上区域",
+        "layer": "1",
+        "position": {
+          "x": 727.44317,
+          "y": -326.83377
+        },
+        "width": 403.03843,
+        "height": 211.2903
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48711,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 737.20948,
+          "y": -317.56274
+        },
+        "width": 151.85706,
+        "height": 151.73854
+      },
+      "a": {
+        "gauge.maxValue": 100,
+        "gauge.activeValue": 31
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48712,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 852.96482,
+          "y": -283.7181
+        }
+      },
+      "s": {
+        "text": "32",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "#0E428E"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48713,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 737.20948,
+          "y": -246.18862
+        }
+      },
+      "s": {
+        "text": "活跃商户",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48714,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 620.92396,
+          "y": -308.7181
+        },
+        "width": 152.34797,
+        "height": 151.73854
+      },
+      "a": {
+        "gauge.maxValue": 100,
+        "gauge.activeValue": 71,
+        "gauge.endAngle": 1.75
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48715,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 620.92396,
+          "y": -283.7181
+        }
+      },
+      "s": {
+        "text": "247",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "#F6E318"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48716,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 620.92396,
+          "y": -246.18862
+        }
+      },
+      "s": {
+        "text": "交易量",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48717,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 852.96482,
+          "y": -308.7181
+        },
+        "width": 151.99514,
+        "height": 151.73854
+      },
+      "a": {
+        "gauge.maxValue": 100,
+        "gauge.activeValue": 45,
+        "gauge.endAngle": 2.25,
+        "gauge.startAngle": 1.25
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48718,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 737.20948,
+          "y": -292.56274
+        }
+      },
+      "s": {
+        "text": "8243",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "#4B8D02"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48719,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "3",
+        "position": {
+          "x": 852.96482,
+          "y": -246.18862
+        }
+      },
+      "s": {
+        "text": "交易额",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48720,
+      "p": {
+        "parent": {
+          "__i": 48710
+        },
+        "layer": "1",
+        "position": {
+          "x": 575.92396,
+          "y": -407.47892
+        }
+      },
+      "s": {
+        "text": "今日数据",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48721,
+      "p": {
+        "displayName": "右中区域",
+        "layer": "1",
+        "position": {
+          "x": 679.81821,
+          "y": -73.53281
+        },
+        "width": 317.7885,
+        "height": 263.04956
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48722,
+      "p": {
+        "parent": {
+          "__i": 48721
+        },
+        "layer": "3",
+        "position": {
+          "x": 570.92396,
+          "y": -180.05759
+        }
+      },
+      "s": {
+        "text": "交易分布情况",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48723,
+      "p": {
+        "displayName": "雷达图整合",
+        "parent": {
+          "__i": 48721
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/雷达图整合.json",
+        "position": {
+          "x": 737.20948,
+          "y": -43.706
+        },
+        "width": 203.00596,
+        "height": 203.39594
+      },
+      "a": {
+        "radar.fontColor": "rgb(247,247,247)",
+        "radar.fontStyle": "8px Arial"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48724,
+      "p": {
+        "displayName": "右下区域",
+        "layer": "1",
+        "position": {
+          "x": 721.34037,
+          "y": 308.09689
+        },
+        "width": 400.83282,
+        "height": 404.15851
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48725,
+      "p": {
+        "parent": {
+          "__i": 48724
+        },
+        "position": {
+          "x": 575.92396,
+          "y": 131.01763
+        }
+      },
+      "s": {
+        "text": "交易变化情况",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48726,
+      "p": {
+        "displayName": "柱形新",
+        "parent": {
+          "__i": 48724
+        },
+        "layer": "3",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/demo/jiji/柱形新.json",
+        "position": {
+          "x": 729.4193,
+          "y": 258.28357
+        },
+        "width": 384.67495,
+        "height": 134.96861
+      },
+      "a": {
+        "chart.values": [
+          23,
+          11,
+          48,
+          27,
+          24,
+          11,
+          28,
+          26
+        ],
+        "chart.xitems": [
+          "1",
+          "7",
+          "2",
+          "8",
+          "3",
+          "9",
+          "4",
+          "10"
+        ],
+        "chart.colors": [
+          "#4F86C0",
+          "#4F86C0",
+          "#14CFB2",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0"
+        ],
+        "chart.maxValue": 50,
+        "chart.xlineColor": "#4574A9",
+        "chart.label.visible": false,
+        "chart.xfontColor": "#4574A9",
+        "y.fontColor": "#4574A9",
+        "y.lineColor": "#4574A9"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48727,
+      "p": {
+        "displayName": "柱形新",
+        "parent": {
+          "__i": 48724
+        },
+        "layer": "3",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/demo/jiji/柱形新.json",
+        "position": {
+          "x": 729.4193,
+          "y": 447.31121
+        },
+        "width": 384.67495,
+        "height": 125.72986
+      },
+      "a": {
+        "chart.values": [
+          23,
+          11,
+          48,
+          27,
+          24,
+          11,
+          28,
+          26
+        ],
+        "chart.xitems": [
+          "1",
+          "7",
+          "2",
+          "8",
+          "3",
+          "9",
+          "4",
+          "10"
+        ],
+        "chart.colors": [
+          "#4F86C0",
+          "#4F86C0",
+          "#D99B21",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0",
+          "#4F86C0"
+        ],
+        "chart.maxValue": 50,
+        "chart.xlineColor": "#4574A9",
+        "chart.label.visible": false,
+        "chart.xfontColor": "#4574A9",
+        "y.fontColor": "#4574A9",
+        "y.lineColor": "#4574A9"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48728,
+      "p": {
+        "parent": {
+          "__i": 48724
+        },
+        "layer": "3",
+        "position": {
+          "x": 570.92396,
+          "y": 165.79926
+        }
+      },
+      "s": {
+        "text": "小微云交易情况",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48729,
+      "p": {
+        "parent": {
+          "__i": 48724
+        },
+        "layer": "3",
+        "position": {
+          "x": 570.92396,
+          "y": 359.44628
+        }
+      },
+      "s": {
+        "text": "扫码付交易情况",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 48730,
+      "p": {
+        "displayName": "中下区域",
+        "position": {
+          "x": 2.33323,
+          "y": 351.43712
+        },
+        "width": 943.39418,
+        "height": 286.3071
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48731,
+      "p": {
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "position": {
+          "x": -419.36386,
+          "y": 233.28357
+        }
+      },
+      "s": {
+        "text": "商户活跃情况",
+        "text.font": "20px arial, sans-serif",
+        "text.shadow.color": "#6CA1FF",
+        "text.color": "#6CA1FF"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48732,
+      "p": {
+        "displayName": "折线新",
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "image": "symbols/demo/jiji/折线新.json",
+        "position": {
+          "x": 14.30031,
+          "y": 378.73322
+        },
+        "width": 919.46002,
+        "height": 231.71491
+      },
+      "a": {
+        "charts.items": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "x.lineFont": "10px Arial",
+        "x.lineColor": "#4574A9",
+        "y.splitSize": 5,
+        "charts.maxValue": 500,
+        "y.isScaleBorder": true,
+        "line.datas": [
+          [
+            170,
+            190,
+            450,
+            160,
+            470,
+            150,
+            300,
+            450,
+            410,
+            250,
+            350,
+            170
+          ],
+          [
+            310,
+            180,
+            410,
+            130,
+            70,
+            350,
+            430,
+            370,
+            300,
+            410,
+            500,
+            200
+          ]
+        ],
+        "line.isPoint": false,
+        "y.fontStyle": "10px Arial",
+        "line.lineWidth": 1,
+        "line.pointRs": 2,
+        "y.fontColor": "#689CF7",
+        "charts.x.fontColor": "#689CF7",
+        "y.format": "{value}  ",
+        "line.isShade": true,
+        "y.borderColors": [
+          "#1D2551",
+          "#101636"
+        ],
+        "y.isScaleShow": true,
+        "line.colors": [
+          "#9C79F3",
+          "#B9A551"
+        ],
+        "line.shadeColors": [
+          "rgba(157,120,245,0.2)",
+          "rgba(186,168,80,0.2)"
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48733,
+      "p": {
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "position": {
+          "x": 237.7072,
+          "y": 236.66401
+        },
+        "width": 23.02149,
+        "height": 22.80854
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#9C79F3",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48734,
+      "p": {
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "position": {
+          "x": 309.71324,
+          "y": 236.66402
+        }
+      },
+      "s": {
+        "text": "扫码付",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48735,
+      "p": {
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "position": {
+          "x": 335.26447,
+          "y": 236.66401
+        },
+        "width": 23.02149,
+        "height": 22.80854
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#B9A551",
+        "shape.border.color": "#979797",
+        "text": "扫码付"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48736,
+      "p": {
+        "parent": {
+          "__i": 48730
+        },
+        "layer": "3",
+        "position": {
+          "x": 407.27051,
+          "y": 236.66401
+        }
+      },
+      "s": {
+        "text": "小微云",
+        "text.color": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 48737,
+      "p": {
+        "displayName": "青岛地图",
+        "layer": "3",
+        "image": "symbols/demo/jiji/青岛地图.json",
+        "position": {
+          "x": -162.73841,
+          "y": -101.31637
+        },
+        "width": 613.2509,
+        "height": 584.23127
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48738,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 209.71324,
+          "y": -228.94308
+        }
+      },
+      "s": {
+        "text": "总商户总数",
+        "text.color": "rgb(255,234,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48739,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 204.71324,
+          "y": -107.141
+        }
+      },
+      "s": {
+        "text": "10,017,075",
+        "text.color": "rgb(255,234,0)",
+        "text.font": "35px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48740,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 209.71324,
+          "y": -139.80676
+        }
+      },
+      "s": {
+        "text": "总交易量",
+        "text.color": "rgb(255,234,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48741,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 203.46324,
+          "y": -199.03177
+        }
+      },
+      "s": {
+        "text": "10,570",
+        "text.color": "rgb(255,234,0)",
+        "text.font": "35px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48742,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 209.71324,
+          "y": -44.01866
+        }
+      },
+      "s": {
+        "text": "总交易额",
+        "text.color": "rgb(255,234,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 48743,
+      "p": {
+        "layer": "3",
+        "position": {
+          "x": 204.71324,
+          "y": -8.96285
+        }
+      },
+      "s": {
+        "text": "77,788,899",
+        "text.color": "rgb(255,234,0)",
+        "text.font": "35px arial, sans-serif"
+      }
+    }
+  ],
+  "modified": "Fri Dec 28 2018 15:36:42 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": -961.84604,
+    "y": -541.5,
+    "width": 1983.60282,
+    "height": 1151.67614
+  }
+}

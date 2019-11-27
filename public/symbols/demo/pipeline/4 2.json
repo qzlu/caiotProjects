@@ -1,0 +1,72 @@
+{
+  "modified": "Wed Dec 12 2018 13:44:16 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(255,204,0)",
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "rect": [
+        5.86347,
+        10.1031,
+        26.63208,
+        8.17985
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(168,143,0)",
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "rect": [
+        7.07952,
+        11.31916,
+        26.63208,
+        5.74775
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,204,0)",
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "rect": [
+        72.7424,
+        10.1031,
+        26.63208,
+        8.17985
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(168,143,0)",
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "rect": [
+        73.95845,
+        11.31916,
+        26.63208,
+        5.74775
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(184,156,0)",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(0,0,0)",
+      "gradient": "spread.vertical",
+      "gradientColor": "rgb(255,244,143)",
+      "cornerRadius": 2,
+      "rotation": -1.5708,
+      "rect": [
+        45.33719,
+        -28.15437,
+        14.56357,
+        82.73348
+      ]
+    }
+  ]
+}

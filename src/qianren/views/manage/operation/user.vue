@@ -210,6 +210,7 @@ export default {
                 FNodeType:'3'
             })
             .then((result) => {
+                console.log(result);
                 this.treeData = result.FObject||[]
             }).catch((err) => {
                 
@@ -221,7 +222,7 @@ export default {
          */
         queryData(that){
             let param = {
-                FGUID:'',
+                FGUID:this.currentNode.FSubGUID||'',
                 PageIndex:that.pageIndex,
                 PageSize:10,
                 SearchKey:that.filterText
@@ -279,7 +280,6 @@ export default {
             .then((result) => {
                 let data = result.FObject||[]
                 this.projectList = this.formatterTreeData(data)
-                console.log(this.projectList);
             }).catch((err) => {
                 
             });

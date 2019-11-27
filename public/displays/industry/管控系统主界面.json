@@ -1,0 +1,696 @@
+{
+  "v": "6.2.9",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": "host",
+    "rotateAsClock": false,
+    "previewURL": "display-pipeline.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 5932,
+      "p": {
+        "displayName": "布局根节点",
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "2d.selectable": false,
+        "2d.visible": false,
+        "fullscreen": "fill",
+        "fullscreen.lock": "h",
+        "fullscreen.gap": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5933,
+      "p": {
+        "displayName": "背景",
+        "parent": {
+          "__i": 5932
+        },
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(0,29,59)",
+        "shape.border.color": "#979797",
+        "shape.gradient": "radial.center",
+        "shape.gradient.color": "rgb(0,88,135)",
+        "layout.v": "topbottom",
+        "layout.h": "leftright",
+        "fullscreen.gap": 0,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5934,
+      "p": {
+        "displayName": "背景线",
+        "parent": {
+          "__i": 5933
+        },
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5935,
+      "p": {
+        "displayName": "背景线",
+        "parent": {
+          "__i": 5934
+        },
+        "image": "symbols/demo/pipeline/背景网格.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": -61,
+          "y": 1203.77925
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 960,
+        "height": 540
+      },
+      "s": {
+        "2d.selectable": false,
+        "layout.h": "scale",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5936,
+      "p": {
+        "displayName": "背景线",
+        "parent": {
+          "__i": 5934
+        },
+        "image": "symbols/demo/pipeline/背景网格.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 899,
+          "y": 1203.77925
+        },
+        "width": 960,
+        "height": 540
+      },
+      "s": {
+        "2d.selectable": false,
+        "layout.v": "scale",
+        "layout.h": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5937,
+      "p": {
+        "displayName": "背景线",
+        "parent": {
+          "__i": 5934
+        },
+        "image": "symbols/demo/pipeline/背景网格.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": -61,
+          "y": 1743.77925
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 960,
+        "height": 540
+      },
+      "s": {
+        "2d.selectable": false,
+        "layout.h": "scale",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5938,
+      "p": {
+        "displayName": "背景线",
+        "parent": {
+          "__i": 5934
+        },
+        "image": "symbols/demo/pipeline/背景网格.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 899,
+          "y": 1743.77925
+        },
+        "width": 960,
+        "height": 540
+      },
+      "s": {
+        "2d.selectable": false,
+        "layout.h": "scale",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5939,
+      "p": {
+        "displayName": "外框",
+        "parent": {
+          "__i": 5933
+        },
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5940,
+      "p": {
+        "displayName": "外框左",
+        "parent": {
+          "__i": 5939
+        },
+        "image": "symbols/demo/pipeline/外框.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "topbottom",
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5941,
+      "p": {
+        "displayName": "外框右",
+        "parent": {
+          "__i": 5939
+        },
+        "image": "symbols/demo/pipeline/外框.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 419,
+          "y": 1473.77925
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "topbottom",
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5942,
+      "p": {
+        "displayName": "标题",
+        "parent": {
+          "__i": 5933
+        },
+        "position": {
+          "x": 419,
+          "y": 983.76181
+        },
+        "width": 787.55852,
+        "height": 67.47148
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5943,
+      "p": {
+        "displayName": "标题",
+        "parent": {
+          "__i": 5942
+        },
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 419,
+          "y": 982.86909
+        },
+        "scale": {
+          "x": 3.5,
+          "y": 3.5
+        },
+        "width": 225.01672,
+        "height": 13.35215
+      },
+      "s": {
+        "text": "管道生产管控系统",
+        "text.color": "rgb(247,247,247)",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,56,112)",
+        "text.shadow.blur": 10,
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "2d.selectable": false,
+        "layout.h": "scale",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5944,
+      "p": {
+        "parent": {
+          "__i": 5942
+        },
+        "position": {
+          "x": 191.38418,
+          "y": 959.57535
+        },
+        "width": 11.34218,
+        "height": 19.09855,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 197.05527,
+              "y": 950.02607
+            },
+            {
+              "x": 185.71309,
+              "y": 950.02607
+            },
+            {
+              "x": 185.71309,
+              "y": 969.12462
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#32D3EB",
+        "shape.border.width": 2,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5945,
+      "p": {
+        "parent": {
+          "__i": 5942
+        },
+        "position": {
+          "x": 191.54187,
+          "y": 1007.9134
+        },
+        "scale": {
+          "x": 1,
+          "y": -1
+        },
+        "width": 11.34218,
+        "height": 19.09855,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 197.21296,
+              "y": 998.36412
+            },
+            {
+              "x": 185.87079,
+              "y": 998.36412
+            },
+            {
+              "x": 185.87079,
+              "y": 1017.46268
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#32D3EB",
+        "shape.border.width": 2,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5946,
+      "p": {
+        "parent": {
+          "__i": 5942
+        },
+        "position": {
+          "x": 647.35798,
+          "y": 959.61022
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 11.34218,
+        "height": 19.09855,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 653.02907,
+              "y": 950.06095
+            },
+            {
+              "x": 641.68689,
+              "y": 950.06095
+            },
+            {
+              "x": 641.68689,
+              "y": 969.1595
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#32D3EB",
+        "shape.border.width": 2,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5947,
+      "p": {
+        "parent": {
+          "__i": 5942
+        },
+        "position": {
+          "x": 647.51567,
+          "y": 1007.94828
+        },
+        "scale": {
+          "x": -1,
+          "y": -1
+        },
+        "width": 11.34218,
+        "height": 19.09855,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 653.18676,
+              "y": 998.399
+            },
+            {
+              "x": 641.84458,
+              "y": 998.399
+            },
+            {
+              "x": 641.84458,
+              "y": 1017.49755
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#32D3EB",
+        "shape.border.width": 2,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5948,
+      "p": {
+        "displayName": "标题背景",
+        "parent": {
+          "__i": 5942
+        },
+        "position": {
+          "x": 419.44992,
+          "y": 983.76181
+        },
+        "width": 461.0561,
+        "height": 61.85436
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgba(214,214,214,0.12)",
+        "shape.border.color": null,
+        "shape.dash.pattern": [
+          16,
+          16
+        ],
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 5949,
+      "p": {
+        "displayName": "按钮",
+        "parent": {
+          "__i": 5932
+        }
+      },
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5950,
+      "p": {
+        "displayName": "二维",
+        "parent": {
+          "__i": 5949
+        },
+        "tag": "二维",
+        "image": "symbols/demo/pipeline/二维.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": -449.55963,
+          "y": 962.86909
+        },
+        "width": 70,
+        "height": 35
+      },
+      "s": {
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "layout.v": "top",
+        "layout.h": "left",
+        "onDown": "__ht__function(event, data, view) {\ndata.a('透明度', 1)\r\nview.dm().getDataByTag('三维').a('透明度', 0.2)\r\nview.dm().getDataByTag('图纸').a('displayURL', 'displays/industry/2D.json')\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5951,
+      "p": {
+        "parent": {
+          "__i": 5949
+        },
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": -397.25697,
+          "y": 962.86909
+        },
+        "width": 2.32932,
+        "height": 30.34302
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(0,212,255)",
+        "shape.border.color": "#979797",
+        "2d.selectable": false,
+        "layout.v": "top",
+        "layout.h": "left"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5952,
+      "p": {
+        "displayName": "三维",
+        "parent": {
+          "__i": 5949
+        },
+        "tag": "三维",
+        "image": "symbols/demo/pipeline/三维.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": -345.04222,
+          "y": 962.86909
+        },
+        "width": 70,
+        "height": 35
+      },
+      "s": {
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "layout.v": "top",
+        "layout.h": "left",
+        "onDown": "__ht__function(event, data, view) {\ndata.a('透明度', 1)\r\nview.dm().getDataByTag('二维').a('透明度', 0.2)\r\nview.dm().getDataByTag('图纸').a('displayURL', 'displays/industry/3D.json')\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5953,
+      "p": {
+        "displayName": "时间",
+        "parent": {
+          "__i": 5932
+        },
+        "tag": "时间",
+        "image": "symbols/demo/pipeline/时间.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 1232.53827,
+          "y": 961.85666
+        },
+        "width": 185,
+        "height": 50
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "right",
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5954,
+      "p": {
+        "displayName": "图纸",
+        "parent": {
+          "__i": 5932
+        },
+        "tag": "图纸",
+        "image": "symbols/html/display.json",
+        "host": {
+          "__i": 5932
+        },
+        "position": {
+          "x": 419,
+          "y": 1499.10337
+        },
+        "width": 1770.26271,
+        "height": 895.62788
+      },
+      "s": {
+        "2d.editable": false,
+        "layout.h": "leftright",
+        "layout.v": "topbottom"
+      },
+      "a": {
+        "displayURL": "displays/industry/管控系统.json"
+      }
+    }
+  ],
+  "modified": "Thu Dec 27 2018 15:51:54 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": -541,
+    "y": 933.77925,
+    "width": 1920,
+    "height": 1080
+  }
+}

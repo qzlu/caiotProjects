@@ -1,0 +1,1098 @@
+{
+  "modified": "Fri Dec 07 2018 10:25:36 GMT+0800 (中国标准时间)",
+  "width": 380,
+  "height": 920,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgba(0,183,255,0)",
+      "borderColor": "#979797",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(0,183,255)",
+      "rect": [
+        18.05663,
+        573.59866,
+        348.20905,
+        2.58039
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        4.07578,
+        600.04047,
+        333.04741,
+        316.88686
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        347.59034,
+        598.5166,
+        28.33388,
+        318.41073
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,74,74)",
+      "borderColor": "#979797",
+      "rect": [
+        8.14361,
+        606.13057,
+        14.62399,
+        14.62399
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/故障.json",
+      "displayName": "故障",
+      "rect": [
+        9.62015,
+        608.1198,
+        11.67092,
+        11.67092
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        263.41075,
+        3.07267,
+        112.51347,
+        115.87014
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rect": [
+        300.82711,
+        33.99674,
+        40.66397,
+        40.66397
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rect": [
+        320.07852,
+        16.75726,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rect": [
+        320.07852,
+        77.40187,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        350.40083,
+        47.07956,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        289.75622,
+        47.07956,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 0.7854,
+      "rect": [
+        341.51963,
+        25.63845,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 0.7854,
+      "rect": [
+        298.63741,
+        68.52067,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "displayName": "节点",
+      "rotation": 2.35619,
+      "rect": [
+        341.51963,
+        68.52067,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 2.35619,
+      "rect": [
+        298.63741,
+        25.63845,
+        2.16116,
+        14.69911
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        319.13971,
+        62.19816,
+        2.86115,
+        74.16609
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        133.74327,
+        3.07267,
+        112.51347,
+        115.87014
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        189.06119,
+        62.19816,
+        2.86115,
+        74.16609
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rect": [
+        170.74859,
+        35.20626,
+        40.66397,
+        40.66397
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rect": [
+        189.99999,
+        28.23654,
+        2.16116,
+        4.42936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        163.66025,
+        51.64288,
+        2.16116,
+        4.42936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        215.9364,
+        51.64288,
+        2.16116,
+        4.42936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rotation": 0.7854,
+      "rect": [
+        208.00188,
+        34.84628,
+        2.16116,
+        4.42936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.6)",
+      "borderColor": "#979797",
+      "rotation": 2.35619,
+      "rect": [
+        171.99812,
+        35.32169,
+        2.16116,
+        4.42936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        4.07578,
+        3.07267,
+        112.51347,
+        115.87014
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(255,255,255,0.2)",
+      "dashColor": "rgb(255,255,255)",
+      "points": [
+        73.12037,
+        64.76097,
+        58.9955,
+        64.76097,
+        47.34868,
+        53.11415,
+        47.34868,
+        38.98928,
+        47.34868,
+        35.52001,
+        48.09209,
+        32.05074,
+        49.33112,
+        29.07709,
+        39.66674,
+        33.04196,
+        33.47162,
+        42.45854,
+        33.47162,
+        52.86634,
+        33.47162,
+        66.99121,
+        45.11844,
+        78.63803,
+        59.2433,
+        78.63803,
+        69.8989,
+        78.63803,
+        79.06768,
+        72.19511,
+        83.03256,
+        62.77853,
+        79.8111,
+        64.01755,
+        76.58964,
+        64.76097,
+        73.12037,
+        64.76097,
+        73.12037,
+        64.76097
+      ],
+      "segments": [
+        1,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(255,255,255,0.2)",
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "rect": [
+        56.82151,
+        62.19816,
+        2.86115,
+        74.16609
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(0,183,255,0)",
+      "borderColor": "#979797",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(0,183,255)",
+      "displayName": "节点",
+      "rect": [
+        15.89548,
+        146.18596,
+        348.20905,
+        2.58039
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        5.85558,
+        169.90021,
+        370.06864,
+        89.74163
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        5.85558,
+        266.07938,
+        370.06864,
+        89.74163
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        5.85557,
+        362.25855,
+        370.06864,
+        89.74163
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        5.85558,
+        458.43773,
+        370.06864,
+        89.74163
+      ]
+    },
+    {
+      "type": "text",
+      "text": "照明回路开启数量",
+      "align": "center",
+      "color": "rgb(0,183,255)",
+      "font": "20px Arial",
+      "rect": [
+        140.8899,
+        166.17863,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "照明回路关闭数量",
+      "align": "center",
+      "color": "rgb(0,183,255)",
+      "font": "20px Arial",
+      "rect": [
+        140.8899,
+        261.78281,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "照明回路正常数量",
+      "align": "center",
+      "color": "rgb(0,183,255)",
+      "font": "20px Arial",
+      "rect": [
+        140.8899,
+        357.38698,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "照明回路故障数量",
+      "align": "center",
+      "color": "rgb(0,183,255)",
+      "font": "20px Arial",
+      "rect": [
+        140.8899,
+        452.99116,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "500",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "40px Arial",
+      "rect": [
+        140.8899,
+        209.53221,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "23",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "40px Arial",
+      "rect": [
+        140.88989,
+        305.28186,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "23",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "40px Arial",
+      "rect": [
+        140.88989,
+        498.17936,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "477",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "40px Arial",
+      "rect": [
+        140.8899,
+        401.63452,
+        100,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1F大厅消防烟感探头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        606.73857,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.19",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        610.06668,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        607.71317,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2F-19 AHU风机故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        631.89018,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.18",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        635.21829,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        632.86478,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "5F电梯厅监控摄像头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        657.04179,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.17",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        660.3699,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        658.0164,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "B1F-05排水井故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        682.1934,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.16",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        685.52151,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        683.16801,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "16F设备间门故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        707.34502,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.15",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        710.67312,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        708.31962,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "23F点表通讯故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        732.49663,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.14",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        735.82473,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        733.98393,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1F大厅消防烟感探头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        757.43944,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.19",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        760.76755,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        758.41404,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2F-19 AHU风机故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        782.59105,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.18",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        785.91916,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        783.56565,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "5F电梯厅监控摄像头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        807.74266,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.17",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        811.07077,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        808.71727,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "B1F-05排水井故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        832.89427,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.16",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        836.22238,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        833.86888,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "16F设备间门故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        858.04589,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.15",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        861.37399,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        859.02049,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "23F点表通讯故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        24.98673,
+        883.1975,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.14",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        213.72171,
+        886.5256,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        272.46157,
+        884.6848,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "照",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        684.73766,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "明",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        704.28957,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "回",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        723.84147,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "路",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        743.39338,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "故",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        762.94528,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "障",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        782.49719,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "信",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        802.04909,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "息",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "17px Arial",
+      "rect": [
+        354.15084,
+        821.601,
+        15.21287,
+        9.10528
+      ]
+    }
+  ]
+}

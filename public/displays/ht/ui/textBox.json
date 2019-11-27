@@ -1,0 +1,148 @@
+{
+  "v": "6.3.1",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 4526,
+      "p": {
+        "displayName": "textBox",
+        "image": "symbols/ht/text/textBox.json",
+        "position": {
+          "x": 303.5,
+          "y": 232
+        },
+        "width": 249,
+        "height": 168
+      },
+      "a": {
+        "ht.content": "HT for Web\n构建先进2D和3D可视化所需要的一切\nHT for Web\n构建先进2D和3D可视化所需要的一切\nHT for Web\n构建先进2D和3D可视化所需要的一切"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4527,
+      "p": {
+        "displayName": "verticalTextBox",
+        "image": "symbols/ht/text/verticalTextBox.json",
+        "position": {
+          "x": 606.5,
+          "y": 232
+        },
+        "width": 215,
+        "height": 168
+      },
+      "a": {
+        "ht.content": "HT for Web构建先进2D和3D可视化所需要的一切",
+        "ht.font": "18px Comic Sans MS"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4528,
+      "p": {
+        "displayName": "verticalTextBox",
+        "image": "symbols/ht/text/verticalTextBox.json",
+        "position": {
+          "x": 606.5,
+          "y": 451.41475
+        },
+        "width": 215,
+        "height": 168
+      },
+      "a": {
+        "ht.content": "HT for Web构建先进2D和3D可视化所需要的一切",
+        "ht.font": "18px Comic Sans MS",
+        "ht.startOnRight": true,
+        "ht.hGap": 8,
+        "ht.wordBreak": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4529,
+      "p": {
+        "displayName": "textBox",
+        "image": "symbols/ht/text/textBox.json",
+        "position": {
+          "x": 303.5,
+          "y": 451.41475
+        },
+        "width": 249,
+        "height": 168
+      },
+      "a": {
+        "ht.content": "HT for Web\n构建先进2D和3D可视化所需要的一切\n\nHT for Web\n构建先进2D和3D可视化所需要的一切\n\nHT for Web\n构建先进2D和3D可视化所需要的一切\n\nHT for Web\n构建先进2D和3D可视化所需要的一切"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4530,
+      "p": {
+        "displayName": "textEllipsis",
+        "image": "symbols/ht/text/textEllipsis.json",
+        "position": {
+          "x": 801.69258,
+          "y": 169.3214
+        },
+        "width": 91.4642,
+        "height": 42.6428
+      },
+      "a": {
+        "ht.content": "HT for Web 构建先进2D和3D可视化所需要的一切",
+        "ht.borderWidth": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4531,
+      "p": {
+        "displayName": "textEllipsis",
+        "image": "symbols/ht/text/textEllipsis.json",
+        "position": {
+          "x": 832.79074,
+          "y": 337.3214
+        },
+        "width": 153.66051,
+        "height": 42.6428
+      },
+      "a": {
+        "ht.content": "HT for Web 构建先进2D和3D可视化所需要的一切",
+        "ht.borderWidth": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4532,
+      "p": {
+        "displayName": "textEllipsis",
+        "image": "symbols/ht/text/textEllipsis.json",
+        "rotation": 6.28319,
+        "position": {
+          "x": 922.16512,
+          "y": 514.09336
+        },
+        "width": 332.4093,
+        "height": 42.6428
+      },
+      "a": {
+        "ht.content": "HT for Web 构建先进2D和3D可视化所需要的一切",
+        "ht.borderWidth": 0
+      }
+    }
+  ],
+  "modified": "Tue Mar 26 2019 16:16:13 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": 174,
+    "y": 143,
+    "width": 919.36987,
+    "height": 397.41554
+  }
+}

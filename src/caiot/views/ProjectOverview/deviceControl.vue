@@ -8,7 +8,7 @@
                 <div class="icon">
                 </div>
                 <ul class="tab-header">
-                    <li :class="{active:activeIndex == i+1}" v-for="(item,i) in tabList" :key="i" @click="activeIndex = i+1">{{item}}</li>
+                    <li :class="{active:activeIndex == i+1}" v-for="(item,i) in tabList" :key="i" @click="updateULdasAutoMode(i+1)">{{item}}</li>
                 </ul>
                 <div class="tab-content">
                     <ul class="operation-list clearfix">
@@ -24,7 +24,7 @@
                             <div class="mode-type-name">
                                 {{currentMode.SceneName}}
                             </div>
-                            <p>{{currentMode.Week}} <span class="badge">重复</span></p>
+                            <p>{{currentMode.Week}} <!-- <span class="badge">重复</span> --></p>
                             <p>{{currentMode.TimeStart}}<span v-if="currentMode.TimeEnd">~{{currentMode.TimeEnd}}</span></p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                     <i>{{i+1}}</i>
                                 </div>
                                 <span class="mode-state">{{item.IsRun?'已完成':'未开始'}}</span>
-                                <button class="operation-btn" @click="sendCMD('GroupCMD',item.TimeCMDID)">立即执行</button>
+                                <button class="operation-btn" @click="sendCMD('GroupCMD',item.CmdID)">立即执行</button>
                             </li>
                         </ul>
                     </el-scrollbar>
@@ -103,7 +103,7 @@
                             <div class="device-type-list l" v-for="(item,i) in deviceTypes" :key="i">
                                 <h5>{{item.DeviceType}}({{item.data.length}})</h5>
                                 <ul class="device-list clearfix">
-                                    <li :class="['l',{'top10':j>3,'opening':device.DeviceStatus}]" v-for="(device,j) in item.data" :key="j">
+                                    <li :class="['l',{'top10':j>3,'opening':device.DeviceStatus == 1}]" v-for="(device,j) in item.data" :key="j">
                                         <h5>
                                             <span>{{device.DeviceName}}</span>
                                             <button class="operation-btn"  v-for="(obj,j) in device.BaseCMDs" :key='j' @click="obj.CMDMode==1?sendCMD('BaseCMD',obj.CmdID):queryControlDeviceAdjust(device.DeviceID)">{{obj.CMDShortName}}</button>
@@ -153,7 +153,7 @@ import {Control} from '@/caiot/request/api.js'
 export default {
     data(){
         return{
-            areaCount:[1,2,3,4,5], //所有区域
+            areaCount:[], //所有区域
             lastIndex:3, //记录区域当前显示的最后一个index
             activeArea:null,
             areaDevice:[], //区域设备
@@ -164,13 +164,25 @@ export default {
             currentMode:null,
             deviceTypes:[],
             show:false,
-            remoteControlList:[]
+            remoteControlList:[],
+            timer:null,
+            weekMap:{
+                '1':'周一',
+                '2':'周二',
+                '3':'周三',
+                '4':'周四',
+                '5':'周五',
+                '6':'周六',
+                '7':'周日',
+            }
 
         }
     },
     created(){
-        this.queryControlModeData()
-        this.queryAreaControl()
+        this.queryData()
+    },
+    beforeDestroy(){
+        clearTimeout(this.timer)
     },
     methods:{
         /**
@@ -192,6 +204,13 @@ export default {
             this.activeArea = item
             this.queryAreaControlDetail(item.AreaID)
         },
+        queryData(){
+            this.queryControlModeData()
+            this.queryAreaControl()
+            this.timer = setTimeout(() => {
+                this.queryData()
+            },1000*5)
+        },
         /**
          *34.PC前端—查询控制模式数据
          */
@@ -200,11 +219,13 @@ export default {
                 FAction:'QueryControlModeData'
             })
             .then((result) => {
-                console.log(result);
                 let data = result.FObject
                 this.activeIndex = data.Table[0]&&data.Table[0].AutoMode
                 this.operationList = data.Table1
                 this.currentMode = data.Table2[0]||null
+                if(this.currentMode.Week){
+                    this.currentMode.Week = this.currentMode.Week.split(',').map(item => this.weekMap[item]).join(',')
+                }
                 this.modeList = data.Table3
             }).catch((err) => {
                 
@@ -218,13 +239,13 @@ export default {
                 FAction:'QueryAreaControl',
             })
             .then((result) => {
-                console.log(result);
                 let data = result.FObject
                 this.areaCount = data
                 if(data&&data.length>0){
                     if(this.activeArea){
                         this.queryAreaControlDetail(this.activeArea.AreaID)
                     }else{
+                        this.activeArea = data[0]
                         this.queryAreaControlDetail(data[0].AreaID)
                     }
                 }
@@ -241,7 +262,6 @@ export default {
                 ID:id
             })
             .then((result) => {
-                console.log(result);
                 let data =  result.FObject
                 let areaDevice = data.ProjectDeviceTypeValue.map(item => {
                     return Object.assign(item,{
@@ -249,8 +269,7 @@ export default {
                         .filter(obj => obj.DeviceTypeID == item.DeviceTypeID)
                         .map(obj =>{
                             return {
-                                ...obj,
-                                DeviceStatus:Boolean(obj.DeviceStatus)
+                                ...obj
                             }
                         })
                     })
@@ -319,6 +338,22 @@ export default {
             .then((result) => {
                 console.log(result);
                 /* this.queryAreaControl() */
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 50. 修改项目控制模式
+         */
+        updateULdasAutoMode(id){
+            Control({
+                FAction:'UpdateULdasAutoMode',
+                AutoMode:id
+            })
+            .then((result) => {
+                this.activeIndex = id
+                clearTimeout(this.timer)
+                this.queryData()
             }).catch((err) => {
                 
             });
@@ -456,6 +491,9 @@ $url:'../../static/image';
                         font-size: 20px;
                         color: #84F2FF;
                         position: relative;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
                         .badge{
                             position: absolute;
                             width: 40px;
@@ -463,6 +501,7 @@ $url:'../../static/image';
                             margin-left: 20px;
                             line-height: 25px;
                             top: 8px;
+                            right: 10px;;
                             background:rgba(53,131,214,1);
                             border-radius:5px;
                             font-size: 14px;

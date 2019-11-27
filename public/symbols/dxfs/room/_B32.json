@@ -1,0 +1,131 @@
+{
+  "width": 72,
+  "height": 23.2236,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        72,
+        17.7236,
+        72,
+        23.2236
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24B33"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        21.34757,
+        72,
+        21.34757
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24B34"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        19.59963,
+        72,
+        19.59963
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24B35"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        17.7236,
+        0,
+        23.2236
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24B36"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        8.23286,
+        0,
+        4.76876,
+        6,
+        8.23286,
+        12,
+        15.16107,
+        12,
+        18.62517,
+        6,
+        15.16107,
+        0
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "24B42"
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0,
+  "anchorY": 1,
+  "bound": {
+    "xMin": 0,
+    "yMin": 0,
+    "xMax": 72,
+    "yMax": 23.2236,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

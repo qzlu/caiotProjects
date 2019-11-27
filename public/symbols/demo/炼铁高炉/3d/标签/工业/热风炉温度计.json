@@ -1,0 +1,337 @@
+{
+  "modified": "Wed Dec 12 2018 11:01:03 GMT+0800 (中国标准时间)",
+  "background": "rgb(61,61,61)",
+  "dataBindings": [
+    {
+      "attr": "percent",
+      "valueType": "Percentage"
+    }
+  ],
+  "width": 124,
+  "height": 652,
+  "boundExtend": 24,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(16,16,41,0.80)",
+      "fillRule": "evenodd",
+      "rotation": -1.5708,
+      "points": [
+        335.18126,
+        269.01504,
+        383.41804,
+        308.76946,
+        383.41804,
+        372.425,
+        -170.93081,
+        372.425,
+        -179.51206,
+        381.44383,
+        -223.94771,
+        381.44383,
+        -267.04082,
+        355.13695,
+        -267.04082,
+        269.01504
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1,3",
+      "align": "right",
+      "color": "rgb(242,83,75)",
+      "font": "bold 14px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        8.20541,
+        130.10185,
+        29.20261,
+        46.36897
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1,2",
+      "align": "right",
+      "color": "rgb(247,247,247)",
+      "font": "bold 14px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        8.20541,
+        223.45243,
+        29.20261,
+        46.36897
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1,1",
+      "align": "right",
+      "color": "rgb(247,247,247)",
+      "font": "bold 14px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        8.20541,
+        316.80301,
+        29.20261,
+        46.36897
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1,0",
+      "align": "right",
+      "color": "rgb(247,247,247)",
+      "font": "bold 14px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        8.20541,
+        410.1536,
+        29.20261,
+        46.36897
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1,4",
+      "align": "right",
+      "color": "rgb(242,83,75)",
+      "font": "bold 14px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        8.20541,
+        36.75127,
+        29.20261,
+        46.36897
+      ]
+    },
+    {
+      "type": "text",
+      "text": "单位",
+      "align": "right",
+      "color": "rgb(247,247,247)",
+      "font": "18px arial, sans-serif",
+      "visible": false,
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        161.33909,
+        9.98253,
+        93.95248,
+        54.30585
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#277cf3",
+      "borderCap": "square",
+      "rotation": -1.5708,
+      "points": [
+        87.3465,
+        397.9972,
+        87.3465,
+        408.81981
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(3,26,89)",
+      "borderJoin": "bevel",
+      "rotation": -1.5708,
+      "points": [
+        -180.38735,
+        334.00155,
+        -162.31797,
+        344.82416,
+        -105.68173,
+        344.82416,
+        -95.38421,
+        334.00155,
+        409.19338,
+        334.00155
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/炼铁高炉/3d/标签/工业/进度条.json",
+      "clipPercentage": {
+        "func": "attr@percent",
+        "value": 1
+      },
+      "clipDirection": "right",
+      "displayName": "进度条",
+      "rotation": 4.71239,
+      "rect": [
+        -221.73334,
+        307.53282,
+        611.61302,
+        29.12443
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "#FEB64D",
+      "fillRule": "evenodd",
+      "rotation": -1.5708,
+      "points": [
+        109.34176,
+        480.37503,
+        129.93678,
+        480.37503,
+        123.07178,
+        487.5901,
+        102.47679,
+        487.5901,
+        109.34176,
+        480.37503,
+        109.34176,
+        480.37503
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "#FEB64D",
+      "fillRule": "evenodd",
+      "rotation": -1.5708,
+      "points": [
+        109.34179,
+        452.91503,
+        129.93678,
+        452.91503,
+        123.07178,
+        460.13011,
+        102.47679,
+        460.13011,
+        109.34179,
+        452.91503,
+        109.34179,
+        452.91503
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(16,16,41)",
+      "fillRule": "evenodd",
+      "displayName": "不规则图形",
+      "rotation": -1.5708,
+      "points": [
+        81.91091,
+        627.00819,
+        81.91091,
+        611.67571,
+        99.0301,
+        627.00819
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "#FEB64D",
+      "fillRule": "evenodd",
+      "rotation": -1.5708,
+      "points": [
+        109.3418,
+        535.29506,
+        129.9368,
+        535.29506,
+        123.07177,
+        542.51013,
+        102.47677,
+        542.51013,
+        109.3418,
+        535.29506,
+        109.3418,
+        535.29506
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "#FEB64D",
+      "fillRule": "evenodd",
+      "rotation": -1.5708,
+      "points": [
+        109.34177,
+        507.83504,
+        129.9368,
+        507.83504,
+        123.07177,
+        515.05011,
+        102.47677,
+        515.05011,
+        109.34177,
+        507.83504,
+        109.34177,
+        507.83504
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/炼铁高炉/3d/标签/工业/进度条.json",
+      "clipPercentage": {
+        "func": "attr@percent",
+        "value": 0
+      },
+      "clipDirection": "right",
+      "displayName": "进度条",
+      "rotation": -1.5708,
+      "rect": [
+        -221.73334,
+        301.24054,
+        611.61302,
+        29.12443
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgba(247,247,247,0.52)",
+      "borderCap": "round",
+      "points": [
+        43.035,
+        483.19983,
+        -2.0145,
+        547.55626,
+        79.8101,
+        558.58879,
+        43.035,
+        614.67082
+      ],
+      "segments": [
+        1,
+        4
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "#FEB64D",
+      "borderColor": "#979797",
+      "points": [
+        1.97421,
+        0,
+        1.97421,
+        37.89869,
+        33.30555,
+        0.17538,
+        1.97421,
+        0.17538
+      ]
+    }
+  ]
+}

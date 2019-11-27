@@ -1,0 +1,115 @@
+{
+  "width": 12,
+  "height": 12,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        3,
+        6,
+        0,
+        6
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "6FD7"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        6,
+        9,
+        6,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "6FD9"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        9,
+        6,
+        12,
+        6
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "6FDA"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        6,
+        3,
+        6,
+        0
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "6FDB"
+    },
+    {
+      "type": "arc",
+      "cadType": "CIRCLE",
+      "handle": "6FD8",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        3,
+        3,
+        6,
+        6
+      ],
+      "arcFrom": 0,
+      "arcTo": 6.28319,
+      "arcClose": false
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0.5,
+  "anchorY": 0.5,
+  "bound": {
+    "xMin": -6,
+    "yMin": -6,
+    "xMax": 6,
+    "yMax": 6,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true
+}

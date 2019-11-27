@@ -1,0 +1,360 @@
+{
+  "modified": "Fri Dec 07 2018 10:23:43 GMT+0800 (中国标准时间)",
+  "width": 374,
+  "height": 164,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        0,
+        0,
+        333.04741,
+        162.63081
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(0,23,33,0.6)",
+      "borderWidth": 0.7,
+      "borderColor": "rgb(31,104,163)",
+      "rect": [
+        343.51456,
+        0,
+        28.33388,
+        162.63081
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,74,74)",
+      "borderColor": "#979797",
+      "rect": [
+        4.06783,
+        11.39044,
+        14.62399,
+        14.62399
+      ]
+    },
+    {
+      "type": "text",
+      "text": "1F大厅消防烟感探头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        11.99844,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.19",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        15.32656,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        12.97304,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2F-19 AHU风机故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        37.15005,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.18",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        40.47816,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        38.12466,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "5F电梯厅监控摄像头故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        62.30166,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.17",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        65.62977,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        63.27627,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "B1F-05排水井故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        87.45327,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.16",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        90.78138,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        88.42789,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "16F设备间门故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        112.60489,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.15",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        115.93299,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        113.57949,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "23F点表通讯故障",
+      "color": "rgb(255,255,255)",
+      "font": "12px Arial",
+      "rect": [
+        20.91095,
+        137.7565,
+        75.12877,
+        14.43339
+      ]
+    },
+    {
+      "type": "text",
+      "text": "2018.11.14",
+      "align": "center",
+      "color": "rgb(181,181,181)",
+      "font": "12px Arial",
+      "rect": [
+        209.64593,
+        141.08461,
+        75.12877,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "17:25",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px Arial",
+      "rect": [
+        268.38579,
+        139.2438,
+        75.12877,
+        11.45878
+      ]
+    },
+    {
+      "type": "text",
+      "text": "设",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        33.8718,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "备",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        50.86331,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "故",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        67.85482,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "障",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        84.84635,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "信",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        101.83786,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "text",
+      "text": "息",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "rect": [
+        350.07507,
+        118.82937,
+        15.21287,
+        9.10528
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/故障.json",
+      "displayName": "故障",
+      "rect": [
+        5.54437,
+        13.37967,
+        11.67092,
+        11.67092
+      ]
+    }
+  ]
+}

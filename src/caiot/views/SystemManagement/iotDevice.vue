@@ -39,6 +39,10 @@
                         <el-option  label="否" :value="false"></el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="第三方ID" prop="OtherSourceID">
+                    <el-input v-model="addInfo.OtherSourceID">
+                    </el-input>
+                </el-form-item>
             </el-form>
             <div class="submit">
                 <button class="zw-btn zw-btn-primary" @click="addOrUpdateUDevice()">确定</button>
@@ -128,6 +132,10 @@ export default {
                     prop: 'IsControl',
                     label: '是否控制设备',
                     formatter:row => row.IsControl?'是':'否'
+                },
+                {
+                    prop:'OtherSourceID',
+                    label:'第三方ID',
                 },
             ],
             type:0,

@@ -1,0 +1,88 @@
+{
+  "width": 60,
+  "height": 100,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\n// 获取属性值\r\nvar x = rect.x;\r\nvar y = rect.y;\r\nvar width = rect.width;\r\nvar height = rect.height;\r\nvar borderColor = comp.getColor('borderColor');\r\nvar inColor = comp.getColor('inColor');\r\nvar instrumentColor = comp.getColor('instrumentColor');\r\nvar liquidColor = comp.getColor('liquidColor');\r\nvar max = comp.getValue('max');\r\nvar min = comp.getValue('min');\r\nvar num = comp.getValue('num');\r\nvar text = comp.getValue('text');\r\nvar hasText = comp.getValue('hasText');\r\nvar textColor = comp.getColor('textColor');\r\nvar hasNum = comp.getValue('hasNum');\r\nvar isNum = comp.getValue('isNum');\r\nvar percentageSymbol = comp.getValue('percentageSymbol');\r\nvar numColor = comp.getColor('numColor');\r\nvar hasContrast = comp.getValue('hasContrast');\r\nvar contrastColor = comp.getColor('contrastColor');\r\n\r\n// 定义属性值\r\nvar base = height / 100;\r\nvar center = {\r\n    x: x + width / 2,\r\n    y: y + height / 2,\r\n};\r\nvar r = base * 25;\r\nvar topCirclePoint = {\r\n    x: center.x,\r\n    y: center.y - base * 24,\r\n};\r\nvar bottomCirclePoint = {\r\n    x: center.x,\r\n    y: center.y + base * 14,\r\n};\r\nvar points = [\r\n    {\r\n        x: center.x - base * 25,\r\n        y: center.y - base * 24,\r\n    },\r\n    {\r\n        x: center.x - base * 25,\r\n        y: center.y + base * 14,\r\n    },\r\n    {\r\n        x: center.x + base * 25,\r\n        y: center.y + base * 14,\r\n    },\r\n    {\r\n        x: center.x + base * 25,\r\n        y: center.y - base * 24,\r\n    }\r\n];\r\nif (num > max) num = max;\r\nif (num < min) num = min;\r\nvar percentage = (num - min) / (max - min);\r\nvar uPercentage = 1 - percentage;\r\nvar tankHeight = points[1].y - points[0].y + r * 2 - base;\r\nvar startPoint = {\r\n    x: points[0].x,\r\n    y: points[0].y - r + base / 2 + uPercentage * tankHeight,\r\n};\r\nvar numShow = percentage;\r\n\r\n// 逻辑\r\nif (percentageSymbol) numShow = Math.round(percentage * 100) + '%';\r\nif (isNum) numShow = num;\r\nif (max <= min) {\r\n    percentage = 0;\r\n    numShow = '区间不合理';\r\n}\r\n\r\n\r\n// 绘制文字函数\r\nfunction drawText(text, color, x, y, num, proportion, baseline, alige) {\r\n    var textScale = base * proportion;\r\n    var maxWidth = g.measureText(\"字\").width * num;\r\n    var nowWidth = g.measureText(text).width; \r\n    if (nowWidth > maxWidth) textScale = textScale / nowWidth * maxWidth;\r\n    g.save();\r\n    g.beginPath();\r\n    g.scale(textScale, textScale);\r\n    g.fillStyle = color;\r\n    g.textBaseline = 'top';\r\n    g.textAlign = 'center';\r\n    if (baseline) g.textBaseline = baseline;\r\n    if (alige) g.textAlign = alige;\r\n    g.fillText(text, x / textScale, y / textScale);\r\n    g.restore();\r\n}\r\n\r\n// 绘制对比文字函数\r\nfunction drawContrastText(parameter, scope, text, color1, color2, x, y, num, proportion, baseline, alige) {\r\n    var basePoint = y;\r\n    var contrastHeight = scope * 2;\r\n    if (parameter > basePoint - scope && parameter < basePoint + scope) {\r\n        contrastHeight = parameter - basePoint + scope;\r\n        g.save();\r\n        g.beginPath();\r\n        g.fillStyle = 'rgba(0, 0, 0, 0)';\r\n        g.rect(center.x - base * 25, basePoint - scope, base * 50, contrastHeight);\r\n        g.fill();\r\n        g.clip();\r\n        if (hasNum) drawText(text, color1, x, y, num, proportion, baseline, alige);\r\n        g.restore();\r\n        g.save();\r\n        g.beginPath();\r\n        g.fillStyle = 'rgba(0, 0, 0, 0)';\r\n        g.rect(center.x - base * 25, parameter, base * 50, scope * 2);\r\n        g.fill();\r\n        g.clip();\r\n        if (hasNum) drawText(text, color2 ,x, y, num, proportion, baseline, alige);\r\n        g.restore();\r\n    }else if (parameter > basePoint + scope) {\r\n        if (hasNum) drawText(text, color1, x, y, num, proportion, baseline, alige);\r\n    }else {\r\n        if (hasNum) drawText(text, color2, x, y, num, proportion, baseline, alige);\r\n    }\r\n}\r\n\r\n// 绘制贮箱\r\ng.save();\r\ng.beginPath();\r\ng.fillStyle = inColor;\r\ng.lineWidth = base;\r\ng.arc(topCirclePoint.x, topCirclePoint.y, r, 0, Math.PI, true);\r\ng.lineTo(points[1].x,points[1].y);\r\ng.arc(bottomCirclePoint.x, bottomCirclePoint.y, r, Math.PI, 0, true);\r\ng.lineTo(points[3].x,points[3].y);\r\ng.fill();\r\ng.clip();\r\n// 绘制内部\r\ng.beginPath();\r\ng.fillStyle = liquidColor;\r\ng.rect(startPoint.x, startPoint.y, width, height);\r\ng.fill();\r\ng.restore();\r\n\r\n// 绘制外壳\r\ng.beginPath();\r\ng.strokeStyle = borderColor;\r\ng.lineWidth = base;\r\ng.arc(topCirclePoint.x, topCirclePoint.y, r, 0, Math.PI, true);\r\ng.lineTo(points[1].x,points[1].y);\r\ng.arc(bottomCirclePoint.x, bottomCirclePoint.y, r, Math.PI, 0, true);\r\ng.lineTo(points[3].x,points[3].y);\r\ng.stroke();\r\n\r\n// 绘制仪表\r\ng.beginPath();\r\ng.fillStyle = instrumentColor;\r\ng.rect(points[2].x, center.y - base * 20, base * 2, base * 8);\r\ng.rect(points[2].x, center.y + base * 8, base * 2, base * 8);\r\ng.fill();\r\n\r\n// 绘制说明文字\r\nif (hasText) drawText(text, textColor, center.x, center.y + base * 45, 6, .8, 'middle', 'center');\r\n\r\nif (hasContrast) {\r\n    drawContrastText(startPoint.y, base * 10, numShow, numColor, contrastColor, center.x, center.y - base * 5 , 4, 1, 'middle', 'center');\r\n}else {\r\n    drawText(numShow, numColor, center.x, center.y - base * 5 , 4, 1, 'middle', 'center');\r\n}\n}",
+  "properties": {
+    "borderColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(138,131,131)",
+      "name": "外壳颜色"
+    },
+    "inColor": {
+      "valueType": "Color",
+      "defaultValue": "rgba(0,0,0,0)",
+      "name": "内部颜色"
+    },
+    "instrumentColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(245,163,0)",
+      "name": "仪表颜色"
+    },
+    "liquidColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(0,255,200)",
+      "name": "液体颜色"
+    },
+    "max": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 100,
+      "name": "最大值"
+    },
+    "min": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 0,
+      "name": "最小值"
+    },
+    "num": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 49,
+      "name": "数值"
+    },
+    "text": {
+      "valueType": "String",
+      "defaultValue": "贮箱",
+      "name": "说明文字"
+    },
+    "hasText": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "是否有说明文字"
+    },
+    "textColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(0,0,0)",
+      "name": "说明文字颜色"
+    },
+    "hasNum": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "显示数字/百分比"
+    },
+    "isNum": {
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "数字"
+    },
+    "percentageSymbol": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "百分比带%"
+    },
+    "numColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(0,0,0)",
+      "name": "数字颜色"
+    },
+    "hasContrast": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "数字对比"
+    },
+    "contrastColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(255,255,255)",
+      "name": "对比颜色"
+    }
+  }
+}

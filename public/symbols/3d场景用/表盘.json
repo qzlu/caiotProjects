@@ -1,0 +1,204 @@
+{
+  "modified": "Sat Oct 20 2018 13:57:37 GMT+0800 (China Standard Time)",
+  "width": 132,
+  "height": 151,
+  "comps": [
+    {
+      "type": "circle",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "rgba(5,5,41,0.20)",
+      "borderJoin": "bevel",
+      "rect": [
+        0,
+        16.37319,
+        130.48219,
+        137.84043
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "rgb(12,104,135)",
+      "borderJoin": "bevel",
+      "rotation": -1.5708,
+      "points": [
+        67.30071,
+        -6.53421,
+        78.70744,
+        0.1603,
+        78.70744,
+        35.55595,
+        67.30071,
+        43.07852,
+        55.89397,
+        35.55595,
+        55.89397,
+        0.1603
+      ]
+    },
+    {
+      "type": "text",
+      "text": "98",
+      "align": "center",
+      "color": "rgb(76,205,252)",
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        51.05565,
+        61.20285,
+        27.87977,
+        12.77431
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 17,
+      "borderColor": "rgb(12,104,135)",
+      "arcFrom": 1.0472,
+      "arcTo": -1.0472,
+      "arcClose": false,
+      "rotation": 1.5708,
+      "rect": [
+        18.75439,
+        37.09058,
+        91.99597,
+        94.60411
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 22,
+      "borderColor": "rgb(36,145,181)",
+      "arcFrom": 3.9619,
+      "arcTo": -0.90757,
+      "arcClose": false,
+      "rect": [
+        18.99756,
+        37.33375,
+        91.99597,
+        94.60411
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 1,
+      "borderColor": "rgb(124,145,155)",
+      "arcFrom": -1.0472,
+      "arcTo": -2.07694,
+      "arcClose": false,
+      "rect": [
+        3.73314,
+        0,
+        122.5248,
+        168.48186
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 18,
+      "borderColor": "rgba(20,42,122,0.45)",
+      "arcFrom": 1.0472,
+      "arcTo": -1.0472,
+      "arcClose": false,
+      "rotation": 1.5708,
+      "rect": [
+        21.2108,
+        37.39861,
+        88.05583,
+        94.60411
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(124,145,155)",
+      "borderColor": "#979797",
+      "rect": [
+        32.27985,
+        29.46705,
+        3.8509,
+        3.8509
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(124,145,155)",
+      "borderColor": "#979797",
+      "rect": [
+        93.88248,
+        29.46705,
+        3.8509,
+        3.8509
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/3d场景用/gauge/gauge虹桥.json",
+      "displayName": "gauge",
+      "rect": [
+        13.67768,
+        33.31795,
+        102.63571,
+        102.63571
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(12,104,135)",
+      "borderJoin": "bevel",
+      "rotation": -1.5708,
+      "points": [
+        34.8671,
+        21.23555,
+        34.8671,
+        17.21166,
+        39.30619,
+        14.19503,
+        58.15626,
+        14.19283,
+        62.5986,
+        17.21166,
+        62.5986,
+        21.23555
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(12,104,135)",
+      "borderJoin": "bevel",
+      "scaleY": -1,
+      "rotation": -1.5708,
+      "points": [
+        72.00282,
+        21.23555,
+        72.00282,
+        17.21166,
+        76.44191,
+        14.19503,
+        95.29198,
+        14.19283,
+        99.73432,
+        17.21166,
+        99.73432,
+        21.23555
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        2
+      ]
+    }
+  ]
+}

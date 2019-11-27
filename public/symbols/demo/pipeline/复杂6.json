@@ -1,0 +1,27 @@
+{
+  "modified": "Thu Dec 20 2018 11:19:51 GMT+0800 (中国标准时间)",
+  "width": 250,
+  "height": 78,
+  "boundExtend": 1,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(16,16,41,0.80)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,187,255)",
+      "points": [
+        0,
+        78,
+        0,
+        0,
+        232.16437,
+        0,
+        250,
+        14.61001,
+        250,
+        78
+      ]
+    }
+  ]
+}

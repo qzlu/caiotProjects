@@ -1,0 +1,287 @@
+{
+  "modified": "Thu Dec 20 2018 14:53:09 GMT+0800 (中国标准时间)",
+  "width": 65,
+  "height": 490,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgb(199,197,197)",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,0,0)",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(255,255,255)",
+      "rect": [
+        1.84712,
+        3.58809,
+        61.30576,
+        449.57558
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,0,0)",
+      "rect": [
+        20.46589,
+        36.83957,
+        24.06823,
+        383.62317
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,0,0)",
+      "borderColor": "rgb(3,3,3)",
+      "shadow": true,
+      "shadowColor": "rgb(255,0,0)",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "红标",
+      "rect": [
+        20.46589,
+        184.34242,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        47.23507,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        66.81481,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        86.39454,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        105.97428,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        125.55401,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        145.13374,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        164.71348,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        203.87295,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        223.45268,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        243.03241,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        262.61215,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        282.19188,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        301.77162,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        321.35135,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        340.93109,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        360.51082,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        380.09055,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        399.67029,
+        24.06823,
+        9.65519
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(199,197,197)",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(0,0,0)",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(255,255,255)",
+      "rect": [
+        11.9476,
+        453.16367,
+        40.19018,
+        19.77099
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(199,197,197)",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(0,0,0)",
+      "gradient": "spread.horizontal",
+      "gradientColor": "rgb(255,255,255)",
+      "rect": [
+        1.84712,
+        468.37946,
+        61.30576,
+        18.03245
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(3,3,3)",
+      "rect": [
+        20.46589,
+        184.34242,
+        24.06823,
+        9.65519
+      ]
+    }
+  ]
+}

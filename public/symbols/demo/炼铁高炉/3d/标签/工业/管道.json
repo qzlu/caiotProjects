@@ -1,0 +1,174 @@
+{
+  "modified": "Wed Dec 12 2018 10:59:59 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "A_H2",
+      "valueType": "String",
+      "defaultValue": "1"
+    },
+    {
+      "attr": "A_N2",
+      "valueType": "String",
+      "defaultValue": "1"
+    },
+    {
+      "attr": "A_CO",
+      "valueType": "String",
+      "defaultValue": "1"
+    },
+    {
+      "attr": "A_CO2",
+      "valueType": "String",
+      "defaultValue": "1"
+    }
+  ],
+  "width": 474,
+  "height": 260,
+  "boundExtend": 24,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "image",
+      "name": "symbols/demo/炼铁高炉/3d/标签/指向标签.json",
+      "displayName": "指向标签",
+      "rect": [
+        0,
+        0,
+        473.24688,
+        244.51886
+      ]
+    },
+    {
+      "type": "text",
+      "text": "一氧化碳占比",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "18px arial, sans-serif",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        0,
+        9.98253,
+        149.47533,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": "二氧化碳占比",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "18px arial, sans-serif",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        0,
+        53.74783,
+        149.47533,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": "氢气占比",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "18px arial, sans-serif",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        202.22296,
+        9.98253,
+        149.47533,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": "氮气占比",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "18px arial, sans-serif",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        202.22296,
+        53.74783,
+        149.47533,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nreturn data.a('A_CO') + '%';\n}",
+        "value": "66,66%"
+      },
+      "align": "center",
+      "color": "#FEB64D",
+      "font": "bold 24px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        132.37705,
+        9.98253,
+        110.74801,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nreturn data.a('A_CO2') + '%';\n}",
+        "value": "66,66%"
+      },
+      "align": "center",
+      "color": "#FEB64D",
+      "font": "bold 24px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        132.37705,
+        53.74783,
+        110.74801,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nreturn data.a('A_H2') + '%';\n}",
+        "value": "66,66"
+      },
+      "align": "center",
+      "color": "#FEB64D",
+      "font": "bold 24px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        320.03726,
+        9.98253,
+        81.70142,
+        54.30585
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nreturn data.a('A_N2') + '%';\n}",
+        "value": "66,66"
+      },
+      "align": "center",
+      "color": "#FEB64D",
+      "font": "bold 24px Arial",
+      "anchorX": 0.2884,
+      "anchorY": 0.35576,
+      "rect": [
+        320.03726,
+        53.74783,
+        81.70142,
+        54.30585
+      ]
+    }
+  ]
+}

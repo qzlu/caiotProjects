@@ -1,0 +1,264 @@
+{
+  "dataBindings": [
+    {
+      "attr": "rotate",
+      "valueType": "Angle",
+      "defaultValue": -0.53
+    },
+    {
+      "attr": "onBack",
+      "valueType": "Color"
+    },
+    {
+      "attr": "offBack",
+      "valueType": "Color"
+    },
+    {
+      "attr": "midBack",
+      "valueType": "Color"
+    },
+    {
+      "attr": "midPos",
+      "valueType": "NumberArray"
+    },
+    {
+      "attr": "rightBack",
+      "valueType": "Color"
+    },
+    {
+      "attr": "rightPos",
+      "valueType": "Number"
+    }
+  ],
+  "width": 100,
+  "height": 40,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderColor": "#979797",
+      "shadowBlur": 2,
+      "shadowOffsetX": 1,
+      "shadowOffsetY": 1,
+      "anchorX": 0.52656,
+      "anchorY": 0.52151,
+      "rect": [
+        0,
+        0,
+        40,
+        40
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderColor": "#979797",
+      "anchorX": 0.47077,
+      "rect": [
+        42,
+        0,
+        40,
+        40
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderColor": "#979797",
+      "anchorX": 0.47077,
+      "rect": [
+        84,
+        0,
+        16,
+        40
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "attr@onBack",
+        "value": "rgb(0,255,1)"
+      },
+      "borderColor": "#979797",
+      "border3dColor": "rgb(0,0,0)",
+      "shadow": true,
+      "shadowColor": "rgb(0,0,0)",
+      "shadowBlur": 0.5,
+      "shadowOffsetX": 0.2,
+      "shadowOffsetY": 0.2,
+      "rect": [
+        4,
+        8,
+        13,
+        4
+      ]
+    },
+    {
+      "type": "text",
+      "text": "On",
+      "align": "center",
+      "font": "3px arial, sans-serif",
+      "rect": [
+        2.40278,
+        7,
+        15.59722,
+        6
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "attr@offBack",
+        "value": "rgb(236,233,216)"
+      },
+      "borderColor": "#979797",
+      "border3dColor": "rgb(0,0,0)",
+      "shadow": true,
+      "shadowColor": "rgb(0,0,0)",
+      "shadowBlur": 0.5,
+      "shadowOffsetX": 0.2,
+      "shadowOffsetY": 0.2,
+      "rect": [
+        23,
+        8,
+        13,
+        4
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Off",
+      "align": "center",
+      "font": "3px arial, sans-serif",
+      "rect": [
+        21.40278,
+        7,
+        15.59722,
+        6
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(237,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "anchorX": 0.47685,
+      "rect": [
+        10,
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "polygon",
+      "background": "rgb(128,128,128)",
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "rect": [
+        44.66499,
+        7.5,
+        30.67003,
+        25
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(128,128,128)",
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "rect": [
+        51,
+        11,
+        18,
+        18
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,0,0)",
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "rect": [
+        57.5,
+        17.5,
+        5,
+        5
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@midBack",
+        "value": "rgb(0,255,1)"
+      },
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "rect": {
+        "func": "attr@midPos",
+        "value": [
+          55,
+          17.5,
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "type": "rect",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.4,
+      "borderColor": "rgb(255,255,255)",
+      "border3d": true,
+      "border3dColor": "rgb(97,15,15)",
+      "depth": -2,
+      "rect": [
+        88.5,
+        2.5,
+        7,
+        35
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@rightBack",
+        "value": "rgb(0,255,1)"
+      },
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "shadow": true,
+      "shadowColor": "rgb(0,0,0)",
+      "shadowBlur": 2,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": {
+        "func": "attr@rightPos",
+        "value": [
+          87,
+          0,
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "type": "shape",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.1,
+      "borderColor": "rgb(0,0,0)",
+      "rotation": {
+        "func": "attr@rotate",
+        "value": 0
+      },
+      "points": [
+        17.48728,
+        13.03419,
+        22.51272,
+        13,
+        22.51272,
+        38.02465
+      ]
+    }
+  ]
+}

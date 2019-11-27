@@ -1,0 +1,81 @@
+{
+  "v": "6.2.6",
+  "p": {
+    "background": "rgb(34,72,110)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 7525,
+      "p": {
+        "displayName": "ht",
+        "image": "symbols/basic/ht.json",
+        "position": {
+          "x": 398.5,
+          "y": 389
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7526,
+      "p": {
+        "displayName": "ht 2",
+        "image": "symbols/basic/ht 2.json",
+        "position": {
+          "x": 506,
+          "y": 541.84583
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7527,
+      "p": {
+        "displayName": "ht 3",
+        "image": "symbols/basic/ht 3.json",
+        "position": {
+          "x": 593,
+          "y": 694.69167
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7528,
+      "p": {
+        "displayName": "ht 4",
+        "image": "symbols/basic/ht 4.json",
+        "position": {
+          "x": 418.5,
+          "y": 898.5375
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7529,
+      "p": {
+        "displayName": "ht 5",
+        "image": "symbols/basic/ht 5.json",
+        "position": {
+          "x": 704,
+          "y": 898.5375
+        }
+      }
+    }
+  ],
+  "modified": "Mon Oct 08 2018 23:22:36 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": 334.5,
+    "y": 325,
+    "width": 567.5,
+    "height": 688.5375
+  }
+}

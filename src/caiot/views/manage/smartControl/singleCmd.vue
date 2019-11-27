@@ -1,7 +1,17 @@
 <template>
     <div class="report inspection-item ">
-        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="750px"  class="zw-dialog">
+        <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="780px"  class="zw-dialog">
             <el-form :model="addInfo" inline ref="form" label-width="140px">
+                <el-form-item label="设备名称" prop="DeviceID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.DeviceID"  value-key="DeviceID" filterable  placeholder="请选择" >
+                    <el-option v-for="list in deviceList" :key="list.DeviceID" :label="list.DeviceName" :value="list.DeviceID"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="仪表名称" prop="MeterID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.MeterID"  filterable placeholder="请选择">
+                    <el-option v-for="item in meterList" :key="item.MeterID" :label="item.MeterName" :value="item.MeterID"></el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item label="指令全称" prop="CMDName"  :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.CMDName">
                     </el-input>
@@ -16,19 +26,9 @@
                     <el-option  label="遥控" :value="2"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="设备名称" prop="DeviceID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.DeviceID"  value-key="DeviceID" filterable  placeholder="请选择" >
-                    <el-option v-for="list in deviceList" :key="list.DeviceID" :label="list.DeviceName" :value="list.DeviceID"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="仪表名称" prop="MeterID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.MeterID"  filterable placeholder="请选择">
-                    <el-option v-for="item in meterList" :key="item.MeterID" :label="item.MeterName" :value="item.MeterID"></el-option>
-                  </el-select>
-                </el-form-item>
                 <el-form-item label="寄存器仪表型号" prop="RegMeterModelID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addInfo.RegMeterModelID"  filterable placeholder="请选择">
-                    <el-option v-for="item in regMeterModelList" :key="item.RegMeterModelID" :label="item.VarName" :value="item.RegMeterModelID"></el-option>
+                  <el-select v-model="regMeterModel" value-key="RegMeterModelID"  filterable placeholder="请选择" @change="selecRegMeterModel">
+                    <el-option v-for="item in regMeterModelList" :key="item.RegMeterModelID" :label="item.VarName" :value="item"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="遥调单位" prop="Unit">
@@ -36,7 +36,9 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="写入值" prop="WriteValue">
-                    <el-input v-model="addInfo.WriteValue">
+                    <el-input v-if="regMeterModel.InitValue" readonly v-model="addInfo.WriteValue">
+                    </el-input>
+                    <el-input v-else v-model="addInfo.WriteValue">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="建立时长" prop="BuiltTime">
@@ -52,10 +54,10 @@
                 <el-form-item label="关系寄存器表达式" >
                     <ul class="express">
                         <li v-for="(item,i) in expressionList" :key="i">
-                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择" @change="selectMeter(i)">
+                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  clearable  placeholder="请选择" @change="selectMeter(i)">
                               <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
                             </el-select>
-                            <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" filterable  placeholder="请选择">
+                            <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" clearable filterable  placeholder="请选择">
                               <el-option v-for="list in item.Meter.ListData||[]" :key="list.DataItemID" :label="list.DataItemName" :value="list"></el-option>
                             </el-select>
                         </li>
@@ -98,6 +100,7 @@
                </el-table-column>
                <el-table-column
                  prop=""
+                 width="100"
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
@@ -196,6 +199,7 @@ export default {
                 CMDMode:'',
                 Unit:''
             },
+            regMeterModel:{},
             title:'新增',
             show:false,
             regMeterModelList:[], //
@@ -306,6 +310,10 @@ export default {
         selectMeter(i){
             this.expressionList[i].DataItem = ''
         },
+        selecRegMeterModel(item){
+            this.addInfo.RegMeterModelID = item.RegMeterModelID
+            this.addInfo.WriteValue = item.InitValue
+        },
         addExpress(){
             this.expressionList.push({
                 ...this.expressItem
@@ -334,6 +342,7 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
+            this.regMeterModel = this.regMeterModelList.find(item => item.RegMeterModelID == row.RegMeterModelID)
             if(!row.RelatedReg){
                 this.expressionList = [{...this.expressItem}]
                 return

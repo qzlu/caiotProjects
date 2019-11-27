@@ -1,0 +1,188 @@
+{
+  "v": "6.3.1",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 36269,
+      "p": {
+        "displayName": "table",
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 1326.97446,
+          "y": 496.88494
+        },
+        "width": 1265.33598,
+        "height": 1094.86748
+      },
+      "a": {
+        "ht.headHeight": 40,
+        "ht.rowHeight": 30,
+        "ht.cellPadding": 6,
+        "ht.showHead": true,
+        "ht.dataSource": [
+          {
+            "key": "radius",
+            "desc": "饼图的半径, 数组的第一项是内半径, 第二项是外半径, 每一项的类型可以为 number 或 string, 百分比为相对于宽高中较小的值.",
+            "type": "array",
+            "defaultVaule": "[0, '25%']"
+          },
+          {
+            "key": "center",
+            "desc": "饼图的中心（圆心）坐标, 数组的第一项是横坐标, 第二项是纵坐标, 每一项的类型可以为 number 或 string.",
+            "type": "array",
+            "defaultVaule": "['50%', '50%']"
+          },
+          {
+            "key": "startAngle",
+            "desc": "起始角度, 支持范围[0, 360]",
+            "type": "number",
+            "defaultVaule": "90"
+          },
+          {
+            "key": "roseType",
+            "desc": "是否展示成南丁格尔图, 通过半径区分数据大小。",
+            "type": "boolean",
+            "defaultVaule": "false"
+          },
+          {
+            "key": "seriesName",
+            "desc": "系列名称",
+            "type": "string",
+            "defaultVaule": "饼图系列名"
+          },
+          {
+            "key": "hoverOffset",
+            "desc": "高亮扇区的偏移距离",
+            "type": "number",
+            "defaultVaule": "4"
+          },
+          {
+            "key": "tooltip",
+            "desc": "提示框组件, 参数说明: \n  show: 是否显示提示框\n  formatter: 提示框内容格式, 字符串模板 模板变量有：（其它配置 formatter 格式相同, 可通过 \\n 换行）\n    {a}：系列名\n    {b}：数据名\n    {c}：数据值\n    {d}：百分比",
+            "type": "object",
+            "defaultVaule": "{\n  show: true\n}"
+          },
+          {
+            "key": "labelLine",
+            "desc": "标签的视觉引导线, 分为\n  1. normal, 正常状态\n  2. emphasis, 高亮状态\n  每个状态参数相同, 参数说明:\n    show: 是否显示视觉引导线\n    length: 视觉引导线第一段的长度\n    length2: 视觉引导项第二段的长度\n    formatter: 标签内容格式器\n    width: 引导线线宽\n    type: 引导线的类型\n    font: 文本字体\n    lineColor: 线颜色\n    textColor: 文本颜色",
+            "type": "object",
+            "defaultVaule": "{\n  normal: {\n    show: true\n  }, \n  emphasis: {\n    show: false\n  }\n}"
+          },
+          {
+            "key": "label",
+            "desc": "饼图文本标签, 分为\n  1. normal, 正常状态\n  2. emphasis, 高亮状态\n  每个状态参数相同, 参数说明:\n    show: 是否显示标签\n    position: 标签的位置(inside | center)\n    color: 标签字体颜色\n    font: 标签字体样式\n    formatter: 标签内容格式器",
+            "type": "object",
+            "defaultVaule": "{\n  normal: {\n    show: true\n    position: 'center'\n  }, \n  emphasis: {\n    show: false\n    position: 'center'\n  }\n}"
+          },
+          {
+            "key": "pieData",
+            "desc": "饼图数据, 参数说明:\n[{\n    name: 数据项的名称\n    value: 数据项值\n    itemStyle: 自定义特殊 itemStyle, 仅对该 item 有效\n      {\n        color: 图形颜色, 颜色可以使用 RGB 表示, 比如 'rgb(128, 128, 128)', 如果想要加上 alpha 通道表示不透明度, \n                可以使用 RGBA, 比如 'rgba(128, 128, 128, 0.5)', 也可以使用十六进制格式, 比如 '#ccc'。\n                除了纯色之外颜色也支持 线性 或者 径向 的渐变, 比如\n                {type: 'linear',// 线性渐变 colorStops: {offset: 0, color: 'red' // 0% 处的颜色}, {offset: 1, color: 'blue' // 100% 处的颜色}}\n                {type: 'radial',// 径向渐变 colorStops: {offset: 0, color: 'red' // 0% 处的颜色}, {offset: 1, color: 'blue' // 100% 处的颜色}}\n        borderWidth: 描边线宽。为 0 时无描边。\n        borderColor: 图形的描边颜色\n        borderType: 描边类型\n      }\n    labelLine: 自定义特殊 labelLine，仅对该 item 有效,参数内容与上面 labelLine 参数相同\n    label: 自定义特殊 label, 仅对该 item 有效, 参数内容与上面 label 参数相同\n}]",
+            "type": "array"
+          }
+        ],
+        "ht.columns": [
+          {
+            "key": "key",
+            "displayName": "字段",
+            "width": 100,
+            "bodyColor": "rgb(51,153,255)"
+          },
+          {
+            "key": "desc",
+            "displayName": "说明",
+            "width": 0.1
+          },
+          {
+            "key": "type",
+            "displayName": "类型",
+            "width": 140
+          },
+          {
+            "key": "defaultVaule",
+            "displayName": "默认值",
+            "width": 150
+          }
+        ],
+        "ht.hoverBackground": "rgba(255,255,255,0.31)",
+        "ht.borderWidth": 0,
+        "ht.translateY": 0,
+        "ht.rowLineWidth": 1,
+        "ht.scrollBarWidth": 8,
+        "ht.translateX": 0,
+        "ht.showScrollBar": true,
+        "ht.scrollBarColor": "rgba(49,210,235,0.39)",
+        "ht.autoHideScrollBar": false,
+        "ht.columnLineWidth": 0,
+        "ht.bodyBackground": "rgb(247,247,247)",
+        "ht.bodyTextColor": "rgb(61,61,61)",
+        "ht.headTextColor": "rgb(61,61,61)",
+        "ht.headbackground": "rgb(186,186,186)",
+        "ht.headFont": "bold 14px sans-serif, arial",
+        "ht.bodyFont": "14px sans-serif, arial"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36270,
+      "p": {
+        "displayName": "pie-more",
+        "image": "symbols/ht/chart/pie3.json",
+        "position": {
+          "x": -48.99179,
+          "y": 99.4512
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36271,
+      "p": {
+        "displayName": "pie-one",
+        "image": "symbols/ht/chart/pie1.json",
+        "position": {
+          "x": 411.10915,
+          "y": 99.4512
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36272,
+      "p": {
+        "displayName": "pie-two",
+        "image": "symbols/ht/chart/pie2.json",
+        "position": {
+          "x": 177.63643,
+          "y": 520.26038
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36273,
+      "p": {
+        "displayName": "pie",
+        "image": "symbols/ht/chart/pieBase.json",
+        "position": {
+          "x": 177.63643,
+          "y": 894.31868
+        }
+      }
+    }
+  ],
+  "modified": "Tue Mar 26 2019 15:25:55 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": -272.36357,
+    "y": -50.5488,
+    "width": 2232.00602,
+    "height": 1094.86748
+  }
+}

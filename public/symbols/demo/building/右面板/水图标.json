@@ -1,0 +1,30 @@
+{
+  "modified": "Fri Dec 07 2018 10:22:04 GMT+0800 (中国标准时间)",
+  "width": 60,
+  "height": 60,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "oval",
+      "borderWidth": 3.5,
+      "borderColor": "rgb(0,183,255)",
+      "rect": [
+        4.59016,
+        4.59016,
+        50.81968,
+        50.81968
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/右面板/水.json",
+      "displayName": "水",
+      "rect": [
+        15.21947,
+        15.49041,
+        29.01918,
+        29.01918
+      ]
+    }
+  ]
+}

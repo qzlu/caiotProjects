@@ -1,0 +1,30 @@
+{
+  "modified": "Mon Dec 03 2018 11:55:58 GMT+0800 (China Standard Time)",
+  "width": 50,
+  "height": 50,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(25,73,79,0.80)",
+      "displayName": "信息发布框",
+      "rect": [
+        1.47639,
+        1.47639,
+        47.04723,
+        47.04723
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/信息发布.json",
+      "displayName": "信息发布图",
+      "rect": [
+        13.49281,
+        14.72861,
+        23.17112,
+        23.17112
+      ]
+    }
+  ]
+}

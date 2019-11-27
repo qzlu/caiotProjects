@@ -1,0 +1,291 @@
+{
+  "v": "6.2.4",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": "copyStyle"
+  },
+  "d": [
+    {
+      "c": "ht.Block",
+      "i": 3103,
+      "p": {
+        "dataBindings": {
+          "p": {}
+        },
+        "position": {
+          "x": -195.74779,
+          "y": 29.61866
+        },
+        "width": 99.57948,
+        "height": 347.371
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3104,
+      "p": {
+        "parent": {
+          "__i": 3103
+        },
+        "position": {
+          "x": -195.74779,
+          "y": 168.53974
+        },
+        "width": 8.83408,
+        "height": 35.1491
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(242,83,75)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3105,
+      "p": {
+        "parent": {
+          "__i": 3103
+        },
+        "position": {
+          "x": -195.74779,
+          "y": 191.69407
+        },
+        "width": 23.22018,
+        "height": 23.22018
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgb(242,83,75)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3106,
+      "p": {
+        "displayName": "ruler",
+        "parent": {
+          "__i": 3103
+        },
+        "image": "symbols/ht/ruler/ruler.json",
+        "position": {
+          "x": -222.85118,
+          "y": 9.48543
+        },
+        "width": 45.3727,
+        "height": 307.10453
+      },
+      "a": {
+        "ht.reverse": true,
+        "ht.direction": "right",
+        "ht.max": 40,
+        "ht.paddingBefore": 10
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3107,
+      "p": {
+        "displayName": "ruler",
+        "parent": {
+          "__i": 3103
+        },
+        "image": "symbols/ht/ruler/ruler.json",
+        "position": {
+          "x": -168.6444,
+          "y": 9.48543
+        },
+        "width": 45.3727,
+        "height": 307.10453
+      },
+      "a": {
+        "ht.reverse": true,
+        "ht.direction": "left",
+        "ht.max": 40,
+        "ht.paddingBefore": 10,
+        "ht.largeTickEvery": 10,
+        "ht.largeTickLongness": 0.5
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3108,
+      "p": {
+        "displayName": "vProgressBar",
+        "parent": {
+          "__i": 3103
+        },
+        "image": "symbols/basic/vProgressBar.json",
+        "position": {
+          "x": -195.74779,
+          "y": 9.26823
+        },
+        "width": 8.83408,
+        "height": 289.38446
+      },
+      "a": {
+        "pb.value.visible": false,
+        "pb.fore.color": "rgb(242,83,75)",
+        "pb.background": "rgb(186,186,186)",
+        "pb.value": 0.32
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 3109,
+      "p": {
+        "rotation": 5.37218,
+        "position": {
+          "x": 56.78158,
+          "y": 54.60885
+        },
+        "width": 632.41697,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3110,
+      "p": {
+        "parent": {
+          "__i": 3109
+        },
+        "rotation": -0.911,
+        "position": {
+          "x": 56.85815,
+          "y": 54.66825
+        },
+        "width": 632.41697,
+        "height": 79.80618
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(199,199,199,0.28)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3111,
+      "p": {
+        "displayName": "ruler",
+        "parent": {
+          "__i": 3109
+        },
+        "image": "symbols/ht/ruler/ruler.json",
+        "rotation": 2.23059,
+        "position": {
+          "x": 72.58395,
+          "y": 66.86792
+        },
+        "width": 632.41697,
+        "height": 40
+      },
+      "a": {
+        "ht.max": 30,
+        "ht.paddingBefore": 10,
+        "ht.smallTickEvery": 0.1,
+        "ht.smallTIckLongness": 10,
+        "ht.mediumTickLongness": 13,
+        "ht.largeTickEvery": 1,
+        "ht.labelEvery": 1,
+        "ht.mediumTickEvery": 0.5,
+        "ht.largeTickLongness": 17,
+        "ht.labelColor": "#FF7C7C",
+        "ht.smallTickColor": "#FF7C7C",
+        "ht.mediumTickColor": "#FF7C7C",
+        "ht.largeTickColor": "#FF7C7C",
+        "ht.reverse": false,
+        "ht.direction": "top"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3112,
+      "p": {
+        "displayName": "ruler",
+        "parent": {
+          "__i": 3109
+        },
+        "image": "symbols/ht/ruler/ruler.json",
+        "rotation": -0.911,
+        "position": {
+          "x": 40.97921,
+          "y": 42.34977
+        },
+        "width": 632.41697,
+        "height": 40
+      },
+      "a": {
+        "ht.max": 12,
+        "ht.paddingBefore": 17,
+        "ht.smallTickEvery": 0.0625,
+        "ht.smallTIckLongness": 10,
+        "ht.mediumTickLongness": 15,
+        "ht.largeTickEvery": 1,
+        "ht.labelEvery": 1,
+        "ht.mediumTickEvery": 0.125,
+        "ht.largeTickLongness": 30,
+        "ht.labelColor": "rgb(61,61,61)",
+        "ht.smallTickColor": "rgb(61,61,61)",
+        "ht.mediumTickColor": "rgb(61,61,61)",
+        "ht.largeTickColor": "rgb(61,61,61)",
+        "ht.labelDistance": 18,
+        "ht.labelOffsetX": -12,
+        "ht.labelAlign": "left",
+        "ht.labelOffsetY": 3,
+        "ht.reverse": false,
+        "ht.direction": "top"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3113,
+      "p": {
+        "parent": {
+          "__i": 3109
+        },
+        "rotation": -0.911,
+        "position": {
+          "x": 57.27352,
+          "y": 54.37277
+        },
+        "width": 631.44083,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -258.44689,
+              "y": 54.51985
+            },
+            {
+              "x": 372.99394,
+              "y": 54.22569
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "shape.border.width": 1
+      }
+    }
+  ],
+  "contentRect": {
+    "x": -245.53753,
+    "y": -219.75198,
+    "width": 527.74566,
+    "height": 548.72165
+  }
+}

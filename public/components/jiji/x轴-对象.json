@@ -1,0 +1,33 @@
+{
+  "modified": "Fri Dec 14 2018 15:49:32 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\nvar fontColor = comp.getValue('lineColor');\r\nvar lineColor = comp.getValue('fontColor');\r\n\r\ng.lineWidth = 1;\r\ng.lineCap = 'butt';\r\ng.strokeStyle = lineColor;\r\ng.fillStyle = lineColor;\r\ng.save();\r\n\r\nvar items = comp.getValue('items');\r\n\r\nvar width = rect.width;\r\nvar height = rect.height;\r\n\r\n//等分数\r\nvar sp = items.length * 3 + 1;\r\nvar spWidth = width / sp;\r\n\r\n\r\n//水平轴\r\ng.beginPath();\r\ng.moveTo(0,height);\r\n\r\ng.lineTo(width,height);\r\ng.stroke();\r\n\r\ng.textAlign = 'center';\r\ng.textBaseline = 'middle';\r\ng.font = comp.getValue('fontStyle');;\r\ng.fillStyle = true;\r\n\r\ng.strokeStyle = fontColor;\r\ng.fillStyle = fontColor;\r\n\r\n//对象均分\r\nfor(var i=0;i<items.length;i++){\r\n    var item = items[i];\r\n    g.fillText(item, spWidth*2+i*3*spWidth, height + 8);\r\n}\r\n\r\ng.restore();\n}",
+  "properties": {
+    "items": {
+      "valueType": "ObjectArray",
+      "defaultValue": [
+        "香蕉",
+        "苹果",
+        "葡萄"
+      ]
+    },
+    "fontStyle": {
+      "valueType": "String",
+      "defaultValue": "8px Arial"
+    },
+    "width": {
+      "valueType": "Number",
+      "defaultValue": 100
+    },
+    "lineColor": {
+      "valueType": "String",
+      "defaultValue": "rgb(0,0,0)"
+    },
+    "fontColor": {
+      "valueType": "String",
+      "defaultValue": "rgb(0,0,0)"
+    }
+  }
+}

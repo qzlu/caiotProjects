@@ -1,0 +1,39 @@
+{
+  "background": "rgb(61,61,61)",
+  "dataBindings": [
+    {
+      "attr": "background.color",
+      "valueType": "Color",
+      "defaultValue": "rgb(212,0,0)",
+      "name": "底色"
+    }
+  ],
+  "width": 26,
+  "height": 30,
+  "comps": [
+    {
+      "type": "polygon",
+      "background": "#808080",
+      "polygonSide": 3,
+      "rotation": 4.71239,
+      "rect": [
+        2.81774,
+        12.94234,
+        20.36452,
+        20.36452
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "#008000",
+      "borderWidth": 5,
+      "borderColor": "#808080",
+      "rect": [
+        4.04492,
+        3.98726,
+        17.91016,
+        17.91016
+      ]
+    }
+  ]
+}

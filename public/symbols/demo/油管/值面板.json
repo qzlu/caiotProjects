@@ -1,0 +1,62 @@
+{
+  "background": "rgb(0,0,0)",
+  "dataBindings": [
+    {
+      "attr": "value",
+      "valueType": "String",
+      "name": "值"
+    },
+    {
+      "attr": "unit",
+      "valueType": "String",
+      "name": "单位"
+    }
+  ],
+  "width": 40,
+  "height": 12,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "#7C2604",
+      "rect": [
+        0.75963,
+        0.95527,
+        38.48075,
+        10.08946
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@value",
+        "value": "0"
+      },
+      "align": "right",
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.53,
+      "scaleY": 0.53,
+      "rect": [
+        22.9995,
+        6.00076,
+        0.001,
+        0.001
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@unit",
+        "value": "%"
+      },
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.53,
+      "scaleY": 0.53,
+      "rect": [
+        22.9995,
+        6.00129,
+        0.001,
+        0.001
+      ]
+    }
+  ]
+}

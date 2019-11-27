@@ -1,0 +1,138 @@
+{
+  "modified": "Tue Dec 18 2018 11:12:09 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "data.rect",
+      "valueType": "String"
+    },
+    {
+      "attr": "data.value",
+      "valueType": "String"
+    },
+    {
+      "attr": "data.percent",
+      "valueType": "String"
+    },
+    {
+      "attr": "label.name",
+      "valueType": "String"
+    },
+    {
+      "attr": "rand.color",
+      "valueType": "Color"
+    },
+    {
+      "attr": "rank.value",
+      "valueType": "String"
+    }
+  ],
+  "width": 100,
+  "height": 20,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "#21224C",
+      "borderWidth": 1,
+      "borderColor": "#1E2048",
+      "rect": [
+        37.65811,
+        10,
+        59.16526,
+        3.11936
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "#4C7DBD",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "rect": {
+        "func": "attr@data.rect",
+        "value": [
+          38.2,
+          10.49968,
+          38.44874,
+          2.16
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@data.value",
+        "value": "233"
+      },
+      "align": "center",
+      "color": "#C2D5F0",
+      "font": "3px arial, sans-serif",
+      "rect": [
+        37.65811,
+        6.16317,
+        6.56953,
+        1.96409
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@data.percent",
+        "value": "40%"
+      },
+      "align": "center",
+      "color": "#C2D5F0",
+      "font": "3px arial, sans-serif",
+      "rect": [
+        90.25385,
+        6.16317,
+        6.56953,
+        1.96409
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@label.name",
+        "value": "城阳管辖行"
+      },
+      "align": "center",
+      "color": "#C2D5F0",
+      "font": "4px arial, sans-serif",
+      "rect": [
+        12.15886,
+        10,
+        20.52131,
+        2.91227
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@rand.color",
+        "value": "#1A3D67"
+      },
+      "borderColor": "#979797",
+      "rect": [
+        1.96409,
+        6.41559,
+        7.31453,
+        7.16882
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@rank.value",
+        "value": "1"
+      },
+      "align": "center",
+      "color": "rgb(247,247,247)",
+      "font": "4px arial, sans-serif",
+      "rect": [
+        3.42022,
+        8.12725,
+        4.40226,
+        3.79272
+      ]
+    }
+  ]
+}

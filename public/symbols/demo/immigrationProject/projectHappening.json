@@ -1,0 +1,117 @@
+{
+  "width": 130,
+  "height": 50,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "#D8D8D8",
+      "borderColor": "#979797",
+      "rect": [
+        0,
+        40.71429,
+        4.28571,
+        4.28571
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,200,66)",
+      "borderColor": "#979797",
+      "rect": [
+        24.85714,
+        40.71429,
+        4.28571,
+        4.28571
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(0,231,214)",
+      "borderColor": "#979797",
+      "rect": [
+        51.85715,
+        40.71429,
+        4.28571,
+        4.28571
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,51,0)",
+      "borderColor": "#979797",
+      "rect": [
+        78.85715,
+        40.71429,
+        4.28571,
+        4.28571
+      ]
+    },
+    {
+      "type": "text",
+      "text": "移民专项工程实施情况",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "8px 苹方中等",
+      "rect": [
+        0,
+        17.95387,
+        81,
+        22.76042
+      ]
+    },
+    {
+      "type": "text",
+      "text": "待建",
+      "align": "center",
+      "color": "rgb(124,151,160)",
+      "font": "4px 苹方中等",
+      "rect": [
+        2.14286,
+        35.35714,
+        15,
+        15
+      ]
+    },
+    {
+      "type": "text",
+      "text": "超期预警",
+      "align": "center",
+      "color": "rgb(124,151,160)",
+      "font": "4px 苹方中等",
+      "rect": [
+        85.42709,
+        35,
+        15,
+        15
+      ]
+    },
+    {
+      "type": "text",
+      "text": "完成",
+      "align": "center",
+      "color": "rgb(124,151,160)",
+      "font": "4px 苹方中等",
+      "rect": [
+        54,
+        35,
+        15,
+        15
+      ]
+    },
+    {
+      "type": "text",
+      "text": "在建",
+      "align": "center",
+      "color": "rgb(124,151,160)",
+      "font": "4px 苹方中等",
+      "anchorX": 0.53943,
+      "anchorY": 0.47966,
+      "rect": [
+        27.14286,
+        35.35714,
+        15,
+        15
+      ]
+    }
+  ]
+}

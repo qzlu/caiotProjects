@@ -1,0 +1,22 @@
+{
+  "background": "rgb(0,0,0)",
+  "width": 147,
+  "height": 260,
+  "comps": [
+    {
+      "type": "components/ht/ui/multilineText.json",
+      "displayName": "multilineText",
+      "rect": [
+        0,
+        0,
+        180.55382,
+        237.92233
+      ],
+      "content": "苏州新闻大厦占地面积\n1.52万平方米，建筑面\n积 13.96 万平方米，地\n上 38 层，高 177.8 米，\n地下 3 层，预计投资超\n过10亿元。大楼以圆柱\n为中心向四方展开，犹\n如一张旋转的报纸，其\n定位是以办公为主、兼\n顾商业功能的高端综合\n型建筑。",
+      "font": "14px sans-serif",
+      "color": "rgb(255,255,255)",
+      "lineHeight": 23,
+      "borderWidth": 0
+    }
+  ]
+}

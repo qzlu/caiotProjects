@@ -1,0 +1,20 @@
+{
+  "modified": "Sat Dec 29 2018 09:38:55 GMT+0800 (中国标准时间)",
+  "background": "rgb(0,0,0)",
+  "width": 150,
+  "height": 25,
+  "comps": [
+    {
+      "type": "text",
+      "text": "日志分析索引",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        2.99501,
+        0,
+        144.00997,
+        28.68966
+      ]
+    }
+  ]
+}

@@ -1,0 +1,803 @@
+{
+  "width": 1024,
+  "height": 140,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(38,38,38)",
+      "borderColor": "#979797",
+      "gradient": "radial.north",
+      "gradientColor": "rgb(105,96,76)",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        0,
+        0,
+        1024,
+        140
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,0,0)",
+      "gradient": "linear.west",
+      "gradientColor": "rgb(71,66,52)",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        12.71148,
+        9.25326,
+        998.16287,
+        116.39376
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        834.2379,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        822.96584,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        811.69377,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        800.4217,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        789.14963,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        777.87756,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        766.6055,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        755.33343,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/y.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        834.2379,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/y.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        822.96584,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/y.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        811.69377,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/y.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        800.4217,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        789.14963,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        777.87756,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        766.6055,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        755.33343,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        731.77068,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        720.49861,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        709.22654,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        697.95447,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        686.68241,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        675.41034,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        664.13827,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        652.8662,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        731.77068,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        720.49861,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        709.22654,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        697.95447,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        686.68241,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        675.41034,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        664.13827,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        652.8662,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        629.18359,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        617.91152,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        606.63945,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        595.36739,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        584.09532,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        572.82325,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        561.55118,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        550.27911,
+        59.38826,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        629.18359,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        617.91152,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        606.63945,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        595.36739,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        584.09532,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        572.82325,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        561.55118,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        550.27911,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        514.06512,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        502.79305,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        491.52099,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        480.24892,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/r.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        444.57253,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        408.64048,
+        77.0045,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/gray.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        444.57253,
+        63.42982,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/g.json",
+      "shadowColor": "#1ABC9C",
+      "displayName": "熄灯",
+      "rect": [
+        408.64048,
+        63.42982,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "#F8E81C",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        27.87695,
+        0,
+        20.06965,
+        140
+      ]
+    },
+    {
+      "type": "text",
+      "text": "LOGO",
+      "color": "#F8E81C",
+      "scaleX": 2,
+      "scaleY": 2,
+      "rect": [
+        87.56535,
+        33.30499,
+        38.1955,
+        17.38885
+      ]
+    },
+    {
+      "type": "text",
+      "text": "SICOM3448G",
+      "align": "center",
+      "color": "#F8E81C",
+      "rect": [
+        191.35567,
+        33.30499,
+        38.1955,
+        17.38885
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/ems/port.json",
+      "displayName": "网口",
+      "rect": [
+        883.72693,
+        59.38826,
+        37,
+        28
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(214,201,19)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        27.87695,
+        0,
+        20.06965,
+        9.25326
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(214,201,19)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        27.87695,
+        125.64702,
+        20.06965,
+        14.35298
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(156,146,11)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        27.87695,
+        8.75326,
+        20.06965,
+        1
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(156,146,11)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "rect": [
+        27.87695,
+        125.14702,
+        20.06965,
+        1
+      ]
+    }
+  ]
+}

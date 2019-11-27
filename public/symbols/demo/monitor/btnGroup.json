@@ -1,0 +1,988 @@
+{
+  "dataBindings": [
+    {
+      "attr": "isShow",
+      "valueType": "Boolean",
+      "defaultValue": true
+    },
+    {
+      "attr": "shapeRect1",
+      "valueType": "NumberArray"
+    },
+    {
+      "attr": "shapeRect2",
+      "valueType": "NumberArray"
+    }
+  ],
+  "width": 81,
+  "height": 41,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形1",
+      "rect": [
+        0.03473,
+        0.02871,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "displayName": "底部箭头",
+      "closePath": true,
+      "points": [
+        10.91335,
+        5.01779,
+        14,
+        8.04295,
+        11.92174,
+        8.04295,
+        12,
+        11.06811,
+        10,
+        11.06811,
+        10,
+        8.04295,
+        7.9197,
+        8.04295,
+        10.91335,
+        5.02871
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        0.04015,
+        0.08612,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "top",
+      "closePath": true,
+      "points": [
+        9.99365,
+        4.02871,
+        13.0803,
+        7.05387,
+        11.00203,
+        7.05387,
+        11.0803,
+        10.07903,
+        9.0803,
+        10.07903,
+        9.0803,
+        7.05387,
+        7,
+        7.05387,
+        9.99365,
+        4.03963
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        19.93676,
+        0.05741,
+        18.00628,
+        2.02811,
+        18.08672,
+        17.99477,
+        2.07984,
+        18.11542,
+        0.02871,
+        20.08612,
+        19.93676,
+        20.00568,
+        19.93676,
+        0.0172
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "空白",
+      "points": [
+        19.90805,
+        0.05173,
+        17.97757,
+        2.05113,
+        1.9707,
+        2.09135,
+        1.9707,
+        18.05801,
+        0,
+        20.02871,
+        0,
+        0,
+        19.90805,
+        0.04022
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形2",
+      "rect": [
+        20.04015,
+        0.08612,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形3",
+      "rect": [
+        40.1321,
+        0.18375,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形4",
+      "rect": [
+        0.07488,
+        20.02871,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形5",
+      "rect": [
+        20.03473,
+        20.02871,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "displayName": "底部矩形6",
+      "rect": [
+        40.03473,
+        20.08612,
+        19.96527,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "displayName": "top",
+      "rotation": 1.5708,
+      "closePath": true,
+      "points": [
+        30.91335,
+        4.97839,
+        34,
+        8.00355,
+        31.92174,
+        8.00355,
+        32,
+        11.02871,
+        30,
+        11.02871,
+        30,
+        8.00355,
+        27.9197,
+        8.00355,
+        30.91335,
+        4.98931
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "displayName": "top",
+      "rotation": 3.14159,
+      "closePath": true,
+      "points": [
+        10.91335,
+        24.97839,
+        14,
+        28.00355,
+        11.92174,
+        28.00355,
+        12,
+        31.02871,
+        10,
+        31.02871,
+        10,
+        28.00355,
+        7.9197,
+        28.00355,
+        10.91335,
+        24.98931
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        20.04015,
+        0.08612,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "points": [
+        40.04015,
+        0.13785,
+        38.10967,
+        2.13725,
+        22.10279,
+        2.17747,
+        22.10279,
+        18.14413,
+        20.1321,
+        20.11483,
+        20.1321,
+        0.08612,
+        40.04015,
+        0.12634
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        40.04015,
+        0.12634,
+        38.10967,
+        2.09704,
+        38.19011,
+        18.06369,
+        22.18323,
+        18.18435,
+        20.1321,
+        20.15505,
+        40.04015,
+        20.07461,
+        40.04015,
+        0.08612
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "top",
+      "rotation": 1.5708,
+      "closePath": true,
+      "points": [
+        30.03962,
+        4.07026,
+        33.12627,
+        7.09542,
+        31.04801,
+        7.09542,
+        31.12627,
+        10.12058,
+        29.12627,
+        10.12058,
+        29.12627,
+        7.09542,
+        27.04597,
+        7.09542,
+        30.03962,
+        4.08118
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        0.1321,
+        20.02871,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "points": [
+        20.1321,
+        20.20678,
+        18.20162,
+        22.20618,
+        2.19474,
+        22.2464,
+        2.19474,
+        38.21306,
+        0.22404,
+        40.18375,
+        0.22404,
+        20.15505,
+        20.1321,
+        20.19526
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        20.1321,
+        20.15505,
+        18.20162,
+        22.12574,
+        18.28206,
+        38.0924,
+        2.27518,
+        38.21306,
+        0.22404,
+        40.18375,
+        20.1321,
+        40.10332,
+        20.1321,
+        20.11483
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "top",
+      "rotation": 3.14159,
+      "closePath": true,
+      "points": [
+        9.97086,
+        24.11908,
+        13.05751,
+        27.14424,
+        10.97925,
+        27.14424,
+        11.05751,
+        30.1694,
+        9.05751,
+        30.1694,
+        9.05751,
+        27.14424,
+        6.97722,
+        27.14424,
+        9.97086,
+        24.13
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "displayName": "top",
+      "rotation": 4.71239,
+      "closePath": true,
+      "points": [
+        31.91335,
+        24.97839,
+        35,
+        28.00355,
+        32.92174,
+        28.00355,
+        33,
+        31.02871,
+        31,
+        31.02871,
+        31,
+        28.00355,
+        28.9197,
+        28.00355,
+        31.91335,
+        24.98931
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        20.1321,
+        20.18375,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "points": [
+        40.1321,
+        20.23548,
+        38.20162,
+        22.23489,
+        22.19474,
+        22.2751,
+        22.19474,
+        38.24176,
+        20.22404,
+        40.21246,
+        20.22404,
+        20.18375,
+        40.1321,
+        20.22397
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        40.1321,
+        20.22397,
+        38.20162,
+        22.19467,
+        38.28206,
+        38.16133,
+        22.27518,
+        38.28198,
+        20.22404,
+        40.25268,
+        40.1321,
+        40.17224,
+        40.1321,
+        20.18375
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "top",
+      "rotation": 4.71239,
+      "closePath": true,
+      "points": [
+        30.13157,
+        24.1679,
+        33.21822,
+        27.19306,
+        31.13996,
+        27.19306,
+        31.21822,
+        30.21822,
+        29.21822,
+        30.21822,
+        29.21822,
+        27.19306,
+        27.13792,
+        27.19306,
+        30.13157,
+        24.17882
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "closePath": true,
+      "points": [
+        49.9857,
+        4.9475,
+        52.06448,
+        4.9475,
+        52.06448,
+        6.9332,
+        54.05018,
+        6.9332,
+        54.01915,
+        9.01198,
+        52.06448,
+        8.98095,
+        52.06448,
+        11.02871,
+        50.07878,
+        10.99768,
+        50.07878,
+        8.94993,
+        48.03103,
+        8.98095,
+        48,
+        6.9332,
+        50.01673,
+        6.9332,
+        50.01673,
+        4.9475
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "closePath": true,
+      "points": [
+        48,
+        28.00355,
+        53.98,
+        28.02355,
+        54,
+        30.00355,
+        48.02,
+        30.02355,
+        48,
+        28.02355,
+        47.94,
+        28.04355,
+        48,
+        28.02355
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        40.1321,
+        0.18375,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "closePath": true,
+      "points": [
+        49.13868,
+        4.13701,
+        51.21746,
+        4.13701,
+        51.21746,
+        6.12271,
+        53.20316,
+        6.12271,
+        53.17213,
+        8.20149,
+        51.21746,
+        8.17046,
+        51.21746,
+        10.21822,
+        49.23176,
+        10.18719,
+        49.23176,
+        8.13944,
+        47.18401,
+        8.17046,
+        47.15298,
+        6.12271,
+        49.16971,
+        6.12271,
+        49.16971,
+        4.13701
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "points": [
+        60.1321,
+        0.23548,
+        58.20162,
+        2.23489,
+        42.19474,
+        2.2751,
+        42.19474,
+        18.24176,
+        40.22404,
+        20.21246,
+        40.22404,
+        0.18375,
+        60.1321,
+        0.22397
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        60.1321,
+        0.22397,
+        58.20162,
+        2.19467,
+        58.28206,
+        18.16133,
+        42.27518,
+        18.28198,
+        40.22404,
+        20.25268,
+        60.1321,
+        20.17224,
+        60.1321,
+        0.18375
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(236,233,216)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "border3dColor": null,
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "rect": [
+        40.22404,
+        20.25268,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "points": [
+        60.22404,
+        20.30441,
+        58.29357,
+        22.30381,
+        42.28669,
+        22.34403,
+        42.28669,
+        38.31069,
+        40.31599,
+        40.28138,
+        40.31599,
+        20.25268,
+        60.22404,
+        20.2929
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(171,168,152)",
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "displayName": "不规则图形",
+      "points": [
+        60.22404,
+        20.2929,
+        58.29357,
+        22.26359,
+        58.374,
+        38.23025,
+        42.36713,
+        38.35091,
+        40.31599,
+        40.3216,
+        60.22404,
+        40.24117,
+        60.22404,
+        20.25268
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "attr@isShow",
+        "value": true
+      },
+      "closePath": true,
+      "points": [
+        47.14473,
+        25.98355,
+        53.12473,
+        26.00355,
+        53.14473,
+        27.98355,
+        47.16473,
+        28.00355,
+        47.14473,
+        26.00355,
+        47.08473,
+        26.02355,
+        47.14473,
+        26.00355
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(128,128,128)",
+      "borderWidth": 0.2,
+      "borderColor": "#979797",
+      "closePath": true,
+      "points": [
+        75.45508,
+        3.5051,
+        80.36,
+        8.41002,
+        77.47205,
+        8.41002,
+        77.51789,
+        14.46095,
+        73.39226,
+        14.41511,
+        73.39226,
+        8.45586,
+        70.50432,
+        8.5017,
+        75.45508,
+        3.55094
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "#979797",
+      "rect": {
+        "func": "attr@shapeRect1",
+        "value": [
+          70.07216,
+          3,
+          9.85568,
+          10.95585
+        ]
+      },
+      "closePath": true,
+      "points": [
+        75.02292,
+        3,
+        79.92784,
+        7.90492,
+        77.0399,
+        7.90492,
+        77.08574,
+        13.95585,
+        72.9601,
+        13.91001,
+        72.9601,
+        7.95076,
+        70.07216,
+        7.9966,
+        75.02292,
+        3.04584
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(128,128,128)",
+      "borderWidth": 0.2,
+      "borderColor": "#979797",
+      "rotation": 3.14159,
+      "closePath": true,
+      "points": [
+        75.45508,
+        24.04415,
+        80.36,
+        28.94907,
+        77.47205,
+        28.94907,
+        77.51789,
+        35,
+        73.39226,
+        34.95416,
+        73.39226,
+        28.99491,
+        70.50432,
+        29.04075,
+        75.45508,
+        24.08999
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "#979797",
+      "rotation": 3.14159,
+      "rect": {
+        "func": "attr@shapeRect2",
+        "value": [
+          70,
+          23.79147,
+          9.85568,
+          10.95585
+        ]
+      },
+      "closePath": true,
+      "points": [
+        74.95076,
+        23.79147,
+        79.85568,
+        28.69639,
+        76.96774,
+        28.69639,
+        77.01358,
+        34.74732,
+        72.88794,
+        34.70148,
+        72.88794,
+        28.74223,
+        70,
+        28.78807,
+        74.95076,
+        23.83731
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "modified": "Thu Nov 15 2018 15:26:12 GMT+0800 (中国标准时间)",
+  "background": "rgb(0,0,0)",
+  "width": 128,
+  "height": 128,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(0,0,0,0.52)",
+      "borderWidth": 8,
+      "borderColor": "#FEB64D",
+      "rect": [
+        23.42608,
+        23.42608,
+        81.14784,
+        81.14784
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 8,
+      "borderColor": "#FEB64D",
+      "borderJoin": "bevel",
+      "points": [
+        45.24343,
+        63.5,
+        82.75657,
+        63.5
+      ]
+    }
+  ]
+}

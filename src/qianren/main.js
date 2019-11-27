@@ -13,14 +13,13 @@ import './assets/css/common.scss'
 Vue.config.productionTip = false
 import {post} from './request/http.js'
 Vue.prototype.$post = post
-/* import {sendSock,websock,initWebSocket} from '@/qianren/request/socket.js'
+import {sendSock,websock,initWebSocket} from '@/qianren/request/socket.js'
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
-Vue.prototype.$initWebSocket = initWebSocket */
+Vue.prototype.$initWebSocket = initWebSocket
 store.dispatch('addRoute')
 router.beforeEach((to, from, next) => {
   let {token, projectID,link}= to.query
-  console.log(to);
   if(token){
       sessionStorage.setItem('FToken',token)
       sessionStorage.setItem('inIframe',1)

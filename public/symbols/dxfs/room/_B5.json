@@ -1,0 +1,76 @@
+{
+  "width": 433.52308,
+  "height": 53.74979,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        53.74978,
+        26.87489,
+        433.52308,
+        26.87489
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "10268"
+    },
+    {
+      "type": "arc",
+      "cadType": "CIRCLE",
+      "handle": "10267",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        0,
+        0,
+        53.74978,
+        53.74978
+      ],
+      "arcFrom": 0,
+      "arcTo": 6.28319,
+      "arcClose": false
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "10269",
+      "color": "#000000",
+      "text": "SCALE:",
+      "rotation": 6.28319,
+      "rect": [
+        80.62478,
+        34.26373,
+        0,
+        0
+      ],
+      "align": "left",
+      "vAlign": "top",
+      "font": "8.066799999999999px Standard"
+    }
+  ],
+  "scale": 86,
+  "anchorX": -0.05784,
+  "anchorY": -0.41463,
+  "bound": {
+    "xMin": 0.29155,
+    "yMin": -0.88414,
+    "xMax": 5.33252,
+    "yMax": -0.25914,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

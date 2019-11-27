@@ -1,0 +1,78 @@
+{
+  "background": "rgb(0,0,0)",
+  "dataBindings": [
+    {
+      "attr": "value",
+      "valueType": "String",
+      "defaultValue": "0",
+      "name": "值",
+      "description": "液位值"
+    },
+    {
+      "attr": "unit",
+      "valueType": "String",
+      "defaultValue": "%",
+      "name": "单位",
+      "description": "液位单位"
+    }
+  ],
+  "width": 74,
+  "height": 16,
+  "comps": [
+    {
+      "type": "text",
+      "text": "液位：",
+      "align": "right",
+      "color": "rgb(255,255,255)",
+      "rect": [
+        40.33741,
+        8,
+        0.001,
+        0.001
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "#7C2604",
+      "rect": [
+        32.85766,
+        2.95527,
+        38.48075,
+        10.08946
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@value",
+        "value": "0"
+      },
+      "align": "right",
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.53,
+      "scaleY": 0.53,
+      "rect": [
+        60.47698,
+        8.00076,
+        0.001,
+        0.001
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@unit",
+        "value": "%"
+      },
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.53,
+      "scaleY": 0.53,
+      "rect": [
+        60.47751,
+        8.00129,
+        0.001,
+        0.001
+      ]
+    }
+  ]
+}

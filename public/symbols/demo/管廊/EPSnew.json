@@ -1,0 +1,473 @@
+{
+  "background": "rgb(15,15,15)",
+  "dataBindings": [
+    {
+      "attr": "eps.1",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_inon",
+      "description": "EPS1受电开关合状态"
+    },
+    {
+      "attr": "eps.2",
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "01_empower_01_inoff",
+      "description": "EPS1受电开关分状态"
+    },
+    {
+      "attr": "eps.3",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_commonstatus",
+      "description": "EPS1常用电源状态"
+    },
+    {
+      "attr": "eps.4",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_backupstatus",
+      "description": "EPS1备用电源状态"
+    },
+    {
+      "attr": "eps.5",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_charging",
+      "description": "EPS1充电状态"
+    },
+    {
+      "attr": "eps.6",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_ready",
+      "description": "EPS1整备状态"
+    },
+    {
+      "attr": "eps.7",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "01_empower_01_alarm",
+      "description": "EPS1故障状态"
+    },
+    {
+      "attr": "num",
+      "valueType": "String",
+      "name": "设备编号：EPS-01"
+    }
+  ],
+  "width": 300,
+  "height": 300,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,7,28)",
+      "borderColor": "#979797",
+      "points": [
+        2.69552,
+        23.47367,
+        272.98192,
+        23.47367,
+        292.33244,
+        43.56657,
+        292.33244,
+        275.40269,
+        22.52977,
+        275.40269,
+        2.69552,
+        251.42937,
+        2.69552,
+        186.51765,
+        10.06761,
+        176.51792,
+        10.06761,
+        142.98012,
+        2.69552,
+        136.31176
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(7,69,89)",
+      "borderCap": "square",
+      "scaleX": -1,
+      "rotation": -1.5708,
+      "points": [
+        -95.60721,
+        150.21724,
+        -95.60734,
+        122.06499,
+        17.4613,
+        122.07673,
+        24.25888,
+        129.21284,
+        57.5295,
+        129.21284,
+        65.72847,
+        122.07673,
+        137.28476,
+        122.0642,
+        161.62743,
+        141.62226,
+        161.62761,
+        182.13413
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(7,69,89)",
+      "borderCap": "square",
+      "rotation": -1.5708,
+      "points": [
+        76.94741,
+        61.56145,
+        76.94668,
+        240.68996,
+        303.43018,
+        240.69072,
+        336.55159,
+        211.56537,
+        336.55169,
+        187.47881
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@num",
+        "value": "设备编号:HT-666"
+      },
+      "align": "center",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        33.01019,
+        4.24039,
+        206.17444,
+        38.28576
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 3,
+      "borderColor": "rgb(26,127,201)",
+      "closePath": true,
+      "points": [
+        50.697,
+        55.10217,
+        50.697,
+        153.19474,
+        116.65997,
+        153.19474,
+        116.65997,
+        55.10217
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        54.88322,
+        66.09438,
+        13.94575,
+        12.36701
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 1.5708,
+      "rect": [
+        79.34707,
+        105.47649,
+        6.28103,
+        2.38175
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        72.81481,
+        55.10217,
+        1.71121,
+        98.09257
+      ]
+    },
+    {
+      "type": "text",
+      "text": "EPS",
+      "align": "center",
+      "color": "rgb(247,247,247)",
+      "scaleX": 1.4,
+      "scaleY": 1.4,
+      "rect": [
+        71.78782,
+        64.43895,
+        46.08802,
+        17.46997
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 1.5708,
+      "rect": [
+        94.58723,
+        67.17597,
+        0.88825,
+        29.91261
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        54.88322,
+        81.2182,
+        9.06014,
+        0.98292
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        65.03303,
+        81.2182,
+        3.79594,
+        0.98292
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        54.88322,
+        139.35765,
+        13.94575,
+        3.39909
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 4.71239,
+      "rect": [
+        82.97096,
+        27.2559,
+        1.4855,
+        65.89253
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": 4.71239,
+      "rect": [
+        81.10391,
+        117.99945,
+        5.07873,
+        65.89253
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.1');\nvar w=data.a('eps.2');\nif (v ==true&&w==false) return 'rgba(125,195,125,1.00)';\nelse if (v ==false&&w==true) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(125,195,125)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.1');\nvar w=data.a('eps.2');\nif (v ==true&&w==false) return 'rgba(83,145,83,1.00)';\nelse if (v ==false&&w==true) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(83,145,83)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        36.45218,
+        175.85566,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "text",
+      "text": "受电开合",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        68.07245,
+        165.13036,
+        79.44152,
+        43.58882
+      ]
+    },
+    {
+      "type": "text",
+      "text": "备用电源",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        197.49749,
+        109.8963,
+        79.44152,
+        43.58882
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.6');\nif (v ==true) return 'rgba(242,83,75,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(242,83,75)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.6');\nif (v ==true) return 'rgba(212,0,0,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(212,0,0)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        165.87721,
+        172.62236,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "text",
+      "text": "整备状态",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        197.49749,
+        161.89706,
+        79.44152,
+        43.58882
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.4');\nif (v ==true) return 'rgba(125,195,125,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(125,195,125)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.4');\nif (v ==true) return 'rgba(83,145,83,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(83,145,83)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        165.87721,
+        120.6216,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.5');\nif (v ==true) return 'rgba(125,195,125,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(125,195,125)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.5');\nif (v ==true) return 'rgba(83,145,83,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(83,145,83)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        36.45218,
+        224.62312,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "text",
+      "text": "充电状态",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        68.07245,
+        213.89782,
+        79.44152,
+        43.58882
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.7');\nif (v ==true) return 'rgba(242,83,75,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(124,145,155)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.7');\nif (v ==true) return 'rgba(212,0,0,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(68,86,94)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        165.87721,
+        224.62312,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "text",
+      "text": "故障状态",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        197.49749,
+        213.89782,
+        79.44152,
+        43.58882
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.3');\nif (v ==true) return 'rgba(125,195,125,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(125,195,125)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('eps.3');\nif (v ==true) return 'rgba(83,145,83,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(83,145,83)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        165.87722,
+        68.62084,
+        28.34308,
+        22.13822
+      ]
+    },
+    {
+      "type": "text",
+      "text": "常用电源",
+      "color": "rgb(247,247,247)",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        197.49749,
+        57.89554,
+        79.44152,
+        43.58882
+      ]
+    }
+  ]
+}

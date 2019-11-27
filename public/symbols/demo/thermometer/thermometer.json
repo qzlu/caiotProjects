@@ -1,0 +1,138 @@
+{
+  "dataBindings": [
+    {
+      "attr": "tempNumber",
+      "valueType": "Number",
+      "name": "温度参数"
+    },
+    {
+      "attr": "fontColor",
+      "valueType": "Color",
+      "name": "文字颜色"
+    },
+    {
+      "attr": "tempColor",
+      "valueType": "Color",
+      "name": "温度计边颜色"
+    },
+    {
+      "attr": "tempMax",
+      "valueType": "Number",
+      "name": "温度上限"
+    },
+    {
+      "attr": "tempMin",
+      "valueType": "Number",
+      "name": "温度下限"
+    },
+    {
+      "attr": "strictMode",
+      "valueType": "Boolean",
+      "name": "严格模式"
+    },
+    {
+      "attr": "warningMode",
+      "valueType": "Boolean",
+      "name": "警戒模式"
+    },
+    {
+      "attr": "lowWarning",
+      "valueType": "Number",
+      "name": "最低警戒值"
+    },
+    {
+      "attr": "heightWarning",
+      "valueType": "Number",
+      "name": "最高警戒值"
+    },
+    {
+      "attr": "lowWarningColor",
+      "valueType": "Color",
+      "name": "最低警戒颜色"
+    },
+    {
+      "attr": "heightWarningColor",
+      "valueType": "Color",
+      "name": "最高警戒颜色"
+    },
+    {
+      "attr": "bigIconMode",
+      "valueType": "Boolean",
+      "name": "大图标模式"
+    },
+    {
+      "attr": "isAnimation",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "是否开启动画"
+    },
+    {
+      "attr": "errorAnimation",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "动画错误展示"
+    }
+  ],
+  "width": 50,
+  "height": 30,
+  "comps": [
+    {
+      "type": "components/thermometer/thermometer.json",
+      "displayName": "thermometer",
+      "rect": [
+        0,
+        0,
+        50,
+        30
+      ],
+      "tempNumber": {
+        "func": "attr@tempNumber",
+        "value": 34
+      },
+      "fontColor": {
+        "func": "attr@fontColor",
+        "value": "rgb(71,76,86)"
+      },
+      "tempColor": {
+        "func": "attr@tempColor",
+        "value": "rgb(153,121,220)"
+      },
+      "tempMax": {
+        "func": "attr@tempMax",
+        "value": 60
+      },
+      "tempMin": {
+        "func": "attr@tempMin",
+        "value": -30
+      },
+      "strictMode": {
+        "func": "attr@strictMode",
+        "value": false
+      },
+      "warningMode": {
+        "func": "attr@warningMode",
+        "value": false
+      },
+      "lowWarning": {
+        "func": "attr@lowWarning",
+        "value": -20
+      },
+      "heightWarning": {
+        "func": "attr@heightWarning",
+        "value": 40
+      },
+      "lowWarningColor": {
+        "func": "attr@lowWarningColor",
+        "value": "rgb(7,247,243)"
+      },
+      "heightWarningColor": {
+        "func": "attr@heightWarningColor",
+        "value": "rgb(255,0,72)"
+      },
+      "bigIconMode": {
+        "func": "attr@bigIconMode",
+        "value": false
+      }
+    }
+  ]
+}

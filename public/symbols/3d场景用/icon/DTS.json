@@ -1,0 +1,18 @@
+{
+  "modified": "Wed Jan 02 2019 17:10:44 GMT+0800 (中国标准时间)",
+  "width": 30,
+  "height": 10,
+  "comps": [
+    {
+      "type": "text",
+      "text": "DTS",
+      "align": "center",
+      "rect": [
+        2.15895,
+        -0.65778,
+        25.6821,
+        11.31556
+      ]
+    }
+  ]
+}

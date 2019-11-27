@@ -1,0 +1,49 @@
+{
+  "dataBindings": [
+    {
+      "attr": "onOff",
+      "valueType": "Color"
+    }
+  ],
+  "width": 80,
+  "height": 20,
+  "comps": [
+    {
+      "type": "rect",
+      "background": {
+        "func": "attr@onOff",
+        "value": "rgb(255,255,255)"
+      },
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "rect": [
+        17.17383,
+        0.8856,
+        48,
+        18.1144
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "points": [
+        5,
+        9.87052,
+        17.03771,
+        9.87052
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "points": [
+        65.11977,
+        9.9393,
+        77.15748,
+        10.07688
+      ]
+    }
+  ]
+}

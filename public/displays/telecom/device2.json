@@ -1,0 +1,518 @@
+{
+  "v": "6.2.8",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "previewURL": "display-ems.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 5334,
+      "p": {
+        "displayName": "panel1",
+        "image": "symbols/demo/ems/panel1.json",
+        "position": {
+          "x": 613.29252,
+          "y": 412.95346
+        },
+        "width": 846.19014,
+        "height": 115.69006
+      },
+      "s": {
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5335,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 329.64102,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Vlan 1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5336,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 377.90389,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Vlan 2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5337,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 426.16676,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Vlan 3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5338,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 474.42963,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Vlan 4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5339,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 549.74204,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "b1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5340,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 598.0049,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "b2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5341,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 646.26778,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "b3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5342,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 694.53065,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "b4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5343,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 772.52495,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "IN 1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5344,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 820.78782,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "IN 2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5345,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 869.05069,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "IN 3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5346,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 917.31356,
+          "y": 381.49399
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "IN 4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5347,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 329.64102,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Wlan 4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5348,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 377.90389,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Wlan 3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5349,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 426.16676,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Wlan 2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5350,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 474.42963,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "Wlan 1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5351,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 772.52495,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "OUT 4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5352,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 820.78782,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "OUT 3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5353,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 869.05069,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "OUT 2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5354,
+      "p": {
+        "displayName": "网口",
+        "parent": {
+          "__i": 5334
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 917.31356,
+          "y": 438.01402
+        },
+        "width": 30.57523,
+        "height": 23.13801
+      },
+      "s": {
+        "opacity": 1,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "OUT 1"
+      }
+    }
+  ],
+  "modified": "Fri Dec 14 2018 01:08:06 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": 190.19745,
+    "y": 355.10843,
+    "width": 846.19014,
+    "height": 115.69006
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "v": "6.2.1",
+  "p": {
+    "background": "#32D3EB",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {},
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2432,
+      "p": {
+        "position": {
+          "x": 527.7203,
+          "y": 476.86931
+        },
+        "width": 1471.28873,
+        "height": 885.9373
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(255,255,255)",
+        "shape.border.color": "#979797",
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2433,
+      "p": {
+        "displayName": "投影",
+        "image": "symbols/basic/投影.json",
+        "position": {
+          "x": 41.0911,
+          "y": 535.14091
+        },
+        "width": 348.45199,
+        "height": 706.28182
+      },
+      "s": {
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2434,
+      "p": {
+        "displayName": "投影",
+        "image": "symbols/basic/投影.json",
+        "position": {
+          "x": 696.83745,
+          "y": 535.14091
+        },
+        "width": 1067.64251,
+        "height": 706.28182
+      },
+      "s": {
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 2435,
+      "p": {
+        "position": {
+          "x": 696.38711,
+          "y": 202.63832
+        },
+        "width": 946.67111,
+        "height": 41.66311
+      },
+      "s": {
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2436,
+      "p": {
+        "parent": {
+          "__i": 2435
+        },
+        "position": {
+          "x": 696.38711,
+          "y": 201.91172
+        },
+        "width": 946.67111,
+        "height": 40.20992
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(235,235,235)",
+        "shape.border.color": "#979797",
+        "shape.corner.radius": 8,
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2437,
+      "p": {
+        "parent": {
+          "__i": 2435
+        },
+        "position": {
+          "x": 696.38711,
+          "y": 210.38175
+        },
+        "width": 946.67111,
+        "height": 26.17624
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(235,235,235)",
+        "shape.border.color": "#979797",
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 2438,
+      "p": {
+        "position": {
+          "x": 41.27533,
+          "y": 202.83155
+        },
+        "width": 309.51839,
+        "height": 41.66311
+      },
+      "s": {
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2439,
+      "p": {
+        "parent": {
+          "__i": 2438
+        },
+        "position": {
+          "x": 41.27533,
+          "y": 202.83155
+        },
+        "width": 309.51839,
+        "height": 41.66311
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(235,235,235)",
+        "shape.border.color": "#979797",
+        "shape.corner.radius": 8,
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2440,
+      "p": {
+        "parent": {
+          "__i": 2438
+        },
+        "position": {
+          "x": 41.27533,
+          "y": 210.28513
+        },
+        "width": 309.51839,
+        "height": 26.36948
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(235,235,235)",
+        "shape.border.color": "#979797",
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2441,
+      "p": {
+        "image": "symbols/basic/table.json",
+        "position": {
+          "x": 696.38711,
+          "y": 465.30676
+        },
+        "width": 931.25978,
+        "height": 567
+      },
+      "s": {
+        "2d.movable": false,
+        "2d.editable": false
+      },
+      "a": {
+        "table.background": null,
+        "table.line.color": "#3399FF",
+        "table.columns": [
+          {
+            "displayName": " ",
+            "key": "distributionName",
+            "width": 120
+          },
+          {
+            "displayName": "配电柜1",
+            "align": "center",
+            "key": "dist1",
+            "width": 0.1
+          },
+          {
+            "displayName": "配电柜2",
+            "align": "center",
+            "key": "dist2",
+            "width": 0.1
+          },
+          {
+            "displayName": "配电柜3",
+            "align": "center",
+            "key": "dist3",
+            "width": 0.1
+          },
+          {
+            "displayName": "配电柜4",
+            "align": "center",
+            "key": "dist4",
+            "width": 0.1
+          }
+        ],
+        "table.dataSource": [
+          {
+            "distributionName": "A相电压",
+            "dist1": "380 V",
+            "dist2": "380 V",
+            "dist3": "380 V",
+            "dist4": "380 V"
+          },
+          {
+            "distributionName": "B相电压",
+            "dist1": "381 V",
+            "dist2": "381 V",
+            "dist3": "381 V",
+            "dist4": "381 V"
+          },
+          {
+            "distributionName": "C相电流",
+            "dist1": "382 V",
+            "dist2": "382 V",
+            "dist3": "382 V",
+            "dist4": "382 V"
+          },
+          {
+            "distributionName": "A相电压",
+            "dist1": "30.5 A",
+            "dist2": "30.5 A",
+            "dist3": "30.5 A",
+            "dist4": "30.5 A"
+          },
+          {
+            "distributionName": "B相电压",
+            "dist1": "30.8 A",
+            "dist2": "30.8 A",
+            "dist3": "30.8 A",
+            "dist4": "30.8 A"
+          },
+          {
+            "distributionName": "C相电压",
+            "dist1": "30.6A ",
+            "dist2": "30.6A ",
+            "dist3": "30.6A ",
+            "dist4": "30.6A "
+          },
+          {
+            "distributionName": "A相有功功率",
+            "dist1": "11.59 kW",
+            "dist2": "11.59 kW",
+            "dist3": "11.59 kW",
+            "dist4": "11.59 kW"
+          },
+          {
+            "distributionName": "B相有功功率",
+            "dist1": "11.59 kW",
+            "dist2": "11.59 kW",
+            "dist3": "11.59 kW",
+            "dist4": "11.59 kW"
+          },
+          {
+            "distributionName": "C相有功功率",
+            "dist1": "11.59 kW",
+            "dist2": "11.59 kW",
+            "dist3": "11.59 kW",
+            "dist4": "11.59 kW"
+          },
+          {
+            "distributionName": "A相无功功率",
+            "dist1": "12.00 kVar",
+            "dist2": "12.00 kVar",
+            "dist3": "12.00 kVar",
+            "dist4": "12.00 kVar"
+          },
+          {
+            "distributionName": "B相无功功率",
+            "dist1": "12.00 kVar",
+            "dist2": "12.00 kVar",
+            "dist3": "12.00 kVar",
+            "dist4": "12.00 kVar"
+          },
+          {
+            "distributionName": "C相无功功率",
+            "dist1": "12.00 kVar",
+            "dist2": "12.00 kVar",
+            "dist3": "12.00 kVar",
+            "dist4": "12.00 kVar"
+          },
+          {
+            "distributionName": "A相无功电度",
+            "dist1": "12,055,550.00 kWH",
+            "dist2": "22,055,550.00 kWH",
+            "dist3": "32,055,550.00 kWH",
+            "dist4": "42,055,550.00 kWH"
+          },
+          {
+            "distributionName": "B相无功电度",
+            "dist1": "2,055,550.00 kWH",
+            "dist2": "32,055,550.00 kWH",
+            "dist3": "42,055,550.00 kWH",
+            "dist4": "522,055,550.00 kWH"
+          },
+          {
+            "distributionName": "C相无功电度",
+            "dist1": "2,055,550.00 kWH",
+            "dist2": "12,055,550.00 kWH",
+            "dist3": "22,055,550.00 kWH",
+            "dist4": "32,055,550.00 kWH"
+          },
+          {
+            "distributionName": "功率因素",
+            "dist1": "0.85",
+            "dist2": "0.85",
+            "dist3": "0.85",
+            "dist4": "0.85"
+          }
+        ],
+        "table.head.background": "rgb(235,235,235)",
+        "table.body.background": "rgb(255,255,255)",
+        "table.column.line.width": 1,
+        "table.border.color": null,
+        "table.column.line.color": "rgba(235,235,235,0.00)",
+        "table.row.line.color": "rgb(235,235,235)",
+        "table.body.color": "rgb(123,145,156)",
+        "table.cell.padding": 18,
+        "table.body.height": 30,
+        "table.head.height": 42,
+        "table.body.font.size": 14,
+        "table.head.font.size": 16,
+        "table.border.width": 0,
+        "table.body.font.family": "sans-serif, arial",
+        "table.head.font.family": "sans-serif, arial",
+        "table.head.color": "rgb(86,108,117)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2442,
+      "p": {
+        "position": {
+          "x": 49.22475,
+          "y": 201.84398
+        },
+        "width": 305.36654,
+        "height": 39.68796
+      },
+      "s": {
+        "text": "三维设备",
+        "text.color": "rgb(86,108,117)",
+        "text.font": "16px arial, sans-serif",
+        "text.align": "center",
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2443,
+      "p": {
+        "tag": "g3d",
+        "position": {
+          "x": 41.0911,
+          "y": 487.2777
+        },
+        "width": 301.77707,
+        "height": 527.2292
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(255,255,255)",
+        "shape.border.color": "#979797",
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    }
+  ]
+}

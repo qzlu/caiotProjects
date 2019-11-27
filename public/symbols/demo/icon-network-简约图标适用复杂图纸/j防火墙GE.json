@@ -1,0 +1,145 @@
+{
+  "background": "rgb(61,61,61)",
+  "width": 64,
+  "height": 64,
+  "comps": [
+    {
+      "type": "roundRect",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "cornerRadius": 3,
+      "rect": [
+        3,
+        11,
+        58,
+        42.27119
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        3,
+        44.88983,
+        61,
+        44.88983
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        3,
+        36.14407,
+        61,
+        36.14407
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        3,
+        28.12712,
+        61,
+        28.12712
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "borderCap": "round",
+      "points": [
+        3,
+        19.61017,
+        61,
+        20.11017
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "borderCap": "round",
+      "points": [
+        45.5,
+        11,
+        45.5,
+        19.61017
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        32,
+        36.14407,
+        32,
+        45.61864
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        45.5,
+        44.52542,
+        45.5,
+        54
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "points": [
+        19,
+        44.52542,
+        19,
+        54
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 3,
+      "borderColor": "rgb(186,186,186)",
+      "borderCap": "round",
+      "points": [
+        19,
+        15.37288,
+        19,
+        19.61017
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(153,153,153)",
+      "borderColor": "#979797",
+      "rect": [
+        13.90256,
+        21.34776,
+        37.19488,
+        21.30448
+      ]
+    },
+    {
+      "type": "text",
+      "text": "GE",
+      "color": "rgb(255,255,255)",
+      "scaleX": 1.5,
+      "scaleY": 1.5,
+      "rect": [
+        21.80238,
+        26.61715,
+        27.80778,
+        14.21814
+      ]
+    }
+  ]
+}

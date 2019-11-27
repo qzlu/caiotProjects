@@ -1,0 +1,277 @@
+{
+  "v": "6.2.3",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "previewURL": "display-monitor.html"
+  },
+  "d": [
+    {
+      "c": "ht.Shape",
+      "i": 2542,
+      "p": {
+        "position": {
+          "x": 0.63588,
+          "y": 6635.34448
+        },
+        "width": 1,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 0.75818,
+              "y": 6635.83365
+            },
+            {
+              "x": 0.51359,
+              "y": 6634.85531
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "shape.border.width": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2543,
+      "p": {
+        "displayName": "electric",
+        "tag": "electric",
+        "image": "symbols/demo/monitor/electric.json",
+        "position": {
+          "x": 1140.13588,
+          "y": 3378.75238
+        },
+        "width": 2280,
+        "height": 400
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2544,
+      "p": {
+        "displayName": "progress",
+        "tag": "progress",
+        "image": "symbols/demo/monitor/progress.json",
+        "position": {
+          "x": 4499.64595,
+          "y": 3353.75238
+        },
+        "width": 1500,
+        "height": 450
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2545,
+      "p": {
+        "displayName": "controlRod",
+        "tag": "controlRod",
+        "image": "symbols/demo/monitor/controlRod.json",
+        "position": {
+          "x": 1023.2421,
+          "y": 5093.35189
+        },
+        "width": 2000,
+        "height": 480
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2546,
+      "p": {
+        "displayName": "switch",
+        "tag": "switch",
+        "image": "symbols/demo/monitor/switch.json",
+        "position": {
+          "x": 4499.64595,
+          "y": 4863.35189
+        },
+        "width": 1600,
+        "height": 460
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2547,
+      "p": {
+        "displayName": "switch2",
+        "tag": "switch2",
+        "image": "symbols/demo/monitor/switch2.json",
+        "position": {
+          "x": 1023.2421,
+          "y": 7093.79119
+        },
+        "width": 1600,
+        "height": 400
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2548,
+      "p": {
+        "displayName": "windingSymbol",
+        "tag": "windingSymbol",
+        "image": "symbols/demo/monitor/windingSymbol.json",
+        "position": {
+          "x": 4513.28151,
+          "y": 7093.79119
+        },
+        "width": 1000,
+        "height": 1400
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2549,
+      "p": {
+        "displayName": "fan",
+        "tag": "fan",
+        "image": "symbols/demo/monitor/fan.json",
+        "rotation": 6.28319,
+        "position": {
+          "x": 1048.24747,
+          "y": 9686.8837
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.41253
+        },
+        "width": 1650,
+        "height": 1950
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2550,
+      "p": {
+        "displayName": "btnGroup",
+        "tag": "btnGroup",
+        "image": "symbols/demo/monitor/btnGroup.json",
+        "position": {
+          "x": 4749.64595,
+          "y": 9857.45846
+        },
+        "width": 2000,
+        "height": 1000
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2551,
+      "p": {
+        "displayName": "dashboard",
+        "tag": "dashboard",
+        "image": "symbols/demo/monitor/dashboard.json",
+        "position": {
+          "x": 1000.13588,
+          "y": 12793.11122
+        },
+        "width": 2000,
+        "height": 2000
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2553,
+      "p": {
+        "displayName": "button2",
+        "tag": "button2",
+        "image": "symbols/demo/monitor/button2.json",
+        "position": {
+          "x": 5013.28151,
+          "y": 15477.8763
+        },
+        "width": 3500,
+        "height": 1400
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2554,
+      "p": {
+        "displayName": "pie",
+        "tag": "pie",
+        "image": "symbols/demo/monitor/pie.json",
+        "position": {
+          "x": 4699.64595,
+          "y": 12793.11122
+        },
+        "width": 2000,
+        "height": 2000
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2555,
+      "p": {
+        "displayName": "oilBarrel",
+        "tag": "oilBarrel",
+        "image": "symbols/demo/monitor/oilBarrel.json",
+        "position": {
+          "x": 1092.0018,
+          "y": 905.83529
+        },
+        "width": 1000,
+        "height": 2000
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2556,
+      "p": {
+        "displayName": "coordinate",
+        "tag": "coordinate",
+        "image": "symbols/demo/monitor/lineDiagram.json",
+        "position": {
+          "x": 11154.68083,
+          "y": 8793.11122
+        },
+        "width": 8000,
+        "height": 6000
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2557,
+      "p": {
+        "displayName": "triangleRoll",
+        "tag": "triangleRoll",
+        "image": "symbols/demo/monitor/triangleRoll.json",
+        "position": {
+          "x": 4513.28151,
+          "y": 1005.83529
+        },
+        "width": 2000,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18464,
+      "p": {
+        "displayName": "button1",
+        "tag": "button1",
+        "image": "symbols/demo/monitor/button1.json",
+        "position": {
+          "x": 952.0018,
+          "y": 15477.8763
+        },
+        "width": 720,
+        "height": 1640
+      }
+    }
+  ]
+}

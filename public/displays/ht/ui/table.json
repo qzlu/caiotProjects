@@ -1,0 +1,713 @@
+{
+  "v": "7.0.0",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": "copyStyle",
+    "fitContent": true
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 4946,
+      "p": {
+        "displayName": "table",
+        "tag": "table1",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 103.54077,
+          "y": 525.82527
+        },
+        "width": -1,
+        "height": -1
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.headHeight": 32,
+        "ht.rowHeight": 28,
+        "ht.cellPadding": 0,
+        "ht.showHead": true,
+        "ht.dataSource": [
+          {
+            "empNo": "ht424",
+            "name": "唐尼",
+            "sex": "男",
+            "job": "CEO"
+          },
+          {
+            "empNo": "ht743",
+            "name": "张三",
+            "sex": "男",
+            "job": "CTO"
+          },
+          {
+            "empNo": "ht981",
+            "name": "吴妍",
+            "sex": "女",
+            "job": "财务"
+          },
+          {
+            "empNo": "ht839",
+            "name": "孙工",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht774",
+            "name": "赵泰",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht353",
+            "name": "巫易",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht632",
+            "name": "傅坚",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht491",
+            "name": "周平",
+            "sex": "女",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht434",
+            "name": "陈蓉",
+            "sex": "女",
+            "job": "前台"
+          },
+          {
+            "empNo": "ht990",
+            "name": "孙丽",
+            "sex": "女",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht999",
+            "name": "朱玉",
+            "sex": "女",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht174",
+            "name": "上官建平",
+            "sex": "男",
+            "job": "设计"
+          },
+          {
+            "empNo": "ht858",
+            "name": "张三丰",
+            "sex": "男",
+            "job": "设计"
+          },
+          {
+            "empNo": "ht812",
+            "name": "吴婷",
+            "sex": "女",
+            "job": "美术"
+          },
+          {
+            "empNo": "ht777",
+            "name": "孙大圣",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht689",
+            "name": "赵四",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht709",
+            "name": "巫齐博",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht172",
+            "name": "傅小坚",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht359",
+            "name": "周越",
+            "sex": "女",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht164",
+            "name": "陈蓉",
+            "sex": "女",
+            "job": "前台"
+          },
+          {
+            "empNo": "ht462",
+            "name": "苏大强",
+            "sex": "男",
+            "job": "开发"
+          },
+          {
+            "empNo": "ht103",
+            "name": "朱玉",
+            "sex": "女",
+            "job": "开发"
+          }
+        ],
+        "ht.columns": [
+          {
+            "key": "empNo",
+            "displayName": "工号",
+            "width": "80"
+          },
+          {
+            "key": "name",
+            "displayName": "姓名",
+            "width": "0.1"
+          },
+          {
+            "key": "sex",
+            "displayName": "性别",
+            "width": "0.2"
+          },
+          {
+            "key": "job",
+            "displayName": "岗位",
+            "width": "0.1"
+          }
+        ],
+        "ht.hoverBackground": "rgba(255,255,255,0.31)",
+        "ht.borderWidth": 0,
+        "ht.translateY": 0,
+        "ht.rowLineWidth": 0,
+        "ht.scrollBarWidth": 7,
+        "ht.translateX": 0,
+        "ht.showScrollBar": true,
+        "ht.scrollBarColor": "#FEB64D",
+        "ht.onClick": "__ht__function(row, data, view){\nconsole.log(row)\n}",
+        "ht.onSelectRow": "__ht__function(row, data, view) {console.log(row)}",
+        "ht.drawRow": "__ht__function(g, row, rowIndex, rect, rawIndex, data, view) {if (rawIndex % 2 === 1) {\n    g.fillStyle = 'rgba(0, 92, 231, 0.3)'\n    g.fillRect(rect.x, rect.y, rect.width, rect.height);\n}}",
+        "ht.autoHideScrollBar": false,
+        "ht.columnLineWidth": 0,
+        "ht.scrollable": true,
+        "ht.multiple": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4947,
+      "p": {
+        "displayName": "table",
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 103.54077,
+          "y": 836.0397
+        },
+        "width": 420,
+        "height": 286.53348
+      },
+      "a": {
+        "ht.columns": [
+          {
+            "key": "empNo",
+            "displayName": "工号",
+            "width": "80"
+          },
+          {
+            "key": "name",
+            "displayName": "姓名",
+            "width": "60",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var defaultDraw = option.defaultDraw,\n                row = option.row,\n                x = rect.x + 5,\n                y = rect.y + 5,\n                width = rect.width - 10,\n                height = rect.height - 10,\n                off = 6;\n            if (row.sex === '女') {\n                g.beginPath();\n                g.moveTo(x + off, y);\n                g.lineTo(x + width, y);\n                g.lineTo(x + width, y + height - off);\n                g.lineTo(x + width - off, y + height);\n                g.lineTo(x, y + height);\n                g.lineTo(x, y + off);\n                g.closePath();\n                g.fillStyle = 'rgba(51,153,255,0.3)';\n                g.fill();\n            }\n            \n            defaultDraw();\n        }"
+          },
+          {
+            "key": "sex",
+            "align": "center",
+            "displayName": "性别"
+          },
+          {
+            "key": "job",
+            "displayName": "岗位"
+          },
+          {
+            "key": "workTime",
+            "displayName": "工时",
+            "align": "center",
+            "width": 112,
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var font = option.font,\n                color = option.color,\n                x = rect.x,\n                y = rect.y,\n                width = rect.width,\n                height = rect.height,\n                radius = (height - 6) / 2,\n                defaultDraw = option.defaultDraw,\n                ts = ht.Default.getTextSize(font, text),\n                ts2 = ht.Default.getTextSize(font, '小时保养'),\n                tw = ts.width + ts2.width - 6,\n                padding = (width - tw) / 2;\n            \n            ht.Default.drawText(g, text, font, color, x , y, 50, height, 'right', 'middle');\n            ht.Default.drawText(g, '小时', font, 'rgb(124,145,155)', x + 50+4, y, ts2.width, height, 'left', 'middle');\n\n        }"
+          }
+        ],
+        "ht.dataSource": [
+          {
+            "empNo": "ht001",
+            "name": "唐尼",
+            "sex": "男",
+            "job": "CEO",
+            "workTime": 110
+          },
+          {
+            "empNo": "ht002",
+            "name": "张三",
+            "sex": "男",
+            "job": "CTO",
+            "workTime": 210
+          },
+          {
+            "empNo": "ht003",
+            "name": "吴妍",
+            "sex": "女",
+            "job": "财务",
+            "workTime": 30
+          },
+          {
+            "empNo": "ht004",
+            "name": "孙工",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 50
+          },
+          {
+            "empNo": "ht005",
+            "name": "赵平",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 150
+          },
+          {
+            "empNo": "ht006",
+            "name": "巫易",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 120
+          },
+          {
+            "empNo": "ht007",
+            "name": "傅坚",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 130
+          },
+          {
+            "empNo": "ht008",
+            "name": "周平",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 220
+          },
+          {
+            "empNo": "ht009",
+            "name": "陈蓉",
+            "sex": "女",
+            "job": "前台",
+            "workTime": 330
+          },
+          {
+            "empNo": "ht010",
+            "name": "孙丽",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 10
+          },
+          {
+            "empNo": "ht011",
+            "name": "朱玉",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 10
+          },
+          {
+            "empNo": "ht001",
+            "name": "唐尼",
+            "sex": "男",
+            "job": "CEO",
+            "workTime": 40
+          },
+          {
+            "empNo": "ht002",
+            "name": "张三",
+            "sex": "男",
+            "job": "CTO",
+            "workTime": 60
+          },
+          {
+            "empNo": "ht003",
+            "name": "吴妍",
+            "sex": "女",
+            "job": "财务",
+            "workTime": 110
+          },
+          {
+            "empNo": "ht004",
+            "name": "孙工",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 210
+          },
+          {
+            "empNo": "ht005",
+            "name": "赵平",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 120
+          },
+          {
+            "empNo": "ht006",
+            "name": "巫易",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 130
+          },
+          {
+            "empNo": "ht007",
+            "name": "傅坚",
+            "sex": "男",
+            "job": "开发",
+            "workTime": 10
+          },
+          {
+            "empNo": "ht008",
+            "name": "周平",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 130
+          },
+          {
+            "empNo": "ht009",
+            "name": "陈蓉",
+            "sex": "女",
+            "job": "前台",
+            "workTime": 10
+          },
+          {
+            "empNo": "ht010",
+            "name": "孙丽",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 10
+          },
+          {
+            "empNo": "ht011",
+            "name": "朱玉",
+            "sex": "女",
+            "job": "开发",
+            "workTime": 10
+          }
+        ],
+        "ht.columnLineWidth": 0,
+        "ht.rowLineWidth": 0,
+        "ht.scrollBarWidth": 6,
+        "ht.showHead": true,
+        "ht.scrollable": true,
+        "ht.autoHideScrollBar": true,
+        "ht.bodyFont": "14px Comic Sans MS",
+        "ht.headFont": "italic bold 14px Comic Sans MS",
+        "ht.multiple": true,
+        "ht.borderWidth": 0,
+        "ht.headHeight": 32,
+        "ht.rowHeight": 32,
+        "ht.cellPadding": 0,
+        "ht.translateX": 0,
+        "ht.translateY": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4948,
+      "p": {
+        "displayName": "table",
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 51.54097,
+          "y": 250.83348
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0
+        },
+        "width": 316.00041,
+        "height": 34
+      },
+      "s": {
+        "layout.v": "topbottom",
+        "layout.h": "leftright",
+        "pixelPerfect": false,
+        "2d.movable": false
+      },
+      "a": {
+        "ht.headHeight": 32,
+        "ht.headTextColor": "rgb(247,247,247)",
+        "ht.columns": [
+          {
+            "key": "baseInfo",
+            "width": "77",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var index = option.colIndex;\n            if (row.selectIndex !== index) {\n                option.defaultDraw();\n            }\n            else {\n                g.save();\n\n                ht.Default.drawText(g, text, option.font, 'rgb(51,153,255)', rect.x, rect.y, rect.width, rect.height, 'center', 'middle');\n                \n                g.fillStyle = 'rgb(51,153,255)';\n                g.beginPath();\n                g.rect(rect.x + 5, rect.y + rect.height - 6, rect.width - 10, 2);\n                g.fill();\n\n                g.restore();\n            }\n        }"
+          },
+          {
+            "key": "deviceInfo",
+            "width": "77",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var index = option.colIndex;\n            if (row.selectIndex !== index) {\n                option.defaultDraw();\n            }\n            else {\n                g.save();\n\n                ht.Default.drawText(g, text, option.font, 'rgb(51,153,255)', rect.x, rect.y, rect.width, rect.height, 'center', 'middle');\n                \n                g.fillStyle = 'rgb(51,153,255)';\n                g.beginPath();\n                g.rect(rect.x + 5, rect.y + rect.height - 6, rect.width - 10, 2);\n                g.fill();\n\n                g.restore();\n            }\n        }"
+          },
+          {
+            "key": "totalInfo",
+            "width": "77",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var index = option.colIndex;\n            if (row.selectIndex !== index) {\n                option.defaultDraw();\n            }\n            else {\n                g.save();\n\n                ht.Default.drawText(g, text, option.font, 'rgb(51,153,255)', rect.x, rect.y, rect.width, rect.height, 'center', 'middle');\n                \n                g.fillStyle = 'rgb(51,153,255)';\n                g.beginPath();\n                g.rect(rect.x + 5, rect.y + rect.height - 6, rect.width - 10, 2);\n                g.fill();\n\n                g.restore();\n            }\n        }"
+          },
+          {
+            "key": "alarmInfo",
+            "width": "77",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var index = option.colIndex;\n            if (row.selectIndex !== index) {\n                option.defaultDraw();\n            }\n            else {\n                g.save();\n\n                ht.Default.drawText(g, text, option.font, 'rgb(51,153,255)', rect.x, rect.y, rect.width, rect.height, 'center', 'middle');\n                \n                g.fillStyle = 'rgb(51,153,255)';\n                g.beginPath();\n                g.rect(rect.x + 5, rect.y + rect.height - 6, rect.width - 10, 2);\n                g.fill();\n\n                g.restore();\n            }\n        }"
+          },
+          {
+            "key": "realtimeInfo",
+            "width": "77",
+            "align": "center",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var index = option.colIndex;\n            if (row.selectIndex !== index) {\n                option.defaultDraw();\n            }\n            else {\n                g.save();\n\n                ht.Default.drawText(g, text, option.font, 'rgb(51,153,255)', rect.x, rect.y, rect.width, rect.height, 'center', 'middle');\n                \n                g.fillStyle = 'rgb(51,153,255)';\n                g.beginPath();\n                g.rect(rect.x + 5, rect.y + rect.height - 6, rect.width - 10, 2);\n                g.fill();\n\n                g.restore();\n            }\n        }"
+          }
+        ],
+        "ht.bodyBackground": "rgb(61,61,61)",
+        "ht.bodyTextColor": "rgb(247,247,247)",
+        "ht.translateX": 5,
+        "ht.autoHideScrollBar": true,
+        "ht.headbackground": "rgba(25,82,128,0.86)",
+        "ht.showHead": false,
+        "ht.dataSource": [
+          {
+            "baseInfo": "基本信息",
+            "deviceInfo": "设备列表",
+            "totalInfo": "统计信息",
+            "alarmInfo": "告警信息",
+            "realtimeInfo": "实时数据"
+          }
+        ],
+        "ht.bodyFont": "14px sans-serif, Arial",
+        "ht.hoverBackground": "rgba(54,154,255,0.00)",
+        "ht.scrollBarWidth": 0,
+        "ht.scrollBarColor": "rgba(255,255,255,0.00)",
+        "ht.selectBackground": "rgba(247,247,247,0.00)",
+        "ht.onClickCell": "__ht__function(event, cell, row, column, rowIndex, colIndex, data, view) {row.selectIndex = colIndex;\ndata.iv();}",
+        "ht.rowLineWidth": 0,
+        "ht.columnLineWidth": 0,
+        "ht.rowHeight": 32,
+        "ht.scrollBarInteractiveSize": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4949,
+      "p": {
+        "displayName": "table",
+        "image": "symbols/ht/ui/table.json",
+        "position": {
+          "x": 529.59491,
+          "y": 652.65716
+        },
+        "width": 328.34191,
+        "height": 653.29855
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.showHead": false,
+        "ht.dataSource": [
+          {
+            "value": 98
+          },
+          {
+            "value": 45
+          },
+          {
+            "value": 15
+          },
+          {
+            "value": 80
+          }
+        ],
+        "ht.rowHeight": 200,
+        "ht.columns": [
+          {
+            "key": "value",
+            "drawCell": "__ht__function(g, text, rect, option) {\n            var row = option.row;\n            var value = row.value;\n            var data = new ht.Data();\n            data.a('ht.value', value);\n            ht.Default.drawStretchImage(g, ht.Default.getImage('symbols/ht/gauge/gauge.json'), 'uniform', rect.x, rect.y + 8, rect.width, rect.height, data)\n        }"
+          }
+        ],
+        "ht.rowLineWidth": 1
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 4950,
+      "p": {
+        "position": {
+          "x": 95.61645,
+          "y": 361.82526
+        },
+        "width": 387.12073,
+        "height": 20
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4951,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 4950
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": -37.94392,
+          "y": 361.82526
+        },
+        "width": 120,
+        "height": 20
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.inputType": "checkbox",
+        "ht.label": "工号",
+        "ht.group": "tableColumn",
+        "ht.checked": true,
+        "ht.onChange": "__ht__function(value, data, view) {var table = view.dm().getDataByTag('table1');\ntable.a('ht.columnVisibleFunc', function(col, colIndex, data, view) {\n    return value.indexOf(col.key) >= 0;\n});}",
+        "ht.value": "empNo"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4952,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 4950
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": 51.09632,
+          "y": 361.82526
+        },
+        "width": 120,
+        "height": 20
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.inputType": "checkbox",
+        "ht.label": "姓名",
+        "ht.group": "tableColumn",
+        "ht.checked": true,
+        "ht.onChange": "__ht__function(value, data, view) {var table = view.dm().getDataByTag('table1');\ntable.a('ht.columnVisibleFunc', function(col, colIndex, data, view) {\n    return value.indexOf(col.key) >= 0;\n});}",
+        "ht.value": "name"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4953,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 4950
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": 140.13657,
+          "y": 361.82526
+        },
+        "width": 120,
+        "height": 20
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.inputType": "checkbox",
+        "ht.label": "性别",
+        "ht.group": "tableColumn",
+        "ht.checked": true,
+        "ht.onChange": "__ht__function(value, data, view) {var table = view.dm().getDataByTag('table1');\ntable.a('ht.columnVisibleFunc', function(col, colIndex, data, view) {\n    return value.indexOf(col.key) >= 0;\n});}",
+        "ht.value": "sex"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4954,
+      "p": {
+        "displayName": "checkbox-label",
+        "parent": {
+          "__i": 4950
+        },
+        "image": "symbols/ht/ui/checkbox-label.json",
+        "position": {
+          "x": 229.17681,
+          "y": 361.82526
+        },
+        "width": 120,
+        "height": 20
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.inputType": "checkbox",
+        "ht.label": "岗位",
+        "ht.group": "tableColumn",
+        "ht.checked": true,
+        "ht.onChange": "__ht__function(value, data, view) {var table = view.dm().getDataByTag('table1');\ntable.a('ht.columnVisibleFunc', function(col, colIndex, data, view) {\n    return value.indexOf(col.key) >= 0;\n});}",
+        "ht.value": "job"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4955,
+      "p": {
+        "displayName": "input",
+        "image": "symbols/ht/ui/input.json",
+        "position": {
+          "x": 7.05608,
+          "y": 328.39228
+        },
+        "width": 210,
+        "height": 32
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "ht.borderRadius": "5",
+        "ht.placeholder": "请输入工号或姓名",
+        "ht.padding": "0 5",
+        "ht.onChange": "__ht__function(value, data, view) {if (data._searchTimer) {\n    clearTimeout(data._searchTimer);\n}\ndata._searchTimer = setTimeout(function(){\n    var table = view.dm().getDataByTag('table1');\n    table.a('ht.visibleFunc', function(row, rowIndex, data, view) {\n        return row.name.indexOf(value) >= 0 || row.empNo.indexOf(value) >= 0;\n    });\n    table.a('ht.translateY', 0);\n    delete data._searchTimer;\n}, 100);}"
+      }
+    }
+  ],
+  "modified": "Thu Apr 11 2019 14:35:11 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": -106.45923,
+    "y": 250.83348,
+    "width": 800.2251,
+    "height": 728.47296
+  }
+}

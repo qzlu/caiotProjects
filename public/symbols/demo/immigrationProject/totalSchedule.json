@@ -1,0 +1,72 @@
+{
+  "dataBindings": [
+    {
+      "attr": "toBeBulit",
+      "valueType": "Number",
+      "name": "待建",
+      "description": "待建"
+    },
+    {
+      "attr": "underConstruction",
+      "valueType": "Number",
+      "name": "在建",
+      "description": "在建"
+    },
+    {
+      "attr": "carryOut",
+      "valueType": "Number",
+      "name": "完成",
+      "description": "完成"
+    },
+    {
+      "attr": "projeceName",
+      "valueType": "String",
+      "name": "工程项目名称",
+      "description": "工称项目名称"
+    },
+    {
+      "attr": "ballR",
+      "valueType": "Number",
+      "name": "超期",
+      "description": "圆直径"
+    }
+  ],
+  "width": 180,
+  "height": 50,
+  "comps": [
+    {
+      "type": "components/immigrationProject/totalSchedule.json",
+      "displayName": "totalSchedule",
+      "rect": [
+        0,
+        0,
+        180,
+        50
+      ],
+      "toBeBuilt": {
+        "func": "attr@toBeBulit",
+        "value": 40
+      },
+      "underConstruction": {
+        "func": "attr@underConstruction",
+        "value": 10
+      },
+      "carryOut": {
+        "func": "attr@carryOut",
+        "value": 30
+      },
+      "total": {
+        "func": "__ht__function(data, view) {\nreturn data.a('toBeBulit') + data.a('underConstruction') + data.a('carryOut');\n}",
+        "value": 80
+      },
+      "pjName": {
+        "func": "attr@projeceName",
+        "value": "总计"
+      },
+      "ball2R": {
+        "func": "attr@ballR",
+        "value": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "v": "7.0.2",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null
+  },
+  "d": [
+    {
+      "c": "ht.Text",
+      "i": 13908,
+      "p": {
+        "tag": "test",
+        "position": {
+          "x": 355.79289,
+          "y": 29.17505
+        },
+        "width": 64.47724,
+        "height": 13.94837
+      },
+      "s": {
+        "text": "文本"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 14167,
+      "p": {
+        "displayName": "风扇",
+        "tag": "fengshan",
+        "image": "symbols/demo/fan/风扇.json",
+        "position": {
+          "x": 360.12311,
+          "y": 172.60773
+        },
+        "width": 122.6936,
+        "height": 156.20977
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 14951,
+      "p": {
+        "position": {
+          "x": 222.1746,
+          "y": 108.29858
+        },
+        "width": 100,
+        "height": 120
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13388,
+      "p": {
+        "parent": {
+          "__i": 14951
+        },
+        "position": {
+          "x": 222.1746,
+          "y": 108.29858
+        },
+        "width": 100,
+        "height": 120
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#D8D8D8",
+        "shape.border.width": 1,
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13395,
+      "p": {
+        "displayName": "fan1",
+        "parent": {
+          "__i": 14951
+        },
+        "tag": "fan",
+        "image": "symbols/demo/fan/fan1.json",
+        "position": {
+          "x": 222.1746,
+          "y": 105.04954
+        },
+        "width": 100,
+        "height": 100
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 15020,
+      "p": {
+        "position": {
+          "x": 298.77631,
+          "y": 130.71661
+        },
+        "width": 253.2034,
+        "height": 217.03149,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 224.71912,
+              "y": 98.49013
+            },
+            {
+              "x": 284.37452,
+              "y": 22.20087
+            },
+            {
+              "x": 425.37801,
+              "y": 226.5052
+            },
+            {
+              "x": 172.1746,
+              "y": 239.23236
+            }
+          ]
+        },
+        "closePath": true
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "shape.border.width": 4,
+        "shape.dash": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 15275,
+      "p": {
+        "displayName": "alarm",
+        "tag": "alarm",
+        "image": "symbols/basic/alarm.json",
+        "position": {
+          "x": 388.03151,
+          "y": 36.14924
+        }
+      },
+      "a": {
+        "alarm.color": "rgb(227,36,36)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 15559,
+      "p": {
+        "displayName": "风力发电机icon",
+        "image": "symbols/demo/工业/风力发电机icon.json",
+        "position": {
+          "x": 553.51481,
+          "y": 316.03457
+        },
+        "width": 220.12312,
+        "height": 211.45772
+      }
+    }
+  ],
+  "modified": "Thu Oct 24 2019 16:14:32 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": 169.1746,
+    "y": -13.85076,
+    "width": 494.40177,
+    "height": 435.6142
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "modified": "Fri Nov 30 2018 11:06:57 GMT+0800 (中国标准时间)",
+  "width": 50,
+  "height": 50,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(25,73,79,0.80)",
+      "displayName": "无线对讲框",
+      "rect": [
+        1.47639,
+        1.47639,
+        47.04723,
+        47.04723
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/building/无线对讲.json",
+      "displayName": "无线对讲图",
+      "rect": [
+        12.72726,
+        12.82951,
+        24.70222,
+        24.70222
+      ]
+    }
+  ]
+}

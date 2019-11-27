@@ -1,0 +1,22 @@
+{
+  "modified": "Sat Dec 29 2018 09:36:35 GMT+0800 (中国标准时间)",
+  "background": "rgb(41,41,41)",
+  "width": 120,
+  "height": 25,
+  "comps": [
+    {
+      "type": "text",
+      "text": "日志源",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rotation": 6.28319,
+      "rect": [
+        17.54023,
+        0.00017,
+        72.89656,
+        27.03447
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "width": 100,
+  "height": 100,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\n// * 获取四舍五入的两位小数\r\nfunction getTwoDecimalPoints(num) {\r\n    return parseFloat(num.toFixed(2));\r\n}\r\n\r\n// * 获取并定义变量\r\nvar rectWidth = rect.width;\r\nvar rectHeight = rect.height;\r\nvar width = rectWidth > rectHeight ? rectHeight : rectWidth;\r\nvar posX = rectWidth / 2;\r\nvar posY = rectHeight / 2;\r\nvar blankCirclePercent = comp.getValue('blankCirclePercent');\r\nvar progressPercentage = comp.getValue('progressPercentage');\r\nvar progressColor = comp.getValue('progressColor');\r\nvar innerWidth = width * blankCirclePercent;\r\nvar lineGap = getTwoDecimalPoints((2 / 252) * width);\r\nvar proAngleStart = (Math.PI / 2) * 3;\r\nvar percentageAndColor = progressPercentage.map(function(item, index) {\r\n    var color = progressColor.filter(function(item, idx) {\r\n        return index === idx;\r\n    })[0];\r\n    return {\r\n        percentage: item,\r\n        color: color\r\n    };\r\n});\r\nvar lineWidth = (width / 2 - innerWidth / 2 - (percentageAndColor.length - 1) * lineGap) / percentageAndColor.length;\r\n\r\n// * 裁切\r\ng.beginPath();\r\ng.rect(0, 0, rectWidth, rectHeight);\r\ng.clip();\r\n\r\n// * 绘制\r\nfunction drawProgress(index, strokeStyle, start, end, isProgress) {\r\n    g.save();\r\n    g.beginPath();\r\n    g.arc(\r\n        posX,\r\n        posY,\r\n        innerWidth / 2 + (lineWidth + lineGap) * index + lineWidth / 2,\r\n        start,\r\n        end\r\n    );\r\n    if (!isProgress) g.globalAlpha = 0.2;\r\n    g.lineWidth = lineWidth;\r\n    g.strokeStyle = strokeStyle;\r\n    g.lineCap = 'round';\r\n    g.stroke();\r\n    g.restore();\r\n}\r\n\r\npercentageAndColor.forEach(function(item, index) {\r\n    var start = proAngleStart;\r\n    var end = proAngleStart + ((Math.PI * 2) / 100) * item.percentage;\r\n    drawProgress(index, item.color, 0, Math.PI * 2, false);\r\n    drawProgress(index, item.color, start, end, true);\r\n});\n}",
+  "properties": {
+    "progressPercentage": {
+      "valueType": "NumberArray",
+      "defaultValue": [
+        25,
+        50,
+        75
+      ],
+      "name": "进度条进度"
+    },
+    "progressColor": {
+      "valueType": "ColorArray",
+      "defaultValue": [
+        "#19D4DD",
+        "#9DF902",
+        "#E8223A"
+      ],
+      "name": "进度条颜色"
+    },
+    "blankCirclePercent": {
+      "valueType": "Percentage",
+      "defaultValue": 0.35,
+      "name": "空白圆占比"
+    }
+  }
+}

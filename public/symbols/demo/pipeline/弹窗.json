@@ -1,0 +1,75 @@
+{
+  "modified": "Mon Dec 24 2018 20:06:05 GMT+0800 (China Standard Time)",
+  "width": 100,
+  "height": 33,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "image",
+      "name": "symbols/demo/pipeline/复杂6.json",
+      "displayName": "复杂6",
+      "rect": [
+        0.93428,
+        0,
+        98.1957,
+        31.46931
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(0,65,99,0.3)",
+      "borderColor": "#979797",
+      "gradient": "radial.center",
+      "gradientColor": "rgb(0,200,255)",
+      "rect": [
+        2.70541,
+        30.50924,
+        96.42458,
+        1.92014
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,183,250)",
+      "borderColor": "rgba(76,205,252,0.50)",
+      "rotation": 6.28319,
+      "points": [
+        0.00002,
+        25.26561,
+        5.41079,
+        32.25765,
+        0.00002,
+        32.25765
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/basic/number-pane.json",
+      "displayName": "number-pane",
+      "scaleX": 1.4,
+      "scaleY": 1.4,
+      "rect": [
+        31.91557,
+        10.98017,
+        15.27661,
+        9.03966
+      ]
+    },
+    {
+      "type": "text",
+      "text": "MPa",
+      "color": "rgb(61,230,252)",
+      "shadow": true,
+      "shadowColor": "rgb(26,178,189)",
+      "shadowBlur": 9,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        63.04692,
+        13.04478,
+        18.10204,
+        9.16718
+      ]
+    }
+  ]
+}

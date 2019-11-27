@@ -1,0 +1,292 @@
+{
+  "modified": "Mon Dec 24 2018 15:53:39 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "y.scales",
+      "valueType": "ObjectArray",
+      "name": "scale"
+    },
+    {
+      "attr": "y.pointWidth",
+      "valueType": "PositiveNumber",
+      "name": "pointWidth"
+    },
+    {
+      "attr": "charts.maxValue",
+      "valueType": "Number",
+      "name": "maxValue"
+    },
+    {
+      "attr": "y.fontStyle",
+      "valueType": "String"
+    },
+    {
+      "attr": "y.splitSize",
+      "valueType": "PositiveNumber",
+      "name": "splitSize"
+    },
+    {
+      "attr": "y.fontColor",
+      "valueType": "Color"
+    },
+    {
+      "attr": "y.lineColor",
+      "valueType": "Color"
+    },
+    {
+      "attr": "y.format",
+      "valueType": "String"
+    },
+    {
+      "attr": "y.isMaxValue",
+      "valueType": "Boolean",
+      "name": "最大值是否显示"
+    },
+    {
+      "attr": "y.isScaleShow",
+      "valueType": "Boolean",
+      "name": "刻度尺是否绘制"
+    },
+    {
+      "attr": "y.isScaleBorder",
+      "valueType": "Boolean",
+      "name": "是否绘制底纹"
+    },
+    {
+      "attr": "y.borderColors",
+      "valueType": "ColorArray",
+      "name": "底纹数组"
+    },
+    {
+      "attr": "y.isScaleLine",
+      "valueType": "Boolean",
+      "name": "是否绘制刻度线"
+    },
+    {
+      "attr": "charts.items",
+      "valueType": "ObjectArray"
+    },
+    {
+      "attr": "x.lineFont",
+      "valueType": "String"
+    },
+    {
+      "attr": "x.lineColor",
+      "valueType": "String"
+    },
+    {
+      "attr": "charts.x.fontColor",
+      "valueType": "String"
+    },
+    {
+      "attr": "line.colors",
+      "valueType": "ColorArray",
+      "name": "颜色"
+    },
+    {
+      "attr": "line.datas",
+      "valueType": "ObjectArray",
+      "name": "数据数组"
+    },
+    {
+      "attr": "line.isPoint",
+      "valueType": "Boolean",
+      "name": "是否绘制点"
+    },
+    {
+      "attr": "line.isShade",
+      "valueType": "Boolean",
+      "name": "是否绘制底纹"
+    },
+    {
+      "attr": "line.pointRs",
+      "valueType": "Number",
+      "name": "点半径"
+    },
+    {
+      "attr": "line.lineWidth",
+      "valueType": "Number",
+      "name": "线宽"
+    },
+    {
+      "attr": "line.shadeColors",
+      "valueType": "ColorArray",
+      "name": "底纹颜色"
+    }
+  ],
+  "width": 100,
+  "height": 100,
+  "boundExtend": 100,
+  "fitSize": true,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "components/jiji/刻度复合.json",
+      "displayName": "刻度复合",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "scale": {
+        "func": "attr@y.scales",
+        "value": [
+          0,
+          15,
+          30,
+          45,
+          60,
+          75,
+          90
+        ]
+      },
+      "pointWidth": {
+        "func": "attr@y.pointWidth",
+        "value": 3
+      },
+      "maxValue": {
+        "func": "attr@charts.maxValue",
+        "value": 100
+      },
+      "fontStyle": {
+        "func": "attr@y.fontStyle",
+        "value": "8px Arial"
+      },
+      "splitSize": {
+        "func": "attr@y.splitSize",
+        "value": 5
+      },
+      "fontColor": {
+        "func": "attr@y.fontColor",
+        "value": "#4574A9"
+      },
+      "lineColor": {
+        "func": "attr@y.lineColor",
+        "value": "#4574A9"
+      },
+      "format": {
+        "func": "attr@y.format"
+      },
+      "isMaxShow": {
+        "func": "attr@y.isMaxValue",
+        "value": true
+      },
+      "isScaleShow": {
+        "func": "attr@y.isScaleShow",
+        "value": false
+      },
+      "isShade": {
+        "func": "attr@y.isScaleBorder",
+        "value": true
+      },
+      "shadeColors": {
+        "func": "attr@y.borderColors",
+        "value": [
+          "#1D2551",
+          "#101636"
+        ]
+      },
+      "isScaleLineShow": {
+        "func": "attr@y.isScaleLine",
+        "value": true
+      }
+    },
+    {
+      "type": "components/jiji/x轴-折线.json",
+      "displayName": "x轴-折线",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "items": {
+        "func": "attr@charts.items",
+        "value": [
+          "香蕉",
+          "苹果",
+          "葡萄",
+          "荔枝",
+          "西瓜"
+        ]
+      },
+      "fontStyle": {
+        "func": "attr@x.lineFont",
+        "value": "8px Arial"
+      },
+      "lineColor": {
+        "func": "attr@x.lineColor",
+        "value": "#4574A9"
+      },
+      "fontColor": {
+        "func": "attr@charts.x.fontColor",
+        "value": "#4574A9"
+      }
+    },
+    {
+      "type": "components/jiji/多折线图.json",
+      "pixelPerfect": true,
+      "displayName": "多折线图",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "colors": {
+        "func": "attr@line.colors",
+        "value": [
+          "#9C79F3",
+          "#B9A551"
+        ]
+      },
+      "datas": {
+        "func": "attr@line.datas",
+        "value": [
+          [
+            15,
+            20,
+            80,
+            60,
+            70
+          ],
+          [
+            80,
+            60,
+            90,
+            70,
+            30
+          ]
+        ]
+      },
+      "maxValue": {
+        "func": "attr@charts.maxValue",
+        "value": 100
+      },
+      "isPoint": {
+        "func": "attr@line.isPoint",
+        "value": true
+      },
+      "isShade": {
+        "func": "attr@line.isShade",
+        "value": true
+      },
+      "pointRs": {
+        "func": "attr@line.pointRs",
+        "value": 2
+      },
+      "lineWidth": {
+        "func": "attr@line.lineWidth",
+        "value": 0.5
+      },
+      "shadeColors": {
+        "func": "attr@line.shadeColors",
+        "value": [
+          "rgb(156,121,243,0.2)",
+          "rgb(185,165,81,0.2)"
+        ]
+      }
+    }
+  ]
+}

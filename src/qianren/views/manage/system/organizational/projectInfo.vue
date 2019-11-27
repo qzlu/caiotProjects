@@ -40,7 +40,7 @@
             >
                 <el-form slot="dialog" :model="addData" inline ref="form">
                     <el-form-item label="所属范围">
-                        <el-input readonly v-model="currentNode.FORGName"></el-input>
+                        <el-input readonly v-model="currentNode.FAreaName"></el-input>
                     </el-form-item>
                     <el-form-item label="项目编码" prop="FProjectCode" :rules="[{ required: true, message: '请输入'}]">
                         <el-input v-model="addData.FProjectCode"></el-input>

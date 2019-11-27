@@ -1,0 +1,158 @@
+{
+  "v": "6.2.5",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "width": 800,
+    "height": 500,
+    "previewURL": "display-signal.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 59067,
+      "p": {
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 800,
+        "height": 500
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "#2193b0",
+        "shape.border.color": "#979797",
+        "select.width": 0
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 59068,
+      "p": {
+        "position": {
+          "x": 120,
+          "y": 40
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 560,
+        "height": 80
+      },
+      "s": {
+        "text": "HT Signal Widget",
+        "text.align": "center",
+        "text.color": "#E6EAEE",
+        "text.font": "40px  arial, sans-serif",
+        "select.width": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 59069,
+      "p": {
+        "displayName": "signal",
+        "tag": "signalWithText",
+        "image": "symbols/demo/signal/signalText.json",
+        "position": {
+          "x": 390,
+          "y": 131.29933
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 320,
+        "height": 160
+      },
+      "s": {
+        "opacity": 1,
+        "select.width": 0
+      },
+      "a": {
+        "signalLevel": 5,
+        "signalText": "Excellent"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 59070,
+      "p": {
+        "displayName": "signal",
+        "tag": "signalNoText",
+        "image": "symbols/demo/signal/signal.json",
+        "position": {
+          "x": 390,
+          "y": 291.29933
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 160,
+        "height": 160
+      },
+      "s": {
+        "select.width": 0
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 59071,
+      "p": {
+        "position": {
+          "x": 50,
+          "y": 171.29933
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 320,
+        "height": 80
+      },
+      "s": {
+        "text": "Signal Widget With Text",
+        "text.align": "center",
+        "text.color": "#E6EAEE",
+        "text.font": "28px  arial, sans-serif",
+        "select.width": 0
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 59072,
+      "p": {
+        "position": {
+          "x": 50,
+          "y": 331.29933
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 320,
+        "height": 80
+      },
+      "s": {
+        "text": "Signal Widget Only",
+        "text.align": "center",
+        "text.color": "#E6EAEE",
+        "text.font": "28px  arial, sans-serif",
+        "select.width": 0
+      }
+    }
+  ],
+  "contentRect": {
+    "x": 0,
+    "y": 0,
+    "width": 800,
+    "height": 500
+  }
+}

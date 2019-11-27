@@ -1,0 +1,59 @@
+{
+  "modified": "Thu Dec 20 2018 16:27:20 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\ng.lineWidth = 1;\r\ng.lineCap = 'butt';\r\n\r\ng.save();\r\n\r\nvar width = rect.width / 2;\r\n\r\ng.translate(width,width);\r\n\r\nvar quotaNames = comp.getValue('quotaNames');\r\nvar quotaValues = comp.getValue('quotaValues');\r\nvar lineNum = comp.getValue('lineNum');\r\nvar labelStyle = comp.getValue('labelStyle');\r\nvar labelColor = comp.getValue('labelColor');\r\nvar lineColor = comp.getValue('lineColor');\r\nvar areaColor = comp.getValue('areaColor');\r\nvar pointColor = comp.getValue('pointColor');\r\n\r\nvar offsetAngle = 2/(quotaNames.length);\r\nvar offsetLine = width/lineNum;\r\ng.strokeStyle = lineColor;\r\ng.fillStyle = lineColor;\r\n\r\n//雷达图外框\r\nfor(var i=1;i<=lineNum;i++){\r\n\r\n    var radii = i * offsetLine;\r\n\r\n    g.beginPath();\r\n\r\n    for(var j=0;j<=quotaNames.length;j++){\r\n\r\n        if(j==0){\r\n            g.moveTo(Math.cos((1.5+offsetAngle*j)*Math.PI)*radii,Math.sin((1.5+offsetAngle*j)*Math.PI)*radii);\r\n        }else{\r\n            g.lineTo(Math.cos((1.5+offsetAngle*j)*Math.PI)*radii,Math.sin((1.5+offsetAngle*j)*Math.PI)*radii);\r\n        }\r\n\r\n    }\r\n\r\n    g.closePath();\r\n    g.stroke();\r\n\r\n}\r\n\r\n//区域绘制\r\ng.beginPath();\r\n\r\ng.strokeStyle = areaColor;\r\ng.fillStyle = areaColor;\r\n\r\nfor(var i=0;i<quotaValues.length;i++){\r\n\r\n    var radii = quotaValues[i] * width;\r\n    if(i==0){\r\n        g.moveTo(Math.cos((1.5+offsetAngle*i)*Math.PI)*radii,Math.sin((1.5+offsetAngle*i)*Math.PI)*radii);\r\n    }else{\r\n        g.lineTo(Math.cos((1.5+offsetAngle*i)*Math.PI)*radii,Math.sin((1.5+offsetAngle*i)*Math.PI)*radii);\r\n    }\r\n\r\n}\r\n\r\ng.closePath();\r\ng.fill();\r\n\r\ng.strokeStyle = pointColor;\r\ng.fillStyle = pointColor;\r\n\r\n//圆点绘制\r\nfor(var i=0;i<quotaValues.length;i++){\r\n\r\n    g.beginPath();\r\n    var radii = quotaValues[i] * width;\r\n    g.arc(Math.cos((1.5+offsetAngle*i)*Math.PI)*radii,Math.sin((1.5+offsetAngle*i)*Math.PI)*radii,2,0,2*Math.PI);   \r\n    g.closePath();\r\n    g.fill();\r\n\r\n}\r\n\r\ng.beginPath();\r\n\r\ng.textAlign = 'center';\r\ng.textBaseline = 'middle';\r\ng.font = labelStyle;\r\ng.fillStyle = true;\r\ng.strokeStyle = labelColor;\r\ng.fillStyle = labelColor;\r\n\r\n//字符绘制\r\nfor(var i=0;i<quotaNames.length;i++){\r\n    var name = quotaNames[i];\r\n    var radii = width + 10;\r\n   \r\n    var a = g.measureText(name).width/2;\r\n    var b = 5/2;\r\n\r\n    //余弦定理 - 偏移半径\r\n    var bAngle = Math.atan(a/b);\r\n\r\n    var activeAngle = offsetAngle*i*Math.PI;\r\n\r\n    if(activeAngle>Math.PI/2 && activeAngle <= Math.PI){\r\n        activeAngle = Math.PI - activeAngle;\r\n    }else if(activeAngle>Math.PI && activeAngle <= Math.PI * 3/2){\r\n        activeAngle = activeAngle - Math.PI;\r\n    }else if(activeAngle > Math.PI * 3/2){\r\n        activeAngle = 2 * Math.PI - activeAngle;\r\n    }\r\n    \r\n    var offsetRadii = b * Math.sin(bAngle) / Math.sin(Math.PI-activeAngle-bAngle);\r\n\r\n    offsetRadii = Math.abs(offsetRadii); \r\n    \r\n    g.fillText(name,Math.cos((1.5+offsetAngle*i)*Math.PI)*(radii+offsetRadii),Math.sin((1.5+offsetAngle*i)*Math.PI)*(radii+offsetRadii));   \r\n}\r\n\r\ng.stroke();\r\n\r\ng.restore();\n}",
+  "properties": {
+    "quotaNames": {
+      "valueType": "StringArray",
+      "defaultValue": [
+        "收单业务",
+        "存取业务",
+        "缴费业务",
+        "转账业务"
+      ],
+      "name": "指标中文数组"
+    },
+    "quotaValues": {
+      "valueType": "NumberArray",
+      "defaultValue": [
+        0.5,
+        0.9,
+        0.5,
+        0.3
+      ],
+      "name": "指标值数组"
+    },
+    "lineNum": {
+      "valueType": "Number",
+      "defaultValue": 6,
+      "name": "分隔条数"
+    },
+    "labelStyle": {
+      "valueType": "String",
+      "defaultValue": "5px Arial",
+      "name": "字体样式"
+    },
+    "labelColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(61,61,61)",
+      "name": "字体颜色"
+    },
+    "lineColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(39,56,115)",
+      "name": "线颜色"
+    },
+    "areaColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(137,102,41,0.6)",
+      "name": "区域颜色"
+    },
+    "pointColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(217,155,33)",
+      "name": "点颜色"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "dataBindings": [
+    {
+      "attr": "totalNum",
+      "valueType": "Number",
+      "name": "总进度",
+      "description": "总进度"
+    },
+    {
+      "attr": "scheduledNum",
+      "valueType": "Number",
+      "name": "已完成进度",
+      "description": "已完成进度"
+    },
+    {
+      "attr": "scheduleName",
+      "valueType": "String",
+      "name": "名称",
+      "description": "名字"
+    },
+    {
+      "attr": "totalUnit",
+      "valueType": "String",
+      "name": "单位",
+      "description": "单位"
+    }
+  ],
+  "width": 100,
+  "height": 50,
+  "comps": [
+    {
+      "type": "components/immigrationProject/ImmigrationSchedule.json",
+      "displayName": "ImmigrationSchedule",
+      "rect": [
+        0,
+        0,
+        100,
+        50
+      ],
+      "scheduleTotal": {
+        "func": "attr@totalNum",
+        "value": 5
+      },
+      "scheduled": {
+        "func": "attr@scheduledNum",
+        "value": 3
+      },
+      "arcName": {
+        "func": "attr@scheduleName",
+        "value": "移民搬迁进度"
+      },
+      "unit": {
+        "func": "attr@totalUnit",
+        "value": "个"
+      }
+    }
+  ]
+}

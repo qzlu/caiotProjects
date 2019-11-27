@@ -1,0 +1,1544 @@
+{
+  "width": 731.31429,
+  "height": 183.83571,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        1.05,
+        608.93706,
+        1.05
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC58"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        21.45,
+        608.93706,
+        21.45
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC59"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        39.19286,
+        608.93706,
+        39.19286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5A"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        55.77857,
+        608.93706,
+        55.77857
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5B"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        84.32143,
+        608.93706,
+        84.32143
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5C"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        102.06429,
+        608.93706,
+        102.06429
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5D"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        119.80714,
+        608.93706,
+        119.80714
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5E"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        137.55,
+        608.93706,
+        137.55
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC5F"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        155.29286,
+        608.93706,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC60"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        183.83571,
+        608.93706,
+        183.83571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC61"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        1.05,
+        0,
+        183.83571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC62"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        41.27143,
+        21.45,
+        41.27143,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC63"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        89.87143,
+        21.45,
+        89.87143,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC64"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        145.02857,
+        21.45,
+        145.02857,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC65"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        254.95714,
+        21.45,
+        254.95714,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC66"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        322.45714,
+        21.45,
+        322.45714,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC67"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        429.3,
+        21.45,
+        429.3,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC68"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        491.78571,
+        21.45,
+        491.78571,
+        155.29286
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC69"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        547.71429,
+        21.45,
+        547.71429,
+        183.83571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC6A"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        608.93706,
+        1.05,
+        608.93706,
+        183.83571
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC6B"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#808080",
+      "points": [
+        0,
+        1.05,
+        0,
+        1.05
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "3AC6C"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC08",
+      "color": "#000000",
+      "text": "DOOR SCHEDULE",
+      "rotation": 6.28319,
+      "rect": [
+        304.46853,
+        12.1875,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "11.25px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC09",
+      "color": "#000000",
+      "text": "SYM.",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0A",
+      "color": "#000000",
+      "text": "WIDTH",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0B",
+      "color": "#000000",
+      "text": "HEIGHT",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0C",
+      "color": "#000000",
+      "text": "STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0D",
+      "color": "#000000",
+      "text": "REF#",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0E",
+      "color": "#000000",
+      "text": "MANUFACTURER",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC0F",
+      "color": "#000000",
+      "text": "QTY",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC10",
+      "color": "#000000",
+      "text": "COST",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC11",
+      "color": "#000000",
+      "text": "TOTAL",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        30.99643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC12",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC13",
+      "color": "#000000",
+      "text": "3'",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC14",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC15",
+      "color": "#000000",
+      "text": "TWO PANEL",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC16",
+      "color": "#000000",
+      "text": "TS 3010",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC17",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC18",
+      "color": "#000000",
+      "text": "2",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC19",
+      "color": "#000000",
+      "text": "189.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC1A",
+      "color": "#000000",
+      "text": "$378.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        48.16071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC1D",
+      "color": "#000000",
+      "text": "2",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC1E",
+      "color": "#000000",
+      "text": "3'",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC1F",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC20",
+      "color": "#000000",
+      "text": "TWO PANEL",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC21",
+      "color": "#000000",
+      "text": "TS 3010",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC22",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC23",
+      "color": "#000000",
+      "text": "7",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC24",
+      "color": "#000000",
+      "text": "189.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC25",
+      "color": "#000000",
+      "text": "$1323.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        70.725,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC28",
+      "color": "#000000",
+      "text": "3",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC29",
+      "color": "#000000",
+      "text": "5'",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2A",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2B",
+      "color": "#000000",
+      "text": "FRENCH DOORS",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2C",
+      "color": "#000000",
+      "text": "FL 301",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2D",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2E",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC2F",
+      "color": "#000000",
+      "text": "310.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC30",
+      "color": "#000000",
+      "text": "$310.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        93.86786,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC33",
+      "color": "#000000",
+      "text": "4",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC34",
+      "color": "#000000",
+      "text": "5'",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC35",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC36",
+      "color": "#000000",
+      "text": "FRENCH DOORS",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC37",
+      "color": "#000000",
+      "text": "FL 1000",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC38",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC39",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC3A",
+      "color": "#000000",
+      "text": "329.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC3B",
+      "color": "#000000",
+      "text": "$329.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        111.61071,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC3E",
+      "color": "#000000",
+      "text": "5",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC3F",
+      "color": "#000000",
+      "text": "2'-4\"",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC40",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC41",
+      "color": "#000000",
+      "text": "ONE PANEL",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC42",
+      "color": "#000000",
+      "text": "TS 3010",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC43",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC44",
+      "color": "#000000",
+      "text": "1",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC45",
+      "color": "#000000",
+      "text": "189.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC46",
+      "color": "#000000",
+      "text": "$189.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        129.35357,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC49",
+      "color": "#000000",
+      "text": "6",
+      "rotation": 6.28319,
+      "rect": [
+        20.63571,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4A",
+      "color": "#000000",
+      "text": "5'",
+      "rotation": 6.28319,
+      "rect": [
+        65.57143,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4B",
+      "color": "#000000",
+      "text": "6'-8\"",
+      "rotation": 6.28319,
+      "rect": [
+        117.45,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4C",
+      "color": "#000000",
+      "text": "BI-FOLD",
+      "rotation": 6.28319,
+      "rect": [
+        199.99286,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4D",
+      "color": "#000000",
+      "text": "BF 5068",
+      "rotation": 6.28319,
+      "rect": [
+        288.70714,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4E",
+      "color": "#000000",
+      "text": "TRU STYLE",
+      "rotation": 6.28319,
+      "rect": [
+        375.87857,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC4F",
+      "color": "#000000",
+      "text": "4",
+      "rotation": 6.28319,
+      "rect": [
+        460.54286,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC50",
+      "color": "#000000",
+      "text": "119.00",
+      "rotation": 6.28319,
+      "rect": [
+        519.75,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC51",
+      "color": "#000000",
+      "text": "$476.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        147.09643,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC54",
+      "color": "#000000",
+      "text": "ESTIMATED COST OF DOORS",
+      "rotation": 6.28319,
+      "rect": [
+        545.01429,
+        170.23929,
+        0,
+        0
+      ],
+      "align": "right",
+      "vAlign": "bottom",
+      "font": "8.1px Standard"
+    },
+    {
+      "type": "text",
+      "cadType": "MTEXT",
+      "handle": "3AC55",
+      "color": "#000000",
+      "text": "$3005.00",
+      "rotation": 6.28319,
+      "rect": [
+        578.32567,
+        170.23929,
+        0,
+        0
+      ],
+      "align": "center",
+      "vAlign": "middle",
+      "font": "8.1px Standard"
+    }
+  ],
+  "scale": 45,
+  "anchorX": 0,
+  "anchorY": 0.00571,
+  "bound": {
+    "xMin": 0,
+    "yMin": -4.0619,
+    "xMax": 16.25143,
+    "yMax": 0.02333,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 1
+}

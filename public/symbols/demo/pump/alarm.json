@@ -1,0 +1,43 @@
+{
+  "dataBindings": [
+    {
+      "attr": "backgroundColor",
+      "valueType": "Color"
+    },
+    {
+      "attr": "progressiveColor",
+      "valueType": "Color"
+    }
+  ],
+  "width": 100,
+  "height": 100,
+  "boundExtend": 50,
+  "comps": [
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@backgroundColor",
+        "value": "rgb(34,168,38)"
+      },
+      "borderWidth": 10,
+      "borderColor": "#979797",
+      "border3d": true,
+      "gradient": "radial.center",
+      "gradientColor": {
+        "func": "attr@progressiveColor",
+        "value": "rgb(82,222,133)"
+      },
+      "shadow": true,
+      "shadowColor": "rgb(99,99,99)",
+      "shadowBlur": 2,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": [
+        2.87688,
+        4.95835,
+        94.24624,
+        90.08331
+      ]
+    }
+  ]
+}

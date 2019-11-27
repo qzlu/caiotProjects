@@ -1,0 +1,166 @@
+{
+  "width": 200,
+  "height": 160,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(43,55,143)",
+      "borderColor": "#979797",
+      "rect": [
+        0,
+        0,
+        200,
+        160
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(43,55,143)",
+      "borderWidth": 1,
+      "borderColor": "rgb(255,255,255)",
+      "cornerRadius": 3,
+      "rect": [
+        4.25414,
+        3.87098,
+        192.08024,
+        151.82795
+      ]
+    },
+    {
+      "type": "text",
+      "text": "池圆镇",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        17.89536,
+        17.79824,
+        75.47962,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "666",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        117.66672,
+        17.79824,
+        45.33246,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "km",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "scaleX": 0.5,
+      "scaleY": 0.5,
+      "rect": [
+        154.61116,
+        20.85494,
+        46.10404,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "上莲乡",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        17.89536,
+        65.8843,
+        108.54612,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "666",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        117.66672,
+        65.8843,
+        45.33246,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "km",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "scaleX": 0.5,
+      "scaleY": 0.5,
+      "rect": [
+        154.61116,
+        68.941,
+        46.10404,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "福    州",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        17.89536,
+        115.7946,
+        75.47962,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "666",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "rect": [
+        117.66672,
+        115.7946,
+        45.33246,
+        27.36304
+      ]
+    },
+    {
+      "type": "text",
+      "text": "km",
+      "color": "rgb(255,255,255)",
+      "font": "24px arial, sans-serif",
+      "scaleX": 0.5,
+      "scaleY": 0.5,
+      "rect": [
+        154.61116,
+        118.8513,
+        46.10404,
+        27.36304
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rect": [
+        4.25414,
+        55.34239,
+        192.08022,
+        1
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "#979797",
+      "rect": [
+        4.25414,
+        105.94473,
+        192.08022,
+        1
+      ]
+    }
+  ]
+}

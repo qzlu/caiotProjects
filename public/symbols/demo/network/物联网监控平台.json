@@ -1,0 +1,31 @@
+{
+  "background": "rgb(0,0,0)",
+  "width": 120,
+  "height": 100,
+  "comps": [
+    {
+      "type": "text",
+      "text": " IoT Platform",
+      "align": "center",
+      "color": "rgb(214,214,214)",
+      "rect": [
+        18.5325,
+        37.63158,
+        64.81203,
+        24.73684
+      ]
+    },
+    {
+      "type": "text",
+      "text": "物联网监控平台",
+      "align": "center",
+      "color": "rgb(214,214,214)",
+      "rect": [
+        27.59399,
+        22.5291,
+        64.81203,
+        24.73684
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "width": 50,
+  "height": 50,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 2,
+      "borderColor": "rgb(26,127,201)",
+      "closePath": true,
+      "points": [
+        1.15376,
+        1.15376,
+        1.15376,
+        48.72399,
+        48.81274,
+        48.72399,
+        48.81274,
+        1.15376
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(93,217,147)",
+      "borderColor": "#979797",
+      "rect": [
+        5.37914,
+        6.13636,
+        38.99652,
+        22.71229
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.3');\nif (v ==true) return 'rgba(242,83,75,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(242,83,75)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.3');\nif (v ==true) return 'rgba(212,0,0,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(212,0,0)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        5.67926,
+        34.23688,
+        8.30296,
+        8.6546
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.1');\nif (v ==true) return 'rgba(125,195,125,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(125,195,125)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.1');\nif (v ==true) return 'rgba(83,145,83,1.00)';\nelse if (v ==false) return 'rgba(68,86,94,1.00)';\n}",
+        "value": "rgb(83,145,83)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        35.89685,
+        34.23688,
+        8.30296,
+        8.6546
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.4');\nif (v ==true) return 'rgba(242,83,75,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(124,145,155)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nvar v = data.a('ups.4');\nif (v ==true) return 'rgba(212,0,0,1.00)';\nelse if (v ==false) return 'rgba(124,145,155,1.00)';\n}",
+        "value": "rgb(68,86,94)"
+      },
+      "rotation": 1.5708,
+      "rect": [
+        20.72591,
+        34.23688,
+        8.30296,
+        8.6546
+      ]
+    }
+  ]
+}

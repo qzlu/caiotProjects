@@ -1,0 +1,596 @@
+{
+  "v": "6.2.3",
+  "p": {
+    "background": "rgb(0,0,0)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "previewURL": "display-gauge.html"
+  },
+  "d": [
+    {
+      "c": "ht.Data",
+      "i": 5150,
+      "p": {
+        "displayName": "转速表"
+      },
+      "s": {
+        "editor.folder": true,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5151,
+      "p": {
+        "parent": {
+          "__i": 5150
+        },
+        "position": {
+          "x": 219.09447,
+          "y": 436.68973
+        },
+        "scale": {
+          "x": 0.6,
+          "y": 0.6
+        }
+      },
+      "s": {
+        "text": "x 1000 r/min",
+        "text.color": "rgb(247,247,247)",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5152,
+      "p": {
+        "displayName": "gauge",
+        "parent": {
+          "__i": 5150
+        },
+        "image": "symbols/ht/gauge/gauge.json",
+        "position": {
+          "x": 213,
+          "y": 451.68973
+        },
+        "width": 100,
+        "height": 100
+      },
+      "s": {
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      },
+      "a": {
+        "ht.max": 7,
+        "ht.bigTickEvery": 1,
+        "ht.tickEvery": 0.2,
+        "ht.endAngle": -0.5236,
+        "ht.labelEvery": 1,
+        "ht.lableColor": "rgb(247,247,247)",
+        "ht.value": 3,
+        "ht.labelColor": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 5153,
+      "p": {
+        "displayName": "时速表"
+      },
+      "s": {
+        "editor.folder": true,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5154,
+      "p": {
+        "parent": {
+          "__i": 5153
+        },
+        "position": {
+          "x": 363,
+          "y": 393.15298
+        },
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "width": 61.95704,
+        "height": 35.92999
+      },
+      "s": {
+        "text": "km/h",
+        "text.color": "rgb(247,247,247)",
+        "text.align": "center",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5155,
+      "p": {
+        "parent": {
+          "__i": 5153
+        },
+        "tag": "speedText",
+        "dataBindings": {
+          "s": {}
+        },
+        "position": {
+          "x": 363,
+          "y": 452.41681
+        },
+        "width": 78.99927,
+        "height": 25.9866
+      },
+      "s": {
+        "text": "50",
+        "text.color": "rgb(247,247,247)",
+        "text.align": "center",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5156,
+      "p": {
+        "displayName": "gauge",
+        "parent": {
+          "__i": 5153
+        },
+        "tag": "speedGauge",
+        "dataBindings": {
+          "a": {}
+        },
+        "image": "symbols/ht/gauge/gauge.json",
+        "position": {
+          "x": 363,
+          "y": 425
+        }
+      },
+      "s": {
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      },
+      "a": {
+        "ht.lableColor": "rgb(247,247,247)",
+        "ht.max": 220,
+        "ht.bigTickColor": "rgb(51,153,255)",
+        "ht.value": 50,
+        "ht.startAngle": -3.66519,
+        "ht.tickColor": "#32D3EB",
+        "ht.tickEvery": 5,
+        "ht.labelEvery": 20,
+        "ht.labelColor": "rgb(247,247,247)",
+        "ht.clockwise": true,
+        "ht.min": 0,
+        "ht.bigTickEvery": 20
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 5157,
+      "p": {
+        "displayName": "油量表"
+      },
+      "s": {
+        "editor.folder": true,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5158,
+      "p": {
+        "parent": {
+          "__i": 5157
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "shape": "arc",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(247,247,247)",
+        "shape.arc.from": -2.63545,
+        "shape.arc.to": -0.93375,
+        "shape.arc.close": false,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5159,
+      "p": {
+        "parent": {
+          "__i": 5157
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "shape": "arc",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(242,83,75)",
+        "shape.arc.from": -0.94248,
+        "shape.arc.to": -0.51487,
+        "shape.arc.close": false,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5160,
+      "p": {
+        "parent": {
+          "__i": 5157
+        },
+        "position": {
+          "x": 489.52655,
+          "y": 412.37351
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "E",
+        "text.color": "rgb(247,247,247)",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5161,
+      "p": {
+        "parent": {
+          "__i": 5157
+        },
+        "position": {
+          "x": 538.61405,
+          "y": 412.37351
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "F",
+        "text.color": "rgb(247,247,247)",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5162,
+      "p": {
+        "parent": {
+          "__i": 5157
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 405.77374
+        },
+        "scale": {
+          "x": 0.6,
+          "y": 0.6
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "Gas",
+        "text.color": "rgb(247,247,247)",
+        "text.align": "center",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5163,
+      "p": {
+        "displayName": "gauge",
+        "parent": {
+          "__i": 5157
+        },
+        "image": "symbols/ht/gauge/gauge.json",
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      },
+      "a": {
+        "ht.max": 30,
+        "ht.bigTickEvery": 15,
+        "ht.tickEvery": 3,
+        "ht.endAngle": -0.5236,
+        "ht.labelEvery": 15,
+        "ht.lableColor": "rgb(247,247,247)",
+        "ht.startAngle": -2.61799,
+        "ht.showLabel": false,
+        "ht.clockwise": true,
+        "ht.value": 1
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 5164,
+      "p": {
+        "displayName": "水温表"
+      },
+      "s": {
+        "editor.folder": true,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5165,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "shape": "arc",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "#32D3EB",
+        "shape.arc.from": 2.11185,
+        "shape.arc.to": 2.62672,
+        "shape.arc.close": false,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5166,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "shape": "arc",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(48,242,120)",
+        "shape.arc.from": 0.95993,
+        "shape.arc.to": 2.13803,
+        "shape.arc.close": false,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5167,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "shape": "arc",
+        "shape.background": null,
+        "shape.border.width": 1,
+        "shape.border.color": "#FF7C7C",
+        "shape.arc.from": 0.51487,
+        "shape.arc.to": 1.0472,
+        "shape.arc.close": false,
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5168,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 511.83207,
+          "y": 444.92332
+        },
+        "scale": {
+          "x": 0.6,
+          "y": 0.6
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "Water",
+        "text.color": "rgb(247,247,247)",
+        "text.align": "center",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5169,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 489.52655,
+          "y": 439.42351
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "C",
+        "text.color": "rgb(247,247,247)",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5170,
+      "p": {
+        "parent": {
+          "__i": 5164
+        },
+        "position": {
+          "x": 538.61405,
+          "y": 439.42351
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "width": 18.40753,
+        "height": 21.99924
+      },
+      "s": {
+        "text": "H",
+        "text.color": "rgb(247,247,247)",
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5171,
+      "p": {
+        "displayName": "gauge",
+        "parent": {
+          "__i": 5164
+        },
+        "image": "symbols/ht/gauge/gauge.json",
+        "position": {
+          "x": 511.83207,
+          "y": 425
+        },
+        "width": 80,
+        "height": 80
+      },
+      "s": {
+        "2d.movable": false,
+        "select.type": "shadow",
+        "select.padding": 0,
+        "select.color": "rgb(212,0,0)"
+      },
+      "a": {
+        "ht.max": 100,
+        "ht.bigTickEvery": 50,
+        "ht.tickEvery": 0,
+        "ht.endAngle": 2.61799,
+        "ht.labelEvery": 15,
+        "ht.lableColor": "rgb(247,247,247)",
+        "ht.startAngle": 0.5236,
+        "ht.showLabel": false,
+        "ht.clockwise": false,
+        "ht.value": 54,
+        "ht.min": 0,
+        "ht.showTick": true,
+        "ht.bigTickColor": "rgb(247,247,247)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "modelType": "obj",
+  "obj": "assets/objs/工业外景/高炉大模型.obj",
+  "mtl": "assets/objs/工业外景/高炉大模型.mtl",
+  "s3": [
+    10,
+    10,
+    10
+  ],
+  "image": "",
+  "prefix": "assets/objs/工业外景/"
+}

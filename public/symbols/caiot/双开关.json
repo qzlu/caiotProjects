@@ -1,0 +1,144 @@
+{
+  "modified": "Fri Nov 22 2019 15:14:05 GMT+0800 (中国标准时间)",
+  "background": "rgb(247,247,247)",
+  "dataBindings": [
+    {
+      "attr": "CloseCmdID",
+      "valueType": "String",
+      "name": "关指令ID"
+    },
+    {
+      "attr": "CurrentFlag",
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "开关状态"
+    },
+    {
+      "attr": "StartCmdID",
+      "valueType": "String",
+      "name": "开指令ID"
+    },
+    {
+      "attr": "StartText",
+      "valueType": "String",
+      "name": "开状态文本",
+      "defaultValue": "开"
+    },
+    {
+      "attr": "CloseText",
+      "valueType": "String",
+      "defaultValue": "关",
+      "name": "关状态文本"
+    },
+    {
+      "attr": "CmdType",
+      "valueType": "Int",
+      "defaultValue": 1,
+      "name": "1单控/2群控"
+    },
+    {
+      "attr": "DeviceID",
+      "valueType": "Number",
+      "defaultValue": "1",
+      "name": "设备ID"
+    },
+    {
+      "attr": "DataItemID",
+      "valueType": "Number",
+      "name": "数据项ID"
+    }
+  ],
+  "onClick": "__ht__function(event, data, view, point, width, height) {\nlet CurrentStatus = data.a('CurrentStatus')\r\nlet parent = data.getParent()\r\nif(CurrentStatus == '开'){\r\n    data.a('CurrentStatus','关')\r\n    parent.a('DeviceState',0)\r\n}else{\r\n    data.a('CurrentStatus','开')\r\n    parent.a('DeviceState',1)\r\n}\n}",
+  "renderHTML": "__ht__function(data, gv, cache) {//根据当前状态，设置下一个状态\nlet cmdStatus = data.a('CurrentStatus')\nlet dataModel = data.getDataModel()\nlet parent = data.getParent()\nif(parent&&parent.a('DeviceState') == 1){\n    data.a('CurrentStatus','开')\n}else{\n    data.a('CurrentStatus','关')\n}\n\n    \nif(cmdStatus==='开'){\n   \n}}",
+  "width": 100,
+  "height": 100,
+  "interactive": true,
+  "disableSelectedBorder": true,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": {
+        "func": "__ht__function(data, view) {\nlet status = data.a('CurrentFlag')\nif(!status){\n    return '#888888'\n}else{\n    return '#60acfc'\n}\n}",
+        "value": "#60ACFC"
+      },
+      "borderWidth": 1,
+      "borderColor": "rgb(240,237,237)",
+      "cornerRadius": 11,
+      "rect": [
+        26.59389,
+        31.44828,
+        53.95197,
+        22.51724
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@StartText",
+        "value": "开"
+      },
+      "color": "rgb(250,247,247)",
+      "font": "11px arial, sans-serif",
+      "rect": [
+        30.24818,
+        37,
+        15.75182,
+        13
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@CloseText",
+        "value": "开"
+      },
+      "align": "right",
+      "color": "rgb(250,247,247)",
+      "font": "11px arial, sans-serif",
+      "rect": [
+        51.98276,
+        37,
+        24.28362,
+        13
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nlet status = data.a('CurrentFlag')\nif(!status){\n    return 'rgba(0,0,0,0)'\n}else{\n    return 'rgba(250,250,250,1)'\n}\n}",
+        "value": "rgb(255,252,252)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nlet status = data.a('CurrentFlag')\nif(!status){\n    return 'rgba(0,0,0,0)'\n}else{\n    return 'rgba(250,250,250,1)'\n}\n}",
+        "value": "rgb(250,250,250)"
+      },
+      "displayName": "圆形",
+      "rect": [
+        59.98276,
+        31.44828,
+        21.46552,
+        22.51724
+      ]
+    },
+    {
+      "type": "circle",
+      "background": {
+        "func": "__ht__function(data, view) {\nlet status = data.a('CurrentFlag')\nif(status){\n    return 'rgba(0,0,0,0)'\n}else{\n    return 'rgba(250,250,250,1)'\n}\n}",
+        "value": "rgb(255,252,252)"
+      },
+      "borderWidth": 1,
+      "borderColor": {
+        "func": "__ht__function(data, view) {\nlet status = data.a('CurrentFlag')\nif(status){\n    return 'rgba(0,0,0,0)'\n}else{\n     return 'rgba(250,250,250,1)'\n}\n}",
+        "value": "rgb(250,250,250)"
+      },
+      "displayName": "圆形",
+      "rect": [
+        25.55172,
+        31.44828,
+        21.46552,
+        22.51724
+      ]
+    }
+  ]
+}

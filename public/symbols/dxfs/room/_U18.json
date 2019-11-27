@@ -1,0 +1,1305 @@
+{
+  "width": 43.5,
+  "height": 57.99498,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        14.5,
+        39,
+        6.5,
+        39
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125C3"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        6.5,
+        33,
+        4.5,
+        39
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125C7"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        3.5,
+        34.5,
+        0.5,
+        34.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CB"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0.5,
+        33.5,
+        2.5,
+        33.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CC"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0.5,
+        34.5,
+        0.5,
+        33.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CD"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        2.5,
+        33.5,
+        2.5,
+        33
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CE"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        3.5,
+        33,
+        3.5,
+        34.5
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CF"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        14.5,
+        33,
+        16.5,
+        39
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125D2"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        20,
+        31,
+        20,
+        27
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125D5"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        11,
+        19,
+        11,
+        2
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125D8"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        18,
+        2,
+        18,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125D9"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        18,
+        12,
+        43.5,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125DA"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        43.5,
+        14,
+        18.5,
+        14
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125DB"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        43,
+        11,
+        22.5,
+        11
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125DD"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        32.5,
+        22,
+        12.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125DE"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        16.5,
+        16,
+        11,
+        16
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E0"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        12.5,
+        22,
+        12.5,
+        23
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E2"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        18.5,
+        14,
+        16.5,
+        16
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E3"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        22.5,
+        11,
+        22.5,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E4"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        32.5,
+        22,
+        32.5,
+        19.4624
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E5"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        31.5,
+        19.5,
+        31.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E6"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        32.5,
+        23,
+        32.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E7"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        43,
+        12,
+        43,
+        11
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E8"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        43.5,
+        12,
+        43.5,
+        14
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125E9"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        18,
+        3,
+        19.5,
+        3
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125EB"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        19.5,
+        4,
+        18,
+        4
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125EC"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        19.5,
+        3,
+        19.5,
+        4
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125ED"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21,
+        14,
+        0,
+        14
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125EF"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21,
+        12,
+        0,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F0"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        14,
+        0,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F1"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        19.5,
+        11,
+        1.5,
+        11
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F2"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0.5,
+        2,
+        0.5,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F4"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        14.5,
+        22,
+        6.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F5"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        6.5,
+        22,
+        6.5,
+        23
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F7"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        7.5,
+        19.5935,
+        7.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F8"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        8.5,
+        22,
+        8.5,
+        19.8342
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F9"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        1.5,
+        11,
+        1.5,
+        12
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FA"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        13.5,
+        22,
+        13.5,
+        19.5935
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FB"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        12.5,
+        19.8342,
+        12.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FC"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        14.5,
+        23,
+        14.5,
+        22
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FD"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        3.5,
+        4,
+        0.5,
+        4
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FE"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0.5,
+        3,
+        3.5,
+        3
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125FF"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        3.5,
+        3,
+        3.5,
+        4
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "12600"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        20.5,
+        12,
+        20.5,
+        2
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "12601"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        19.5,
+        12,
+        19.5,
+        11
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "12602"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21,
+        12,
+        21,
+        14
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "12603"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21,
+        33,
+        21,
+        25,
+        0,
+        25,
+        0,
+        33
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125C4"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        2,
+        32,
+        19,
+        32
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125C5"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        19,
+        26,
+        2,
+        26
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125C6"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        1,
+        27,
+        1,
+        31
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125CA"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        11.5,
+        24,
+        11.5,
+        23,
+        33.5,
+        23,
+        33.5,
+        24
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125DF"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        10.5,
+        2,
+        10.5,
+        0,
+        18.5,
+        0,
+        18.5,
+        2
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125EA"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21,
+        2,
+        21,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125EE"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        16.5,
+        24,
+        16.5,
+        23,
+        4.5,
+        23,
+        4.5,
+        24
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "125F6"
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125C1",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        6.50002,
+        49.99997,
+        8,
+        8
+      ],
+      "arcFrom": 1.30656,
+      "arcTo": 1.83503,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125C2",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        6.50002,
+        48.87646,
+        8,
+        8
+      ],
+      "arcFrom": 1.14724,
+      "arcTo": 1.99436,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125C8",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        1.85054,
+        34.41147,
+        24.33804,
+        24.33804
+      ],
+      "arcFrom": 1.95527,
+      "arcTo": 3.81408,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125C9",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        3.37078,
+        35.48823,
+        22.65836,
+        22.65836
+      ],
+      "arcFrom": 2.11278,
+      "arcTo": 3.90312,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D0",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        0.99112,
+        30.24112,
+        1.76777,
+        1.76777
+      ],
+      "arcFrom": 1.4289,
+      "arcTo": 3.28349,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D1",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        0.99112,
+        25.99112,
+        1.76777,
+        1.76777
+      ],
+      "arcFrom": 2.9997,
+      "arcTo": 4.85429,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D3",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        -5.18853,
+        34.41144,
+        24.33807,
+        24.33807
+      ],
+      "arcFrom": -0.67249,
+      "arcTo": 1.18633,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D4",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        -5.02908,
+        35.4882,
+        22.65837,
+        22.65837
+      ],
+      "arcFrom": -0.76152,
+      "arcTo": 1.02882,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D6",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        18.24112,
+        30.24112,
+        1.76777,
+        1.76777
+      ],
+      "arcFrom": -0.1419,
+      "arcTo": 1.71269,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125D7",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        18.24112,
+        25.99112,
+        1.76777,
+        1.76777
+      ],
+      "arcFrom": -1.71269,
+      "arcTo": 0.1419,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125DC",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        14.56683,
+        -12.92411,
+        32.45661,
+        32.45661
+      ],
+      "arcFrom": 0.7196,
+      "arcTo": 2.12604,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125E1",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        10.9904,
+        15.9904,
+        6.5192,
+        6.5192
+      ],
+      "arcFrom": 2.13753,
+      "arcTo": 3.21836,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "125F3",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        -0.83333,
+        -2.66663,
+        22.66666,
+        22.66666
+      ],
+      "arcFrom": 0.48996,
+      "arcTo": 2.65164,
+      "arcClose": false
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0.24138,
+  "anchorY": 0.41383,
+  "bound": {
+    "xMin": -10.5,
+    "yMin": -33.99498,
+    "xMax": 33,
+    "yMax": 24,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 1
+}

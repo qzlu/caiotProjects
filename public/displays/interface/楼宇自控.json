@@ -1,0 +1,1913 @@
+{
+  "v": "6.2.8",
+  "p": {
+    "background": "rgb(94,94,94)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": "host",
+    "rotateAsClock": false,
+    "previewURL": "display-building.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 4381,
+      "p": {
+        "displayName": "布局根节点",
+        "position": {
+          "x": -10423.5651,
+          "y": -10047.2373
+        },
+        "width": 1920,
+        "height": 1080
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "fullscreen": "fill",
+        "fullscreen.lock": "v"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 4382,
+      "p": {
+        "displayName": "上导航",
+        "parent": {
+          "__i": 4381
+        }
+      },
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4383,
+      "p": {
+        "displayName": "上标题",
+        "parent": {
+          "__i": 4382
+        },
+        "image": "symbols/demo/building/上导航/上标题.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10497.79148,
+          "y": -10558.54834
+        },
+        "width": 1470,
+        "height": 59
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4384,
+      "p": {
+        "displayName": "时间",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "时间",
+        "image": "symbols/demo/building/上导航/时间.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9599.44713,
+          "y": -10553.3639
+        },
+        "width": 227,
+        "height": 50
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "right"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4385,
+      "p": {
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "报警管理",
+        "dataBindings": {
+          "s": {}
+        },
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10823.46506,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 25.87091
+      },
+      "s": {
+        "text": "报警管理",
+        "text.font": "24px Arial",
+        "text.color": "rgb(255,255,255)",
+        "text.align": "center",
+        "layout.h": "center",
+        "layout.v": "top",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('text.font', '24px Arial')\r\ndata.s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['角色管理', '模式管理', '应急管理', '设备管理', '运行日志', '报表查询', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4386,
+      "p": {
+        "displayName": "警报管理下拉",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "警报管理下拉",
+        "image": "symbols/ht/ui/comboBox.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10823.46506,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 48
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center",
+        "opacity": 1,
+        "onDown": "__ht__function(event, data, view) {\nview.dm().getDataByTag('报警管理').s('text.font', '24px Arial')\r\nview.dm().getDataByTag('报警管理').s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['模式管理', '应急管理', '设备管理', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}",
+        "interactive": true
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "实时报警",
+            "value": "实时报警"
+          },
+          {
+            "label": "历史报警",
+            "value": "历史报警"
+          }
+        ],
+        "ht.borderWidth": 0,
+        "ht.background": null,
+        "ht.focusBackground": null,
+        "ht.dropBackground": "rgba(0,23,33,0.6)",
+        "ht.borderColor": "rgb(255,255,255)",
+        "ht.textColor": "rgba(43,15,15,0)",
+        "ht.font": "24px Arial",
+        "ht.dropIconWidth": 20,
+        "ht.dropWidth": 100,
+        "ht.dropActiveBackground": "rgba(0,183,255,0.5)",
+        "ht.dropLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveLabelColor": "rgb(255,255,255)",
+        "ht.dropHoverBackground": "rgb(51,153,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4387,
+      "p": {
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "模式管理",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10661.56879,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 20.56003
+      },
+      "s": {
+        "text": "模式管理",
+        "text.font": "18px Arial",
+        "text.color": "rgb(184,184,184)",
+        "text.align": "center",
+        "layout.h": "center",
+        "layout.v": "top",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('text.font', '24px Arial')\r\ndata.s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['报警管理', '角色管理', '应急管理', '设备管理', '运行日志', '报表查询', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4388,
+      "p": {
+        "displayName": "模式管理下拉",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "模式管理下拉",
+        "image": "symbols/ht/ui/comboBox.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10661.56879,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 48
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center",
+        "opacity": 1,
+        "onDown": "__ht__function(event, data, view) {\nview.dm().getDataByTag('模式管理').s('text.font', '24px Arial')\r\nview.dm().getDataByTag('模式管理').s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['报警管理', '应急管理', '设备管理', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}",
+        "interactive": true
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "模式添加",
+            "value": "模式添加"
+          },
+          {
+            "label": "时间设置",
+            "value": "时间设置"
+          }
+        ],
+        "ht.borderWidth": 0,
+        "ht.background": null,
+        "ht.focusBackground": null,
+        "ht.dropBackground": "rgba(0,23,33,0.6)",
+        "ht.borderColor": "rgb(255,255,255)",
+        "ht.textColor": "rgba(43,15,15,0)",
+        "ht.font": "24px Arial",
+        "ht.dropIconWidth": 20,
+        "ht.dropWidth": 100,
+        "ht.dropLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveBackground": "rgba(0,183,255,0.5)",
+        "ht.dropHoverBackground": "rgb(51,153,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4389,
+      "p": {
+        "displayName": "应急管理",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "应急管理",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10496.06695,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 20.56003
+      },
+      "s": {
+        "text": "应急管理",
+        "text.font": "18px Arial",
+        "text.color": "rgb(184,184,184)",
+        "text.align": "center",
+        "layout.h": "center",
+        "layout.v": "top",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('text.font', '24px Arial')\r\ndata.s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['报警管理', '模式管理', '角色管理', '设备管理', '运行日志', '报表查询', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4390,
+      "p": {
+        "displayName": "应急管理下拉",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "应急管理下拉",
+        "image": "symbols/ht/ui/comboBox.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10496.06695,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 48
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center",
+        "opacity": 1,
+        "onDown": "__ht__function(event, data, view) {\nview.dm().getDataByTag('应急管理').s('text.font', '24px Arial')\r\nview.dm().getDataByTag('应急管理').s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['模式管理', '报警管理', '设备管理', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}",
+        "interactive": true
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "联动设置",
+            "value": "联动设置"
+          }
+        ],
+        "ht.borderWidth": 0,
+        "ht.background": null,
+        "ht.focusBackground": null,
+        "ht.dropBackground": "rgba(0,23,33,0.6)",
+        "ht.borderColor": "rgb(255,255,255)",
+        "ht.textColor": "rgba(43,15,15,0)",
+        "ht.font": "24px Arial",
+        "ht.dropIconWidth": 20,
+        "ht.dropWidth": 100,
+        "ht.dropLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveBackground": "rgba(0,183,255,0.5)",
+        "ht.dropHoverBackground": "rgb(51,153,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4391,
+      "p": {
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "设备管理",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10334.5651,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 20.56003
+      },
+      "s": {
+        "text": "设备管理",
+        "text.font": "18px Arial",
+        "text.color": "rgb(184,184,184)",
+        "text.align": "center",
+        "layout.h": "center",
+        "layout.v": "top",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('text.font', '24px Arial')\r\ndata.s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['报警管理', '模式管理', '应急管理', '角色管理', '运行日志', '报表查询', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4392,
+      "p": {
+        "displayName": "设备管理下拉",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "设备管理下拉",
+        "image": "symbols/ht/ui/comboBox.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10334.5651,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 48
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center",
+        "opacity": 1,
+        "onDown": "__ht__function(event, data, view) {\nview.dm().getDataByTag('设备管理').s('text.font', '24px Arial')\r\nview.dm().getDataByTag('设备管理').s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['模式管理', '应急管理', '报警管理', '系统配置']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}",
+        "interactive": true
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "设备台账",
+            "value": "设备台账"
+          },
+          {
+            "label": "未维修完成记录",
+            "value": "未维修完成记录"
+          },
+          {
+            "label": "维修历史记录",
+            "value": "维修历史记录"
+          }
+        ],
+        "ht.borderWidth": 0,
+        "ht.background": null,
+        "ht.focusBackground": null,
+        "ht.dropBackground": "rgba(0,23,33,0.6)",
+        "ht.borderColor": "rgb(255,255,255)",
+        "ht.textColor": "rgba(43,15,15,0)",
+        "ht.font": "24px Arial",
+        "ht.dropIconWidth": 20,
+        "ht.dropWidth": 100,
+        "ht.dropLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveBackground": "rgba(0,183,255,0.5)",
+        "ht.dropHoverBackground": "rgb(51,153,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4393,
+      "p": {
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "系统配置",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10175.05957,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 20.56003
+      },
+      "s": {
+        "text": "系统配置",
+        "text.font": "18px Arial",
+        "text.color": "rgb(184,184,184)",
+        "text.align": "center",
+        "layout.h": "center",
+        "layout.v": "top",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('text.font', '24px Arial')\r\ndata.s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['报警管理', '模式管理', '应急管理', '设备管理', '运行日志', '报表查询', '角色管理']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4394,
+      "p": {
+        "displayName": "系统配置下拉",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "系统配置下拉",
+        "image": "symbols/ht/ui/comboBox.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10175.05957,
+          "y": -10475.98606
+        },
+        "width": 75.12877,
+        "height": 48
+      },
+      "s": {
+        "layout.v": "top",
+        "layout.h": "center",
+        "opacity": 1,
+        "onDown": "__ht__function(event, data, view) {\nview.dm().getDataByTag('系统配置').s('text.font', '24px Arial')\r\nview.dm().getDataByTag('系统配置').s('text.color', 'rgb(255,255,255)')\r\nvar arr = ['模式管理', '应急管理', '设备管理','报警管理']\r\nvar tag\r\nfor (var i = 0; i < arr.length; i++) {\r\n    tag = arr[i]\r\n    function nav(tag) {\r\n        view.dm().getDataByTag(tag).s('text.font', '18px Arial')\r\n        view.dm().getDataByTag(tag).s('text.color', 'rgb(184,184,184)')\r\n    }\r\n    nav(tag)\r\n}\n}",
+        "interactive": true
+      },
+      "a": {
+        "ht.dataSource": [
+          {
+            "label": "角色管理",
+            "value": "角色管理"
+          },
+          {
+            "label": "   角色添加",
+            "value": "   角色添加"
+          },
+          {
+            "label": "   权限设置",
+            "value": "   权限设置"
+          },
+          {
+            "label": "运行日志",
+            "value": "运行日志"
+          },
+          {
+            "label": "报表查询",
+            "value": "报表查询"
+          }
+        ],
+        "ht.borderWidth": 0,
+        "ht.background": null,
+        "ht.focusBackground": null,
+        "ht.dropBackground": "rgba(0,23,33,0.6)",
+        "ht.borderColor": "rgb(255,255,255)",
+        "ht.textColor": "rgba(43,15,15,0)",
+        "ht.font": "24px Arial",
+        "ht.dropIconWidth": 20,
+        "ht.dropWidth": 100,
+        "ht.dropLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveLabelColor": "rgb(255,255,255)",
+        "ht.dropActiveBackground": "rgba(0,183,255,0.5)",
+        "ht.dropHoverBackground": "rgb(51,153,255)",
+        "ht.disabled": false,
+        "ht.onChange": "__ht__function(oldVal, newVal, data, view) {\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4395,
+      "p": {
+        "displayName": "横线",
+        "parent": {
+          "__i": 4382
+        },
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10501.3404,
+          "y": -10453.95524
+        },
+        "width": 746.90227,
+        "height": 1.32937
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(255,255,255)",
+        "shape.border.color": "#979797",
+        "layout.h": "center",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4396,
+      "p": {
+        "displayName": "蓝色滑动线",
+        "parent": {
+          "__i": 4382
+        },
+        "tag": "蓝色滑动线",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10824.51829,
+          "y": -10454.14794
+        },
+        "width": 100.54647,
+        "height": 3.33587
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(0,183,255)",
+        "shape.border.color": "#979797",
+        "layout.h": "center",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 4397,
+      "p": {
+        "displayName": "左导航",
+        "parent": {
+          "__i": 4381
+        }
+      },
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 4398,
+      "p": {
+        "displayName": "左标题",
+        "parent": {
+          "__i": 4397
+        },
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11240.65652,
+          "y": -10521.0394
+        },
+        "width": 140.12365,
+        "height": 37.86206
+      },
+      "s": {
+        "text": "图扑大厦",
+        "text.font": "36px Arial",
+        "text.color": "rgb(255,255,255)",
+        "text.align": "center",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', true)\r\nyear.s('2d.visible', true)\r\nmonth.s('2d.visible', true)\r\nline.s('2d.visible', true)\r\nequipmentTrouble.s('2d.visible', true)\r\nequipmentAlarm.s('2d.visible', true)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', false)\n}",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4399,
+      "p": {
+        "displayName": "项目概况图标",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "项目概况图标",
+        "image": "symbols/demo/building/左导航/项目概况图标.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11293.21834,
+          "y": -10455.3726
+        },
+        "width": 35,
+        "height": 35
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "opacity": 0.3,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "interactive": true,
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar arr = ['楼宇自控', '能源计量', '智能照明', '视频监控', '入侵警报', '门禁管理', '消防警报', '巡更管理', '车场管理', '机房监控', '多媒体会议', '信息发布', '无线对讲']\r\nfunction visible(types, flag) {\r\n    var tag\r\n    for (var i = 0; i < arr.length; i++) {\r\n        tag = arr[i]\r\n        view.dm().getDataByTag(tag + types).s('2d.visible', flag)\r\n    }\r\n}\r\nif (data.s('opacity') === 1) {\r\n    data.s('opacity', 0.3)\r\n    view.dm().getDataByTag('系统监控图标').s('opacity', 1)\r\n    view.dm().getDataByTag('项目概况').s('2d.visible', false)\r\n    visible('图', true)\r\n    visible('按钮', true)\r\n} else if (data.s('opacity') === 0.3) {\r\n    data.s('opacity', 1)\r\n    view.dm().getDataByTag('系统监控图标').s('opacity', 0.3)\r\n    view.dm().getDataByTag('项目概况').s('2d.visible', true)\r\n    visible('图', false)\r\n    visible('按钮', false)\r\n}\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4400,
+      "p": {
+        "displayName": "系统监控图标",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "系统监控图标",
+        "image": "symbols/demo/building/左导航/系统监控图标.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11188.09469,
+          "y": -10455.3726
+        },
+        "width": 35,
+        "height": 35
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar arr = ['楼宇自控', '能源计量', '智能照明', '视频监控', '入侵警报', '门禁管理', '消防警报', '巡更管理', '车场管理', '机房监控', '多媒体会议', '信息发布', '无线对讲']\r\nfunction visible(types, flag) {\r\n    var tag\r\n    for (var i = 0; i < arr.length; i++) {\r\n        tag = arr[i]\r\n        view.dm().getDataByTag(tag + types).s('2d.visible', flag)\r\n    }\r\n}\r\nif (data.s('opacity') === 1) {\r\n    data.s('opacity', 0.3)\r\n    view.dm().getDataByTag('项目概况图标').s('opacity', 1)\r\n    view.dm().getDataByTag('项目概况').s('2d.visible', true)\r\n    visible('图', false)\r\n    visible('按钮', false)\r\n} else if (data.s('opacity') === 0.3) {\r\n    data.s('opacity', 1)\r\n    view.dm().getDataByTag('项目概况图标').s('opacity', 0.3)\r\n    view.dm().getDataByTag('项目概况').s('2d.visible', false)\r\n    visible('图', true)\r\n    visible('按钮', true)\r\n}\n}",
+        "opacity": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4401,
+      "p": {
+        "displayName": "项目概况",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "项目概况",
+        "image": "symbols/demo/building/左导航/项目概况.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11218.10183,
+          "y": -9974.92671
+        },
+        "width": 200,
+        "height": 860
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4402,
+      "p": {
+        "displayName": "楼宇自控图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "楼宇自控图",
+        "image": "symbols/demo/building/左导航/楼宇自控图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10371.30291
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4403,
+      "p": {
+        "displayName": "楼宇自控按钮",
+        "parent": {
+          "__i": 4402
+        },
+        "tag": "楼宇自控按钮",
+        "image": "symbols/demo/building/左导航/楼宇自控按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10371.30291
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', true)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4404,
+      "p": {
+        "displayName": "能源计量图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "能源计量图",
+        "image": "symbols/demo/building/左导航/能源计量图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10307.89192
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4405,
+      "p": {
+        "displayName": "能源计量按钮",
+        "parent": {
+          "__i": 4404
+        },
+        "tag": "能源计量按钮",
+        "image": "symbols/demo/building/左导航/能源计量按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10308.46329
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', true)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', false)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4406,
+      "p": {
+        "displayName": "智能照明图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "智能照明图",
+        "image": "symbols/demo/building/左导航/智能照明图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10244.48093
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4407,
+      "p": {
+        "displayName": "智能照明按钮",
+        "parent": {
+          "__i": 4406
+        },
+        "tag": "智能照明按钮",
+        "image": "symbols/demo/building/左导航/智能照明按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10245.02855
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', true)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', false)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4408,
+      "p": {
+        "displayName": "视频监控图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "视频监控图",
+        "image": "symbols/demo/building/左导航/视频监控图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10181.59381
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4409,
+      "p": {
+        "displayName": "视频监控按钮",
+        "parent": {
+          "__i": 4408
+        },
+        "tag": "视频监控按钮",
+        "image": "symbols/demo/building/左导航/视频监控按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10181.06994
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', true)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', false)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4410,
+      "p": {
+        "displayName": "入侵警报图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "入侵警报图",
+        "image": "symbols/demo/building/左导航/入侵警报图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10118.15907
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4411,
+      "p": {
+        "displayName": "入侵警报按钮",
+        "parent": {
+          "__i": 4410
+        },
+        "tag": "入侵警报按钮",
+        "image": "symbols/demo/building/左导航/入侵警报按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10117.65896
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4412,
+      "p": {
+        "displayName": "门禁管理图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "门禁管理图",
+        "image": "symbols/demo/building/左导航/门禁管理图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -10054.72433
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4413,
+      "p": {
+        "displayName": "门禁管理按钮",
+        "parent": {
+          "__i": 4412
+        },
+        "tag": "门禁管理按钮",
+        "image": "symbols/demo/building/左导航/门禁管理按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -10054.72433
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', true)\r\nfireControl.s('2d.visible', false)\r\nautocontrol.s('2d.visible', false)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4414,
+      "p": {
+        "displayName": "消防警报图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "消防警报图",
+        "image": "symbols/demo/building/左导航/消防警报图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9991.28959
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4415,
+      "p": {
+        "displayName": "消防警报按钮",
+        "parent": {
+          "__i": 4414
+        },
+        "tag": "消防警报按钮",
+        "image": "symbols/demo/building/左导航/消防警报按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9990.83698
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\nvar energy = view.dm().getDataByTag('能耗面板')\r\nvar year = view.dm().getDataByTag('滚动年')\r\nvar month = view.dm().getDataByTag('滚动月')\r\nvar line = view.dm().getDataByTag('面板隔线')\r\nvar equipmentTrouble = view.dm().getDataByTag('设备故障信息面板')\r\nvar equipmentAlarm = view.dm().getDataByTag('设备报警信息面板')\r\nvar autocontrol = view.dm().getDataByTag('楼宇自控系统面板')\r\nvar energyMeasurement = view.dm().getDataByTag('能源计量系统面板')\r\nvar illumination = view.dm().getDataByTag('智能照明系统面板')\r\nvar video = view.dm().getDataByTag('视频监控系统面板')\r\nvar entranceGuard = view.dm().getDataByTag('门禁管理系统面板')\r\nvar fireControl = view.dm().getDataByTag('消防报警系统面板')\r\nenergy.s('2d.visible', false)\r\nyear.s('2d.visible', false)\r\nmonth.s('2d.visible', false)\r\nline.s('2d.visible', false)\r\nequipmentTrouble.s('2d.visible', false)\r\nequipmentAlarm.s('2d.visible', false)\r\nenergyMeasurement.s('2d.visible', false)\r\nillumination.s('2d.visible', false)\r\nvideo.s('2d.visible', false)\r\nentranceGuard.s('2d.visible', false)\r\nfireControl.s('2d.visible', true)\r\nautocontrol.s('2d.visible', false)\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4416,
+      "p": {
+        "displayName": "巡更管理图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "巡更管理图",
+        "image": "symbols/demo/building/左导航/巡更管理图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9927.85486
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4417,
+      "p": {
+        "displayName": "巡更管理按钮",
+        "parent": {
+          "__i": 4416
+        },
+        "tag": "巡更管理按钮",
+        "image": "symbols/demo/building/左导航/巡更管理按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9927.85486
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4418,
+      "p": {
+        "displayName": "车场管理图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "车场管理图",
+        "image": "symbols/demo/building/左导航/车场管理图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9864.42012
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4419,
+      "p": {
+        "displayName": "车场管理按钮",
+        "parent": {
+          "__i": 4418
+        },
+        "tag": "车场管理按钮",
+        "image": "symbols/demo/building/左导航/车场管理按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9864.42012
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4420,
+      "p": {
+        "displayName": "机房监控图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "机房监控图",
+        "image": "symbols/demo/building/左导航/机房监控图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9800.60401
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4421,
+      "p": {
+        "displayName": "机房监控按钮",
+        "parent": {
+          "__i": 4420
+        },
+        "tag": "机房监控按钮",
+        "image": "symbols/demo/building/左导航/机房监控按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9800.60401
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4422,
+      "p": {
+        "displayName": "多媒体会议图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "多媒体会议图",
+        "image": "symbols/demo/building/左导航/多媒体会议图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9737.55064
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4423,
+      "p": {
+        "displayName": "多媒体会议按钮",
+        "parent": {
+          "__i": 4422
+        },
+        "tag": "多媒体会议按钮",
+        "image": "symbols/demo/building/左导航/多媒体会议按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9737.55064
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4424,
+      "p": {
+        "displayName": "信息发布图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "信息发布图",
+        "image": "symbols/demo/building/左导航/信息发布图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9674.06631
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4425,
+      "p": {
+        "displayName": "信息发布按钮",
+        "parent": {
+          "__i": 4424
+        },
+        "tag": "信息发布按钮",
+        "image": "symbols/demo/building/左导航/信息发布按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9673.78204
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "clip.percentage": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4426,
+      "p": {
+        "displayName": "无线对讲图",
+        "parent": {
+          "__i": 4397
+        },
+        "tag": "无线对讲图",
+        "image": "symbols/demo/building/左导航/无线对讲图.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11290.10183,
+          "y": -9610.68116
+        },
+        "width": 50,
+        "height": 50
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4427,
+      "p": {
+        "displayName": "无线对讲按钮",
+        "parent": {
+          "__i": 4426
+        },
+        "tag": "无线对讲按钮",
+        "image": "symbols/demo/building/左导航/无线对讲按钮.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11195.90728,
+          "y": -9610.37105
+        },
+        "width": 138,
+        "height": 45
+      },
+      "s": {
+        "clip.direction": "right",
+        "clip.percentage": 0,
+        "interactive": true,
+        "layout.h": "left",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4428,
+      "p": {
+        "displayName": "红点",
+        "parent": {
+          "__i": 4397
+        },
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -11172.21366,
+          "y": -10371.89802
+        },
+        "width": 8.89092,
+        "height": 8.89092
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgb(255,0,0)",
+        "shape.border.color": "rgb(255,0,0)",
+        "layout.h": "left",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 4429,
+      "p": {
+        "displayName": "下导航",
+        "parent": {
+          "__i": 4381
+        }
+      },
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4430,
+      "p": {
+        "displayName": "下标题",
+        "parent": {
+          "__i": 4429
+        },
+        "tag": "下标题",
+        "image": "symbols/demo/building/下导航/下标题.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10441.54774,
+          "y": -9525
+        },
+        "width": 1497,
+        "height": 45
+      },
+      "s": {
+        "layout.v": "bottom",
+        "layout.h": "center",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4431,
+      "p": {
+        "displayName": "楼层管理",
+        "parent": {
+          "__i": 4429
+        },
+        "tag": "楼层管理",
+        "image": "symbols/demo/building/下导航/楼层管理.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -10495.31709,
+          "y": -9572.87105
+        },
+        "width": 650,
+        "height": 120
+      },
+      "s": {
+        "clip.percentage": 0,
+        "layout.h": "center",
+        "layout.v": "bottom"
+      },
+      "a": {
+        "status": 0
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 4432,
+      "p": {
+        "displayName": "右面板",
+        "parent": {
+          "__i": 4381
+        }
+      },
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4433,
+      "p": {
+        "displayName": "能耗面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "能耗面板",
+        "image": "symbols/demo/building/右面板/能耗.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.6701,
+          "y": -10258.06961
+        },
+        "width": 400,
+        "height": 525
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale"
+      },
+      "a": {
+        "rotation": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4434,
+      "p": {
+        "displayName": "滚动年",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "滚动年",
+        "image": "symbols/demo/building/右面板/滚动年.json",
+        "host": {
+          "__i": 4433
+        },
+        "position": {
+          "x": -9735.67911,
+          "y": -10090.53284
+        },
+        "width": 134,
+        "height": 147
+      },
+      "s": {
+        "layout.h": "scale",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4435,
+      "p": {
+        "displayName": "滚动月",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "滚动月",
+        "image": "symbols/demo/building/右面板/滚动月.json",
+        "host": {
+          "__i": 4433
+        },
+        "position": {
+          "x": -9613.94413,
+          "y": -10090.53284
+        },
+        "width": 134,
+        "height": 147
+      },
+      "s": {
+        "layout.h": "scale",
+        "layout.v": "scale",
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4436,
+      "p": {
+        "displayName": "面板隔线",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "面板隔线",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.6701,
+          "y": -9967.8474
+        },
+        "width": 348.20905,
+        "height": 2.58039
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(0,183,255,0)",
+        "shape.border.color": "#979797",
+        "shape.gradient": "spread.horizontal",
+        "shape.gradient.color": "rgb(0,183,255)",
+        "layout.h": "right",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4437,
+      "p": {
+        "displayName": "设备故障信息面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "设备故障信息面板",
+        "image": "symbols/demo/building/右面板/设备故障信息.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.6701,
+          "y": -9855.23858
+        },
+        "width": 374,
+        "height": 164
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4438,
+      "p": {
+        "displayName": "设备报警信息面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "设备报警信息面板",
+        "image": "symbols/demo/building/右面板/设备报警信息.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.6701,
+          "y": -9669.68124
+        },
+        "width": 374,
+        "height": 164
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4439,
+      "p": {
+        "displayName": "楼宇自控系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "楼宇自控系统面板",
+        "image": "symbols/demo/building/右面板/楼宇自控系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9672.6701,
+          "y": -10054.37718
+        },
+        "width": 380,
+        "height": 930
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      },
+      "a": {
+        "楼宇自控运行": 0,
+        "楼宇自控叹号": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4440,
+      "p": {
+        "displayName": "能源计量系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "能源计量系统面板",
+        "image": "symbols/demo/building/右面板/能源计量系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.94713,
+          "y": -10054.24797
+        },
+        "width": 380,
+        "height": 920
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4441,
+      "p": {
+        "displayName": "智能照明系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "智能照明系统面板",
+        "image": "symbols/demo/building/右面板/智能照明系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.94713,
+          "y": -10049.37718
+        },
+        "width": 380,
+        "height": 920
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4442,
+      "p": {
+        "displayName": "视频监控系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "视频监控系统面板",
+        "image": "symbols/demo/building/右面板/视频监控系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.94713,
+          "y": -10054.72433
+        },
+        "width": 380,
+        "height": 900
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4443,
+      "p": {
+        "displayName": "门禁管理系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "门禁管理系统面板",
+        "image": "symbols/demo/building/右面板/门禁管理系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9672.6701,
+          "y": -10054.72433
+        },
+        "width": 380,
+        "height": 910
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4444,
+      "p": {
+        "displayName": "消防报警系统面板",
+        "parent": {
+          "__i": 4432
+        },
+        "tag": "消防报警系统面板",
+        "image": "symbols/demo/building/右面板/消防报警系统.json",
+        "host": {
+          "__i": 4381
+        },
+        "position": {
+          "x": -9675.94713,
+          "y": -10047.15755
+        },
+        "width": 380,
+        "height": 920
+      },
+      "s": {
+        "layout.h": "right",
+        "layout.v": "scale",
+        "2d.visible": false
+      }
+    }
+  ],
+  "modified": "Sat Dec 08 2018 20:40:00 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": -11383.5651,
+    "y": -10588.04834,
+    "width": 1920,
+    "height": 1085.54834
+  }
+}

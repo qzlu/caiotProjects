@@ -1,0 +1,32 @@
+{
+  "dataBindings": [
+    {
+      "attr": "clipVal",
+      "valueType": "Percentage"
+    }
+  ],
+  "width": 63,
+  "height": 20,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 17,
+      "borderColor": "rgb(0,0,0)",
+      "dash": true,
+      "dashPattern": [
+        3,
+        2
+      ],
+      "dashColor": "rgb(0,255,1)",
+      "clipDirection": "right",
+      "anchorX": 0,
+      "rotation": 0.7854,
+      "points": [
+        15.75003,
+        16.52384,
+        60.29776,
+        -28.02389
+      ]
+    }
+  ]
+}

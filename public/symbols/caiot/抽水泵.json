@@ -1,0 +1,64 @@
+{
+  "modified": "Thu Nov 14 2019 13:54:33 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "DeviceID",
+      "valueType": "Number",
+      "defaultValue": 0,
+      "name": "设备ID"
+    },
+    {
+      "attr": "DeviceState",
+      "valueType": "Number",
+      "defaultValue": 1,
+      "name": "是否运行"
+    },
+    {
+      "attr": "DeviceData",
+      "valueType": "Object",
+      "defaultValue": {
+        "HZ": 0
+      },
+      "name": "设备数据"
+    },
+    {
+      "attr": "fan.rotation",
+      "valueType": "Number",
+      "defaultValue": 0,
+      "name": "扇叶角度"
+    }
+  ],
+  "width": 77,
+  "height": 58,
+  "comps": [
+    {
+      "type": "image",
+      "name": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE0AAAA6CAYAAAD1LtTJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg0MjkzOUVBMDVFODExRUE5RTk3OEZENDgzRkI5NTI5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg0MjkzOUVCMDVFODExRUE5RTk3OEZENDgzRkI5NTI5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODQyOTM5RTgwNUU4MTFFQTlFOTc4RkQ0ODNGQjk1MjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODQyOTM5RTkwNUU4MTFFQTlFOTc4RkQ0ODNGQjk1MjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Q4CC5AAAHPklEQVR42uxb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",
+      "displayName": "icon_frozen-seal pump",
+      "rect": [
+        0,
+        0,
+        77,
+        58
+      ]
+    },
+    {
+      "type": "image",
+      "color": {
+        "func": "__ht__function(data, view) {\nlet state = data.a('DeviceState')\r\nif(state == 0){\r\n    return '#B2B2B2'\r\n}else{\r\n    return '#54FABC'\r\n}\n}"
+      },
+      "name": "symbols/caiot/扇叶.json",
+      "displayName": "扇叶",
+      "rotation": {
+        "func": "attr@fan.rotation",
+        "value": 0
+      },
+      "rect": [
+        22.5,
+        14,
+        32,
+        30
+      ]
+    }
+  ]
+}

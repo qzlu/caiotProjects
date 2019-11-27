@@ -1,0 +1,125 @@
+{
+  "background": "rgb(61,61,61)",
+  "dataBindings": [
+    {
+      "attr": "volumetric",
+      "valueType": "Percentage",
+      "defaultValue": 0.3,
+      "name": "容量",
+      "description": "油管容量"
+    },
+    {
+      "attr": "name",
+      "valueType": "String",
+      "name": "名称",
+      "description": "有关名称"
+    },
+    {
+      "attr": "color",
+      "valueType": "Color",
+      "defaultValue": "#FFEE0B",
+      "name": "颜色",
+      "description": "液位颜色"
+    }
+  ],
+  "width": 62,
+  "height": 72,
+  "boundExtend": 4,
+  "fitSize": true,
+  "comps": [
+    {
+      "type": "shape",
+      "background": {
+        "func": "attr@color",
+        "value": "#FFEE0B"
+      },
+      "clipPercentage": {
+        "func": "attr@volumetric",
+        "value": 1
+      },
+      "points": [
+        1.69858,
+        61.62639,
+        30.84497,
+        70.9789,
+        60.30142,
+        61.62639,
+        59.99135,
+        7.98464,
+        59.99135,
+        7.98464,
+        48.92581,
+        1.0211,
+        30.84497,
+        1.0211,
+        12.76412,
+        1.0211,
+        1.69858,
+        7.98464,
+        1.69858,
+        7.98464
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        4,
+        4
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "#979797",
+      "closePath": true,
+      "points": [
+        1.69858,
+        61.62639,
+        30.84497,
+        70.9789,
+        60.30142,
+        61.62639,
+        59.99135,
+        7.98464,
+        59.99135,
+        7.98464,
+        48.92581,
+        1.0211,
+        30.84497,
+        1.0211,
+        12.76412,
+        1.0211,
+        1.69858,
+        7.98464,
+        1.69858,
+        7.98464
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        4,
+        4
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@name",
+        "value": ""
+      },
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "scaleX": 0.8,
+      "scaleY": 0.8,
+      "rect": [
+        31,
+        35.999,
+        0.001,
+        0.001
+      ]
+    }
+  ]
+}

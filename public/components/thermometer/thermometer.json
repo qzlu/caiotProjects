@@ -1,0 +1,68 @@
+{
+  "width": 40,
+  "height": 30,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\n// * 获取属性值\r\nvar width = rect.width,\r\n    height = rect.height,\r\n    referenceRange = 50,\r\n    tempColor = comp.getColor('tempColor'),\r\n    fontColor = comp.getColor('fontColor'),\r\n    tempNumber = Math.round(comp.getValue('tempNumber')),\r\n    tempMax = Math.round(comp.getValue('tempMax') >= comp.getValue('tempMin')\r\n        ? comp.getValue('tempMax')\r\n        : comp.getValue('tempMin')), \r\n    tempMin = Math.round(comp.getValue('tempMax') >= comp.getValue('tempMin')\r\n        ? comp.getValue('tempMin')\r\n        : comp.getValue('tempMax')),\r\n    strictMode = comp.getValue('strictMode'),\r\n    warningMode = comp.getValue('warningMode'),\r\n    lowWarning = comp.getValue('lowWarning'),\r\n    heightWarning = comp.getValue('heightWarning'),\r\n    lowWarningColor = comp.getColor('lowWarningColor'),\r\n    heightWarningColor = comp.getColor('heightWarningColor'),\r\n    bigIconMode = comp.getValue('bigIconMode');\r\n\r\n// * 定义属性值\r\nvar tempProportion = 1.5;\r\ni = 1;\r\nif (bigIconMode) i = tempProportion;\r\nvar tempSection = Math.abs(tempMax - tempMin),\r\n    tempPercentage = (tempNumber - tempMin) / tempSection,\r\n    defaultFontText = '99°',\r\n    fontText = tempNumber + '°',\r\n    center = {\r\n        x: width / 2,\r\n        y: height / 2\r\n    },\r\n    font = {\r\n        x: center.x - referenceRange * .20 / i,\r\n        y: center.y,\r\n        color: fontColor\r\n    },\r\n    bottomCircle = {\r\n        r: referenceRange * .07 * i,\r\n        x: center.x - (referenceRange * .34 / i),\r\n        y: referenceRange * .12 * i + center.y\r\n    },\r\n    topCircle = {\r\n        r: referenceRange * .04 * i,\r\n        x: bottomCircle.x,\r\n        y: bottomCircle.y - referenceRange * .25 * i\r\n    },\r\n    lineWidth = referenceRange / 50,\r\n    stripH = topCircle.r + bottomCircle.r + referenceRange * .25 * i - lineWidth,\r\n    angle = Math.asin(topCircle.r / bottomCircle.r),\r\n    turnLeft = {\r\n        x: bottomCircle.x - Math.sin(angle) * bottomCircle.r,\r\n        y: bottomCircle.y - Math.cos(angle) * bottomCircle.r\r\n    },\r\n    turnRight = {\r\n        x: bottomCircle.x + Math.sin(angle) * bottomCircle.r,\r\n        y: bottomCircle.y - Math.cos(angle) * bottomCircle.r\r\n    };\r\n\r\n// 逻辑函数\r\nfunction baseLogic() {\r\n    if (tempNumber < tempMin) {\r\n        tempNumber = tempMin;\r\n    } else if (tempNumber >= tempMax) {\r\n        tempNumber = tempMax;\r\n    };\r\n    fontText = tempNumber + '°';\r\n    tempPercentage = (tempNumber - tempMin) / tempSection;\r\n};\r\n\r\nfunction warningModeLogic() {\r\n    if (warningMode) {\r\n        if (lowWarning >= heightWarning) {\r\n            fontText = '警戒温度不合理  ';\r\n        } else if (lowWarning < tempMin) {\r\n            fontText = '警戒温度过低  ';\r\n        } else if (heightWarning > tempMax) {\r\n            fontText = '警戒温度过高  ';\r\n        } else if (tempNumber <= lowWarning) {\r\n            tempColor = lowWarningColor;\r\n            baseLogic();\r\n        } else if (tempNumber >= heightWarning) {\r\n            tempColor = heightWarningColor;\r\n            baseLogic();\r\n        }\r\n    } else {\r\n        baseLogic();\r\n    }\r\n};\r\n\r\nfunction strictModeLogic() {\r\n    if (strictMode) {\r\n        if (comp.getValue('tempMax') < comp.getValue('tempMin')) {\r\n            fontText = '设定不合理  ';\r\n        } else if (tempNumber >= tempMax) {\r\n            fontText = '系数爆表  ';\r\n        } else if (tempNumber < tempMin) {\r\n            fontText = '测量值已到最低  ';\r\n        } else {\r\n            warningModeLogic();\r\n        }\r\n    } else {\r\n        warningModeLogic();\r\n    }\r\n};\r\n\r\n// 数据逻辑\r\nif (tempMax == tempMin) {\r\n    fontText = '没有测量区间  ';\r\n} else {\r\n    strictModeLogic();\r\n}\r\n\r\n// 绘制温度计条\r\ng.beginPath();\r\ng.save();\r\ng.lineCap = 'square';\r\ng.lineCap = 'round';\r\ng.strokeStyle = tempColor;\r\ng.lineWidth = lineWidth;\r\ng.arc(bottomCircle.x, bottomCircle.y, bottomCircle.r, Math.PI * 1.5 + angle, Math.PI * 1.5 - angle, false);\r\ng.moveTo(turnLeft.x, turnLeft.y);\r\ng.lineTo(topCircle.x - topCircle.r, topCircle.y);\r\ng.arc(topCircle.x, topCircle.y, topCircle.r, Math.PI, 0, false)\r\ng.lineTo(turnRight.x, turnRight.y);\r\ng.stroke();\r\ng.clip();\r\ng.beginPath();\r\ng.fillStyle = tempColor;\r\ng.rect(topCircle.x - bottomCircle.r, topCircle.y - topCircle.r + (1 - tempPercentage) * stripH + lineWidth / 2, 2 * bottomCircle.r, referenceRange)\r\ng.fill();\r\ng.restore();\r\n\r\n// 绘制温度数字\r\ng.save();\r\ng.lineCap = 'round';\r\ng.fillStyle = font.color;\r\ng.textAlign = 'center';\r\ng.textBaseline = 'middle';\r\nvar defaultTextWidth = g.measureText(defaultFontText).width;\r\nvar textWidth = g.measureText(fontText).width;\r\nif (textWidth < defaultTextWidth) textWidth = defaultTextWidth;\r\nvar fontScale = 2 * defaultTextWidth / textWidth / i;\r\ng.scale(fontScale, fontScale);\r\nvar nowTextWidth = g.measureText(fontText).width;\r\ng.fillText(fontText, font.x / fontScale + nowTextWidth / 2, font.y / fontScale);\r\ng.restore();\n}",
+  "properties": {
+    "tempNumber": {
+      "valueType": "Number",
+      "defaultValue": 34,
+      "name": "温度参数"
+    },
+    "fontColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(0,0,0)",
+      "name": "文字颜色"
+    },
+    "tempColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(153,121,220)",
+      "name": "温度计边颜色"
+    },
+    "tempMax": {
+      "valueType": "Number",
+      "defaultValue": 60,
+      "name": "温度上限"
+    },
+    "tempMin": {
+      "valueType": "Number",
+      "defaultValue": -30,
+      "name": "温度下限"
+    },
+    "strictMode": {
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "严格模式"
+    },
+    "warningMode": {
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "警戒模式"
+    },
+    "lowWarning": {
+      "valueType": "Number",
+      "defaultValue": -20,
+      "name": "最低警戒值"
+    },
+    "heightWarning": {
+      "valueType": "Number",
+      "defaultValue": 40,
+      "name": "最高警戒值"
+    },
+    "lowWarningColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(7,247,243)",
+      "name": "最低警戒颜色"
+    },
+    "heightWarningColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(255,0,72)",
+      "name": "最高警戒颜色"
+    },
+    "bigIconMode": {
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "大图标模式"
+    }
+  }
+}

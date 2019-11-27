@@ -1,0 +1,62 @@
+{
+  "dataBindings": [
+    {
+      "attr": "Reset_bc",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Reset_pc",
+      "valueType": "Color"
+    }
+  ],
+  "width": 95,
+  "height": 32,
+  "boundExtend": 50,
+  "interactive": true,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": {
+        "func": "attr@Reset_bc",
+        "value": "rgb(45,119,186)"
+      },
+      "borderColor": "rgb(2,15,41)",
+      "border3d": true,
+      "border3dColor": "rgb(70,175,215)",
+      "gradient": "linear.north",
+      "gradientColor": {
+        "func": "attr@Reset_pc",
+        "value": "rgb(70,175,215)"
+      },
+      "cornerRadius": 5,
+      "shadow": true,
+      "shadowColor": "rgb(0,0,0)",
+      "shadowBlur": 5,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": [
+        1.83333,
+        1.6762,
+        90.33333,
+        26.63242
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\ndata.a('Reset_bc', 'rgb(12,38,61)');\r\ndata.a('Reset_pc', 'rgb(34,125,161)');\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\ndata.a('Reset_bc', 'rgb(28,74,117)');\r\ndata.a('Reset_pc', 'rgb(41,145,186)');\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\ndata.a('Reset_bc', 'rgb(28,74,117)');\r\ndata.a('Reset_pc', 'rgb(41,145,186)');\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\ndata.a('Reset_bc', 'rgb(45,119,186)');\r\ndata.a('Reset_pc', 'rgb(70,175,215)');\n}"
+    },
+    {
+      "type": "text",
+      "text": "Reset",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "15px arial, sans-serif",
+      "rect": [
+        1.71828,
+        7.76263,
+        90.44838,
+        14.45956
+      ]
+    }
+  ]
+}

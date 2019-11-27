@@ -1,0 +1,68 @@
+{
+  "modified": "Wed Nov 21 2018 17:17:21 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "hh",
+      "valueType": "Int",
+      "defaultValue": 2
+    },
+    {
+      "attr": "mm",
+      "valueType": "Int",
+      "defaultValue": 15
+    }
+  ],
+  "width": 22,
+  "height": 22,
+  "boundExtend": 1,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "cornerRadius": 1,
+      "anchorY": 0.87126,
+      "scaleX": -1,
+      "rotation": {
+        "func": "__ht__function(data, view) {\nreturn data.a('mm') / 30 * Math.PI;\n}",
+        "value": 0
+      },
+      "rect": [
+        9.92217,
+        3.87783,
+        2.13233,
+        8.58826
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "cornerRadius": 1,
+      "anchorY": 0.17551,
+      "scaleY": -1,
+      "rotation": {
+        "func": "__ht__function(data, view) {\nvar hh = data.a('hh'),\n    mm = data.a('mm');\nreturn (hh * 60 + mm) / (12 * 60) * Math.PI * 2;\n}",
+        "value": 1.5708
+      },
+      "rect": [
+        9.96477,
+        10.26321,
+        2.16029,
+        6.39698
+      ]
+    },
+    {
+      "type": "oval",
+      "borderWidth": 1,
+      "borderColor": "rgba(41,155,217,0.51)",
+      "scaleX": -1,
+      "rect": [
+        -0.01167,
+        0.13242,
+        22,
+        22
+      ]
+    }
+  ]
+}

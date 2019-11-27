@@ -1,0 +1,1045 @@
+{
+  "v": "6.2.0",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "previewURL": "display-ems.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2248,
+      "p": {
+        "displayName": "panel2",
+        "image": "symbols/demo/ems/panel2.json",
+        "position": {
+          "x": 613.29252,
+          "y": 588.15362
+        },
+        "width": 846.19014,
+        "height": 115.69006
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2249,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 370.15546,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 7"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2250,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 424.18591,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 8"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2251,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 424.18591,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 6"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2252,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 370.15546,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 5"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2253,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 478.21637,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 11"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2254,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 532.24683,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 12"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2255,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 532.24683,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 10"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2256,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 478.21637,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 9"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2257,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 586.27729,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 15"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2258,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 640.30774,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 16"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2259,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 640.30774,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 14"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2260,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 586.27729,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "body.color": null,
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 13"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2261,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 694.3382,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 19"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2262,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 748.36866,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 20"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2263,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 748.36866,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 18"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2264,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 694.3382,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 17"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2265,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 802.39911,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 23"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2266,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "position": {
+          "x": 856.42958,
+          "y": 609.82286
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 24"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2267,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 856.42958,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 22"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2268,
+      "p": {
+        "displayName": "port-off",
+        "parent": {
+          "__i": 2248
+        },
+        "image": "symbols/demo/ems/port.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 802.39911,
+          "y": 555.14963
+        },
+        "width": 31.40159,
+        "height": 23.13801
+      },
+      "s": {
+        "2d.movable": false
+      },
+      "a": {
+        "portName": "VLan 21"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2269,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 371.77029,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "5",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2270,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 425.80076,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "6",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2271,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 371.77029,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "7",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2272,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 425.80076,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "8",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2273,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 478.3835,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "9",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2274,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 532.41396,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "10",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2275,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 478.3835,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "11",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2276,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 532.41396,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "12",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2277,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 586.44442,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "13",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "#FFFFFF",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2278,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 640.47487,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "14",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2279,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 586.44442,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "15",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2280,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 640.47487,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "16",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2281,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 694.65359,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "17",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2282,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 748.68405,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "18",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2283,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 694.65359,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "19",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2284,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 748.68405,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "20",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2285,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 802.56625,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "21",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2286,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 856.59671,
+          "y": 579.94139
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "22",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2287,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 802.56625,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "23",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 2288,
+      "p": {
+        "parent": {
+          "__i": 2248
+        },
+        "position": {
+          "x": 856.59671,
+          "y": 634.61458
+        },
+        "anchor": {
+          "x": 0.55834,
+          "y": 0.75
+        },
+        "width": 27.67981,
+        "height": 17.63029
+      },
+      "s": {
+        "text": "24",
+        "type": "text",
+        "text.align": "center",
+        "text.color": "rgb(255,255,255)",
+        "opacity": 1,
+        "2d.movable": false
+      }
+    }
+  ]
+}

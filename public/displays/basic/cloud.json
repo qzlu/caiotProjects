@@ -1,0 +1,58 @@
+{
+  "v": "6.2.5",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": false
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 3234,
+      "p": {
+        "image": "symbols/basic/cloud-oval.json",
+        "position": {
+          "x": 402.96852,
+          "y": 796.04321
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3235,
+      "p": {
+        "image": "symbols/basic/cloud-rect.json",
+        "position": {
+          "x": 152.96852,
+          "y": 796.89836
+        },
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3236,
+      "p": {
+        "image": "symbols/basic/cloud-relative.json",
+        "position": {
+          "x": 277.96852,
+          "y": 440.10447
+        },
+        "width": 304.17683,
+        "height": 334.87257
+      }
+    }
+  ],
+  "contentRect": {
+    "x": 52.96852,
+    "y": 261.50577,
+    "width": 450,
+    "height": 635.39259
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "width": 36,
+  "height": 36,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        1.5,
+        0,
+        0,
+        0
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C1E7"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0,
+        0,
+        0,
+        36
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C1E8"
+    },
+    {
+      "type": "shape",
+      "cadType": "LINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        1.5,
+        35.96874,
+        1.5,
+        0
+      ],
+      "segments": [
+        1,
+        2
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2C1E9"
+    },
+    {
+      "type": "arc",
+      "cadType": "CIRCLE",
+      "handle": "2C1F0",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        6.01051,
+        7.56988,
+        13.85641,
+        13.85641
+      ],
+      "arcFrom": 0,
+      "arcTo": 6.28319,
+      "arcClose": false
+    },
+    {
+      "type": "arc",
+      "cadType": "ARC",
+      "handle": "2C1E6",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        -36,
+        -36,
+        72,
+        72
+      ],
+      "arcFrom": 0,
+      "arcTo": 1.5708,
+      "arcClose": false
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0,
+  "anchorY": 0,
+  "bound": {
+    "xMin": 0,
+    "yMin": -36,
+    "xMax": 36,
+    "yMax": 0,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

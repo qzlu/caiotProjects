@@ -1,0 +1,237 @@
+{
+  "v": "7.0.0",
+  "p": {
+    "background": "rgb(61,61,61)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null,
+    "fitContent": true
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 5474,
+      "p": {
+        "displayName": "infoPane",
+        "layer": "1",
+        "image": "symbols/ht/text/richTextPane.json",
+        "position": {
+          "x": 956.70261,
+          "y": 481.09476
+        },
+        "width": 142,
+        "height": 120.98438
+      },
+      "s": {
+        "pixelPerfect": false
+      },
+      "a": {
+        "bg": "#32D3EB",
+        "showArrow": false,
+        "ht.content": [
+          [
+            {
+              "text": "面板标题",
+              "color": "#60ACFC",
+              "font": "32px arial"
+            }
+          ],
+          [
+            {
+              "text": "平均温度"
+            },
+            {
+              "text": "100",
+              "color": "#FF7C7C",
+              "font": "24px arial"
+            },
+            {
+              "text": "℃"
+            }
+          ],
+          [
+            {
+              "text": "湿度"
+            },
+            {
+              "text": "760",
+              "color": "rgb(93,217,174)",
+              "font": "24px arial"
+            },
+            {
+              "text": "%"
+            }
+          ]
+        ],
+        "ht.arrowOrientation": "right",
+        "ht.showArrow": false,
+        "ht.background": "rgb(10,29,48)",
+        "ht.borderColor": "rgb(212,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5475,
+      "p": {
+        "displayName": "infoPane",
+        "image": "symbols/ht/text/richTextPane.json",
+        "position": {
+          "x": 962.88667,
+          "y": 665.44438
+        },
+        "width": 169.10696,
+        "height": 120.7106
+      },
+      "s": {
+        "pixelPerfect": false,
+        "2d.editable": false
+      },
+      "a": {
+        "bg": "#32D3EB",
+        "orientation": "left",
+        "position": 1,
+        "borderWidth": 7,
+        "ht.arrowOrientation": "left",
+        "ht.content": [
+          [
+            {
+              "text": "面板标题",
+              "color": "#60ACFC"
+            }
+          ],
+          [
+            {
+              "text": "平均温度"
+            },
+            {
+              "text": "100",
+              "color": "#FF7C7C",
+              "font": "24px arial"
+            },
+            {
+              "text": "℃"
+            }
+          ],
+          [
+            {
+              "text": "湿度"
+            },
+            {
+              "text": "760",
+              "color": "rgb(93,217,174)",
+              "font": "24px arial"
+            },
+            {
+              "text": "%"
+            }
+          ]
+        ],
+        "ht.borderColor": "#32D3EB",
+        "ht.background": "rgb(124,145,155)",
+        "ht.borderWidth": 4,
+        "ht.padding": "20",
+        "ht.vGap": 5
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5476,
+      "p": {
+        "displayName": "multilineText",
+        "image": "symbols/ht/text/multilineText.json",
+        "position": {
+          "x": 660.95322,
+          "y": 297.40559
+        },
+        "width": 404.59198,
+        "height": 192
+      },
+      "s": {
+        "2d.editable": false
+      },
+      "a": {
+        "ht.content": "这里的面板\n都会根据内容\n改变大小\n还可以放在 3D 场景中使用",
+        "ht.padding": "10",
+        "ht.font": "32px PingFangSC-Thin",
+        "ht.lineHeight": 43,
+        "ht.color": "#32D3EB"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5477,
+      "p": {
+        "displayName": "multilineText",
+        "image": "symbols/ht/text/multilineText.json",
+        "position": {
+          "x": 987.88937,
+          "y": 372.40559
+        },
+        "width": 119.10156,
+        "height": 42
+      },
+      "s": {
+        "2d.editable": false
+      },
+      "a": {
+        "ht.background": "#60ACFC",
+        "ht.lineHeight": 18,
+        "ht.font": "bold 16px Arial Black",
+        "ht.padding": "3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5478,
+      "p": {
+        "displayName": "richTextBinding",
+        "image": "symbols/ht/demo/richTextBinding.json",
+        "position": {
+          "x": 633.65723,
+          "y": 483.87015
+        },
+        "width": 350,
+        "height": 126.53516
+      },
+      "s": {
+        "2d.editable": false
+      },
+      "a": {
+        "temp": "86",
+        "humidity": "122.985",
+        "ht.background": "rgb(28,28,28)",
+        "title": "内容属性里可以用数据绑定"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5479,
+      "p": {
+        "displayName": "richTextBinding",
+        "image": "symbols/ht/demo/richTextBinding.json",
+        "position": {
+          "x": 633.65723,
+          "y": 665.44438
+        },
+        "width": 350,
+        "height": 126.53516
+      },
+      "a": {
+        "temp": "90",
+        "humidity": "122.985",
+        "ht.background": "rgb(28,28,28)",
+        "title": "内容属性里可以用数据绑定"
+      }
+    }
+  ],
+  "modified": "Wed Mar 27 2019 11:45:01 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": 448.65723,
+    "y": 191.40559,
+    "width": 608.78292,
+    "height": 537.30637
+  }
+}

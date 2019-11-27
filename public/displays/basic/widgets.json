@@ -1,0 +1,105 @@
+{
+  "v": "6.2.0",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {},
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2350,
+      "p": {
+        "displayName": "button",
+        "tag": "button1",
+        "image": "symbols/basic/button.json",
+        "position": {
+          "x": 247.99197,
+          "y": 246.72885
+        }
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "button.background": "#1AAE18",
+        "button.disabled": false,
+        "button.pressed": false,
+        "button.onclick": "__ht__function(data, view) {\n    console.log(data.getTag() + ' is Clicked');\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2351,
+      "p": {
+        "displayName": "button",
+        "tag": "button2",
+        "image": "symbols/basic/button.json",
+        "position": {
+          "x": 318.50192,
+          "y": 246.72885
+        }
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "button.background": "#F8F8F8",
+        "button.background.default": "#F8F8F8",
+        "button.text": "按钮",
+        "button.background.pressed": "#DEDEDE",
+        "button.text.color": "#000000",
+        "button.pressed": false,
+        "button.disabled": false,
+        "button.onclick": "__ht__function(data, view) {\n    console.log(data.getTag() + ' is Clicked');\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2352,
+      "p": {
+        "displayName": "button",
+        "tag": "button3",
+        "image": "symbols/basic/button.json",
+        "position": {
+          "x": 389.01186,
+          "y": 246.72885
+        }
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "button.background": "#1AAE18",
+        "button.pressed": false,
+        "button.background.default": "#E64340",
+        "button.background.pressed": "#CE3C39",
+        "button.disabled": false,
+        "button.onclick": "__ht__function(data, view) {\n    console.log(data.getTag() + ' is Clicked');\n}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2353,
+      "p": {
+        "displayName": "checkbox",
+        "image": "symbols/basic/checkbox.json",
+        "position": {
+          "x": 230.99197,
+          "y": 206.10354
+        }
+      },
+      "s": {
+        "interactive": true,
+        "2d.movable": false
+      },
+      "a": {
+        "checkbox.checked": true,
+        "checkbox.onchange": "__ht__function(data, view, value) {\n    ['button1', 'button2', 'button3'].forEach(function(tag) {\n        var button = view.getDataModel().getDataByTag(tag);\n        button.a('button.disabled', !value);\n    });\n}"
+      }
+    }
+  ]
+}

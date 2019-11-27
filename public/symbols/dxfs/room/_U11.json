@@ -1,0 +1,144 @@
+{
+  "width": 60,
+  "height": 31.13926,
+  "comps": [
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        0.7071,
+        11.3137,
+        0,
+        10.6066,
+        10.6066,
+        0,
+        11.3137,
+        0.7071
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2BF6F"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        38.0797,
+        11.3137,
+        37.3725,
+        10.6066,
+        47.9792,
+        0,
+        48.6863,
+        0.7071
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2BF70"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        21.9203,
+        11.3137,
+        11.3137,
+        0.7071,
+        12.0208,
+        0,
+        22.6274,
+        10.6066
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2BF71"
+    },
+    {
+      "type": "shape",
+      "cadType": "LWPOLYLINE",
+      "maybeEdge": false,
+      "borderColor": "#000000",
+      "points": [
+        59.2929,
+        11.3137,
+        48.6863,
+        0.7071,
+        49.3933,
+        0,
+        60,
+        10.6066
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        5
+      ],
+      "borderWidthAbsolute": true,
+      "borderWidth": 1,
+      "handle": "2BF72"
+    },
+    {
+      "type": "arc",
+      "cadType": "CIRCLE",
+      "handle": "2BF79",
+      "borderColor": "#000000",
+      "borderWidth": 1,
+      "borderWidthAbsolute": true,
+      "rect": [
+        23.79106,
+        17.28285,
+        13.85641,
+        13.85641
+      ],
+      "arcFrom": 0,
+      "arcTo": 6.28319,
+      "arcClose": false
+    }
+  ],
+  "scale": 1,
+  "anchorX": 0,
+  "anchorY": 0.34062,
+  "bound": {
+    "xMin": 0,
+    "yMin": -20.53266,
+    "xMax": 60,
+    "yMax": 10.6066,
+    "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
+  "boundExtend": 1,
+  "boundExtendAbsolute": true,
+  "flag": 3
+}

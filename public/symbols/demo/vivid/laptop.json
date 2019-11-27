@@ -1,0 +1,84 @@
+{
+  "dataBindings": [
+    {
+      "attr": "primaryColor",
+      "valueType": "Color"
+    },
+    {
+      "attr": "secondaryColor",
+      "valueType": "Color"
+    }
+  ],
+  "width": 48,
+  "height": 48,
+  "comps": [
+    {
+      "type": "shape",
+      "background": {
+        "func": "attr@primaryColor",
+        "value": "#ffb400"
+      },
+      "points": [
+        43,
+        35,
+        5,
+        35,
+        5,
+        9,
+        43,
+        9,
+        43,
+        35,
+        43,
+        35
+      ]
+    },
+    {
+      "type": "shape",
+      "background": {
+        "func": "attr@secondaryColor",
+        "value": "#070c2b"
+      },
+      "points": [
+        8,
+        12,
+        40,
+        12,
+        40,
+        32,
+        8,
+        32,
+        8,
+        12,
+        8,
+        12,
+        47,
+        39,
+        1,
+        39,
+        1,
+        35,
+        47,
+        35,
+        47,
+        39,
+        47,
+        39
+      ],
+      "segments": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    }
+  ]
+}

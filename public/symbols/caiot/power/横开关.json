@@ -1,0 +1,33 @@
+{
+  "modified": "Tue Nov 26 2019 16:45:38 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "points": [
+        69,
+        47,
+        69,
+        64
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.5708,
+      "points": [
+        40,
+        35,
+        50,
+        48,
+        50,
+        65
+      ]
+    }
+  ]
+}

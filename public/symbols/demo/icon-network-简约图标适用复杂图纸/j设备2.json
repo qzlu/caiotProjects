@@ -1,0 +1,152 @@
+{
+  "background": "rgb(61,61,61)",
+  "width": 64,
+  "height": 64,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "",
+      "borderWidth": 4,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        3,
+        16.34278,
+        58,
+        33.25714
+      ]
+    },
+    {
+      "type": "trapezoid",
+      "background": "",
+      "borderWidth": 4,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        3,
+        8.45706,
+        58,
+        7.88571
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        9.21043,
+        21.32017,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        18.11612,
+        21.32017,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        27.02181,
+        21.32017,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        35.92749,
+        21.32017,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "points": [
+        3.11303,
+        37.69356,
+        61,
+        37.69356
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "points": [
+        34.96307,
+        41.17506,
+        56.40269,
+        41.17506
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "points": [
+        34.96307,
+        44.63839,
+        56.40269,
+        44.63839
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        9.21043,
+        29.49979,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        18.11612,
+        29.49979,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        27.02181,
+        29.49979,
+        5.89078,
+        4.69366
+      ]
+    },
+    {
+      "type": "rect",
+      "borderWidth": 2,
+      "borderColor": "rgb(255,255,255)",
+      "rect": [
+        35.92749,
+        29.49979,
+        5.89078,
+        4.69366
+      ]
+    }
+  ]
+}

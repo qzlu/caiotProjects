@@ -1,0 +1,5491 @@
+{
+  "v": "6.2.9",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": "host",
+    "rotateAsClock": false,
+    "onPostDeserialize": "__ht__function(json, dm, view, datas) {\r\n    var inletValve = dm.getDataByTag('进口阀')\r\n    var bypassValve = dm.getDataByTag('旁通阀')\r\n    var outletValve = dm.getDataByTag('出口阀')\r\n    var ventingBallValveF = dm.getDataByTag('放空球阀前')\r\n    var ventingBallValveB = dm.getDataByTag('放空球阀后')\r\n    var ventingValve = dm.getDataByTag('放空阀')\r\n    var pressurePanel = dm.getDataByTag('压力面板')\r\n    var dischargeBallValveF = dm.getDataByTag('排污球阀前')\r\n    var dischargeBallValveB = dm.getDataByTag('排污球阀后')\r\n    var dischargeValve = dm.getDataByTag('排污阀')\r\n    var pollution = dm.getDataByTag('排污中')\r\n    var dischargePressure = dm.getDataByTag('释压中')\r\n    var boostPressure = dm.getDataByTag('充压中')\r\n    var liquidLevel = dm.getDataByTag('液位')\r\n    var step1 = dm.getDataByTag('步骤1')\r\n    var step2 = dm.getDataByTag('步骤2')\r\n    var step3 = dm.getDataByTag('步骤3')\r\n    var step4 = dm.getDataByTag('步骤4')\r\n    var step5 = dm.getDataByTag('步骤5')\r\n    var step6 = dm.getDataByTag('步骤6')\r\n    var step7 = dm.getDataByTag('步骤7')\r\n    var step8 = dm.getDataByTag('步骤8')\r\n    var step9 = dm.getDataByTag('步骤9')\r\n    var step10 = dm.getDataByTag('步骤10')\r\n    var step11 = dm.getDataByTag('步骤11')\r\n    var step12 = dm.getDataByTag('步骤12')\r\n    var step13 = dm.getDataByTag('步骤13')\r\n    var step14 = dm.getDataByTag('步骤14')\r\n    var star = dm.getDataByTag('开始按钮')\r\n    // 将首个动画作为按钮的属性传过去\r\n    star.a('star', anim1)\r\n    // 1.关闭进口阀\r\n    function anim1() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step1.s('opacity', step1.s('opacity') + (1 - step1.s('opacity')) * v)\r\n                inletValve.setRotation(inletValve.getRotation() + 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim2()\r\n            }\r\n        })\r\n    }\r\n    // 2.关闭旁通阀\r\n    function anim2() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step1.s('opacity', step1.s('opacity') + (0 - step1.s('opacity')) * v)\r\n                step2.s('opacity', step2.s('opacity') + (1 - step2.s('opacity')) * v)\r\n                bypassValve.setRotation(bypassValve.getRotation() + 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim3()\r\n            }\r\n        })\r\n    }\r\n    // 3.关闭出口球阀\r\n    function anim3() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step2.s('opacity', step2.s('opacity') + (0 - step2.s('opacity')) * v)\r\n                step3.s('opacity', step3.s('opacity') + (1 - step3.s('opacity')) * v)\r\n                outletValve.setRotation(outletValve.getRotation() + 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim4()\r\n            }\r\n        })\r\n    }\r\n    // 4.打开放空球阀\r\n    function anim4() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step3.s('opacity', step3.s('opacity') + (0 - step3.s('opacity')) * v)\r\n                step4.s('opacity', step4.s('opacity') + (1 - step4.s('opacity')) * v)\r\n                ventingBallValveF.setRotation(ventingBallValveF.getRotation() + 0.01)\r\n                ventingBallValveB.setRotation(ventingBallValveB.getRotation() + 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim5()\r\n            }\r\n        })\r\n    }\r\n    // 5.缓慢打开节流截止放空球阀\r\n    function anim5() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step4.s('opacity', step4.s('opacity') + (0 - step4.s('opacity')) * v)\r\n                step5.s('opacity', step5.s('opacity') + (1 - step5.s('opacity')) * v)\r\n                ventingValve.setRotation(ventingValve.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim6()\r\n            }\r\n        })\r\n    }\r\n    // 6.观察压力表压力降到1MPa以下\r\n    function anim6() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step5.s('opacity', step5.s('opacity') + (0 - step5.s('opacity')) * v)\r\n                step6.s('opacity', step6.s('opacity') + (1 - step6.s('opacity')) * v)\r\n            }\r\n        })\r\n        timer = setInterval(function(){\r\n            pressurePanel.s('2d.visible', !pressurePanel.s('2d.visible'))\r\n        }, 500)\r\n        setTimeout(function(){\r\n            clearInterval(timer)\r\n            pressurePanel.s('2d.visible', false)\r\n            anim7()\r\n        },4000)\r\n    }\r\n    // 7.关闭放空阀和放空球阀\r\n    function anim7() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step6.s('opacity', step6.s('opacity') + (0 - step6.s('opacity')) * v)\r\n                step7.s('opacity', step7.s('opacity') + (1 - step7.s('opacity')) * v)\r\n                ventingBallValveF.setRotation(ventingBallValveF.getRotation() - 0.01)\r\n                ventingValve.setRotation(ventingValve.getRotation() + 0.01)\r\n                ventingBallValveB.setRotation(ventingBallValveB.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim8()\r\n            }\r\n        })\r\n    }\r\n    // 8.打开排污球阀\r\n    function anim8() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step7.s('opacity', step7.s('opacity') + (0 - step7.s('opacity')) * v)\r\n                step8.s('opacity', step8.s('opacity') + (1 - step8.s('opacity')) * v)\r\n                dischargeBallValveF.setRotation(dischargeBallValveF.getRotation() - 0.01)\r\n                dischargeBallValveB.setRotation(dischargeBallValveF.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                anim9()\r\n            }\r\n        })\r\n    }\r\n    // 9.缓慢打开排污阀排污\r\n    function anim9() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step8.s('opacity', step8.s('opacity') + (0 - step8.s('opacity')) * v)\r\n                step9.s('opacity', step9.s('opacity') + (1 - step9.s('opacity')) * v)\r\n                dischargeValve.setRotation(dischargeValve.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                // 排污中\r\n                ht.Default.startAnim({\r\n                    duration: 4000,\r\n                    action: function (v, t) {\r\n                        liquidLevel.setPosition(liquidLevel.getPosition().x, liquidLevel.getPosition().y + 0.25)\r\n                    }\r\n                })\r\n                timer1 = setInterval(function(){\r\n                    pollution.s('2d.visible', !pollution.s('2d.visible'))\r\n                }, 500)\r\n                anim10()\r\n            }\r\n        })\r\n    }\r\n    // 10.关闭排污阀和排污球阀\r\n    function anim10() {\r\n        setTimeout(function(){\r\n            clearInterval(timer1)\r\n            pollution.s('2d.visible', false)\r\n            ht.Default.startAnim({\r\n                duration: 2000,\r\n                action: function (v, t) {\r\n                    step9.s('opacity', step9.s('opacity') + (0 - step9.s('opacity')) * v)\r\n                    step10.s('opacity', step10.s('opacity') + (1 - step10.s('opacity')) * v)\r\n                    dischargeBallValveF.setRotation(dischargeBallValveF.getRotation() + 0.01)\r\n                    dischargeValve.setRotation(dischargeValve.getRotation() + 0.01)\r\n                    dischargeBallValveB.setRotation(dischargeBallValveF.getRotation() + 0.01)\r\n                },\r\n                finishFunc: function () {\r\n                    anim11()\r\n                }\r\n            })\r\n        },4000)\r\n    }\r\n    // 11.再次打开排污阀释放压力\r\n    function anim11() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step10.s('opacity', step10.s('opacity') + (0 - step10.s('opacity')) * v)\r\n                step11.s('opacity', step11.s('opacity') + (1 - step11.s('opacity')) * v)\r\n                dischargeValve.setRotation(dischargeValve.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                // 释压中\r\n                timer2 = setInterval(function(){\r\n                    dischargePressure.s('2d.visible', !dischargePressure.s('2d.visible'))\r\n                }, 500)\r\n                anim12()\r\n            }\r\n        })\r\n    }\r\n    // 12.关闭排污阀\r\n    function anim12() {\r\n        setTimeout(function(){\r\n            clearInterval(timer2)\r\n            dischargePressure.s('2d.visible', false)\r\n            ht.Default.startAnim({\r\n                duration: 2000,\r\n                action: function (v, t) {\r\n                    step11.s('opacity', step11.s('opacity') + (0 - step11.s('opacity')) * v)\r\n                    step12.s('opacity', step12.s('opacity') + (1 - step12.s('opacity')) * v)\r\n                    dischargeValve.setRotation(dischargeValve.getRotation() + 0.01)\r\n                },\r\n                finishFunc: function () {\r\n                    anim13()\r\n                }\r\n            })\r\n        },4000)\r\n    }\r\n    // 13.打开旁通阀对过滤器平衡充压\r\n    function anim13() {\r\n        ht.Default.startAnim({\r\n            duration: 2000,\r\n            action: function (v, t) {\r\n                step12.s('opacity', step12.s('opacity') + (0 - step12.s('opacity')) * v)\r\n                step13.s('opacity', step13.s('opacity') + (1 - step13.s('opacity')) * v)\r\n                bypassValve.setRotation(bypassValve.getRotation() - 0.01)\r\n            },\r\n            finishFunc: function () {\r\n                // 充压中\r\n                ht.Default.startAnim({\r\n                    duration: 4000,\r\n                    action: function (v, t) {\r\n                        liquidLevel.setPosition(liquidLevel.getPosition().x, liquidLevel.getPosition().y - 0.25)\r\n                    }\r\n                })\r\n                timer3 = setInterval(function(){\r\n                    boostPressure.s('2d.visible', !boostPressure.s('2d.visible'))\r\n                }, 500)\r\n                anim14()\r\n            }\r\n        })\r\n    }\r\n    // 14.关闭旁通阀\r\n    function anim14() {\r\n        setTimeout(function(){\r\n            clearInterval(timer3)\r\n            boostPressure.s('2d.visible', false)\r\n            ht.Default.startAnim({\r\n                duration: 2000,\r\n                action: function (v, t) {\r\n                    step13.s('opacity', step13.s('opacity') + (0 - step13.s('opacity')) * v)\r\n                    step14.s('opacity', step14.s('opacity') + (1 - step14.s('opacity')) * v)\r\n                    bypassValve.setRotation(bypassValve.getRotation() + 0.01)\r\n                },\r\n                finishFunc: function () {\r\n                    step14.s('opacity', 0)\r\n                    // anim1() // 循环\r\n                    star.s('opacity', 1)\r\n                }\r\n            })\r\n        },4000)\r\n    }\r\n}"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 5692,
+      "p": {
+        "displayName": "布局根节点",
+        "position": {
+          "x": 656,
+          "y": 405.03805
+        },
+        "width": 1770.26271,
+        "height": 895.62788
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": null,
+        "shape.border.color": "#979797",
+        "fullscreen": "fill",
+        "fullscreen.lock": "h"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5693,
+      "p": {
+        "displayName": "主管道",
+        "parent": {
+          "__i": 5692
+        },
+        "host": {
+          "__i": 5692
+        },
+        "position": {
+          "x": 756,
+          "y": 459.12067
+        },
+        "width": 1931.92074,
+        "height": 490.35848
+      },
+      "s": {
+        "layout.h": "center",
+        "layout.v": "center"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5694,
+      "p": {
+        "displayName": "过滤分离器",
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 595.65824,
+          "y": 417.4404
+        },
+        "width": 413.60411,
+        "height": 236.08119
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5695,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 568.10466,
+          "y": 433.5154
+        },
+        "width": 358.49696,
+        "height": 50.99267
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5696,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 403.47561,
+          "y": 397.9204
+        },
+        "width": 21.6639,
+        "height": 15.03541
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5697,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 403.47561,
+          "y": 395.68517
+        },
+        "width": 21.6639,
+        "height": 10.56494
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5698,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 403.47561,
+          "y": 469.11041
+        },
+        "width": 21.6639,
+        "height": 15.03541
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5699,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 403.47561,
+          "y": 466.87517
+        },
+        "width": 21.6639,
+        "height": 10.56494
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5700,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 397.77699,
+          "y": 433.5154
+        },
+        "width": 17.84161,
+        "height": 101.35552
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5701,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 619.79409,
+          "y": 432.59084
+        },
+        "width": 357.16568,
+        "height": 178.76948
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(173,172,172)",
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 60,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(252,252,252)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5702,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 778.73615,
+          "y": 433.5154
+        },
+        "width": 47.44828,
+        "height": 203.93119
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5703,
+      "p": {
+        "parent": {
+          "__i": 5694
+        },
+        "position": {
+          "x": 644.74818,
+          "y": 321.30295
+        },
+        "width": 81.54679,
+        "height": 43.80628
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5704,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 644.74818,
+          "y": 321.30295
+        },
+        "width": 43.80628,
+        "height": 41.02676
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5705,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 673.38657,
+          "y": 311.16205
+        },
+        "width": 17.42995,
+        "height": 12.09692
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5706,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 675.18495,
+          "y": 311.16205
+        },
+        "width": 17.42995,
+        "height": 8.50015
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5707,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 616.1098,
+          "y": 311.16205
+        },
+        "width": 17.42995,
+        "height": 12.09692
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5708,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 617.90818,
+          "y": 311.16205
+        },
+        "width": 17.42995,
+        "height": 8.50015
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5709,
+      "p": {
+        "parent": {
+          "__i": 5703
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 644.74818,
+          "y": 306.57715
+        },
+        "width": 14.35468,
+        "height": 81.54679
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5710,
+      "p": {
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 1329.77167,
+          "y": 619.80444
+        },
+        "width": 384.37739,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1521.96037,
+              "y": 619.80444
+            },
+            {
+              "x": 1137.58298,
+              "y": 619.80444
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 40,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5711,
+      "p": {
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 869.26478,
+          "y": 416.87293
+        },
+        "width": 449.03319,
+        "height": 405.86301,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            4,
+            4,
+            2,
+            4,
+            4,
+            2,
+            4,
+            4,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1093.78137,
+              "y": 619.80444
+            },
+            {
+              "x": 805.84331,
+              "y": 619.80444
+            },
+            {
+              "x": 805.84331,
+              "y": 619.80444
+            },
+            {
+              "x": 766.89749,
+              "y": 619.80444
+            },
+            {
+              "x": 748.64163,
+              "y": 602.72436
+            },
+            {
+              "x": 730.38578,
+              "y": 585.64428
+            },
+            {
+              "x": 731.11638,
+              "y": 562.56148
+            },
+            {
+              "x": 731.11638,
+              "y": 562.56148
+            },
+            {
+              "x": 731.11638,
+              "y": 242.27158
+            },
+            {
+              "x": 731.11638,
+              "y": 242.27158
+            },
+            {
+              "x": 731.09903,
+              "y": 231.64331
+            },
+            {
+              "x": 722.54132,
+              "y": 223.21505
+            },
+            {
+              "x": 713.9836,
+              "y": 214.78679
+            },
+            {
+              "x": 702.13603,
+              "y": 213.94143
+            },
+            {
+              "x": 702.13603,
+              "y": 213.94143
+            },
+            {
+              "x": 674.09769,
+              "y": 213.94143
+            },
+            {
+              "x": 674.09769,
+              "y": 213.94143
+            },
+            {
+              "x": 661.11667,
+              "y": 214.36469
+            },
+            {
+              "x": 652.93242,
+              "y": 223.21505
+            },
+            {
+              "x": 644.74818,
+              "y": 232.06541
+            },
+            {
+              "x": 644.74818,
+              "y": 242.27158
+            },
+            {
+              "x": 644.74818,
+              "y": 242.27158
+            },
+            {
+              "x": 644.74818,
+              "y": 298.39832
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 40,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5712,
+      "p": {
+        "displayName": "不规则图形",
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 84.24974,
+          "y": 432.70117
+        },
+        "width": 588.42023,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 378.45985,
+              "y": 432.70117
+            },
+            {
+              "x": -209.96038,
+              "y": 432.70117
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 40,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5713,
+      "p": {
+        "displayName": "进口电动球阀",
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 1154.8312,
+          "y": 571.51002
+        },
+        "width": 130.86592,
+        "height": 181.42774
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5714,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1155.96338,
+          "y": 560.79615
+        },
+        "width": 25.7401,
+        "height": 22.42993
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5715,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1138.41644,
+          "y": 549.95888
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5716,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1137.30398,
+          "y": 549.95888
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5717,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1173.84704,
+          "y": 549.95888
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5718,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1172.73459,
+          "y": 549.95888
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5719,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1156.13174,
+          "y": 552.35889
+        },
+        "width": 7.51412,
+        "height": 50.4437
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5720,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 1155.74995,
+          "y": 537.79559
+        },
+        "width": 21.25276,
+        "height": 23.37158
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5721,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "position": {
+          "x": 1166.23721,
+          "y": 522.42714
+        },
+        "width": 44.3461,
+        "height": 11.37755
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(214,214,214)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5722,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1173.84704,
+          "y": 562.27303
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5723,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1174.95949,
+          "y": 562.27303
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5724,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1138.41644,
+          "y": 562.27303
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5725,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1139.52889,
+          "y": 562.27303
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5726,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1156.13174,
+          "y": 559.87301
+        },
+        "width": 7.51412,
+        "height": 50.4437
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5727,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "position": {
+          "x": 1154.44984,
+          "y": 616.52463
+        },
+        "width": 130.1032,
+        "height": 70.05557
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5728,
+      "p": {
+        "parent": {
+          "__i": 5713
+        },
+        "position": {
+          "x": 1155.22659,
+          "y": 616.90624
+        },
+        "width": 95.79645,
+        "height": 90.6353
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5729,
+      "p": {
+        "displayName": "进口阀",
+        "parent": {
+          "__i": 5713
+        },
+        "tag": "进口阀",
+        "image": "symbols/demo/pipeline/进口阀.json",
+        "position": {
+          "x": 1180.26416,
+          "y": 520.79615
+        },
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5730,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5693
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": 1.5708,
+        "position": {
+          "x": 643.56109,
+          "y": 286.05891
+        },
+        "width": 26.68179,
+        "height": 83.2472
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5731,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5693
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "position": {
+          "x": 372.10431,
+          "y": 435.10349
+        },
+        "width": 33.50375,
+        "height": 104.5317
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5732,
+      "p": {
+        "displayName": "进口电动球阀",
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 5.66456,
+          "y": 386.72973
+        },
+        "width": 131.95536,
+        "height": 179.79676
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5733,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 6.25201,
+          "y": 375.20037
+        },
+        "width": 25.7401,
+        "height": 22.42993
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5734,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": -11.29493,
+          "y": 364.36309
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5735,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": -12.40738,
+          "y": 364.36309
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5736,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 24.13568,
+          "y": 364.36309
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5737,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 23.02322,
+          "y": 364.36309
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5738,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 6.42038,
+          "y": 366.76311
+        },
+        "width": 7.51412,
+        "height": 50.4437
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5739,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 6.03859,
+          "y": 352.19981
+        },
+        "width": 21.25276,
+        "height": 23.37158
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5740,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "position": {
+          "x": 16.52585,
+          "y": 336.83135
+        },
+        "width": 44.3461,
+        "height": 11.37755
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(214,214,214)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5741,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 24.13568,
+          "y": 376.67725
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5742,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 25.24813,
+          "y": 376.67725
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5743,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -11.29493,
+          "y": 376.67725
+        },
+        "width": 9.12391,
+        "height": 7.48298
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5744,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -10.18247,
+          "y": 376.67725
+        },
+        "width": 9.12391,
+        "height": 5.25807
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5745,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 6.42038,
+          "y": 374.27723
+        },
+        "width": 7.51412,
+        "height": 50.4437
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5746,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "position": {
+          "x": 4.73848,
+          "y": 430.92884
+        },
+        "width": 130.1032,
+        "height": 70.05557
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5747,
+      "p": {
+        "parent": {
+          "__i": 5732
+        },
+        "position": {
+          "x": 5.51523,
+          "y": 431.31046
+        },
+        "width": 95.79645,
+        "height": 90.6353
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5748,
+      "p": {
+        "displayName": "出口阀",
+        "parent": {
+          "__i": 5732
+        },
+        "tag": "出口阀",
+        "image": "symbols/demo/pipeline/进口阀.json",
+        "position": {
+          "x": 31.64224,
+          "y": 336.83135
+        },
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5749,
+      "p": {
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 1157.4943,
+          "y": 690.61311
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "进口电动球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5750,
+      "p": {
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 4.04354,
+          "y": 509.26555
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "出口电动球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5751,
+      "p": {
+        "parent": {
+          "__i": 5693
+        },
+        "position": {
+          "x": 851.06767,
+          "y": 437.3604
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "过滤分离器",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5752,
+      "p": {
+        "displayName": "步骤1",
+        "parent": {
+          "__i": 5693
+        },
+        "tag": "步骤1",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 1521.96037,
+          "y": 552.35889
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "num": 19,
+        "说明": "关闭进口球阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5753,
+      "p": {
+        "displayName": "步骤3",
+        "parent": {
+          "__i": 5693
+        },
+        "tag": "步骤3",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": -9.77833,
+          "y": 270.33962
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 3,
+        "说明": "关闭出口球阀"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5754,
+      "p": {
+        "displayName": "放空球阀",
+        "parent": {
+          "__i": 5692
+        },
+        "host": {
+          "__i": 5692
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 396.60932,
+          "y": 645.51767
+        },
+        "width": 290.19279,
+        "height": 518.78036
+      },
+      "s": {
+        "layout.h": "center",
+        "layout.v": "center"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5755,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 537.12935,
+          "y": 557.3824
+        },
+        "width": 75.77544,
+        "height": 209.46397,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 575.01707,
+              "y": 662.11438
+            },
+            {
+              "x": 499.24163,
+              "y": 662.11418
+            },
+            {
+              "x": 499.24163,
+              "y": 452.65041
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5756,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 433.07377,
+          "y": 594.7701
+        },
+        "width": 9.61857,
+        "height": 30.00993
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5757,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 377.05872,
+          "y": 595.50596
+        },
+        "width": 1,
+        "height": 29.41445,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 377.05872,
+              "y": 610.21318
+            },
+            {
+              "x": 377.05872,
+              "y": 580.79873
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5758,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 389.94021,
+          "y": 594.41254
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5759,
+      "p": {
+        "displayName": "旁通阀前球阀",
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 400.03647,
+          "y": 595.24428
+        },
+        "width": 56.45603,
+        "height": 50.00013
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5760,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 424.77263,
+          "y": 606.0833
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5761,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 424.77263,
+          "y": 606.76233
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5762,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 424.77263,
+          "y": 584.45689
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5763,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 424.77263,
+          "y": 585.13592
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5764,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 397.92645,
+          "y": 606.0833
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5765,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 397.92645,
+          "y": 606.76233
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5766,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 397.92645,
+          "y": 584.45689
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5767,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 397.92645,
+          "y": 585.13592
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5768,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 396.80852,
+          "y": 595.2701
+        },
+        "width": 5.42,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5769,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 411.1815,
+          "y": 595.24427
+        },
+        "width": 23.32596,
+        "height": 14.6771
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5770,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 411.188,
+          "y": 595.2701
+        },
+        "width": 18.64277,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5771,
+      "p": {
+        "parent": {
+          "__i": 5759
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 425.55448,
+          "y": 595.2701
+        },
+        "width": 5.42,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5772,
+      "p": {
+        "displayName": "放空球阀后",
+        "parent": {
+          "__i": 5759
+        },
+        "tag": "放空球阀后",
+        "image": "symbols/demo/pipeline/放空球阀.json",
+        "position": {
+          "x": 411.51763,
+          "y": 595.24427
+        },
+        "anchor": {
+          "x": 0.79418,
+          "y": 0.5
+        },
+        "width": 50,
+        "height": 50
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5773,
+      "p": {
+        "displayName": "旁通阀",
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 345.77859,
+          "y": 594.90297
+        },
+        "width": 54.65387,
+        "height": 33.81844
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5774,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 357.82589,
+          "y": 606.88887
+        },
+        "width": 7.07144,
+        "height": 4.9078
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5775,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 357.82589,
+          "y": 607.61849
+        },
+        "width": 7.07144,
+        "height": 3.44857
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5776,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 357.82589,
+          "y": 583.65132
+        },
+        "width": 7.07144,
+        "height": 4.9078
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5777,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 357.82589,
+          "y": 584.38093
+        },
+        "width": 7.07144,
+        "height": 3.44857
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5778,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 322.89693,
+          "y": 606.88887
+        },
+        "width": 7.07144,
+        "height": 4.9078
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5779,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 322.89693,
+          "y": 607.61849
+        },
+        "width": 7.07144,
+        "height": 3.44857
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5780,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 322.89693,
+          "y": 583.65132
+        },
+        "width": 7.07144,
+        "height": 4.9078
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5781,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 322.89693,
+          "y": 584.38093
+        },
+        "width": 7.07144,
+        "height": 3.44857
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5782,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 340.36141,
+          "y": 595.36118
+        },
+        "width": 34.92897,
+        "height": 16.01096
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5783,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 321.36355,
+          "y": 595.2701
+        },
+        "width": 5.82379,
+        "height": 33.08406
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5784,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 340.15346,
+          "y": 594.82334
+        },
+        "width": 23.20311,
+        "height": 29.03885
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5785,
+      "p": {
+        "parent": {
+          "__i": 5773
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 359.4396,
+          "y": 595.2701
+        },
+        "width": 5.82379,
+        "height": 33.08406
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5786,
+      "p": {
+        "displayName": "放空阀",
+        "parent": {
+          "__i": 5773
+        },
+        "tag": "放空阀",
+        "image": "symbols/demo/pipeline/旁通阀.json",
+        "position": {
+          "x": 339.6548,
+          "y": 595.24428
+        },
+        "width": 29.72775,
+        "height": 29.72775
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5787,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5773
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 367.72851,
+          "y": 594.7701
+        },
+        "width": 10.75403,
+        "height": 33.55258
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5788,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 302.05223,
+          "y": 595.2701
+        },
+        "width": 1,
+        "height": 24.16416,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 302.05223,
+              "y": 607.35218
+            },
+            {
+              "x": 302.05223,
+              "y": 583.18802
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5789,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 291.91382,
+          "y": 594.7701
+        },
+        "width": 9.61857,
+        "height": 30.00993
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5790,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 214.0449,
+          "y": 595.50576
+        },
+        "width": 1,
+        "height": 73.1222,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 214.04481,
+              "y": 632.06687
+            },
+            {
+              "x": 214.045,
+              "y": 558.94466
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5791,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 248.78026,
+          "y": 594.41254
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5792,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 314.13431,
+          "y": 594.41254
+        },
+        "width": 11.96721,
+        "height": 34.19204
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5793,
+      "p": {
+        "displayName": "3",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/3.json",
+        "rotation": 1.5708,
+        "position": {
+          "x": 641.97599,
+          "y": 514.44616
+        },
+        "width": 28.04798,
+        "height": 28.04798
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5794,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5754
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 642.22487,
+          "y": 530.48917
+        },
+        "width": 7.64169,
+        "height": 23.84208
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5795,
+      "p": {
+        "displayName": "旁通阀前球阀",
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 258.87652,
+          "y": 595.24428
+        },
+        "width": 56.45604,
+        "height": 50.00013
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5796,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 283.61269,
+          "y": 606.0833
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5797,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 283.61269,
+          "y": 606.76233
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5798,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 283.61269,
+          "y": 584.45689
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5799,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 283.61269,
+          "y": 585.13592
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5800,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 256.7665,
+          "y": 606.0833
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5801,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 256.7665,
+          "y": 606.76233
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5802,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 256.7665,
+          "y": 584.45689
+        },
+        "width": 6.58116,
+        "height": 4.56752
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5803,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 256.7665,
+          "y": 585.13592
+        },
+        "width": 6.58116,
+        "height": 3.20946
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5804,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 255.64857,
+          "y": 595.2701
+        },
+        "width": 5.42,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5805,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 270.02155,
+          "y": 595.24427
+        },
+        "width": 23.32596,
+        "height": 14.6771
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5806,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 270.02805,
+          "y": 595.2701
+        },
+        "width": 18.64277,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5807,
+      "p": {
+        "displayName": "放空球阀前",
+        "parent": {
+          "__i": 5795
+        },
+        "tag": "放空球阀前",
+        "image": "symbols/demo/pipeline/放空球阀.json",
+        "position": {
+          "x": 270.32309,
+          "y": 595.24427
+        },
+        "anchor": {
+          "x": 0.79349,
+          "y": 0.5
+        },
+        "width": 50,
+        "height": 50
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5808,
+      "p": {
+        "parent": {
+          "__i": 5795
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 284.39454,
+          "y": 595.2701
+        },
+        "width": 5.42,
+        "height": 30.79022
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5809,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "position": {
+          "x": 269.33537,
+          "y": 637.86561
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "放空球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5810,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": 6.28319,
+        "position": {
+          "x": 409.15762,
+          "y": 637.86561
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "放空球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5811,
+      "p": {
+        "parent": {
+          "__i": 5754
+        },
+        "rotation": 6.28319,
+        "position": {
+          "x": 341.52747,
+          "y": 546.18621
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "节流截止放空阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5812,
+      "p": {
+        "displayName": "步骤4",
+        "parent": {
+          "__i": 5754
+        },
+        "tag": "步骤4",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 416.00172,
+          "y": 740.61311
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 4,
+        "说明": "打开放空球阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5813,
+      "p": {
+        "displayName": "步骤5",
+        "parent": {
+          "__i": 5754
+        },
+        "tag": "步骤5",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 337.21897,
+          "y": 740.61311
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 5,
+        "说明": "缓慢打开节流截止放空阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5814,
+      "p": {
+        "displayName": "步骤7",
+        "parent": {
+          "__i": 5754
+        },
+        "tag": "步骤7",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 360.69012,
+          "y": 740.61311
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 7,
+        "说明": "关闭放空阀和放空球阀"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5815,
+      "p": {
+        "displayName": "排污",
+        "parent": {
+          "__i": 5692
+        },
+        "host": {
+          "__i": 5692
+        },
+        "rotation": 3.14159,
+        "position": {
+          "x": 448.88408,
+          "y": 191.91315
+        },
+        "width": 982.53425,
+        "height": 344.90056
+      },
+      "s": {
+        "layout.h": "center",
+        "layout.v": "center"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5816,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 468.25711,
+          "y": 304.26478
+        },
+        "width": 1,
+        "height": 69.86679,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 468.25711,
+              "y": 339.19817
+            },
+            {
+              "x": 468.25711,
+              "y": 269.33138
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5817,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 468.25711,
+          "y": 247.57064
+        },
+        "width": 1,
+        "height": 69.86679,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 468.25711,
+              "y": 282.50404
+            },
+            {
+              "x": 468.25711,
+              "y": 212.63725
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5818,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 486.83994,
+          "y": 197.73009
+        },
+        "width": 123.93868,
+        "height": 22.38415,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 548.80928,
+              "y": 208.92217
+            },
+            {
+              "x": 548.80928,
+              "y": 186.53802
+            },
+            {
+              "x": 467.4875,
+              "y": 186.53802
+            },
+            {
+              "x": 424.8706,
+              "y": 186.53802
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5819,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 468.93766,
+          "y": 281.79423
+        },
+        "width": 9.61857,
+        "height": 30.00993
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5820,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 548.80928,
+          "y": 304.26478
+        },
+        "width": 1,
+        "height": 69.86679,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 548.80928,
+              "y": 339.19817
+            },
+            {
+              "x": 548.80928,
+              "y": 269.33138
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5821,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 548.80928,
+          "y": 247.57064
+        },
+        "width": 1,
+        "height": 69.86679,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 548.80928,
+              "y": 282.50404
+            },
+            {
+              "x": 548.80928,
+              "y": 212.63725
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5822,
+      "p": {
+        "displayName": "排污球阀",
+        "parent": {
+          "__i": 5815
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 441.93377,
+          "y": 270.971
+        },
+        "width": 80.00021,
+        "height": 80.00021
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5823,
+      "p": {
+        "parent": {
+          "__i": 5822
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 467.86655,
+          "y": 254.45272
+        },
+        "width": 22.74145,
+        "height": 25.00868
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5824,
+      "p": {
+        "parent": {
+          "__i": 5822
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 456.64469,
+          "y": 270.89769
+        },
+        "width": 47.4524,
+        "height": 12.17452
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(214,214,214)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5825,
+      "p": {
+        "displayName": "排污球阀前",
+        "parent": {
+          "__i": 5822
+        },
+        "tag": "排污球阀前",
+        "image": "symbols/demo/pipeline/进口阀.json",
+        "position": {
+          "x": 441.93377,
+          "y": 270.971
+        },
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5826,
+      "p": {
+        "displayName": "3",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/3.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 468.25711,
+          "y": 350.33905
+        },
+        "width": 28.04798,
+        "height": 28.04798
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5827,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 468.89749,
+          "y": 334.9027
+        },
+        "width": 8.59096,
+        "height": 24.54559
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5828,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 469.35053,
+          "y": 240.22596
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5829,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 549.48982,
+          "y": 281.79423
+        },
+        "width": 9.61857,
+        "height": 30.00993
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5830,
+      "p": {
+        "displayName": "排污球阀",
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 575.69962,
+          "y": 270.09293
+        },
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5831,
+      "p": {
+        "parent": {
+          "__i": 5830
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 549.72335,
+          "y": 255.58632
+        },
+        "width": 22.74145,
+        "height": 25.00868
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5832,
+      "p": {
+        "parent": {
+          "__i": 5830
+        },
+        "position": {
+          "x": 560.69012,
+          "y": 270.63625
+        },
+        "width": 47.4524,
+        "height": 12.17452
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(214,214,214)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5833,
+      "p": {
+        "displayName": "排污球阀后",
+        "parent": {
+          "__i": 5830
+        },
+        "tag": "排污球阀后",
+        "image": "symbols/demo/pipeline/进口阀.json",
+        "position": {
+          "x": 575.69962,
+          "y": 270.09293
+        },
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5834,
+      "p": {
+        "displayName": "3",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/3.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 548.80928,
+          "y": 350.33905
+        },
+        "width": 28.04798,
+        "height": 28.04798
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5835,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 549.44966,
+          "y": 334.9027
+        },
+        "width": 8.59096,
+        "height": 24.54559
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5836,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 549.9027,
+          "y": 240.22596
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5837,
+      "p": {
+        "displayName": "4",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/4.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 468.89749,
+          "y": 198.61291
+        },
+        "width": 24.14981,
+        "height": 24.14981
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5838,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 468.45794,
+          "y": 212.41724
+        },
+        "width": 6.60204,
+        "height": 20.59837
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5839,
+      "p": {
+        "displayName": "4 2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/4 2.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 549.30928,
+          "y": 198.59754
+        },
+        "width": 24.18055,
+        "height": 24.18055
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5840,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "rotation": -1.57079,
+        "position": {
+          "x": 548.86972,
+          "y": 212.41724
+        },
+        "width": 6.60204,
+        "height": 20.59837
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5841,
+      "p": {
+        "displayName": "排污阀",
+        "parent": {
+          "__i": 5815
+        },
+        "rotation": 3.14159,
+        "position": {
+          "x": 384,
+          "y": 185.33962
+        },
+        "width": 77.54271,
+        "height": 70
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5842,
+      "p": {
+        "parent": {
+          "__i": 5841
+        },
+        "position": {
+          "x": 384,
+          "y": 186.22882
+        },
+        "width": 77.54263,
+        "height": 27.23223
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.corner.radius": 2,
+        "opacity": 1,
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5843,
+      "p": {
+        "parent": {
+          "__i": 5841
+        },
+        "position": {
+          "x": 384.23078,
+          "y": 185.48585
+        },
+        "width": 63.54188,
+        "height": 60.46479
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.corner.radius": 2,
+        "opacity": 1,
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5844,
+      "p": {
+        "displayName": "排污阀",
+        "parent": {
+          "__i": 5841
+        },
+        "tag": "排污阀",
+        "image": "symbols/demo/pipeline/排污阀.json",
+        "position": {
+          "x": 383.68253,
+          "y": 185.33962
+        },
+        "width": 70,
+        "height": 70
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5845,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "position": {
+          "x": 424.8706,
+          "y": 187.25019
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5846,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 264.81188,
+          "y": 186.53796
+        },
+        "width": 159.8581,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 344.74093,
+              "y": 186.53817
+            },
+            {
+              "x": 303.19272,
+              "y": 186.53817
+            },
+            {
+              "x": 209.90518,
+              "y": 186.53792
+            },
+            {
+              "x": 184.88282,
+              "y": 186.53775
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5847,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "rotation": -3.14159,
+        "position": {
+          "x": 342.07016,
+          "y": 185.46226
+        },
+        "width": 10.75376,
+        "height": 30.72504
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5848,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 319.90683
+        },
+        "width": 64.51782,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 475.63304,
+              "y": 319.90683
+            },
+            {
+              "x": 540.15086,
+              "y": 319.90683
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 12,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5849,
+      "p": {
+        "displayName": "4",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/4.json",
+        "position": {
+          "x": 507.38832,
+          "y": 308.26355
+        },
+        "width": 24.49457,
+        "height": 24.49457
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5850,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 507.73642,
+          "y": 289.42091
+        },
+        "width": 13.66844,
+        "height": 6.724
+      },
+      "s": {
+        "shape": "roundRect",
+        "opacity": 1,
+        "shape.background": "rgb(199,197,197)",
+        "shape.border.width": 0.2,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "spread.horizontal",
+        "shape.gradient.color": "rgb(255,255,255)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5851,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 294.30007
+        },
+        "width": 20.84972,
+        "height": 6.13273
+      },
+      "s": {
+        "shape": "roundRect",
+        "opacity": 1,
+        "shape.background": "rgb(199,197,197)",
+        "shape.border.width": 0.2,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "spread.horizontal",
+        "shape.gradient.color": "rgb(255,255,255)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5852,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 210.11615
+        },
+        "width": 20.84972,
+        "height": 152.89796
+      },
+      "s": {
+        "shape": "roundRect",
+        "opacity": 1,
+        "shape.background": "rgb(199,197,197)",
+        "shape.border.width": 0.6,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.gradient": "spread.horizontal",
+        "shape.gradient.color": "rgb(255,255,255)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5853,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 209.11615
+        },
+        "width": 8.22547,
+        "height": 131.10567
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5854,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 209.11615
+        },
+        "width": 8.22547,
+        "height": 131.10567
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(255,255,255)",
+        "shape.border.width": 0.4,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5855,
+      "p": {
+        "displayName": "液位",
+        "parent": {
+          "__i": 5853
+        },
+        "tag": "液位",
+        "position": {
+          "x": 507.89195,
+          "y": 192.21463
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": "rgb(255,0,0)",
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5856,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 148.76591
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5857,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 155.45741
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5858,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 162.14891
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5859,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 168.84041
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5860,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 175.53191
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5861,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 182.22341
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5862,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 188.91491
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5863,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 202.29791
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5864,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 208.9894
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5865,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 215.6809
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5866,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 222.3724
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5867,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 229.0639
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5868,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 235.7554
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5869,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 242.4469
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5870,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 249.1384
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5871,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 255.8299
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5872,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 262.5214
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5873,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 269.2129
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5874,
+      "p": {
+        "parent": {
+          "__i": 5853
+        },
+        "position": {
+          "x": 507.89195,
+          "y": 195.62322
+        },
+        "width": 8.22547,
+        "height": 3.29972
+      },
+      "s": {
+        "shape": "rect",
+        "opacity": 1,
+        "shape.background": null,
+        "shape.border.width": 0.3,
+        "shape.border.color": "rgb(3,3,3)",
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5875,
+      "p": {
+        "displayName": "4",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/4.json",
+        "rotation": 1.5708,
+        "position": {
+          "x": 480.00448,
+          "y": 319.03617
+        },
+        "width": 24.49457,
+        "height": 24.49457
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5876,
+      "p": {
+        "displayName": "4",
+        "parent": {
+          "__i": 5815
+        },
+        "image": "symbols/demo/pipeline/4.json",
+        "rotation": -1.5708,
+        "position": {
+          "x": 537.06207,
+          "y": 320.51084
+        },
+        "width": 24.49457,
+        "height": 24.49457
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5877,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 383.86255,
+          "y": 119.46357
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "排污阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5878,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 357.69583,
+          "y": 272.91718
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "排污球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "13px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5879,
+      "p": {
+        "parent": {
+          "__i": 5815
+        },
+        "position": {
+          "x": 595.81104,
+          "y": 216.29952
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "排污球阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "13px Arial",
+        "text.align": "center",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5880,
+      "p": {
+        "displayName": "排污中",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "排污中",
+        "position": {
+          "x": 7.61701,
+          "y": 188.94143
+        }
+      },
+      "s": {
+        "text": "排污中······",
+        "text.font": "35px Arial",
+        "text.color": "rgb(0,255,225)",
+        "opacity": 1,
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5881,
+      "p": {
+        "displayName": "释压中",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "释压中",
+        "position": {
+          "x": 7.61701,
+          "y": 188.94143
+        }
+      },
+      "s": {
+        "text": "释压中······",
+        "text.font": "35px Arial",
+        "text.color": "rgb(0,255,225)",
+        "opacity": 1,
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5882,
+      "p": {
+        "displayName": "充压中",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "充压中",
+        "position": {
+          "x": 7.61701,
+          "y": 188.94143
+        }
+      },
+      "s": {
+        "text": "充压中······",
+        "text.font": "35px Arial",
+        "text.color": "rgb(0,255,225)",
+        "opacity": 1,
+        "2d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5883,
+      "p": {
+        "displayName": "步骤8",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "步骤8",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 740.15086,
+          "y": 113.79877
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 8,
+        "说明": "打开排污球阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5884,
+      "p": {
+        "displayName": "步骤9",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "步骤9",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 384.23078,
+          "y": 69.46357
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 9,
+        "说明": "缓慢打开排污阀 进行排污"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5885,
+      "p": {
+        "displayName": "步骤10",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "步骤10",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 503.77922,
+          "y": 69.46357
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 10,
+        "说明": "关闭排污阀和排污球阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5886,
+      "p": {
+        "displayName": "步骤11",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "步骤11",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 421.80863,
+          "y": 69.46357
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 11,
+        "说明": "打开排污阀释放压力"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5887,
+      "p": {
+        "displayName": "步骤12",
+        "parent": {
+          "__i": 5815
+        },
+        "tag": "步骤12",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 469.35053,
+          "y": 69.46357
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 12,
+        "说明": "关闭排污阀"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5888,
+      "p": {
+        "displayName": "压力表",
+        "parent": {
+          "__i": 5692
+        },
+        "host": {
+          "__i": 5692
+        },
+        "position": {
+          "x": 1309.28065,
+          "y": 384.70743
+        },
+        "width": 825.35944,
+        "height": 458.90795
+      },
+      "s": {
+        "layout.h": "center",
+        "layout.v": "center",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 5889,
+      "p": {
+        "parent": {
+          "__i": 5888
+        },
+        "position": {
+          "x": 1102.70741,
+          "y": 500.42216
+        },
+        "width": 380.22609,
+        "height": 160.35234,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            4,
+            4,
+            2,
+            4,
+            4,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1292.82045,
+              "y": 580.59832
+            },
+            {
+              "x": 1292.82045,
+              "y": 447.3932
+            },
+            {
+              "x": 1292.82045,
+              "y": 447.3932
+            },
+            {
+              "x": 1291.89296,
+              "y": 433.90067
+            },
+            {
+              "x": 1283.77344,
+              "y": 427.19161
+            },
+            {
+              "x": 1275.65391,
+              "y": 420.48256
+            },
+            {
+              "x": 1260.34236,
+              "y": 420.557
+            },
+            {
+              "x": 1260.34236,
+              "y": 420.557
+            },
+            {
+              "x": 943.76228,
+              "y": 420.557
+            },
+            {
+              "x": 943.76228,
+              "y": 420.557
+            },
+            {
+              "x": 928.43299,
+              "y": 420.24599
+            },
+            {
+              "x": 920.64101,
+              "y": 427.19161
+            },
+            {
+              "x": 912.84903,
+              "y": 434.13724
+            },
+            {
+              "x": 912.59436,
+              "y": 448.33951
+            },
+            {
+              "x": 912.59436,
+              "y": 448.33951
+            },
+            {
+              "x": 912.59436,
+              "y": 580.59832
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(184,156,0)",
+        "shape.border.width": 18,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(255,244,143)",
+        "border.color": null
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 5890,
+      "p": {
+        "displayName": "旁通阀",
+        "parent": {
+          "__i": 5888
+        },
+        "position": {
+          "x": 1163.65387,
+          "y": 420.557
+        },
+        "width": 74.95165,
+        "height": 56.48551
+      },
+      "s": {
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5891,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1133.90477,
+          "y": 400.71987
+        },
+        "width": 12.07331,
+        "height": 8.37924
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5892,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1133.90477,
+          "y": 399.47418
+        },
+        "width": 12.07331,
+        "height": 5.88785
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5893,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1133.90477,
+          "y": 440.39412
+        },
+        "width": 12.07331,
+        "height": 8.37924
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5894,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1133.90477,
+          "y": 439.14842
+        },
+        "width": 12.07331,
+        "height": 5.88785
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5895,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1193.54015,
+          "y": 400.71987
+        },
+        "width": 12.07331,
+        "height": 8.37924
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5896,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1193.54015,
+          "y": 399.47418
+        },
+        "width": 12.07331,
+        "height": 5.88785
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5897,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1193.54015,
+          "y": 440.39412
+        },
+        "width": 12.07331,
+        "height": 8.37924
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(207,207,207)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5898,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1193.54015,
+          "y": 439.14842
+        },
+        "width": 12.07331,
+        "height": 5.88785
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(135,135,135)",
+        "shape.border.color": "#979797"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5899,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1163.72246,
+          "y": 420.40149
+        },
+        "width": 59.63538,
+        "height": 27.33605
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5900,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1196.15813,
+          "y": 420.557
+        },
+        "width": 9.94314,
+        "height": 56.48551
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5901,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1164.07749,
+          "y": 421.31975
+        },
+        "width": 39.61545,
+        "height": 49.579
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5902,
+      "p": {
+        "parent": {
+          "__i": 5890
+        },
+        "position": {
+          "x": 1131.14962,
+          "y": 420.557
+        },
+        "width": 9.94314,
+        "height": 56.48551
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgb(156,156,156)",
+        "shape.border.width": 0.5,
+        "shape.border.color": "rgb(0,0,0)",
+        "shape.corner.radius": 2,
+        "shape.gradient": "spread.vertical",
+        "shape.gradient.color": "rgb(255,255,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5903,
+      "p": {
+        "displayName": "旁通阀",
+        "parent": {
+          "__i": 5890
+        },
+        "tag": "旁通阀",
+        "image": "symbols/demo/pipeline/旁通阀.json",
+        "position": {
+          "x": 1164.61109,
+          "y": 420.40149
+        },
+        "width": 50,
+        "height": 50
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5904,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 5888
+        },
+        "image": "symbols/demo/pipeline/1.json",
+        "position": {
+          "x": 1116.76092,
+          "y": 421.31975
+        },
+        "width": 18.49207,
+        "height": 57.69526
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5905,
+      "p": {
+        "displayName": "未命名",
+        "parent": {
+          "__i": 5888
+        },
+        "image": "symbols/demo/pipeline/未命名.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": 913.46637,
+          "y": 594.31972
+        },
+        "width": 39.68334,
+        "height": 33.73084
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5906,
+      "p": {
+        "displayName": "2",
+        "parent": {
+          "__i": 5888
+        },
+        "image": "symbols/demo/pipeline/2.json",
+        "position": {
+          "x": 1209.11107,
+          "y": 422.00103
+        },
+        "width": 20.78075,
+        "height": 59.37357
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5907,
+      "p": {
+        "displayName": "未命名",
+        "parent": {
+          "__i": 5888
+        },
+        "image": "symbols/demo/pipeline/未命名.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": 1293.388,
+          "y": 594.31972
+        },
+        "width": 39.68334,
+        "height": 33.73084
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5908,
+      "p": {
+        "displayName": "未命名",
+        "parent": {
+          "__i": 5888
+        },
+        "image": "symbols/demo/pipeline/未命名.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": 997.44728,
+          "y": 403.83191
+        },
+        "width": 39.68334,
+        "height": 33.73084
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5909,
+      "p": {
+        "displayName": "Analog gauge",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "开始",
+        "image": "symbols/demo/pipeline/Analog gauge.json",
+        "position": {
+          "x": 997.44728,
+          "y": 339.7823
+        },
+        "width": 85.93565,
+        "height": 99.20844
+      },
+      "s": {
+        "interactive": true,
+        "onDown": "__ht__function(event, data, view) {\nconsole.log('go')\n}"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5910,
+      "p": {
+        "parent": {
+          "__i": 5888
+        },
+        "position": {
+          "x": 1165.34219,
+          "y": 353.76488
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "旁通阀",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 5911,
+      "p": {
+        "parent": {
+          "__i": 5888
+        },
+        "position": {
+          "x": 997.44728,
+          "y": 259.03106
+        },
+        "width": 62.63249,
+        "height": 27.3736
+      },
+      "s": {
+        "text": "压力表",
+        "text.color": "rgb(0,212,255)",
+        "text.font": "18px Arial",
+        "text.shadow": true,
+        "text.shadow.color": "rgb(0,115,255)",
+        "text.shadow.offset.x": 0,
+        "text.shadow.offset.y": 0,
+        "text.shadow.blur": 9
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5912,
+      "p": {
+        "displayName": "压力面板",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "压力面板",
+        "image": "symbols/demo/pipeline/弹窗.json",
+        "position": {
+          "x": 1103.42719,
+          "y": 260.71555
+        },
+        "width": 100,
+        "height": 33
+      },
+      "s": {
+        "2d.visible": false,
+        "opacity": 1
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5913,
+      "p": {
+        "displayName": "步骤2",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "步骤2",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 1521.96037,
+          "y": 446.10925
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 2,
+        "说明": "关闭旁通阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5914,
+      "p": {
+        "displayName": "步骤6",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "步骤6",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 1163.65387,
+          "y": 205.25346
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 6,
+        "说明": "观察压力表降至1MPa以下"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5915,
+      "p": {
+        "displayName": "步骤13",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "步骤13",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 1521.96037,
+          "y": 445.40149
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 13,
+        "说明": "打开旁通阀充压"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5916,
+      "p": {
+        "displayName": "步骤14",
+        "parent": {
+          "__i": 5888
+        },
+        "tag": "步骤14",
+        "image": "symbols/demo/pipeline/步骤.json",
+        "position": {
+          "x": 1521.96037,
+          "y": 446.10925
+        },
+        "width": 400,
+        "height": 100
+      },
+      "s": {
+        "opacity": 0,
+        "2d.selectable": false
+      },
+      "a": {
+        "顺序": 14,
+        "说明": "关闭旁通阀"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5917,
+      "p": {
+        "displayName": "开始按钮",
+        "parent": {
+          "__i": 5692
+        },
+        "tag": "开始按钮",
+        "dataBindings": {
+          "s": {}
+        },
+        "image": "symbols/demo/pipeline/开始按钮.json",
+        "position": {
+          "x": 1471.96037,
+          "y": 137.26505
+        }
+      },
+      "s": {
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer'\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default'\n}",
+        "onDown": "__ht__function(event, data, view) {\n// 隐藏开始按钮\r\nht.Default.startAnim({\r\n    duration: 1000,\r\n    action: function (v, t) {\r\n        data.s('opacity', data.s('opacity') + (0 - data.s('opacity')) * v)\r\n    }\r\n})\r\n// 开始动画演示\r\ndata.a('star')()\n}",
+        "opacity": 1
+      }
+    }
+  ],
+  "modified": "Thu Jan 10 2019 14:49:47 GMT+0800 (China Standard Time)",
+  "contentRect": {
+    "x": -230.96037,
+    "y": -42.77589,
+    "width": 1952.92074,
+    "height": 895.62788
+  }
+}

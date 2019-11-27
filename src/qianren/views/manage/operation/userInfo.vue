@@ -225,6 +225,7 @@ export default {
          * @param 选中的节点
          */
         clickNode(node){
+            console.log(node);
             this.currentNode = node
             this.$refs.table.queryData()
         },

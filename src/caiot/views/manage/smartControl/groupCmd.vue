@@ -17,12 +17,12 @@
                 </el-form-item>
                 <el-form-item label="指令等级" prop="GroupLevel" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.GroupLevel" filterable placeholder="请选择">
-                    <el-option v-for="item in groupLevelList" :key="item.id" :label="item.label"  :value="item.id"></el-option>
+                    <el-option v-for="(item,key) in groupLevelMap" :key="key" :label="item"  :value="key"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="指令模式" prop="GroupMode" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.GroupMode" filterable placeholder="请选择">
-                    <el-option v-for="item in groupModeList" :key="item.id" :label="item.label"  :value="item.id"></el-option>
+                    <el-option v-for="(item,key) in groupModeMap" :key="key" :label="item"  :value="key"></el-option>
                   </el-select>
                 </el-form-item>
             </el-form>
@@ -98,6 +98,15 @@
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Control,system} from '@/caiot/request/api.js';
 import {treeTransfer} from '@/caiot/zw-components/index.js';
+const groupLevelMap = {
+    '1':'一级',
+    '2':'二级'
+}
+const groupModeMap = {
+    '1':'指令',
+    '2':'指令集',
+    '3':'遥调'
+}
 export default {
     mixins:[table],
     data(){
@@ -127,10 +136,12 @@ export default {
                 {
                     prop: 'GroupLevel',
                     label: '指令等级',
+                    formatter:row =>  groupLevelMap[row.GroupLevel]||''
                 },
                 {
                     prop: 'GroupMode',
                     label: '指令模式',
+                    formatter:row =>  groupModeMap[row.GroupMode]||''
                 },
             ],
             type:0,
@@ -146,23 +157,8 @@ export default {
             },
             title:'新增',
             show:false,
-            groupLevelList:[{
-                id:1,
-                label:"一级"
-            },{
-                id:2,
-                label:"二级"
-            }],
-            groupModeList:[{
-                id:1,
-                label:"指令"
-            },{
-                id:2,
-                label:"指令集"
-            },{
-                id:3,
-                label:"遥调"
-            }], 
+            groupLevelMap:groupLevelMap,
+            groupModeMap:groupModeMap,
             LDasList:[], //网关列表
             show1:false,
             allCmd:[], //所有指令
@@ -268,7 +264,6 @@ export default {
                         })
                     }
                 })
-                console.log(this.allCmd);
                 this.defaultCheck = data.map(item => {
                     if(item.GroupFlag){
                         return '1-'+item.Cmd_1
@@ -361,7 +356,8 @@ export default {
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
-            console.log(this.addInfo);
+            this.addInfo.GroupLevel = this.addInfo.GroupLevel.toString()
+            this.addInfo.GroupMode = this.addInfo.GroupMode.toString()
         },
         /**
          * 新增/修改

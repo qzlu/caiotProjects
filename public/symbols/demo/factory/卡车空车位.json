@@ -1,0 +1,34 @@
+{
+  "background": "rgb(61,61,61)",
+  "width": 120,
+  "height": 100,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(18,18,28)",
+      "borderWidth": 1,
+      "borderColor": "#FEB64D",
+      "borderJoin": "bevel",
+      "dash": true,
+      "dashPattern": [
+        8,
+        8
+      ],
+      "fillRule": "evenodd",
+      "points": [
+        42.87654,
+        82.00968,
+        115.43808,
+        40.09672,
+        77.13911,
+        17.99032,
+        4.56192,
+        59.88765,
+        42.87654,
+        82.00968,
+        42.87654,
+        82.00968
+      ]
+    }
+  ]
+}

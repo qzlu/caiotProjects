@@ -1,0 +1,2304 @@
+{
+  "v": "7.0.2",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 4668,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 123.59199
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4669,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4670,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 302.82778
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4671,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 401.11837
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4672,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 483.7155
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4673,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 566.31264
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4674,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 432.62607,
+          "y": 648.90977
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4675,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 362.53046,
+          "y": 124.54816
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4676,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 362.53046,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4677,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 362.53046,
+          "y": 302.82778
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4678,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 362.53046,
+          "y": 401.11837
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4679,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 355.93323,
+          "y": 561.35681
+        },
+        "anchor": {
+          "x": 0.42,
+          "y": 1.44
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4680,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 355.93323,
+          "y": 660.47337
+        },
+        "anchor": {
+          "x": 0.42,
+          "y": 1.44
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4681,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 355.93323,
+          "y": 743.0705
+        },
+        "anchor": {
+          "x": 0.42,
+          "y": 1.44
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4682,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 123.59199
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4683,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4684,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 288.78626
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4685,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 401.11837
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4686,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 483.7155
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4687,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 566.31264
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4688,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 529.11061,
+          "y": 656.34351
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4689,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 114.50631
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4690,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4691,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 288.78626
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4692,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 385.42491
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4693,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 483.7155
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4694,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 600.17746
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4695,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 665.4292
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4696,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 114.50631
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4697,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4698,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 288.78626
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4699,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 385.42491
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4700,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 483.7155
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4701,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 573.74638
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4702,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 665.4292
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4703,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 114.50631
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4704,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4705,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 288.78626
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4706,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 385.42491
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4707,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 491.14924
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4708,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 590.79023
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4709,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 665.4292
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4710,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 124.54816
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4711,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 207.1453
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4712,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 302.82778
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4713,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 408.55211
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4714,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 508.1931
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4715,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 615.04495
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4716,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 124.54816
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4717,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 228.6569
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4718,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 311.25403
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4719,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 330.08483
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4720,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 442.41693
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4721,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 648.90977
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4722,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.5103,
+          "y": 558.87889
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4723,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 124.54816
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4724,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 424.82676
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4725,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 509.32061
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4726,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 600.17746
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4727,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 697.64208
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4728,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4729,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 207.1453
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4730,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1069.46569,
+          "y": 330.75578
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.55812
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4731,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 426.72348
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4732,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 573.74638
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4733,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 673.38737
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 11281,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 123.59199
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 11550,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 220.23064
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 11755,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 302.82778
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 11963,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 401.11837
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 12244,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 491.14924
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 12529,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 590.79023
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 12674,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 682.7746
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 12894,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 124.54816
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13265,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 220.23064
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13416,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 311.25403
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13569,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 412.68197
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 13801,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 412.29736
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 14738,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 507.80849
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 15055,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 614.66034
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 15296,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 707.11237
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 16512,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 206.18913
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 16923,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 53.81529,
+          "y": 790.0941
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 17090,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 122.44755,
+          "y": 780.62382
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 17259,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 186.89428,
+          "y": 780.62382
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 17430,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 268.97571,
+          "y": 697.64208
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 17775,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 330.71087,
+          "y": 857.88052
+        },
+        "anchor": {
+          "x": 0.42,
+          "y": 1.44
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18037,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 262.37848,
+          "y": 858.64972
+        },
+        "anchor": {
+          "x": 0.42,
+          "y": 1.44
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18302,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 420.15751,
+          "y": 781.39302
+        },
+        "width": 83.2334,
+        "height": 83.36634
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 19549,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 503.00692,
+          "y": 780.23921
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22430,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 611.57603,
+          "y": 780.23921
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22613,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22890,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 23356,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 23639,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 24115,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 206.18913
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 24500,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 318.52123
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 24792,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 424.82676
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 24989,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 500.23493
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 25386,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 573.74638
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 25887,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 665.4292
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 26292,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 207.1453
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 26599,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 311.25403
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 26806,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 401.11837
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 27119,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 491.14924
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 27435,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 590.79023
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 27860,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 665.4292
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 28075,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 207.1453
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 28400,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 325.95523
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 28619,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 417.63779
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 29060,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 509.32061
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 29505,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 607.6112
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 29954,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 682.7746
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 30294,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 114.50631
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 30409,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 207.14529
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 30870,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 318.52123
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 31103,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 426.72348
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 31338,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 517.58033
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 31575,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 607.6112
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 31814,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 697.64208
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 32055,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 711.35918,
+          "y": 755.9845
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 32661,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 818.56423,
+          "y": 740.09445
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 32906,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 933.00603,
+          "y": 740.09445
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 33276,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 673.38737
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 33401,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1067.37056,
+          "y": 765.37173
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 33652,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1177.86849,
+          "y": 765.37173
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 33905,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1288.36643,
+          "y": 765.37173
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 34160,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1370.83185,
+          "y": 755.9845
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 34545,
+      "p": {
+        "displayName": "冷水机",
+        "image": "symbols/中物/冷水机.json",
+        "position": {
+          "x": 1468.11807,
+          "y": 765.37173
+        },
+        "anchor": {
+          "x": 0.47459,
+          "y": 0.5
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 35062,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 123.59199
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36103,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 243.3581
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36497,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 344.12634
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36762,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 458.93636
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 37295,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 573.74638
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 37564,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 665.8138
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 37970,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1608.48015,
+          "y": 780.23921
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 38243,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 780.23921
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 38518,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 665.4292
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 38795,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 566.31264
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 39074,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 458.93636
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 39355,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 330.08483
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 39638,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 228.6569
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 39923,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1704.41652,
+          "y": 114.50631
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 40639,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 114.50631
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 41072,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 207.1453
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 41508,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 335.04066
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 41801,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 453.98053
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 42537,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 550.61918
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 42982,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 682.7746
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 43281,
+      "p": {
+        "displayName": "仪表",
+        "image": "symbols/中物/仪表.json",
+        "position": {
+          "x": 1812.44923,
+          "y": 781.77762
+        },
+        "width": 82.46542,
+        "height": 82.59713
+      }
+    }
+  ],
+  "modified": "Wed Nov 13 2019 13:40:27 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": 12.58258,
+    "y": 73.20774,
+    "width": 1841.09936,
+    "height": 758.18493
+  }
+}

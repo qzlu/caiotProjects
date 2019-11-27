@@ -1,0 +1,48 @@
+{
+  "dataBindings": [
+    {
+      "attr": "totalName",
+      "valueType": "String",
+      "name": "总计数据名字",
+      "description": "总计数据名字"
+    },
+    {
+      "attr": "totalNum",
+      "valueType": "Number",
+      "name": "总计数据",
+      "description": "总计数量"
+    },
+    {
+      "attr": "totalUnit",
+      "valueType": "String",
+      "name": "总计单位",
+      "description": "总计单位"
+    }
+  ],
+  "width": 100,
+  "height": 40,
+  "comps": [
+    {
+      "type": "components/immigrationProject/fourStatistics.json",
+      "displayName": "fourStatistics",
+      "rect": [
+        0,
+        0,
+        100,
+        40
+      ],
+      "totalName": {
+        "func": "attr@totalName",
+        "value": "生产安置人口"
+      },
+      "totalNum": {
+        "func": "attr@totalNum",
+        "value": 8729
+      },
+      "totalUnit": {
+        "func": "attr@totalUnit",
+        "value": "㎡"
+      }
+    }
+  ]
+}

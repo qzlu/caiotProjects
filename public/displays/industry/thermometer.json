@@ -1,0 +1,1443 @@
+{
+  "v": "6.2.6",
+  "p": {
+    "layers": [
+      {
+        "name": "background",
+        "visible": true,
+        "selectable": false,
+        "movable": false,
+        "editable": false
+      },
+      {
+        "name": "state",
+        "visible": true,
+        "selectable": true,
+        "movable": true,
+        "editable": true
+      }
+    ],
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "connectActionType": null,
+    "rotateAsClock": false,
+    "width": 650,
+    "height": 450,
+    "previewURL": "display-thermometer.html"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 3211,
+      "p": {
+        "displayName": "背景",
+        "layer": "background",
+        "position": {
+          "x": 325,
+          "y": 225
+        },
+        "width": 650,
+        "height": 450
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgb(89,89,89)",
+        "shape.border.color": "#979797",
+        "shape.gradient.color": "rgb(90,204,230)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3212,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 343.56204,
+          "y": 124.83748
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 60,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3213,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 325,
+          "y": 35.85017
+        },
+        "width": 266.72454
+      },
+      "s": {
+        "text": "Thermometer State",
+        "text.align": "center",
+        "text.color": "rgb(179,179,179)",
+        "text.font": "30px arial, sans-serif",
+        "text.shadow.color": "rgb(158,240,223)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3214,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 394.12128,
+          "y": 125
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -30,
+        "tempMin": -30,
+        "tempMax": 60,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3215,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 443.56204,
+          "y": 124.83748
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempMax": 90,
+        "tempNumber": 34,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3216,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 495.48579,
+          "y": 124.83748
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 34,
+        "tempMin": 0,
+        "tempMax": 90,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3217,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 39.68365,
+          "y": 124.83748
+        },
+        "width": 65.7765
+      },
+      "s": {
+        "text": "普通模式",
+        "text.color": "rgb(179,179,179)",
+        "text.align": "center"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3218,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 43.08135,
+          "y": 204.73295
+        },
+        "width": 72.5719
+      },
+      "s": {
+        "text": "严格模式",
+        "text.color": "rgb(179,179,179)",
+        "text.align": "center"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3219,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 43.08135,
+          "y": 284.50288
+        },
+        "width": 72.5719
+      },
+      "s": {
+        "text": "警告模式",
+        "text.align": "center",
+        "text.color": "rgb(179,179,179)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3220,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 43.08135,
+          "y": 364.43714
+        },
+        "width": 72.5719
+      },
+      "s": {
+        "text": "大图标模式",
+        "text.align": "center",
+        "text.color": "rgb(179,179,179)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3221,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 421.8839,
+          "y": 99.83748
+        },
+        "width": 103.04224,
+        "height": 25
+      },
+      "s": {
+        "text": "上下限可调，温度按比例",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3222,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 206.02318,
+          "y": 100
+        },
+        "width": 138.75889,
+        "height": 25
+      },
+      "s": {
+        "text": "高容错，上下限温度随意调整不爆表",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3223,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 125.80526,
+          "y": 125
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3224,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 175.80526,
+          "y": 125
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3225,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 342.04092,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "上限",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3226,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 392.60016,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "下限",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3227,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 441.23566,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "下限-30",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3228,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 493.96467,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "下限0",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3229,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 124.03813,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "温度9999",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3230,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 174.44075,
+          "y": 143.58748
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "温度-9999",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3231,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 275.80526,
+          "y": 125
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 5600,
+        "tempMin": 0,
+        "tempMax": 9999,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3232,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 275.40263,
+          "y": 143.75
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "随意调整",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(191,191,191)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3233,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 225.80526,
+          "y": 125
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 40,
+        "tempMin": 90,
+        "tempMax": -30,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3234,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 226.20789,
+          "y": 143.75
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "上限-30下限90",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3235,
+      "p": {
+        "displayName": "Thermometer",
+        "layer": "state",
+        "tag": "animationForNormal",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 564.29745,
+          "y": 124.83748
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 30,
+        "tempMin": -30,
+        "tempMax": 60,
+        "strictMode": false,
+        "tempColor": "rgb(201,176,255)",
+        "lowWarning": -20,
+        "isAnimation": true
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3236,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 563.89482,
+          "y": 100
+        },
+        "width": 50.80526,
+        "height": 25
+      },
+      "s": {
+        "text": "动画",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3237,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 124.44075,
+          "y": 204.73295
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3238,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 174.44075,
+          "y": 204.73295
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3239,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 275.80526,
+          "y": 204.73295
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 5600,
+        "tempMin": 0,
+        "tempMax": 9999,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3240,
+      "p": {
+        "displayName": "Thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 225.80526,
+          "y": 204.73295
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -30,
+        "tempMin": 90,
+        "tempMax": -30,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3241,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 199.44075,
+          "y": 177.23295
+        },
+        "width": 98.30295,
+        "height": 25
+      },
+      "s": {
+        "text": "零容错，文字提示出原因",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3242,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 124.56376,
+          "y": 223.32043
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "同上",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3243,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 174.96639,
+          "y": 223.32043
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "同上",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3244,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 275.92827,
+          "y": 223.48295
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "正常",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3245,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 226.73352,
+          "y": 223.48295
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "同上",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3246,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 419.12128,
+          "y": 204.73295
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 5600,
+        "tempMin": 99,
+        "tempMax": 99,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3247,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 419.52391,
+          "y": 179.73295
+        },
+        "height": 25
+      },
+      "s": {
+        "text": "全模式，上下限都不能相等",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3248,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 419.52391,
+          "y": 223.48295
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "上限下限99",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3249,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "tag": "animationForStrict",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 567.68694,
+          "y": 204.73295
+        },
+        "anchor": {
+          "x": 0.56779,
+          "y": 0.5
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 30,
+        "tempMin": -30,
+        "tempMax": 60,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)",
+        "isAnimation": true,
+        "errorAnimation": true
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3250,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 563.08955,
+          "y": 179.73295
+        },
+        "width": 50.80526,
+        "height": 25
+      },
+      "s": {
+        "text": "动画",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3251,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 147.77732,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "strictMode": false,
+        "warningMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3252,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 197.77732,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -9999,
+        "tempMin": 0,
+        "tempMax": 90,
+        "strictMode": false,
+        "warningMode": true,
+        "lowWarning": 10,
+        "heightWarning": 120,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3253,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 247.77732,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -30,
+        "tempMin": 90,
+        "tempMax": -30,
+        "strictMode": false,
+        "lowWarning": 30,
+        "heightWarning": 30,
+        "warningMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3254,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 200.80526,
+          "y": 259.50288
+        },
+        "width": 115.12812,
+        "height": 25
+      },
+      "s": {
+        "text": "有纠错功能，合理设置警告值",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3255,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 146.01019,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "警戒值低于下限",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3256,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 197.34108,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "警戒值高于上限",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3257,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 246.53582,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "警戒值有重合",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3258,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 369.92654,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 50,
+        "warningMode": true,
+        "lowWarning": -20,
+        "tempMax": 60,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3259,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 419.92654,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -25,
+        "warningMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3260,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 470.48579,
+          "y": 284.50288
+        },
+        "width": 50
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 30,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3261,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 370.36278,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "高警戒",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3262,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 470.88842,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "正常",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3263,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 418.96467,
+          "y": 303.25288
+        },
+        "width": 49.19474,
+        "height": 12.5
+      },
+      "s": {
+        "text": "低警戒",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3264,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 419.52391,
+          "y": 259.50288
+        },
+        "width": 117.35039,
+        "height": 25
+      },
+      "s": {
+        "text": "颜色自定义，警戒值自定义",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3265,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "tag": "animationForWarning",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 566.88168,
+          "y": 284.50288
+        },
+        "anchor": {
+          "x": 0.56779,
+          "y": 0.5
+        },
+        "width": 50,
+        "height": 30
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 30,
+        "tempMin": -30,
+        "tempMax": 60,
+        "strictMode": false,
+        "tempColor": "rgb(201,176,255)",
+        "warningMode": true,
+        "heightWarning": 40,
+        "isAnimation": true
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3266,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 564.70008,
+          "y": 259.50288
+        },
+        "width": 50.80526,
+        "height": 25
+      },
+      "s": {
+        "text": "动画",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3267,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "tag": "animationForBigIcon",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 564.70008,
+          "y": 366.93714
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 30,
+        "tempMin": -30,
+        "tempMax": 60,
+        "bigIconMode": true,
+        "tempColor": "rgb(201,176,255)",
+        "isAnimation": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3268,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 138.30526,
+          "y": 365.68714
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 4500,
+        "tempMin": 0,
+        "tempMax": 9999,
+        "bigIconMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3269,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 214.14726,
+          "y": 367.33273
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.53657
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 4500,
+        "tempMin": 0,
+        "tempMax": 9999,
+        "bigIconMode": true,
+        "warningMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3270,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 291.06569,
+          "y": 365.68714
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 4500,
+        "tempMin": 0,
+        "tempMax": 999,
+        "bigIconMode": true,
+        "warningMode": false,
+        "strictMode": true,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3271,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 398.7392,
+          "y": 365.68714
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": 40,
+        "tempMin": -30,
+        "tempMax": 60,
+        "bigIconMode": true,
+        "warningMode": true,
+        "strictMode": false,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3272,
+      "p": {
+        "displayName": "thermometer",
+        "layer": "state",
+        "image": "symbols/demo/thermometer/thermometer.json",
+        "position": {
+          "x": 480.55861,
+          "y": 367.39174
+        },
+        "anchor": {
+          "x": 0.53146,
+          "y": 0.53788
+        },
+        "width": 75,
+        "height": 45
+      },
+      "a": {
+        "fontColor": "rgb(207,222,255)",
+        "tempNumber": -20,
+        "tempMin": -30,
+        "tempMax": 60,
+        "bigIconMode": true,
+        "warningMode": true,
+        "strictMode": false,
+        "tempColor": "rgb(201,176,255)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3273,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 317.44355,
+          "y": 330.68714
+        },
+        "width": 120.26519,
+        "height": 25
+      },
+      "s": {
+        "text": "大图标模式，凸显温度占比",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3274,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 139.57969,
+          "y": 394.43714
+        },
+        "width": 74.13513,
+        "height": 12.5
+      },
+      "s": {
+        "text": "同其他模式联动",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3275,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 213.24532,
+          "y": 395.68714
+        },
+        "width": 76.80388,
+        "height": 12.5
+      },
+      "s": {
+        "text": "警j戒模式提醒",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3276,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 294.41318,
+          "y": 395.68715
+        },
+        "width": 81.69497,
+        "height": 12.5
+      },
+      "s": {
+        "text": "严格模式提醒",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3277,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 432.13759,
+          "y": 395.68714
+        },
+        "width": 151.69641,
+        "height": 12.5
+      },
+      "s": {
+        "text": "警戒模式",
+        "text.align": "center",
+        "text.font": "6px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 3278,
+      "p": {
+        "layer": "state",
+        "position": {
+          "x": 567.09236,
+          "y": 336.19156
+        },
+        "anchor": {
+          "x": 0.54709,
+          "y": 0.57462
+        },
+        "width": 50.80526,
+        "height": 25
+      },
+      "s": {
+        "text": "动画",
+        "text.align": "center",
+        "text.font": "8px arial, sans-serif",
+        "text.color": "rgb(219,219,219)"
+      }
+    }
+  ],
+  "contentRect": {
+    "x": 0,
+    "y": 0,
+    "width": 650,
+    "height": 450
+  }
+}

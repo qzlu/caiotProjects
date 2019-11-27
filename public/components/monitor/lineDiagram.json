@@ -1,0 +1,53 @@
+{
+  "width": 800,
+  "height": 600,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\ng.lineWidth = 1;\ng.lineCap = 'butt';\ng.strokeStyle = 'rgb(0,0,0)';\ng.fillStyle = 'rgb(0,0,0)';\ng.beginPath();\ng.rect(rect.x, rect.y, rect.width, rect.height);\ng.clip();\n    var x = comp.getValue('x'); // x轴最大刻度值\n    var y = comp.getValue('y'); // y轴最大刻度值\n    var xSplitNum = comp.getValue('xSplitNum'); // x轴分隔数量\n    var ySplitNum = comp.getValue('ySplitNum'); // y轴分隔数量\n    var points = comp.getValue('points'); // 图上坐标\n\n    g.fillRect(rect.x, rect.y, rect.width, rect.height);\n\n    var yNums = ySplitNum * 5 + 1; // y轴刻度数量\n    var xNums = xSplitNum * 5 + 1; // x轴刻度数量\n    var yOneSize = (rect.height - 100) / (yNums);\n    var xOneSize = (rect.width - 100) / (xNums);\n\n    g.save();\n\n    g.translate(rect.x + 50, rect.y + rect.height - 50);\n    var yLength = yNums * yOneSize,\n        xLength = xNums * xOneSize;\n    g.beginPath();\n    g.strokeStyle = 'rgb(0,255,1)';\n    g.moveTo(0, -(yLength + yOneSize));\n    g.lineTo(-10, -(yLength + yOneSize));\n    g.lineTo(0, -(yLength + yOneSize) - 20);\n    g.lineTo(10, -(yLength + yOneSize));\n    g.closePath();\n    g.stroke();\n\n    g.beginPath();\n    g.strokeStyle = 'rgb(0,255,1)';\n    g.moveTo((xLength + xOneSize), 0);\n    g.lineTo((xLength + xOneSize), 10);\n    g.lineTo((xLength + xOneSize) + 20, 0);\n    g.lineTo((xLength + xOneSize), -10);\n    g.closePath();\n    g.stroke();\n\n    g.font = \"bold 10px serif\";\n    g.textAlign = \"center\";\n    g.textBaseline = \"middle\";\n    g.fillStyle = 'rgb(255,255,255)';\n    // 绘制x轴\n    for (var i = 0; i < xNums; i++) {\n        var curX = i * xOneSize; // 当前x轴坐标\n        if (i % 5 === 0) {\n            g.beginPath();\n            g.strokeStyle = 'rgb(0,255,1)';\n            g.moveTo(curX, 0);\n            g.lineTo(curX, 15);\n            g.stroke();\n\n            g.beginPath();\n            (i !== 0) && (g.strokeStyle = 'rgb(158,158,158)');\n            g.moveTo(curX, 0);\n            i === 0 ? (g.lineTo(curX, -(yLength + yOneSize))) : (g.lineTo(curX, -(yLength - yOneSize)));\n            g.stroke();\n\n            g.fillText(x * (i / (xNums - 1)), curX, 25);\n        } else {\n            g.beginPath();\n            g.strokeStyle = 'rgb(0,255,1)';\n            g.moveTo(curX, 0);\n            g.lineTo(curX, 10);\n            g.stroke();\n        }\n    }\n\n    // 绘制y轴\n    for (var j = 0; j < yNums; j++) {\n        var curY = j * yOneSize; // 当前y轴坐标\n        if (j % 5 === 0) {\n            g.beginPath();\n            g.strokeStyle = 'rgb(0,255,1)';\n            g.moveTo(0, -curY);\n            g.lineTo(-15, -curY);\n            g.stroke();\n\n            g.beginPath();\n            (j !== 0) && (g.strokeStyle = 'rgb(158,158,158)');\n            g.moveTo(0, -curY);\n            j === 0 ? (g.lineTo(xLength + xOneSize, -curY)) : (g.lineTo(xLength - xOneSize, -curY));\n            g.stroke();\n\n            g.fillText(y * (j / (yNums - 1)), -25, -curY);\n        } else {\n            g.beginPath();\n            g.strokeStyle = 'rgb(0,255,1)';\n            g.moveTo(0, -curY);\n            g.lineTo(-10, -curY);\n            g.stroke();\n        }\n    }\n\n    if (points.length > 0) {\n        var axesPoints = [];\n        for (var num = 0, l = points.length; num < l; num = num + 2) {\n            axesPoints.push({\n                x: points[num],\n                y: points[num + 1]\n            });\n        }\n        g.beginPath();\n        g.strokeStyle = 'rgb(253,0,0)';\n        g.moveTo(\n            xOneSize * (axesPoints[0].x / x) * xNums, -yOneSize * (axesPoints[0].y / y) * yNums);\n        for (var arrIndex = 1, arrLen = axesPoints.length; arrIndex < arrLen; arrIndex++) {\n            var pos = axesPoints[arrIndex];\n            var axesPos = {\n                x: xOneSize * (pos.x / x) * xNums,\n                y: yOneSize * (pos.y / y) * yNums\n            };\n            g.lineTo(axesPos.x, -axesPos.y);\n        }\n        g.stroke();\n    }\n    g.restore();\n}",
+  "properties": {
+    "x": {
+      "valueType": "Number",
+      "defaultValue": 24,
+      "name": "x轴最大值"
+    },
+    "y": {
+      "valueType": "Number",
+      "defaultValue": 100,
+      "name": "y轴最大值"
+    },
+    "xSplitNum": {
+      "valueType": "Number",
+      "defaultValue": 24,
+      "name": "x轴分割数量"
+    },
+    "ySplitNum": {
+      "valueType": "Number",
+      "defaultValue": 10,
+      "name": "y轴分割数量"
+    },
+    "points": {
+      "valueType": "NumberArray",
+      "defaultValue": [
+        0,
+        5,
+        3,
+        10,
+        4,
+        13,
+        5,
+        16,
+        9,
+        1,
+        16,
+        31,
+        17,
+        50,
+        19,
+        60,
+        22,
+        80,
+        23,
+        83
+      ]
+    }
+  }
+}

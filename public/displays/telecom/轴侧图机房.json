@@ -1,0 +1,994 @@
+{
+  "v": "6.2.0",
+  "p": {
+    "background": "rgb(0,0,0)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "gridAngle": 2.0944,
+    "gridRotation": 0.5236
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2435,
+      "p": {
+        "displayName": "轴侧机房1",
+        "image": "symbols/demo/network/轴侧机房1.json",
+        "position": {
+          "x": 666.26198,
+          "y": 446.65996
+        }
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2436,
+      "p": {
+        "displayName": "电脑",
+        "image": "symbols/demo/network/电脑.json",
+        "position": {
+          "x": 636.8864,
+          "y": 557.96224
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2437,
+      "p": {
+        "displayName": "笔记本",
+        "image": "symbols/demo/network/笔记本.json",
+        "position": {
+          "x": 705.35669,
+          "y": 607.96224
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2438,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 425.11267,
+          "y": 326.13508
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2439,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 387.23177,
+          "y": 348.45518
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2440,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 349.35088,
+          "y": 370.77529
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2441,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 311.46998,
+          "y": 393.09539
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2442,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 273.58908,
+          "y": 415.4155
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2443,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 576.63627,
+          "y": 412.32203
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2444,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 538.75537,
+          "y": 434.64213
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      },
+      "s": {
+        "body.color": "rgb(72,88,117)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2445,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 500.87447,
+          "y": 456.96224
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2446,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 462.99357,
+          "y": 479.28234
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2447,
+      "p": {
+        "displayName": "机箱",
+        "image": "symbols/demo/network/机箱.json",
+        "position": {
+          "x": 425.11267,
+          "y": 501.60245
+        },
+        "scale": {
+          "x": -1,
+          "y": 1
+        }
+      },
+      "s": {
+        "body.color": "rgb(72,88,117)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2448,
+      "p": {
+        "displayName": "离线",
+        "image": "symbols/demo/network/离线.json",
+        "position": {
+          "x": 545.21471,
+          "y": 410.07637
+        },
+        "width": 76.19164,
+        "height": 76.19164
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2449,
+      "p": {
+        "displayName": "离线",
+        "image": "symbols/demo/network/离线.json",
+        "position": {
+          "x": 431.94241,
+          "y": 477.2068
+        },
+        "width": 76.19164,
+        "height": 76.19164
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2450,
+      "p": {
+        "displayName": "轴侧机房2",
+        "image": "symbols/demo/network/轴侧机房2.json",
+        "position": {
+          "x": 666.26198,
+          "y": 446.65996
+        }
+      },
+      "s": {
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2451,
+      "p": {
+        "displayName": "防火墙",
+        "image": "symbols/demo/network/防火墙.json",
+        "position": {
+          "x": 174.5331,
+          "y": 434.64213
+        },
+        "scale": {
+          "x": -1.5,
+          "y": 1.5
+        }
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 2452,
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2453,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 679.89475,
+          "y": 162.34268
+        }
+      },
+      "s": {
+        "label": "FWQ1-5",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2454,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 641.19923,
+          "y": 183.88942
+        }
+      },
+      "s": {
+        "label": "FWQ1-4",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2455,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 602.50371,
+          "y": 205.43616
+        }
+      },
+      "s": {
+        "label": "FWQ1-3",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2456,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 563.80819,
+          "y": 226.98289
+        }
+      },
+      "s": {
+        "label": "FWQ1-2",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)",
+        "label.font": "12px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2457,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 525.11267,
+          "y": 248.52963
+        }
+      },
+      "s": {
+        "label": "FWQ1-1",
+        "label.color": "rgb(255,255,255)",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2458,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 825.90362,
+          "y": 248.52963
+        }
+      },
+      "s": {
+        "body.color": "#D0011B",
+        "label": "FWQ2-5",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2459,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 787.2081,
+          "y": 270.07637
+        }
+      },
+      "s": {
+        "label": "FWQ2-4",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2460,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 748.51258,
+          "y": 291.62311
+        }
+      },
+      "s": {
+        "label": "FWQ2-3",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2461,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 709.81706,
+          "y": 313.16984
+        }
+      },
+      "s": {
+        "label": "FWQ2-2",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2462,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 671.12154,
+          "y": 334.71658
+        }
+      },
+      "s": {
+        "label": "FWQ2-1",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2463,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 964.59914,
+          "y": 340.07637
+        }
+      },
+      "s": {
+        "label": "FWQ3-5",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2464,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 925.90362,
+          "y": 361.62311
+        }
+      },
+      "s": {
+        "label": "FWQ3-4",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2465,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 887.2081,
+          "y": 383.16985
+        }
+      },
+      "s": {
+        "label": "FWQ3-3",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2466,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 848.51258,
+          "y": 404.71658
+        }
+      },
+      "s": {
+        "label": "FWQ3-2",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2467,
+      "p": {
+        "displayName": "服务器",
+        "parent": {
+          "__i": 2452
+        },
+        "image": "symbols/demo/network/服务器.json",
+        "position": {
+          "x": 809.81706,
+          "y": 426.26332
+        }
+      },
+      "s": {
+        "label": "FWQ3-1",
+        "label.offset.y": -121,
+        "label.offset.x": 16,
+        "label.color": "rgb(255,255,255)",
+        "label.background": "rgba(0,0,0,0.32)"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 2468,
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2469,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 671.26459,
+          "y": 88.32159
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2470,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 632.41706,
+          "y": 110.8941
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2471,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 593.56953,
+          "y": 133.46661
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2472,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 554.722,
+          "y": 156.03912
+        }
+      },
+      "s": {
+        "body.color": "#F6A623"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2473,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 515.87447,
+          "y": 178.61163
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2474,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 817.80717,
+          "y": 176.4781
+        }
+      },
+      "s": {
+        "body.color": "#D0011B"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2475,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 778.95964,
+          "y": 199.0506
+        }
+      },
+      "s": {
+        "body.color": "#F6A623"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2476,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 740.11211,
+          "y": 221.62311
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2477,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 701.26459,
+          "y": 244.19562
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2478,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 662.41706,
+          "y": 266.76813
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2479,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 953.59868,
+          "y": 268.02483
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2480,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 914.75115,
+          "y": 290.59733
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2481,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 875.90362,
+          "y": 313.16984
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2482,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 837.05609,
+          "y": 335.74235
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2483,
+      "p": {
+        "displayName": "曲线箭头",
+        "parent": {
+          "__i": 2468
+        },
+        "image": "symbols/demo/network/曲线箭头.json",
+        "position": {
+          "x": 798.20857,
+          "y": 358.31486
+        }
+      },
+      "s": {
+        "body.color": "#4990E2"
+      }
+    },
+    {
+      "c": "ht.Data",
+      "i": 2484,
+      "s": {
+        "editor.folder": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2485,
+      "p": {
+        "displayName": "轴侧文本",
+        "dataBindings": {
+          "s": {}
+        },
+        "image": "symbols/demo/network/轴侧文本.json",
+        "position": {
+          "x": 1064.75115,
+          "y": 451.60245
+        },
+        "scale": {
+          "x": 3,
+          "y": 3
+        }
+      },
+      "s": {
+        "label.color": "rgba(255,255,255,0.00)",
+        "interactive": true,
+        "label": "使用文件夹中的<可编辑文本>修改文字",
+        "label.scale": 1.5,
+        "label.rotation": 0,
+        "label.font": "12px arial, sans-serif",
+        "label.offset.y": -40,
+        "label.offset.x": 84,
+        "onEnter": "__ht__function(event, data, view) {\ndata.s('label.color', 'rgb(255,255,255)');\ndata.s('label.background',' rgba(46,46,46,0.34)')\n}",
+        "onLeave": "__ht__function(event, data, view) {\ndata.s('label.color', 'rgba(255,255,255,0.00)');\ndata.s('label.background', 'rgba(255,255,255,0.00)')\n}",
+        "onDown": "__ht__function(event, data, view) {\ndata.s('label.color', 'rgb(255,255,255)');\ndata.s('label.background',' rgba(46,46,46,0.34)')\n}",
+        "onMove": "__ht__function(event, data, view) {\ndata.s('label.color', 'rgb(255,255,255)');\ndata.s('label.background',' rgba(46,46,46,0.34)')\n}",
+        "onHover": "__ht__function(event, data, view) {\ndata.s('label.color', 'rgb(255,255,255)');\ndata.s('label.background',' rgba(46,46,46,0.34)')\n}",
+        "label.background": "rgba(255,255,255,0.00)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2486,
+      "p": {
+        "displayName": "轴侧文本",
+        "parent": {
+          "__i": 2485
+        },
+        "image": "symbols/demo/network/轴侧文本.json",
+        "host": {
+          "__i": 2485
+        },
+        "position": {
+          "x": 1062.48708,
+          "y": 450.08217
+        },
+        "scale": {
+          "x": 3,
+          "y": 3
+        }
+      },
+      "s": {
+        "body.color": null,
+        "opacity": 0.36,
+        "2d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2487,
+      "p": {
+        "displayName": "轴侧文本",
+        "parent": {
+          "__i": 2485
+        },
+        "image": "symbols/demo/network/轴侧文本.json",
+        "host": {
+          "__i": 2485
+        },
+        "position": {
+          "x": 1063.55291,
+          "y": 450.90353
+        },
+        "scale": {
+          "x": 3,
+          "y": 3
+        }
+      },
+      "s": {
+        "body.color": null,
+        "opacity": 0.36,
+        "2d.selectable": false
+      }
+    }
+  ]
+}

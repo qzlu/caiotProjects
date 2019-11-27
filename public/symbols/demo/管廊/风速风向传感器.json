@@ -1,0 +1,89 @@
+{
+  "dataBindings": [
+    {
+      "attr": "run",
+      "valueType": "Boolean"
+    },
+    {
+      "attr": "alarm",
+      "valueType": "Boolean"
+    }
+  ],
+  "width": 50,
+  "height": 50,
+  "visible": {
+    "func": "__ht__function(data, view) {\nif(view.getZoom && view.getZoom() < 0.2) return false;\nreturn true;\n}",
+    "value": true
+  },
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 2,
+      "borderColor": "rgb(26,127,201)",
+      "rotation": -1.5708,
+      "closePath": true,
+      "points": [
+        13.00302,
+        2.71425,
+        6.31899,
+        9.74105,
+        6.31899,
+        48.38847,
+        38.0253,
+        48.38847,
+        43.68101,
+        41.70443,
+        43.68101,
+        2.71425
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": -1.5708,
+      "rect": [
+        15.12399,
+        39.41523,
+        2.37074,
+        7.25428
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": -1.5708,
+      "rect": [
+        34.11275,
+        40.16773,
+        2.37074,
+        5.74929
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rotation": -1.5708,
+      "rect": [
+        22.43572,
+        3.26833,
+        2.25582,
+        7.25428
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/管廊/风机.json",
+      "displayName": "风机",
+      "rect": [
+        10.85195,
+        10.85195,
+        28.29609,
+        28.29609
+      ]
+    }
+  ]
+}

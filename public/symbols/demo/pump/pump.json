@@ -1,0 +1,451 @@
+{
+  "dataBindings": [
+    {
+      "attr": "title",
+      "valueType": "String"
+    },
+    {
+      "attr": "Control_bc3",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Control_pc3",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Control_bc1",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Control_pc1",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Control_bc2",
+      "valueType": "Color"
+    },
+    {
+      "attr": "Control_pc2",
+      "valueType": "Color"
+    },
+    {
+      "attr": "backgroundColor1",
+      "valueType": "Color"
+    },
+    {
+      "attr": "progressiveColor1",
+      "valueType": "Color"
+    },
+    {
+      "attr": "backgroundColor3",
+      "valueType": "Color"
+    },
+    {
+      "attr": "progressiveColor3",
+      "valueType": "Color"
+    },
+    {
+      "attr": "backgroundColor2",
+      "valueType": "Color"
+    },
+    {
+      "attr": "progressiveColor2",
+      "valueType": "Color"
+    },
+    {
+      "attr": "status",
+      "valueType": "Number",
+      "defaultValue": 1
+    }
+  ],
+  "width": 204,
+  "height": 264,
+  "interactive": true,
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgb(212,218,229)",
+      "borderWidth": 3,
+      "borderColor": "rgb(49,63,89)",
+      "rect": [
+        2.36833,
+        2,
+        199.63167,
+        260
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(150,150,150)",
+      "borderWidth": 3,
+      "borderColor": "rgb(49,63,89)",
+      "rect": [
+        2.36833,
+        217.24668,
+        199.63167,
+        44.75332
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(49,63,89)",
+      "borderWidth": 3,
+      "borderColor": "rgb(49,63,89)",
+      "rect": [
+        2.36833,
+        2,
+        199.63167,
+        46.0189
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@title",
+        "value": "title"
+      },
+      "color": "rgb(255,255,255)",
+      "font": "17px arial, sans-serif",
+      "rect": [
+        21.5,
+        11.47368,
+        60.5,
+        19
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 1) {\r\n    return 'rgb(221,181,0)';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'rgb(234,0,0)';\r\n}\r\nif(data.a('status') === 3) {\r\n    return 'rgb(92,137,34)';\r\n}\n}",
+        "value": "rgb(221,181,0)"
+      },
+      "borderColor": "rgb(34,7,87)",
+      "rect": [
+        3.92147,
+        40.58721,
+        196.49123,
+        35.14858
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(92,137,34)",
+      "borderColor": "rgb(34,7,87)",
+      "rect": [
+        3.92147,
+        195.21409,
+        196.49123,
+        34.48079
+      ]
+    },
+    {
+      "type": "text",
+      "text": "HAND",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        46.90792,
+        86,
+        40.18416,
+        20
+      ]
+    },
+    {
+      "type": "text",
+      "text": "OFF",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        47,
+        125,
+        39.91669,
+        20
+      ]
+    },
+    {
+      "type": "text",
+      "text": "AUTO",
+      "font": "16px arial, sans-serif",
+      "rect": [
+        47,
+        165,
+        40.18416,
+        20
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": {
+        "func": "attr@Control_bc3",
+        "value": "rgb(45,119,186)"
+      },
+      "borderColor": "#979797",
+      "gradient": "linear.north",
+      "gradientColor": {
+        "func": "attr@Control_pc3",
+        "value": "rgb(70,175,215)"
+      },
+      "shadow": true,
+      "shadowColor": "rgb(0,30,61)",
+      "shadowBlur": 5,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": [
+        112,
+        163,
+        70,
+        24
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\ndata.a('backgroundColor3', 'rgb(41,105,189)');\r\ndata.a('progressiveColor3', 'rgb(67,175,216)');\r\ndata.a('backgroundColor2', 'rgb(79,79,79)');\r\ndata.a('progressiveColor2', 'rgb(194,194,194)');\r\ndata.a('backgroundColor1', 'rgb(79,79,79)');\r\ndata.a('progressiveColor1', 'rgb(194,194,194)');\r\ndata.a('Control_bc3', 'rgb(12,38,61)');\r\ndata.a('Control_pc3', 'rgb(34,125,161)');\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc3', 'rgb(28,74,117)');\r\ndata.a('Control_pc3', 'rgb(41,145,186)');\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc3', 'rgb(28,74,117)');\r\ndata.a('Control_pc3', 'rgb(41,145,186)');\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc3', 'rgb(45,119,186)');\r\ndata.a('Control_pc3', 'rgb(70,175,215)');\n}"
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 1) {\r\n    return 'Need to Run';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'Stopped';\r\n}\r\nif(data.a('status') === 3) {\r\n    return 'Running';\r\n}\n}",
+        "value": "status"
+      },
+      "color": "rgb(255,255,255)",
+      "font": "17px arial, sans-serif",
+      "rect": [
+        21.98245,
+        48.0189,
+        100.01755,
+        19.98111
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Available",
+      "color": "rgb(255,255,255)",
+      "font": "17px arial, sans-serif",
+      "rect": [
+        21.98246,
+        202,
+        80.20171,
+        20
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 1) {\r\n    return 'NO FAULT';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'FAULT';\r\n}\r\nif(data.a('status') === 3) {\r\n    return 'NO FAULT';\r\n}\n}",
+        "value": "instruction"
+      },
+      "color": "rgb(255,255,255)",
+      "font": "17px arial, sans-serif",
+      "rect": [
+        21.98245,
+        235.59649,
+        100.01755,
+        18.80702
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 1) {\r\n    return 'rgb(29,143,32)';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'rgb(138,40,18)';\r\n}\r\nif(data.a('status') === 3) {\r\n    return 'rgb(29,143,32)';\r\n}\n}",
+        "value": "rgb(29,143,32)"
+      },
+      "borderWidth": 4,
+      "borderColor": "#979797",
+      "border3d": true,
+      "border3dColor": "rgb(130,130,130)",
+      "gradient": "radial.center",
+      "gradientColor": {
+        "func": "__ht__function(data, view) {\nif(data.a('status') === 1) {\r\n    return 'rgb(82,222,133)';\r\n}\r\nif(data.a('status') === 2) {\r\n    return 'rgb(232,97,56)';\r\n}\r\nif(data.a('status') === 3) {\r\n    return 'rgb(82,222,133)';\r\n}\n}",
+        "value": "rgb(82,222,133)"
+      },
+      "shadow": true,
+      "shadowColor": "rgb(102,102,102)",
+      "shadowBlur": 1,
+      "shadowOffsetX": 1,
+      "shadowOffsetY": 1,
+      "rect": [
+        142,
+        232.34503,
+        24.65497,
+        24.65497
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Control",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px arial, sans-serif",
+      "rect": [
+        117,
+        170.20404,
+        60,
+        9.59192
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": {
+        "func": "attr@Control_bc1",
+        "value": "rgb(45,119,186)"
+      },
+      "borderColor": "#979797",
+      "gradient": "linear.north",
+      "gradientColor": {
+        "func": "attr@Control_pc1",
+        "value": "rgb(70,175,215)"
+      },
+      "shadow": true,
+      "shadowColor": "rgb(0,30,61)",
+      "shadowBlur": 5,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": [
+        112,
+        84,
+        70,
+        24
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\ndata.a('backgroundColor1', 'rgb(41,105,189)');\r\ndata.a('progressiveColor1', 'rgb(67,175,216)');\r\ndata.a('backgroundColor2', 'rgb(79,79,79)');\r\ndata.a('progressiveColor2', 'rgb(194,194,194)');\r\ndata.a('backgroundColor3', 'rgb(79,79,79)');\r\ndata.a('progressiveColor3', 'rgb(194,194,194)');\r\ndata.a('Control_bc1', 'rgb(12,38,61)');\r\ndata.a('Control_pc1', 'rgb(34,125,161)');\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc1', 'rgb(28,74,117)');\r\ndata.a('Control_pc1', 'rgb(41,145,186)');\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc1', 'rgb(28,74,117)');\r\ndata.a('Control_pc1', 'rgb(41,145,186)');\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc1', 'rgb(45,119,186)');\r\ndata.a('Control_pc1', 'rgb(70,175,215)');\n}"
+    },
+    {
+      "type": "roundRect",
+      "background": {
+        "func": "attr@Control_bc2",
+        "value": "rgb(45,119,186)"
+      },
+      "borderColor": "#979797",
+      "gradient": "linear.north",
+      "gradientColor": {
+        "func": "attr@Control_pc2",
+        "value": "rgb(70,175,215)"
+      },
+      "shadow": true,
+      "shadowColor": "rgb(0,30,61)",
+      "shadowBlur": 5,
+      "shadowOffsetX": 2,
+      "shadowOffsetY": 2,
+      "rect": [
+        112,
+        123,
+        70,
+        24
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\ndata.a('backgroundColor2', 'rgb(41,105,189)');\r\ndata.a('progressiveColor2', 'rgb(67,175,216)');\r\ndata.a('backgroundColor1', 'rgb(79,79,79)');\r\ndata.a('progressiveColor1', 'rgb(194,194,194)');\r\ndata.a('backgroundColor3', 'rgb(79,79,79)');\r\ndata.a('progressiveColor3', 'rgb(194,194,194)');\r\ndata.a('Control_bc2', 'rgb(12,38,61)');\r\ndata.a('Control_pc2', 'rgb(34,125,161)');\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc2', 'rgb(28,74,117)');\r\ndata.a('Control_pc2', 'rgb(41,145,186)');\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc2', 'rgb(28,74,117)');\r\ndata.a('Control_pc2', 'rgb(41,145,186)');\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\ndata.a('Control_bc2', 'rgb(45,119,186)');\r\ndata.a('Control_pc2', 'rgb(70,175,215)');\n}"
+    },
+    {
+      "type": "text",
+      "text": "Control",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px arial, sans-serif",
+      "rect": [
+        117,
+        91.20404,
+        60,
+        9.59192
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Control",
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "13px arial, sans-serif",
+      "rect": [
+        117,
+        130.20404,
+        60,
+        9.59192
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@backgroundColor1",
+        "value": "rgb(79,79,79)"
+      },
+      "borderWidth": 2,
+      "borderColor": "#979797",
+      "border3d": true,
+      "border3dColor": "rgb(31,24,24)",
+      "gradient": "radial.center",
+      "gradientColor": {
+        "func": "attr@progressiveColor1",
+        "value": "rgb(194,194,194)"
+      },
+      "pixelPerfect": true,
+      "shadow": true,
+      "shadowColor": "rgb(133,133,133)",
+      "shadowBlur": 2,
+      "shadowOffsetX": 1,
+      "shadowOffsetY": 1,
+      "rect": [
+        21.77018,
+        86,
+        20.45965,
+        20
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@backgroundColor3",
+        "value": "rgb(79,79,79)"
+      },
+      "borderWidth": 2,
+      "borderColor": "#979797",
+      "border3d": true,
+      "border3dColor": "rgb(31,24,24)",
+      "gradient": "radial.center",
+      "gradientColor": {
+        "func": "attr@progressiveColor3",
+        "value": "rgb(194,194,194)"
+      },
+      "pixelPerfect": true,
+      "shadow": true,
+      "shadowColor": "rgb(133,133,133)",
+      "shadowBlur": 2,
+      "shadowOffsetX": 1,
+      "shadowOffsetY": 1,
+      "rect": [
+        21.77018,
+        165,
+        20.45965,
+        20
+      ]
+    },
+    {
+      "type": "oval",
+      "background": {
+        "func": "attr@backgroundColor2",
+        "value": "rgb(79,79,79)"
+      },
+      "borderWidth": 2,
+      "borderColor": "#979797",
+      "border3d": true,
+      "border3dColor": "rgb(31,24,24)",
+      "gradient": "radial.center",
+      "gradientColor": {
+        "func": "attr@progressiveColor2",
+        "value": "rgb(194,194,194)"
+      },
+      "pixelPerfect": true,
+      "shadow": true,
+      "shadowColor": "rgb(133,133,133)",
+      "shadowBlur": 2,
+      "shadowOffsetX": 1,
+      "shadowOffsetY": 1,
+      "rect": [
+        21.77018,
+        125,
+        20.45965,
+        20
+      ]
+    }
+  ]
+}

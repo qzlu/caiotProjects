@@ -1,0 +1,33 @@
+{
+  "background": "rgb(0,0,0)",
+  "width": 128,
+  "height": 128,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(0,0,0,0.52)",
+      "borderWidth": 8,
+      "borderColor": "rgb(125,195,125)",
+      "rect": [
+        23.42608,
+        23.42608,
+        81.14784,
+        81.14784
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 8,
+      "borderColor": "rgb(125,195,125)",
+      "borderJoin": "bevel",
+      "points": [
+        39.71763,
+        67.22065,
+        54.82666,
+        83.62474,
+        88.28237,
+        48.22644
+      ]
+    }
+  ]
+}

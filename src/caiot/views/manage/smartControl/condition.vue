@@ -14,13 +14,13 @@
                 <el-form-item label="条件表达式" >
                     <ul class="express">
                         <li v-for="(item,i) in expressionList" :key="i">
-                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择" @change="selectMeter(i)">
+                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择">
                               <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
                             </el-select>
                             <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" filterable  placeholder="请选择">
                               <el-option v-for="list in item.Meter.ListData||[]" :key="list.DataItemID" :label="list.DataItemName" :value="list"></el-option>
                             </el-select>
-                            <el-select class="expression" v-model="item.express">
+                            <el-select class="expression" v-model="item.express" clearable>
                                 <el-option label=">" value=">"></el-option>
                                 <el-option label=">=" value=">="></el-option>
                                 <el-option label="==" value="=="></el-option>
@@ -115,6 +115,7 @@ export default {
                 {
                     prop: 'ExpressName',
                     label: '条件表达式',
+                    width:'400'
                 }
             ],
             type:0,
@@ -218,6 +219,15 @@ export default {
             })
         },
         addExpress(){
+            //最后一个表达式
+            let lastExpress = this.expressionList[this.expressionList.length-1]
+            if(!lastExpress.connectExpress){
+                this.$message({
+                    message:'请选择连接符',
+                    type:'warning'
+                })
+                return
+            }
             this.expressionList.push({
                 ...this.expressItem
             })
@@ -249,10 +259,10 @@ export default {
                 return
             }
             // 解析表达式
-            let reg = /([\w|\u4e00-\u9fa5|-]*)\s*([><]?=*)\s*(\d+)([\&\|]*)/ig,
-            reg1 = /([\w|\u4e00-\u9fa5|-]*)\s*([><]?=*)\s*(\d+)([\&\|]*)/,
-            express = row.Express.replace(/[\(\)]/ig,''),
-            expressName = row.ExpressName.replace(/[\(\)]/ig,''),
+            let reg = /([\w|\u4e00-\u9fa5|-]+)\s*([><]?=*)\s*(\d*)([\&\|]*)/ig,
+            reg1 = /([\w|\u4e00-\u9fa5|-]+)\s*([><]?=*)\s*(\d*)([\&\|]*)/,
+            express = row.Express.replace(/[\(\)@]/ig,''),
+            expressName = row.ExpressName.replace(/[\(\)@]/ig,''),
             expressionList = express.match(reg),
             expressionNameList = expressName.match(reg)
             if(expressionList&&Array.isArray(expressionList)){
@@ -260,7 +270,7 @@ export default {
                     let match = item.match(reg1),
                     matchName = expressionNameList[i].match(reg1)
                     return {
-                        Meter: this.meterList.find(meter => meter.MeterID == match[1].split('_')[0]),
+                        Meter: this.meterList.find(meter => meter.MeterID == match[1].split('_')[0])||{},
                         DataItem:{ 
                             DataItemID:match[1].split('_')[1],
                             DataItemName:matchName[1].split('_')[1]
@@ -289,7 +299,7 @@ export default {
                 if(!item.DataItem.DataItemID||!item.Meter.MeterID){
                     return
                 }
-                let express = '(' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID + item.express + item.value+')'
+                let express = (item.express?"":"@")+'(' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID + item.express + item.value+')'
                 if(i<this.expressionList.length-1){
                     return express + item.connectExpress
                 }else{
@@ -300,7 +310,7 @@ export default {
                 if(!item.DataItem.DataItemName||!item.Meter.MeterName){
                     return
                 }
-                let express = '(' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName + item.express + item.value+')'
+                let express = (item.express?"":"@")+'(' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName + item.express + item.value+')'
                 if(i<this.expressionList.length-1){
                     return express + item.connectExpress
                 }else{

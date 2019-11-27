@@ -1,0 +1,45 @@
+{
+  "dataBindings": [
+    {
+      "attr": "modelURL",
+      "valueType": "URL",
+      "defaultValue": "models/变压器.json"
+    },
+    {
+      "attr": "center",
+      "valueType": "NumberArray",
+      "defaultValue": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "attr": "eye",
+      "valueType": "NumberArray",
+      "defaultValue": [
+        0,
+        500,
+        1000
+      ]
+    },
+    {
+      "attr": "far",
+      "valueType": "Number",
+      "defaultValue": 10000
+    },
+    {
+      "attr": "near",
+      "valueType": "Number",
+      "defaultValue": 10
+    }
+  ],
+  "snapshotURL": "symbols/basic/snapshot_obj.json",
+  "renderHTML": "__ht__function(data, gv, cache) {\n\n    if (!cache.htmlView) {\n        var g3d = new ht.graph3d.Graph3dView();\n        cache.htmlView = g3d;\n        cache.node = new ht.Node();\n        g3d.dm().add(cache.node);\n        if (data.a('eye')) g3d.setEye(data.a('eye'));\n        if (data.a('center')) g3d.setCenter(data.a('center'));\n        if (data.a('far')) g3d.setFar(data.a('far'));\n        if (data.a('near')) g3d.setNear(data.a('near'));\n\n        // layoutHTML will be called when the data needs to be drawing\n        cache.htmlView.layoutHTML = function() {\n            gv.layoutHTML(data, cache.htmlView, false);\n        };\n    }\n\n    // update data\n    cache.node.s('shape3d', data.a('modelURL'));\n\n    // html for showing\n    return cache.htmlView;\n}",
+  "width": 200,
+  "height": 120,
+  "scrollable": true,
+  "interactive": true,
+  "pixelPerfect": false,
+  "comps": []
+}

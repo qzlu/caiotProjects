@@ -1,0 +1,38 @@
+{
+  "width": 300,
+  "height": 300,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\ng.lineWidth = 1;\ng.lineCap = 'butt';\ng.strokeStyle = 'rgb(0,0,0)';\ng.fillStyle = 'rgb(0,0,0)';\n    var maxValue= comp.getValue('maxValue'); // 刻盘最大刻度\n    var outSplitNum = comp.getValue('outSplitNum');// 刻盘外围分刻度\n    var inSplitNum = comp.getValue('inSplitNum'); // 刻盘内围分刻度\n    var radius= comp.getValue('radius'); // 表盘半径\n    var value= comp.getValue('value'); // 表盘文字\n    var angle= comp.getValue('angle'); // 当前表盘指针的旋转角度\n\n    outSplitNum = outSplitNum > 0 ? outSplitNum  : 5;\n    inSplitNum = inSplitNum > 0 ? inSplitNum : 4;\n\n    // 转盘一个小角度的大小\n    var theta = 270 / (outSplitNum * inSplitNum ),\n        moveToX = -radius * Math.sin(Math.PI/4),\n        moveToY = radius * Math.sin(Math.PI/4),\n        oneBigSize = maxValue/ (outSplitNum * inSplitNum );\n\n    g.save();\n\n    g.translate(rect.x + rect.width/2, rect.y+ rect.height/2);\n\n    g.beginPath();\n    g.arc(0,0,radius,0,Math.PI*2,true); // 绘制外圆\n    g.stroke();\n\n    for(var i = 0,l = outSplitNum * inSplitNum + 1;i < l;i++){\n        g.save();\n\n        g.fillStyle = \"rgb(0,0,0)\";\n        g.rotate(i*(theta/180)*Math.PI);\n        g.font = \"bold 10px serif\";\n        g.textAlign = \"center\";\n        g.textBaseline = \"middle\";\n        g.beginPath();\n        if(i % (inSplitNum + 1)=== 0){\n            g.moveTo(moveToX + 27,moveToY - 27);\n            g.lineTo(moveToX + 12,moveToY - 12);\n\n            g.save();\n            g.translate(-(rect.x + rect.width/2), -(rect.y+ rect.height/2));\n            g.translate(moveToX + 6 + (rect.x + rect.width/2),moveToY - 6 + (rect.y+ rect.height/2));\n            g.rotate(-i*(theta/180)*Math.PI);\n            g.fillText(Math.ceil(i * oneBigSize), 0,0);\n            g.restore();\n        }\n        else{\n            g.moveTo(moveToX + 27,moveToY - 27);\n            g.lineTo(moveToX + 15,moveToY - 15);\n        }\n        g.stroke();\n        g.restore();\n    }\n\n    g.beginPath();\n    g.fillStyle = \"rgb(255,255,2)\";\n    g.moveTo(0,0);\n    g.arc(0,0,radius-30,Math.PI/4,7*Math.PI/4); // 绘制中间圆\n    g.fill();\n    g.lineTo(0,0)\n    g.stroke();\n\n    g.beginPath();\n    g.fillStyle = \"rgb(255,255,255)\";\n    g.arc(0,0,radius-38,0,Math.PI*2,false); // 绘制内圆\n    g.fill();\n    g.stroke();\n\n    g.beginPath();\n    g.fillStyle = \"rgb(255,255,255)\";\n    g.fillRect(-25,25,50,50);\n\n    g.save();\n    g.font = \"bold 15px serif\";\n    g.textAlign = \"center\";\n    g.textBaseline = \"middle\";\n    g.fillStyle = \"rgb(0,0,0)\";\n    g.fillText(value, 0,radius - 20);\n    g.restore();\n\n    g.save();\n    // 转盘指针\n    g.rotate((angle/180)*Math.PI);\n    g.beginPath();\n    g.fillStyle = \"rgb(183,3,4)\";\n    g.moveTo(0,0);\n    g.lineTo(10,-5);\n    g.lineTo(radius-32,0);\n    g.lineTo(10,5);\n    g.lineTo(0,0);\n    g.fill();\n    g.restore();\n\n    g.beginPath();\n    g.fillStyle = \"rgb(225,191,255)\";\n    g.arc(0,0,5,0,Math.PI*2,false); // 绘制最内部圆\n    g.fill();\n    g.stroke();\n\n    g.restore();\n}",
+  "properties": {
+    "maxValue": {
+      "valueType": "Number",
+      "defaultValue": 100,
+      "name": "刻盘最大刻度"
+    },
+    "outSplitNum": {
+      "valueType": "Number",
+      "defaultValue": 5,
+      "name": "外围分刻度"
+    },
+    "inSplitNum": {
+      "valueType": "Number",
+      "defaultValue": 4,
+      "name": "内围分刻度"
+    },
+    "radius": {
+      "valueType": "Number",
+      "defaultValue": 80,
+      "name": "表盘半径"
+    },
+    "value": {
+      "valueType": "String",
+      "defaultValue": "0A",
+      "name": "表盘文字"
+    },
+    "angle": {
+      "valueType": "Angle",
+      "defaultValue": 135,
+      "name": "初始角度"
+    }
+  }
+}

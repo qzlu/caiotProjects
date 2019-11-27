@@ -1,0 +1,103 @@
+{
+  "dataBindings": [
+    {
+      "attr": "ring",
+      "valueType": "Boolean"
+    }
+  ],
+  "width": 40,
+  "height": 95,
+  "visible": {
+    "func": "__ht__function(data, view) {\nif(view.getZoom && view.getZoom() < 0.2) return false;\nreturn true;\n}",
+    "value": true
+  },
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 2,
+      "borderColor": "rgb(26,127,201)",
+      "closePath": true,
+      "points": [
+        6.34994,
+        1.09684,
+        1.13375,
+        11.40872,
+        1.13375,
+        93.42955,
+        32.47121,
+        93.42955,
+        38.62686,
+        88.00063,
+        38.62686,
+        1.09684
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        1.13607,
+        29.13119,
+        2.37906,
+        10.32026
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        1.13607,
+        57.21601,
+        2.37906,
+        8.1792
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(26,127,201)",
+      "gradientColor": "rgb(247,206,139)",
+      "rect": [
+        36.13678,
+        39.45147,
+        3.59442,
+        10.32026
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/管廊/控柜红灯.json",
+      "displayName": "控柜红灯",
+      "rect": [
+        5.43363,
+        2.2632,
+        30,
+        30
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/管廊/控柜绿灯.json",
+      "displayName": "控柜绿灯",
+      "rect": [
+        5.43363,
+        32.2632,
+        30,
+        30
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/demo/管廊/控柜黄灯.json",
+      "displayName": "控柜黄灯",
+      "rect": [
+        6.13678,
+        61.89497,
+        30,
+        30
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "width": 50,
+  "height": 25,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "#D8D8D8",
+      "borderWidth": 1,
+      "borderColor": "rgb(71,54,54)",
+      "rect": [
+        15.27026,
+        2.91994,
+        19.4595,
+        19.16012
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "#D8D8D8",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        27.75114,
+        11.74811,
+        18.2864,
+        4.17975
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "#D8D8D8",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        3.96246,
+        11.74811,
+        18.2864,
+        4.17975
+      ]
+    }
+  ]
+}
