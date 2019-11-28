@@ -89,9 +89,9 @@ export default {
           }
         });
       })
-      view.addEventListener('click', e => {
-        console.log(e);
-      })
+      graphView.onDataClicked =  (data, e) => {
+        console.log(e,data);
+      }
       graphView.fitContent(true);
     }
   }
