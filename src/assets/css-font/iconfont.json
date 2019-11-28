@@ -2447,6 +2447,83 @@
       "font_class": "OperationsManagement",
       "unicode": "e7b7",
       "unicode_decimal": 59319
+    },
+    {
+      "icon_id": "11502785",
+      "name": "Ranking",
+      "font_class": "Ranking",
+      "unicode": "e7b8",
+      "unicode_decimal": 59320
+    },
+    {
+      "icon_id": "11502812",
+      "name": "revenue ranking",
+      "font_class": "revenueranking",
+      "unicode": "e7b9",
+      "unicode_decimal": 59321
+    },
+    {
+      "icon_id": "11502892",
+      "name": "broken line graph",
+      "font_class": "brokenlinegraph",
+      "unicode": "e7ba",
+      "unicode_decimal": 59322
+    },
+    {
+      "icon_id": "11509314",
+      "name": "Energy consumption",
+      "font_class": "Energyconsumption",
+      "unicode": "e7bb",
+      "unicode_decimal": 59323
+    },
+    {
+      "icon_id": "11564942",
+      "name": "Table",
+      "font_class": "Table",
+      "unicode": "e7bc",
+      "unicode_decimal": 59324
+    },
+    {
+      "icon_id": "11565477",
+      "name": "Efficiency analysis",
+      "font_class": "Efficiencyanalysis",
+      "unicode": "e7bd",
+      "unicode_decimal": 59325
+    },
+    {
+      "icon_id": "11565527",
+      "name": "Energy consumption of kanban",
+      "font_class": "Energyconsumptionofkanban",
+      "unicode": "e7be",
+      "unicode_decimal": 59326
+    },
+    {
+      "icon_id": "11638745",
+      "name": "Today",
+      "font_class": "Today",
+      "unicode": "e7bf",
+      "unicode_decimal": 59327
+    },
+    {
+      "icon_id": "11731334",
+      "name": "Yesterday",
+      "font_class": "Yesterday",
+      "unicode": "e7c0",
+      "unicode_decimal": 59328
+    },
+    {
+      "icon_id": "12025583",
+      "name": "Boiler",
+      "font_class": "Boiler",
+      "unicode": "e7c1",
+      "unicode_decimal": 59329
+    },
+    {
+      "icon_id": "12026496",
+      "name": "Hazardous Chemical Substance",
+      "font_class": "HazardousChemicalSubstance",
+      "unicode": "e7c2",
+      "unicode_decimal": 59330
     }
   ]
 }

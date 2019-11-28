@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="list">
-            <li :class="{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}" v-for="(item,i) in systemList" :key="i">
+            <li :class="{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}" v-for="(item,i) in systemList.slice(0,3)" :key="i">
                 <h4>
                    <i :class="['iconfont',item.IconName]"></i>
                    <span>{{item.SystemParamName}}</span>

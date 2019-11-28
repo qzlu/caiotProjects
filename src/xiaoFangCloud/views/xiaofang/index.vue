@@ -216,6 +216,58 @@ export default {
         handleData(data){
             console.log(new Date(),data);
             [this.systemList,this.fireList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
+            if(this.formID == 3){
+                this.systemList = [{
+                    AlarmKind: 0,
+                    IconName: "icon-SZYJY-Chargingpile",
+                    ParamID: 1,
+                    SystemParamName: "充电桩系统",
+                    mBlocHomePageCounts:[
+                        {
+                            AlarmCount: 0,
+                            CountName: "充电桩",
+                            DeviceCount: 0,
+                            DeviceTypeID: 101,
+                            IconName: "icon-SZYJY-Chargingpile",
+                            ParamID: 1,
+                            SystemParamIconName: "icon-SZYJY-Chargingpile",
+                            SystemParamName: "充电桩系统",
+                        }
+                    ]
+                },{
+                    AlarmKind: 0,
+                    IconName: "icon-SZYJY-Chargingpile",
+                    ParamID: 1,
+                    SystemParamName: "危化品系统",
+                    mBlocHomePageCounts:[
+                        {
+                            AlarmCount: 0,
+                            CountName: "可燃气体",
+                            DeviceCount: 55,
+                            DeviceTypeID: 101,
+                            IconName: "icon-FireAlarm",
+                            ParamID: 2,
+                            SystemParamIconName: "icon-SZYJY-Chargingpile",
+                            SystemParamName: "充电桩系统",
+                        }
+                    ]
+                }]
+                this.fireList = [{
+                    Address: "创新科技广场二期",
+                    AlarmTime: "0001-01-01T00:00:00",
+                    DeviceCount: 0,
+                    DeviceName: null,
+                    Flat: "22.5359873547",
+                    Flng: "114.0378070593",
+                    ProjectID: 64,
+                    ProjectName: "中物互联",
+                    PropertyLeader: "陈丽霞",
+                    PropertyPhone: "13066853062",
+                    isAlarm: false,
+                    mBlocHomePageProjectItems: Array(0),
+                    unNormal: false
+                }]
+            }
             this.fireList.forEach(item => {
                 let isAlarm = false
                 let unNormal = item.mBlocHomePageProjectItems.some(obj => obj.ItemCount>0)

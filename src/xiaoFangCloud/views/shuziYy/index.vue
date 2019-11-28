@@ -6,23 +6,21 @@
                 <span>实时告警</span>
             </div>
             <div class="side-content">
-                 <el-scrollbar>
-                    <ul class="list">
-                        <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[0]" :key="i">
-                            <router-link v-if="item.FormID != 2" :to="`/index/${item.FormID}`">
+                <ul class="list" v-if="systemList.length>0">
+                    <li :class="['system-card',{unnormal:systemList[0].AlarmKind == 1,'alarm':systemList[0].AlarmKind == 2}]">
+                            <router-link  :to="`/index/1`">
                                 <h3>
-                                   <i :class="['iconfont',item.IconName]"></i>
-                                   <!-- <span>{{item.FormName}}</span> -->
-                                   <span>{{item.FormID == 1?'智慧消防子平台':'特种设备子平台'}}</span>
+                                   <i :class="['iconfont',systemList[0].IconName]"></i>
+                                   <span>智慧消防子平台</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
                                        <li>
                                            <i class="iconfont icon-Numberofentry"></i>
-                                           {{item.ProjectCount||0}}
+                                           {{systemList[0].ProjectCount||0}}
                                        </li>
                                        <li style="margin-top:0">
                                            <i class="iconfont icon-Equipment"></i>
-                                           {{item.DeviceCount}}
+                                           {{systemList[0].DeviceCount}}
                                        </li>
                                    </ul>
                                 </h3>
@@ -30,7 +28,7 @@
                                     <div class="statu">
                                     </div>
                                     <ul class="param">
-                                        <li v-for="(obj,j) in item.Items" :key="j">
+                                        <li v-for="(obj,j) in systemList[0].Items.slice(0,3)" :key="j">
                                             <p class="l" :title="obj.ItemName">
                                                 <i :class="['iconfont',obj.IconName]"></i>
                                                 {{obj.ItemName}}
@@ -42,20 +40,21 @@
                                     </ul>
                                 </div>
                             </router-link>
-                            <a v-else href="https://dt.caszyj.com:8444/elevator-monitor/main/" target="_blank">
+                    </li>
+                    <li  :class="['system-card',{unnormal:systemList[1].AlarmKind == 1,'alarm':systemList[1].AlarmKind == 2}]">
+                            <a href="https://dt.caszyj.com:8444/elevator-monitor/main/" target="_blank">
                                 <h3>
-                                   <i :class="['iconfont',item.IconName]"></i>
-                                   <!-- <span>{{item.FormName}}</span> -->
-                                   <span>{{item.FormID == 1?'智慧消防子平台':'特种设备子平台'}}</span>
+                                   <i :class="['iconfont',systemList[1].IconName]"></i>
+                                   <span>特种设备子平台</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
                                        <li>
                                            <i class="iconfont icon-Numberofentry"></i>
-                                           {{item.ProjectCount||0}}
+                                           {{systemList[1].ProjectCount||0}}
                                        </li>
                                        <li style="margin-top:0">
                                            <i class="iconfont icon-Equipment"></i>
-                                           {{item.DeviceCount}}
+                                           5
                                        </li>
                                    </ul>
                                 </h3>
@@ -63,44 +62,42 @@
                                     <div class="statu">
                                     </div>
                                     <ul class="param">
-                                        <li v-for="(obj,j) in item.Items" :key="j">
-                                            <p class="l" :title="obj.ItemName">
-                                                <i :class="['iconfont',obj.IconName]"></i>
-                                                {{obj.ItemName}}
+                                        <li>
+                                            <p class="l">
+                                                <i :class="['iconfont','icon-Passengerlift']"></i>
+                                                电梯
                                             </p>
                                             <span class="value">
-                                                <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span> / {{obj.ItemCount}}
+                                                <span>0</span> / 5
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <p class="l">
+                                                <i :class="['iconfont','icon-Boiler']"></i>
+                                                锅炉
+                                            </p>
+                                            <span class="value">
+                                                <span>0</span> / 0
                                             </span>
                                         </li>
                                     </ul>
                                 </div>
                             </a>
-                        </li>
-                    </ul>
-                 </el-scrollbar>
-            </div>
-        </div>
-        <div class="right-side r">
-            <div class="side-header clearfix">
-                <number class="l" :data="fireAlarmData?fireAlarmData.FDayCount:0"></number>
-                <span>当日告警</span>
-            </div>
-            <div class="side-content">
-                    <ul class="list">
-                        <li :class="['system-card',{unnormal:item.AlarmKind == 1,'alarm':item.AlarmKind == 2}]" v-for="(item,i) in systemList[1]" :key="i">
-                            <router-link :to="`/index/${item.FormID}`">
+                    </li>
+                    <li :class="['system-card',{unnormal:systemList[2].AlarmKind == 1,'alarm':systemList[2].AlarmKind == 2}]">
+                            <router-link  :to="`/index/3`">
                                 <h3>
-                                   <i :class="['iconfont',item.IconName]"></i>
-                                   <span>{{item.FormID == 3?'数字应急子平台':item.FormName}}</span>
+                                   <i :class="['iconfont',systemList[2].IconName]"></i>
+                                   <span>数字应急子平台</span>
                                    <i class="iconfont icon-Up"></i>
                                    <ul class="r">
                                        <li>
                                            <i class="iconfont icon-Numberofentry"></i>
-                                           {{item.ProjectCount||0}}
+                                           {{systemList[2].ProjectCount||0}}
                                        </li>
                                        <li style="margin-top:0">
                                            <i class="iconfont icon-Equipment"></i>
-                                           {{item.DeviceCount}}
+                                           55
                                        </li>
                                    </ul>
                                 </h3>
@@ -108,20 +105,35 @@
                                     <div class="statu">
                                     </div>
                                     <ul class="param">
-                                        <li v-for="(obj,j) in item.Items" :key="j">
-                                            <p class="l" :title="obj.ItemName">
-                                                <i :class="['iconfont',obj.IconName]"></i>
-                                                {{obj.ItemName}}
+                                        <li>
+                                            <p class="l">
+                                                <i :class="['iconfont','icon-ChargingPile']"></i>
+                                                充电桩
                                             </p>
                                             <span class="value">
-                                                <span :class="{red:obj.AlarmCount>0}">{{obj.AlarmCount}}</span> / {{obj.ItemCount}}
+                                                <span >0</span> / 0
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <p class="l">
+                                                <i :class="['iconfont','icon-HazardousChemicalSubstance']"></i>
+                                                危化品
+                                            </p>
+                                            <span class="value">
+                                                <span >0</span> / 55
                                             </span>
                                         </li>
                                     </ul>
                                 </div>
                             </router-link>
-                        </li>
-                    </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-side r" style="height:77px;">
+            <div class="side-header clearfix">
+                <number class="l" :data="fireAlarmData?fireAlarmData.FDayCount:0"></number>
+                <span>当日告警</span>
             </div>
         </div>
         <div class="main">
@@ -151,7 +163,7 @@
                   :showMore='true' 
                   @click="queryMonitorData" 
                   @rowClick='rowClick' 
-                  :width='1070' 
+                  :width='1493' 
                   :bodyHeight='170' 
                   :labels='tableLabel1' 
                   :data='fireAlarmData?fireAlarmData.Data:[]' >
@@ -320,10 +332,7 @@ export default {
             console.log(new Date(),data)
             let systemList
             [this.count,systemList,this.fireAlarmData,this.fireList] = data.FObject&&data.FObject
-            let len = Math.ceil(systemList.length/2)
-            let arr1 = systemList.slice(0,len)
-            let arr2 = systemList.slice(len)
-            this.systemList = [arr1,arr2]
+            this.systemList = systemList
             if(this.lastAlarmTime ==''){
                 this.lastAlarmTime = this.count.LastAlarmTime
             }
@@ -519,11 +528,14 @@ export default {
 <style lang="scss">
 .home{
     .yingji{
-        .left-side,.right-side{
+        .left-side{
             width: 412px;
             .list{
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 >li.system-card{
-                    height: 446px;
                     border: none;
                     background: url('../../../assets/image/cloud/index/leftbar.png');
                     background-size: 100% 100%;
@@ -557,25 +569,13 @@ export default {
                                     margin-right: 0;
                                 }
                             }
-/*                             background: url('../../../assets/image/shuziYy/number.png');
-                            background-size: 100% 100%; */
-/*                             li{
-                                width:38px;
-                                height:32px;
-                                line-height: 32px;
-                                text-align: center;
-                                background:linear-gradient(0deg,rgba(61,111,182,1),rgba(16,56,113,1));
-                                border:2px solid rgba(29, 118, 170, 1);
-                                border-radius: 4px;
-                                margin-top: 0;
-                            } */
                             li+li{
                                 margin-left: 40px;
                             }
                         }
                     }
                     .list-content{
-                        height: 390px;
+                        height: 240px;
                         .param{
                             /* width: 180px; */
                             height: 100%;
@@ -612,12 +612,12 @@ export default {
                     }
                 }
                 .system-card+.system-card{
-                    margin-top: 16px;
+                    /* margin-top: 16px; */
                 }
             }
         }
         .main{
-            margin: 0 423px;
+            margin: 0 10px 0 423px;
         }
     }
 }
