@@ -61,6 +61,8 @@ export default {
             },
             legend: {
               data: this.$props.data.name,
+              x: "right", //x,y 显示位置
+              y: "15",
               textStyle: {
                 fontWeight: "normal", //标题颜色
                 color: "#fff"

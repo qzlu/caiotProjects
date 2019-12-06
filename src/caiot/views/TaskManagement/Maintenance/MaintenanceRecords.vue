@@ -162,6 +162,7 @@
 import * as comm from "@/caiot/assets/js/pro_common";
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Maintenance} from '@/caiot/request/api.js'//api接口（接口统一管理）;
+import formatDate from '@/utils/formatDate.js'
 import '../record.scss'
 export default {
     mixins:[table],
@@ -226,7 +227,7 @@ export default {
             Maintenance({
                 FAction:'QueryPageUMaintenancePlanRecord',
                 FName:'',
-                FDateTime:this.time.toLocaleDateString(),
+                FDateTime:formatDate(this.time,'YYYY-MM-DD'),
                 Field:this.orderProp,
                 FOrder:this.order,
                 PageIndex:this.pageIndex,
@@ -273,7 +274,7 @@ export default {
             await new Promise(resolve => {
                 Maintenance({
                     FAction:'QueryUMaintenanceCountByMonth',
-                    FDateTime:this.time.toLocaleDateString().replace(/\//ig,'-')
+                    FDateTime:formatDate(this.time,'YYYY-MM-DD')
                 })
                 .then(data => {
                     this.monthReport = data.FObject
@@ -284,7 +285,7 @@ export default {
                 })
             })
             if(this.monthReport.Table1.length ===0) return
-            let fileName = localStorage.getItem("projectname") + '保养月报' +  this.time.getFullYear() + comm.formatNumber(this.time.getMonth()+1)
+            let fileName = localStorage.getItem("projectname") + '保养月报' +  formatDate(this.time,'YYYY-MM')
             this.fileUpload('#month-report',fileName)
         },
         sortChange(column){
@@ -300,7 +301,7 @@ export default {
          * 导出月报
          */
         exportMonthReport(){
-            let fileName = localStorage.getItem("projectname") + '保养月报' +  this.time.getFullYear() + comm.formatNumber(this.time.getMonth()+1)
+            let fileName = localStorage.getItem("projectname") + '保养月报' +  formatDate(this.time,'YYYY-MM')
             this.getPdf('#month-report',fileName);
         },
         /**

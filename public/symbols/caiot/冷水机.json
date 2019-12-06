@@ -1,5 +1,5 @@
 {
-  "modified": "Thu Nov 28 2019 10:56:46 GMT+0800 (中国标准时间)",
+  "modified": "Mon Dec 02 2019 10:20:16 GMT+0800 (中国标准时间)",
   "dataBindings": [
     {
       "attr": "DeviceState",
@@ -12,6 +12,18 @@
       "valueType": "Number",
       "defaultValue": 0,
       "name": "设备ID"
+    },
+    {
+      "attr": "runningText",
+      "valueType": "String",
+      "defaultValue": "运行",
+      "name": "开状态"
+    },
+    {
+      "attr": "stopText",
+      "valueType": "String",
+      "defaultValue": "停止",
+      "name": "关状态"
     }
   ],
   "width": 108,

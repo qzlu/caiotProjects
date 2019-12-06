@@ -3,10 +3,10 @@
     <div>
       <div class="compre-hensive">
         <div class="left-side aside l">
-          <div class="side-header clearfix">
+<!--           <div class="side-header clearfix">
             <number class="l" :data="count.RealAlarmCount"></number>
             <span>实时告警</span>
-          </div>
+          </div> -->
           <ul class="side-content">
               <li class="card">
                 <h4 class="title">
@@ -92,10 +92,10 @@
           </ul>
         </div>
         <div class="left-side aside r">
-          <div class="side-header clearfix" style="margin-left: 54px;">
+<!--           <div class="side-header clearfix" style="margin-left: 54px;">
             <number class="l" :data="count.RealOrderCount"></number>
             <span>实时任务</span>
-          </div>
+          </div> -->
           <ul class="side-content">
               <li class="card">
                 <h4 class="title">
@@ -182,7 +182,7 @@
           </ul>
         </div>
         <div class="main">
-          <ul class="main-header">
+<!--           <ul class="main-header">
             <li>
               <div class="l">
                 <p>
@@ -228,7 +228,7 @@
               </div>
               <p class="l">{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
             </li>
-          </ul>
+          </ul> -->
           <div id="map" style="100%;height:600px">
             <echarts-map ref="map" @ready1="ready1" @change="queryData" @click-area="areaClick" :block="currentBlock"></echarts-map>
             <div style="height:288px">

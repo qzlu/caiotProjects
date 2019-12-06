@@ -1,7 +1,7 @@
 <template>
   <div id="app" :style="style">
    <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   computed:{
     style(){
       return {
-        transform: "scale("+ this.ratioWidth + ',' + this.ratioHeigt + ")",
+        transform: "scale("+ this.ratioWidth + ',' + this.ratioHeigt + ") ",
         transformOrigin: "left top ",
         backgroundSize: "100%" + ' 100%',
       }
@@ -38,7 +38,8 @@ export default {
 
 <style>
 body{
-  height: 0;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
 }
 #app {

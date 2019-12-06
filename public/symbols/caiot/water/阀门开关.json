@@ -1,5 +1,5 @@
 {
-  "modified": "Thu Nov 28 2019 11:43:33 GMT+0800 (中国标准时间)",
+  "modified": "Mon Dec 02 2019 11:34:48 GMT+0800 (中国标准时间)",
   "dataBindings": [
     {
       "attr": "closed",
@@ -7,9 +7,15 @@
       "defaultValue": false
     },
     {
+      "attr": "DeviceState",
+      "valueType": "String",
+      "defaultValue": "1",
+      "name": "阀门状态"
+    },
+    {
       "attr": "switch",
       "valueType": "Boolean",
-      "defaultValue": true
+      "defaultValue": false
     },
     {
       "attr": "DeviceID",
@@ -28,7 +34,7 @@
     {
       "type": "arc",
       "background": {
-        "func": "__ht__function(data, view) {\nreturn data.a('closed') ? 'rgb(232,232,232)' : 'red';\n}",
+        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceState') ? '#B2B2B2' : '#54FABC';\n}",
         "value": "rgb(232,232,232)"
       },
       "borderColor": "rgb(0,0,0)",
@@ -43,7 +49,7 @@
     {
       "type": "triangle",
       "background": {
-        "func": "__ht__function(data, view) {\nreturn data.a('closed') ? 'rgb(232,232,232)' : 'red';\n}",
+        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceState') ? '#B2B2B2' : '#54FABC';\n}",
         "value": "rgb(232,232,232)"
       },
       "borderColor": "rgb(0,0,0)",
@@ -58,7 +64,7 @@
     {
       "type": "triangle",
       "background": {
-        "func": "__ht__function(data, view) {\nreturn data.a('closed') ? 'rgb(232,232,232)' : 'red';\n}",
+        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceState') ? '#B2B2B2' : '#54FABC';\n}",
         "value": "rgb(232,232,232)"
       },
       "borderColor": "rgb(0,0,0)",
@@ -72,7 +78,7 @@
     {
       "type": "rect",
       "background": {
-        "func": "__ht__function(data, view) {\nreturn data.a('closed') ? 'rgb(232,232,232)' : 'red';\n}",
+        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceState') ? '#B2B2B2' : '#54FABC';\n}",
         "value": "rgb(232,232,232)"
       },
       "rect": [
@@ -85,7 +91,7 @@
     {
       "type": "rect",
       "background": {
-        "func": "__ht__function(data, view) {\nreturn data.a('closed') ? 'rgb(232,232,232)' : 'red';\n}",
+        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceState') ? '#B2B2B2' : '#54FABC';\n}",
         "value": "rgb(232,232,232)"
       },
       "borderColor": "rgb(0,0,0)",

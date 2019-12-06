@@ -18,7 +18,6 @@
 <script>
 //引入uuid文件
 import uuidv1 from 'uuid/v1'
-import echarts from 'echarts'
 import axios from 'axios'
 const myMap = {
 }
@@ -47,7 +46,7 @@ export default {
         this.id = uuidv1()
         await this.queryMainDBTORGLevel()
         await this.queryProvinceData()
-        this.queryAllProvince()
+        await this.queryAllProvince()
         this.queryMapData()
     },
     methods:{

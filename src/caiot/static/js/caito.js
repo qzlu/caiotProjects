@@ -20,6 +20,7 @@ export default{
 					  break;
 					case 104:
 					  Message('令牌错误或超时');
+					  console.log(123)
 					  localStorage.setItem("Token","");
 					  localStorage.setItem("iuserName","");
 					  localStorage.setItem("projectid","");

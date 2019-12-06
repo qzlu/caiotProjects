@@ -41,16 +41,15 @@
       </ul>
       <ul class="menu menu-right">
         <li :class="['menu-item']" >
-         <!--  <router-link to="/404"> -->
-         <a href="javascript:viod(0)">告警管理</a>
-            
-         <!--  </router-link> -->
+          <router-link to="/alarm">
+            告警管理
+          </router-link>
           
         </li>
         <li :class="['menu-item']" >
-          <!-- <router-link to="/404"> -->
-            <a href="javascript:viod(0)">能源管理</a>
-          <!-- </router-link> -->
+          <router-link to="/energy">
+            能源管理
+          </router-link>
         </li>
         <li :class="['menu-item']" >
           <!-- <router-link to="/404"> -->
@@ -91,6 +90,63 @@
             </div>
       </div>
     </div>
+    <div class="count-data"> 
+          <div class="count-data-side clearfix" style="margin-left:12px;">
+            <number class="l" :data="count.RealAlarmCount"></number>
+            <span>实时告警</span>
+          </div>
+          <ul class="count-data-center">
+            <li>
+              <div class="l">
+                <p>
+                  <i class="iconfont icon-Numberofentry"></i>
+                </p>
+                <p>项目数</p>
+              </div>
+              <p class="l">{{count.ProjectCount}}</p>
+            </li>
+            <li>
+              <div class="l">
+                <p>
+                  <i class="iconfont icon-Equipment"></i>
+                </p>
+                <p>设备数</p>
+              </div>
+              <p class="l">{{count.DeviceCount}}</p>
+            </li>
+            <li>
+              <div class="l">
+                <p>
+                  <i class="iconfont icon-SZXFY-Earlywarning"></i>
+                </p>
+                <p>今日告警</p>
+              </div>
+              <p class="l">{{count.TodayAlarmCount}}</p>
+            </li>
+            <li>
+              <div class="l">
+                <p>
+                  <i class="iconfont icon-Workingodd"></i>
+                </p>
+                <p>今日任务</p>
+              </div>
+              <p class="l">{{count.TodayOrder}}</p>
+            </li>
+            <li>
+              <div class="l">
+                <p>
+                  <i class="iconfont icon-JTJC-Totalenergyconsumption"></i>
+                </p>
+                <p>本月电耗</p>
+              </div>
+              <p class="l">{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
+            </li>
+          </ul>
+          <div class="count-data-side clearfix">
+            <number class="l" :data="count.RealOrderCount"></number>
+            <span>实时任务</span>
+          </div>
+    </div>
     <div>
       <router-view :alarmData="alarmData" :orderData="orderData" :currentBlock="currentBlock"></router-view>
     </div>
@@ -112,6 +168,7 @@ export default {
       guid:{IDStr:0}, //查询的IDStr
       currentBlock:{},
       userType:sessionStorage.getItem('FUserType'),
+      count:{},
       alarmData:[],
       orderData:[],
       treeData:[],
@@ -129,6 +186,7 @@ export default {
   },
   components: {
     setPassword,
+    number
   },
   watch: {
     filterText(val){
@@ -200,6 +258,7 @@ export default {
       this.timer = null
       this.queryBlocAlarmRealData()
       this.queryBlocPageUOrdersByDate()
+      this.queryUSituationStatistics()
       this.timer = setTimeout(() => {
         this.queryData()
       },1000*10)
@@ -236,6 +295,19 @@ export default {
         });
     },
     /**
+     * 386.综合态势（设备统计  告警统计 任务统计）
+     */
+    queryUSituationStatistics() {
+        this.$post('/QueryBlocUSituationStatistics',{
+          FORGGroupGUID: this.currentBlock.FGUID||'',
+          ...this.guid
+        })
+        .then(result => {
+          this.count = result.FObject[0] || {};
+        })
+        .catch(err => {});
+    },
+    /**
      * 查询左边树形数据(258.组织架构--查询树状集团项目)
      */
     queryProject(){
@@ -259,7 +331,7 @@ export default {
     },
     filterNode(value, data) {
         if (!value) return true;
-        return data.FORGName.indexOf(value) !== -1;
+        return data.FSimpleName.indexOf(value) !== -1;
     },
     /**
      * 选择集团
@@ -370,8 +442,51 @@ $url: "../../../assets/image/";
       }
     }
   }
-  .compre-hensive {
+  .count-data{
+    height: 77px;
     margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    &-side{
+      width: 366px;
+      position: relative;
+      background: url('#{$url}/cloud/index/number.png');
+      >span{
+          position: absolute;
+          bottom: 10px;
+          right: 16px;
+      }
+    }
+    &-center{
+      width: 1070px;
+      display: flex;
+      justify-content: center;
+      .iconfont{
+          font-size: 28px;
+          line-height: 40px;
+      }
+      li{
+          >div{
+              p{
+                  
+              }
+          }
+          >p{
+              margin-left: 20px;
+              font-size:36px;
+              font-family:MicrosoftYaHeiUI-Bold;
+              font-weight:bold;
+              color:rgba(132,242,255,1);
+              line-height: 64px;
+          }
+      }
+      li+li{
+          margin-left: 50px;
+      }
+    }
+
+  }
+  .compre-hensive {
     .aside {
       width: 413px;
       .side-content {
@@ -620,7 +735,7 @@ $url: "../../../assets/image/";
                     }
                 }
                 .list-content{
-                    height: 170px;
+                    height: 160px;
                     display: flex;
                     align-items: center;
                     .statu1{

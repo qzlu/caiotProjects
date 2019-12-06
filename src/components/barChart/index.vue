@@ -17,7 +17,14 @@ export default {
       type: Object
     },
     setting: {
-      type: Object
+      type: Object,
+      default:() => {
+        return {
+          legend:{
+
+          }
+        }
+      }
     },
     grid:{
       type:Object,
@@ -87,13 +94,14 @@ export default {
           show: true,
           itemWidth:10,
           itemHeight:10,
-          x: "right", //x,y 显示位置
+          right: '20', //x,y 显示位置
           y: "15",
           textStyle: {
             fontWeight: "normal", //标题颜色
             color: "#fff",
             fontSize: '12px'
-          }
+          },
+          ...this.setting.legend,
         },
         grid: this.grid,
         toolbox: {
@@ -123,7 +131,7 @@ export default {
           },
           axisLabel: {
             color: "#FFFFFF",
-            interval: 0,
+            interval: 'auto',
             rotate:this.lableRotate
           },
           axisTick: {

@@ -93,6 +93,11 @@ export default {
                     label:'项目名称'
                 },
                 {
+                    prop:'MeterReadingKind',
+                    label:'抄表类型',
+                    formatter: row => row.MeterReadingKind == 1 ? '物联抄表':'人工抄表'
+                },
+                {
                     prop: 'EnergyTypeName',
                     label: '能源类型',
                 },
@@ -182,6 +187,7 @@ export default {
         queryDeviceAndDataItem(){
             Device({
                 FAction:'QueryDeviceAndDataItem',
+                FType:1
             })
             .then((data) => {
                 this.deviceList = data.FObject

@@ -104,6 +104,7 @@ export default {
           type: "category",
           boundaryGap: true,
           nameLocation: "center",
+          nameRotate:30,
           axisLine: {
             //x轴色
             lineStyle: {
@@ -112,8 +113,10 @@ export default {
             }
           },
           axisLabel: {
+            width:40,
             color: "#FFFFFF",
-            interval: 0
+            interval: 'auto',
+            /* rotate:this.$props.data.columns.length>10?45:0 */
           },
           axisTick: {
             show: false
@@ -152,6 +155,9 @@ export default {
       };
       if (option && typeof option === "object") {
         this.myChart.setOption(option, true);
+        this.myChart.on('click',(param) =>{
+          this.$emit('chartClick',param)
+        })
       }
     }
   }

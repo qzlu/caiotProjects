@@ -27,6 +27,9 @@ $img-url:'../../static/image/';
                     background: #cccccc;
                 } */
             }
+            .el-select__input{
+                color: #F1F1F2;
+            }
             &__error{
                 left: 50%;
                 transform: translateX(-50%)

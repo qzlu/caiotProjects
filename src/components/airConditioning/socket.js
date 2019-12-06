@@ -2,7 +2,6 @@
 var websock = null;
 var global_callback = null;
  
- 
 function initWebSocket(){ //初始化weosocket
     //ws地址
     var wsuri =`ws://47.107.224.8:8082/WSConfiguration/${localStorage.getItem('Token')}`;
@@ -56,8 +55,13 @@ function sendSock(agentData,callback){
  
 //数据接收
 function websocketonmessage(e){ 
-    let data = JSON.parse(e.data)
-    global_callback(data);
+    if(!global_callback) return
+    try{
+        let data = JSON.parse(e.data)
+        global_callback(data);
+    }catch(e){
+        /* console.log(e) */
+    }
 }
  
 //数据发送

@@ -45,7 +45,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr class="gg">
                 <td width="12.5%">能源类型</td>
-                <td width="12.5%">分区能耗</td>
+                <td width="12.5%">分项能耗</td>
                 <td width="12.5%">上次读数</td>
                 <td width="12.5%">本次读数</td>
                 <td width="12.5%">用量</td>
@@ -563,6 +563,7 @@ import * as comm from "@/caiot/assets/js/pro_common";
 import {Inspection,FileUpLoad,project,MeterReading} from '@/caiot/request/api.js'//api接口（接口统一管理）;
 import table from '@/caiot/mixins/table' //表格混入数据
 import {pieChart} from '@/caiot/zw-components/index'
+import formatDate from '@/utils/formatDate.js'
 import '../InspectionRecords.scss';
 import '../InspectionRoad.scss';
 export default {
@@ -730,12 +731,12 @@ export default {
       /*抄表报告弹ajax请求数据*/
 
       this.centerDialogVisible = true; //弹出-弹出框
-      if(this.monthReport1.Table.length ===0){
+      if(!this.monthReport1.Table||this.monthReport1.Table.length ===0){
         return
       }
       /*生成pdf名称*/
       let now_times = ""; //如果日期为空，默认为昨天的
-      now_times = this.value1.getFullYear()+comm.formatNumber(this.value1.getMonth()+1);
+      now_times = formatDate(this.value1,'YYYY-MM')
       /*生成pdf名称*/
           let fileName = localStorage.getItem("projectname") + '物联抄表' +  now_times
           await new Promise(resolve => {
@@ -792,7 +793,7 @@ export default {
     start_barData() {
       MeterReading({
         FAction: "QueryUMeterReadingInfo",
-        FDateTime: this.value1.getFullYear() + '-' + comm.formatNumber(this.value1.getMonth()+1)
+        FDateTime: formatDate(this.value1,'YYYY-MM')
       })
       .then(data => {
           this.bar_value = data.FObject.Table[0]; //把环形图值付给它。再在页面读取总数等值
@@ -917,8 +918,8 @@ export default {
         this.active = 0
         MeterReading({
           FAction:'QueryUMeterReadingPlanByCount',
-          StartDateTime:this.time.getFullYear() + '-' + comm.formatNumber(this.time.getMonth()+1),
-          EndDateTime:this.time.getFullYear() + '-' + comm.formatNumber(this.time.getMonth()+1)
+          StartDateTime:formatDate(this.time,'YYYY-MM'),
+          EndDateTime:formatDate(this.time,'YYYY-MM')
         })
         .then(data => {
           this.totalInfo = data.FObject.Table?data.FObject.Table[0]:{}
@@ -950,7 +951,7 @@ export default {
         this.planID = id
         MeterReading({
           FAction:'QueryUMeterReadingPlanRecord',
-          FDateTime:this.time.getFullYear() + '-' + comm.formatNumber(this.time.getMonth()+1),
+          FDateTime:formatDate(this.time,'YYYY-MM'),
           ID:id,
           PageIndex:this.pageIndex,
           PageSize:'20'
@@ -984,7 +985,7 @@ export default {
       await new Promise((resolve,reject) => {
         MeterReading({
           FAction:'QueryUMeterReadingCountByMoneth',
-          FDateTime:this.time.getFullYear() + '-' + comm.formatNumber(this.time.getMonth()+1) + '-01'
+          FDateTime:formatDate(this.time,'YYYY-MM') + '-01'
         })
         .then(data => {
           this.monthReport = data.FObject
@@ -998,7 +999,7 @@ export default {
       if(this.monthReport.Table.length ===0){
         return
       }
-      let fileName = localStorage.getItem("projectname") + '人工抄表' +  this.time.getFullYear() + comm.formatNumber(this.time.getMonth()+1)
+      let fileName = localStorage.getItem("projectname") + '人工抄表' +  formatDate(this.time,'YYYY-MM')
       await new Promise(resolve => {
         this.$nextTick(() => {
           resolve()
@@ -1036,7 +1037,7 @@ export default {
         MeterReading({
             FAction:'QueryExportUMeterReadingPlanRecord',
             ID:this.planID,
-            FDateTime:this.time.getFullYear() + '-' + comm.formatNumber(this.time.getMonth()+1),
+            FDateTime:formatDate(this.time,'YYYY-MM'),
             FName:''
         })
         .then(data => {

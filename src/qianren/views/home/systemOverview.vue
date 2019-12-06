@@ -3,10 +3,6 @@
     <div>
       <div class="compre-hensive">
         <div class="left-side aside l">
-          <div class="side-header clearfix">
-            <number class="l" :data="count.RealAlarmCount"></number>
-            <span>实时告警</span>
-          </div>
           <div class="side-content">   
             <ul class="list" >
                 <li :class="{alarm:item.FState>0}" v-for="(item,i) in systemList[0]||[]" :key="i">
@@ -47,10 +43,6 @@
           </div>
         </div>
         <div class="left-side aside r">
-          <div class="side-header clearfix" style="margin-left: 54px;">
-            <number class="l" :data="count.RealOrderCount"></number>
-            <span>实时任务</span>
-          </div>
           <div class="side-content">   
             <ul class="list" >
                 <li :class="{alarm:item.FState>1}" v-for="(item,i) in systemList[1]||[]" :key="i">
@@ -91,53 +83,6 @@
           </div>
         </div>
         <div class="main">
-          <ul class="main-header">
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Numberofentry"></i>
-                </p>
-                <p>项目数</p>
-              </div>
-              <p class="l">{{count.ProjectCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Equipment"></i>
-                </p>
-                <p>设备数</p>
-              </div>
-              <p class="l">{{count.DeviceCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                </p>
-                <p>今日告警</p>
-              </div>
-              <p class="l">{{count.TodayAlarmCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Workingodd"></i>
-                </p>
-                <p>今日任务</p>
-              </div>
-              <p class="l">{{count.TodayOrder}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-JTJC-Totalenergyconsumption"></i>
-                </p>
-                <p>本月电耗</p>
-              </div>
-              <p class="l">{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
-            </li>
-          </ul>
           <div id="map" style="100%;height:600px">
             <echarts-map ref="map" @ready1="ready1" @change="queryData" @click-area="areaClick" :block="currentBlock"></echarts-map>
             <div style="height:288px">

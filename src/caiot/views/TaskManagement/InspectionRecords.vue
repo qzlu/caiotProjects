@@ -572,6 +572,7 @@ import * as comm from "../../assets/js/pro_common";
 import {Inspection,FileUpLoad,project} from '@/caiot/request/api.js'//api接口（接口统一管理）;
 import table from '@/caiot/mixins/table' //表格混入数据
 import {pieChart} from '@/caiot/zw-components/index'
+import formatDate from '@/utils/formatDate.js'
 import './InspectionRecords.scss';
 export default {
   mixins:[table],
@@ -682,7 +683,7 @@ export default {
       this.centerDialogVisible = true; //弹出-弹出框
       /*生成pdf名称*/
       let now_times = ""; //如果日期为空，默认为昨天的
-      now_times = this.value1.getFullYear()+comm.formatNumber((this.value1.getMonth()+1))+comm.formatNumber((this.value1.getDate()))
+      now_times = formatDate(this.value1,'YYYY-MM-DD')
       /*生成pdf名称*/
         if (this.Dialog_table2 != "") {
           //如果没有数据，就不生成pdf文件
@@ -918,7 +919,7 @@ export default {
       if(this.dateReport.length ===0){
         return
       }
-      let fileName = localStorage.getItem("projectname") + '人工巡检' +  this.time.getFullYear()+comm.formatNumber((this.time.getMonth()+1))+comm.formatNumber((this.time.getDate()))
+      let fileName = localStorage.getItem("projectname") + '人工巡检' +  formatDate(this.time,'YYYY-MM-DD')
       await new Promise(resolve => {
         this.$nextTick(() => {
           resolve()

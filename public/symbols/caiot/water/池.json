@@ -1,4 +1,5 @@
 {
+  "modified": "Thu Nov 28 2019 17:53:07 GMT+0800 (中国标准时间)",
   "background": "rgb(0,0,0)",
   "dataBindings": [
     {
@@ -10,6 +11,21 @@
       "attr": "pool",
       "valueType": "Boolean",
       "defaultValue": true
+    },
+    {
+      "attr": "DeviceID",
+      "valueType": "Number",
+      "name": "设备ID"
+    },
+    {
+      "attr": "DataItemID",
+      "valueType": "Number",
+      "name": "数据项ID"
+    },
+    {
+      "attr": "deep",
+      "valueType": "Number",
+      "name": "水池高度"
     }
   ],
   "width": 200,
@@ -20,7 +36,6 @@
       "type": "shape",
       "background": "rgb(63,122,204)",
       "selectable": false,
-      "shadowColor": "#1ABC9C",
       "points": [
         -49.64043,
         13.46739,
@@ -70,7 +85,6 @@
     {
       "type": "shape",
       "background": "rgb(124,175,247)",
-      "shadowColor": "#1ABC9C",
       "rect": {
         "func": "__ht__function(data, view) {\nvar x = data.a('offsetX') || 0;\nreturn [-50 + x,6.7537,300,188.21669];\n}",
         "value": [
@@ -143,7 +157,6 @@
     {
       "type": "shape",
       "background": "rgb(84,145,232)",
-      "shadowColor": "#1ABC9C",
       "scaleX": -1,
       "rect": {
         "func": "__ht__function(data, view) {\nvar x = data.a('offsetX') || 0;\nreturn [-50 - x,39.14432,300,156.01315];\n}",
@@ -188,7 +201,6 @@
     {
       "type": "shape",
       "background": "rgb(43,110,204)",
-      "shadowColor": "#1ABC9C",
       "rect": {
         "func": "__ht__function(data, view) {\nvar x = data.a('offsetX') || 0;\nreturn [-50 + x,79.24259,300,120.75741];\n}",
         "value": [
@@ -232,7 +244,6 @@
     {
       "type": "shape",
       "background": "rgb(25,95,194)",
-      "shadowColor": "#1ABC9C",
       "rect": {
         "func": "__ht__function(data, view) {\nvar x = data.a('offsetX') || 0;\nreturn [-50 - x,139.6213,300,60.3787];\n}",
         "value": [
@@ -276,7 +287,6 @@
       "gradient": "radial.north",
       "gradientColor": "rgba(255,255,255,0.2)",
       "selectable": false,
-      "shadowColor": "#1ABC9C",
       "points": [
         171.22681,
         192.24467,

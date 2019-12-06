@@ -17,11 +17,13 @@ module.exports = {
             }),
             /* new BundleAnalyzerPlugin(), */
             new CompressionPlugin({
-                test: /\.(js|css)$/
+                test: /\.(js|css)/
             })
         ],
         externals:{
-            
+            echarts: 'echarts',
+            html2canvas:'html2canvas',
+            jspdf:'jspdf'
         },
         devtool: 'source-map',
     },

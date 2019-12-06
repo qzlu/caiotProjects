@@ -10,6 +10,8 @@ const treeTransfer = () => import('./tree-Transfer/index')  //树形穿梭框
 const pieChart = () => import('./pieChart')
 const barChart = () => import('./barChart')
 const AirConditioning = () => import('./airConditioning')
+const Power = () =>  import('./power')
+const Water = () =>  import('./water')
 export{
     zwCard,
     zwPagination,
@@ -21,5 +23,7 @@ export{
     treeTransfer,
     pieChart,
     barChart,
-    AirConditioning
+    AirConditioning,
+    Power,
+    Water
 }

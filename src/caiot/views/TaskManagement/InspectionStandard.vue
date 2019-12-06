@@ -7,6 +7,7 @@
                 <el-scrollbar>
                     <el-tree
                         :data='deviceData'
+                        highlight-current
                         :props="defaultProps"
                         @node-click='handleClick'
                     >

@@ -4,7 +4,6 @@
 <script>
 //引入uuid文件
 import uuidv1 from 'uuid/v1'
-import echarts from 'echarts'
 export default {
   data() {
     return {

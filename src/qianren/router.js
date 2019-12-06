@@ -27,6 +27,14 @@ export default new Router({
                 {
                     path:'/comprehensiveRanking', //综合排名
                     component: () => import('./views/home/comprehensiveRanking.vue')
+                },
+                {
+                    path:'/alarm', //告警管理
+                    component: () => import('./views/alarm/alarmCount.vue')
+                },
+                {
+                    path:'/energy', //能源管理
+                    component: () => import('./views/energy/energyCount.vue')
                 }
             ]
         },
