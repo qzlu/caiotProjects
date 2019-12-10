@@ -53,7 +53,7 @@
         </li>
         <li :class="['menu-item']" >
           <!-- <router-link to="/404"> -->
-            <a href="javascript:viod(0)">任务管理</a>
+            <a href="javascript:void(0)">任务管理</a>
           <!-- </router-link> -->
         </li>
       </ul>
@@ -466,11 +466,6 @@ $url: "../../../assets/image/";
           line-height: 40px;
       }
       li{
-          >div{
-              p{
-                  
-              }
-          }
           >p{
               margin-left: 20px;
               font-size:36px;

@@ -89,20 +89,23 @@ export default {
             radius: ["50", "60"],
             avoidLabelOverlap: true,
             center:this.setting&&this.setting.center||['50%','50%'],
+            zlevel:10,
             label: {
               normal: this.label,
               emphasis: {
                 show: true,
                 textStyle: {
-                  fontSize: "30",
+                  fontSize: "14",
                   fontWeight: "bold"
                 }
               }
             },
             labelLine: {
               normal: {
-                show: true
-              }
+                show: true,
+                length:6,
+                length2:10 
+              },
             },
             data:this.$props.data.rows
           }

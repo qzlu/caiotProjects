@@ -105,6 +105,10 @@ export default {
         pieChart,
         barChart
     },
+    beforeRouteEnter(to, from, next){
+        console.log('进入前');
+        next()
+    },
     created(){
     },
     methods:{

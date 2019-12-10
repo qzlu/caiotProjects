@@ -356,6 +356,7 @@ export default {
                 .content{
                     height: 173px;
                     position: relative;
+                    z-index: 10;
                     display: flex;
                     .border-dashed{
                         position: absolute;

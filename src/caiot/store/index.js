@@ -188,7 +188,7 @@ const store = new Vuex.Store({
                     let menuData = comm.ChangeRouterVal(data.FObject); //匹配路由名
                     let menuList = formatterMenu(menuData)
                     state.menuData = menuList.filter(item => item.FMenuType == 5)
-                    let systemMenu = menuList.filter(item => item.FMenuType != 5)
+                    let systemMenu = menuList.filter(item => item.FMenuType == 1)
                     state.systemMenu = systemMenu[0]?systemMenu[0].FChildMenu:''
                     if(Array.isArray(state.menuData)){
                         localStorage.setItem('menuData',JSON.stringify(state.menuData))

@@ -221,6 +221,7 @@ export default {
                 {
                     prop: 'DeviceLedgerName',
                     label: '设备名称',
+                    width:120
 
                 },
                 {
@@ -236,12 +237,12 @@ export default {
                 {
                     prop: 'SpecificationsCode',
                     label: '出厂型号',
-                    width:120
+                    width:90
                 },
                 {
                     prop: 'ManufacturingNumber',
                     label: '出厂编号',
-                    width:120
+                    width:100
                 },
                 {
                     prop: 'ManufacturingTime',
@@ -259,6 +260,11 @@ export default {
                     label: '质保截止',
                     width:'100',
                     formatter:(row, column, cellValue, index) => row.EditorDateTime?row.EditorDateTime.split(' ')[0]:''
+                },
+                {
+                    prop: 'EnergyTypeName',
+                    label: '能源类型',
+                    width:90
                 },
                 {
                     prop: 'IsIOTDevice',

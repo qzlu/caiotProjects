@@ -1,7 +1,10 @@
 
 import router from './index'
 import store from '../store/index.js'
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css'
 router.beforeEach(async (to, from, next) => {
+	NProgress.start()
 	let re = /\/home/
 	/* 路由发生变化修改页面title */
 	if (to.meta.title) {
@@ -37,4 +40,7 @@ router.beforeEach(async (to, from, next) => {
 			next()
 		}
 	}
+})
+router.afterEach(()=> {
+	NProgress.done()
 })

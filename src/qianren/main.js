@@ -13,6 +13,8 @@ import './assets/css/common.scss'
 Vue.config.productionTip = false
 import {post} from './request/http.js'
 Vue.prototype.$post = post
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css'
 /* import {sendSock,websock,initWebSocket} from '@/qianren/request/socket.js'
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
@@ -20,6 +22,7 @@ Vue.prototype.$initWebSocket = initWebSocket */
 store.dispatch('addRoute')
 router.beforeEach((to, from, next) => {
   let {token, projectID,link}= to.query
+  NProgress.start()
   if(token){
       sessionStorage.setItem('FToken',token)
       sessionStorage.setItem('inIframe',1)
@@ -30,9 +33,14 @@ router.beforeEach((to, from, next) => {
   token = token || sessionStorage.getItem('FToken')
   if(to.path !== '/login'&&!token){
     next({path:'/login'})
+    NProgress.done()
   }else{
     next()
+    NProgress.done()
   }
+})
+router.afterEach(()=> {
+	NProgress.done()
 })
 new Vue({
   router,

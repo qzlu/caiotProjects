@@ -30,11 +30,6 @@ export default {
       type:Object,
       default:() =>{
         return{
-          top: "60",
-          left: "10",
-          right: "10",
-          bottom: "40",
-          containLabel: true
         }
       }
     },
@@ -103,7 +98,14 @@ export default {
           },
           ...this.setting.legend,
         },
-        grid: this.grid,
+        grid: {
+          top: "60",
+          left: "10",
+          right: "10",
+          bottom: "40",
+          containLabel: true,
+          ...this.grid
+        },
         toolbox: {
           feature: {}
         },
@@ -158,7 +160,7 @@ export default {
               color: "#FFFFFF",
               interval: 0,
               formatter:val => {
-                return val>10000?val/10000+'w':val
+                return val>=10000?val/10000+'w':val
               },
             },
             axisTick: {
