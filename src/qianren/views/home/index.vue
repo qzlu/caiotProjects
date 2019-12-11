@@ -195,8 +195,8 @@ export default {
   },
   beforeCreate() {},
   created() {
-    this.queryProject()
-    this.queryData()
+ /*    this.queryProject()
+    this.queryData() */
   },
   mounted() {
     this.$nextTick(() => {
@@ -217,7 +217,7 @@ export default {
      * 退出
      */
     logOut() {
-      this.$router.push("/login");
+      location.href = 'login.html'
     },
     /**
      * 修改密码

@@ -9,10 +9,9 @@ import '@/assets/css-font/iconfont.css'
 import '@/assets/css/reset.css'
 import '@/assets/css/reset-el-table.scss'
 import '@/assets/css/common.scss'
-import './assets/css/common.scss'
 Vue.config.productionTip = false
-import {post} from './request/http.js'
-Vue.prototype.$post = post
+import {Post} from '@/request/api.js'
+Vue.prototype.$post = Post
 /* import {sendSock,websock,initWebSocket} from '@/qianren/request/socket.js'
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
@@ -30,6 +29,7 @@ router.beforeEach((to, from, next) => {
   token = token || sessionStorage.getItem('FToken')
   if(to.path !== '/login'&&!token){
     next({path:'/login'})
+    location.href = 'login.html'
   }else{
     next()
   }

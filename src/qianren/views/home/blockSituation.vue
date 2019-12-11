@@ -299,8 +299,8 @@ export default {
   },
   methods: {
     ready1(level) {
-      this.queryData()
-      this.queryBlocEnergyByMonth();
+      /* this.queryData()
+      this.queryBlocEnergyByMonth(); */
     },
     /**
      * 点击地图上的区域时

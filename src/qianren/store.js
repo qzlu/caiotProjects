@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {post} from './request/http.js'
+import {Post} from '@/request/http.js'
 import router from './router.js'
 Vue.use(Vuex)
 /**
@@ -68,7 +68,7 @@ export default new Vuex.Store({
      */
     getMenus(){
       return new Promise((resolve,reject) => {
-        post('/QueryUsersMenu')
+        Post('/QueryUsersMenu')
         .then((result) => {
           let menuData = result.FObject; //匹配路由名
           let menuList = formatterMenu(menuData)

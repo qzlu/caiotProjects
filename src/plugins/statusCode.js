@@ -17,7 +17,8 @@ export function messageErr(x,message = '',router){
           Message('令牌错误或超时');
           localStorage.removeItem('FToken')
           setTimeout(function(){
-               router.push('/login') //跳至登录页面
+               /* router.push('/login') //跳至登录页面 */
+               /* location.href = '/login.html' */
           },1000)
           break;
         case 105:

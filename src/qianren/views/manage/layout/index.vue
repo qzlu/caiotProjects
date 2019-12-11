@@ -80,7 +80,7 @@ export default {
             },1000)
         },
         logOut(){
-            this.$router.push('/login')
+            location.href = '/'
         },
     }
 }

@@ -1,20 +1,37 @@
-const projectConfig = require('./projectConfig')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-    ? projectConfig.baseUrl||'/'
-    : '/',
-    configureWebpack: {
-        entry: {
-            app:projectConfig.entry + 'main.js'
+    pages:{
+        login:{
+            entry:'src/login/main.js',
+            template:'src/login/index.html',
+            filename:'login.html',
+            title:'登录'
         },
+        index:{
+            entry:'src/qianren/main.js',
+            template:'src/qianren/index.html',
+            filename:'index.html',
+            title:'千仞集团'
+        },
+        project:{
+            entry:'src/caiot/main.js',
+            template:'src/caiot/index.html',
+            filename:'project.html',
+            title:'千仞项目'
+        },
+        manage:{
+            entry:'src/manage/main.js',
+            template:'src/manage/index.html',
+            filename:'manage.html',
+            title:'千仞后台管理系统'
+        }
+    },
+    configureWebpack: {
         plugins: [
-            new HtmlWebpackPlugin({
-                template: projectConfig.entry + 'index.html', 
-            }),
             /* new BundleAnalyzerPlugin(), */
             new CompressionPlugin({
                 test: /\.(js|css)/
@@ -26,6 +43,20 @@ module.exports = {
             jspdf:'jspdf'
         },
         devtool: 'source-map',
+    },
+    devServer: {
+        // development server port 8000
+        // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
+        proxy: {
+          '/api': {
+            target: 'http://172.172.172.37:8770/',
+/*             pathRewrite: {
+                '^/api': '/'
+            }, */
+            ws: false,
+            changeOrigin: true
+          }
+        }
     },
     productionSourceMap:false
 }
