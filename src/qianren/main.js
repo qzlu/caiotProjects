@@ -16,6 +16,7 @@ Vue.prototype.$post = Post
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
 Vue.prototype.$initWebSocket = initWebSocket */
+
 store.dispatch('addRoute')
 router.beforeEach((to, from, next) => {
   let {token, projectID,link}= to.query
@@ -27,9 +28,9 @@ router.beforeEach((to, from, next) => {
       sessionStorage.setItem('projectID', projectID)
   }
   token = token || sessionStorage.getItem('FToken')
-  if(to.path !== '/login'&&!token){
-    next({path:'/login'})
-    location.href = 'login.html'
+  if(!token){
+    /* next({path:'/login'}) */
+    location.href = '.login.html'
   }else{
     next()
   }

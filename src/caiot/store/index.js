@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {project, system} from '@/caiot/request/api.js';
-import * as comm from "../assets/js/pro_common";
 import router from "../router/index"
+import {Post} from '@/request/api.js'
 Vue.use(Vuex)
 /**
  * 递归遍历使得一级菜单的路由为其子菜单第一个页面
@@ -21,7 +21,7 @@ const formatterMenu = function (data){
     return data
 }
 const lazyLoad = function(path){
-    return () => import(`@/caiot/views/${path}`)
+    return () => import(`@/${path}`)
 }
 let detail = [{
     path: 'detail_info/:id/:SingleType', //实时监测详情页
@@ -45,13 +45,13 @@ let detail = [{
 //生成路由
 const generaMenu = function(data,arr = []){
     arr = data.map(menu => {
-        if(menu.FChildMenu&&menu.FChildMenu.length>0){
+/*         if(menu.FChildMenu&&menu.FChildMenu.length>0){
             generaMenu(menu.FChildMenu,)
-        }
+        } */
         if(menu.FMenuLevle == 1){
             let children
-            if(menu.FChildMenu&&menu.FChildMenu.length>0){
-                children = generaMenu(menu.FChildMenu,[])
+            if(menu.ListData&&menu.ListData.length>0){
+                children = generaMenu(menu.ListData,[])
                 if(menu.FMenuName == '实时监测'){
                     children.push(...detail)
                 }
@@ -85,7 +85,7 @@ const generaMenu = function(data,arr = []){
                 path:menu.FURL,
                 name:menu.FFunctionURLAddress,
                 component:lazyLoad(menu.FComponent||'common.vue'),
-                children:menu.FChildMenu&&menu.FChildMenu.length>0?generaMenu(menu.FChildMenu,[]):[],
+                children:menu.ListData&&menu.ListData.length>0?generaMenu(menu.ListData,[]):[],
                 meta: {
                     title: '千仞云平台',
                     requireAuth: true,
@@ -181,21 +181,12 @@ const store = new Vuex.Store({
          */
         getMenu({state}){
             return new Promise((resolve,reject) => {
-                system({
-                    FAction: "QueryUsersMenu"
-                })
+                Post('QueryUsersMenuTree',{Ftype:1,FFormID:'d65139ce-163e-11ea-ad0d-00163e08d559'})
                 .then(data => {
-                    let menuData = comm.ChangeRouterVal(data.FObject); //匹配路由名
+                    let menuData = data.FObject
                     let menuList = formatterMenu(menuData)
-                    state.menuData = menuList.filter(item => item.FMenuType == 5)
-                    let systemMenu = menuList.filter(item => item.FMenuType != 5)
-                    state.systemMenu = systemMenu[0]?systemMenu[0].FChildMenu:''
-                    if(Array.isArray(state.menuData)){
-                        localStorage.setItem('menuData',JSON.stringify(state.menuData))
-                    }
-                    if(Array.isArray(state.systemMenu)){
-                        localStorage.setItem('systemMenu',JSON.stringify(state.systemMenu))
-                    }
+                    state.menuData = menuList
+                    console.log(data)
                     resolve(state.menuData[0])
                 })
                 .catch(error => {
@@ -203,18 +194,13 @@ const store = new Vuex.Store({
                 });
             })
         },
-        addRoute(){
-            let menuData,systemMenu
+        addRoute({state}){
+            let menuData
             try {
-                menuData = JSON.parse(localStorage.getItem('menuData'))||[]
+                menuData = state.menuData
             } catch (error) {
                 menuData = []
             }
-            try {
-                systemMenu = JSON.parse(localStorage.getItem('systemMenu'))||[]
-            } catch (error) {
-                systemMenu = []
-            } 
             if(Array.isArray(menuData)&&menuData.length>0){
                 let homeRoutes = generaMenu(menuData)
                 let routers = [
@@ -222,22 +208,11 @@ const store = new Vuex.Store({
                         path: '/',
                         name: 'home',
                         component: () => import('@/caiot/views/home'),
-                        redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页
+                        /* redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页 */
                         children: homeRoutes
                     }
                 ]
-                router.addRoutes(routers)
-            }
-            if(Array.isArray(systemMenu)&&systemMenu.length>0){
-                let manageRoutes = generaMenu(systemMenu)
-                let routers = [
-                    {
-                        path: '/manage',
-                        component: () => import('@/caiot/views/manage/layout/index.vue'),
-                        redirect: `${manageRoutes[0]?manageRoutes[0].path:''}`,
-                        children:manageRoutes
-                    }
-                ]
+                console.log(routers)
                 router.addRoutes(routers)
             }
         }

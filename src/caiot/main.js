@@ -16,7 +16,8 @@ import './static/css/common.css' /*引入公共样式*/
 import './static/css_font/iconfont.css' /*引入字体图标样式*/
 import './assets/css/reset-el-table.scss' //修改el-table样式
 import './assets/css/common.scss' 
-
+import {Post} from '@/request/api.js'
+Vue.prototype.$post = Post
 import htmlToPdf from './static/js/htmlToPdf.js' /*引入生成pdf文件*/
 Vue.use(htmlToPdf)
 
@@ -46,9 +47,17 @@ Vue.directive('loadmore', {  bind(el, binding) { 
     }    
   })  
 }})
-store.dispatch('addRoute')
-/* eslint-disable no-new */
+store.dispatch('getMenu')
+.then((result) => {
+  store.dispatch('addRoute')
 
+}).catch((err) => {
+  console.log(err)
+})
+.finally(() => {
+
+})
+/* eslint-disable no-new */
 new Vue({
   router,
   store,

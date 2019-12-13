@@ -1,162 +1,13 @@
 <template>
   <div class="home qianren">
-    <div class="header">
-      <div class="logo">
-        <img :src="logoImg" alt="">
-      </div>
-      <span class="title">{{formName}}</span>
-      <ul class="clearfix" style="top:10px;right:16px">
-        <li class="l icon" v-if="systemMenu&&systemMenu.length>0">
-            <router-link :to="`/manage`"  class="icon-item">
-                <i class="iconfont icon-zs-backstage"></i>
-            </router-link>
-        </li>
-        <li class="l icon" @click="switchAudio">
-          <i :class="['iconfont', {'icon-ZS-news':isOpen == 1,'icon-Soundoff':isOpen == 0}]"></i>
-        </li>
-        <li class="l icon">
-          <el-dropdown>
-            <div class="el-dropdown-link icon-item">
-              <i class="iconfont icon-User"></i>
-            </div>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="show = true">设置密码</el-dropdown-item>
-              <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </li>
-        <li class="l user-name">{{user}}</li>
-        <!-- <set-password :show.sync='show' @confirm="changePassword"></set-password> -->
-      </ul>
-      <ul class="menu menu-left">
-        <li :class="['menu-item']">
-          <router-link to="/blockSituation">集团态势</router-link>
-        </li>
-        <li :class="['menu-item']">
-          <router-link to="/systemOverview">系统总览</router-link>
-        </li>
-        <li :class="['menu-item']">
-          <router-link to="/comprehensiveRanking">综合排名</router-link>
-        </li>
-      </ul>
-      <ul class="menu menu-right">
-        <li :class="['menu-item']" >
-          <router-link to="/alarm">
-            告警管理
-          </router-link>
-          
-        </li>
-        <li :class="['menu-item']" >
-          <router-link to="/energy">
-            能源管理
-          </router-link>
-        </li>
-        <li :class="['menu-item']" >
-          <!-- <router-link to="/404"> -->
-            <a href="javascript:viod(0)">任务管理</a>
-          <!-- </router-link> -->
-        </li>
-      </ul>
-      <div id="tree-project" class="r" >
-            <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
-            <div class="tree-project" v-if="showProjectList">
-                <div class="filter-box">
-                    <el-input
-                      placeholder="搜索关键字"
-                      v-model="filterText">
-                      <i class="el-icon-search" slot="suffix"></i>
-                    </el-input>
-                </div>
-                <div class="tree-content">
-                    <el-scrollbar>
-                        <el-tree
-                            ref="tree"
-                           :data="treeData"
-                           :props="treeProp"
-                           default-expand-all
-                           @node-click="slectBlock"
-                           :expand-on-click-node="false"
-                           :filter-node-method="filterNode"
-                        >
-                          <template v-slot="{node,data}">
-                            <div style="width:100%;text-align:left">
-                              <span v-if="data.FNodeType == 1">{{data.FSimpleName}}</span><!-- www.szqianren.com -->
-                              <a v-if="data.FNodeType == 2" style="display:block;width:100%;height:100%" :href="`https://www.szqianren.com/#/?token=${token}&projectID=${data.ProjectID}&showMenu=2&user=${user}`" target="_blank">{{data.FSimpleName}}</a>
-                            </div>
-                          </template>
-                        </el-tree>
-                    </el-scrollbar>
-                </div>
-            </div>
-      </div>
-    </div>
-    <div class="count-data"> 
-          <div class="count-data-side clearfix" style="margin-left:12px;">
-            <number class="l" :data="count.RealAlarmCount"></number>
-            <span>实时告警</span>
-          </div>
-          <ul class="count-data-center">
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Numberofentry"></i>
-                </p>
-                <p>项目数</p>
-              </div>
-              <p class="l">{{count.ProjectCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Equipment"></i>
-                </p>
-                <p>设备数</p>
-              </div>
-              <p class="l">{{count.DeviceCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                </p>
-                <p>今日告警</p>
-              </div>
-              <p class="l">{{count.TodayAlarmCount}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-Workingodd"></i>
-                </p>
-                <p>今日任务</p>
-              </div>
-              <p class="l">{{count.TodayOrder}}</p>
-            </li>
-            <li>
-              <div class="l">
-                <p>
-                  <i class="iconfont icon-JTJC-Totalenergyconsumption"></i>
-                </p>
-                <p>本月电耗</p>
-              </div>
-              <p class="l">{{count.ActualElectric>10000?`${(count.ActualElectric/10000).toFixed(1)}万`:count.ActualElectric||'--'}}</p>
-            </li>
-          </ul>
-          <div class="count-data-side clearfix">
-            <number class="l" :data="count.RealOrderCount"></number>
-            <span>实时任务</span>
-          </div>
-    </div>
-    <div>
-      <router-view :alarmData="alarmData" :orderData="orderData" :currentBlock="currentBlock"></router-view>
-    </div>
+    <Layout :formIndex='1'>
+      <router-view></router-view>
+    </Layout>
+   <!-- <router-view></router-view> -->
   </div>
 </template>
 <script>
-import { number, pieChart, barChart } from "@/components/index.js";
-import echartsMap from "../component/map.vue";
-import monitorData from "./monitorData.vue"
-import { setPassword } from "@/components/index.js";
+import Layout from '@/layout/layout.vue'
 import("@/assets/css/index.scss");
 export default {
   data() {
@@ -185,8 +36,7 @@ export default {
     };
   },
   components: {
-    setPassword,
-    number
+    Layout
   },
   watch: {
     filterText(val){

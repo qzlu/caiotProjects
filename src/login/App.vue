@@ -151,7 +151,7 @@ export default {
             }
             this.queryTUserForm()
             this.getMenus()
-            /* location.href = '/' */
+            location.href = '/'
           })
           .catch(err => {
             console.log(err)

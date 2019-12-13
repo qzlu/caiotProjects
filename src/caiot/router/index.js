@@ -12,6 +12,10 @@ let router = [
 		}
 	},
 	{
+		path:'/',
+		component: () =>import("@/caiot/views/home")
+	},
+	{
 		path: '/agreement', //给安卓用的页面，不是pc项目
 		name: 'agreement',
 		component: agreement,
@@ -19,11 +23,11 @@ let router = [
 			title: '千仞云平台'
 		}
 	},
-	{
+/* 	{
 		path: '*',
 		meta: { requiresAuth: false },
 		component: () => import('../views/404.vue')
-	},
+	}, */
 
 ]
 Vue.use(Router)

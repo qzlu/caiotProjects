@@ -3,32 +3,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default
+let pagesObject = {
+    login:{
+        entry:'src/login/main.js',
+        template:'src/login/index.html',
+        filename:'login.html',
+        title:'登录'
+    },
+    index:{
+        entry:'src/qianren/main.js',
+        template:'src/qianren/index.html',
+        filename:'index.html',
+        title:'千仞集团'
+    },
+    project:{
+        entry:'src/caiot/main.js',
+        template:'src/caiot/index.html',
+        filename:'project.html',
+        title:'千仞项目'
+    },
+}
 module.exports = {
-    pages:{
-        login:{
-            entry:'src/login/main.js',
-            template:'src/login/index.html',
-            filename:'login.html',
-            title:'登录'
-        },
-        index:{
-            entry:'src/qianren/main.js',
-            template:'src/qianren/index.html',
-            filename:'index.html',
-            title:'千仞集团'
-        },
-        project:{
-            entry:'src/caiot/main.js',
-            template:'src/caiot/index.html',
-            filename:'project.html',
-            title:'千仞项目'
-        },
-        manage:{
-            entry:'src/manage/main.js',
-            template:'src/manage/index.html',
-            filename:'manage.html',
-            title:'千仞后台管理系统'
-        }
+    pages:pagesObject,
+    chainWebpack: config => {
+        // TODO: Remove this workaround once https://github.com/vuejs/vue-cli/issues/2463 is fixed
+        // Remove preload plugins for multi-page build to prevent infinite recursion
+        Object.keys(pagesObject).forEach(page => {
+            config.plugins.delete(`preload-${page}`)
+            config.plugins.delete(`prefetch-${page}`)
+        })
     },
     configureWebpack: {
         plugins: [

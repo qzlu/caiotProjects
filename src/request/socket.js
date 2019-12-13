@@ -1,5 +1,5 @@
 
-import store from '../store.js';
+/* import store from '../store.js'; */
 import {messageErr} from '@/plugins/statusCode.js'
 var websock = null;
 var global_callback = null;

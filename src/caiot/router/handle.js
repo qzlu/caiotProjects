@@ -2,6 +2,7 @@
 import router from './index'
 import store from '../store/index.js'
 router.beforeEach(async (to, from, next) => {
+	console.log(to)
 	let re = /\/home/
 	/* 路由发生变化修改页面title */
 	if (to.meta.title) {
@@ -19,14 +20,14 @@ router.beforeEach(async (to, from, next) => {
 	if (projectID) {
 		localStorage.setItem('projectid', projectID)
 	}
-	token = token || localStorage.getItem("Token");
+	token = token || sessionStorage.getItem("FToken");
 	let menuData
 	try {
 		menuData = JSON.parse(localStorage.getItem('menuData'))||[]
 	} catch (error) {
 		menuData = []
 	}
-	if ((!token||menuData.length == 0)&&to.path !== '/login') {
+	if ((!token)&&to.path !== '/login') {
 		next({
 			name: 'login'    //强制跳转指定页面       
 		})
