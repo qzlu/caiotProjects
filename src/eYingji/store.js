@@ -30,10 +30,10 @@ const generaMenu = function(data,arr = []){
           if(menu.ListData&&menu.ListData.length>0){
               children = generaMenu(menu.ListData,[])
           }
-          if(menu.FMenuName == '系统管理'){
+          if(menu.FMenuName == '用户管理'){
             children.push(
                 {
-                  path:'/manage/roleDetail/:role',
+                  path:'/manage/roleDetail/:roleId',
                   component:() => import('@/user/roleDetail.vue'),
                   name:'roleDetail',
                   meta:{
@@ -44,7 +44,7 @@ const generaMenu = function(data,arr = []){
           }
           return {
               path:menu.FURL,
-              component:lazyLoad(menu.FComponent||'qianren/views/404.vue'),
+              component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
               /* redirect:menu.FURL, */
               children:children,
               meta:{
@@ -55,7 +55,7 @@ const generaMenu = function(data,arr = []){
       }else{
           return {
               path:menu.FURL,
-              component:lazyLoad(menu.FComponent||'qianren/views/404.vue'),
+              component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
               children:menu.ListData&&menu.ListData.length>0?generaMenu(menu.ListData,[]):[],
               meta:{
                 name:menu.FMenuName,
@@ -73,8 +73,7 @@ export default new Vuex.Store({
     FContacts:'',
     userType:null,
     projectName:'',
-    menuData:[],
-    formID:'D8EDC248-B1B8-4C8A-B8B2-2C48DC14FEA7'
+    menuData:[]
   },
   mutations: {
   },
@@ -84,7 +83,7 @@ export default new Vuex.Store({
      */
     getMenus({state},formID){
       return new Promise((resolve,reject) => {
-        Post('QueryUsersMenuTree',{Ftype:1,FFormID:state.formID})
+        Post('QueryUsersMenuTree',{Ftype:1,FFormID:formID})
         .then((result) => {
           let menuData = result.FObject; //匹配路由名
           state.menuData = formatterMenu(menuData)
@@ -103,10 +102,11 @@ export default new Vuex.Store({
                   path: '',
                   name: 'home',
                   component: () => import('@/shuziYy/views/home'),
-                  /* redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页 */
+                  redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页
                   children: homeRoutes
               }
           ]
+          console.log(routers)
           router.addRoutes(routers)
       }
   }

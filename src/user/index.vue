@@ -1,7 +1,7 @@
 <template>
     <div>
         <main-layout>
-            <router-view :buttonList = 'buttonList'></router-view>
+            <router-view></router-view>
         </main-layout>
     </div>
 </template>
@@ -11,6 +11,11 @@ export default {
     data(){
         return{
             buttonList:[]
+        }
+    },
+    provide(){
+        return {
+            buttonList:this.buttonList
         }
     },
     components:{
@@ -31,12 +36,12 @@ export default {
          */
         queryTMenuListButton(){
             let formIndex = this.$route.params.id
-            let FGUID = this.$route.meta.formList&&this.$route.meta.formList[formIndex-1]
-            console.log(FGUID)
-            if(!FGUID) return
-            this.$post('QueryTMenuListButton',{FFormID:'3F2F8DAA-4396-46A4-953D-FCBACA4AF117',FGUID})
+            let FGUID = this.$route.meta.FGUID
+            this.$post('QueryTMenuListButton',{FFormID:this.$store.state.formID,FGUID})
             .then((result) => {
-                this.buttonList = result.FObject || []
+                let data = result.FObject || []
+                this.buttonList.length = 0
+                this.buttonList.push(...data)
             }).catch((err) => {
                 
             });

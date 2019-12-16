@@ -16,7 +16,7 @@
               <i :class="['iconfont', {'icon-ZS-news':isOpen == 1,'icon-Soundoff':isOpen == 0}]"></i>
           </li>
         </operation>
-        <div class="form-link" v-if="linkFormList.length>1">
+        <div class="form-link" v-if="linkFormList.length>0">
             <el-dropdown>
               <span class="el-dropdown-link">
                 平台导航<i class="el-icon-caret-bottom el-icon--right"></i>
@@ -90,12 +90,13 @@ export default {
         return document.getElementById('myAudio')
     },
     leftMenuData(){
-      return this.menuData.slice(0,this.leftMenuLasIndex)
+      return this.$store.state.menuData.slice(0,this.leftMenuLasIndex)
     },
     rightMenuData(){
-      return this.menuData.slice(this.leftMenuLasIndex)
+      return this.$store.state.menuData.slice(this.leftMenuLasIndex)
     },
     linkFormList(){
+      console.log(this.formIndex);
       return this.formList.filter(item => item.FIndex != this.formIndex )
     }
   },
@@ -117,7 +118,6 @@ export default {
   created() {
     this.leftMenuLasIndex = Number(sessionStorage.getItem('leftMenuLasIndex'))||3
     this.queryTUserForm()
-    console.log(this.formIndex);
     /* this.initSystem() */
   },
   mounted: function() {
@@ -142,7 +142,7 @@ export default {
       this.formList = JSON.parse(sessionStorage.getItem('formList'))
       let formIndex = this.$route.params.id
       this.currentForm = this.formList[formIndex - 1]
-      this.getMenus(this.currentForm.FGUID)
+      /* this.getMenus(this.currentForm.FGUID) */
     },
     /**
      * 递归遍历使得一级菜单的路由为其子菜单第一个页面
@@ -160,28 +160,16 @@ export default {
       })
       return data
     },
-    /**
-     * 获取用户菜单
-     */
-    getMenus(formID){
-      this.$post('QueryUsersMenuTree',{Ftype:1,FFormID:formID})
-      .then((result) => {
-        let menuData = result.FObject; //匹配路由名
-        this.menuData = this.formatterMenu(menuData)
-        this.$store.dispatch('addRoute',this.menuData)
-      }).catch((err) => {
-        console.log(err)
-      });
-    },
     changeSystem(index){
       /* this.$router.push(`/${index}`) */
       sessionStorage.removeItem('leftMenuLasIndex')
-      /* location.reload() */
-      if(index == 1){
-        location.href = '/'
-      }else if(index == 2){
-        location.href = '/project.html'
+      let router = {
+        1:"/",
+        2:'/project.html',
+        3:'/shuziYy.html',
+        4:'/eYingji.html'
       }
+        location.href = router[index]||'/'
     },
     /**
      * 切换声音开关
@@ -227,7 +215,6 @@ export default {
         console.log(result);
         this.formList = result.FObject || []
         this.currentForm = this.formList.find(item => item.FIndex == this.formIndex)
-        this.getMenus(this.currentForm.FGUID)
       }).catch((err) => {
         
       });

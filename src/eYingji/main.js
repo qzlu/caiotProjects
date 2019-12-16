@@ -52,7 +52,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
 })
-store.dispatch('getMenus')
+store.dispatch('getMenus','E460C962-8680-446F-9F7A-8739E64C17DF')
 .then((result) => {
   store.dispatch('addRoute')
 }).catch((err) => {

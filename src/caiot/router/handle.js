@@ -27,7 +27,8 @@ router.beforeEach(async (to, from, next) => {
 	} catch (error) {
 		menuData = []
 	}
-	if ((!token)&&to.path !== '/login') {
+	if (!token) {
+		location.href = '/login.html'
 		next({
 			name: 'login'    //强制跳转指定页面       
 		})

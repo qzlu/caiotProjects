@@ -7,25 +7,26 @@
               :filter='false'
               @beforeAdd = 'beforeAdd'
               @editItem = 'editItem'
-              :disabledAdd="disabledAdd"
               :deleteRow = 'deleteItem'
               :exportData="exportFile" 
               @submit="addOrUpdate"
             >
-                <el-form slot="dialog" :model="addData" inline ref="form">
-                    <el-form-item label="所属范围">
-                        <el-input readonly v-model="currentNode.FAreaName"></el-input>
-                    </el-form-item>
-                    <el-form-item label="项目编码" prop="FProjectCode" :rules="[{ required: true, message: '请输入'}]">
-                        <el-input v-model="addData.FProjectCode"></el-input>
-                    </el-form-item>
+                <el-form class="add-block" slot="dialog" :model="addData" inline ref="form">
                     <el-form-item label="项目全称" prop="FProjectName" :rules="[{ required: true, message: '请输入'}]">
                         <el-input v-model="addData.FProjectName"></el-input>
                     </el-form-item>
                     <el-form-item label="项目简称"  prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
                         <el-input  v-model="addData.FSimpleName"></el-input>
                     </el-form-item>
-                    <el-form-item label="业态" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
+                    <el-form-item label="行政架构" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.BuildTypeID">
+                            <el-option :value="31" label="商住"></el-option>
+                            <el-option :value="32" label="商业"></el-option>
+                            <el-option :value="33" label="住宅"></el-option>
+                            <el-option :value="34" label="酒店会所"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="建筑业态" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
                         <el-select v-model="addData.BuildTypeID">
                             <el-option :value="31" label="商住"></el-option>
                             <el-option :value="32" label="商业"></el-option>
@@ -38,21 +39,55 @@
                            <span slot="suffix">m²</span>
                         </el-input>
                     </el-form-item>
-                    <el-form-item label="排序" prop="FSortID" :rules="[{ required: true, message: '请输入'}]">
-                        <el-input v-model="addData.FSortID" type="number"></el-input>
+                    <el-form-item label="项目经理" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.BuildTypeID">
+                            <el-option :value="31" label="商住"></el-option>
+                            <el-option :value="32" label="商业"></el-option>
+                            <el-option :value="33" label="住宅"></el-option>
+                            <el-option :value="34" label="酒店会所"></el-option>
+                        </el-select>
                     </el-form-item>
-<!--                     <el-form-item label="地区" prop="FAreaCode">
-                        <el-cascader
-                            ref="project"
-                            v-model="FAreaCode"
-                            :options="provinces"
-                            :props="{ checkStrictly: true,label:'name',value:'id' }"
-                            collapse-tags
-                            clearable>
-                        </el-cascader>
-                    </el-form-item> -->
+                    <el-form-item label="联系电话"  prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
+                        <el-input  v-model="addData.FSimpleName"></el-input>
+                    </el-form-item>
                     <el-form-item label="详细地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
                         <el-input class="block" type="textarea" v-model="addData.Address"></el-input>
+                    </el-form-item>
+                    <el-form-item label="集团LOGO">
+                        <div class="thumb-img" v-if="fileList[0]">
+                            <div class="delete">
+                                <i class="el-icon-delete" @click="fileList = [] "></i>
+                            </div>
+                            <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                        </div>
+                        <el-upload
+                          v-else
+                          action="http://47.107.224.8:8080/UploadFile"
+                          list-type="picture-card"
+                          :limit = '1'
+                          :on-success="handleSuccess1"
+                          :data="{FTokenID:token}"
+                         >
+                            <p><i class="el-icon-plus"></i><br><span>上传(160*60)</span></p>
+                        </el-upload>                
+                    </el-form-item>
+                    <el-form-item label="集团宣传图" style="margin-left:74px">
+                        <div class="thumb-img" v-if="fileList[0]">
+                            <div class="delete">
+                                <i class="el-icon-delete" @click="fileList = [] "></i>
+                            </div>
+                            <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                        </div>
+                        <el-upload
+                          v-else
+                          action="http://47.107.224.8:8080/UploadFile"
+                          list-type="picture-card"
+                          :limit = '1'
+                          :on-success="handleSuccess1"
+                          :data="{FTokenID:token}"
+                         >
+                            <p><i class="el-icon-plus"></i><br><span>上传</span></p>
+                        </el-upload>                
                     </el-form-item>
                 </el-form>
             </Table>
@@ -121,6 +156,7 @@ export default {
             },
             FAreaCode:[],
             currentNode:{}, //当前选中节点
+            fileList:[],
         }
     },
     components:{
@@ -216,4 +252,53 @@ export default {
 }
 </script>
 <style lang="scss">
+.el-dialog{
+    .add-block{
+        .thumb-img{
+            width: 165px;
+            height:128px;
+            position: relative;
+            border: 1px solid #05679e;
+            border-radius: 6px;
+            .delete{
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                line-height: 128px;
+                left: 0;
+                top: 0;
+                background: rgba($color: #000000, $alpha: 0.3);
+                cursor: pointer;
+                font-size: 40px;
+                text-align: center;
+                color: white;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .thumb-img:hover{
+            .delete{
+                display: block;
+            }
+        }
+        .el-upload--picture-card{
+            width:165px;
+            height:128px;
+            background:rgba(24,64,107,1);
+            border:1px solid rgba(5,103,158,1);
+            p{
+                line-height: 26px;
+                display: inline-block;
+                color: #9EE5F3;
+                i{
+                    font-size: 30px;
+                    color: #9EE5F3;
+                }
+            }
+        }
+    }
+}
 </style>

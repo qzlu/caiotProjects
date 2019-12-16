@@ -1,12 +1,12 @@
 2<template>
     <div class="report">
        <ul class="operation">
-           <li class="l" v-if="isShowAdd&&showAdd">
+           <li class="l" v-if="isShowAdd&&showAdd"><!-- v-if="isShowAdd&&showAdd" -->
                <el-button :disabled="disabledAdd" @click="beforeAdd">
                    <i class="iconfont icon-Added"></i>新增
                </el-button>
            </li>
-            <li class="l" v-if="isExport||exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
+            <li class="l" v-if="isExport&&exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
             <li class="l"><el-button @click="queryData"><i class="iconfont icon-Refresh"></i>刷新</el-button></li>
             <li class="r">
                 <el-input v-if="filter" class="search-input" placeholder="搜索关键字" v-model="filterText">
@@ -80,6 +80,11 @@ export default {
 
         }
     },
+    inject:{
+        buttonList:{
+            default:[]
+        }
+    },
     props:{
         tableLabel:{ //表格字段
             require:true,
@@ -89,7 +94,7 @@ export default {
             require:true,
             type:Function
         },
-        buttonList:Array,
+        /* buttonList:Array, */
         'disabled-add':Boolean,
         filter:{ //是否显示搜索框
             default:true,
@@ -122,6 +127,7 @@ export default {
          * 是否有新增的权限
          */
         isShowAdd(){
+            console.log(this.buttonList);
             return this.buttonList&&this.buttonList.find(item => item.FURL == 1)?true:false
         },
         /**

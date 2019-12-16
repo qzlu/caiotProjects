@@ -11,7 +11,7 @@ let router = [
 			title: '千仞云平台'
 		}
 	},
-	{
+/* 	{
 		path:'/',
 		component: () =>import("@/caiot/views/home")
 	},
@@ -22,7 +22,7 @@ let router = [
 		meta: {
 			title: '千仞云平台'
 		}
-	},
+	}, */
 /* 	{
 		path: '*',
 		meta: { requiresAuth: false },

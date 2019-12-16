@@ -16,9 +16,10 @@ Vue.prototype.$post = Post
 Vue.prototype.$socket = sendSock
 Vue.prototype.$websocket = websock
 Vue.prototype.$initWebSocket = initWebSocket */
-
-store.dispatch('addRoute')
+/* 
+store.dispatch('addRoute') */
 router.beforeEach((to, from, next) => {
+  console.log('ee',to,router)
   let {token, projectID,link}= to.query
   if(token){
       sessionStorage.setItem('FToken',token)
@@ -29,14 +30,22 @@ router.beforeEach((to, from, next) => {
   }
   token = token || sessionStorage.getItem('FToken')
   if(!token){
+    next()
     /* next({path:'/login'}) */
-    location.href = '.login.html'
+    location.href = '/login.html'
   }else{
     next()
   }
 })
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+store.dispatch('getMenus')
+.then((result) => {
+}).catch((err) => {
+})
+.finally(() => {
+  store.dispatch('addRoute')
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+})

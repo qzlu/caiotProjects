@@ -72,8 +72,9 @@ export default {
          * 退出
          */
         logOut() {
-          this.$router.push({ path: "/login" });
-          localStorage.clear()
+          location.href = '/login.html'
+          /* this.$router.push({ path: "/login" });
+          localStorage.clear() */
         },
         /**
          * 选择项目时

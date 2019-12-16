@@ -9,7 +9,6 @@
           :deleteRow = 'deleteItem' 
           :exportData="exportFile" 
           @submit="addOrUpdate"
-          :buttonList = "buttonList"
         >
            <el-form slot="dialog" :model="addData" inline ref="form">
                <el-form-item label="角色名称" prop="FName" :rules="[{ required: true, message: '角色名称不能为空'}]">
@@ -21,7 +20,7 @@
            </el-form>
            <template v-slot:row-operation="{row}">
                 <span>
-                    <router-link :to="`/1/manage/roleDetail/${row.FGUID}`">
+                    <router-link :to="`/manage/roleDetail/${JSON.stringify({FGUID:row.FGUID,name:row.FName,description:row.FDescription})}`">
                         分配权限
                     </router-link>
                 </span>
@@ -74,9 +73,6 @@ export default {
             tabIndex:1,
             role:null,
         }
-    },
-    props:{
-        buttonList:Array
     },
     components:{
         Table,

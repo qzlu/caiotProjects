@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {Post} from '@/request/http.js'
+import {Post} from '@/request/api.js'
 import router from './router.js'
 Vue.use(Vuex)
 /**
@@ -8,9 +8,9 @@ Vue.use(Vuex)
  */
 const formatterMenu = function (data){
   data.forEach(menu => {
-      if(menu.FChildMenu&&menu.FChildMenu.length>0){
-          let children = menu.FChildMenu[0]
-          if(children.FChildMenu&&children.FChildMenu.length>0){
+      if(menu.ListData&&menu.ListData.length>0){
+          let children = menu.ListData[0]
+          if(children.ListData&&children.ListData.length>0){
               menu.FURL = formatterMenu([children])[0].FFunctionURLAddress
           }else{
               menu.FURL = children.FURL
@@ -20,32 +20,46 @@ const formatterMenu = function (data){
   return data
 }
 const lazyLoad = function(path){
-  return () => import(`@/qianren/views${path}`)
+  return () => import(`@/${path}`)||import('@/qianren/views/404.vue')
 }
 //生成路由
 const generaMenu = function(data,arr = []){
   arr = data.map(menu => {
-      if(menu.FChildMenu&&menu.FChildMenu.length>0){
-          generaMenu(menu.FChildMenu,)
-      }
-      if(menu.FMenuLevle == 1&&menu.FMenuType == 7){
+      if(menu.FParentGUID =='00000000-0000-0000-0000-000000000000'){
           let children
-          if(menu.FChildMenu&&menu.FChildMenu.length>0){
-              children = generaMenu(menu.FChildMenu,[])
+          if(menu.ListData&&menu.ListData.length>0){
+              children = generaMenu(menu.ListData,[])
+          }
+          if(menu.FMenuName == '用户管理'){
+            children.push(
+                {
+                  path:'/manage/roleDetail/:role',
+                  component:() => import('@/user/roleDetail.vue'),
+                  name:'roleDetail',
+                  meta:{
+                    name:'功能角色>分配权限'
+                  }
+                },
+            )
           }
           return {
-              path:'/'+menu.FFunctionURLAddress,
-              component:lazyLoad(menu.FComponent||'/404.vue'),
-              redirect:menu.FURL,
+              path:menu.FURL,
+              component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
+              /* redirect:menu.FURL, */
               children:children,
+              meta:{
+                name:menu.FMenuName,
+                FGUID:menu.FGUID
+              }
           }
       }else{
           return {
               path:menu.FURL,
-              component:lazyLoad(menu.FComponent||'/404.vue'),
-              children:menu.FChildMenu&&menu.FChildMenu.length>0?generaMenu(menu.FChildMenu,[]):[],
+              component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
+              children:menu.ListData&&menu.ListData.length>0?generaMenu(menu.ListData,[]):[],
               meta:{
-                name:menu.FMenuName
+                name:menu.FMenuName,
+                FGUID:menu.FGUID
               }
           }
       }
@@ -59,6 +73,8 @@ export default new Vuex.Store({
     FContacts:'',
     userType:null,
     projectName:'',
+    menuData:[],
+    formID:'3F2F8DAA-4396-46A4-953D-FCBACA4AF117'
   },
   mutations: {
   },
@@ -66,48 +82,32 @@ export default new Vuex.Store({
     /**
      * 获取用户菜单
      */
-    getMenus(){
+    getMenus({state}){
       return new Promise((resolve,reject) => {
-        Post('/QueryUsersMenu')
+        Post('QueryUsersMenuTree',{Ftype:1,FFormID:state.formID})
         .then((result) => {
           let menuData = result.FObject; //匹配路由名
-          let menuList = formatterMenu(menuData)
-          let menus = menuList.filter(item => item.FMenuType == 7)
-          let systemMenu = menuList.filter(item => item.FMenuType != 7)
-          menus&&sessionStorage.setItem('menuData',JSON.stringify(menus))
-          systemMenu&&sessionStorage.setItem('systemMenu',JSON.stringify(systemMenu))
+          state.menuData = formatterMenu(menuData)
           resolve()
         }).catch((err) => {
           reject(err)
         });
       })
     },
-    addRoute(){
-      let menuData = JSON.parse(sessionStorage.getItem('menuData'))||[]
-      let systemMenu = JSON.parse(sessionStorage.getItem('systemMenu'))||[]
-      if(Array.isArray(menuData)&&menuData.length>0){
+    addRoute({state}){
+      let menuData = state.menuData
+      if(Array.isArray(menuData)){
           let homeRoutes = generaMenu(menuData)
           let routers = [
               {
-                  path: '/',
+                  path: '',
                   name: 'home',
                   component: () => import('@/qianren/views/home'),
                   redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页
                   children: homeRoutes
               }
           ]
-          router.addRoutes(routers)
-      }
-      if(Array.isArray(systemMenu)&&systemMenu.length>0){
-          let manageRoutes = generaMenu(systemMenu)
-          let routers = [
-              {
-                  path: '/manage',
-                  component: () => import('@/qianren/views/manage/layout/index.vue'),
-                  redirect: `${manageRoutes[0]?manageRoutes[0].path:''}`,
-                  children:manageRoutes
-              }
-          ]
+          console.log(routers)
           router.addRoutes(routers)
       }
   }

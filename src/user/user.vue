@@ -8,7 +8,6 @@
           @editItem = 'editItem'
           :deleteRow = 'deleteItem' 
           @submit="addOrUpdate"
-          :buttonList='buttonList'
         >
             <el-form class="user-form" slot="dialog" :model='addData' ref='form' inline>
                 <el-form-item label="用户姓名" prop="FContacts" :rules="[{ required: true, message: '请输入用户名'}]">
@@ -33,18 +32,17 @@
                     <el-option v-for="(item,i) in userTypeList" :key="i" :value="item.id" :label="item.name"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item v-if="userType == 1" label="管理集团" prop="FORGGroupGUID" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select class="row" v-model="addData.FORGGroupGUID"   placeholder="请选择集团">
+                <el-form-item v-if="addData.FUserType <= 2" label="管理集团" prop="FORGGroupGUIDStr" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select class="row" v-model="checkedBlock" multiple   placeholder="请选择集团">
                     <el-option v-for="(item,i) in blockList" :key="i" :value="item.FGUID" :label="item.FSimpleName"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item v-if="userType != 1" label="管理项目" prop="FORGGroupGUID" :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item v-else  label="管理项目" prop="FORGGroupGUID" :rules="[{ required: true, message: '请选择'}]"><!-- collapse-tags -->
                     <el-cascader
                       class="row"
                       v-model="checkedProject"
                       :options="projectList"
                       :props="props"
-                      collapse-tags
                       clearable>
                     </el-cascader>
                 </el-form-item>
@@ -166,7 +164,8 @@ export default {
                 FDutyStr:'',
                 FJobStr:'',
                 FTFormStr:'',
-                FTUserStr:''
+                FTUserStr:'',
+                FORGGroupGUIDStr:''
             },
             param:{
                 SearchKey:"",
@@ -187,11 +186,9 @@ export default {
             },
             projectList:[],
             checkedProject:[],
-            groupList:[{...groupItem}]
+            groupList:[{...groupItem}],
+            checkedBlock:[]
         }
-    },
-    props:{
-        buttonList:Array
     },
     components:{
         zwTable
@@ -305,7 +302,7 @@ export default {
             return result
         },
         queryProject(){
-            this.$post('QueryTORGProjectList')
+            this.$post('QueryTORGProjectList',{FGUID:""})
             .then((result) => {
                 let data = result.FObject||[]
                 this.projectList = this.formatterTreeData(data)
@@ -368,9 +365,19 @@ export default {
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
+            //项目联级选择器已选中值
+            this.checkedProject = []
+            let projectList = row.FProjectID?row.FProjectID.split(','):[]
+            projectList.forEach(id => {
+                this.projectList.forEach(project =>{
+                    let isExit = project.children.find(item => item.projectID == id)
+                    if(isExit){
+                        this.checkedProject.push([project.value,id])
+                    }
+                })
+            })
             this.queryTUserForm(2,row.FGUID)
             .then((result) => {
-                console.log(result)
                 let formList = result.FObject || []
                 this.formList = formList.map(item => {
                     return {
@@ -394,6 +401,8 @@ export default {
             this.addData.FTUserStr = this.groupList.map(item => {
                 return `${item.department}_${item.job}_${item.duty}`
             }).join(',')
+            this.addData.FORGGroupGUIDStr = this.checkedBlock.join(',')
+            console.log(this.addData.FORGGroupGUIDStr);
             await new Promise(resolve => {
                 this.$refs.form.validate((valid) => {
                   if (valid) {

@@ -4,8 +4,8 @@
             <i class="el-icon-arrow-left"></i>返回
         </el-button>
         <h5>
-            <p class="l"><span class="label">角色全称：</span>集团管理员</p>
-            <p class="l"><span class="label">角色描述：</span>。。。。</p>
+            <p class="l"><span class="label">角色全称：</span>{{role.name}}</p>
+            <p class="l"><span class="label">角色描述：</span>{{role.description||'--'}}</p>
             <el-button @click="upadteTRoleMenu()">保存</el-button>
         </h5>
         <div class="role-config-main">
@@ -35,14 +35,15 @@
                                :props="treeProp"
                                highlight-current
                                node-key='FGUID'
+                               @check-change='handleChange'
                                default-expand-all
                                :default-checked-keys="defaultCheckedMenu"
                                :expand-on-click-node="false"
                             >
                                 <template v-slot="{node,data}">
                                     <div style="display:flex">
-                                        <span>{{data.FMenuName}}</span>
-                                        <ul class="button-list" v-if="data.ButtonList" style="display:flex">
+                                        <span class="label" style="width:120px;text-align:left">{{data.FMenuName}}</span>
+                                        <ul class="button-list" v-if="data.ButtonList">
                                             <li v-for="item in data.ButtonList" :key="item.FGUID" >
                                                 <el-checkbox v-model="item.IsExit">{{item.FMenuName}}</el-checkbox>
                                             </li>
@@ -62,17 +63,17 @@ export default {
     data(){
         return{
             formList:[],
-            id:null,
             currentForm:{},
             menuData:[],
             treeProp:{
                 children:'ListData'
             },
-            defaultCheckedMenu:[]
+            defaultCheckedMenu:[],
+            role:{}
         }
     },
     created(){
-        this.id =this.$route.params.roleId
+        this.role =JSON.parse(this.$route.params.role)
         this.queryTUserForm()
     },
     methods:{
@@ -101,7 +102,7 @@ export default {
          * 获取用户菜单
          */
         queryTRoleMenu(id){
-            this.$post('QueryTRoleMenu',{FGUID:this.id,FFormID:id})
+            this.$post('QueryTRoleMenu',{FGUID:this.role.FGUID,FFormID:id})
             .then((result) => {
                 this.menuData = result.FObject;
                 this.defaultCheckedMenu = []
@@ -125,6 +126,13 @@ export default {
                 findChecked(result.FObject)
             }).catch((err) => {
             });
+        },
+        handleChange(node,checked){
+            if(node.ButtonList&&node.ButtonList.length){
+                node.ButtonList.forEach(item => {
+                    item.IsExit = checked
+                })
+            }
         },
         upadteTRoleMenu(){
             let checkedList = this.$refs.tree.getCheckedNodes(), 
@@ -293,16 +301,20 @@ export default {
                                 padding-left: 180px!important;
                                 border-bottom: 2px solid rgba($color: #0E3270, $alpha: 0.5);
                                 .button-list{
-                                    margin-left: 239px;
+                                    width: 710px;
+                                    display: flex;
+                                    margin-left: 166px;
+                                    line-height: 30px;
+                                    flex-wrap: wrap;
+                                    align-items: center;
+                                    justify-content: flex-start;
                                     li{
+                                        margin-right: 50px;
                                         .el-checkbox{
                                             font-size:14px;
                                             font-weight:400;
                                             color:rgba(241,241,242,1);
                                         }
-                                    }
-                                    li+li{
-                                        margin-left: 50px;
                                     }
                                 }
                             }
@@ -319,7 +331,7 @@ export default {
                                 .el-tree-node__content{
                                     padding-left: 200px!important;
                                     .button-list{
-                                        margin-left: 219px;
+                                        margin-left: 146px;
                                     }
                                 }
                             }

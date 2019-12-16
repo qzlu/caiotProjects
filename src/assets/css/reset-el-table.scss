@@ -12,7 +12,7 @@
     th{
         font-size:17px;
         font-weight: normal;
-        background:rgba(3,35,74,1)!important;
+        background:#03234A!important;
         color:rgba(241,241,242,1);
         text-align: center!important;
     }
@@ -21,6 +21,12 @@
         line-height: 60px;
         padding: 0px!important;
         text-align: center!important;
+        a{
+            color:rgba(241,241,242,1);
+        }
+        span{
+            cursor: pointer;
+        }
         span+span{
             margin-left: 16px;
         }

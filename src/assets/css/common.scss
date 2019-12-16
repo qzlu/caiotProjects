@@ -2,7 +2,7 @@ $img-url:'../image/';
 .report{
     width: 100%;
     height: 100%;
-    padding: 23px 18px 0 19px;
+    padding-top: 23px;
     box-sizing: border-box;
     position: relative;
     .zw-table{
@@ -42,9 +42,17 @@ $img-url:'../image/';
             .el-button{
                 height: 45px;
                 box-sizing: border-box;
-                border: 2px solid #2C95C1;
-                background: linear-gradient(left bottom,#1a6f8b,#1d3a62);
+                /* border: 2px solid #2C95C1;
+                background: linear-gradient(left bottom,#1a6f8b,#1d3a62); */
+                border: none;
+                border-radius: 0;
+                background: #042E74;
+                box-shadow: inset 0 0 10px 2px #005099;
                 color: white;
+                &:hover{
+                    background: rgba($color: #042E74, $alpha: 0.6);
+                    box-shadow: inset 0 0 10px 2px rgba($color: #005099, $alpha: 0.6);
+                }
                 i{
                     margin-right: 6px;
                 }
@@ -62,10 +70,13 @@ $img-url:'../image/';
             .el-input__inner{
                 width:100%;
                 height:46px;
-                background: linear-gradient(to bottom,#1E3E67,#187594);
+               /*  background: linear-gradient(to bottom,#1E3E67,#187594);
                 border-width: 2px;
-                border-color: #33C4F1;
-                color: white
+                border-color: #33C4F1; */
+                color: white;
+                background: #042e74;
+                border-color: #005099;
+                color: #fff;
             }
             .el-date-editor--daterange{
                 width: 250px;
@@ -80,8 +91,8 @@ $img-url:'../image/';
         }
         li.r{
             .search-input{
-                width: 185px;
-                margin-right: 50px;
+                width: 174px;
+                margin-right: 10px;
                 .el-input__suffix{
                     line-height: 46px
                 }
@@ -130,6 +141,7 @@ $img-url:'../image/';
                 display: inline-block;
                 color: #9EE5F3;
                 text-align: right;
+                box-sizing: border-box;
             }
             .el-input{
                 width: 202px;
@@ -140,6 +152,11 @@ $img-url:'../image/';
                     border-radius:2px;
                     background: #092D53;
                     color: #9EE5F3;
+                }
+            }
+            .row{
+                .el-input{
+                    width: 514px;
                 }
             }
             .el-form-item__error{
@@ -231,4 +248,20 @@ $img-url:'../image/';
 .height-100{
     height: 100%;
 }
+.el-select-dropdown{
+    background: rgba(13, 47, 96, 1);
+    border: none;
+    .el-select-dropdown__item{
+      color:rgba(241,241,242,1);
+    }
+    .el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
+      background: rgba(53, 91, 149, 1)
+    }
+  }
+  .el-select-dropdown.el-popper[x-placement^=bottom] .popper__arrow{
+    border-bottom-color:rgba(13, 47, 96, 1)
+  }
+  .el-select-dropdown.el-popper[x-placement^=bottom] .popper__arrow::after{
+    border-bottom-color:rgba(13, 47, 96, 1)
+  }
 //el-inupt

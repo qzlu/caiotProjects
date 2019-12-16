@@ -11,7 +11,7 @@
             <el-scrollbar>
                 <el-tree
                     ref="tree"
-                   :data="projectList"
+                   :data="treeData"
                    :props="treeProp"
                    highlight-current
                    node-key='FGUID'
@@ -37,35 +37,17 @@ export default {
             projectList:[],
         }
     },
+    props:{
+        treeData:Array
+    },
     watch:{
         filterText(val){
             this.$refs.tree.filter(val);
         },
     },
     created(){
-        this.queryProject()
     },
     methods:{
-        /**
-         * 查询左边树形数据(258.组织架构--查询树状集团项目)
-         */
-        queryProject(){
-            this.$post('QueryTORGGroupProjectTree',{
-              FORGGroupGUID: '',
-            })
-            .then((result) => {
-                this.projectList = result.FObject||[]
-                let node = this.projectList[0]
-                if(node){
-                    this.$nextTick(() => {
-                        this.$refs.tree.setCurrentKey(node.FGUID)
-                    })
-                    this.handleClick(node)
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
-        },
         handleClick(node){
             this.$emit('nodeClick',node)
         },

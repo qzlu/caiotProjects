@@ -11,26 +11,14 @@
           @submit="addOrUpdate"
         >
             <el-form slot="dialog" :model="addData" inline ref="form" class="add-block">
-                <el-form-item label="集团编码" prop="FGroupCode" :rules="[{ required: true, message: '请输入'}]">
-                    <el-input v-model="addData.FGroupCode"></el-input>
-                </el-form-item>
                 <el-form-item label="集团全称" prop="FGroupName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addData.FGroupName"></el-input>
                 </el-form-item>
                 <el-form-item label="集团简称" prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addData.FSimpleName"></el-input>
                 </el-form-item>
-                <el-form-item label="所属区域" prop="FAreaCode" :rules="[{ required: true, message: '请选择'}]">
-                    <el-select v-model="addData.FAreaCode">
-                        <el-option v-for="(item,i) in areaList" :key="i" :value="item.id" :label="item.name">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="集团平台名称" prop="PlatformName">
-                    <el-input v-model="addData.PlatformName"></el-input>
-                </el-form-item>
-                <el-form-item label="项目平台名称" prop="ProjectPlatFormName">
-                    <el-input v-model="addData.ProjectPlatFormName"></el-input>
+                <el-form-item label="行政架构" prop="PlatformName">
+                    <el-input class="block" v-model="addData.PlatformName"></el-input>
                 </el-form-item>
                 <el-form-item  label="详细地址" prop="FAddress" :rules="[{ required: true, message: '请输入'}]">
                     <el-input class="block" v-model="addData.FAddress"></el-input>
@@ -52,6 +40,27 @@
                      >
                         <p><i class="el-icon-plus"></i><br><span>上传(160*60)</span></p>
                     </el-upload>                
+                </el-form-item>
+                <el-form-item label="集团宣传图" style="margin-left:74px">
+                    <div class="thumb-img" v-if="fileList[0]">
+                        <div class="delete">
+                            <i class="el-icon-delete" @click="fileList = [] "></i>
+                        </div>
+                        <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                    </div>
+                    <el-upload
+                      v-else
+                      action="http://47.107.224.8:8080/UploadFile"
+                      list-type="picture-card"
+                      :limit = '1'
+                      :on-success="handleSuccess1"
+                      :data="{FTokenID:token}"
+                     >
+                        <p><i class="el-icon-plus"></i><br><span>上传</span></p>
+                    </el-upload>                
+                </el-form-item>
+                <el-form-item  label="集团描述" prop="FDescription">
+                    <el-input class="block" v-model="addData.FDescription"></el-input>
                 </el-form-item>
             </el-form>
         </Table>
@@ -267,6 +276,11 @@ export default {
             p{
                 line-height: 26px;
                 display: inline-block;
+                color: #9EE5F3;
+                i{
+                    font-size: 30px;
+                    color: #9EE5F3;
+                }
             }
         }
     }

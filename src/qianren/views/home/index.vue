@@ -50,12 +50,12 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      let el = document.querySelector('#tree-project')
+/*       let el = document.querySelector('#tree-project')
       document.addEventListener('click', (e) => {
         if(!el.contains(e.target)){
           this.showProjectList = false
         }
-      })
+      }) */
     })
   },
   beforeDestroy(){

@@ -35,12 +35,12 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'FDepartmentCode',
-                    label: '部门编码',
-                },
-                {
                     prop: 'FDepartmentName',
                     label: '部门名称',
+                },
+                {
+                    prop: 'FDepartmentCode',
+                    label: '上级部门',
                 },
                 {
                     prop: 'FLevelName',
@@ -48,31 +48,43 @@ export default {
                 },
             ],
             defaultAddData:{//新增部门信息默认参数
-                FGUID:'',
-                FDepartmentCode:'',
-                FDepartmentName:'',
-                FCreateTime: formatDate(new Date()),
-                FDescription:'',
-                LevelStr:''
             },
             addData:{ //新增部门信息参数
                 FGUID:'',
+                FORGGroupGUID:'',
                 FDepartmentCode:'',
-                FDepartmentName:'',
-                FCreateTime: formatDate(new Date()),
+                FDepartmentName: formatDate(new Date()),
                 FDescription:'',
                 LevelStr:''
             },
-            LevelArr:[]
+            LevelArr:[],
+            mainDBTORGLevel:[
+                {   
+                    FGUID:1,
+                    FLevelName:'集团'
+                },                
+                {   
+                    FGUID:2,
+                    FLevelName:'大区'
+                },
+                {   
+                    FGUID:3,
+                    FLevelName:'城市'
+                },
+                {   
+                    FGUID:4,
+                    FLevelName:'项目'
+                },
+            ]
         }
     },
     components:{
         Table
     },
     computed:{
-        ...mapState([
+/*         ...mapState([
             'mainDBTORGLevel'
-        ])
+        ]) */
     },
     created(){
     },
