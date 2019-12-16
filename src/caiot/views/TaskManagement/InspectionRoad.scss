@@ -269,7 +269,7 @@ $img-url:'../../static/image/';
     background: none;
     .week-select{
         width: 97px;
-        height: 100px;
+        /* height: 200px; */
         text-align: center;
         background: #ffffff;
         li{
@@ -294,10 +294,10 @@ $img-url:'../../static/image/';
 }
 .time-select-main{
     width: 50%;
+    height: 200px;
     background: #ffffff;
 }
 .time-select{
-    height: 90px;
     margin-right: 2px;
     .active{
         background: #2194FF

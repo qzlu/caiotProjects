@@ -72,7 +72,7 @@
                                       <div class="r time-select-main">
                                         <el-scrollbar>
                                             <ul class="time-select">
-                                                <li v-for="i in 59" :class="{active:mm==i-1}" :key="i" @click="mm=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="mm==i-1">分</span></li>
+                                                <li v-for="i in 60" :class="{active:mm==i-1}" :key="i" @click="mm=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="mm==i-1">分</span></li>
                                             </ul>
                                         </el-scrollbar>
                                       </div>
@@ -98,11 +98,13 @@
                                    <div class="clearfix">
                                         <div class="l" >
                                              <p class="time-title">选择日期</p>
-                                             <el-scrollbar>
-                                                 <ul class="week-select">
-                                                     <li v-for="i in 31" :class="{active:date==i}" :key="i" @click="date=i ">{{i}}号</li>
-                                                 </ul>
-                                             </el-scrollbar>
+                                             <div class="time-select-main" style="width:100%">
+                                                <el-scrollbar>
+                                                    <ul class="week-select">
+                                                        <li v-for="i in 31" :class="{active:date==i}" :key="i" @click="date=i ">{{i}}号</li>
+                                                    </ul>
+                                                </el-scrollbar>
+                                             </div>
                                         </div>
                                         <div class="r" style="width:194px;">
                                              <p class="time-title">选择时间</p>
@@ -117,7 +119,7 @@
                                                  <div class="r time-select-main">
                                                    <el-scrollbar>
                                                        <ul class="time-select">
-                                                           <li v-for="i in 59" :class="{active:m2==i-1}" :key="i" @click="m2=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="m2==i-1">分</span></li>
+                                                           <li v-for="i in 60" :class="{active:m2==i-1}" :key="i" @click="m2=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="m2==i-1">分</span></li>
                                                        </ul>
                                                    </el-scrollbar>
                                                  </div>
@@ -145,23 +147,27 @@
                                    <div class="clearfix">
                                         <div class="l" >
                                              <p class="time-title">选择月份</p>
-                                             <el-scrollbar>
-                                                    <el-checkbox-group 
-                                                      class="wee-select"
-                                                      v-model="month"
-                                                      :max="11"
-                                                      >
-                                                      <el-checkbox v-for="i in 12" :label="i" :key="i">{{i}}月</el-checkbox>
-                                                    </el-checkbox-group>
-                                             </el-scrollbar>
+                                             <div class="time-select-main" style="width:100%">
+                                                <el-scrollbar>
+                                                       <el-checkbox-group 
+                                                         class="wee-select"
+                                                         v-model="month"
+                                                         :max="11"
+                                                         >
+                                                         <el-checkbox v-for="i in 12" :label="i" :key="i">{{i}}月</el-checkbox>
+                                                       </el-checkbox-group>
+                                                </el-scrollbar>
+                                             </div>
                                         </div>
                                         <div class="l" style="margin-left:6px">
                                              <p class="time-title">选择日期</p>
-                                             <el-scrollbar>
-                                                 <ul class="week-select">
-                                                     <li v-for="i in 31" :class="{active:date3==i}" :key="i" @click="date3=i ">{{i}}号</li>
-                                                 </ul>
-                                             </el-scrollbar>
+                                             <div class="time-select-main" style="width:100%">
+                                                <el-scrollbar>
+                                                    <ul class="week-select">
+                                                        <li v-for="i in 31" :class="{active:date3==i}" :key="i" @click="date3=i ">{{i}}号</li>
+                                                    </ul>
+                                                </el-scrollbar>
+                                             </div>
                                         </div>
                                         <div class="r" style="width:194px;">
                                              <p class="time-title">选择时间</p>
@@ -176,7 +182,7 @@
                                                  <div class="r time-select-main">
                                                    <el-scrollbar>
                                                        <ul class="time-select">
-                                                           <li v-for="i in 59" :class="{active:m3==i-1}" :key="i" @click="m3=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="m2==i-1">分</span></li>
+                                                           <li v-for="i in 60" :class="{active:m3==i-1}" :key="i" @click="m3=i-1">{{((i-1)<10)?'0'+(i-1):i-1}} <span v-if="m2==i-1">分</span></li>
                                                        </ul>
                                                    </el-scrollbar>
                                                  </div>

@@ -281,7 +281,7 @@ export default {
             ],
             show:false,
             defaultDeviceInfo:{
-                DeviceLedgerID:null,
+                DeviceLedgerID:0,
                 DeviceLedgerName:null,
                 DeviceCode:null,
                 SpecificationsCode:null,
@@ -414,9 +414,25 @@ export default {
                 mUDeviceLedge:this.deviceInfo
             })
             .then(data => {
-                this.queryData()
+                if(data.FObject>0){
+                    this.$message({
+                      type: 'success',
+                      message: '新增/修改成功！'
+                    });
+                    this.queryData()
+                }else{
+                    this.$message({
+                      type: 'error',
+                      message: '新增/修改失败！'
+                    });
+                }
             })
-            .catch(err => {})
+            .catch(err => {
+                this.$message({
+                  type: 'error',
+                  message: '新增/修改失败！'
+                });
+            })
         },
         /**
          * 编辑设备台账
