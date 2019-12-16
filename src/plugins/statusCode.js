@@ -18,7 +18,7 @@ export function messageErr(x,message = '',router){
           localStorage.removeItem('FToken')
           setTimeout(function(){
                /* router.push('/login') //跳至登录页面 */
-               /* location.href = '/login.html' */
+               location.href = '/login.html'
           },1000)
           break;
         case 105:

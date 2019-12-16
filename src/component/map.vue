@@ -55,7 +55,7 @@ export default {
          */
         queryMainDBTORGLevel(){
             return new Promise((resolve,reject) => {
-                this.$post('/QueryMainDBTORGLevel',{
+                this.$post('QueryMainDBTORGLevel',{
                     FORGGroupGUID: '',
                 })
                 .then((result) => {
@@ -115,7 +115,7 @@ export default {
          * 获取已配置地图数据
          */
         queryMapData(id = ''){
-            this.$post('/QueryMainTORGNodeArea',{
+            this.$post('QueryMainTORGNodeArea',{
                 IDStr: '',
                 FORGGroupGUID:id
             })

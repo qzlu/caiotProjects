@@ -1,5 +1,5 @@
 <template>
-    <div class="report framework">
+    <div class="framework">
         <div class="main">
             <div class="l left-side">
                 <div class="filter-box">
@@ -18,7 +18,6 @@
                             ref="tree"
                            :data="treeData"
                            :props="treeProp"
-                           default-expand-all
                            node-key='FGUID'
                            highlight-current
                            @node-click="QueryMainDBTORGArea"
@@ -158,7 +157,7 @@ export default {
          * 查询左边树形数据(220.组织架构--查询树状组织)
          */
         queryData(){
-            this.$post('/QueryTOPEAreaProjectTree')
+            this.$post('QueryTOPEAreaProjectTree')
             .then((result) => {
                 this.treeData = result.FObject||[]
             }).catch((err) => {
@@ -468,23 +467,23 @@ export default {
         }
         .left-side{
             width: 332px;
-            height: 100%;
+            height: 820px;
             border-radius:10px 6px 6px 10px;
             background: rgba($color: #052256, $alpha: 0.29);
             box-shadow: 0 0 10px 4px rgba($color: #3068d1, $alpha: 0.29) inset;
             border:2px solid rgba($color: #18297D, $alpha: 1);
             .filter-box{
-                height: 94px;
-                padding: 0 20px;
-                border-bottom: 2px solid #2DA0CB;
+                height: 46px;
+                margin-top: 30px;
                 .el-input{
-                    margin-top: 30px;
+                    width: 236px;
+                    height: 100%;
+                    margin-left: 30px;
                     &__inner{
-                        height:46px;
-                        border:2px solid #33C4F1;
-                        border-radius:10px;
-                        background: #092D53;
-                        color: #C7FEFF;
+                        height: 100%;
+                        color: #FFFFFF;
+                        background:rgba(0,80,153,1);
+                        border:1px solid rgba(12,55,110,1);
                     }
                 }
                 .el-input__suffix{
@@ -499,74 +498,64 @@ export default {
                 margin: 10px;
                 .el-button{
                     width:89px;
-                    height:34px;
+                    height:46px;
+                    line-height: 46px;
                     padding: 0;
-                    background:#1E3E67;
-                    border: 1px solid #33C4F1;
-                    color: #C7FEFF;
+                    background:rgba(0,80,153,1);
+                    border:1px solid rgba(12,55,110,1);
+                    color: #F1F1F2;
                     font-size: 16px;
                 }
-                .el-button:hover{
+                /* .el-button:hover{
                     background:rgba($color: #33C4F1, $alpha: 0.5);
-                }
+                } */
             }
             .tree-content{
-                height: 690px;
+                height: 600px;
+                margin-top: 29px;
                 .el-tree{
                     background: none;
-                    .el-input__inner{
-                        background: none;
-                        border: none;
-                        font-size: 16px;
-                        color: #C7FEFF
-                    }
+                    color: #2A91FC;
                     .el-tree-node:focus {
                         >.el-tree-node__content {
-                            background:rgba(51,196,241,0.36);
+                            background:linear-gradient(90deg,rgba(4,28,63,1),rgba(6,46,113,1),rgba(13,58,132,1),rgba(2,35,82,1));
                         }
                     }
                     &-node__content{
-                        height: 40px;
-                        line-height: 40px;
-                        span{
-                            font-size: 16px;
-                            color: #C7FEFF
+                        height: 66px;
+                        line-height: 66px;
+                        /* padding-left: 60px!important; */
+                        .el-tree-node__expand-icon{
+                            margin-left: 20px;
                         }
-                        .node-row{
-                            width: 100%;
-                            text-align: left;
-                            .node-operation{
-                                margin-right: 20px;
-                                display: none;
-                                span{
-                                    font-size: 22px;
-                                }
-                                span+span{
-                                    margin-left: 10px;
-                                }
-                            }
-                        }
-                        .node-row:hover{
-                            .node-operation{
-                                display: block
-                            }
-                        }
-                        .el-tree-node__expand-icon.is-leaf{
-                            color: transparent
+                        .iconfont{
+                            vertical-align: middle;
+                            font-size: 24px
                         }
                     }
                     &-node__content:hover {
-                        background:rgba(51,196,241,0.36);
+                        background:linear-gradient(90deg,rgba(4,28,63,1),rgba(6,46,113,1),rgba(13,58,132,1),rgba(2,35,82,1));
+                    }
+                    .el-tree-node__label{
+                        font-size: 18px;
+                    }
+                    .el-tree-node__expand-icon{
+                        font-size: 20px;
                     }
                 }
                 .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
-                   background:rgba(51,196,241,0.36);
+                   background:linear-gradient(90deg,rgba(4,28,63,1),rgba(6,46,113,1),rgba(13,58,132,1),rgba(2,35,82,1));
+                }
+                .el-tree.checked {
+                    color: #a0a0a3;
                 }
             }
         }
         &-body{
-            margin-left: 420px;
+            height: 812px;
+            margin-left: 342px;
             position:relative;
+            box-sizing: border-box;
             ul.level{
                 position:absolute;
                 z-index: 100;
