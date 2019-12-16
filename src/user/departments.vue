@@ -75,7 +75,8 @@ export default {
                     FGUID:4,
                     FLevelName:'项目'
                 },
-            ]
+            ],
+            departMentTreeData:[]
         }
     },
     components:{
@@ -87,6 +88,7 @@ export default {
         ]) */
     },
     created(){
+
     },
     methods:{
         /**

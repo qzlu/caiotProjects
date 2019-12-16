@@ -32,7 +32,8 @@ export default {
     data(){
         return{
             active:0,
-            tabList:['departments','station','duty']
+            tabList:['departments','station','duty'],
+            treeData:[]
         }
     },
     components:{
@@ -55,6 +56,21 @@ export default {
     },
     created(){
         /* this.$store.dispatch('queryMainDBTORGLevel') */
+        this.queryDepartmentData()
+    },
+    methods:{
+        /**
+         * 部门左边树形
+         */
+        queryDepartmentData(){
+            this.$post('QueryFORGGroupTORGDepartmentTree')
+            .then((result) => {
+                console.log(result);
+                this.treeData = result.FOject || []
+            }).catch((err) => {
+                
+            });
+        },
     }
 }
 </script>

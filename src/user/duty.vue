@@ -9,9 +9,6 @@
           :exportData="exportFile" 
           @submit="addOrUpdate">
             <el-form slot="dialog" :model="addData" inline ref="form">
-               <el-form-item label="职责编码" prop="FDutyCode" :rules="[{ required: true, message: '请输入'}]">
-                   <el-input v-model="addData.FDutyCode"></el-input>
-               </el-form-item>
                <el-form-item label="职责名称" prop="FDutyName" :rules="[{ required: true, message: '请输入'}]">
                    <el-input v-model="addData.FDutyName"></el-input>
                </el-form-item>
@@ -30,15 +27,10 @@
 </template>
 <script>
 import Table from '../component/table.vue'
-import { mapState} from 'vuex'
 export default {
     data(){
         return{
             tableLabel:[
-                {
-                    prop: 'FDutyCode',
-                    label: '职责编码',
-                },
                 {
                     prop: 'FDutyName',
                     label: '职责名称',
@@ -66,9 +58,6 @@ export default {
         Table
     },
     computed:{
-        ...mapState([
-            'mainDBTORGLevel'
-        ])
     },
     methods:{
         /**

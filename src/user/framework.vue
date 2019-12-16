@@ -86,10 +86,7 @@
                         <span class=" iconfont icon-TrashBins" title="删除" @click="deleteLeve(item)"></span>
                     </li>
                 </ul>
-<!--                 <div class="add-level" @click="beforeAddLevel">
-                    <span class="el-icon-plus"></span>
-                    添加
-                </div> -->
+
                 <el-dialog title="添加架构级别" append-to-body :visible.sync="show3" width="400px" class="zw-dialog">
                     <ul>
                         <li>
@@ -112,7 +109,7 @@
     </div>
 </template>
 <script>
-/* import echartsMap from '@/views/component/map.vue' */
+import echartsMap from '@/component/map.vue'
 export default {
     data(){
         return{
@@ -462,16 +459,20 @@ export default {
         border-bottom: 1px solid rgba(143,156,191,1);
     }
     .main{
-        height: 860px;
-        margin-top: 20px;
+        height: 100%;
+        margin-top: 16px;
         >div{
-            height: 840px;
+            height: 100%;
             border:1px solid rgba(35,159,221,1);
             border-radius:10px;
         }
         .left-side{
-            width: 394px;
-            background: rgba($color: #1C385D, $alpha: 0.6);
+            width: 332px;
+            height: 100%;
+            border-radius:10px 6px 6px 10px;
+            background: rgba($color: #052256, $alpha: 0.29);
+            box-shadow: 0 0 10px 4px rgba($color: #3068d1, $alpha: 0.29) inset;
+            border:2px solid rgba($color: #18297D, $alpha: 1);
             .filter-box{
                 height: 94px;
                 padding: 0 20px;
