@@ -9,8 +9,10 @@
           :exportData="exportFile" 
           @submit="addOrUpdate">
             <el-form slot="dialog" :model="addData" inline ref="form">
-               <el-form-item label="岗位编码" prop="FJobCode" :rules="[{ required: true, message: '请输入'}]">
-                   <el-input v-model="addData.FJobCode"></el-input>
+               <el-form-item label="上级岗位" prop="FParentGUID" >
+                   <el-select v-model="addData.FParentGUID">
+                       <el-option v-for="item in jobList" :key="item.FGUID" :value="item.FGUID" :label="item.FJobName"></el-option>
+                   </el-select>
                </el-form-item>
                <el-form-item label="岗位名称" prop="FJobName" :rules="[{ required: true, message: '请输入'}]">
                    <el-input v-model="addData.FJobName"></el-input>
@@ -32,8 +34,8 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'FJobCode',
-                    label: '岗位编码',
+                    prop: 'FParentName',
+                    label: '上级岗位',
                 },
                 {
                     prop: 'FJobName',
@@ -42,6 +44,16 @@ export default {
                 {
                     prop: 'FLevelName',
                     label: '行政架构范围',
+                    formatter:row => {
+                        let checkedLevelName = []
+                        let levelArr = row.FORGLevelGUID? row.FORGLevelGUID.split(','):[]
+                        this.mainDBTORGLevel.forEach(item => {
+                            if(levelArr.find((obj) => obj == item.FGUID)){
+                                checkedLevelName.push(item.FLevelName)
+                            }
+                        })
+                        return checkedLevelName.join(',')
+                    }
                 },
             ],
             defaultAddData:{//新增岗位信息默认参数
@@ -49,25 +61,54 @@ export default {
                 FJobCode:'',
                 FJobName:'',
                 FDescription:'',
-                LevelStr:''
+                LevelStr:'',
+                FParentGUID:''
             },
             addData:{ //新增岗位信息参数
                 FGUID:'',
                 FJobCode:'',
                 FJobName:'',
                 FDescription:'',
-                LevelStr:''
+                LevelStr:'',
+                FParentGUID:''
             },
-            LevelArr:[]
+            LevelArr:[],
+            jobList:[],
+            mainDBTORGLevel:[
+                {   
+                    FGUID:0,
+                    FLevelName:'集团'
+                },                
+                {   
+                    FGUID:1,
+                    FLevelName:'区域'
+                },
+                {
+                    FGUID:2,
+                    FLevelName:'省份'
+                },
+                {   
+                    FGUID:3,
+                    FLevelName:'城市'
+                },
+                {   
+                    FGUID:4,
+                    FLevelName:'项目'
+                },
+            ],
         }
     },
     components:{
         Table
     },
     computed:{
-        ...mapState([
+/*         ...mapState([
             'mainDBTORGLevel'
-        ])
+        ]) */
+    },
+    created(){
+        this.$emit('loadJob')
+        this.queryJobList()
     },
     methods:{
         /**
@@ -81,6 +122,19 @@ export default {
                 SearchKey:that.filterText
             }
             return this.$post('QueryPageTORGJob',param,true)
+        },
+        queryJobList(){
+            let param = {
+                PageIndex:1,
+                PageSize:1000,
+                SearchKey:''
+            }
+            this.$post('QueryPageTORGJob',param)
+            .then((result) => {
+                this.jobList = result.FObject.Data || []
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增

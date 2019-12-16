@@ -11,8 +11,10 @@
           @submit="addOrUpdate"
         >
            <el-form slot="dialog" :model="addData" inline ref="form">
-               <el-form-item label="部门编码" prop="FDepartmentCode" :rules="[{ required: true, message: '请输入'}]">
-                   <el-input v-model="addData.FDepartmentCode"></el-input>
+               <el-form-item label="上级部门" prop="FDepartmentCode">
+                  <el-select v-model="addData.FParentGUID">
+                      <el-option v-for="item in departmentList" :key="item.FGUID" :value="item.FGUID" :label="item.FDepartmentName"></el-option>
+                  </el-select>
                </el-form-item>
                <el-form-item label="部门名称" prop="FDepartmentName" :rules="[{ required: true, message: '请输入'}]">
                    <el-input v-model="addData.FDepartmentName"></el-input>
@@ -39,12 +41,22 @@ export default {
                     label: '部门名称',
                 },
                 {
-                    prop: 'FDepartmentCode',
+                    prop: 'FParentName',
                     label: '上级部门',
                 },
                 {
                     prop: 'FLevelName',
                     label: '行政架构范围',
+                    formatter:row => {
+                        let checkedLevelName = []
+                        let levelArr = row.FORGLevelGUID? row.FORGLevelGUID.split(','):[]
+                        this.mainDBTORGLevel.forEach(item => {
+                            if(levelArr.find((obj) => obj == item.FGUID)){
+                                checkedLevelName.push(item.FLevelName)
+                            }
+                        })
+                        return checkedLevelName.join(',')
+                    }
                 },
             ],
             defaultAddData:{//新增部门信息默认参数
@@ -55,17 +67,22 @@ export default {
                 FDepartmentCode:'',
                 FDepartmentName: formatDate(new Date()),
                 FDescription:'',
-                LevelStr:''
+                LevelStr:'',
+                FParentGUID:''
             },
             LevelArr:[],
             mainDBTORGLevel:[
                 {   
-                    FGUID:1,
+                    FGUID:0,
                     FLevelName:'集团'
                 },                
                 {   
+                    FGUID:1,
+                    FLevelName:'区域'
+                },
+                {
                     FGUID:2,
-                    FLevelName:'大区'
+                    FLevelName:'省份'
                 },
                 {   
                     FGUID:3,
@@ -76,7 +93,8 @@ export default {
                     FLevelName:'项目'
                 },
             ],
-            departMentTreeData:[]
+            departMentTreeData:[],
+            departmentList:[]
         }
     },
     components:{
@@ -88,7 +106,8 @@ export default {
         ]) */
     },
     created(){
-
+        this.$emit('loadDepartment')
+        this.querydepartmentList()
     },
     methods:{
         /**
@@ -102,6 +121,19 @@ export default {
                 SearchKey:that.filterText
             }
             return this.$post('QueryPageTORGDepartment',param,true) 
+        },
+        querydepartmentList(){
+            let param = {
+                PageIndex:1,
+                PageSize:1000,
+                SearchKey:''
+            }
+            this.$post('QueryPageTORGDepartment',param)
+            .then((result) => {
+                this.departmentList = result.FObject.Data || []
+            }).catch((err) => {
+                
+            });
         },
         /**
          * 点击新增
@@ -134,6 +166,7 @@ export default {
             .then((result) => {
                 this.$refs.table.queryData()
                 this.$refs.table.show = false
+                this.$emit('loadDepartment')
             }).catch((err) => {
                 
             });

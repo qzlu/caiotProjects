@@ -17,9 +17,6 @@
                 <el-form-item label="集团简称" prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addData.FSimpleName"></el-input>
                 </el-form-item>
-                <el-form-item label="行政架构" prop="PlatformName">
-                    <el-input class="block" v-model="addData.PlatformName"></el-input>
-                </el-form-item>
                 <el-form-item  label="详细地址" prop="FAddress" :rules="[{ required: true, message: '请输入'}]">
                     <el-input class="block" v-model="addData.FAddress"></el-input>
                 </el-form-item>
@@ -42,11 +39,11 @@
                     </el-upload>                
                 </el-form-item>
                 <el-form-item label="集团宣传图" style="margin-left:74px">
-                    <div class="thumb-img" v-if="fileList[0]">
+                    <div class="thumb-img" v-if="fileList1[0]">
                         <div class="delete">
-                            <i class="el-icon-delete" @click="fileList = [] "></i>
+                            <i class="el-icon-delete" @click="fileList1 = [] "></i>
                         </div>
-                        <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                        <img :src="'http://47.107.224.8:8080/'+fileList1[0]" alt="">
                     </div>
                     <el-upload
                       v-else
@@ -151,7 +148,8 @@ export default {
                 ProjectPlatFormName:'千仞智服设施管控云平台'
             },
             token:sessionStorage.getItem('FToken'),
-            fileList:[]
+            fileList:[],
+            fileList1:[]
         }
     },
     components:{

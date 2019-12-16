@@ -16,7 +16,6 @@
                    highlight-current
                    node-key='FGUID'
                    @node-click="handleClick"
-                   default-expand-all
                    :expand-on-click-node="false"
                    :filter-node-method="filterNode"
                 >
@@ -29,16 +28,20 @@
 export default {
     data(){
         return{
-            treeProp:{
-                children:'ListData',
-                label:'FSimpleName'
-            },
             filterText:'',
             projectList:[],
         }
     },
     props:{
-        treeData:Array
+        treeData:Array,
+        treeProp:{
+            default:() => {
+                return{
+                    children:'ListData',
+                    label:'FSimpleName'
+                }
+            }
+        }
     },
     watch:{
         filterText(val){
@@ -96,6 +99,9 @@ export default {
                 height: 66px;
                 line-height: 66px;
                 /* padding-left: 60px!important; */
+                .el-tree-node__expand-icon{
+                    margin-left: 20px;
+                }
                 .iconfont{
                     vertical-align: middle;
                     font-size: 24px

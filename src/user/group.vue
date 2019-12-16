@@ -2,23 +2,17 @@
     <div class="group height-100">
         <header>
             <ul class="clearfix">
-                <li :class="['l',{active:active === 0}]" @click="active = 0">
-                    部门信息
-                </li>
-                <li :class="['l',{active:active === 1}]" @click="active = 1">
-                    岗位信息
-                </li>
-                <li :class="['l',{active:active === 2}]" @click="active = 2">
-                    职责信息
+                <li :class="['l',{active:active == i}]" v-for="(item,i) in tabArr" :key="i" @click="changeTab(i)">
+                    {{item}}
                 </li>
             </ul>
         </header>
         <div class="height-100 group-content">
             <div class="group-left-side" v-if="active != 2">
-                <Tree></Tree>
+                <Tree :treeData="treeData" :treeProp="treeProp"></Tree>
             </div>
             <div class="group-main" :style="tableWidth"> 
-                <component :is="componentId"></component>
+                <component :is="componentId" @loadDepartment="queryDepartmentData()" @loadJob = "queryFORGGroupTORGJobTree()"></component>
             </div>
         </div>
     </div>
@@ -31,9 +25,14 @@ import Tree from '../component/tree.vue'
 export default {
     data(){
         return{
-            active:0,
+            tabArr:['部门信息','岗位信息','职责信息'],
+            active:sessionStorage.getItem('groupActiveIndex')||0,
             tabList:['departments','station','duty'],
-            treeData:[]
+            treeData:[],
+            treeProp:{
+                children:'ListData',
+                label:'FAreaName'
+            }
         }
     },
     components:{
@@ -56,7 +55,6 @@ export default {
     },
     created(){
         /* this.$store.dispatch('queryMainDBTORGLevel') */
-        this.queryDepartmentData()
     },
     methods:{
         /**
@@ -65,12 +63,29 @@ export default {
         queryDepartmentData(){
             this.$post('QueryFORGGroupTORGDepartmentTree')
             .then((result) => {
-                console.log(result);
-                this.treeData = result.FOject || []
+               /*  console.log(result); */
+                this.treeData = result.FObject || []
+                console.log(this.treeData);
             }).catch((err) => {
                 
             });
         },
+        /**
+         * 岗位左边树形
+         */
+        queryFORGGroupTORGJobTree(){
+            this.$post('QueryFORGGroupTORGJobTree')
+            .then((result) => {
+                this.treeData = result.FObject || []
+                console.log(this.treeData);
+            }).catch((err) => {
+                
+            });
+        },
+        changeTab(index){
+            this.active = index
+            sessionStorage.setItem('groupActiveIndex',index)
+        }
     }
 }
 </script>

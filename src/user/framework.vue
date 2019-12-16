@@ -27,12 +27,12 @@
                         <template v-slot="{node,data}">
                             <span class="node-row">
                                 {{node.label}}
-                                <span class="r node-operation"> 
+<!--                                 <span class="r node-operation"> 
                                     <span class="pointer iconfont icon-Edit1" v-if="node.level>1" title="编辑" @click="beforeEditNode(data)"></span>
                                     <span class="pointer iconfont  icon-Added" v-if="data.FLevel<levelArr.length" title="新增" @click="beforeAddNode(data)"></span>
                                     <span class="pointer iconfont icon-TrashBins" v-if="node.level>1" title="删除" @click="deleteTORGNode(data)"></span>
                                     <span class="pointer iconfont icon-System" title="配置" @click="configArea(data)"></span>
-                                </span>
+                                </span> -->
                             </span>
                         </template>
                         </el-tree>
