@@ -462,7 +462,7 @@ export default {
         margin-top: 16px;
         >div{
             height: 100%;
-            border:1px solid rgba(35,159,221,1);
+            /* border:1px solid rgba(35,159,221,1); */
             border-radius:10px;
         }
         .left-side{

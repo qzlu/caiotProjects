@@ -18,14 +18,6 @@
                     <el-form-item label="项目简称"  prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
                         <el-input  v-model="addData.FSimpleName"></el-input>
                     </el-form-item>
-                    <el-form-item label="行政架构" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select v-model="addData.BuildTypeID">
-                            <el-option :value="31" label="商住"></el-option>
-                            <el-option :value="32" label="商业"></el-option>
-                            <el-option :value="33" label="住宅"></el-option>
-                            <el-option :value="34" label="酒店会所"></el-option>
-                        </el-select>
-                    </el-form-item>
                     <el-form-item label="建筑业态" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
                         <el-select v-model="addData.BuildTypeID">
                             <el-option :value="31" label="商住"></el-option>
@@ -53,25 +45,18 @@
                     <el-form-item label="详细地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
                         <el-input class="block" type="textarea" v-model="addData.Address"></el-input>
                     </el-form-item>
-                    <el-form-item label="集团LOGO">
-                        <div class="thumb-img" v-if="fileList[0]">
-                            <div class="delete">
-                                <i class="el-icon-delete" @click="fileList = [] "></i>
-                            </div>
-                            <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
-                        </div>
-                        <el-upload
-                          v-else
-                          action="http://47.107.224.8:8080/UploadFile"
-                          list-type="picture-card"
-                          :limit = '1'
-                          :on-success="handleSuccess1"
-                          :data="{FTokenID:token}"
-                         >
-                            <p><i class="el-icon-plus"></i><br><span>上传(160*60)</span></p>
-                        </el-upload>                
+                    <el-form-item label="行政架构" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select class="block" v-model="addData.BuildTypeID">
+                            <el-option :value="31" label="商住"></el-option>
+                            <el-option :value="32" label="商业"></el-option>
+                            <el-option :value="33" label="住宅"></el-option>
+                            <el-option :value="34" label="酒店会所"></el-option>
+                        </el-select>
                     </el-form-item>
-                    <el-form-item label="集团宣传图" style="margin-left:74px">
+                <el-form-item  label="项目描述" prop="FDescription">
+                    <el-input class="block" v-model="addData.FDescription"></el-input>
+                </el-form-item>
+                    <el-form-item label="项目宣传图">
                         <div class="thumb-img" v-if="fileList[0]">
                             <div class="delete">
                                 <i class="el-icon-delete" @click="fileList = [] "></i>
@@ -108,24 +93,36 @@ export default {
             filterText:'',
             tableLabel:[
                 {
-                    prop: 'FProjectCode',
-                    label: '项目编码',
+                    prop: 'FProjectName',
+                    label: '项目全称',
                 },
                 {
                     prop: 'FSimpleName',
-                    label: '项目名称',
+                    label: '项目简称称',
                 },
                 {
                     prop: 'FAreaName',
-                    label: '所属范围',
+                    label: '行政架构',
                 },
                 {
                     prop: 'SystemParamName',
-                    label: '业态',
+                    label: '详细地址',
                 },
                 {
-                    prop: 'FSortID',
-                    label: '排序',
+                    prop: 'SystemParamName',
+                    label: '建筑业态',
+                },
+                {
+                    prop: 'BuildArea',
+                    label: '建筑面积',
+                },
+                {
+                    prop: 'FContact',
+                    label: '项目负责人',
+                },
+                {
+                    prop: 'FPhone',
+                    label: '联系方式',
                 },
             ],
             treeData:[],
@@ -153,6 +150,9 @@ export default {
                 OtherSourceID:0,   
                 SystemType:0,   
                 OnlineDateTime:'',
+                FContact:'',
+                FPhone:'',
+                FDescription:''
             },
             FAreaCode:[],
             currentNode:{}, //当前选中节点
@@ -192,6 +192,11 @@ export default {
             }
             return this.$post('QueryPageTORGProject',param,true)
         },
+        QueryMainTORGNodeArea(){
+            this.$post('QueryMainTORGNodeArea',{
+                
+            })
+        },
         /**
          * 点击新增
          */
@@ -213,6 +218,7 @@ export default {
         async addOrUpdate(){
             this.addData.FORGNodeGUID = this.currentNode.FGUID
             this.addData.FAreaCode = this.currentNode.FAreaCode
+            this.addData.FPublicityPhoto = this.fileList[0]||''
             await new Promise(resolve => {
                 this.$refs.form.validate((valid) => {
                   if (valid) {

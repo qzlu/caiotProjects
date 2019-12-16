@@ -50,7 +50,7 @@
                       action="http://47.107.224.8:8080/UploadFile"
                       list-type="picture-card"
                       :limit = '1'
-                      :on-success="handleSuccess1"
+                      :on-success="handleSuccess2"
                       :data="{FTokenID:token}"
                      >
                         <p><i class="el-icon-plus"></i><br><span>上传</span></p>
@@ -70,10 +70,6 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop:'FGroupCode',
-                    label:'集团编码'
-                },
-                {
                     prop:'FGroupName',
                     label:'集团全称'
                 },
@@ -81,14 +77,10 @@ export default {
                     prop: 'FSimpleName',
                     label: '集团简称',
                 },
-                {
+/*                 {
                     prop: 'FAreaName',
-                    label: '所属区域',
-                    formatter:row => {
-                        let area = this.areaList.find(item => item.id == row.FAreaCode)
-                        return area?area.name:''
-                    }
-                },
+                    label: '行政架构',
+                }, */
 /*                 {
                     prop: 'ParamNameValue',
                     label: 'LOGO图标',
@@ -144,8 +136,9 @@ export default {
                 FAreaCode:null,
                 FDescription:null,
                 FGroupLogo:'',
-                PlatformName:'千仞智服设施管控云平台',
-                ProjectPlatFormName:'千仞智服设施管控云平台'
+                PlatformName:'',
+                ProjectPlatFormName:'',
+                FPublicityPhoto:''
             },
             token:sessionStorage.getItem('FToken'),
             fileList:[],
@@ -183,16 +176,21 @@ export default {
          */
         editItem(row){
             this.fileList = []
+            this.fileList1 = []
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
             this.fileList.push(row.FGroupLogo)
+            row.FPublicityPhoto&&this.fileList1.push(row.FPublicityPhoto)
         },
         /**
          * 上传集团LOGO图片
          */
         handleSuccess1(res,file){
-            this.fileList.push(res.FObject)
+            res.FObject&&this.fileList.push(res.FObject)
+        },
+        handleSuccess2(res,file){
+            res.FObject&&this.fileList1.push(res.FObject)
         },
         /**
          * 新增或编辑
@@ -200,22 +198,38 @@ export default {
         async addOrUpdate(){
             let myGeo = new BMap.Geocoder()
             let address = this.addData.FAddress
-            this.addData.FGroupLogo = this.fileList[0]
+            this.addData.FGroupLogo = this.fileList[0]||''
+            this.addData.FPublicityPhoto = this.fileList1[1]||''
             await new Promise((resolve) => {
                 myGeo.getPoint(address,point => {
-                    this.addData.FGrouplng = point.lng||this.addData.FGrouplng
-                    this.addData.FGrouplat = point.lat||this.addData.FGrouplat
-                    resolve()
+                    try{
+                        this.addData.FGrouplng = point.lng||this.addData.FGrouplng
+                        this.addData.FGrouplat = point.lat||this.addData.FGrouplat
+                        resolve()
+                    }catch(err){
+                        this.$message({
+                            type:'warning',
+                            message:'请输入正确的地址'
+                        })
+                        reject()
+                    }
                 })
             })
             this.$post('AddOrUpdateDTORGGroup',{
                 MTORGGroup:this.addData
             })
             .then((result) => {
+                this.$message({
+                    type:'success',
+                    message:'新增/修改成功'
+                })
                 this.$refs.table.show = false
                 this.$refs.table.queryData()
             }).catch((err) => {
-                
+                this.$message({
+                    type:'error',
+                    message:'新增/修改失败！'
+                })
             });
         },
         /**

@@ -133,7 +133,7 @@ export default {
             .then((result) => {
                 this.jobList = result.FObject.Data || []
             }).catch((err) => {
-                
+                this.jobList = []
             });
         },
         /**
