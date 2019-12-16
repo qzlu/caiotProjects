@@ -27,6 +27,7 @@
                 <i class="iconfont icon-Rightparentheses pointer" @click="next()"></i>
               </p>
             </div>
+            <button class="zw-btn zw-btn-export" @click="exportEnergyReportData">导出</button>
           </div>
         </section>
 
@@ -125,7 +126,7 @@ var week_start = 0;
 
 import * as comm from "../../assets/js/pro_common";
 import {lineChart,barChart} from '@/caiot/zw-components/index.js'
-import {project} from '@/caiot/request/api.js'
+import {project,Energy} from '@/caiot/request/api.js'
 import formatDate from '@/utils/formatDate.js'
 export default {
   data() {
@@ -293,6 +294,21 @@ export default {
         this.disabled = false
       })
     },
+    exportEnergyReportData(){
+      Energy({
+        FAction:'ExportEnergyReportData',
+        FType: this.dateTypeList[this.active].FType,
+        FDateTime: formatDate(this.value1,'YYYY-MM-DD')
+      })
+      .then((result) => {
+        window.location = "http://www.szqianren.com/" + result.FObject;
+      }).catch((err) => {
+        this.$message({
+          type:'error',
+          message:'导出失败'
+        })
+      });
+    },
     /**
      * 409.查询能源配置设备能耗
      */
@@ -366,7 +382,7 @@ export default {
   padding: 30px 0 0 0;
 }
 .en_container .e_header .en_left .ech_time .e_tg {
-  width: 320px;
+  width: 430px;
   height: 28px;
   float: right;
 }
