@@ -31,6 +31,11 @@
                         <i slot="suffix" v-else-if="addConfig.EnergyTypeID == 3" class="unit">m³</i>
                     </el-input>
                 </el-form-item>
+                <el-form-item label="统计类型" prop="CountType" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addConfig.CountType" filterable   placeholder="请选择">
+                    <el-option v-for="(item,i) in countTypeList" :key="i" :label="item" :value="i"></el-option>
+                  </el-select>
+                </el-form-item>
             </el-form>
             <div class="submit">
                 <button class="zw-btn zw-btn-primary" @click="addOrUpdateUSet()">确定</button>
@@ -97,6 +102,11 @@ export default {
                     label: '序号'
                 },
                 {
+                    prop:'CountType',
+                    label:'统计类型',
+                    formatter:row => this.countTypeList[row.CountType]
+                },
+                {
                     prop:'EnergyPlanType',
                     label:'计划类型',
                     formatter:row => row.EnergyPlanType == 1 ? '年计划':'月计划'
@@ -126,6 +136,7 @@ export default {
                     label:'单位'
                 }
             ],
+            countTypeList:['总能耗','分项能耗','分区域能耗','重点设备'],
             defaultConfig:{//新增配置参数默认数据
                 ID:0,
                 EnergyTypeID:null,
@@ -133,6 +144,7 @@ export default {
                 EnergyPlanDate:null,
                 EnergyPlanUsage:null,
                 WarningUsage:null,
+                CountType:null
             },
             addConfig:{ //新增或修改配置参数
                 ID:0,
@@ -141,6 +153,7 @@ export default {
                 EnergyPlanDate:null,
                 EnergyPlanUsage:null,
                 WarningUsage:null,
+                CountType:null
             },
             FType:'Month',
             title:'新增',
