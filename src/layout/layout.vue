@@ -404,6 +404,9 @@ $img-url: "../assets/image/";
         }
         .menu-right-container{
             right: 0;
+            &:focus{
+              outline: none;
+            }
         }
         .el-menu--horizontal{
           width: 1540px;

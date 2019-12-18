@@ -257,6 +257,7 @@ export default {
             this.$post('QueryPageDTORGGroup',this.param)
             .then((result) => {
                 this.blockList = result.FObject.Data || []
+                console.log(this.blockList)
             }).catch((err) => {
                 
             });
@@ -378,6 +379,7 @@ export default {
                     }
                 })
             })
+            this.checkedBlock = []
             this.queryTUserForm(2,row.FGUID)
             .then((result) => {
                 let formList = result.FObject || []

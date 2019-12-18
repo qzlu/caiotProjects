@@ -151,16 +151,16 @@ export default {
             checkedList = [...checkedList,...halfcheckedList,...checkButtonList]
             let idStr = checkedList.map(item => item.FGUID).join(',')
             this.$post('UpadteTRoleMenu',{
-                FGUID:this.id,
+                FGUID:this.role.FGUID,
                 IDStr:idStr
             },true)
             .then((result) => {
-                console.log(result)
                 this.$message({
                     message:'保存成功',
                     type:'success',
                     duration:'500'
                 })
+                this.queryTRoleMenu(this.currentForm.FGUID)
             }).catch((err) => {
                 this.$message({
                     message:'保存失败',
