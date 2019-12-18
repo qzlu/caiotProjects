@@ -37,7 +37,7 @@
                     <el-option v-for="(item,i) in blockList" :key="i" :value="item.FGUID" :label="item.FSimpleName"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item v-else  label="管理项目" prop="FORGGroupGUID" :rules="[{ required: true, message: '请选择'}]"><!-- collapse-tags -->
+                <el-form-item v-else  label="管理项目" prop="ProjectIDStr" :rules="[{ required: true, message: '请选择'}]"><!-- collapse-tags -->
                     <el-cascader
                       class="row"
                       v-model="checkedProject"
@@ -322,6 +322,8 @@ export default {
         beforeAdd(){
            this.addData = Object.assign({},this.defaultAddData)
            this.groupList = [{...groupItem}]
+           this.checkedProject = []
+           this.checkedBlock = []
            this.queryTUserForm()
             .then((result) => {
             let data = result.FObject || []

@@ -91,7 +91,7 @@ $img-url:'../image/';
         }
         li.r{
             .search-input{
-                width: 174px;
+                width: 260px;
                 margin-right: 10px;
                 .el-input__suffix{
                     line-height: 46px
@@ -173,6 +173,11 @@ $img-url:'../image/';
                     right: 1px;
                     padding: 0 6px;
                     background: #0f4277
+                }
+            }
+            .block{
+                .el-input{
+                    width: 514px;
                 }
             }
             .block.el-textarea{

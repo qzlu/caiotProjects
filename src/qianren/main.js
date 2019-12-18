@@ -18,6 +18,27 @@ Vue.prototype.$websocket = websock
 Vue.prototype.$initWebSocket = initWebSocket */
 /* 
 store.dispatch('addRoute') */
+Vue.directive('loadmore', {  bind(el, binding) {  
+  var p = 0;
+  var t = 0;   
+  var down = true;    
+  var selectWrap = el.querySelector('.el-table__body-wrapper')||el.querySelector('.el-scrollbar__wrap')
+  selectWrap.addEventListener('scroll', function() {      
+    //判断是否向下滚动      
+    p = this.scrollTop;      // 
+    if ( t < p){
+      down=true
+    }else{
+      down=false
+    }      
+    t = p;      //判断是否到底      
+    const sign = 10;      
+    const scrollDistance = this.scrollHeight - this.scrollTop - this.clientHeight
+    if (scrollDistance <= sign && down) {  
+      binding.value()      
+    }    
+  })  
+}})
 router.beforeEach((to, from, next) => {
   console.log('ee',to,router)
   let {token, projectID,link}= to.query
@@ -37,6 +58,7 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+console.log(123)
 store.dispatch('getMenus')
 .then((result) => {
 }).catch((err) => {

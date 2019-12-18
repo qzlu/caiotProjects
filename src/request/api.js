@@ -11,7 +11,7 @@ const Login = p => post('/api/checklogin', {
     paramJSON:p
 }); //登录接口
 const baseUrl = '/api/user-manage-service/'
-const Post = (mapping,p) => post(baseUrl,{
+const Post = (mapping,p,load = false) => post(baseUrl,{
     controller:'',
     requestMapping:mapping,
     operaterUserId:'maria',
@@ -19,7 +19,7 @@ const Post = (mapping,p) => post(baseUrl,{
         FTokenID:sessionStorage.getItem('FToken')||'1C49B3DE-C244-4D91-B1E3-10ABFE56EA56',
         ...p
     }
-})
+},load)
 export{
     Login,
     Post

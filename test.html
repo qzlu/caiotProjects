@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <style>
         .video{
             width: 1000px;
@@ -14,17 +15,21 @@
 </head>
 <body>
     <div class="video">
-        <video width="1000px" height="500px" src="http://172.172.172.37:8080/test/test.mp4"></video>
+        <input id="upload" type="file">
+        <button class="btn">上传</button>
     </div>
     <script>
-        function a(n,m){
-            console.log(n+m);
+        function upload(){
+            var formData = new FormData()
+            var file = $('#upload')[0].files[0]
+            formData.append('file',file)
+            $.ajax({
+
+            })
         }
-        function b(){
-            let a1 = 1,b = 2
-             a(a1,b)
-        }
-        b()
+        $('.btn').click(function(){
+            upload()
+        })
     </script>
 </body>
 </html>

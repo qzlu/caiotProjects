@@ -44,32 +44,12 @@ export default {
     },
     async created(){
         this.id = uuidv1()
-        await this.queryMainDBTORGLevel()
         await this.queryProvinceData()
         await this.queryAllProvince()
-        this.queryMapData()
+        /* this.queryMapData() */
+        this.$emit('ready')
     },
     methods:{
-        /**
-         * 229.行政架构等级--查询行政架构等级
-         */
-        queryMainDBTORGLevel(){
-            return new Promise((resolve,reject) => {
-                this.$post('QueryMainDBTORGLevel',{
-                    FORGGroupGUID: '',
-                })
-                .then((result) => {
-                    this.levelArr = result.FObject || []
-                    this.levelArr.sort((a,b) => a.FLevel - b.FLevel)
-                    this.activeLevel = this.levelArr[0]||{}
-                    this.$emit('ready1',this.activeLevel)
-                    resolve()
-                }).catch((err) => {
-                    console.log(err);
-                    reject()
-                });
-            })
-        },
         /**
          * 切换行政架构
          * @param {Object} level 行政架构等级
@@ -112,9 +92,15 @@ export default {
             })
         },
         /**
+         * 229.行政架构等级--查询行政架构等级
+         */
+        queryMainDBTORGLevel(id){
+            return this.$post('QueryMainDBTORGLevel',{FORGGroupGUID:id})
+        },
+        /**
          * 获取已配置地图数据
          */
-        queryMapData(id = ''){
+        async queryMapData(id = ''){
             this.$post('QueryMainTORGNodeArea',{
                 IDStr: '',
                 FORGGroupGUID:id
@@ -122,7 +108,7 @@ export default {
             .then((result) => {
                 let response = result.FObject
                 this.projectList = response.ProjectData
-                this.$nextTick(() => {
+                this.$nextTick(async() => {
                     if(!this.myChart){
                       var dom = document.getElementById(this.id);
                       this.myChart = echarts.init(dom);
@@ -131,21 +117,22 @@ export default {
                         text: '数据正在努力加载...',
                         textStyle: { fontSize : 30 , color: '#444' },
                         effectOption: {backgroundColor: 'rgba(0, 0, 0, 0)'}
-                    }); 
+                    });
+                    /* this.showMapByArea(checkedLevel)  */
                     if(response.ListData.length>0){
                         let data = response.ListData
                         if(data[0].FParentCode == 0){
-                            let mapData = this.handleAreaData(data)
+                            let mapData =  this.handleAreaData(data)
                             this.showMapByArea(mapData)
                         }else if(myMap[data[0].FParentCode]&&data.length == 1){
-                            this.handleAreaData1(data[0])
+                            this.handleAreaData1(data[0],checkedLevel)
                             .then((mapArr) => {
                                 this.showMap(mapArr,this.projectList)
                             }).catch((err) => {
                                 
                             });
                         }else if(myMap[data[0].FParentCode]&&data.length > 1){
-                            this.handleAreaData1(data)
+                            this.handleAreaData1(data,checkedLevel)
                             .then((mapData) => {
                                 this.showMapByArea(mapData)
                             }).catch((err) => {
@@ -207,7 +194,7 @@ export default {
                     "type": "Feature",
                     "properties": {
                       "name": item.FAreaName,
-                      "childNum":2 /* item.ListData.length */
+                      "childNum":2 
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -228,6 +215,11 @@ export default {
             "type": "FeatureCollection",
             "features":mapArr
           }
+/*           if(mapArr.indexOf(1) !== -1){
+               obj = require('@/mapJson/allArea.json')
+          }else if(mapArr.indexOf(2) !== -1){
+              obj = require('@/mapJson/allCity.json')
+          } */
           this.activeArea = mapArr
           echarts.registerMap('china1',obj)
           if(!this.myChart){

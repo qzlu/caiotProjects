@@ -18,44 +18,41 @@
                     <el-form-item label="项目简称"  prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
                         <el-input  v-model="addData.FSimpleName"></el-input>
                     </el-form-item>
-                    <el-form-item label="建筑业态" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select v-model="addData.BuildTypeID">
+                    <el-form-item label="所属集团" prop="FORGGroupGUID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.FORGGroupGUID">
+                            <el-option v-for="item in blockList" :key="item.FGUID" :value="item.FGUID" :label="item.FSimpleName"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="行政架构" prop="FAreaCode" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.FAreaCode">
+                            <el-option v-for="item in cityList" :key="item.FGUID" :value="item.FAreaCode" :label="item.FAreaName"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="建筑业态" prop="FBuildTypeID" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.FBuildTypeID">
                             <el-option :value="31" label="商住"></el-option>
                             <el-option :value="32" label="商业"></el-option>
                             <el-option :value="33" label="住宅"></el-option>
                             <el-option :value="34" label="酒店会所"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="建筑面积" prop="BuildArea" :rules="[{ required: true, message: '请输入'}]">
+                    <el-form-item label="建筑面积" prop="FBuildArea" :rules="[{ required: true, message: '请输入'}]">
                         <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
                            <span slot="suffix">m²</span>
                         </el-input>
                     </el-form-item>
-                    <el-form-item label="项目经理" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select v-model="addData.BuildTypeID">
-                            <el-option :value="31" label="商住"></el-option>
-                            <el-option :value="32" label="商业"></el-option>
-                            <el-option :value="33" label="住宅"></el-option>
-                            <el-option :value="34" label="酒店会所"></el-option>
-                        </el-select>
+                    <el-form-item label="项目经理" prop="FContact">
+                        <el-input v-model="addData.FContact"></el-input>
                     </el-form-item>
-                    <el-form-item label="联系电话"  prop="FSimpleName" :rules="[{ required: true, message: '请输入'}]">
-                        <el-input  v-model="addData.FSimpleName"></el-input>
+                    <el-form-item label="联系电话"  prop="FPhone" :rules="FTelephoneRule">
+                        <el-input  v-model="addData.FPhone"></el-input>
                     </el-form-item>
-                    <el-form-item label="详细地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
-                        <el-input class="block" type="textarea" v-model="addData.Address"></el-input>
+                    <el-form-item label="详细地址" prop="FAddress" :rules="[{ required: true, message: '请输入'}]">
+                        <el-input class="block"  v-model="addData.FAddress"></el-input>
                     </el-form-item>
-                    <el-form-item label="行政架构" prop="BuildTypeID" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select class="block" v-model="addData.BuildTypeID">
-                            <el-option :value="31" label="商住"></el-option>
-                            <el-option :value="32" label="商业"></el-option>
-                            <el-option :value="33" label="住宅"></el-option>
-                            <el-option :value="34" label="酒店会所"></el-option>
-                        </el-select>
+                    <el-form-item  label="项目描述" prop="FDescription">
+                        <el-input class="block" type="textarea" v-model="addData.FDescription"></el-input>
                     </el-form-item>
-                <el-form-item  label="项目描述" prop="FDescription">
-                    <el-input class="block" v-model="addData.FDescription"></el-input>
-                </el-form-item>
                     <el-form-item label="项目宣传图">
                         <div class="thumb-img" v-if="fileList[0]">
                             <div class="delete">
@@ -65,7 +62,7 @@
                         </div>
                         <el-upload
                           v-else
-                          action="http://47.107.224.8:8080/UploadFile"
+                          action="/api/uploadFiles"
                           list-type="picture-card"
                           :limit = '1'
                           :on-success="handleSuccess1"
@@ -88,6 +85,16 @@ const param = {
 }
 export default {
     data(){
+        const phoneNumbre = (rule, value, callback) => {
+            var isPhone = /^0?1[3|4|5|7|8][0-9]\d{8}$/;//手机号码
+            var isMob= /^([0-9]{3,4}-)?[0-9]{7,8}$/;// 座机格式
+            if(isMob.test(value)||isPhone.test(value)){
+                callback();
+            }
+            else{
+               callback(new Error('请输入正确的电话号码'));
+            }
+        }
         return{
             show:false,
             filterText:'',
@@ -98,22 +105,27 @@ export default {
                 },
                 {
                     prop: 'FSimpleName',
-                    label: '项目简称称',
+                    label: '项目简称',
+                },
+                {
+                    prop:'FGroupName',
+                    label:'所属集团'
                 },
                 {
                     prop: 'FAreaName',
                     label: '行政架构',
+                    /* formatter:row => row.FAreaInfo.FAreaName||'' */
                 },
                 {
-                    prop: 'SystemParamName',
+                    prop: 'FAddress',
                     label: '详细地址',
                 },
                 {
-                    prop: 'SystemParamName',
+                    prop: 'FSystemParamName',
                     label: '建筑业态',
                 },
                 {
-                    prop: 'BuildArea',
+                    prop: 'FBuildArea',
                     label: '建筑面积',
                 },
                 {
@@ -144,9 +156,9 @@ export default {
                 FProjectlng:'',  
                 FProjectlat:'',    
                 FSortID:'',    
-                Address:'',
-                BuildArea:'',   
-                BuildTypeID:'',     
+                FAddress:'',
+                FBuildArea:'',   
+                FBuildTypeID:'',     
                 OtherSourceID:0,   
                 SystemType:0,   
                 OnlineDateTime:'',
@@ -157,6 +169,10 @@ export default {
             FAreaCode:[],
             currentNode:{}, //当前选中节点
             fileList:[],
+            token:sessionStorage.getItem('FToken'),
+            cityList:[],
+            FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
+            blockList:[],
         }
     },
     components:{
@@ -175,7 +191,9 @@ export default {
     },
     created(){
         this.defaultAddData = JSON.parse(JSON.stringify(this.addData))
-        this.provinces = provinceList
+        this.queryTORGGroupList()
+        this.queryTOPEAreaByFAreaLevel()
+        /* this.provinces = provinceList */
     },
     methods:{
         /**
@@ -192,10 +210,35 @@ export default {
             }
             return this.$post('QueryPageTORGProject',param,true)
         },
-        QueryMainTORGNodeArea(){
-            this.$post('QueryMainTORGNodeArea',{
+        /**
+         * 组织架构—查询集团列表
+         */
+        queryTORGGroupList(){
+            this.$post('QueryTORGGroupList')
+            .then((result) => {
+                this.blockList = result.FObject || []
+            }).catch((err) => {
                 
+            });
+        },
+        /**
+         * 408.查询城市
+         */
+        queryTOPEAreaByFAreaLevel(){
+            this.$post('QueryTOPEAreaByFAreaLevel',{
+                FAreaLevel:3,
             })
+            .then((result) => {
+                this.cityList = result.FObject || []
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 上传项目宣传图片
+         */
+        handleSuccess1(res,file){
+            res.FObject&&this.fileList.push(res.FObject)
         },
         /**
          * 点击新增
@@ -216,8 +259,6 @@ export default {
          * 新增或修改项目
          */
         async addOrUpdate(){
-            this.addData.FORGNodeGUID = this.currentNode.FGUID
-            this.addData.FAreaCode = this.currentNode.FAreaCode
             this.addData.FPublicityPhoto = this.fileList[0]||''
             await new Promise(resolve => {
                 this.$refs.form.validate((valid) => {
@@ -228,11 +269,15 @@ export default {
             })
             let myGeo = new BMap.Geocoder()
             let address = this.addData.Address
-            await new Promise((resolve) => {
+            await new Promise((resolve,reject) => {
                 myGeo.getPoint(address,point => {
-                    this.addData.FProjectlng = point.lng||this.addData.FProjectlng
-                    this.addData.FProjectlat = point.lat||this.addData.FProjectlat
-                    resolve()
+                    try{
+                        this.addData.FProjectlng = point.lng||this.addData.FProjectlng
+                        this.addData.FProjectlat = point.lat||this.addData.FProjectlat
+                        resolve()
+                    }catch(err){
+                        reject()
+                    } 
                 })
             })
             this.$post('AddOrUpdateTORGProject',{

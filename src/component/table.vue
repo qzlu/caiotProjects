@@ -6,7 +6,7 @@
                    <i class="iconfont icon-Added"></i>新增
                </el-button>
            </li>
-            <li class="l" v-if="isExport&&exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
+            <!-- <li class="l" v-if="isExport&&exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li> -->
             <li class="l"><el-button @click="queryData"><i class="iconfont icon-Refresh"></i>刷新</el-button></li>
             <li class="r">
                 <el-input v-if="filter" class="search-input" placeholder="搜索关键字" v-model="filterText">
@@ -127,7 +127,6 @@ export default {
          * 是否有新增的权限
          */
         isShowAdd(){
-            console.log(this.buttonList);
             return this.buttonList&&this.buttonList.find(item => item.FURL == 1)?true:false
         },
         /**

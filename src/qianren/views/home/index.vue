@@ -199,7 +199,7 @@ export default {
 $url: "../../../assets/image/";
 .home.qianren {
   padding: 2px;
-  background: url("#{$url}qianren/index-bg.jpg");
+  /* background: url("#{$url}qianren/index-bg.jpg"); */
   .header {
     position: relative;
     .logo{

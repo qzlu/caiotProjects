@@ -231,6 +231,7 @@ $img-url: "../assets/image/";
   right: 0;
   bottom: 0;
   background: #031432;
+  background: url(#{$img-url}layout/bg.png);
   .zw-nav{
     $url: "../assets/image/layout/";
     padding-right: 0!important;
@@ -243,7 +244,7 @@ $img-url: "../assets/image/";
       >li.el-menu-item{
             height: 44px;
             line-height: 44px;
-            background: url(#{$url}menu-bg.png) no-repeat;
+            background: url(#{$url}menu-item.png) no-repeat;
             background-size: 100% 100%;
             padding: 0 0px;
             font-size:20px;
@@ -268,7 +269,7 @@ $img-url: "../assets/image/";
           >.el-submenu__title{
             height: 44px;
             line-height: 44px;
-            background: url(#{$url}menu-bg.png) no-repeat;
+            background: url(#{$url}menu-item.png) no-repeat;
             background-size: 100% 100%;
             padding: 0 0px;
             font-size:20px;

@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default
+/* const DllPlugin = require('DllPlugin')
+const DllReferencePlugin = require('DllReferencePlugin') */
+let path = require("path")
 let pagesObject = {
     login:{
         entry:'src/login/main.js',
@@ -14,7 +17,8 @@ let pagesObject = {
         entry:'src/qianren/main.js',
         template:'src/qianren/index.html',
         filename:'index.html',
-        title:'千仞集团'
+        title:'千仞集团',
+        /* chunks: ['chunk-vendors', 'chunk-common'] */
     },
 /*     project:{
         entry:'src/caiot/main.js',
@@ -50,7 +54,18 @@ module.exports = {
             /* new BundleAnalyzerPlugin(), */
             new CompressionPlugin({
                 test: /\.(js|css)/
-            })
+            }),
+/*             new DllPlugin({
+                context: process.cwd(),
+                // manifest.json文件的输出位置
+                path: path.join(src, 'js', 'dll', '[name]-manifest.json'),
+                // 定义打包的公共vendor文件对外暴露的函数名
+                name: '[name]_[hash]'
+            }),
+            new DllReferencePlugin({
+                context: process.cwd(), 
+                manifest: require(path.join(src, 'js', "dll", "vendor-manifest.json"))
+            }) */
         ],
         externals:{
             echarts: 'echarts',
@@ -61,7 +76,6 @@ module.exports = {
     },
     devServer: {
         // development server port 8000
-        // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
         proxy: {
           '/api': {
             target: 'http://172.172.172.37:8770/',
