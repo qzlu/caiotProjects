@@ -1,7 +1,7 @@
 <template>
     <div class="report inspection-item">
-        <el-dialog :title="title" :visible.sync="show" width="426" class="zw-dialog energy-config">
-            <el-form :model="addConfig" ref="form">
+        <el-dialog :title="title" :visible.sync="show" width="700px" class="zw-dialog energy-config">
+            <el-form :model="addConfig" ref="form" inline="">
                 <el-form-item label="计划类型"  prop='EnergyPlanType'   :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addConfig.EnergyPlanType"  placeholder="请选择">
                     <el-option  label="年计划" :value="1"></el-option>
@@ -13,7 +13,7 @@
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="能源类型" prop="EnergyTypeID"  :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addConfig.EnergyTypeID" filterable  placeholder="请选择">
+                  <el-select v-model="addConfig.EnergyTypeID" filterable @change="queryEnergyConfigIDByParamID()"  placeholder="请选择">
                     <el-option v-for="item in energyTypeList" :key="item.ID" :label="item.EnergyTypeName" :value="item.ID"></el-option>
                   </el-select>
                 </el-form-item>
@@ -32,8 +32,13 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="统计类型" prop="CountType" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addConfig.CountType" filterable   placeholder="请选择">
+                  <el-select v-model="addConfig.CountType" filterable @change="queryEnergyConfigIDByParamID()"   placeholder="请选择">
                     <el-option v-for="(item,i) in countTypeList" :key="i" :label="item" :value="i"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="能源配置" prop="EnergyConfigID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addConfig.EnergyConfigID" filterable   placeholder="请选择">
+                    <el-option v-for="(item,i) in energyConfigList" :key="i" :label="item.MeterReadingKindName+'-'+item.CountName" :value="item.EnergyConfigID"></el-option>
                   </el-select>
                 </el-form-item>
             </el-form>
@@ -112,6 +117,11 @@ export default {
                     formatter:row => row.EnergyPlanType == 1 ? '年计划':'月计划'
                 },
                 {
+                    prop:'CountName',
+                    label:'能源配置',
+                    formatter:row => row.MeterReadingKindName + '-' + row.CountName
+                },
+                {
                     prop: 'EnergyPlanDate',
                     label: '计划时间',
                 },
@@ -144,7 +154,8 @@ export default {
                 EnergyPlanDate:null,
                 EnergyPlanUsage:null,
                 WarningUsage:null,
-                CountType:null
+                CountType:null,
+                EnergyConfigID:null
             },
             addConfig:{ //新增或修改配置参数
                 ID:0,
@@ -153,12 +164,14 @@ export default {
                 EnergyPlanDate:null,
                 EnergyPlanUsage:null,
                 WarningUsage:null,
-                CountType:null
+                CountType:null,
+                EnergyConfigID:null
             },
             FType:'Month',
             title:'新增',
             show:false,
-            energyTypeList:[]
+            energyTypeList:[],
+            energyConfigList:[]
         }
     },
     watch:{
@@ -219,6 +232,21 @@ export default {
             })
         },
         /**
+         * 415.根据项目/统计类型/能源类型查询能源配置
+         */
+        queryEnergyConfigIDByParamID(){
+            Energy({
+                FAction:'QueryEnergyConfigIDByParamID',
+                CountType:this.addConfig.CountType,
+                EnergyTypeID:this.addConfig.EnergyTypeID
+            })
+            .then((result) => {
+                this.energyConfigList = result.FObject
+            }).catch((err) => {
+                
+            });
+        },
+        /**
          * 点击新增
          */
         beforeAdd(){
@@ -237,6 +265,8 @@ export default {
                 this.addConfig[key] = row[key]
             })
             this.addConfig.ID = row.EnergyPlanID
+            console.log(row)
+            this.queryEnergyConfigIDByParamID()
         },
         /**
          * 249.新增或修改能源配置
