@@ -5,7 +5,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const ImageminPlugin = require('imagemin-webpack-plugin').default
 /* const DllPlugin = require('DllPlugin')
 const DllReferencePlugin = require('DllReferencePlugin') */
-let path = require("path")
 let pagesObject = {
     login:{
         entry:'src/login/main.js',
@@ -20,7 +19,7 @@ let pagesObject = {
         title:'千仞集团',
         /* chunks: ['chunk-vendors', 'chunk-common'] */
     },
-/*     project:{
+    project:{
         entry:'src/caiot/main.js',
         template:'src/caiot/index.html',
         filename:'project.html',
@@ -37,7 +36,7 @@ let pagesObject = {
         template:'src/eYingji/index.html',
         filename:'eYingji.html',
         title:'数字应急'
-    }, */
+    },
 }
 module.exports = {
     pages:pagesObject,

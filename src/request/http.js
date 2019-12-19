@@ -15,7 +15,7 @@ else if (process.env.NODE_ENV == 'debug') {
     axios.defaults.baseURL = 'http://47.107.224.8:8080/';
 } 
 else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://47.107.224.8:8080/';
+    /* axios.defaults.baseURL = 'http://47.107.224.8:8080/'; */
 }
 //设置请求超时时间
 axios.defaults.timeout = 10000;
