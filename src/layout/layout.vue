@@ -28,15 +28,31 @@
               </el-dropdown-menu>
             </el-dropdown>
         </div>
-        <div class="project-list">
-            <el-select class="project-popper" v-model="projectId">
-              <el-option
-                v-for="item in projectList"
-                :key="item.ProjectID"
-                :label="item.ShortName||0"
-                :value="item.ProjectID">
-              </el-option>
-            </el-select>
+        <div id="tree-project" class="r" >
+              <p @click="showProjectList = !showProjectList">项目导航 <i :class="showProjectList?'el-icon-caret-top':'el-icon-caret-bottom'"></i></p>
+              <div class="tree-project" v-if="showProjectList">
+                  <div class="filter-box">
+                      <el-input
+                        placeholder="搜索关键字"
+                        v-model="filterText">
+                        <i class="el-icon-search" slot="suffix"></i>
+                      </el-input>
+                  </div>
+                  <div class="tree-content">
+                      <el-scrollbar>
+                          <el-tree
+                              ref="tree"
+                             :data="projectList"
+                             :props="treeProp"
+                             default-expand-all
+                             @node-click="slectBlock"
+                             :expand-on-click-node="false"
+                             :filter-node-method="filterNode"
+                          >
+                          </el-tree>
+                      </el-scrollbar>
+                  </div>
+              </div>
         </div>
         <div class="menu">
             <div class="pre-menu">
@@ -87,7 +103,13 @@ export default {
       currentForm:{},
       menuData:[],
       projectList:[],
-      projectId:sessionStorage.getItem('projectId')
+      projectId:sessionStorage.getItem('projectId'),
+      showProjectList:false,
+      treeProp:{
+        children:'ListData',
+        label:'FSimpleName'
+      },
+      filterText:''
     };
   },
   props:{
@@ -122,13 +144,17 @@ export default {
           this.$refs.menu.activeIndex = '/DeviceManagement/'
         })
       }
-    }
+    },
+    filterText(val){
+        this.$refs.tree.filter(val);
+    },
   },
   beforeCreate() {
   },
   created() {
     this.leftMenuLasIndex = Number(sessionStorage.getItem('leftMenuLasIndex'))||3
     this.queryTUserForm()
+    this.queryTORGGroupProjectTree()
     /* this.initSystem() */
   },
   mounted: function() {
@@ -142,6 +168,14 @@ export default {
           this.$refs.menu.activeIndex = '/DeviceManagement/'
         })
       }
+      this.$nextTick(() => {
+        let el = document.querySelector('#tree-project')
+        document.addEventListener('click', (e) => {
+          if(!el.contains(e.target)){
+            this.showProjectList = false
+          }
+        })
+      })
       /* console.log(route) */
   },
   beforeDestroy(){
@@ -223,12 +257,26 @@ export default {
     queryTUserForm(){
       this.$post('QueryTUserForm')
       .then((result) => {
-        console.log(result);
         this.formList = result.FObject || []
         this.currentForm = this.formList.find(item => item.FIndex == this.formIndex)
       }).catch((err) => {
         
       });
+    },
+    queryTORGGroupProjectTree(){
+      this.$post('QueryTORGGroupProjectTree')
+      .then((result) => {
+        this.projectList = result.FObject
+      }).catch((err) => {
+        
+      });
+    },
+    slectBlock(item){
+
+    },
+    filterNode(value, data) {
+        if (!value) return true;
+        return data.FSimpleName.indexOf(value) !== -1;
     },
   }
 };
@@ -366,28 +414,6 @@ $img-url: "../assets/image/";
         white-space: nowrap;
         text-overflow: ellipsis
       }
-      .project-list{
-        position: absolute;
-        top:80px;
-        right: 0;
-        .el-select{
-          color: #84c0ff;
-          .el-input{
-            width: 140px;
-            &__inner{
-              width: 100%;
-              text-align: right;
-              border: none;
-              font-size: 16px;
-              background: none;
-              color: #84c0ff;
-            }
-          }
-          .el-icon-arrow-up:before {
-              content: "\E78F";
-          }
-        }
-      }
       .form-link{
           position: absolute;
           left: 30px;
@@ -400,6 +426,50 @@ $img-url: "../assets/image/";
                   cursor: pointer;
               }
           }
+      }
+      >#tree-project{
+        right: 100px;
+        top: 80px;
+        position: absolute;
+        cursor: pointer;
+        .tree-project{
+            position: absolute;
+            width: 164px;
+            height: 320px;
+            top: 20px;
+            z-index: 100;
+            background: #0D2F60;
+            .filter-box{
+                padding: 10px;
+                .el-input__suffix{
+                  line-height: 34px;
+                }
+            }
+            .tree-content{
+                height: 280px;
+                .el-tree{
+                    color:#F1F1F2;
+                    font-size: 18px;
+                    background: #0D2F60;
+                    &-node__content{
+                        height: 40px;
+                        line-height: 40px;
+                        span{
+                            font-size: 16px;
+                        }
+                        a{
+                          color:#F1F1F2;
+                          font-size: 16px;
+                        }
+                    }
+                    .el-tree-node:hover,.el-tree-node:focus {
+                        >.el-tree-node__content {
+                            background:#355B95;
+                        }
+                    }
+                }
+            }
+        }
       }
       .menu{
         width: 1580px;

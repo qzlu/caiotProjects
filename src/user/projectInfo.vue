@@ -164,7 +164,8 @@ export default {
                 OnlineDateTime:'',
                 FContact:'',
                 FPhone:'',
-                FDescription:''
+                FDescription:'',
+                FORGGroupGUID:''
             },
             FAreaCode:[],
             currentNode:{}, //当前选中节点

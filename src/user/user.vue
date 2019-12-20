@@ -197,7 +197,6 @@ export default {
         this.defaultAddData = Object.assign({},this.addData)
         this.queryRoleData()
         this.queryProject()
-        this.queryBlock()
         this.queryTUserDepartment()
             .then((result) => {
                 this.departmentList = result.FObject || []
@@ -253,11 +252,12 @@ export default {
         /**
          * 获取所有集团
          */
-        queryBlock(){
-            this.$post('QueryTORGGroupList')
+        queryBlock(id = ''){
+            this.$post('QueryTORGGroupList',{FUserGuid:id})
             .then((result) => {
                 this.blockList = result.FObject || []
-                console.log(this.blockList)
+                this.checkedBlock = this.blockList.filter(item => item.IsExitGroup).map(item => item.FGUID)
+                this.addData.FORGGroupGUIDStr = this.checkedBlock.join(',')
             }).catch((err) => {
                 
             });
@@ -325,6 +325,7 @@ export default {
            this.groupList = [{...groupItem}]
            this.checkedProject = []
            this.checkedBlock = []
+           this.queryBlock()
            this.queryTUserForm()
             .then((result) => {
             let data = result.FObject || []
@@ -365,10 +366,12 @@ export default {
          * 编辑
          */
         async editItem(row){
-            console.log(row)
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
+            if(row.FUserType<3){
+                this.queryBlock(row.FGUID)
+            }
             //项目联级选择器已选中值
             this.checkedProject = []
             let projectList = row.FProjectID?row.FProjectID.split(','):[]
@@ -391,7 +394,6 @@ export default {
                         nickName:item.FUserFormName || ''
                     }
                 })
-                console.log(this.formList)
             }).catch((err) => {
             });
             this.queryTUserJobDutyDepartment(row.FGUID)
