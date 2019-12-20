@@ -575,7 +575,12 @@ a {
   right: -144px;
   width: 140px;
 }
-
+.det_left ul li .a1 .pui_8 {
+  position: absolute;
+  top: 88px;
+  left: 0;
+  width: 140px;
+}
 .det_left ul li .a1 .jg {
   position: relative;
   height: 35px;

@@ -5,7 +5,7 @@
                 <div class="system-device l" v-for="(item,i) in data" :key="i">
                     <h5><i :class="['iconfont',item.WebIconName]"></i>{{item.DeviceType}}({{item.data.length}})</h5>
                     <ul class="clearfix device-list">
-                        <li class="l" v-for="device in item.data" :key="device.DeviceID" :class="{alarm:device.IsAlarm}" :style="{width:width+'px'}">
+                        <li class="l" v-for="(device,i) in item.data" :key="device.DeviceID" :class="{alarm:device.IsAlarm}" :style="{width:width+'px'}">
                             <i :class="{r:true,'el-icon-star-off':!device.IsFocus,'el-icon-star-on':device.IsFocus}" @click="addOrDeleteUFocusMonitor(device)"></i>
                             <router-link :to="`/monitoring/detail_info_list/${device.DeviceID}/${device.DataDetail[0]?device.DataDetail[0].SDataID:0}/${device}`">
                                 <h4 :title="device.DeviceName"><!-- { name: 'detail_info_list',params:{ id:device.DeviceID,PossionID:device.DataDetail[0]?device.DataDetail[0].SDataID:0,getalldata:device}} -->
@@ -33,7 +33,7 @@
                                     </el-col>
                                     <el-col :span="10">
                                         <ul>
-                                            <li v-for="(obj,j) in device.DataDetail.slice(3)" :key="j">
+                                            <li v-for="(obj,j) in device.DataDetail.slice(3,6)" :key="j">
                                                 <el-tooltip placement="top" effect="light">
                                                     <div slot="content">
                                                         <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
@@ -168,7 +168,7 @@ $url:'../../static/image';
                 width: 25%;
                 height: 192px;
                 box-sizing: border-box;
-                background: url(#{$url}/indexdetail/fvc4e.png) no-repeat;
+                background: url(#{$url}/indexdetail/fvc4e.png) 13px no-repeat;
                 background-size: 100% 100%;
                 h4{
                     widows: 200px;
@@ -262,7 +262,7 @@ $url:'../../static/image';
           width: 25%;
           height: 192px;
           box-sizing: border-box;
-          background: url(#{$url}/indexdetail/fvc4e.png) no-repeat;
+          background: url(#{$url}/indexdetail/fvc4e.png) 13px no-repeat;
           background-size: 100% 100%;
           h5{
             text-align: left;
