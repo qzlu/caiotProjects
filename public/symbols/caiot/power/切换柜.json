@@ -1,0 +1,160 @@
+{
+  "modified": "Thu Dec 12 2019 15:51:09 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        51,
+        10,
+        51,
+        21
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(252,250,250,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        48.52092,
+        20.81707,
+        5,
+        5
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        60,
+        22,
+        51,
+        40,
+        51,
+        63
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.51463,
+      "points": [
+        52.88421,
+        48.99763,
+        48.88421,
+        53.00136,
+        52.88421,
+        56.99763
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.51463,
+      "points": [
+        52.81579,
+        46.00237,
+        48.81579,
+        50.0061,
+        52.81579,
+        54.00237
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        47.5,
+        60,
+        54.5,
+        66
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.74533,
+      "points": [
+        47.5,
+        60,
+        54.5,
+        66
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -3.14159,
+      "points": [
+        64.04184,
+        37.81707,
+        64.02092,
+        66.96777
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(252,250,250,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -3.14159,
+      "rect": [
+        61.52092,
+        33,
+        5,
+        5
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        59,
+        64,
+        50,
+        78.04878,
+        50,
+        96
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 4.71239,
+      "points": [
+        51.88421,
+        80.99763,
+        47.88421,
+        85.00136,
+        51.88421,
+        88.99763
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 4.71239,
+      "points": [
+        51.88421,
+        83.99763,
+        47.88421,
+        88.00136,
+        51.88421,
+        91.99763
+      ]
+    }
+  ]
+}

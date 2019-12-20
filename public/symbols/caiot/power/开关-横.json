@@ -1,0 +1,61 @@
+{
+  "modified": "Tue Dec 03 2019 11:32:14 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "DeviceID",
+      "valueType": "Number",
+      "name": "设备ID"
+    },
+    {
+      "attr": "DataItemID",
+      "valueType": "Number",
+      "name": "数据项ID"
+    },
+    {
+      "attr": "DataItemValue",
+      "valueType": "String",
+      "name": "数据项值"
+    }
+  ],
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "points": [
+        24.84177,
+        38.90127,
+        25.01899,
+        60.87595
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(252,252,252,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "rect": [
+        42.12785,
+        35.27215,
+        16,
+        29.34177
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -1.5708,
+      "points": [
+        74.55696,
+        40.44304,
+        74.55696,
+        59.44304
+      ]
+    }
+  ]
+}

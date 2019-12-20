@@ -1,5 +1,5 @@
 {
-  "modified": "Fri Nov 29 2019 16:27:16 GMT+0800 (中国标准时间)",
+  "modified": "Fri Dec 13 2019 14:51:08 GMT+0800 (中国标准时间)",
   "dataBindings": [
     {
       "attr": "DeviceID",
@@ -27,7 +27,7 @@
       "borderColor": "#979797",
       "rect": [
         39.77215,
-        45.81013,
+        38.81013,
         22.81013,
         21.53165
       ]
@@ -45,15 +45,14 @@
       ]
     },
     {
-      "type": "rect",
-      "background": "rgba(255,250,250,0)",
+      "type": "shape",
       "borderWidth": 1,
       "borderColor": "#979797",
-      "rect": [
-        45,
-        27,
-        12,
-        7.23544
+      "points": [
+        51,
+        34,
+        51,
+        38.63928
       ]
     },
     {
@@ -63,17 +62,6 @@
       "points": [
         51,
         34,
-        51,
-        46
-      ]
-    },
-    {
-      "type": "shape",
-      "borderWidth": 1,
-      "borderColor": "#979797",
-      "points": [
-        51,
-        27,
         51,
         19
       ]
@@ -87,6 +75,95 @@
         78,
         51,
         88
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        51.03979,
+        48.70347,
+        51.03979,
+        54.81386
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        51.21951,
+        48.70347,
+        44.74968,
+        44.03081
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        51.03979,
+        48.70347,
+        57.32991,
+        44.21053
+      ]
+    },
+    {
+      "type": "triangle",
+      "background": "rgba(255,252,252,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        43.04236,
+        63.20827,
+        16.3543,
+        8.26701
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        51,
+        49,
+        32,
+        49
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        32,
+        45.25,
+        32,
+        51.75
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        30,
+        46.25,
+        30,
+        50.75
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        28,
+        47.25,
+        28,
+        49.75
       ]
     }
   ]

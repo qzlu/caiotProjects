@@ -1,0 +1,462 @@
+{
+  "modified": "Thu Dec 12 2019 11:50:40 GMT+0800 (中国标准时间)",
+  "width": 100,
+  "height": 100,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        36.66239,
+        18.5751,
+        60.20539,
+        18.39538
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        36.66239,
+        18.39538,
+        36.48267,
+        33.13222
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        59.84596,
+        18.39538,
+        59.84596,
+        32.9525
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(250,250,250,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        34.85012,
+        21.78331,
+        3.62441,
+        7.24883
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(250,250,250,0)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        57.85012,
+        21.78331,
+        4.14988,
+        7.21669
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        36,
+        40,
+        36,
+        54,
+        30,
+        54,
+        32,
+        49,
+        36,
+        48,
+        40,
+        49,
+        42,
+        54,
+        40,
+        59,
+        36,
+        59,
+        36,
+        60,
+        36,
+        77
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        36,
+        40,
+        31,
+        32
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        61,
+        39.5,
+        61,
+        53.5,
+        55,
+        53.5,
+        57,
+        48.5,
+        61,
+        47.5,
+        65,
+        48.5,
+        67,
+        53.5,
+        65,
+        58.5,
+        61,
+        58.5,
+        61,
+        59.5,
+        61,
+        76.5
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        61,
+        40,
+        56,
+        32
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(255,250,250)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        40.41115,
+        68.50794,
+        3,
+        3
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(252,242,242)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        53.72228,
+        68.50794,
+        3,
+        3
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(255,247,247)",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rect": [
+        47.5,
+        68.50794,
+        3,
+        3
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        38,
+        91,
+        46,
+        91
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.0472,
+      "points": [
+        40,
+        88,
+        48,
+        88
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -2.14123,
+      "points": [
+        33.85842,
+        79.56223,
+        41.85842,
+        79.56223
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -1.09403,
+      "points": [
+        30.25342,
+        79.49889,
+        38.25342,
+        79.49889
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 2.11958,
+      "points": [
+        24.76997,
+        88.25033,
+        32.76997,
+        88.25033
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -3.11641,
+      "points": [
+        27.28615,
+        91.5216,
+        35.28615,
+        91.5216
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        28,
+        83,
+        33,
+        87
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        30,
+        81,
+        35,
+        85
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.79742,
+      "points": [
+        37.25026,
+        80.80088,
+        42.25026,
+        84.80088
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.79742,
+      "points": [
+        38.74974,
+        83.19912,
+        43.74974,
+        87.19912
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 0.86029,
+      "points": [
+        32.58975,
+        88.89418,
+        37.58975,
+        92.89418
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 0.86029,
+      "points": [
+        35.41025,
+        89.10582,
+        40.41025,
+        93.10582
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        62.74321,
+        91.67592,
+        70.74321,
+        91.67592
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.0472,
+      "points": [
+        64.74321,
+        88.67592,
+        72.74321,
+        88.67592
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -2.14123,
+      "points": [
+        58.60163,
+        80.23815,
+        66.60163,
+        80.23815
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -1.09403,
+      "points": [
+        54.99663,
+        80.17481,
+        62.99663,
+        80.17481
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 2.11958,
+      "points": [
+        49.51318,
+        88.92625,
+        57.51318,
+        88.92625
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        52.74321,
+        83.67592,
+        57.74321,
+        87.67592
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "points": [
+        54.74321,
+        81.67592,
+        59.74321,
+        85.67592
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.79742,
+      "points": [
+        61.99347,
+        81.4768,
+        66.99347,
+        85.4768
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 1.79742,
+      "points": [
+        63.49295,
+        83.87504,
+        68.49295,
+        87.87504
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 0.86029,
+      "points": [
+        57.33296,
+        89.5701,
+        62.33296,
+        93.5701
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": 0.86029,
+      "points": [
+        60.15346,
+        89.78174,
+        65.15346,
+        93.78174
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#979797",
+      "rotation": -3.11641,
+      "points": [
+        51.28615,
+        92.5216,
+        59.28615,
+        92.5216
+      ]
+    }
+  ]
+}

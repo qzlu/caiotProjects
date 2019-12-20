@@ -1,5 +1,5 @@
 {
-  "modified": "Mon Dec 02 2019 16:43:44 GMT+0800 (中国标准时间)",
+  "modified": "Thu Dec 12 2019 18:00:10 GMT+0800 (中国标准时间)",
   "dataBindings": [
     {
       "attr": "DeviceName",
@@ -29,10 +29,7 @@
   "comps": [
     {
       "type": "rect",
-      "background": {
-        "func": "__ht__function(data, view) {\nreturn !data.a('DeviceStatus') ? '#B2B2B2' : '#54FABC';\n}",
-        "value": "#979797"
-      },
+      "background": "rgba(250,245,245,0)",
       "borderColor": "rgb(250,0,0)",
       "rect": [
         14,
