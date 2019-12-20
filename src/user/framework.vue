@@ -252,6 +252,9 @@ export default {
                 margin-top: 29px;
                 position: relative;
                 font-size: 18px;
+                .el-scrollbar__wrap{
+                   overflow-x: hidden;
+                }
                 .el-button{
                     width:89px;
                     height:46px;

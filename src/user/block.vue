@@ -25,11 +25,11 @@
                         <div class="delete">
                             <i class="el-icon-delete" @click="fileList = [] "></i>
                         </div>
-                        <img :src="'http://47.107.224.8:8080/'+fileList[0]" alt="">
+                        <img v-for="item in fileList[0]" :key="item" :src="'http://47.107.224.8:8080/'+item" alt="">
                     </div>
                     <el-upload
                       v-else
-                      action="http://47.107.224.8:8080/UploadFile"
+                      action="/api/uploadFiles"
                       list-type="picture-card"
                       :limit = '1'
                       :on-success="handleSuccess1"
@@ -43,11 +43,11 @@
                         <div class="delete">
                             <i class="el-icon-delete" @click="fileList1 = [] "></i>
                         </div>
-                        <img :src="'http://47.107.224.8:8080/'+fileList1[0]" alt="">
+                        <img v-for="item in fileList1[0]" :key="item" :src="'http://47.107.224.8:8080/'+item" alt="">
                     </div>
                     <el-upload
                       v-else
-                      action="http://47.107.224.8:8080/UploadFile"
+                      action="/api/uploadFiles"
                       list-type="picture-card"
                       :limit = '1'
                       :on-success="handleSuccess2"

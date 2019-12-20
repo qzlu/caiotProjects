@@ -2,7 +2,7 @@
     height:66px;
 }
 .el-table__empty-block{
-    // background: #134FA4;
+    background: #134FA4;
     .el-table__empty-text{
         color: white;
     }
@@ -41,6 +41,9 @@
         font-size: 14px;
         color: white;
         background:none;
+        &:hover{
+            background:rgba(19,79,164,0.5);
+        }
     }
     .odd-row{
         background:#134FA4;
@@ -49,7 +52,7 @@
         background: #053077
     }
     &--enable-row-hover &__body tr:hover>td{
-        background:rgba(19,79,164,0.5);
+        background:rgba(19,79,164,0.5)!important;
         border:2px solid rgba(0, 0, 0, 1);
         /* opacity:0.5; */
        /*  color: #2A91FC; */

@@ -28,6 +28,16 @@
               </el-dropdown-menu>
             </el-dropdown>
         </div>
+        <div class="project-list">
+            <el-select class="project-popper" v-model="projectId">
+              <el-option
+                v-for="item in projectList"
+                :key="item.ProjectID"
+                :label="item.ShortName||0"
+                :value="item.ProjectID">
+              </el-option>
+            </el-select>
+        </div>
         <div class="menu">
             <div class="pre-menu">
                 <span class="iconfont icon-Leftparentheses" v-show="leftMenuLasIndex>3" @click="preMenu()">
@@ -75,7 +85,9 @@ export default {
       leftMenuLasIndex:3,
       formList:[], //平台列表
       currentForm:{},
-      menuData:[]
+      menuData:[],
+      projectList:[],
+      projectId:sessionStorage.getItem('projectId')
     };
   },
   props:{
@@ -96,7 +108,6 @@ export default {
       return this.$store.state.menuData.slice(this.leftMenuLasIndex)
     },
     linkFormList(){
-      console.log(this.formIndex);
       return this.formList.filter(item => item.FIndex != this.formIndex )
     }
   },
@@ -355,10 +366,27 @@ $img-url: "../assets/image/";
         white-space: nowrap;
         text-overflow: ellipsis
       }
-      .home-project-list{
+      .project-list{
         position: absolute;
-        top:50px;
+        top:80px;
         right: 0;
+        .el-select{
+          color: #84c0ff;
+          .el-input{
+            width: 140px;
+            &__inner{
+              width: 100%;
+              text-align: right;
+              border: none;
+              font-size: 16px;
+              background: none;
+              color: #84c0ff;
+            }
+          }
+          .el-icon-arrow-up:before {
+              content: "\E78F";
+          }
+        }
       }
       .form-link{
           position: absolute;

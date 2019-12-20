@@ -3,14 +3,14 @@ import axios from 'axios';
 import {messageErr} from '@/plugins/statusCode.js'
 import router from '../router'
 // 环境的切换
-if (process.env.NODE_ENV == 'development') {    
+/* if (process.env.NODE_ENV == 'development') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';} 
 else if (process.env.NODE_ENV == 'debug') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
 } 
 else if (process.env.NODE_ENV == 'production') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
-}
+} */
 //设置请求超时时间
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';

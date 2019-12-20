@@ -8,8 +8,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 import './router/handle' //路由拦截、设置title及强制跳转
-import axios from 'axios'
-Vue.prototype.$axios= axios
 import DeleteMessage from './zw-components/messageBox/index.js'
 Vue.prototype.$DeleteMessage = DeleteMessage
 import '@/assets/css/reset.css'
@@ -47,18 +45,21 @@ Vue.directive('loadmore', {  bind(el, binding) { 
     }    
   })  
 }})
-store.dispatch('getMenus')
-.then((result) => {
-  store.dispatch('addRoute')
-
-}).catch((err) => {
-  console.log(err)
-})
-.finally(() => {
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
-})
+let token = sessionStorage.getItem('FToken')
+if(!token){
+  location.href = '/login.html'
+}else{
+  store.dispatch('getMenus')
+  .then((result) => {
+  }).catch((err) => {
+  })
+  .finally(() => {
+    store.dispatch('addRoute')
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  })
+}
 /* eslint-disable no-new */

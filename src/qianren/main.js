@@ -58,16 +58,21 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-console.log(123)
-store.dispatch('getMenus')
-.then((result) => {
-}).catch((err) => {
-})
-.finally(() => {
-  store.dispatch('addRoute')
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
-})
+let token = sessionStorage.getItem('FToken')
+if(!token){
+  location.href = '/login.html'
+}else{
+  store.dispatch('getMenus')
+  .then((result) => {
+  }).catch((err) => {
+  })
+  .finally(() => {
+    store.dispatch('addRoute')
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  })
+}
+

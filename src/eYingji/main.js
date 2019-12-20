@@ -52,16 +52,20 @@ router.beforeEach(async (to, from, next) => {
   }
 
 })
-store.dispatch('getMenus','E460C962-8680-446F-9F7A-8739E64C17DF')
-.then((result) => {
-  store.dispatch('addRoute')
-}).catch((err) => {
-  console.log(err)
-})
-.finally(() => {
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
-})
+let token = sessionStorage.getItem('FToken')
+if(!token){
+  location.href = '/login.html'
+}else{
+  store.dispatch('getMenus')
+  .then((result) => {
+  }).catch((err) => {
+  })
+  .finally(() => {
+    store.dispatch('addRoute')
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  })
+}

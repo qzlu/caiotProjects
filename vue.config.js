@@ -19,7 +19,7 @@ let pagesObject = {
         title:'千仞集团',
         /* chunks: ['chunk-vendors', 'chunk-common'] */
     },
-    project:{
+/*     project:{
         entry:'src/caiot/main.js',
         template:'src/caiot/index.html',
         filename:'project.html',
@@ -36,7 +36,7 @@ let pagesObject = {
         template:'src/eYingji/index.html',
         filename:'eYingji.html',
         title:'数字应急'
-    },
+    }, */
 }
 module.exports = {
     pages:pagesObject,

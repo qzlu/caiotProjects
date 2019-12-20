@@ -254,9 +254,9 @@ export default {
          * 获取所有集团
          */
         queryBlock(){
-            this.$post('QueryPageDTORGGroup',this.param)
+            this.$post('QueryTORGGroupList')
             .then((result) => {
-                this.blockList = result.FObject.Data || []
+                this.blockList = result.FObject || []
                 console.log(this.blockList)
             }).catch((err) => {
                 
@@ -365,6 +365,7 @@ export default {
          * 编辑
          */
         async editItem(row){
+            console.log(row)
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
@@ -387,9 +388,10 @@ export default {
                     return {
                         ...item,
                         checked:item.IsExit == 1?true:false,
-                        nickName:item.FUserFormName
+                        nickName:item.FUserFormName || ''
                     }
                 })
+                console.log(this.formList)
             }).catch((err) => {
             });
             this.queryTUserJobDutyDepartment(row.FGUID)
@@ -401,7 +403,7 @@ export default {
             let projects = this.checkedProject.map(item => item[1])
             this.addData.ProjectIDStr = projects.join(',')
             let checkedForm = this.formList.filter(item => item.checked)
-            this.addData.FTFormStr = checkedForm.map(item => `${item.FGUID}_${item.nickName}`).join(',')
+            this.addData.FTFormStr = checkedForm.map(item => `${item.FGUID}_${item.nickName||''}`).join(',')
             this.addData.FTUserStr = this.groupList.map(item => {
                 return `${item.department}_${item.job}_${item.duty}`
             }).join(',')

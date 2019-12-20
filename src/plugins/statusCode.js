@@ -1,5 +1,5 @@
 import { Message } from 'element-ui';
-export function messageErr(x,message = '',router){
+export function messageErr(x,message = ''){
     switch(x)	{
         case 100:
           Message('异常错误');
