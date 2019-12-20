@@ -149,6 +149,7 @@ export default {
         if(result.FObject&&result.FObject.length>0){
           //最新报警时间比上一次报警时间大时，播放报警音
           if(this.lastAlarmTime  == ''||(new Date(this.lastAlarmTime)<new Date(result.FObject[0].AlarmTime))){
+            this.alarmTimes = 0
             this.lastAlarmTime = result.FObject[0].AlarmTime
             this.isOpen == 1&&this.playWarn()
           }
