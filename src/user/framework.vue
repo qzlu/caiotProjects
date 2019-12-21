@@ -15,7 +15,7 @@
                 <div class="tree-content">
                     <el-button @click="queryMainDBTORGLevel()">架构级别</el-button>
                     <el-scrollbar>
-                        <el-tree
+<!--                         <el-tree
                             ref="tree"
                            :data="treeData"
                            :props="treeProp"
@@ -25,17 +25,17 @@
                            :expand-on-click-node='false'
                            :filter-node-method="filterNode"
                         >
-                        <template v-slot="{node,data}">
-                            <span class="node-row">
-                                {{node.label}}
-<!--                                 <span class="r node-operation"> 
-                                    <span class="pointer iconfont icon-Edit1" v-if="node.level>1" title="编辑" @click="beforeEditNode(data)"></span>
-                                    <span class="pointer iconfont  icon-Added" v-if="data.FLevel<levelArr.length" title="新增" @click="beforeAddNode(data)"></span>
-                                    <span class="pointer iconfont icon-TrashBins" v-if="node.level>1" title="删除" @click="deleteTORGNode(data)"></span>
-                                    <span class="pointer iconfont icon-System" title="配置" @click="configArea(data)"></span>
-                                </span> -->
-                            </span>
-                        </template>
+                            <template v-slot="{node,data}">
+                                <span class="node-row">
+                                    {{node.label}}
+                                </span>
+                            </template>
+                        </el-tree> -->
+                        <el-tree
+                          :props="props"
+                          :load="loadNode"
+                          lazy
+                          show-checkbox>
                         </el-tree>
                     </el-scrollbar>
                 </div>
@@ -84,7 +84,12 @@ export default {
             selectCitys:[],
             activeLevel:1,
             blockList:[],
-            currentBlock:{}
+            currentBlock:{},
+            props:{
+                label: 'name',
+                children: 'zones',
+                isLeaf: 'leaf'
+            }
         }
     },
     components:{
@@ -99,6 +104,23 @@ export default {
         this.queryTORGGroupList()
     },
     methods:{
+        loadNode(node, resolve) {
+/*             console.log(node,resolve)
+            if (node.level === 0) {
+              return resolve([{ name: 'region' }]);
+            }
+            if (node.level > 1) return resolve([]);
+            setTimeout(() => {
+              const data = [{
+                name: 'leaf',
+                leaf: true
+              }, {
+                name: 'zone'
+              }];
+
+              resolve(data);
+            }, 500); */
+        }, 
         /**
          * 查询左边树形数据(220.组织架构--查询树状组织)
          */

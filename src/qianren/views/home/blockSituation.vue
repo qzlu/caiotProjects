@@ -171,9 +171,9 @@
         </div>
         <div class="main">
           <div id="map" style="100%;height:600px">
-            <echarts-map ref="map" @ready1="ready1" @change="queryData" @click-area="areaClick" :block="currentBlock"></echarts-map>
+            <echarts-map ref="map"></echarts-map>
             <div style="height:288px">
-                <monitorData :alarmData='alarmData' :orderData='orderData'></monitorData>
+                <!-- <monitorData :alarmData='alarmData' :orderData='orderData'></monitorData> -->
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@
 </template>
 <script>
 import { number, pieChart, barChart } from "@/components/index.js";
-import echartsMap from "../component/map.vue";
+import echartsMap from "@/component/map.vue";
 import monitorData from "./monitorData.vue"
 import("@/assets/css/index.scss");
 export default {
@@ -301,6 +301,9 @@ export default {
     ready1(level) {
       /* this.queryData()
       this.queryBlocEnergyByMonth(); */
+    },
+    loadMapData(){
+        this.$refs.map.queryMapData(this.currentBlock.FGUID)
     },
     /**
      * 点击地图上的区域时

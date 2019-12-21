@@ -19,13 +19,13 @@ let pagesObject = {
         title:'千仞集团',
         /* chunks: ['chunk-vendors', 'chunk-common'] */
     },
-/*     project:{
+    project:{
         entry:'src/caiot/main.js',
         template:'src/caiot/index.html',
         filename:'project.html',
         title:'千仞项目'
     },
-    shuziYy:{
+/*     shuziYy:{
         entry:'src/shuziYy/main.js',
         template:'src/shuziYy/index.html',
         filename:'shuziYy.html',

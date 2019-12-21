@@ -32,7 +32,7 @@ const generaMenu = function(data,arr = []){
                 children = generaMenu(menu.ListData,[])
             }
             if(menu.FMenuName == '系统管理'){
-              children.push(
+              children&&children.push(
                   {
                     path:'/manage/roleDetail/:role',
                     component:() => import('@/user/roleDetail.vue'),

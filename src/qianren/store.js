@@ -31,7 +31,7 @@ const generaMenu = function(data,arr = []){
               children = generaMenu(menu.ListData,[])
           }
           if(menu.FMenuName == '用户管理'){
-            children.push(
+            children&&children.push(
                 {
                   path:'/manage/roleDetail/:role',
                   component:() => import('@/user/roleDetail.vue'),
@@ -43,7 +43,7 @@ const generaMenu = function(data,arr = []){
             )
           }
           return {
-              path:menu.FURL,
+              path:menu.FURL||'/404',
               component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
               /* redirect:menu.FURL, */
               children:children,
@@ -54,7 +54,7 @@ const generaMenu = function(data,arr = []){
           }
       }else{
           return {
-              path:menu.FURL,
+              path:menu.FURL||'/404',
               component:lazyLoad(menu.FComponent)||lazyLoad('qianren/views/404.vue'),
               children:menu.ListData&&menu.ListData.length>0?generaMenu(menu.ListData,[]):[],
               meta:{
@@ -100,7 +100,7 @@ export default new Vuex.Store({
           let homeRoutes = generaMenu(menuData)
           let routers = [
               {
-                  path: '',
+                  path: '/',
                   name: 'home',
                   component: () => import('@/qianren/views/home'),
                   redirect: `${homeRoutes[0]?homeRoutes[0].path:""}`,//子路由设置默认页

@@ -107,7 +107,7 @@ $url: "../../static/image/index/";
   }
   a{
     display: block;
-    color:rgba(42,145,252,1);
+    color:white;
   }
 }
 </style>

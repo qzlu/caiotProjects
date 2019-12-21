@@ -37,7 +37,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="建筑面积" prop="FBuildArea" :rules="[{ required: true, message: '请输入'}]">
-                        <el-input class="unit" type="number" v-model="addData.BuildArea" autocomplete="off">
+                        <el-input class="unit" type="number" v-model="addData.FBuildArea" autocomplete="off">
                            <span slot="suffix">m²</span>
                         </el-input>
                     </el-form-item>

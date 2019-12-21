@@ -31,7 +31,7 @@ const generaMenu = function(data,arr = []){
               children = generaMenu(menu.ListData,[])
           }
           if(menu.FMenuName == '用户管理'){
-            children.push(
+            children&&children.push(
                 {
                   path:'/manage/roleDetail/:roleId',
                   component:() => import('@/user/roleDetail.vue'),

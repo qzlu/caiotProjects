@@ -152,7 +152,8 @@ export default {
             let idStr = checkedList.map(item => item.FGUID).join(',')
             this.$post('UpadteTRoleMenu',{
                 FGUID:this.role.FGUID,
-                IDStr:idStr
+                IDStr:idStr,
+                FFormID:this.currentForm.FGUID
             },true)
             .then((result) => {
                 this.$message({

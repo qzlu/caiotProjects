@@ -51,7 +51,7 @@ $url: "../assets/image/layout/";
   }
   a{
     display: block;
-    color:rgb(4, 6, 8);
+    color:white;
   }
 }
 .el-menu--horizontal{
