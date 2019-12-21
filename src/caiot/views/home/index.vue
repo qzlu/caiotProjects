@@ -130,13 +130,14 @@ export default {
      * 播放报警声
      */
     playWarn(){
-      if(this.alarmTimes < 3){
+      this.myAudio.play()
+/*       if(this.alarmTimes < 3){
         this.myAudio.play()
         this.alarmTimes ++ //只报警三次
         setTimeout(this.playWarn,3000)
       }else{
         this.myAudio.pause()
-      }
+      } */
     },
     /**
      * 获取实时告警数据
@@ -147,12 +148,13 @@ export default {
       })
       .then((result) => {
         if(result.FObject&&result.FObject.length>0){
-          //最新报警时间比上一次报警时间大时，播放报警音
+          this.isOpen == 1&&this.playWarn()
+/*           //最新报警时间比上一次报警时间大时，播放报警音
           if(this.lastAlarmTime  == ''||(new Date(this.lastAlarmTime)<new Date(result.FObject[0].AlarmTime))){
             this.alarmTimes = 0
             this.lastAlarmTime = result.FObject[0].AlarmTime
             this.isOpen == 1&&this.playWarn()
-          }
+          } */
         }
         this.timer = setTimeout(() => {
           this.getAlarmData()
