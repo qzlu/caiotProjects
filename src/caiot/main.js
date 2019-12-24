@@ -13,7 +13,7 @@ Vue.prototype.$axios= axios
 import DeleteMessage from './zw-components/messageBox/index.js'
 Vue.prototype.$DeleteMessage = DeleteMessage
 import './static/css/common.css' /*引入公共样式*/
-import './static/css_font/iconfont.css' /*引入字体图标样式*/
+import '@/assets/css-font/iconfont.css' /*引入字体图标样式*/
 import './assets/css/reset-el-table.scss' //修改el-table样式
 import './assets/css/common.scss' 
 import htmlToPdf from './static/js/htmlToPdf.js' /*引入生成pdf文件*/
