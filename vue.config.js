@@ -25,7 +25,7 @@ let pagesObject = {
         filename:'project.html',
         title:'千仞项目'
     },
-/*     shuziYy:{
+    shuziYy:{
         entry:'src/shuziYy/main.js',
         template:'src/shuziYy/index.html',
         filename:'shuziYy.html',
@@ -36,7 +36,7 @@ let pagesObject = {
         template:'src/eYingji/index.html',
         filename:'eYingji.html',
         title:'数字应急'
-    }, */
+    },
 }
 module.exports = {
     pages:pagesObject,

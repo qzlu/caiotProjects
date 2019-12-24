@@ -32,10 +32,12 @@
                             </template>
                         </el-tree> -->
                         <el-tree
+                          :key="currentBlock.FGUID"
+                          ref="tree"
                           :props="props"
                           :load="loadNode"
                           lazy
-                          show-checkbox>
+                          >
                         </el-tree>
                     </el-scrollbar>
                 </div>
@@ -86,7 +88,7 @@ export default {
             blockList:[],
             currentBlock:{},
             props:{
-                label: 'name',
+                label: 'FAreaName',
                 children: 'zones',
                 isLeaf: 'leaf'
             }
@@ -104,23 +106,38 @@ export default {
         this.queryTORGGroupList()
     },
     methods:{
-        loadNode(node, resolve) {
-/*             console.log(node,resolve)
+        async loadNode(node, resolve) {
+            console.log(node,resolve)
             if (node.level === 0) {
-              return resolve([{ name: 'region' }]);
+              let result = await this.queryTORGLevelFArea()
+              console.log(result)
+              return resolve(result.FObject||[]);
             }
-            if (node.level > 1) return resolve([]);
-            setTimeout(() => {
-              const data = [{
-                name: 'leaf',
-                leaf: true
-              }, {
-                name: 'zone'
-              }];
-
-              resolve(data);
-            }, 500); */
-        }, 
+            if (node.level > 0) {
+                let {FAreaCode,LastFAreaLevel,FAreaLevel} = node.data
+                let result = await this.queryTORGLevelFArea(FAreaCode,LastFAreaLevel,FAreaLevel)
+                console.log(result)
+                let data = result.FObject || []
+                let treeData = data.map(item => {
+                    return {
+                        ...item,
+                        leaf:item.FAreaLevel == 5?true:false
+                    }
+                })
+                return resolve(treeData);
+            }
+        },
+        /**
+         * 409.查询级别行政架构
+         */
+        queryTORGLevelFArea(areaCode = -1,nextLevel = 0,currentLevel = 0){
+            return this.$post('QueryTORGLevelFArea',{
+                FAreaCode:areaCode,
+                LastFAreaLevel:nextLevel,
+                FAreaLevel:currentLevel,
+                FORGGroupGUID:this.currentBlock.FGUID||''
+            })
+        },
         /**
          * 查询左边树形数据(220.组织架构--查询树状组织)
          */
@@ -144,8 +161,6 @@ export default {
             this.$post('QueryTORGGroupList')
             .then((result) => {
                 this.blockList = result.FObject || []
-                this.currentBlock = this.blockList[0]||{}
-                this.queryData(this.currentBlock.FGUID)
                 this.loadMapData()
             }).catch((err) => {
                 
@@ -172,8 +187,7 @@ export default {
             });
         },
         selectBlock(block){
-            this.queryData(block.FGUID)
-            this.loadMapData() 
+            this.loadMapData()
         },
         /**
          * 229.行政架构等级--查询行政架构等级
@@ -270,7 +284,7 @@ export default {
                 }
             }
             .tree-content{
-                height: 600px;
+                height: 700px;
                 margin-top: 29px;
                 position: relative;
                 font-size: 18px;

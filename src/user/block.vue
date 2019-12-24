@@ -25,7 +25,7 @@
                         <div class="delete">
                             <i class="el-icon-delete" @click="fileList = [] "></i>
                         </div>
-                        <img v-for="item in fileList[0]" :key="item" :src="'http://47.107.224.8:8080/'+item" alt="">
+                        <img  :src="`http://172.172.172.37:8770/api/downloadFiles?fullFilename=${fileList[0]}&FTokenID=${token}`">
                     </div>
                     <el-upload
                       v-else
@@ -43,7 +43,7 @@
                         <div class="delete">
                             <i class="el-icon-delete" @click="fileList1 = [] "></i>
                         </div>
-                        <img v-for="item in fileList1[0]" :key="item" :src="'http://47.107.224.8:8080/'+item" alt="">
+                        <img :src="`http://172.172.172.37:8770/api/downloadFiles?fullFilename=${fileList1[0]}&FTokenID=${token}`" alt="">
                     </div>
                     <el-upload
                       v-else
@@ -187,10 +187,14 @@ export default {
          * 上传集团LOGO图片
          */
         handleSuccess1(res,file){
-            res.FObject&&this.fileList.push(res.FObject)
+            if(res){
+                this.fileList.push(res[file.name])
+            }
         },
         handleSuccess2(res,file){
-            res.FObject&&this.fileList1.push(res.FObject)
+            if(res){
+                this.fileList1.push(res[file.name])
+            }
         },
         /**
          * 新增或编辑

@@ -58,7 +58,7 @@
                             <div class="delete">
                                 <i class="el-icon-delete" @click="fileList = [] "></i>
                             </div>
-                            <img v-for="item in fileList[0]" :key="item" :src="'http://47.107.224.8:8080/'+item" :alt="item">
+                            <img  :src="`http://172.172.172.37:8770/api/downloadFiles?fullFilename=${fileList[0]}&FTokenID=${token}`" >
                         </div>
                         <el-upload
                           v-else
@@ -239,8 +239,9 @@ export default {
          * 上传项目宣传图片
          */
         handleSuccess1(res,file){
-            res&&this.fileList.push(res)
-            console.log(this.fileList)
+            if(res){
+                this.fileList.push(res[file.name])
+            }
         },
         /**
          * 点击新增
