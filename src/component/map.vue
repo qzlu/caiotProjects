@@ -36,7 +36,8 @@ export default {
             mapDataStack:[], //保存地图数据。用栈存储下钻数据
             userType:sessionStorage.getItem('FUserType'),
             activeArea:null,
-            checkedLevel:[]
+            checkedLevel:[],
+            checkedLevelList:[]
         }
     },
     props:{
@@ -71,7 +72,6 @@ export default {
                     province.forEach(item => {
                         myMap[item.id] = item.jsonName
                     })
-                    console.log('dh',myMap)
                     resolve()
                 }).catch((err) => {
                     reject(err)
@@ -89,7 +89,6 @@ export default {
                     this.provinceData = result.data
                     resolve()
                 }).catch((err) => {
-                    console.log(err)
                     reject(err)
                 });
             })
@@ -151,19 +150,8 @@ export default {
                             }else{
                                 checkedLevelObj[3].push(item)
                             }
-/*                             let province = provinceTree.find(obj => obj.id==item.FAreaCode)
-                            item.FAreaLevel = Number(item.FAreaLevel)
-                            item.ListData = province.children ? province.children.map(city => {
-                                return {
-                                    "FAreaName": city.name,
-                                    "FParentCode": item.FAreaCode,
-                                    "FAreaLevel": 3,
-                                    "FAreaCode": city.id,
-                                    "FParentName": item.FAreaName
-                                }
-                            }):null */
                         
-                    })
+                        })
                     })
 
                     /* this.showMapByArea(checkedLevel)  */
@@ -185,21 +173,16 @@ export default {
                         }
                         i++
                     }
-                    console.log('tree',checkedLevelList)
-                    if(this.checkedLevel.length < 2){
+                    this.checkedLevelList = checkedLevelList
+                    if(checkedLevelList[0]){
+                        this.handleAreaData(checkedLevelList[0])
+                        .then((mapData) => {
+                            this.showMapByArea(mapData)
+                        }).catch((err) => {
+                            console.log('err',err)
+                        });
+                    }else{
                         this.showMap([],this.projectList)
-                    }else if(this.checkedLevel.includes(1)){ //当有区域级别时
-                        let mapData =  this.handleAreaData(data)
-                        this.showMapByArea(mapData)
-                    }else if(this.checkedLevel.includes(2)){
-                        let mapData =  this.provinceData.features.map(item => {
-                            return {
-                                ...item,
-                                id:item.properties.id,
-                                name:item.properties.name
-                            }
-                        })
-                        this.showMapByArea(mapData)
                     }
                 })
             }).catch((err) => {
@@ -217,47 +200,90 @@ export default {
                     console.log('错误',err);
                 });
             }
-            return Promise.resolve({
-              "type": "FeatureCollection",
-              "features":mapArr
-            })
+            return Promise.resolve(mapArr)
 
         },
         /**
          * 处理分区数据
          */
-        handleAreaData(areaArr){
-            let mapArr = areaArr.map(item => {
+        async handleAreaData(areaArr){
+            let mapArr = []
+            for(let i =0;i<areaArr.length;i++) {
                 let arr = []
-                if(item.ListData.length){
+                let item = areaArr[i]
+                if(item.FAreaLevel==1&&item.ListData.length){ //一级是大区
                     item.ListData.forEach(async (json) => {
-                      if(json.FAreaLevel == 2){
-                            this.provinceData.features.forEach(obj => {
-                                if(obj.properties.id == json.FAreaCode){
-                                    if(obj.geometry.type === 'MultiPolygon'){ //如果是四维数组
-                                        arr.push(...obj.geometry.coordinates)
-                                    }else{                                  //三维数组
-                                        arr.push(obj.geometry.coordinates)
-                                    }
+                        this.provinceData.features.forEach(obj => {
+                            if(obj.properties.id == json.FAreaCode){
+                                if(obj.geometry.type === 'MultiPolygon'){ //如果是四维数组
+                                    arr.push(...obj.geometry.coordinates)
+                                }else{                                  //三维数组
+                                    arr.push(obj.geometry.coordinates)
                                 }
-                            })
-                      }
+                            }
+                        })
                     })
+                    mapArr.push({
+                        "type": "Feature",
+                        "properties": {
+                          "name": item.FAreaName,
+                          "childNum":arr.length
+                        },
+                        "geometry": {
+                          "type": "MultiPolygon",
+                          "coordinates":arr,
+                        },
+                        self:item
+                    })
+                }else if(item.FAreaLevel == 2){ //二级是省份或直辖市
+                    item.ProjectCount = this.projectList.filter(obj => obj.FAreaCode.slice(0,2) ==item.FAreaCode.slice(0,2)).length
+                    this.provinceData.features.forEach(obj => {
+                        if(obj.properties.id == item.FAreaCode){
+                            if(obj.geometry.type === 'MultiPolygon'){ //如果是四维数组
+                                arr.push(...obj.geometry.coordinates)
+                            }else{                                  //三维数组
+                                arr.push(obj.geometry.coordinates)
+                            }
+                        }
+                    })
+                    mapArr.push({
+                        "type": "Feature",
+                        "properties": {
+                          "name": item.FAreaName,
+                          "childNum":arr.length
+                        },
+                        "geometry": {
+                          "type": "MultiPolygon",
+                          "coordinates":arr,
+                        },
+                        self:item
+                    })
+                }else{ //三级城市
+                    await axios.get(url+`${myMap[item.FParentCode]}.json`)
+                    .then((result) => {
+                          let citys = result.data.features
+                          citys.forEach(city => {
+                              for(let j = i;j<areaArr.length;j++){
+                                  if(city.properties.adcode == areaArr[j].FAreaCode){
+                                    areaArr[j].ProjectCount = this.projectList.filter(obj => obj.FAreaCode ==areaArr[j].FAreaCode).length
+                                    mapArr.push(
+                                        {
+                                            ...city,
+                                            self:areaArr[j]
+                                        }
+                                    )
+                                    areaArr.splice(j,1)
+                                    j--
+                                  }
+                              }
+                          })
+                    }).catch((err) => {
+                        console.log('错误',err);
+                    });
+                    i--
                 }
-                return {
-                    "type": "Feature",
-                    "properties": {
-                      "name": item.FAreaName,
-                      "childNum":2 
-                    },
-                    "geometry": {
-                      "type": "MultiPolygon",
-                      "coordinates":arr,
-                    },
-                    self:item
-                }
-            })
-            return mapArr
+            }
+            return Promise.resolve(mapArr)
         },
         /**
          * 渲染地图
@@ -269,11 +295,6 @@ export default {
             "type": "FeatureCollection",
             "features":mapArr
           }
-/*           if(mapArr.indexOf(1) !== -1){
-               obj = require('@/mapJson/allArea.json')
-          }else if(mapArr.indexOf(2) !== -1){
-              obj = require('@/mapJson/allCity.json')
-          } */
           console.log(mapArr)
           this.activeArea = mapArr
           echarts.registerMap('china1',obj)
@@ -332,7 +353,7 @@ export default {
                         map: 'china1',
                         roam:true,
                         symbol: 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
-                        data:mapArr.map(item => {return {name:item.name,id:item.id}}),
+                        data:mapArr.map(item => {return {name:item.self&&item.self.FAreaName,id:item.self&&item.self.FGUID,value:item.self&&item.self.ProjectCount||0,self:item.self}}),
                         selectedMode:'single',
                         showLegendSymbol:false,
                         label: {
@@ -375,107 +396,40 @@ export default {
           }
             this.myChart.on('click',async (params) => {
                 console.log('选择区域',params)
-                      let FAreaCode
-/*                       if(params.data.self.cityData){
-                          let projects = this.projectList.filter(item => params.data.self.cityData.properties.adcode == item.FAreaCode)
-                          this.showMap([params.data.self.cityData],projects)
-                          FAreaCode = params.data.self.cityData.properties.adcode
-                      }else if(params.data.self){
-                          this.activeArea = params.data.self
-                          FAreaCode = params.data.self.FAreaCode
-                          let data = this.activeArea.ListData&&this.activeArea.ListData.length?this.activeArea.ListData:this.activeArea
-                          this.handleAreaData1(data)
-                          .then((mapArr1) => {
-                              this.showMapByArea(mapArr1)
-                          }).catch((err) => {
-                              console.log(err,'err');
-                          });
-                      }else{
-                          await axios.get(url+`${myMap[params.data.self.FAreaCode]}.json`)
-                          .then((result) => {
-                              let data = result.data
-                              this.showMap(data)
-                          }).catch((err) => {
-
-                          });
-                      }
-                      this.mapDataStack.push(mapArr)
-                      this.$emit('click-area',FAreaCode) */
-            });
-        },
-        async handleAreaData1(data){
-            let mapArr = []
-            if(Array.isArray(data)){
-                for(let i= 0;i<data.length;i++){
-                    let json = data[i]
-                    json.ProjectCount = this.projectList.filter(item => item.FAreaCode.slice(0,2) ==json.FAreaCode.slice(0,2)).length
-                    if(myMap[json.FAreaCode]){
-                        this.provinceData.features.forEach(obj => {
-                            if(obj.properties.id == json.FAreaCode){
-                                obj.self = json
-                                mapArr.push(obj)
-                            }
-                        })
-                    }else if(myMap[json.FParentCode]){
-                        await axios.get(url+`${myMap[json.FParentCode]}.json`)
-                        .then((result) => {
-                              let citys = result.data.features
-                              citys.forEach(city => {
-                                  for(let j=0;j<data.length;j++){
-                                      let item = data[j]
-                                      if(city.properties.adcode == item.FAreaCode){
-                                          let cityData = JSON.parse(JSON.stringify(city))
-                                          city.self = {
-                                            FAreaName:city.properties.name,
-                                            ProjectCount:this.projectList.filter(obj => obj.FAreaCode == city.properties.adcode).length,
-                                            FGUID:'00000',
-                                            FParentCode:json.FParentCode,
-                                            cityData,
-                                          }
-                                          mapArr.push(city)
-                                          data.splice(j,1)
-                                          j--
-                                      }
-                                  }
-                              })
+                let len = this.mapDataStack.length
+                let data = params.data.self
+                if(this.checkedLevel[len+1] == 2){
+                    this.handleAreaData(data.ListData)
+                    .then((mapData) => {
+                        console.log('省份',mapData)
+                        this.showMapByArea(mapData)
+                        this.mapDataStack.push(mapArr)
+                    }).catch((err) => {
+                    });
+                }else if(this.checkedLevel[len+1] == 3){
+                    let arr = this.checkedLevelList[len+1],
+                    listData = arr.filter(item => item.FParentCode == data.FAreaCode||item.GrandParentCode == data.FAreaCode)
+                    this.handleAreaData(listData)
+                    .then((mapData) => {
+                        console.log('城市',mapData)
+                        this.showMapByArea(mapData)
+                        this.mapDataStack.push(mapArr)
+                    }).catch((err) => {
+                        console.log(err)
+                    });
+                }else{
+                    if(data){
+                        this.handleAreaData([data])
+                        .then((mapData) => {
+                            this.showMap(mapData,this.projectList)
+                            this.mapDataStack.push(mapArr)
                         }).catch((err) => {
-                            console.log('错误',err);
+                            
                         });
-                        i--
                     }
+                    console.log('最后一级')
                 }
-            }else{
-                if(myMap[data.FAreaCode]){
-                    await axios.get(url+`${myMap[data.FAreaCode]}.json`)
-                    .then((result) => {
-                          mapArr.push(...result.data.features)
-                          mapArr.forEach(item => {
-                              let cityData = JSON.parse(JSON.stringify(item))
-                              item.self = {
-                                FAreaName:item.properties.name,
-                                ProjectCount:this.projectList.filter(obj => obj.FAreaCode == item.properties.adcode).length,
-                                FGUID:'00000',
-                                FParentCode:data.FAreaCode,
-                                cityData,
-                              }
-                          })
-                    }).catch((err) => {
-                        console.log(err);
-                    });
-                }else if(myMap[data.FParentCode]){
-                    await axios.get(url+`${myMap[data.FParentCode]}.json`)
-                    .then((result) => {
-                         result.data.features.forEach(item => {
-                            if(item.properties.adcode == data.FAreaCode){
-                                mapArr.push(item)
-                            }
-                         })
-                    }).catch((err) => {
-                        console.log(err);
-                    });
-                }
-            }
-            return Promise.resolve(mapArr)
+            });
         },
         back(){
             let mapData = this.mapDataStack.pop()
@@ -497,12 +451,7 @@ export default {
             }
             echarts.registerMap('china2',obj)
           }else{
-              let mapObj = {
-                  "1":require('@/mapJson/allArea.json'),
-                  "2":this.provinceData,
-                  "3":await this.getAllCityData()
-              }
-              let obj = mapObj[this.checkedLevel[0]||0]
+              let obj = this.provinceData
               echarts.registerMap('china2',obj)
           }
           if(!this.myChart){
