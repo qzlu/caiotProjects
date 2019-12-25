@@ -91,6 +91,7 @@
                     <el-table-column
                       prop="DataItemName"
                       align="left"
+                      width="800"
                       label="检查内容">
                     </el-table-column>
                     <el-table-column
@@ -442,6 +443,9 @@ $img-url:'../../static/image/';
             .el-table{
                 color: red;
                 th{
+                    text-align: left!important;
+                }
+                td{
                     text-align: left!important;
                 }
             }

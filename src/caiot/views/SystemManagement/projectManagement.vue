@@ -143,11 +143,13 @@ export default {
                 },
                 {
                     prop: 'BuildArea',
-                    label: '建筑面积（m²）'
+                    label: '建筑面积（m²）',
+                    width:150
                 },
                 {
                     prop: 'CityName',
                     label: '城市',
+                    width:100
                 },
                 {
                     prop: 'Address',

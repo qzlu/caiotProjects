@@ -54,6 +54,7 @@
                <el-table-column
                  v-for="item in tableLabel"
                  :key="item.prop"
+                 :width="item.width"
                  :prop="item.prop"
                  :label="item.label"
                  :sortable="item.sortble"
@@ -86,7 +87,8 @@ export default {
             tableLabel:[
                 {
                     prop: 'RowNum',
-                    label: '序号'
+                    label: '序号',
+                    width:80
                 },
                 {
                     prop:'ProjectName',

@@ -74,6 +74,7 @@
                  :key="item.prop"
                  :prop="item.prop"
                  :label="item.label"
+                 :width="item.width"
                  :sortable="item.sortble"
                  :formatter="item.formatter"
                  show-overflow-tooltip
@@ -104,7 +105,8 @@ export default {
             tableLabel:[
                 {
                     prop: 'RowNum',
-                    label: '序号'
+                    label: '序号',
+                    width:80
                 },
                 {
                     prop:'CountType',

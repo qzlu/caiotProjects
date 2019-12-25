@@ -249,6 +249,7 @@
                     </el-table-column>
                     <el-table-column
                       prop=""
+                      width="120"
                       label="保养等级">
                       <template slot-scope="scope">
                           <div>
@@ -316,6 +317,7 @@
                     </el-table-column>
                     <el-table-column
                       prop=""
+                      width="120"
                       label="保养等级">
                       <template slot-scope="scope">
                           <div>
@@ -329,6 +331,7 @@
                     </el-table-column>
                     <el-table-column
                       prop=""
+                      width="120"
                       label="操作">
                       <template slot-scope="scoped">
                           <div class="role-operation">
