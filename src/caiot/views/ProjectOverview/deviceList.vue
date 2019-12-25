@@ -33,7 +33,7 @@
                                     </el-col>
                                     <el-col :span="10">
                                         <ul>
-                                            <li v-for="(obj,j) in device.DataDetail.slice(3,6)" :key="j" style="text-align:right;padding-left:0;padding-right:10px">
+                                            <li v-for="(obj,j) in device.DataDetail.slice(3,6)" :key="j" style="text-align:right;padding-left:0;padding-right:4px">
                                                 <el-tooltip placement="top" effect="light">
                                                     <div slot="content">
                                                         <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
@@ -129,7 +129,7 @@ $url:'../../static/image';
 .device-container{
     width: 100%;
     height: 100%;
-    padding: 0 10px;
+    padding: 0 4px;
     box-sizing: border-box;
     border-radius:10px 6px 6px 10px;
     background: rgba($color: #052256, $alpha: 0.4);
@@ -195,7 +195,7 @@ $url:'../../static/image';
                             li{
                                 width: 100%;
                                 text-align: left;
-                                padding-left: 10px;
+                                padding-left: 4px;
                                 margin-top: 10px;
                                 box-sizing: border-box;
                                 p{

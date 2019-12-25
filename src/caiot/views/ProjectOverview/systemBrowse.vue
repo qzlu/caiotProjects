@@ -23,7 +23,7 @@
         </div>
         <div class="main">
             <div class="main-top">
-                <device-list  :data="systemDevice" :width="289" @change="getPrjSingleInfo()"></device-list>
+                <device-list  :data="systemDevice" :width="318" @change="getPrjSingleInfo()"></device-list>
             </div>
             <div class="main-footer">
                 <monitorData></monitorData>
@@ -149,7 +149,7 @@ $url:'../../static/image';
         color: #e0e213
     }
     .aside{
-        width: 336px;
+        width: 300px;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -257,7 +257,7 @@ $url:'../../static/image';
                         text-overflow: ellipsis;
                     }
                     span:first-of-type{
-                        width: 120px;
+                        width: 100px;
                         line-height: 30px;
                         font-size: 14px;
                         text-align: left;
@@ -267,7 +267,7 @@ $url:'../../static/image';
                         }
                     }
                     .value{
-                        width: 80px;
+                        width: 70px;
                         color: #02CD35;
                         font-size: 20px;
                         text-align: right;
@@ -280,7 +280,7 @@ $url:'../../static/image';
         }
     }
     .main{
-        width: 1194px;
+        width: 1280px;
         height: 100%;
         &-top{
             width: 100%;
@@ -291,6 +291,11 @@ $url:'../../static/image';
             margin-top: 13px;
             display: flex;
             justify-content: space-between;
+            .monitor-data{
+                &-item{
+                    width: 636px;
+                }
+            }
         }
     }
 }
