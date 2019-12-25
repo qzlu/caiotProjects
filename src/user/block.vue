@@ -57,7 +57,7 @@
                     </el-upload>                
                 </el-form-item>
                 <el-form-item  label="集团描述" prop="FDescription">
-                    <el-input class="block" v-model="addData.FDescription"></el-input>
+                    <el-input class="block" type="textarea" v-model="addData.FDescription"></el-input>
                 </el-form-item>
             </el-form>
         </Table>
@@ -203,7 +203,7 @@ export default {
             let myGeo = new BMap.Geocoder()
             let address = this.addData.FAddress
             this.addData.FGroupLogo = this.fileList[0]||''
-            this.addData.FPublicityPhoto = this.fileList1[1]||''
+            this.addData.FPublicityPhoto = this.fileList1[0]||''
             await new Promise((resolve) => {
                 myGeo.getPoint(address,point => {
                     try{
