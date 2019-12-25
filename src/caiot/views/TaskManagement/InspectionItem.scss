@@ -9,12 +9,21 @@ $img-url:'../../static/image/';
         &__header{
             text-align: left
         }
+        .submit{
+            margin: 20px 0;
+        }
     }
     .el-form{
         &-item{
             .el-form-item__label{
                 width: 94px;
                 color: #F1F1F2;
+            }
+            .block.el-input,.el-select.block{
+                width: 434px;
+                .el-input{
+                    width: 100%;
+                }
             }
             .el-input{
                 width: 165px;
@@ -57,7 +66,7 @@ $img-url:'../../static/image/';
                 }
             }
             .submit{
-                margin-top: 20px;
+                margin: 20px 0;
             }
         }
     }

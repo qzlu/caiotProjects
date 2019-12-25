@@ -25,17 +25,17 @@
                     <el-option v-for="city in cityList" :key="city.CityID" :label="city.CityName" :value="city.CityID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
-                    <el-input  v-model="addProject.Address"></el-input>
-                </el-form-item>
                 <el-form-item label="建筑类型" prop="BuildTypeID" filterable :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addProject.BuildTypeID" filterable  value-key="ParamID"  placeholder="请选择">
                     <el-option v-for="item in buildTypeList" :key="item.ParamID" :value="item.ParamID" :label="item.Value">
                     </el-option>
                   </el-select>
                 </el-form-item>
+                <el-form-item label="地址" prop="Address" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input class="block"  v-model="addProject.Address"></el-input>
+                </el-form-item>
                 <el-form-item label="所属系统" filterable prop="SystemType" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="systemType" filterable multiple collapse-tags value-key="ParamID"  placeholder="请选择">
+                  <el-select class="block" v-model="systemType" filterable multiple  value-key="ParamID"  placeholder="请选择">
                     <el-option v-for="system in systemList" :key="system.ParamID" :value="system.ParamID" :label="system.ParamValue">
                     </el-option>
                   </el-select>
@@ -50,7 +50,10 @@
                     >
                     </el-date-picker>
                 </el-form-item>
-                <el-form-item label="设备图片">
+                <el-form-item label="项目描述" prop="Detail">
+                    <el-input class="block" type="textarea "  v-model="addProject.Detail"></el-input>
+                </el-form-item>
+                <el-form-item label="项目宣传图">
                     <div class="image" v-if="addProject.FigureImg">
                         <img :src="`http://47.106.64.130:56090/${addProject.FigureImg}`" alt="">
                         <i class="el-icon-delete" @click="addProject.FigureImg = ''"></i>
@@ -65,9 +68,6 @@
                      >
                         <p><i class="el-icon-plus"></i><br><span>上传</span></p>
                     </el-upload>                
-                </el-form-item>
-                <el-form-item label="项目描述" prop="Detail">
-                    <el-input type="textarea"  v-model="addProject.Detail"></el-input>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -94,6 +94,7 @@
                  v-for="item in tableLabel"
                  :key="item.prop"
                  :prop="item.prop"
+                 :width="item.width"
                  :label="item.label"
                  :sortable="item.sortble"
                  :formatter="item.formatter"
@@ -125,7 +126,8 @@ export default {
             tableLabel:[
                 {
                     prop: 'RowNum',
-                    label: '序号'
+                    label: '序号',
+                    width:80
                 },
                 {
                     prop:'BlocName',

@@ -10,17 +10,17 @@
                     <el-input v-model="addInfo.ShortName">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="行业类型" prop="IndustryID" :rules="[{ required: true, message: '请选择'}]">
+<!--                 <el-form-item label="行业类型" prop="IndustryID" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.IndustryID"  value-key="" filterable  placeholder="请选择" >
                     <el-option v-for="list in industryList" :key="list.ParamID" :label="list.Value" :value="list.ParamID"></el-option>
                   </el-select>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="集团平台名称" prop="PlatformName">
                     <el-input v-model="addInfo.PlatformName"></el-input>
                 </el-form-item>
-                <el-form-item label="项目平台名称" prop="ProjectPlatFormName">
+<!--                 <el-form-item label="项目平台名称" prop="ProjectPlatFormName">
                     <el-input v-model="addInfo.ProjectPlatFormName"></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="集团LOGO">
                     <div class="thumb-img" v-if="fileList[0]">
                         <div class="delete">
@@ -223,7 +223,7 @@ export default {
                 this.addInfo[key] = row[key]
             })
             if(this.addInfo.AreaTypeID == 0) this.addInfo.AreaTypeID = null
-            this.fileList.push(row.BlocLogo)
+            row.BlocLogo&&this.fileList.push(row.BlocLogo)
             this.addInfo.FType = 1
         },
         /**
