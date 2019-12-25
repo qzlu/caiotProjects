@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <audio id="myAudio" autoplay="false">
+    <audio id="myAudio" muted>
         <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
     </audio>
     <div class="home_center">
