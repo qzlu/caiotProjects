@@ -51,51 +51,43 @@
           <div class="det_left">
             <ul>
               <li>
-                <div class="inner_bg_sh">
-                  <div class="a1">
-                    <div class="jg">
-                      <p class="t" :title="datalist02.DeviceName">
-                        {{datalist02.DeviceName}}
-                        <!--1#变压器-->
-                      </p>
-                    </div>
-                    <div v-for="(c,key) in datalist02.DataDetail" :class="setclass(c.SDataID)" :key="key">
-                      <p class="gre">
-                        <i
-                          v-for="(df,key) in c.SDataValue"
-                          :data="df.DStatus"
-                          :key="key"
-                          @click="clickDeviceItem(c)"
-                        >{{(datalist02.DeviceTypeID==1003&&c.SDataID==1) ? (df.DValue>0?'上行':(df.FValue == 0 ? '停止': '下行')) : df.DValue}}{{key!==c.SDataValue.length-1?'/':''}}</i>
-                      </p>
-                      <p class="grd">
-                        {{c.SDataTitle}} ({{c.SDataUnit}})
-                        <!--三相线电压(V)-->
-                      </p>
-                      <p class="line"></p>
-                    </div>
-                    <!--<p class="gre">456/526/455</p>
-                    <p class="grd">三相线电流(A)</p>-->
-                  </div>
-
-                  <div class="a2">
-                    <div>
-                      <p>
-                        <i
-                          class="icon iconfont"
-                          :class="[datalist02.WebIconName,`status-${datalist02.DeviceStatus}`]"
-                          style="font-size: 50px;"
-                        ></i>
-                      </p>
-                      <p class="tx">
-                        <i
-                          :class="[`status-${datalist02.DeviceStatus}`]"
-                        >{{datalist02.DeviceStatusTitle}}</i>
-                        <!--合闸-->
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  <h4 :title="datalist02.DeviceName"><!-- { name: 'detail_info_list',params:{ id:device.DeviceID,PossionID:device.DataDetail[0]?device.DataDetail[0].SDataID:0,getalldata:device}} -->
+                          {{datalist02.DeviceName}}
+                  </h4>
+                  <el-row v-if="datalist02.DataDetail">
+                      <el-col :span="11">
+                          <ul>
+                              <li v-for="(obj,j) in datalist02.DataDetail.slice(0,3)" :key="j">
+                                  <el-tooltip placement="top" effect="light">
+                                      <div slot="content">
+                                          <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
+                                      </div>
+                                      <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
+                                  </el-tooltip>
+                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
+                              </li>
+                          </ul>
+                      </el-col>
+                      <el-col :span="3">
+                          <div class="status" :class="'status-'+datalist02.DeviceStatus">
+                              <p><i :class="['icon','iconfont',datalist02.WebIconName]"></i></p>
+                              <p>{{datalist02.DeviceStatusTitle}}</p>
+                          </div>
+                      </el-col>
+                      <el-col :span="10">
+                          <ul>
+                              <li v-for="(obj,j) in datalist02.DataDetail.slice(3,6)" :key="j" style="text-align:right">
+                                  <el-tooltip placement="top" effect="light">
+                                      <div slot="content">
+                                          <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
+                                      </div>
+                                      <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
+                                  </el-tooltip>
+                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
+                              </li>
+                          </ul>
+                      </el-col>
+                  </el-row>
               </li>
             </ul>
           </div>
@@ -372,7 +364,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 h1,
 h2 {
   font-weight: normal;
@@ -514,10 +506,82 @@ a {
 .detail .pjngh {
   padding: 2px 16px 0 20px;
 }
-
-.det_left ul li {
-  padding: 15px 25px 5px 25px;
-  height: 194px;
+.det_left{
+  >ul{
+    >li{
+      padding: 15px 25px 5px 25px;
+      height: 194px;
+      h4{
+          width: 200px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 16px;
+          color: #525E7E;
+          text-align: left;
+          padding:0px 20px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+      .el-row{
+          height: 162px;
+          .el-col{
+              height: 100%;
+              font-size:16px;
+              position: relative;
+              ul{
+                  width: 100%;
+                  position: absolute;
+                  bottom: 20px;
+                  li{
+                      width: 100%;
+                      text-align: left;
+                      padding-left: 10px;
+                      margin-top: 10px;
+                      box-sizing: border-box;
+                      p{
+                          width: 100%;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                      }
+                  }
+              }
+              .status{
+                  padding-top: 10px;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center; 
+              }
+              .status.status-1{
+                  color: #1bd1a1
+              }
+              .status.status-2{
+                  color: #73777a
+              }
+              .status.status-3{
+                  color: #0091fe
+              }
+              .status.status-4{
+                  color: #fef500
+              }
+              .status.status-5{
+                  color: #9c1428
+              }
+              span.value{
+                  color: #03CD82
+              }
+              .value-title{
+                  font-size:12px;
+                  color: #737373
+              }
+          }
+          [class*="icon"]{
+              font-size: 50px;
+          }
+      }
+    }
+  }
 }
 .det_left ul li.err .inner_bg_sh {
   width: 100%;
