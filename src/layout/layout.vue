@@ -96,7 +96,6 @@ export default {
       lastAlarmTime:null, //记录最后报警时间
       timer:null,
       logoImg:localStorage.getItem('logo')?`http://47.106.64.130:56090/${localStorage.getItem('logo')}`:require("@/assets/image/layout/logo-caiot.png"),
-      formName:localStorage.getItem("formName")||"千仞智服设施管控云平台",
       BlocName:localStorage.getItem("BlocName")||"中物互联",
       leftMenuLasIndex:3,
       formList:[], //平台列表
@@ -155,7 +154,6 @@ export default {
     this.leftMenuLasIndex = Number(sessionStorage.getItem('leftMenuLasIndex'))||3
     this.queryTUserForm()
     this.queryTORGGroupProjectTree()
-    /* this.initSystem() */
   },
   mounted: function() {
      let route = this.$route
@@ -183,12 +181,6 @@ export default {
     this.timer = null
   },
   methods: {
-    initSystem(){
-      this.formList = JSON.parse(sessionStorage.getItem('formList'))
-      let formIndex = this.$route.params.id
-      this.currentForm = this.formList[formIndex - 1]
-      /* this.getMenus(this.currentForm.FGUID) */
-    },
     /**
      * 递归遍历使得一级菜单的路由为其子菜单第一个页面
      */
@@ -428,15 +420,17 @@ $img-url: "../assets/image/";
           }
       }
       >#tree-project{
-        right: 100px;
+        right: 10px;
         top: 80px;
         position: absolute;
         cursor: pointer;
+        color: #84C0FF;
         .tree-project{
             position: absolute;
             width: 164px;
             height: 320px;
             top: 20px;
+            right: 0;
             z-index: 100;
             background: #0D2F60;
             .filter-box{

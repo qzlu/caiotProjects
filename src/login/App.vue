@@ -59,6 +59,12 @@
 <script>
 import {Login,Post} from '@/request/api.js'
 import Md5 from "js-md5";
+const router = {
+  1:"/",
+  2:'/project.html',
+  3:'/shuziYy.html',
+  4:'/eYingji.html'
+}
 export default {
   name: 'App',
   data(){
@@ -103,23 +109,7 @@ export default {
      * 平台管理—查询用户平台信息
      */
     queryTUserForm(){
-      Post('QueryTUserForm')
-      .then((result) => {
-        console.log(result);
-      }).catch((err) => {
-        
-      });
-    },
-    /**
-     * 
-     */
-    getMenus(){
-      Post('QueryUsersMenuTree')
-      .then((result) => {
-        console.log(result);
-      }).catch((err) => {
-        
-      });
+      return Post('QueryTUserForm')
     },
     async login() {
         await new Promise(resolve => {
@@ -144,14 +134,20 @@ export default {
               JSON.stringify(userInfo.Project)
             );
             sessionStorage.setItem("logo",userInfo.FGroupLogo)
-            sessionStorage.setItem('formName',userInfo.PlatformName)
             if (this.isActive) {
               localStorage.setItem("userName", this.user.userName);
               localStorage.setItem("password", this.user.password);
             }
             this.queryTUserForm()
-            this.getMenus()
-            location.href = '/'
+            .then((result) => {
+              let formList = result.FObject || []
+              let form = formList[0]
+              if(form){
+                location.href =router[form.FIndex]
+              }
+            }).catch((err) => {
+              this.$message.error("无登陆权限!");
+            });
           })
           .catch(err => {
             console.log(err)
