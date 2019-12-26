@@ -10,7 +10,7 @@
                     <i class="iconfont icon-Rightparentheses"></i>
                 </div>
                 <div class="area-container">
-                    <ul class="area-list l" :style="{left:-(lastIndex-4)*310+'px'}">
+                    <ul class="area-list l" :style="{left:-(lastIndex-4)*320+'px'}">
                         <li :class="['item',{alarm:item.AlarmCount>0,active:item.AreaID == activeArea.AreaID}]" v-for="(item,i) in areaCount" :key="i" @click="selectArea(item)">
                             <p class="area-name">{{item.AreaName}}</p>
                             <div class="area-param">

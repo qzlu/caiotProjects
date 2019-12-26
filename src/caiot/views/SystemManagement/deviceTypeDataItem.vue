@@ -15,10 +15,10 @@
                 <el-form-item label="数据组名称" prop="DataGroupText">
                     <el-input  v-model="addInfo.DataGroupText"></el-input>
                 </el-form-item>
-                <el-form-item label="状态1" prop="ZeroShowText">
+                <el-form-item label="0值状态" prop="ZeroShowText">
                     <el-input v-model="addInfo.ZeroShowText"></el-input>
                 </el-form-item>
-                <el-form-item label="状态2" prop="OneShowText">
+                <el-form-item label="1值状态" prop="OneShowText">
                     <el-input  v-model="addInfo.OneShowText"></el-input>
                 </el-form-item>
                 <el-form-item label="展示位置" prop="ShowPosition">
@@ -104,11 +104,11 @@ export default {
                 },
                 {
                     prop: 'ZeroShowText',
-                    label: '状态1',
+                    label: '0值状态',
                 },
                 {
                     prop: 'OneShowText',
-                    label: '状态2',
+                    label: '1值状态',
                 },
                 {
                     prop: 'ShowPosition',

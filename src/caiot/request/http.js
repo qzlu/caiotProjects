@@ -72,7 +72,7 @@ export function post(url, params,showError = true) {
             if(err.message&&err.message.includes('timeout')){
                 /* messageErr(105,'连接超时，请勿频繁操作') */
             }else if(showError){
-                messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err)
+                /* messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err) */
             }
             reject(err.data?err.data.Message:err)
         })

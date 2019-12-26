@@ -11,17 +11,17 @@
                       <el-option v-for="item in systemList" :key="item.ParamID" :label="item.Value" :value="item.ParamID"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="能源类型" prop="EnergyTypeID" :rules="[{ required: true, message: '请输入'}]">
+                <el-form-item label="能源类型" prop="EnergyTypeID">
                   <el-select v-model="addInfo.EnergyTypeID" filterable  placeholder="请选择">
                     <el-option v-for="item in energyTypeList" :key="item.ID" :label="item.EnergyTypeName" :value="item.ID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="是否物联设备" prop="IsIOTDeviceType">
+<!--                 <el-form-item label="是否物联设备" prop="IsIOTDeviceType">
                     <el-select v-model="addInfo.IsIOTDeviceType">   
                         <el-option label="是" :value="1"></el-option>
                         <el-option label="否" :value="0"></el-option>
                     </el-select>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="图标" prop="IconName">
                   <el-select v-model="addInfo.IconName" filterable placeholder="请选择">
                     <el-option v-for="(item,i) in iconList"  :key="i" :value="`icon-${item.name}`">
@@ -89,7 +89,7 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {project,system,MeterReading} from '@/caiot/request/api.js';
-import iconJson from '../../static/css_font/iconfont.json'
+import iconJson from '@/assets/css-font/iconfont.json'
 export default {
     mixins:[table],
     data(){
@@ -116,11 +116,11 @@ export default {
                     prop: 'EnergyTypeName',
                     label: '所属能源类型',
                 },
-                {
+/*                 {
                     prop: 'IsIOTDeviceType',
                     label: '是否物联设备',
                     formatter:row => row.IsIOTDeviceType?'是':'否'
-                }
+                } */
             ],
             type:0,
             defaultAddInfo:{//新增项目参数默认数据

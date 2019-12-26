@@ -161,8 +161,8 @@ $url:'../../static/image';
         }
         ul.device-list{
             >li.alarm{
-                background: url(#{$url}/indexdetail/content_bg_2.png) 10px 0 no-repeat;
-                background-size: 100% 100%;
+                background: url(#{$url}/indexdetail/content_bg_2.png) 0px 0 no-repeat;
+                background-size: calc(100% + 10px) 100%;
             }
             >li{
                 width: 25%;
