@@ -19,7 +19,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdateUSupplies()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdateUSupplies">确定</button>
             </div>
         </el-dialog>
         <ul class="report-header clearfix">
@@ -167,14 +167,6 @@ export default {
          * 新增或修改耗材
          */
         async addOrUpdateUSupplies(){
-            console.log(this.addData);
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             Supplies({
                 FAction:this.type?'UpdateUSupplies':'AddUSupplies',
                 mUSupplies:this.addData

@@ -28,7 +28,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addUpdateUArea()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addUpdateUArea">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -236,13 +236,6 @@ export default {
          * 256.新增/修改区域
          */
         async addUpdateUArea(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.show = false
             if(this.areaInfo.AreaTypeID ==null){
                 this.areaInfo.AreaTypeID = 0

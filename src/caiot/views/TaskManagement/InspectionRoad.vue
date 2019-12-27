@@ -307,7 +307,7 @@
                 </div>
                 <div style="text-align:center;margin-top:20px;">
                     <button class="zw-btn" style="background:none" @click="preStep()">上一步</button>
-                    <button class="zw-btn zw-btn-primary" @click="setPoint()">确定</button>
+                    <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="setPoint()">确定</button>
                 </div>
             </el-dialog>
     </div>
@@ -417,7 +417,8 @@ export default {
             roadObj:null, //选中路线
             points:[], //选中路线对应的巡检点
             defaultChecked:[],
-            index:0
+            index:0,
+            isDisabled:false
         }
     },
     components:{
@@ -833,8 +834,12 @@ export default {
             }
             this.addRoadData.InspectionPointIDStr = arr.join(',')
             this.addRoadData.AreaIDStr = areaArr.join(',')
+            this.isDisabled = true
             await this.addOrUpdatedRoad(this.type)
             this.showPointTree = false
+            setTimeout(() => {
+                this.isDisabled = false
+            })
             if(this.type){
                 this.changeRoad(this.roadObj)
             }

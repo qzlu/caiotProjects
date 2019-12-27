@@ -37,7 +37,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdateUAlarmSet()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdateUAlarmSet">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -260,13 +260,6 @@ export default {
          * 249.新增或修改设备报警配置
          */
         async addOrUpdateUAlarmSet(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.show = false
             Alarm({
                 FAction:'AddOrUpdateUAlarmSet',

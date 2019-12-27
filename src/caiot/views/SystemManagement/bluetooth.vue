@@ -10,7 +10,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addUpdate()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addUpdate">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -175,13 +175,6 @@ export default {
          * 275.新增/修改蓝牙信息
          */
         async addUpdate(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.show = false
             system({
                 FAction:'AddOrUpdateUBluetoothConfig',

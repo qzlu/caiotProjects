@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div style="text-align:center;height:42px;margin-top:37px;">
-                <button class="zw-btn" @click="addPlan()">确定</button>
+                <button class="zw-btn" :disabled="isDisabled" @click="addPlan()">确定</button>
             </div>
         </el-dialog>
         <ul class="report-header plan-header clearfix"> 
@@ -626,7 +626,8 @@ export default {
                   message: '计划巡更时间应大于当前时间，请重新选择'
                 });
                 return
-            }                                                                         
+            }
+            this.isDisabled = true                                                                         
             Patrol({
                 FAction:this.type?'UpdateUPatrolPlanByID':'AddTempUPatrolPlan',
                 ID:this.type?this.addPlanData.ID:'',
@@ -642,6 +643,11 @@ export default {
             })
             .catch(error => {
 
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    this.isDisabled = false
+                }, 1000);
             })
         },
         /**

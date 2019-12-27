@@ -1,14 +1,14 @@
 <template>
     <div class="report inspection-item system-type">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="400px" class="zw-dialog">
-            <el-form  inline ref="form">
-                <el-form-item label="仪表类型">
-                    <el-input v-model="FName">
+            <el-form  inline ref="form" :model="addData">
+                <el-form-item label="仪表类型" prop="FName" :rules="[{ required: true, message: '请输入'}]">
+                    <el-input v-model="addData.FName" >
                     </el-input>
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdate()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdate">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -77,7 +77,9 @@ export default {
             ],
             type:0,
             ID:0,
-            FName:null,
+            addData:{
+                FName:''
+            },
             title:'新增',
             show:false,
     
@@ -148,12 +150,11 @@ export default {
          * 338.标准配置-新增/修改仪表类型
          */
         addOrUpdate(){
-            if(this.FName === ''|| this.FName ===null) return
             this.show = false
             system({
                 FAction:'AddOrUpdateSMeterType',
                 ID:this.ID,
-                FName:this.FName,
+                FName:this.addData.FName,
             })
             .then(data => {
                 this.$message({

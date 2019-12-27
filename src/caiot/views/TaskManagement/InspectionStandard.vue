@@ -77,7 +77,7 @@
                             <el-input v-model="inspectionItem"></el-input>
                         </div>
                     </div>
-                    <div style="text-align:center"><button class="zw-btn zw-btn-primary" @click="addItems">确定</button></div>
+                    <div style="text-align:center"><button class="zw-btn zw-btn-primary" :disabled="isDisabled"  @click="addItems">确定</button></div>
                 </div>
             </el-dialog>
             <div class="main-item standard">
@@ -133,7 +133,8 @@ export default {
             type:0, //0为新增 1编辑
             isIndeterminate:false,
             checkAll: false,
-            standardType:1 //1为任务管理下的巡检标准 ， 2//标准配置下的巡检标准
+            standardType:1, //1为任务管理下的巡检标准 ， 2//标准配置下的巡检标准
+            isDisabled:false
         }
     },
     components:{
@@ -285,6 +286,7 @@ export default {
          */
         addItems(){
             let action = this.standardType == 1?(this.type?'UpdateSInspectionDeviceTypeCheckItem':'AddSInspectionDeviceTypeCheckItem'):'AddOrUpdateUBasisInspectionDeviceTypeCheckItem'
+            this.isDisabled = true
             Inspection({
                 FAction:action,
                 ID:this.type?this.itemID:0,
@@ -297,6 +299,11 @@ export default {
             })
             .catch(error => {
 
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    this.isDisabled = false
+                },1000)
             })
         },
         /**

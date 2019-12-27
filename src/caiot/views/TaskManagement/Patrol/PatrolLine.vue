@@ -338,7 +338,7 @@
                 </div>
                 <div style="text-align:center;margin-top:20px;">
                     <button class="zw-btn" style="background:none" @click="preStep()">上一步</button>
-                    <button class="zw-btn zw-btn-primary" @click="setPoint()">确定</button>
+                    <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="setPoint()">确定</button>
                 </div>
             </el-dialog>
     </div>
@@ -444,7 +444,7 @@ export default {
             roadObj:null, //选中路线
             points:[], //选中路线对应的巡更点
             defaultChecked:[],
-            index:0
+            index:0,
         }
     },
     components:{
@@ -780,8 +780,12 @@ export default {
             if(this.type){
                 this.updateUPatrolLinePoin(this.roadObj.ID,arr.join(','))
             }else{
+                this.isDisabled = true
                 await this.addOrUpdatedRoad(this.type)
                 this.showPointTree = false
+                setTimeout(() => {
+                    this.isDisabled = false
+                },1000)
             }
         },
         /**

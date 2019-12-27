@@ -16,7 +16,7 @@
                     </el-form-item> -->
                 </el-form>
                 <div class="submit">
-                    <button class="zw-btn zw-btn-primary" @click="submit()">确定</button>
+                    <button class="zw-btn zw-btn-primary" v-submit="submit">确定</button>
                 </div>
             </el-dialog>
         </div>
@@ -288,13 +288,6 @@ export default {
             }
         },
         async submit(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.addRole()
         },
         /**

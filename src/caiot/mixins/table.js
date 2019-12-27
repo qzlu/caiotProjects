@@ -15,7 +15,8 @@ export default{
             order:'', //升序还是降序
             selectArr:[], //表格多选
             filterText:'',
-            FUserType:localStorage.getItem('FUserType')
+            FUserType:localStorage.getItem('FUserType'),
+            isDisabled:false
         }
     },
     components:{

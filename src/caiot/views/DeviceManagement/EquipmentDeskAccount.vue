@@ -138,7 +138,7 @@
                      </template>
                    </el-table-column>
                 </el-table>
-                <div style="text-align:center;margin-top:20px"><button class="zw-btn" @click="addOrUpdated()">确定</button></div>
+                <div style="text-align:center;margin-top:20px"><button class="zw-btn" v-submit="addOrUpdated">确定</button></div>
             </el-scrollbar>
         </el-dialog>
         <ul class="clearfix report-header">

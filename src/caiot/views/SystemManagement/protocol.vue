@@ -54,7 +54,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdate()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdate">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -330,13 +330,6 @@ export default {
          * 321.标准配置-新增/修改仪表协议明细
          */
         async addOrUpdate(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.show = false
             system({
                 FAction:'AddOrUpdateSProtocolDetail',

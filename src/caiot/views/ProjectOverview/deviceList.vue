@@ -33,7 +33,7 @@
                                     </el-col>
                                     <el-col :span="10">
                                         <ul>
-                                            <li v-for="(obj,j) in device.DataDetail.slice(3,6)" :key="j" style="text-align:right;padding-left:0;padding-right:4px">
+                                            <li v-for="(obj,j) in device.DataDetail.slice(3,6)" :key="j" style="text-align:right;padding-left:0;padding-right:8px">
                                                 <el-tooltip placement="top" effect="light">
                                                     <div slot="content">
                                                         <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>

@@ -76,7 +76,8 @@ $img-url:'../../static/image/';
 }
 .Ins_records .bg_are {
   height: 864px;
-  background: url(#{$img-url}task/bg_1.png);
+  background: url(#{$img-url}task/bg_1.png) no-repeat;
+  background-size: 100% 100%;
 }
 .Ins_records .bg_are .ich {
   height: 46px;

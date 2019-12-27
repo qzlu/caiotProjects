@@ -2,12 +2,12 @@
     <div class="report inspection-item system-type">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请输入'}]">
+                <el-form-item label="仪表型号" prop="MeterModelID" :rules="[{ required: true, message: '请选择'}]">
                     <el-select v-model="addInfo.MeterModelID">
                         <el-option v-for="(item,i) in systemModelList" :key="i" :label="item.MeterModelName" :value="item.MeterModelID"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="仪表协议名称" prop="MeterModelName">
+                <el-form-item label="仪表协议名称" prop="MeterModelName" :rules="[{ required: true, message: '请输入'}]"> 
                     <el-input v-model="addInfo.MeterModelName"></el-input>
                 </el-form-item>
                 <el-form-item label="指令功能码" prop="FunctionCode">
@@ -27,7 +27,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdate()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdate">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">

@@ -312,7 +312,7 @@
                 </div>
                 <div style="text-align:center;margin-top:20px;">
                     <button class="zw-btn" style="background:none" v-if="type === 0" @click="preStep()">上一步</button>
-                    <button class="zw-btn zw-btn-primary" @click="setPoint()">确定</button>
+                    <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="setPoint()">确定</button>
                 </div>
             </el-dialog>
     </div>
@@ -830,8 +830,12 @@ export default {
             }
             this.addRoadData.MeterReadingPointStr = arr.join(',')
             this.addRoadData.AreaIDStr = areaArr.join(',')
+            this.isDisabled = true
             await this.addOrUpdatedRoad(this.type)
             this.showPointTree = false
+            setTimeout(() => {
+                this.isDisabled = false
+            }, 1000);
             if(this.type){
                 this.changeRoad(this.roadObj)
             }

@@ -71,7 +71,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdateUProject()">确定</button>
+                <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="addOrUpdateUProject()">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -346,6 +346,7 @@ export default {
                   } 
                 });
             })
+            this.isDisabled = true
             this.show = false
             project({
                 FAction:'AddOrUpdateUProject',
@@ -356,6 +357,9 @@ export default {
             })
             .catch(err => {
                 console.log(err);
+            })
+            .finally(() => {
+                this.isDisabled = false
             })
         },
         /**

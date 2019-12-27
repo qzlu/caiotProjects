@@ -24,6 +24,31 @@ Vue.use(caito)
 /*引入videojs视频播放器*/
 import 'video.js/dist/video-js.css'
 Vue.config.productionTip = false
+//控制按钮重复点击
+Vue.directive("submit", {
+  bind: function(el, bind,vnode) {
+      let {context} = vnode 
+      el.addEventListener("click", async() => {
+        await new Promise(resolve => {
+          if(context,context.$refs.form){
+            context.$refs.form.validate((valid) => {
+              if (valid) {
+                  resolve()
+              } 
+            });
+          }else{
+            resolve()
+          }
+        })
+        el.disabled = true;
+        bind.value().finally(res => {
+          setTimeout(() => {
+            el.disabled = false;
+          }, 10000);
+        });
+      });
+  },
+});
 Vue.directive('loadmore', {  bind(el, binding) {  
   var p = 0;
   var t = 0;   

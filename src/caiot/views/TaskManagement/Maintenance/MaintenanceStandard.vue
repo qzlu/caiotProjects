@@ -229,7 +229,7 @@
                     </div>
                     <div style="text-align:center">
                         <button class="zw-btn zw-btn-primary" v-if="!type" @click="show2 = false ; show1 = true">上一步</button>
-                        <button class="zw-btn zw-btn-primary" @click="addOrUpdatedContent">确定</button>
+                        <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="addOrUpdatedContent">确定</button>
                     </div>
                 </div>
             </el-dialog>
@@ -735,7 +735,7 @@ export default {
                 })
             })
             Maintenance({
-                FAction:this.standardType == 1 ? 'DeleteUMaintenanceContentByID' : 'DeleteUBasisMaintenanceStandardsByID',
+                FAction:this.standardType == 1 ? 'DeleteUMaintenanceContentByID' : 'DeleteUBasisMaintenanceContentByID',
                 ID:row.ID
             })
             .then(data => {

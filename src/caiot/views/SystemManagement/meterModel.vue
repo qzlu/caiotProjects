@@ -2,12 +2,12 @@
     <div class="report inspection-item system-type">
         <el-dialog :title="type?'编辑':'新增'" :visible.sync="show" width="700px" class="zw-dialog">
             <el-form :model="addInfo" inline ref="form">
-                <el-form-item label="仪表类型" prop="MeterTypeID" :rules="[{ required: true, message: '请输入'}]">
+                <el-form-item label="仪表类型" prop="MeterTypeID" :rules="[{ required: true, message: '请选择'}]">
                     <el-select v-model="addInfo.MeterTypeID">
                         <el-option v-for="(item,i) in systemTypeList" :key="i" :label="item.MeterTypeName" :value="item.MeterTypeID"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="仪表型号名称" prop="MeterModelName">
+                <el-form-item label="仪表型号名称" prop="MeterModelName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.MeterModelName"></el-input>
                 </el-form-item>
                 <el-form-item label="供应商名称" prop="Provider">
@@ -21,7 +21,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdate()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdate">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">
@@ -212,13 +212,6 @@ export default {
          * 341.标准配置-新增/修改仪表型号
          */
         async addOrUpdate(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             this.show = false
             this.addInfo.WXNum = this.addInfo.ContactPhone
             system({

@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div style="text-align:center;height:42px;margin-top:37px;">
-                <button class="zw-btn" @click="addPlan()">确定</button>
+                <button class="zw-btn" :disabled="isDisabled"  @click="addPlan()">确定</button>
             </div>
         </el-dialog>
         <ul class="report-header plan-header clearfix"> 
@@ -337,6 +337,7 @@ export default {
                 }]
             },
             planType:1,
+            isDisabled:false
         }
     },
     components:{
@@ -639,14 +640,14 @@ export default {
                   message: '计划巡检时间应大于当前时间，请重新选择'
                 });
                 return
-            }                                                                         
+            }
+            this.isDisabled = true                                                                  
             Inspection({
                 FAction:this.type?'UpdateUInspectionPlanByID':'AddTempUInspectionPlan',
                 ID:this.type?this.addPlanData.ID:'',
                 mUInspectionPlan:this.type?{InspectionDatetime:this.addPlanData.InspectionDatetime,InspectionUserGUID:this.addPlanData.InspectionUserGUID}:this.addPlanData
             })
             .then(data => {
-                this.show = false
                 this.queryData()
                 this.$message({
                   type: 'success',
@@ -654,7 +655,12 @@ export default {
                 });
             })
             .catch(error => {
-
+            })
+            .finally(() => {
+                this.show = false
+                setTimeout(() => {
+                    this.isDisabled = false
+                },2000)
             })
         },
         /**

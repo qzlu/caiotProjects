@@ -28,7 +28,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addOrUpdateULdas()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addOrUpdateULdas">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">

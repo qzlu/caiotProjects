@@ -17,7 +17,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addUpdateUMeter()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addUpdateUMeter">确定</button>
             </div>
         </el-dialog>    
         <ul class="report-header clearfix">

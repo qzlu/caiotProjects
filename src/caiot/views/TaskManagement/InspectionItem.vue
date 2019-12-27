@@ -22,7 +22,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addUInspectionPoint()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit='addUInspectionPoint' >确定</button>
             </div>
         </el-dialog>
         <el-dialog title="导入巡检点" :visible.sync="showImportDialog" class="zw-dialog import-point">
@@ -283,13 +283,6 @@ export default {
          * 新增或编辑巡检点
          */
         async addUInspectionPoint(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             Inspection({
                 FAction:this.type?'UpdateUInspectionPoint':'AddUInspectionPoint',
                 mUInspectionPoint:this.addPoint

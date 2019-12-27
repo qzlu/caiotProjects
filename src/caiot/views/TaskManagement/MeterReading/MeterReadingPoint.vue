@@ -22,7 +22,7 @@
                 </el-form-item>
             </el-form>
             <div class="submit">
-                <button class="zw-btn zw-btn-primary" @click="addUInspectionPoint()">确定</button>
+                <button class="zw-btn zw-btn-primary" v-submit="addUInspectionPoint">确定</button>
             </div>
         </el-dialog>
         <el-dialog title="导入抄表点" :visible.sync="showImportDialog" class="zw-dialog import-point">
@@ -284,13 +284,6 @@ export default {
          * 新增或编辑抄表点
          */
         async addUInspectionPoint(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
             MeterReading({
                 FAction:this.type?'UpdateUMeterReadingPoint':'AddUMeterReadingPoint',
                 mUMeterReading:this.addPoint
