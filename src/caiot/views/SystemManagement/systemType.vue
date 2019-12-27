@@ -85,7 +85,7 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {project,system} from '@/caiot/request/api.js';
-import iconJson from '../../static/css_font/iconfont.json'
+import iconJson from '@/assets/css-font/iconfont.json'
 export default {
     mixins:[table],
     data(){

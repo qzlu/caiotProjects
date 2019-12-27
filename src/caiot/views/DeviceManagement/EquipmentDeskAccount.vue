@@ -4,7 +4,7 @@
             <el-scrollbar>
                 <h5><span class="icon-border"></span>设备铭牌</h5>
                 <el-form inline :model='deviceInfo' ref="form">
-                    <el-form-item label="设备名称" prop="DeviceLedgerName" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceLedgerName"></el-input></el-form-item>
+                    <el-form-item class="block" label="设备名称" prop="DeviceLedgerName" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceLedgerName"></el-input></el-form-item>
                     <el-form-item label="设备编码" prop="DeviceCode" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceCode"></el-input></el-form-item>
                     <el-form-item label="生产厂家" prop="Manufacturer"><el-input v-model="deviceInfo.Manufacturer"></el-input></el-form-item>
                     <el-form-item label="出厂型号" prop="SpecificationsCode"><el-input v-model="deviceInfo.SpecificationsCode"></el-input></el-form-item>
@@ -641,6 +641,11 @@ $img-url:'../../static/image/';
                         line-height: 26px;
                         display: inline-block;
                     }
+                }
+            }
+            &-item.block{
+                .el-form-item__content{
+                    width:440px;
                 }
             }
         }
