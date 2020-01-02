@@ -755,7 +755,7 @@ export default {
                     OrderType:this.selectType.value,
                     OrderState:state
                 }
-            })
+            },true)
             .then((data) => {
                 let key = 'tableData' + state
                 this[key] = data.FObject.Table1

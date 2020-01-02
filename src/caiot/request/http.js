@@ -1,5 +1,6 @@
 //配置axios
 import axios from 'axios';
+import { Loading } from 'element-ui';
 import {messageErr } from '../assets/js/pro_common';
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
@@ -10,7 +11,7 @@ else if (process.env.NODE_ENV == 'debug') {
     axios.defaults.baseURL = 'http://172.172.172.37:8080/Caiot/';
 } 
 else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://www.szqianren.com/Caiot/';
+    axios.defaults.baseURL = '/Caiot/';
 }
 
 //设置请求超时时间
@@ -57,8 +58,14 @@ export function get(url, params){
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
  */
-export function post(url, params,showError = true) {
+export function post(url, params,showError = true,load = false) {
     return new Promise((resolve, reject) => {
+        let loadingInstance
+        if(load){
+            loadingInstance = Loading.service({
+                background: 'rgba(0, 0, 0, 0.7)'
+            })
+        }
         let obj = {
             FTokenID:localStorage.getItem("Token"),
             FVersion:"1.0.0",
@@ -75,6 +82,13 @@ export function post(url, params,showError = true) {
                 /* messageErr(err.data?err.data.Result:100,err.data?err.data.Message:err) */
             }
             reject(err.data?err.data.Message:err)
+        })
+        .finally(() => {
+            if(load){
+                setTimeout(() => {
+                    loadingInstance.close()
+                },200)
+            }
         })
     });
 }

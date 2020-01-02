@@ -172,17 +172,12 @@ export default {
          * 查询巡检点
          */
         queryData(){
-            const loading = this.$loading({
-              customClass: 'hahahah',
-              background: 'rgba(0, 0, 0, 0.7)',
-              text:'正在加载......'
-            });
             Inspection({
                 FAction:'QueryPageUInspectionPointInfo',
                 FName:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then(data => {
                 this.total = data.FObject.Table[0].Count
                 this.tableData = data.FObject.Table1
@@ -196,11 +191,6 @@ export default {
             })
             .catch(error => {
                 console.log(error);
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    loading.close()
-                },200)
             })
         },
         /**

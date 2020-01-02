@@ -371,7 +371,7 @@
     },
     {
       "icon_id": "6229867",
-      "name": "Distribution box",
+      "name": "Distributionbox",
       "font_class": "Distributionbox",
       "unicode": "e68f",
       "unicode_decimal": 59023
@@ -1799,29 +1799,29 @@
     },
     {
       "icon_id": "9018499",
-      "name": "SZYJY-CO",
-      "font_class": "SZYJY-CO",
+      "name": "CO",
+      "font_class": "CO",
       "unicode": "e75b",
       "unicode_decimal": 59227
     },
     {
       "icon_id": "9018568",
-      "name": "SZYJY-CH4",
-      "font_class": "SZYJY-CH",
+      "name": "CH4",
+      "font_class": "CH1",
       "unicode": "e75c",
       "unicode_decimal": 59228
     },
     {
       "icon_id": "9018669",
-      "name": "SZYJY-H2S",
-      "font_class": "SZYJY-HS",
+      "name": "H2S",
+      "font_class": "H2S",
       "unicode": "e75d",
       "unicode_decimal": 59229
     },
     {
       "icon_id": "9018784",
-      "name": "SZYJY-O2",
-      "font_class": "SZYJY-O2",
+      "name": "O2",
+      "font_class": "O2",
       "unicode": "e75e",
       "unicode_decimal": 59230
     },
@@ -2601,6 +2601,97 @@
       "font_class": "Draughtfan",
       "unicode": "e7cd",
       "unicode_decimal": 59341
+    },
+    {
+      "icon_id": "12586119",
+      "name": "Machineroom",
+      "font_class": "Machineroom",
+      "unicode": "e7ce",
+      "unicode_decimal": 59342
+    },
+    {
+      "icon_id": "12586987",
+      "name": "Oil drain tank",
+      "font_class": "Oildraintank",
+      "unicode": "e7cf",
+      "unicode_decimal": 59343
+    },
+    {
+      "icon_id": "12588340",
+      "name": "Temperature controller",
+      "font_class": "Temperaturecontroller",
+      "unicode": "e7d0",
+      "unicode_decimal": 59344
+    },
+    {
+      "icon_id": "12588675",
+      "name": "Fire extinguishing device",
+      "font_class": "Fireextinguishingdevice",
+      "unicode": "e7d1",
+      "unicode_decimal": 59345
+    },
+    {
+      "icon_id": "12589712",
+      "name": "Cesspit",
+      "font_class": "Cesspit",
+      "unicode": "e7d2",
+      "unicode_decimal": 59346
+    },
+    {
+      "icon_id": "12590430",
+      "name": "Fire hydrant alarm",
+      "font_class": "Firehydrantalarm",
+      "unicode": "e7d3",
+      "unicode_decimal": 59347
+    },
+    {
+      "icon_id": "12593069",
+      "name": "Manual alarm",
+      "font_class": "Manualalarm",
+      "unicode": "e7d4",
+      "unicode_decimal": 59348
+    },
+    {
+      "icon_id": "12593993",
+      "name": "Frequency converter",
+      "font_class": "Frequencyconverter",
+      "unicode": "e7d5",
+      "unicode_decimal": 59349
+    },
+    {
+      "icon_id": "12596382",
+      "name": "Collecting well",
+      "font_class": "Collectingwell",
+      "unicode": "e7d6",
+      "unicode_decimal": 59350
+    },
+    {
+      "icon_id": "12630818",
+      "name": "Equipment ledger",
+      "font_class": "Equipmentledger",
+      "unicode": "e7d7",
+      "unicode_decimal": 59351
+    },
+    {
+      "icon_id": "12630833",
+      "name": "Other",
+      "font_class": "Other",
+      "unicode": "e7d8",
+      "unicode_decimal": 59352
+    },
+    {
+      "icon_id": "12633789",
+      "name": "Feedback",
+      "font_class": "Feedback",
+      "unicode": "e7d9",
+      "unicode_decimal": 59353
+    },
+    {
+      "icon_id": "12634272",
+      "name": "Weather information",
+      "font_class": "Weatherinformation",
+      "unicode": "e7da",
+      "unicode_decimal": 59354
     }
   ]
 }

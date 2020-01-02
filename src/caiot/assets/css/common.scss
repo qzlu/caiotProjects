@@ -139,6 +139,13 @@ $img-url:'../../static/image/';
 .zw-btn-delete:active,.zw-btn-delete:hover{
     background-image: url('#{$img-url}count/button_sel_delete.png')
 }
+.zw-btn.back{
+    height: 34px;
+    line-height: 34px;
+    background: rgba($color: #2a91fc, $alpha: 0.5);
+    color: white;
+    font-size: 20px;
+}
 .search-input{
     width: 174px;
     margin-right: 10px;
@@ -179,6 +186,7 @@ $img-url:'../../static/image/';
     .el-dialog{
         text-align: left;
         padding: 20px;
+        position: relative;
         &__title{
             color: #F1F1F2;
             font-size: 17px;
@@ -200,6 +208,7 @@ $img-url:'../../static/image/';
         }
         .submit{
             text-align: center;
+            margin: 20px 0;
         }
     }
 }

@@ -85,8 +85,12 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Alarm,Device,system} from '@/caiot/request/api.js';
+import {zwBorder} from '@/components/index.js'
 export default {
     mixins:[table],
+    components:{
+        zwBorder
+    },
     data(){
         return{
             tableLabel:[
@@ -179,7 +183,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []

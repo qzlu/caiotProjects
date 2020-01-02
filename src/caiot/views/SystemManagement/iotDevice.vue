@@ -150,7 +150,7 @@ export default {
                 AreaID:null,
                 SortID:null,
                 ExtendAddress:null,
-                OtherSourceID:null,
+                OtherSourceID:0,
                 DeviceCode:null,
                 IDStr:null,
                 IsControl:''
@@ -165,7 +165,7 @@ export default {
                 AreaID:null,
                 SortID:null,
                 ExtendAddress:null,
-                OtherSourceID:null,
+                OtherSourceID:0,
                 DeviceCode:null,
                 IDStr:null,
                 IsControl:''
@@ -201,7 +201,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
@@ -279,16 +279,20 @@ export default {
          */
         addOrUpdateUDevice(){
             this.show = false
-            Device({
-                FAction:'AddOrUpdateUDevice',
-                IDStr:this.addInfo.IDStr,
-                mUDevice:this.addInfo
-            })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {
-                console.log(err);
+            return new Promise((resolve,reject) => {
+                Device({
+                    FAction:'AddOrUpdateUDevice',
+                    IDStr:this.addInfo.IDStr,
+                    mUDevice:this.addInfo
+                })
+                .then(data => {
+                    this.queryData()
+                    resolve(data)
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                })
             })
         },
         /**

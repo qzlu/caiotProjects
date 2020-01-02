@@ -217,6 +217,10 @@ export default {
                     label: '路线名称'
                 },
                 {
+                    prop:'AreaCount',
+                    label:"抄表区域"
+                },
+                {
                     prop: 'PointCount',
                     label: '抄表点数',
                     sortble:'custom'
@@ -385,7 +389,7 @@ export default {
                 Field:this.orderProp,
                 FOrder:this.order,
                 mSearchMeterReadingPlan:this.queryType?this.filterObj:{}
-            })
+            },true)
             .then(data => {
                 this.total = data.FObject.Table?data.FObject.Table[0].FTotalCount:0
                 this.tableData = data.FObject.Table1?data.FObject.Table1:[]
@@ -436,7 +440,7 @@ export default {
             MeterReading({
                 FAction:'CreatePlanByYear',
                 FYear:year
-            })
+            },true)
             .then(data => {
                 this.$message({
                   type: 'success',

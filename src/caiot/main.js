@@ -26,7 +26,7 @@ import 'video.js/dist/video-js.css'
 Vue.config.productionTip = false
 //控制按钮重复点击
 Vue.directive("submit", {
-  bind: function(el, bind,vnode) {
+  bind:function(el, bind,vnode) {
       let {context} = vnode 
       el.addEventListener("click", async() => {
         await new Promise(resolve => {
@@ -41,11 +41,18 @@ Vue.directive("submit", {
           }
         })
         el.disabled = true;
-        bind.value().finally(res => {
+        try {
+          bind.value().finally(res => {
+            setTimeout(() => {
+              el.disabled = false;
+            }, 1000);
+          });
+        } catch (error) {
           setTimeout(() => {
             el.disabled = false;
-          }, 10000);
-        });
+          }, 1000);
+        }
+
       });
   },
 });

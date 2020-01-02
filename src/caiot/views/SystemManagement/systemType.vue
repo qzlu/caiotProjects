@@ -19,10 +19,10 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="图标" prop="IconName">
-                  <el-select v-model="addInfo.IconName" filterable placeholder="请选择">
-                    <el-option v-for="(item,i) in iconList"  :key="i" :value="`icon-${item.name}`">
-                        <i :class="['iconfont',`icon-${item.name}`]" style="font-size:24px;"></i>
-                        <span>{{`icon-${item.name}`}}</span>
+                  <el-select v-model="addInfo.IconName" filterable placeholder="请选择" clearable>
+                    <el-option v-for="(item,i) in iconList"  :key="i" :value="`icon-${item.font_class}`">
+                        <i :class="['iconfont',`icon-${item.font_class}`]" style="font-size:24px;"></i>
+                        <span>{{`icon-${item.font_class}`}}</span>
                     </el-option>
                   </el-select>
                 </el-form-item>
@@ -150,7 +150,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []
@@ -203,12 +203,16 @@ export default {
             .then(data => {
                 this.$message({
                   type: 'success',
-                  message: '配置成功！'
+                  message: '操作成功！'
                 });
                 this.queryData()
             })
             .catch(err => {
                 console.log(err);
+                this.$message({
+                    type:'error',
+                    message:'操作失败'
+                })
             })
         },
         /**

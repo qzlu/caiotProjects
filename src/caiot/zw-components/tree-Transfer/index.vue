@@ -6,7 +6,7 @@
       <div class="border border-right-bottom"></div>
       <div class="border border-left-bottom"></div>
       <p class="transfer-item-head">{{leftTitle}}</p>
-      <div style="height:250px">
+      <div class="transfer-item-content">
         <el-scrollbar>
           <el-tree
             :data="data"
@@ -31,7 +31,7 @@
       <div class="border border-right-bottom"></div>
       <div class="border border-left-bottom"></div>
       <p class="transfer-item-head">{{rightTitle}}</p>
-      <div style="height:250px">
+      <div class="transfer-item-content">
         <el-scrollbar>
           <el-tree
             :data="data1"
@@ -111,13 +111,14 @@ export default {
 <style lang="scss">
 $img-url: "../../static/image/";
 .transfer {
+  height: 100%;
   position: relative;
   &-item-head{
     text-align: center
   }
   &-item {
-    width: 173px;
-    height: 283px;
+    width: 250px;
+    height: 100%;
     background: #18406b;
     position: relative;
     .border {
@@ -148,6 +149,10 @@ $img-url: "../../static/image/";
       font-size: 14px;
       color: #6ea7e4;
       margin-top: 10px;
+    }
+    &-content{
+      width: 100%;
+      height: calc(100% - 25px);
     }
     .el-tree {
       /* height: 232px; */
@@ -193,10 +198,10 @@ $img-url: "../../static/image/";
   }
   @keyframes arrow {
     from {
-      left: 173px;
+      left: 260px;
     }
     to {
-      left: 300px;
+      left: 340px;
     }
   }
 }

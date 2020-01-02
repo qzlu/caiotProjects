@@ -1,6 +1,6 @@
 <template>
     <div>
-        <breaking-new :data='dataList' :props="{title:'EventsTypeName',time:'EventsTime'}"></breaking-new>
+        <breaking-new :data='dataList' :showTitle="false" :props="{title:'EventsTypeName',time:'EventsTime'}"></breaking-new>
     </div>
 </template>
 <script>

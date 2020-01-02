@@ -196,7 +196,7 @@ export default {
                 FType:this.FType,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 ? data.FObject.Table1 : []

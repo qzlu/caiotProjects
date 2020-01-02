@@ -1,6 +1,7 @@
 <template>
     <div class="card" :style="style">
         <h4 @click="handleClick()">
+            <i :class="['iconfont',icon]" style="font-size:20px;"></i> 
             {{title}} 
             <i class="iconfont icon-Up" v-if="showMoreIcon" ></i>
             <slot name="header"></slot>
@@ -22,6 +23,7 @@ export default {
         }
     },
     props:{
+        icon:String,
         title:String,
         height:Number,
         showMoreIcon:{
@@ -57,7 +59,7 @@ export default {
             font-size:18px;
             font-family:MicrosoftYaHeiUI;
             font-weight:400;
-            color:rgba(241,241,242,1);
+            color:#18a1ec;
             text-align: left;
             cursor: pointer;
             .iconfont.icon-Up{

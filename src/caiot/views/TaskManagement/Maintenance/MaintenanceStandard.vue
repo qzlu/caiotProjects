@@ -210,10 +210,10 @@
                     </div>
                 </div>
             </el-dialog>
-            <el-dialog title="设置保养内容"  class="zw-dialog" :visible.sync='show2'>
+            <el-dialog title="设置保养内容"  class="zw-dialog" width="630px" :visible.sync='show2'>
                 <div class="container">
                     <ul>
-                        <li><span class="label">保养等级</span>　　{{levelTextArr[addStandard.MaintenanceLevel]}}</li>
+                        <li><span class="label">保养等级</span>{{levelTextArr[addStandard.MaintenanceLevel]}}</li>
                     </ul>
                     <div class="content">
                         <p><span class="label">保养内容</span></p>
@@ -268,11 +268,13 @@
                     </el-table-column>
                     <el-table-column
                       prop="MaintenanceRate"
+                      width="80"
                       label="频次">
                     </el-table-column>
                     <el-table-column
                       prop="MaintenanceDateTime"
                       show-overflow-tooltip
+                      width="400"
                       label="保养时间">
                       <template slot-scope="scope">
                           <div class="maintenance-time" v-if="scope.row.MaintenanceDateTime">
@@ -283,12 +285,13 @@
                           </div>
                       </template>
                     </el-table-column>
-                <el-table-column prop="FNoticeTime" label="计划提醒时间" :formatter="(row)=>'提前'+(row.FNoticeTime||0)+'小时'" show-overflow-tooltip>
+                <el-table-column prop="FNoticeTime" width="130" label="计划提醒时间" :formatter="(row)=>'提前'+(row.FNoticeTime||0)+'小时'" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="FPlanUseTimes" label="计划工时" :formatter="(row)=> (row.FPlanUseTimes||0)+'小时'"  show-overflow-tooltip>
+                <el-table-column prop="FPlanUseTimes" width="100" label="计划工时" :formatter="(row)=> (row.FPlanUseTimes||0)+'小时'"  show-overflow-tooltip>
                 </el-table-column>
                     <el-table-column
                       prop=""
+                      width="124"
                       label="操作">
                       <template slot-scope="scoped">
                           <div class="role-operation">
@@ -331,7 +334,7 @@
                     </el-table-column>
                     <el-table-column
                       prop=""
-                      width="120"
+                      width="100"
                       label="操作">
                       <template slot-scope="scoped">
                           <div class="role-operation">
@@ -935,14 +938,23 @@ $img-url:'../../../static/image/';
                 >ul{
                     margin-top: 20px;
                     margin-left: 28px;
+                   /*  display: flex; */
+                   /*  flex-wrap: wrap;
+                    justify-content: space-between; */
                     li+li{
                         margin-top: 10px;
                     }
                     .el-input{
-                       width: 220px;
+                       width: 500px;
+                    }
+                    .el-input--suffix{
+                        .el-input__inner{
+                            padding-right: 50px;
+                        }
                     }
                     [class*="el-icon"]{
                         cursor: pointer;
+                        font-size: 20px;
                     }
                     .el-icon-remove-outline{
                         margin-left: 10px

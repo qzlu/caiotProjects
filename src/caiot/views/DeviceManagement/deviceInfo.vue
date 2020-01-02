@@ -62,12 +62,12 @@
         <ul class="tab-header clearfix">
           <li :class="{active:activeTab == i}" v-for="(item,i) in tabList" :key="i" @click="activeTab = i">{{item}}</li>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content" style="padding:0 34px;">
             <div v-show="activeTab == 0">
-                <div class="header">
+              <!--   <div class="header">
                   <img src="../../static/image/count/icon_2.png" alt />
                   <span>使用登记</span>
-                </div>
+                </div> -->
                 <div class="use-time">
                   <ul class="l">
                     <li class="l">
@@ -108,14 +108,12 @@
                     </li>
                   </ul>
                 </div>
-                <div class="header clearfix">
+                <div class="device-param-title clearfix">
                   <div class="l">
-                    <img src="../../static/image/count/icon_3.png" alt />
-                    <span>设备参数</span>
+                    <span>设备参数:</span>
                   </div>
-                  <div class="l" style="margin-left:30%">
-                    <img src="../../static/image/count/icon_3.png" alt />
-                    <span>配套设备参数</span>
+                  <div class="l" style="margin-left:650px">
+                    <span>配套设备参数:</span>
                   </div>
                 </div>
                 <div class="device-param clearfix">
@@ -191,14 +189,11 @@ export default {
 $img-url: "../../static/image/";
 .device-info {
   position: relative;
-  padding-top: 55px;
+  /* padding-top: 55px; */
   .back {
     position: absolute;
-    top: 0px;
+    top: -20px;
     left: 0;
-    background: #2a91fc;
-    color: white;
-    font-size: 20px;
   }
   .tab-header {
     padding-left: 40px;
@@ -217,8 +212,10 @@ $img-url: "../../static/image/";
     }
   }
   &-content {
-    height: 884px;
+    height: 918px;
     background: url(#{$img-url}task/bg_1.png) no-repeat;
+    box-sizing: border-box;
+    background-size: 100% 100%;
     box-sizing: border-box;
     padding: 26px 26px;
     &-item {
@@ -312,6 +309,11 @@ $img-url: "../../static/image/";
             width: 25%;
           }
         }
+      }
+      .device-param-title{
+        padding-left: 54px;
+        color: #737373;
+        font-size: 17px;
       }
       .device-param {
         width: 100%;

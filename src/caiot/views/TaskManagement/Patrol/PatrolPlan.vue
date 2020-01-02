@@ -386,7 +386,7 @@ export default {
                 Field:this.orderProp,
                 FOrder:this.order,
                 mSearchPatrolPlan:this.queryType?this.filterObj:{}
-            })
+            },true)
             .then(data => {
                 this.total = data.FObject.Table?data.FObject.Table[0].FTotalCount:0
                 this.tableData = data.FObject.Table1?data.FObject.Table1:[]

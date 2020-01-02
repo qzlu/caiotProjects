@@ -4,18 +4,27 @@
             <el-scrollbar>
                 <h5><span class="icon-border"></span>设备铭牌</h5>
                 <el-form inline :model='deviceInfo' ref="form">
-                    <el-form-item class="block" label="设备名称" prop="DeviceLedgerName" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceLedgerName"></el-input></el-form-item>
+                    <el-form-item label="项目名称">
+                        <el-input readonly v-model="projectName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="设备名称" prop="DeviceLedgerName" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceLedgerName"></el-input></el-form-item>
                     <el-form-item label="设备编码" prop="DeviceCode" :rules="[{ required: true, message: '请输入'}]"><el-input v-model="deviceInfo.DeviceCode"></el-input></el-form-item>
-                    <el-form-item label="生产厂家" prop="Manufacturer"><el-input v-model="deviceInfo.Manufacturer"></el-input></el-form-item>
-                    <el-form-item label="出厂型号" prop="SpecificationsCode"><el-input v-model="deviceInfo.SpecificationsCode"></el-input></el-form-item>
-                    <el-form-item label="出厂编号" prop="ManufacturingNumber"><el-input v-model="deviceInfo.ManufacturingNumber"></el-input></el-form-item>
-                    <el-form-item label="使用年限" prop="ServiceLife"><el-input v-model="deviceInfo.ServiceLife" type="number"></el-input></el-form-item>
-                    <el-form-item label="出厂日期" prop="ManufacturingTime">
-                        <el-date-picker
-                            type="date"
-                            v-model="deviceInfo.ManufacturingTime"
-                        >
-                        </el-date-picker>
+                    <el-form-item label="设备类型" prop="DeviceTypeName" :rules="[{ required: true, message: '请选择'}]">
+                      <el-select v-model="deviceInfo.DeviceTypeName"   placeholder="请选择">
+                        <el-option v-for="device in allDevice" :key="device.DeviceTypeID" :label="device.DeviceTypeName" :value="device.DeviceTypeName"></el-option>
+                      </el-select>
+                    </el-form-item>
+                    <el-form-item label="区域名称" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="deviceInfo.AreaName">
+                            <el-option v-for="area in areaList" :key="area.AreaID" :value="area.AreaName" :label="area.AreaName">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="系统类别" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="deviceInfo.SystemParamName">
+                            <el-option v-for="system in systemList" :key="system.ParamValue" :value="system.ParamValue" :label="system.ParamValue">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
                     <br>
                     <el-form-item label="设备图片">
@@ -35,6 +44,17 @@
                 </el-form>
                 <h5><span class="icon-border"></span>使用登记</h5>
                 <el-form inline :model="deviceInfo">
+                    <el-form-item label="生产厂家" prop="Manufacturer"><el-input v-model="deviceInfo.Manufacturer"></el-input></el-form-item>
+                    <el-form-item label="出厂型号" prop="SpecificationsCode"><el-input v-model="deviceInfo.SpecificationsCode"></el-input></el-form-item>
+                    <el-form-item label="出厂编号" prop="ManufacturingNumber"><el-input v-model="deviceInfo.ManufacturingNumber"></el-input></el-form-item>
+                    <el-form-item label="使用年限" prop="ServiceLife"><el-input v-model="deviceInfo.ServiceLife" type="number"></el-input></el-form-item>
+                    <el-form-item label="出厂日期" prop="ManufacturingTime">
+                        <el-date-picker
+                            type="date"
+                            v-model="deviceInfo.ManufacturingTime"
+                        >
+                        </el-date-picker>
+                    </el-form-item>
                     <el-form-item label="购买日期" prop="PurchaseDateTime">
                         <el-date-picker
                             type="date"
@@ -63,26 +83,7 @@
                         >
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="项目名称">
-                        <el-input readonly v-model="projectName"></el-input>
-                    </el-form-item>
-                    <el-form-item label="设备类型" prop="DeviceTypeName" :rules="[{ required: true, message: '请选择'}]">
-                      <el-select v-model="deviceInfo.DeviceTypeName"   placeholder="请选择">
-                        <el-option v-for="device in allDevice" :key="device.DeviceTypeID" :label="device.DeviceTypeName" :value="device.DeviceTypeName"></el-option>
-                      </el-select>
-                    </el-form-item>
-                    <el-form-item label="区域名称" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select v-model="deviceInfo.AreaName">
-                            <el-option v-for="area in areaList" :key="area.AreaID" :value="area.AreaName" :label="area.AreaName">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="系统类别" :rules="[{ required: true, message: '请选择'}]">
-                        <el-select v-model="deviceInfo.SystemParamName">
-                            <el-option v-for="system in systemList" :key="system.ParamValue" :value="system.ParamValue" :label="system.ParamValue">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
+
                     <el-form-item label="设备参数" class="param">
                         <el-input type="textarea" v-model="deviceInfo.DeviceLedgerParam"></el-input>
                     </el-form-item>
@@ -219,10 +220,9 @@ export default {
                     width:80
                 },
                 {
-                    prop: 'DeviceLedgerName',
-                    label: '设备名称',
+                    prop:'ProjectName',
+                    label:"项目名称",
                     width:120
-
                 },
                 {
                     prop: 'DeviceCode',
@@ -230,36 +230,25 @@ export default {
                     width:160
                 },
                 {
-                    prop: 'Manufacturer',
-                    label: '生产厂家',
+                    prop: 'DeviceLedgerName',
+                    label: '设备名称',
+                    width:240
+
+                },
+                {
+                    prop:'DeviceTypeName',
+                    label:"设备类型",
                     width:120
                 },
                 {
-                    prop: 'SpecificationsCode',
-                    label: '出厂型号',
-                    width:90
+                    prop:'SystemParamName',
+                    label:"系统类型",
+                    width:120
                 },
                 {
-                    prop: 'ManufacturingNumber',
-                    label: '出厂编号',
-                    width:100
-                },
-                {
-                    prop: 'ManufacturingTime',
-                    label: '出厂日期',
-                    width:'100',
-                    formatter:(row, column, cellValue, index) => row.EditorDateTime?row.ManufacturingTime.split(' ')[0]:'',
-                },
-                {
-                    prop: 'ServiceLife',
-                    label: '使用年限',
-                    width:90
-                },
-                {
-                    prop: 'EditorDateTime',
-                    label: '质保截止',
-                    width:'100',
-                    formatter:(row, column, cellValue, index) => row.EditorDateTime?row.EditorDateTime.split(' ')[0]:''
+                    prop:'AreaName',
+                    label:"区域名称",
+                    width:120
                 },
                 {
                     prop: 'EnergyTypeName',
@@ -368,7 +357,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then(data => {
                 console.log(data);
                 this.total = data.FObject.Table[0].FTotalCount

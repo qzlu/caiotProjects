@@ -73,6 +73,7 @@
                </el-table-column>
                <el-table-column
                  prop=""
+                 width="120"
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
@@ -102,20 +103,22 @@ export default {
                 },
                 {
                     prop: 'ProjectName',
-                    label:'项目名称'
+                    label:'项目名称',
+                    width:120
                 },
                 {
                     prop:'Detail',
-                    label:'条件名称'
+                    label:'条件名称',
+                    width:120
                 },
                 {
                     prop: 'LDasName',
                     label: '网关名称',
+                    width:120
                 },
                 {
                     prop: 'ExpressName',
                     label: '条件表达式',
-                    width:'400'
                 }
             ],
             type:0,
@@ -168,7 +171,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData = data.FObject.Table1 || []

@@ -157,7 +157,7 @@ export default {
                 PageSize:10,
                 FType:'2',
                 SearchKey:this.filterText
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table?data.FObject.Table[0].FTotalCount:0
                 this.tableData = data.FObject.Table1?data.FObject.Table1:[]  

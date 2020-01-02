@@ -260,7 +260,7 @@ export default {
                 FUserGuid:this.user,
                 FPatrolLineID:this.road,
                 FPatrolState:this.status
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0
                 this.tableData =  data.FObject.Table1 || []

@@ -144,8 +144,8 @@ export default {
 <style lang="scss">
     .log{
         .report-header{
-            height: 100px;
-            line-height: 100px;
+            height: 60px;
+            line-height: 60px;
             padding-left: 40px;
         }
         .header{

@@ -17,9 +17,7 @@
                 ></el-date-picker>
             </li>
             <li class="l" @change="queryData()"><button class="zw-btn"><i class="el-icon-search"></i>查询</button></li>
-<!--             <li class="l">
-                <button class="zw-btn zw-btn-export">导出</button>
-            </li> -->
+
             <li class="l">
                <!--  <button class="zw-btn zw-btn-report">报事月报</button> -->
             </li>

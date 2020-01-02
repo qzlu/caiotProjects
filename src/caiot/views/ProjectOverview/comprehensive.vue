@@ -1,7 +1,7 @@
 <template>
     <div class="compre-hensive">
         <div class="aside">
-            <card title="设备态势">
+            <card title="设备态势" icon="icon-Equipment">
                 <div class="pie-chart">
                     <pie-chart :data='deviceCount' :color='["#03cd82","#b2b2b2","#Fe0000","#fe9a00", "#0eaff8"]' :setting="{center:['98','50%']}"></pie-chart>
                     <div class="border-dashed">
@@ -32,7 +32,7 @@
                     </ul>
                 </div>
             </card>
-            <card title="能耗态势">
+            <card title="能耗态势" icon="icon-JTJC-Totalenergyconsumption">
                 <ul class="item-list">
                     <li>
                         <p class="label">计划电耗</p>
@@ -83,7 +83,7 @@
                    <!--  绘制八大系统图标 -->
                     <ul class="shape shape-system">
                         <li :class="['shape-border',{'un-use':item.FState==2,'unnormal':item.FState==1}]" v-for="(item,i) in systemList" :key="i" :style="{transform:`translateX(-50%) rotate(${i*45}deg)`}">
-                            <div class="system-container" :style="{transform:`rotate(${-i*45-25}deg)`}">
+                            <div class="system-container" :style="{transform:`rotate(${-i*45-25}deg)`}" @click="changeRouter(item)">
                                 <p :class="{'system-right':i>0&&i<4,'system-left':i>4,'system-bottom':i===4}">{{item.SystemParamName}}</p>
                                 <div class="system-type">
                                     <i :class="['iconfont',item.IconName]"></i>
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="aside">
-            <card title="告警态势">
+            <card title="告警态势" icon="icon-SZXFY-Earlywarning">
                 <div class="pie-chart">
                     <pie-chart :series='alarmCount' :color='["#03cd82","#b2b2b2","#fe0000","#fde801"]' :setting="{center:['98','50%']}"></pie-chart>
                     <div class="border-dashed">
@@ -165,7 +165,7 @@
                     </ul>
                 </div>
             </card>
-            <card title="任务态势">
+            <card title="任务态势" icon="icon-Workingodd">
                 <ul class="item-list">
                     <li>
                         <p class="label">今日任务</p>
@@ -299,6 +299,14 @@ export default {
             this.queryEnergyByMonth()
             this.queryCompleteOrder()
             this.timer = setTimeout(this.queryData,10000)
+        },
+        /**
+         * 跳转到系统监测
+         */
+        changeRouter(item){
+            if(item.FState==2) return
+            sessionStorage.setItem('activeSystem',JSON.stringify(item))
+            this.$router.push('/monitoring/systemBrowse')
         },
         /**
          * 获取随机数
@@ -441,7 +449,6 @@ export default {
                 FAction: 'QueryEnergyByMonth'
             })
             .then((data) => {
-                console.log(data);
                 this.energyCount = data.FObject.Table[0]||{}
                 let columns = data.FObject.Table1.map(item => item.DeviceItemName)
                 let rows = [
@@ -721,6 +728,7 @@ export default {
                             z-index: 9;
                             width:68px;
                             height:68px;
+                            cursor: pointer;
                             p{
                                 font-size:20px;
                                 position: absolute;
@@ -762,6 +770,9 @@ export default {
                     }
                     li.un-use{
                         color: #747474;
+                        .system-container{
+                            cursor: not-allowed
+                        }
                         .system-type{
                             border:3px solid #747474;
                             .iconfont{
@@ -805,7 +816,8 @@ export default {
                     position: relative;
                     .shape-border{
                         border-top: 14px solid #015B7C;
-                        background: #09345F
+                        background: #09345F;
+                        cursor: pointer;
                     }
                 }
                 .shape.shape-system::after{
@@ -847,6 +859,7 @@ export default {
                     width:366px;
                     height: 366px;
                     position: absolute;
+                    border-radius: 50%;
                     top: 120px;
                     background: url(../../static/image/index/octagon-bg.png) center;
                     animation: test 5s linear infinite;

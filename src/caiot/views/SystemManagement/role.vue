@@ -244,7 +244,7 @@ export default {
                 FName:"",
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then(data => {
                 this.total = data.FObject.Table[0].count
                 this.tableData = data.FObject.Table1
@@ -607,7 +607,7 @@ export default {
     }
     .role-config{
         .el-dialog{
-            width:560px;
+            width:680px;
             height: 480px;
             box-sizing: border-box;
             background: url('#{$img-url}admin/btn3.png') center no-repeat;
@@ -652,6 +652,7 @@ export default {
                 }
             }
             .tab-content{
+                height: 290px;
                 padding: 20px 30px;
                 .zw-btn{
                     margin-top: 26px;

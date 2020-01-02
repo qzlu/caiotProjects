@@ -160,7 +160,7 @@
                         </li>
                     </ul>
                 </div>
-                <div style="text-align:center;height:42px;margin-top:37px;">
+                <div class="submit">
                     <button class="zw-btn" @click="addRoad()">{{type?'确定':'下一步'}}</button>
                 </div>
             </el-dialog>
@@ -292,8 +292,8 @@
 
             </div>
         </div>
-            <el-dialog title="设置抄表点" :visible.sync="showPointTree" class="zw-dialog showPointTree">
-                <div style="padding-right: 16px;">
+            <el-dialog title="设置抄表点" :visible.sync="showPointTree" width="680px" class="zw-dialog showPointTree">
+                <div style="height:600px;padding-right: 16px;">
                     <tree-transfer
                      ref="transfer"
                      :data='pointData' 
@@ -310,7 +310,7 @@
                      :defaultProps1='defaultProps'>
                     </tree-transfer>    
                 </div>
-                <div style="text-align:center;margin-top:20px;">
+                <div class="submit">
                     <button class="zw-btn" style="background:none" v-if="type === 0" @click="preStep()">上一步</button>
                     <button class="zw-btn zw-btn-primary" :disabled="isDisabled" @click="setPoint()">确定</button>
                 </div>

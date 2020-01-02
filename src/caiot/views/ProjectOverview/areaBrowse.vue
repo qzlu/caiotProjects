@@ -91,7 +91,7 @@ export default {
         leftSide
     },
     created(){
-        this.queryData()
+        this.queryUAreaDeviceByCount()
     },
     beforeDestroy(){
         clearTimeout(this.timer)
@@ -110,21 +110,18 @@ export default {
         next(){
             this.lastIndex < this.areaCount.length-1 && this.lastIndex ++
         },
-        queryData(){
-            this.queryUAreaDeviceByCount()
-            this.timer = setTimeout(this.queryData,10000)
-        },
         /**
          * 390.区域态势（区域设备统计）
          */
-        queryUAreaDeviceByCount(){
+        queryUAreaDeviceByCount(load){
             ProjectTrend({
                 FAction: 'QueryUAreaDeviceByCount'
             })
             .then((result) => {
                 this.areaCount = result.FObject
                 !this.activeArea && (this.activeArea = this.areaCount[0])
-                this.getPrjSingleInfo()
+                this.getPrjSingleInfo(load)
+                this.timer = setTimeout(this.queryUAreaDeviceByCount,10000)
             }).catch((err) => {
                 
             });
@@ -132,13 +129,13 @@ export default {
         /**
          * 6.根据类别获取项目单个信息详情
          */
-        getPrjSingleInfo(){
+        getPrjSingleInfo(load = false){
             if(!this.activeArea.AreaID) return
             project({
                 FAction: 'GetPrjSingleInfo',
                 SingleType:2,
                 SingleID:this.activeArea.AreaID
-            })
+            },undefined,load)
             .then((result) => {
                 let data = result.FObject
                 let areaDevice = data.ProjectDeviceTypeValue.map(item => {
@@ -156,7 +153,7 @@ export default {
          */
         selectArea(item){
             this.activeArea = item
-            this.getPrjSingleInfo()
+            this.getPrjSingleInfo(true)
         },
     }
 }

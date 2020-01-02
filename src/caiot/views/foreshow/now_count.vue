@@ -93,7 +93,7 @@ export default {
         FAction: "QueryCaiotRealTimeAlarmByProject",
         PageIndex: this.pageIndex,
         PageSize: 10
-      }).then(data => {
+      },true).then(data => {
         this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0;
         this.tableData = data.FObject.Table1 ? data.FObject.Table1 : [];
       });

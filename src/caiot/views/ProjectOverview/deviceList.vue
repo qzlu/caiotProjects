@@ -53,7 +53,7 @@
             <div class="clearfix lift-list" v-else>
                 <h4><i class="iconfont icon-Equipment"></i>设备列表</h4>
                 <ul>
-                  <li v-for="(item,i) in data[0]?data[0].data:[]" :key="i">
+                  <li :class="{alarm:item.IsAlarm}"  v-for="(item,i) in data[0]?data[0].data:[]"  :key="i">
                     <i
                       :class="{r:true, 'el-icon-star-off':!item.IsFocus,'el-icon-star-on':item.IsFocus}"
                       @click.stop="addOrDeleteUFocusMonitor(item)"
@@ -63,8 +63,8 @@
                         {{item.DeviceName}}
                       </h5>
                       <div >
-                        <div class="statu l">
-                            正常
+                        <div :class="['statu', 'l',{alarm:item.IsAlarm}]">
+                            {{item.IsAlarm?'告警':'正常'}}
                         </div>
                         <div class="statu-items l">
                           <p>
@@ -258,6 +258,10 @@ $url:'../../static/image';
         }
       }
       ul{
+        >li.alarm{
+            background: url(#{$url}/indexdetail/content_bg_2.png) 0px 0 no-repeat;
+            background-size: calc(100% + 10px) 100%;
+        }
         li{
           width: 25%;
           height: 192px;
@@ -326,7 +330,8 @@ $url:'../../static/image';
           p{
             text-align: left;
             span.value{
-              font-size: 16px
+              font-size: 16px;
+              color: #02CD35;
             }
             span.label{
               font-size: 12px;

@@ -279,9 +279,8 @@ export default {
                 PageIndex:this.pageIndex,
                 PageSize:10,
                 ProjectID:localStorage.getItem("projectid")
-            })
+            },true)
             .then(data => {
-                console.log(data)
                 this.total = data.FObject.Table[0].Count
                 this.tableData = data.FObject.Table1
                 this.tableData.forEach(item => {
@@ -592,7 +591,7 @@ $img-url:'../../static/image/';
             }
             .submit{
                 text-align: center;
-                margin-top: 37px;
+                /* margin-top: 37px; */
             }
             .tab-header{
                 position: relative;
@@ -623,6 +622,7 @@ $img-url:'../../static/image/';
                 }
             }
             .tab-content{
+                height: 290px;
                 padding: 20px 30px;
                 .zw-btn{
                     margin-top: 26px;

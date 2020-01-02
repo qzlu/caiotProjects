@@ -3,8 +3,8 @@ $img-url:'../../static/image/';
     background: url('#{$img-url}admin/bg_1.png') center no-repeat;
     .showPointTree{
         .el-dialog{
-            width: 560px;
-            height: 480px;
+            /* width: 560px; */
+            /* height: 480px; */
         }
     }
     .el-dialog{

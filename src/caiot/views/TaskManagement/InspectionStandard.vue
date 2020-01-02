@@ -68,7 +68,7 @@
                 <button class="zw-btn zw-btn-add" @click="add">新增</button>
             </div>
             <!-- 新增检查项弹框 -->
-            <el-dialog :title="title" class="zw-dialog" :visible.sync='show1'>
+            <el-dialog :title="title" class="zw-dialog" width="630px" :visible.sync='show1'>
                 <div class="container">
                     <p><span>设备类型</span>{{device?device.DeviceTypeName:''}}</p>
                     <div class="item-content">
@@ -77,7 +77,7 @@
                             <el-input v-model="inspectionItem"></el-input>
                         </div>
                     </div>
-                    <div style="text-align:center"><button class="zw-btn zw-btn-primary" :disabled="isDisabled"  @click="addItems">确定</button></div>
+                    <div class="submit"><button class="zw-btn zw-btn-primary" :disabled="isDisabled"  @click="addItems">确定</button></div>
                 </div>
             </el-dialog>
             <div class="main-item standard">
@@ -485,7 +485,7 @@ $img-url:'../../static/image/';
                         margin-left: 0
                     }
                     .el-input{
-                        width:270px;
+                        width:500px;
                         height:39px;
                         &__inner{
                             background:rgba(24,64,107,1);

@@ -12,6 +12,7 @@ const barChart = () => import('./barChart')
 const AirConditioning = () => import('./airConditioning')
 const Power = () =>  import('./power')
 const Water = () =>  import('./water')
+const zwBorder = () => import('./box-border')
 export{
     zwCard,
     zwPagination,
@@ -25,5 +26,6 @@ export{
     barChart,
     AirConditioning,
     Power,
-    Water
+    Water,
+    zwBorder
 }

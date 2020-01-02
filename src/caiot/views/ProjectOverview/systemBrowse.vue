@@ -1,7 +1,7 @@
 <template>
     <div class="system-browse">
         <div class="aside">
-            <card :class="{active:item.ParamID === activeSystem.ParamID}" :title="item.SystemParamName" v-for="(item,i) in systemList[0]||[]" :key="i" :height="214" @click.native="selectSystem(item)">
+            <card :class="{active:item.ParamID === activeSystem.ParamID}" :icon="item.IconName" :title="item.SystemParamName" v-for="(item,i) in systemList[0]||[]" :key="i" :height="214" @click.native="selectSystem(item)">
                 <span slot="header" class="r header-r">
                     <i class="iconfont icon-Equipment"></i>
                     <span :class="{err:item.AlarmCount>0}">{{item.AlarmCount}}</span>/{{item.DeviceCount}}
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="aside">
-            <card :class="{active:item.ParamID === activeSystem.ParamID}" :title="item.SystemParamName" v-for="(item,i) in systemList[1]||[]" :key="i" :height="214" @click.native="selectSystem(item)">
+            <card :class="{active:item.ParamID === activeSystem.ParamID}" :icon="item.IconName" :title="item.SystemParamName" v-for="(item,i) in systemList[1]||[]" :key="i" :height="214" @click.native="selectSystem(item)">
                 <span slot="header" class="r header-r">
                     <i class="iconfont icon-Equipment"></i>
                     <span :class="{err:item.AlarmCount>0}">{{item.AlarmCount}}</span>/{{item.DeviceCount}}
@@ -78,7 +78,7 @@ export default {
         } catch (error) {
             this.activeSystem = null
         }
-        this.querySystemAlarmByCount()
+        this.querySystemAlarmByCount(true)
     },
     beforeDestroy(){
         this.timer&&clearTimeout(this.timer)
@@ -88,7 +88,7 @@ export default {
         /**
          * 387.系统态势（系统类别设备告警统计）
          */
-        querySystemAlarmByCount(){
+        querySystemAlarmByCount(load = false){
             ProjectTrend({
                 FAction: 'QuerySystemAlarmByCount'
             })
@@ -100,7 +100,7 @@ export default {
                     this.activeSystem = data.find(item => this.activeSystem.ParamID == item.ParamID&&item.DeviceCount>0)||data.find(item => item.DeviceCount>0)||data[0]
                 }
                 this.systemList.push(...[data.slice(0,4),data.slice(4)])
-                this.getPrjSingleInfo()
+                this.getPrjSingleInfo(load)
                 this.timer = setTimeout(() => {
                     this.querySystemAlarmByCount()
                 }, 10000);
@@ -111,13 +111,13 @@ export default {
         /**
          * 6.根据类别获取项目单个信息详情
          */
-        getPrjSingleInfo(){
+        getPrjSingleInfo(load = false){
             if(!this.activeSystem.ParamID) return
             project({
                 FAction: 'GetPrjSingleInfo',
                 SingleType:1,
                 SingleID:this.activeSystem.ParamID
-            })
+            },undefined,load)
             .then((result) => {
                 let data = result.FObject
                 let systemDevice = data.ProjectDeviceTypeValue.map(item => {
@@ -133,7 +133,7 @@ export default {
         selectSystem(item){
             this.activeSystem = item
             sessionStorage.setItem('activeSystem',JSON.stringify(item))
-            this.getPrjSingleInfo()
+            this.getPrjSingleInfo(true)
         },
     }
 }

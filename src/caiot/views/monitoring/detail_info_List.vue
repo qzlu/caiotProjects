@@ -1,12 +1,5 @@
 <template>
   <div class="detail">
-    <!--{{$route.params.id}} //设备id ,则是DeviceID
- 	{{$route.params.PossionID}}
- 	后端要求带第一个小分类的默认第一个分类的PossionID，设备自己的id,还有当前设备的所有数据，都带过来
-    -->
-    <!--<router-link :to="{ name: 'foreshow',}">
-	   <p>121313</p>
-    </router-link>-->
     <div class="det_top" v-if="datalist02.DeviceTypeID==801||datalist02.DeviceTypeID==800">
       <p class="btn_back" @click="routerback()">
         <img src="../../static/image/index/back_btn.png">返回
@@ -45,7 +38,7 @@
     <div v-else>
       <section class="det_top">
         <p class="btn_back" @click="routerback()">
-          <img src="../../static/image/index/back_btn.png">返回
+          <button class="zw-btn back">返回</button>
         </p>
         <div class="det_ghyi">
           <div class="det_left">
@@ -138,15 +131,6 @@
   z-index: 118;
   position: absolute;
   top: -30px;
-  border-radius: 5px;
-  left: 10px;
-  width: 68px;
-  text-align: center;
-  height: 30px;
-  opacity: 0.5;
-  color: #c2ddff;
-  background: #4379cd;
-  font-size: 20px;
 }
  .btn_back img {
   vertical-align: 2px;

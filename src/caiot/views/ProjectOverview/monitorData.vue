@@ -184,10 +184,11 @@ export default {
         h5{
             padding-left: 30px;
             line-height: 38px;
-            /* color: #18A1EC; */
+            color: #18A1EC;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             text-align: left;
+            font-weight: normal;
             .iconfont:first-of-type{
                 font-size: 20px;
                 margin-right: 10px;

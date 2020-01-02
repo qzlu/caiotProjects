@@ -154,7 +154,7 @@ export default {
                 PageIndex:this.pageIndex,
                 PageSize:10,
                 SearchKey:this.filterText
-            })
+            },true)
             .then((data) => {
                 this.total = data.FObject.Table?data.FObject.Table[0].Count:0
                 this.tableData = data.FObject.Table1?data.FObject.Table1:[]

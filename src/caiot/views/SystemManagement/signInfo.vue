@@ -139,7 +139,7 @@ export default {
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
-            })
+            },true)
             .then((data) => {
                 console.log(data)
                 this.total = data.FObject.Table ? data.FObject.Table[0].FTotalCount : 0

@@ -101,7 +101,10 @@
                     <el-scrollbar>
                         <div>
                             <div class="device-type-list l" v-for="(item,i) in deviceTypes" :key="i">
-                                <h5>{{item.DeviceType}}({{item.data.length}})</h5>
+                                <h5>
+                                    <i class="iconfont icon-Flatlight"></i>
+                                    {{item.DeviceType}}({{item.data.length}})
+                                </h5>
                                 <ul class="device-list clearfix">
                                     <li :class="['l',{'top10':j>3,'opening':device.DeviceStatus == 1}]" v-for="(device,j) in item.data" :key="j">
                                         <h5>
@@ -377,7 +380,7 @@ $url:'../../static/image';
             font-size:18px;
             font-family:MicrosoftYaHeiUI;
             font-weight:400;
-            color:rgba(241,241,242,1);
+            color:#18a1ec;
             text-align: left;
         }
         .border{
@@ -742,7 +745,7 @@ $url:'../../static/image';
                     line-height: 38px;
                     text-align: left;
                     font-size: 16px;
-                    color: rgba(158, 229, 243, 1);
+                    color: #18a1ec;
                     background: linear-gradient(90deg, rgba(17, 45, 69, 0.34), rgba(16, 52, 78, 0.34), rgba(15, 60, 89, 0.34), rgba(15, 64, 94, 0.34), rgba(16, 71, 101, 0.34), rgba(15, 66, 95, 0.34), rgba(15, 61, 87, 0.34), rgba(16, 50, 77, 0.34), rgba(18, 45, 72, 0.34))
                 }
                 ul.device-list{
@@ -759,7 +762,7 @@ $url:'../../static/image';
                             padding-left: 10px;
                             text-align: left;
                             span{
-                                font-size:20px;
+                                font-size:16px;
                                 font-weight:400;
                                 color:rgba(170,190,210,1);
                             }
@@ -798,11 +801,11 @@ $url:'../../static/image';
                                             line-height: 0;
                                         }
                                         span:first-of-type{
-                                            font-size: 20px;
+                                            font-size: 16px;
                                             color: rgba(3, 205, 130, 1);
                                         }
                                         span:last-of-type{
-                                            font-size: 14px;
+                                            font-size: 12px;
                                             color: rgba(169, 168, 168, 1)
                                         }
                                     }

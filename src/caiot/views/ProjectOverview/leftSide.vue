@@ -1,6 +1,6 @@
 <template>
     <div class="left-aside-common">
-        <card title="天气信息" :showMoreIcon = 'false' :height='218'>
+        <card title="天气信息" icon="icon-Weatherinformation" :showMoreIcon = 'false' :height='218'>
             <div class="weather">
                 <p class="time">{{time}}</p>
                 <p class="date">{{date}}</p>
@@ -10,13 +10,13 @@
                 </p>
             </div>
         </card>
-        <card title="实时告警"  :height='332' @click="$router.push('/foreshow/')">
+        <card title="实时告警" icon="icon-SZXFY-Earlywarning"  :height='332' @click="$router.push('/foreshow/')">
             <div class="alarm-list">
                 <el-scrollbar v-if="alarmData.length">
                     <ul>
                         <li v-for="(item,i) in alarmData" :key="i" @click="$router.push('/foreshow/')">
                             <span>{{item.AlarmTime}}</span>
-                            <span>{{item.AlarmText}}</span>
+                            <span :title="item.AlarmText">{{item.AlarmText}}</span>
                         </li>
                     </ul>
                 </el-scrollbar>
@@ -25,13 +25,13 @@
                 </div>
             </div>
         </card>
-        <card title="实时任务"  :height='335' @click="$router.push('/TaskManagement/Worklist')">
+        <card title="实时任务" icon="icon-Workingodd"  :height='335' @click="$router.push('/TaskManagement/Worklist')">
             <div class="alarm-list">
                 <el-scrollbar v-loadmore="loadMore">
                     <ul>
                         <li v-for="(item,i) in orderData" :key="i" @click="$router.push('/TaskManagement/Worklist')">
                             <span>{{item.OrderCreateDateTime}}</span>
-                            <span>{{item.OrderContent}}</span>
+                            <span :title="item.OrderContent">{{item.OrderContent}}</span>
                         </li>
                     </ul>
                 </el-scrollbar>
@@ -188,6 +188,13 @@ export default {
                 justify-content: space-between;
                 border-bottom: 1px dashed #FFFFFF;
                 cursor: pointer;
+                span+span{
+                    display: block;
+                    width: 150px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
         .statu{

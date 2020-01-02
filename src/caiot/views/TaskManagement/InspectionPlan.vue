@@ -221,6 +221,10 @@ export default {
                     label: '路线名称'
                 },
                 {
+                    prop:'AreaCount',
+                    label:"巡检区域"
+                },
+                {
                     prop: 'PointCount',
                     label: '巡检点数',
                     sortble:'custom'
@@ -389,7 +393,7 @@ export default {
                 Field:this.orderProp,
                 FOrder:this.order,
                 mSearchInspectionPlan:this.queryType?this.filterObj:{}
-            })
+            },true)
             .then(data => {
                 this.total = data.FObject.Table?data.FObject.Table[0].FTotalCount:0
                 this.tableData = data.FObject.Table1?data.FObject.Table1:[]
@@ -457,7 +461,7 @@ export default {
             Inspection({
                 FAction:'CreatePlanByYear',
                 FYear:year
-            })
+            },true)
             .then(data => {
                 this.$message({
                   type: 'success',
@@ -641,6 +645,7 @@ export default {
                 });
                 return
             }
+            this.show = false
             this.isDisabled = true                                                                  
             Inspection({
                 FAction:this.type?'UpdateUInspectionPlanByID':'AddTempUInspectionPlan',
@@ -657,10 +662,9 @@ export default {
             .catch(error => {
             })
             .finally(() => {
-                this.show = false
                 setTimeout(() => {
                     this.isDisabled = false
-                },2000)
+                },1000)
             })
         },
         /**

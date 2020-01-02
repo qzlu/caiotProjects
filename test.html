@@ -1,30 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .video{
-            width: 1000px;
-            height: 600px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>Canvas 通过改变渐变色渐变百分比位置做飞线效果</title>
 </head>
+ 
 <body>
-    <div class="video">
-        <video width="1000px" height="500px" src="http://172.172.172.37:8080/test/test.mp4"></video>
-    </div>
+    <canvas id="myCanvas" width="700" height="700" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
+    <canvas id="myCanvas2" width="700" height="700" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>    
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script>
-        function a(n,m){
-            console.log(n+m);
-        }
-        function b(){
-            let a1 = 1,b = 2
-             a(a1,b)
-        }
-        b()
+    $(function () {
+        var myAction = {};
+
+        $.extend(myAction, {
+            getWidth: function (pointA, pointB) {
+                var xWidth = (pointA.x - pointB.x) * (pointA.x - pointB.x);
+                var yWidth = (pointA.y - pointB.y) * (pointA.y - pointB.y)
+                var edgeWidth = Math.sqrt( xWidth + yWidth );
+                return 100 / edgeWidth ;
+            },
+            initCanvas1: function () {
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                var start = 0;
+                var pointA = {
+                    x: 0,
+                    y: 100
+                };
+                var pointB = {
+                    x: 700,
+                    y: 100
+                };    
+                var width = myAction.getWidth(pointA, pointB);
+                function auto() {
+                    ctx.beginPath();
+                    ctx.moveTo(0, 100);
+                    ctx.lineTo(700, 100);
+                    var grd = ctx.createLinearGradient(pointA.x, pointA.y, pointB.x, pointB.y);
+                    grd.addColorStop(0, "#5BC0DE");
+                    grd.addColorStop(start, "#5BC0DE");
+                    grd.addColorStop(start + (width / 2), "#ffff00");
+                    grd.addColorStop(start + width, "#5BC0DE");
+                    grd.addColorStop(1, "#5BC0DE");
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = grd;
+                    ctx.stroke();
+
+                    console.log(start + width)
+
+                    ctx.closePath();  
+
+                    if (start + width + 0.02 >= 1) {
+                        start = 0;
+                    } else {
+                        start = start + 0.02;
+                    }
+                    setTimeout(function() {
+                        auto();
+                    }, 100);        
+                }
+                auto();                
+            }, 
+            initCanvas2: function () {
+                var c = document.getElementById("myCanvas2");
+                var ctx = c.getContext("2d");
+                var start = 0;
+                var pointA = {
+                    x: 0,
+                    y: 0
+                };
+                var pointB = {
+                    x: 700,
+                    y: 700
+                };      
+                var width = myAction.getWidth(pointA, pointB);
+                function auto() {
+                    ctx.beginPath();
+                    var grd = ctx.createLinearGradient(pointA.x, pointA.y, pointB.x, pointB.y);
+                    grd.addColorStop(0, "#5BC0DE");
+                    grd.addColorStop(start, "#5BC0DE");
+                    grd.addColorStop(start + (width / 2), "#ffff00");
+                    grd.addColorStop(start + width, "#5BC0DE");
+                    grd.addColorStop(1, "#5BC0DE");
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = grd;
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(700, 700);   
+                    ctx.stroke();
+                    ctx.closePath();  
+
+                    if (start + width + 0.02 >= 1) {
+                        start = 0;
+                    } else {
+                        start = start + 0.02;
+                    }
+                    setTimeout(function() {
+                        auto();
+                    }, 100);        
+                }
+                auto();                
+            }
+        });
+
+        var init = function () {
+            myAction.initCanvas1();
+            myAction.initCanvas2();
+        }();
+    });
+
     </script>
+    <script>
+
+    </script>    
 </body>
 </html>
