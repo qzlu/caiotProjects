@@ -2692,6 +2692,20 @@
       "font_class": "Weatherinformation",
       "unicode": "e7da",
       "unicode_decimal": 59354
+    },
+    {
+      "icon_id": "12641943",
+      "name": "Parking Entrance",
+      "font_class": "ParkingEntrance",
+      "unicode": "e7db",
+      "unicode_decimal": 59355
+    },
+    {
+      "icon_id": "12641999",
+      "name": "Car park exit",
+      "font_class": "Carparkexit",
+      "unicode": "e7dc",
+      "unicode_decimal": 59356
     }
   ]
 }

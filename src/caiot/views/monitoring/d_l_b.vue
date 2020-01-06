@@ -1,8 +1,11 @@
 <template>
   <section class="table_bh">
-    <div style=" margin-top: 25px;" class="btn_jrh">
+    <div  class="btn_jrh">
       <!--<p @click="tagchange(0)"  :class="{'active':currt==0}">资料</p>-->
-      <p :class="{'active':currt==1}" @click="tagchange(1)">基本信息</p>
+      <p :class="{'active':currt==1}" @click="tagchange(1)">
+        <i class="iconfont icon-Classification"></i>
+        设备台账
+      </p>
     </div>
 
     <div class="Titems_a" :class="{'showing':currt==0}">
@@ -36,21 +39,36 @@
       <div class="tin_left">
         <div class="tin_t1" v-for="(items,key) in data_information" style="position: relative;">
           <ul class="clearfix l">
-            <li>设备编码：
-              <span>{{items.DeviceCode}}</span>
-            </li>
             <li>设备名称：
               <span>{{items.DeviceName}}</span>
             </li>
-            <!--<li>设备类型：<span>供配电</span></li>-->
-            <li>生产厂家：
+            <li>系统类型：
+              <span>{{items.SystemParamName}}</span>
+            </li>
+            <li>生产厂商：
               <span>{{items.Manufacturer}}</span>
             </li>
+            <li>设备编码：
+              <span>{{items.DeviceCode}}</span>
+            </li>
+            <li>区域名称：
+              <span>{{items.AreaName}}</span>
+            </li>
+            <li>出厂编码：
+              <span>{{items.ManufacturingNumber}}</span>
+            </li>
+            <li>是否物联设备：
+              <span>{{items.IsIOTDevice?'是':'否'}}</span>
+            </li>
+            <!--<li>设备类型：<span>供配电</span></li>-->
             <li>出厂型号：
               <span>{{items.SpecificationsCode}}</span>
             </li>
-            <li>出厂编号：
-              <span>{{items.ManufacturingNumber}}</span>
+            <li>设备类型：
+              <span>{{items.DeviceTypeName}}</span>
+            </li>
+            <li>是否控制设备：
+              <span>{{items.IsControl?'是':'否'}}</span>
             </li>
             <li>出厂日期：
               <span>{{items.ManufacturingTime}}</span>
@@ -59,7 +77,7 @@
               <span>{{items.ServiceLife}}年</span>
             </li>
           </ul>
-          <div  style="position: absolute; top: 35px; right: -600px; width: 750px;">
+          <div  style="position: absolute; top: 35px; left: 1140px; width: 300px;">
             <div style="float: right; margin: 0 10px;">
               <p>
                 <img v-bind:src="img_url+items.DevicePhoto">
@@ -171,6 +189,7 @@ export default {
         DeviceID: this.$route.params.id
       })
       .then(data => {
+        console.log(data)
         this.data_information = data.FObject;
         this.$emit("ready", data.FObject[0]);
       })
@@ -223,6 +242,8 @@ a {
 }
 
 .table_bh {
+  height: 306px;
+  box-sizing: border-box;
   padding: 15px 25px 5px 25px;
 }
 .table_bh .btn_jrh {
@@ -231,11 +252,12 @@ a {
 .table_bh .btn_jrh p {
   cursor: pointer;
   font-size: 16px;
-  color: #f1f1f2;
+  color: #18a1ec;
   width: 137px;
   height: 46px;
   line-height: 46px;
   float: left;
+  text-align: left;
   background: url(/static/image/indexdetail/tool_nor_Information.png);
 }
 .table_bh .btn_jrh p.active {
@@ -252,10 +274,10 @@ a {
 .Titems_b .tin_left {
   height: 190px;
   padding: 10px 0 0 0;
-  border: solid 2px #0f2e5c;
+  /* border: solid 2px #0f2e5c; */
 }
 .Titems_b .tin_left .tin_t1 {
-  width: 800px;
+  width: 1100px;
   float: left; /*overflow: hidden;*/
   padding: 10px 0 0 30px;
 }
@@ -269,7 +291,7 @@ a {
   text-align: left;
 }
 .Titems_b .tin_left .tin_t1 ul li span {
-  color: #00d294;
+  color: #F1F1F2;
   padding-left: 10px;
 }
 

@@ -18,7 +18,7 @@
                     <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="仪表" prop="meter">
+<!--                 <el-form-item label="仪表名称" prop="meter">
                   <el-select v-model="meter"  value-key="MeterID" filterable  placeholder="请选择"  @change="selectMeter">
                     <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
                   </el-select>
@@ -27,10 +27,36 @@
                   <el-select v-model="meterDataItemID"  value-key="" filterable  placeholder="请选择" >
                     <el-option v-for="list in meterItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
-                </el-form-item>
-                <el-form-item label="计算公式" prop="Expression" >
-                    <el-input v-model="addInfo.Expression">
-                    </el-input>
+                </el-form-item> -->
+                <el-form-item  prop="Expression" >
+                    <!-- <el-input v-model="addInfo.Expression"></el-input> -->
+                    <p slot='label'>
+                        <el-tooltip placement="top" effect="light">
+                          <span>
+                              计算公式
+                              <i class="el-icon-question"></i>
+                          </span>
+                          <div slot="content">
+                              提示
+                          </div>
+                        </el-tooltip>
+                    </p>
+                    <ul class="express">
+                        <li v-for="(item,i) in expressionList" :key="i">
+                            <el-select class="condition" v-model="item.Meter" value-key="MeterID"  filterable  placeholder="请选择" @change="selectMeter(item)">
+                              <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
+                            </el-select>
+                            <el-select  class="condition" v-model="item.DataItem"  value-key="DataItemID" filterable  placeholder="请选择" @change="changeExpress">
+                              <el-option v-for="list in item.Meter.ListData||[]" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
+                            </el-select>
+                            <el-input v-model="item.express" @change="changeExpress"></el-input>
+                        </li>
+                        <li class="add">
+                           <i class="el-icon-minus" v-if="expressionList.length>1" @click="removeExpress()"></i>
+                           <i class="el-icon-plus" @click="addExpress()"></i>
+                        </li>
+                        <li><el-input style="width:480px" v-model="addInfo.Expression"></el-input></li>
+                    </ul>
                 </el-form-item>
             </el-form>
             <div class="submit">
@@ -82,6 +108,7 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {project,system,Device } from '@/caiot/request/api.js';
+import '../manage/smartControl/condition.scss'
 export default {
     mixins:[table],
     data(){
@@ -107,6 +134,7 @@ export default {
                 {
                     prop: 'Expression',
                     label: '计算公式',
+                    width:'400'
                 },
             ],
             type:0,
@@ -133,8 +161,12 @@ export default {
             selectDevice:{},
             meterList:[],
             meterItemList:[],
-            meter:{},
-            meterDataItemID:null
+            expressItem:{
+                DataItem:'',
+                Meter:'',
+                express:''
+            },
+            expressionList:[]
         }
     },
     computed:{
@@ -146,9 +178,6 @@ export default {
         filterText(val){
             this.queryData()
         },
-        meterDataItemID(){
-            this.addInfo.Expression =this.meterDataItemID && `[${this.meter.MeterID}_${this.meterDataItemID}]`
-        }
     },
     created(){
         this.queryData()
@@ -213,10 +242,30 @@ export default {
                 .catch(err => { reject() })
             })
         },
+        addExpress(){
+            //最后一个表达式
+            this.expressionList.push({
+                ...this.expressItem
+            })
+            this.changeExpress()
+        },
+        removeExpress(){
+            this.expressionList.pop()
+            this.changeExpress()
+        },
         select(item){
             this.addInfo.DeviceID = item.DeviceID
             this.addInfo.DataItemID = null
             this.querySDataItemsByDeviceTypeID(item.DeviceTypeID)
+        },
+        changeExpress(){
+            this.addInfo.Expression = this.expressionList.map(item => {
+                if(item.Meter.MeterID&&item.DataItem){
+                    return `[${item.Meter.MeterID}_${item.DataItem}]${item.express}`
+                }else {
+                    return ' '
+                }
+            }).join('')
         },
         /**
          * 103.查询指定设备类型所有的数据项
@@ -238,24 +287,19 @@ export default {
          * 查询仪表
          */
         queryUMeter(){
-            system({
-                FAction:'QueryUMeter',
-                SearchKey:'',
-                PageIndex:1,
-                PageSize:10000
+            Device({
+                FAction:'QueryUMeterList'
             })
-            .then((data) => {
-                console.log(data)
-                this.meterList = data.FObject.Table1 ? data.FObject.Table1 : []
-            }).catch((err) => {
-                
-            });
+            .then(data => {
+                this.meterList = data.FObject
+            })
+            .catch(err => {
+
+            })
         },
         selectMeter(item){
-            this.meter = item
-            this.meterItemList = []
-            this.meterDataItemID = null
-            this.queryProtocolDetailByItem(item.MeterModelID)
+           item.DataItem = ''
+           this.changeExpress()
         },
         /**
          * 查询仪表数据项
@@ -279,6 +323,7 @@ export default {
             this.show =true
             this.type = 0
             this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.expressionList = [{...this.expressItem}]
             this.selectDevice = {}
             this.meter = {}
             this.meterDataItemID = null
@@ -290,15 +335,24 @@ export default {
             this.show = true
             this.type = 1
             this.selectDevice = {}
-            console.log(row)
             await this.queryUDevice(row.ProjectID)
             await this.querySDataItemsByDeviceTypeID(row.DeviceTypeID)
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
             this.$set(this.selectDevice,'DeviceID',row.DeviceID)
-            this.meter = {}
-            this.meterDataItemID = null
+            let expressionList = row.Expression.split('[')
+            expressionList.shift()
+            expressionList = expressionList.map(item => item.split(']'))
+            this.expressionList = expressionList.map(item => {
+                let arr = item[0].split('_') //仪表对应的数据标识
+                let meter = this.meterList.find(obj => obj.MeterID == arr[0])
+                return {
+                    Meter:meter,
+                    DataItem:arr[1],
+                    express:item[1]
+                }
+            })
         },
         /**
          * 285.新增/修改设备映射

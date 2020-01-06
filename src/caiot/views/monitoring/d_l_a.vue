@@ -2,7 +2,7 @@
   <div class="dl_a">
     <div class="pr_top">
       <p class="pr_title" v-if="showTitle">
-        <img src="../../static/image/indexdetail/content_icon_2.png"> 大事记
+        <i class="iconfont icon-Incident" style="font-size:20px"></i> 大事记
       </p>
 
       <section class="pr_are">
@@ -85,13 +85,14 @@ a {
   color: #42b983;
 }
 .pr_top {
-  height: 290px;
+  height: 311px;
   /* background: url(/static/image/indexdetail/content_img.png) no-repeat 22px 51px; */
   margin: 10px 30px 10px 30px;
 }
 .pr_top .pr_title {
+  padding-top: 20px;
   text-align: left;
-  font-size: 20px;
+  font-size: 16px;
   color: #18a1ec;
 }
 .pr_top .pr_title img {

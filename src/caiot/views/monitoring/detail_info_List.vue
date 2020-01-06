@@ -36,12 +36,78 @@
       </div>
     </div>
     <div v-else>
-      <section class="det_top">
+<!--       <div class="det_top detail-header box-bg" v-if="datalist02.DeviceTypeID==500">
+        <p class="btn_back" @click="routerback()">
+          <button class="zw-btn back">返回</button>
+        </p>
+        <div class="det_left">
+          <h3><i class="iconfont icon-Real-timemonitor"></i>实时监测</h3>
+          <ul>
+              <li>
+                  <h4 :title="datalist02.DeviceName">
+                          {{datalist02.DeviceName}}
+                  </h4>
+                  <el-row v-if="datalist02.DataDetail">
+                      <el-col :span="11">
+                          <ul>
+                              <li :class="{active:activeItem.SDataID == obj.SDataID}" v-for="(obj,j) in datalist02.DataDetail.slice(0,3)" :key="j" @click="clickDeviceItem(obj)">
+                                  <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
+                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
+                              </li>
+                          </ul>
+                      </el-col>
+                      <el-col :span="3">
+                          <div class="status" :class="'status-'+datalist02.DeviceStatus">
+                              <p><i :class="['icon','iconfont',datalist02.WebIconName]"></i></p>
+                              <p>{{datalist02.DeviceStatusTitle}}</p>
+                          </div>
+                      </el-col>
+                      <el-col :span="10">
+                          <ul style="text-align:right;padding-right:10px">
+                              <li :class="['r',{active:activeItem.SDataID == obj.SDataID}]" v-for="(obj,j) in datalist02.DataDetail.slice(3,6)" :key="j" style="text-align:right" @click="clickDeviceItem(obj)">
+                                  <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
+                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
+                              </li>
+                          </ul>
+                      </el-col>
+                  </el-row>
+              </li>
+          </ul>
+        </div>
+        <div class="border l">
+        </div>
+        <div class="table-data">
+          <el-table :data="alarmData" height="234" :row-class-name="tableRowClassName"> 
+            <el-table-column 
+              prop="FDateTime"
+              label="时间"
+            >
+            </el-table-column>
+            <el-table-column 
+              prop="eventTypeName"
+              label="告警类型"
+            >
+            </el-table-column>
+            <el-table-column 
+              prop="DeviceName"
+              label="设备名称"
+            >
+            </el-table-column>
+            <el-table-column 
+              prop="addr"
+              label="设备地址"
+            >
+            </el-table-column>
+          </el-table>
+        </div>
+      </div> -->
+      <section class="det_top box-bg">
         <p class="btn_back" @click="routerback()">
           <button class="zw-btn back">返回</button>
         </p>
         <div class="det_ghyi">
           <div class="det_left">
+             <h3><i class="iconfont icon-Real-timemonitor"></i>实时监测</h3>
             <ul>
               <li>
                   <h4 :title="datalist02.DeviceName"><!-- { name: 'detail_info_list',params:{ id:device.DeviceID,PossionID:device.DataDetail[0]?device.DataDetail[0].SDataID:0,getalldata:device}} -->
@@ -50,7 +116,7 @@
                   <el-row v-if="datalist02.DataDetail">
                       <el-col :span="11">
                           <ul>
-                              <li v-for="(obj,j) in datalist02.DataDetail.slice(0,3)" :key="j">
+                              <li :class="{active:activeItem.SDataID == obj.SDataID}" v-for="(obj,j) in datalist02.DataDetail.slice(0,3)" :key="j" @click="clickDeviceItem(obj)">
                                   <el-tooltip placement="top" effect="light">
                                       <div slot="content">
                                           <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
@@ -69,7 +135,7 @@
                       </el-col>
                       <el-col :span="10">
                           <ul>
-                              <li v-for="(obj,j) in datalist02.DataDetail.slice(3,6)" :key="j" style="text-align:right">
+                              <li :class="{active:activeItem.SDataID == obj.SDataID}" v-for="(obj,j) in datalist02.DataDetail.slice(3,6)" :key="j" style="text-align:right" @click="clickDeviceItem(obj)">
                                   <el-tooltip placement="top" effect="light">
                                       <div slot="content">
                                           <span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span>
@@ -84,41 +150,48 @@
               </li>
             </ul>
           </div>
-
+          <div class="border l">
+          </div>
           <div class="det_rightItem">
             <div
-              class="det_titles"
-              style="width: 110px; height: 165px; padding: 25px 0 0 20px; float: left; font-size: 18px; color: #F1F2F2;"
-            >实时监测</div>
-            <div
               class="show_acr_c"
-              style="width: 900px; height: 185px; float: left; color: #fff; margin-top: 19px;"
+              style="width: 100%; height: 100%;box-sizing:border-box; padding:20px 20px 0"
               id="container_vn"
             >
-              <div v-if="datalist02.DeviceTypeID == 500" class="type-500">
-                <el-scrollbar>
-                  <ul v-if="activeItem">
-                    <li v-for="(item,i) in alarmData" :key="i">
-                      <span>{{item.FDateTime}}</span>
-                      <span>{{activeItem.SDataTitle.replace(/数/ig,'')}}</span>
-                      <span>{{item.event}}</span>
-                    </li>
-                  </ul>
-                </el-scrollbar>
-              </div>
-              <line-chart v-else  :data="linedata" :color='["#FF3600", "#00D1D9", "#FF7300"]'></line-chart>
+              <el-table v-if="datalist02.DeviceTypeID==500" :data="alarmData" height="234" :row-class-name="tableRowClassName"> 
+                <el-table-column 
+                  prop="FDateTime"
+                  label="时间"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="eventTypeName"
+                  label="告警类型"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="DeviceName"
+                  label="设备名称"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="addr"
+                  label="设备地址"
+                >
+                </el-table-column>
+              </el-table>
+              <line-chart v-else   :data="linedata" :color='["#FF3600", "#00D1D9", "#FF7300"]'></line-chart>
             </div>
           </div>
         </div>
       </section>
       <section class="det_itemList">
-        <div class="gh_line" style="height: 25px;"></div>
         <div class="mains">
           <!--组件1 大事记-->
-          <my-imgdata :data="dl_datalist"></my-imgdata>
+          <my-imgdata class="box-bg" :data="dl_datalist"></my-imgdata>
           <!--组件1-->
           <!--组件2 基本信息及资料-->
-          <table_data @ready="getInfo"></table_data>
+          <table_data class="box-bg" @ready="getInfo"></table_data>
           <!--组件2-->
         </div>
       </section>
@@ -156,19 +229,21 @@
 }
 </style>
 <script>
+import table from '@/caiot/mixins/table' //表格混入数据
 import videojs from "video.js";
 // import 'videojs-contrib-hls'
 import * as comm from "../../assets/js/pro_common";
 import img_data from "./d_l_a.vue"; //中间图片
 import table_data from "./d_l_b.vue"; //列表组件
-import {project} from '@/caiot/request/api';
+import {project,Device} from '@/caiot/request/api';
 import {lineChart} from '@/caiot/zw-components/index';
 import liftDetaile from './liftDetaile.vue' //电梯页面
 export default {
+  mixins:[table],
   data() {
     return {
       datalist: [], //静态数据
-      datalist02: this.$route.params.getalldata, //点击进来当前设备详情，左1
+      datalist02: {}, //点击进来当前设备详情，左1
       linedata: {}, //图表线条数据
       alarmData:[], //消防主机告警数据
       video_div: false,
@@ -176,7 +251,8 @@ export default {
       activeItem:null, //当前选中的设备数据项
       timer:null,
       videoUrl:
-        "http://hls.open.ys7.com/openlive/669cf1ba63a34653a1c358b17ceea2b6.m3u8"
+        "http://hls.open.ys7.com/openlive/669cf1ba63a34653a1c358b17ceea2b6.m3u8",
+      tableData:[]
     };
   },
   created() {
@@ -317,16 +393,17 @@ export default {
     /**
      * 398.查询消防主机未恢复告警数据
      */
-    queryFireHostAlarmData(id){
+    queryFireHostAlarmData(){
       project({
         FAction: 'QueryFireHostAlarmData',
         DeviceID:this.$route.params.id,
-        DataItemID:this.activeItem.SDataID
+        DataItemID:this.activeItem.SDataID,
+        FCount:this.activeItem.SDataValue[0].DValue
       })
       .then((result) => {
         this.alarmData = result.FObject || []
       }).catch((err) => {
-        
+        console.log(err)
       });
     },
 
@@ -348,7 +425,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 h1,
 h2 {
   font-weight: normal;
@@ -362,19 +439,78 @@ ul {
 a {
   color: #42b983;
 }
-
+.box-bg{
+  /* background-image: radial-gradient(rgba($color:#02224C,$alpha:0.6) 80%, rgba($color:#fff,$alpha:1) 20%); */
+  background: rgba($color:#02224C,$alpha:0.6);
+  border-radius:10px 6px 6px 10px;
+  box-shadow: inset 0 0 20px 4px rgba(48,104,209,.29);
+}
+.detail-header{
+  padding-top: 20px;
+  h3{
+    padding-left: 40px;
+    font-size: 16px;
+    text-align: left;
+    color: #2A91FC;
+    .iconfont{
+      margin-right: 10px;
+    }
+  }
+  >div.det_left{
+    width: 494px;
+    height: 100%;
+    .el-row{
+      height: 195px;
+      .el-col{
+        ul{
+          top: 0;
+          li{
+            width: 100px;
+            height: 58px;
+            margin-top: 0;
+            cursor: pointer;
+            p{
+              line-height: 26px;
+            }
+          }
+          li.active{
+            background: #0C3275;
+          }
+        }
+      }
+    }
+  }
+  .border{
+    width: 3px;
+    height: 243px;
+    background:linear-gradient(180deg,rgba($color:#09264b,$alpha:0.59) 0%,rgba($color:#3c72b5,$alpha:0.59) 19%,rgba($color:#15437b,$alpha:0.59) 43%,rgba($color:#3c72b5,$alpha:0.59) 73%,rgba($color:#072249,$alpha:0.59) 100%);
+  }
+  >div.table-data{
+    height: 234px;
+    margin-left: 530px;
+    margin-right: 20px;
+    .el-table{
+      color: red;
+      tr td{
+        height: 38px;
+        line-height: 38px;
+      }
+    }
+  }
+}
 .det_top {
-  height: 227px;
+  height: 276px;
+  box-sizing: border-box;
   position: relative;
 }
 
 .det_top .det_left {
   position: relative;
   margin-top: -6px;
-  width: 456px;
-  height: 230px;
+  width: 494px;
+  height: 100%;
   float: left;
-  background: url(../../static/image/indexdetail/bg_blue.png) no-repeat;
+  /* background: url(../../static/image/indexdetail/bg_blue.png) no-repeat; */
 }
 /*.det_top .det_left:hover {background: url(/static/image/indexdetail/bg_red_1.png) no-repeat;}*/
 .det_top .det_left .dtitle {
@@ -460,10 +596,10 @@ a {
 }
 
 .det_top .det_rightItem {
-  width: 1086px;
-  height: 227px;
-  margin: -5px 15px 0 0;
-  background: url(../../static/image/indexdetail/bg_blue_2.png) no-repeat;
+  width: 1090px;
+  height: 276px;
+  margin: -5px 0px 0 0;
+  /* background: url(../../static/image/indexdetail/bg_blue_2.png) no-repeat; */
   float: right;
 }
 .det_top .det_rightItem .det_titles {
@@ -473,14 +609,11 @@ a {
 }
 
 .detail .det_itemList {
-  width: 1559px;
-  height: 690px;
-  background: url(../../static/image/indexdetail/content_fg_1.png);
+  width: 100%;
+  height: 635px;
+  /* background: url(../../static/image/indexdetail/content_fg_1.png); */
 }
 .detail .det_itemList .mains {
-  padding: 0 5px 0 20px;
-  margin-right: 5px;
-  height: 600px;
   overflow: hidden;
 }
 .detail .det_tlg {
@@ -490,7 +623,33 @@ a {
 .detail .pjngh {
   padding: 2px 16px 0 20px;
 }
+.det_top{
+  .border{
+    width: 3px;
+    height: 243px;
+    margin-top: 20px;
+    background:linear-gradient(180deg,rgba($color:#09264b,$alpha:0.59) 0%,rgba($color:#3c72b5,$alpha:0.59) 19%,rgba($color:#15437b,$alpha:0.59) 43%,rgba($color:#3c72b5,$alpha:0.59) 73%,rgba($color:#072249,$alpha:0.59) 100%);
+  }
+  .det_rightItem {
+    .el-table{
+      tr td{
+        height: 38px;
+        line-height: 38px;
+      }
+    }
+  }
+}
 .det_left{
+  h3{
+    margin-top: 20px;
+    padding-left: 40px;
+    font-size: 16px;
+    text-align: left;
+    color: #2A91FC;
+    .iconfont{
+      margin-right: 10px;
+    }
+  }
   >ul{
     >li{
       padding: 15px 25px 5px 25px;
@@ -502,13 +661,12 @@ a {
           font-size: 16px;
           color: #525E7E;
           text-align: left;
-          padding:0px 20px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
       }
       .el-row{
-          height: 162px;
+          height: 192px;
           .el-col{
               height: 100%;
               font-size:16px;
@@ -521,14 +679,18 @@ a {
                       width: 100%;
                       text-align: left;
                       padding-left: 10px;
-                      margin-top: 10px;
                       box-sizing: border-box;
+                      cursor: pointer;
                       p{
                           width: 100%;
+                          line-height: 26px;
                           overflow: hidden;
                           text-overflow: ellipsis;
                           white-space: nowrap;
                       }
+                  }
+                  li.active{
+                    background: #0C3275;
                   }
               }
               .status{

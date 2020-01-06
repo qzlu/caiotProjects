@@ -12,7 +12,7 @@
       <div class="login_item">
         <div class="title">
           <router-link to="/">
-            <img src="../../static/image/user/new/logo_2.png">
+            <img src="../../static/image/user/new/logo_3.png">
           </router-link>
         </div>
         <div class="lcen">

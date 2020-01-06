@@ -2,7 +2,7 @@
     <div class="device-ctr">
         <div class="l device-ctr-left">
             <div class="mode-ctr box-shadow">
-                <h4>控制模式 <button class="r operation-btn">群控策略</button></h4>
+                <h4><i class="iconfont icon-Control-Line"></i>控制模式 <!-- <button class="r operation-btn">群控策略</button> --></h4>
                 <div class="border">
                 </div>
                 <div class="icon">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="mode-list box-shadow">
-                <h4>今日场景</h4>
+                <h4><i class="iconfont icon-Today"></i>今日场景</h4>
                 <div class="border">
                 </div>
                 <div class="icon">
@@ -40,20 +40,20 @@
                     <el-scrollbar>
                         <ul>
                             <li :class="{unstart:!item.IsRun}" v-for="(item,i) in modeList" :key="i">
-                                <p class="mode-name">{{item.SceneName}}</p>
                                 <div class="icon-time">
-                                    <p class="mode-time">{{item.TimeStart}}</p>
+                                    <p class="mode-name">{{item.SceneName}}</p>
                                     <div>
                                         <div class="circle">
                                         </div>
                                         <div class="line">
                                         </div>
                                     </div>
+                                    <p class="mode-time">{{item.TimeStart}}</p>
                                 </div>
                                 <div class="mode-item">
                                     <i>{{i+1}}</i>
                                 </div>
-                                <span class="mode-state">{{item.IsRun?'已完成':'未开始'}}</span>
+                                <!-- <span class="mode-state">{{item.IsRun?'已完成':'未开始'}}</span> -->
                                 <button class="operation-btn" @click="sendCMD('GroupCMD',item.CmdID)">立即执行</button>
                             </li>
                         </ul>
@@ -62,10 +62,12 @@
             </div>
         </div>
         <div class="device-ctr-main box-shadow">
-            <h4>区域控制 </h4>
-            <div class="border">
-            </div>
-            <div class="icon">
+            <h4><i class="iconfont icon-Positioning1"></i>区域控制 </h4>
+            <div style="padding-left:10px;">
+                <div class="border">
+                </div>
+                <div class="icon">
+                </div>
             </div>
             <div class="main-top">
                 <div :class="['l', 'operation', 'pre',{'no-click':lastIndex === 3}]" v-if="areaCount.length>4&&lastIndex>3" @click="pre()">
@@ -106,17 +108,17 @@
                                     {{item.DeviceType}}({{item.data.length}})
                                 </h5>
                                 <ul class="device-list clearfix">
-                                    <li :class="['l',{'top10':j>3,'opening':device.DeviceStatus == 1}]" v-for="(device,j) in item.data" :key="j">
+                                    <li :class="['l',{'top10':j>4,'opening':device.DeviceStatus == 1}]" v-for="(device,j) in item.data" :key="j">
                                         <h5>
                                             <span>{{device.DeviceName}}</span>
-                                            <button class="operation-btn"  v-for="(obj,j) in device.BaseCMDs" :key='j' @click="obj.CMDMode==1?sendCMD('BaseCMD',obj.CmdID):queryControlDeviceAdjust(device.DeviceID)">{{obj.CMDShortName}}</button>
+                                            <button class="r operation-btn"  v-for="(obj,j) in device.BaseCMDs" :key='j' @click="obj.CMDMode==1?sendCMD('BaseCMD',obj.CmdID):queryControlDeviceAdjust(device.DeviceID)">{{obj.CMDShortName}}</button>
                                         </h5>
                                         <div class="device-list-content">
                                             <div class="device-aside">
                                                 <ul>
                                                     <li v-for="(obj,j) in device.DataDetail?device.DataDetail.slice(0,3):[]" :key="j">
-                                                        <span>{{obj.SDataTitle}}</span>
-                                                        <br><span>{{obj.SDataUnit||'--'}}</span>
+                                                        <span>{{obj.SDataUnit||'--'}}</span>
+                                                        <br><span>{{obj.SDataTitle}}</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -376,22 +378,26 @@ $url:'../../static/image';
         /* box-shadow: 0 0 4px 4px #052256 inset; */
         h4{
             margin-top: 10px;
-            padding: 0 22px;
+            padding: 0 12px;
             font-size:18px;
             font-family:MicrosoftYaHeiUI;
             font-weight:400;
             color:#18a1ec;
             text-align: left;
+            .iconfont{
+                font-size: 20px;
+                margin-right: 4px;
+            }
         }
         .border{
             height: 1px;
-            margin: 9px 25px 0 13px;
+            margin: 9px 15px 0 0px;
             background: #07A6FF;
         }
         .icon{
             width: 100px;
             height: 6px;
-            margin-left:13px;
+            margin-left:0px;
             position: relative;
             background: #07A6FF;
         }
@@ -414,15 +420,17 @@ $url:'../../static/image';
         border:1px solid rgba(81, 128, 205, 0.82);
         border-radius:2px;
         outline: none;
-        color: rgba(158, 229, 243, 1);
+        color: white;
         cursor: pointer;
     }
     &-left{
-        width: 489px;
+        width: 300px;
         height: 100%;
         .mode-ctr{
             width: 100%;
             height: 316px;
+            padding: 0 10px;
+            box-sizing: border-box;
             h4{
                 button{
                     margin-top: -4px;
@@ -430,7 +438,7 @@ $url:'../../static/image';
                 }
             }
             ul.tab-header{
-                width: 414px;
+                width: 100%;
                 height: 39px;
                 line-height: 39px;
                 margin: 12px auto;
@@ -454,16 +462,17 @@ $url:'../../static/image';
                 }
             }
             .tab-content{
+                /* padding: 0 10px; */
                 ul.operation-list{
-                    margin-right: 43px;
+                   /*  margin-right: 43px; */
                     text-align: right;
                     li{
                         display: inline-block;
-                        margin-right: 12px;
+                        margin-left: 12px;
                     }
                 }
                 .mode{
-                    width: 418px;
+                    width: 100%;
                     height: 146px;
                     margin: 12px auto;
                     position: relative;
@@ -478,21 +487,21 @@ $url:'../../static/image';
                         left: 0;
                         line-height: 28px;
                         font-size: 14px;
-                        color: white;
+                        color: #aabed2;
                         background:rgba(53,131,214,1);
                         border-radius:0px 14px 0px 14px;
                     }
                     .mode-type-name{
                         height: 40px;
-                        margin-top: 17px;
+                        margin-top: 6px;
                         position:relative;
                         font-size: 20px;
                         color: rgba(209, 219, 230, 1);
                     }
                     p{
                         line-height: 40px;
-                        font-size: 20px;
-                        color: #84F2FF;
+                        font-size: 16px;
+                        color: rgba(209, 219, 230, 1);
                         position: relative;
                         overflow: hidden;
                         white-space: nowrap;
@@ -518,30 +527,35 @@ $url:'../../static/image';
             width: 100%;
             height: 580px;
             margin-top: 14px;
+            padding: 0 10px;
+            box-sizing: border-box;
             .mode-record{
                 width: 100%;
                 height: 510px;
                 ul{
                     padding: 40px 0;
-                    color: rgba(165, 239, 252, 1);
+                    color: rgba(209, 219, 230, 1);
                     li{
                         display: flex;
                         align-items: center;
-                        .mode-name{
-                            width: 120px;
-                            text-align: right;
-                            font-size:18px;
-                            margin-right: 4px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
                         .icon-time{
                             position: relative;
+                            .mode-name{
+                                width: 120px;
+                                padding-left:10px;
+                                text-align: left;
+                                position: absolute;
+                                top: -20px;
+                                font-size:14px;
+                                /* margin-right: 4px; */
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
                             .mode-time{
                                 width: 80px;
                                 position: absolute;
-                                top: -20px;
+                                top: 20px;
                                 overflow: hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
@@ -556,7 +570,7 @@ $url:'../../static/image';
                                     border-radius:50%;
                                 }
                                 .line{
-                                    width:74px;
+                                    width:114px;
                                     height:2px;
                                     margin-top: 2px;
                                     background:rgba(96,229,247,1);
@@ -564,11 +578,11 @@ $url:'../../static/image';
                             }
                         }
                         .mode-item{
-                            width: 50px;
-                            height: 50px;
+                            width: 40px;
+                            height: 40px;
                             margin-left: 20px;
                             position: relative;
-                            line-height: 53px;
+                            line-height: 40px;
                             border-radius: 50%;
                             background: #429FB9;
                             box-shadow: 0 0 0 8px #30779D,0 0 0 14px rgba($color: #173969, $alpha: 0.5);
@@ -581,7 +595,7 @@ $url:'../../static/image';
                             content: '';
                             display: block;
                             width:2px;
-                            height:54px;
+                            height:44px;
                             position: absolute;
                             top: 50px;
                             left: 50%;
@@ -595,7 +609,7 @@ $url:'../../static/image';
                             font-size: 18px;
                         }
                         button{
-                            margin-left: 26px;
+                            margin-left: 20px;
                         }
                     }
                     li+li{
@@ -607,24 +621,25 @@ $url:'../../static/image';
                         }
                     }
                     li.unstart{
-                        color:rgba(170, 190, 210, 1);
+                        $color:#a9a8a8;
+                        color:$color;
                         .icon-time{
                             .circle,.line{
-                                background:rgba(177, 179, 179, 1)
+                                color:$color
                             }
                         }
                         .mode-item{
                             background: RGBA(120, 126, 140, 1);
                             box-shadow: 0 0 0 8px RGBA(120, 126, 140, 0.6),0 0 0 14px RGBA(120, 126, 140, 0.3);
                             i{
-                                color:rgba(170, 190, 210, 1);
+                                color:$color;
                             }
                         }
                         .mode-item::after{
-                            background: rgba(177, 179, 179, 1)
+                            background: $color
                         }
                         .mode-state{
-                            color: rgba(169, 168, 168, 1)
+                            color: $color
                         }
                     }
                 }
@@ -632,13 +647,13 @@ $url:'../../static/image';
         }
     }
     &-main{
-        margin-left: 502px;
+        margin-left: 310px;
         height: 100%;
         .main-top{
             width: 100%;
             height: 230px;
             position: relative;
-            margin-top: 15px;
+            margin-top: 8px;
             .operation{
                 width:34px;
                 height:210px;
@@ -750,16 +765,17 @@ $url:'../../static/image';
                 }
                 ul.device-list{
                     >li{
-                        width:329px;
-                        height:208px;
-                        margin-left:16px;
+                        width:312px;
+                        height:192px;
+                        margin-left:4px;
+                        margin-top: 4px;
                         box-sizing: border-box;
                         border-radius:8px;
                         background:RGBA(8, 34, 82, 0.37);
                         >h5{
                             height: 40px;
                             line-height: 50px;
-                            padding-left: 10px;
+                            padding:0 10px;
                             text-align: left;
                             span{
                                 font-size:16px;
@@ -767,6 +783,7 @@ $url:'../../static/image';
                                 color:rgba(170,190,210,1);
                             }
                             button{
+                                margin-top: 10px;
                                 margin-left: 10px;
                             }
                         }
@@ -802,7 +819,7 @@ $url:'../../static/image';
                                         }
                                         span:first-of-type{
                                             font-size: 16px;
-                                            color: rgba(3, 205, 130, 1);
+                                            color: #03cd82;
                                         }
                                         span:last-of-type{
                                             font-size: 12px;
@@ -828,16 +845,16 @@ $url:'../../static/image';
                             }
                         }
                     }
-                    li.top10{
+                  /*   li.top10{
                         margin-top: 14px;
-                    }
+                    } */
                     li.opening{
                         border: 1px solid RGBA(3, 131, 163, 1);
                         background:RGBA(7, 43, 75, 1);
                         box-shadow: 0 0 16px 4px RGBA(5, 104, 128, 1) inset;
                         .device-control{
                             .device-statu{
-                                color: RGBA(84, 250, 188, 1)
+                                color: #03cd82
                             }
                         }
                     }

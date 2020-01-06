@@ -174,7 +174,6 @@ $img-url: "../../static/image/";
   left: 0;
   right: 0;
   bottom: 0;
-  background: #031432;
   &_center {
     width: 1900px;
     height: 1080px;
