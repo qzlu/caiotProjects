@@ -28,7 +28,7 @@
     <div v-else-if="datalist02.DeviceTypeID==1003">
       <div class="iframe-container">
         <p class="btn_back" @click="routerback()">
-          <img src="../../static/image/index/back_btn.png">返回
+          <button class="zw-btn back">返回</button>
         </p>
         <div style="height:920px;">
           <lift-detaile :liftInfo="datalist02" :eventData="dl_datalist"></lift-detaile>
@@ -36,71 +36,6 @@
       </div>
     </div>
     <div v-else>
-<!--       <div class="det_top detail-header box-bg" v-if="datalist02.DeviceTypeID==500">
-        <p class="btn_back" @click="routerback()">
-          <button class="zw-btn back">返回</button>
-        </p>
-        <div class="det_left">
-          <h3><i class="iconfont icon-Real-timemonitor"></i>实时监测</h3>
-          <ul>
-              <li>
-                  <h4 :title="datalist02.DeviceName">
-                          {{datalist02.DeviceName}}
-                  </h4>
-                  <el-row v-if="datalist02.DataDetail">
-                      <el-col :span="11">
-                          <ul>
-                              <li :class="{active:activeItem.SDataID == obj.SDataID}" v-for="(obj,j) in datalist02.DataDetail.slice(0,3)" :key="j" @click="clickDeviceItem(obj)">
-                                  <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
-                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
-                              </li>
-                          </ul>
-                      </el-col>
-                      <el-col :span="3">
-                          <div class="status" :class="'status-'+datalist02.DeviceStatus">
-                              <p><i :class="['icon','iconfont',datalist02.WebIconName]"></i></p>
-                              <p>{{datalist02.DeviceStatusTitle}}</p>
-                          </div>
-                      </el-col>
-                      <el-col :span="10">
-                          <ul style="text-align:right;padding-right:10px">
-                              <li :class="['r',{active:activeItem.SDataID == obj.SDataID}]" v-for="(obj,j) in datalist02.DataDetail.slice(3,6)" :key="j" style="text-align:right" @click="clickDeviceItem(obj)">
-                                  <p><span v-for="(value, i) in obj.SDataValue" :key="i" class="value">{{value.DValue}}<i v-if="i<obj.SDataValue.length-1">/</i></span></p>
-                                  <p class="value-title">{{obj.SDataTitle}} <i v-if="obj.SDataUnit!=null&&obj.SDataUnit!=''">({{obj.SDataUnit}})</i></p>
-                              </li>
-                          </ul>
-                      </el-col>
-                  </el-row>
-              </li>
-          </ul>
-        </div>
-        <div class="border l">
-        </div>
-        <div class="table-data">
-          <el-table :data="alarmData" height="234" :row-class-name="tableRowClassName"> 
-            <el-table-column 
-              prop="FDateTime"
-              label="时间"
-            >
-            </el-table-column>
-            <el-table-column 
-              prop="eventTypeName"
-              label="告警类型"
-            >
-            </el-table-column>
-            <el-table-column 
-              prop="DeviceName"
-              label="设备名称"
-            >
-            </el-table-column>
-            <el-table-column 
-              prop="addr"
-              label="设备地址"
-            >
-            </el-table-column>
-          </el-table>
-        </div>
-      </div> -->
       <section class="det_top box-bg">
         <p class="btn_back" @click="routerback()">
           <button class="zw-btn back">返回</button>
@@ -162,11 +97,13 @@
                 <el-table-column 
                   prop="FDateTime"
                   label="时间"
+                  width="160"
                 >
                 </el-table-column>
                 <el-table-column 
                   prop="eventTypeName"
                   label="告警类型"
+                  width="120"
                 >
                 </el-table-column>
                 <el-table-column 
@@ -177,6 +114,54 @@
                 <el-table-column 
                   prop="addr"
                   label="设备地址"
+                >
+                </el-table-column>
+              </el-table>
+              <el-table v-else-if="datalist02.DeviceTypeID==700" :data="alarmData" height="234" :row-class-name="tableRowClassName"> 
+                <el-table-column 
+                  prop="FDateTime"
+                  label="时间"
+                  width="160"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="eventTypeName"
+                  label="用户类型"
+                  width="120"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="DeviceName"
+                  label="用户姓名"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="addr"
+                  label="开门结果"
+                >
+                </el-table-column>
+              </el-table>
+              <el-table v-else-if="datalist02.DeviceTypeID==601" :data="alarmData" height="234" :row-class-name="tableRowClassName"> 
+                <el-table-column 
+                  prop="FDateTime"
+                  label="时间"
+                  width="160"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="eventTypeName"
+                  label="车牌"
+                  width="120"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="DeviceName"
+                  label="出入类型"
+                >
+                </el-table-column>
+                <el-table-column 
+                  prop="addr"
+                  label="停车时长"
                 >
                 </el-table-column>
               </el-table>

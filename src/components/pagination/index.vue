@@ -52,7 +52,7 @@ export default {
 .zw-pagination{
     text-align: left;
     position: absolute;
-    bottom: 60px;
+    bottom: 100px;
     .el-pagination{
         text-align: left;
         margin-top: 29px;

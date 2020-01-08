@@ -1,67 +1,53 @@
 <template>
-    <el-container class="home" style="height:100%;padding: 10px;">
-      <el-aside width="200px">
-        <div class="app-logo">
-            <router-link to="/">
-                <img src="../../../../assets/image/shuziYy/logo_xf.png" alt="">
-            </router-link>
-        </div>
-        <div class="project-list">
-            <el-select v-model="project" value-key='ProjectID' placeholder="请选择" @change="select">
-              <el-option
-                v-for="item in projectList"
-                :key="item.ProjectID"
-                :label="item.ProjectName||0"
-                :value="item">
-              </el-option>
-            </el-select>
-        </div>
-        <div style="height:780px;">
-            <el-scrollbar>
-                <el-menu unique-opened :default-active="$route.path" router>
-                  <zw-nav :menus="menus">
-                  </zw-nav>
-                </el-menu>
-            </el-scrollbar>
-        </div>
-      </el-aside>
-      <el-container>
-        <el-header class="header" height='154px'>
-            <div class="clearfix">
-                <h2>{{project.ProjectName}}后台管理系统</h2>
-                <ul class="r clearfix">
-                    <li class="l icon">
-                        <el-dropdown>
-                          <div class="el-dropdown-link icon-item">
-                            <i class="iconfont icon-User"></i>
-                          </div>
-                          <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item @click.native="show = true">设置密码</el-dropdown-item>
-                            <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
-                          </el-dropdown-menu>
-                        </el-dropdown>
-                    </li>
-                    <li class="l user-name">{{user}}</li>
-                    <set-password :show.sync='show' @confirm="changePassword"></set-password>
-                </ul>
-            </div>
-            <el-scrollbar class="horizental-scrollbar">
-              <ul class="route-list">
-                  <li>
-                      <router-link to="/manage/alarmList">
-                          告警列表
-                      </router-link>
+    <el-container class="home" style="height:100%;padding: 10px 0;">
+      <el-header class="header" height='80px'>
+          <div class="clearfix">
+              <div class="app-logo l">
+                  <router-link to="/">
+                      <img src="../../../../assets/image/shuziYy/logo.png" alt="">
+                  </router-link>
+              </div>
+              <!-- <h2>{{project.ProjectName}}后台管理系统</h2> -->
+              <div class="project-list">
+                  <el-select v-model="project" value-key='ProjectID' placeholder="请选择" @change="select">
+                    <el-option
+                      v-for="item in projectList"
+                      :key="item.ProjectID"
+                      :label="item.ProjectName||0"
+                      :value="item">
+                    </el-option>
+                  </el-select>
+              </div>
+              <ul class="r clearfix">
+                  <li class="l icon">
+                      <el-dropdown>
+                        <div class="el-dropdown-link icon-item">
+                          <i class="iconfont icon-User"></i>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                          <el-dropdown-item @click.native="show = true">设置密码</el-dropdown-item>
+                          <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                      </el-dropdown>
                   </li>
-                  <li v-for="(route,i) in routeList" :key="route.FGUID">
-                      <router-link :to="`/manage/${route.FFunctionURLAddress}`">
-                           {{route.FMenuName}}
-                      </router-link>
-                      <i class="el-icon-circle-close" @click="deleteRoute(i)"></i>
-                  </li>
+                  <li class="l user-name">{{user}}</li>
+                  <set-password :show.sync='show' @confirm="changePassword"></set-password>
               </ul>
-            </el-scrollbar>
-        </el-header>
+          </div>
+      </el-header>
+      <el-container style="height:980px">
+        <el-aside width="300px">
+          <div style="height:calc(100% - 20px);">
+              <el-scrollbar>
+                  <el-menu unique-opened :default-active="$route.path" router>
+                    <zw-nav :menus="menus">
+                    </zw-nav>
+                  </el-menu>
+              </el-scrollbar>
+          </div>
+        </el-aside>
         <el-main>
+            <h2>{{$route.meta.name}}</h2>
             <router-view :id='project.ProjectID'>
             </router-view>
         </el-main>
@@ -106,6 +92,7 @@ export default {
     created(){
         this.getMenus()
         this.$store.dispatch('querySForm')
+        console.log(this.$route)
     },
     mounted(){
     },
@@ -175,21 +162,23 @@ $url:'../../../../assets/image/';
   .app-logo{
     height: 106px;
     line-height: 106px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+   /*  margin-top: 50px;
+    margin-bottom: 30px; */
     background: rgba(0, 40, 77, 1);
     font-size: white;
     color: white;
   }
   .project-list{
-      margin-bottom: 23px;
+      width: 150px;
+      position: absolute;
+      right: 190px;
       .el-select{
           .el-input__inner{
               background: none;
               color: #9EE5F3;
               font-size:18px;
               border:none;
-              text-align: left;
+              text-align: right;
           }
           .el-icon-arrow-up{
             font-size: 20px;
@@ -210,11 +199,12 @@ $url:'../../../../assets/image/';
         height: 66px;
         line-height: 66px;
         text-indent: 10px;
-        background: url(#{$url}nav/leftbar_bg_nor_blue_1.png) no-repeat;
+        /* background: url(#{$url}nav/leftbar_bg_nor_blue_1.png) no-repeat; */
         background-size: 100% 100%;
       }
       .el-submenu.is-active .el-submenu__title,.el-submenu__title:hover,.el-submenu__title:focus{
-          background: url(#{$url}nav/leftbar_bg_sel_yellow_1.png) 4px no-repeat;
+          /* background: url(#{$url}nav/leftbar_bg_sel_yellow_1.png) 4px no-repeat; */
+          background: linear-gradient(90deg, rgba(42, 145, 252, 0.5), rgba(33, 111, 193, 0.5), rgba(5, 30, 63, 0.5));
       }
     }
     .el-submenu__title,.el-menu-item{
@@ -224,14 +214,16 @@ $url:'../../../../assets/image/';
     }
     .el-submenu .el-menu-item{
       min-width: 100px;
-      background: url(#{$url}nav/leftbar_bg_nor_blue.png)  no-repeat;
+      /* background: url(#{$url}nav/leftbar_bg_nor_blue.png)  no-repeat; */
+     /*  background: linear-gradient(90deg, rgba(42, 145, 252, 0.5), rgba(33, 111, 193, 0.5), rgba(5, 30, 63, 0.5)); */
     }
     .el-menu-item{
       height: 45px;
       margin-top: 20px;
     }
     .el-menu-item.is-active,.el-menu-item:hover,.el-menu-item:focus{
-      background: url(#{$url}nav/leftbar_bg_sel_yellow_2.png) no-repeat;
+      /* background: url(#{$url}nav/leftbar_bg_sel_yellow_2.png) no-repeat; */
+      background: linear-gradient(90deg, rgba(42, 145, 252, 0.5), rgba(33, 111, 193, 0.5), rgba(5, 30, 63, 0.5));
     }
     .el-icon-arrow-down{
       font-size: 20px;
@@ -245,8 +237,8 @@ $url:'../../../../assets/image/';
   }
   .el-header{
       position: relative;
+      line-height: 80px;
       >div.clearfix{
-        margin-top: 28px;
         font-size:26px;
         h2{
           text-align: left;
@@ -307,7 +299,15 @@ $url:'../../../../assets/image/';
   .el-main{
     background: url(#{$url}device/bg_2.png);
     background-size: 100% 100%;
-    height: 906px;
+    height: 100%;
+    overflow: hidden;
+    >h2{
+      padding-left: 20px;
+      font-size: 18px;
+      line-height: 50px;
+      border-bottom: 1px solid #48B3C8;
+      text-align: left;
+    }
     .report{
         background: none;
     }

@@ -20,14 +20,11 @@
         </div>
         <el-dialog :visible.sync="show" class="zw-dialog" width="695px" append-to-body title="编辑">
             <el-form :model="addData"  inline ref="form">
-                <el-form-item label="项目全称" prop='ProjectName'>
+                <el-form-item label="项目全称" prop='ProjectName' :rules="[{ required: true, message: '请输入'}]">
                   <el-input v-model="addData.ProjectName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="项目简称" prop='ShortName'>
                     <el-input v-model="addData.ShortName" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="物业名称" prop='PropertyName'>
-                    <el-input v-model="addData.PropertyName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人" prop='PropertyLeader'>
                     <el-input v-model="addData.PropertyLeader" autocomplete="off"></el-input>
@@ -251,7 +248,6 @@ export default {
                 this.addData[key] = row[key]
             })
             this.selectFrom = row.FormID?row.FormID.split(','):[]
-            console.log(this.selectFrom,row.FormID)
             this.show = true
         },
         /**

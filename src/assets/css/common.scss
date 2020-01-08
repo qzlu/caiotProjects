@@ -18,9 +18,11 @@ $img-url:'../image/';
     .zw-table::before{
         display: block;
         position: absolute;
-        width: 1623px;
+        width: calc(100% + 20px);
         height: 82px;
+        left: -10px;
         background: url(../image/device/bg_3.png);
+        background-size: 100% 100%;
         content: ''
     }
     h3{
@@ -140,6 +142,11 @@ $img-url:'../image/';
                     border-radius:2px;
                     background: #092D53;
                     color: #9EE5F3;
+                }
+            }
+            .el-select{
+                .el-input{
+                    width: 100%;
                 }
             }
             .el-form-item__error{

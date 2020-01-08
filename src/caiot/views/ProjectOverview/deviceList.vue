@@ -67,23 +67,15 @@
                             {{item.IsAlarm?'告警':'正常'}}
                         </div>
                         <div class="statu-items l">
-                          <p>
-                            <span class="value">{{item.DataDetail[1].SDataValue[0].DValue>0?'上行':(item.DataDetail[1].SDataValue[0].DValue==0?'停止':'下行')}}</span><br>
-                            <span class="label">运动方向</span>
-                          </p>
-                          <p>
-                            <span class="value">{{item.DataDetail[3].SDataValue[0].DValue}}</span><br>
-                            <span class="label">速度（m/s）</span>
-                          </p>
-                          <p>
-                            <span class="value">{{item.DataDetail[0].SDataValue[0].DValue}}</span><br>
-                            <span class="label">楼层</span>
+                          <p v-for="obj in item.DataDetail?item.DataDetail.slice(0,3):[]" :key="obj.SDataID">
+                            <span class="value">{{obj.SDataValue[0].DValue}}{{obj.SDataUnit}}</span><br>
+                            <span class="label">{{obj.SDataTitle}}</span>
                           </p>
                         </div>
                         <div class="statu-items l">
-                          <p>
-                            <span class="value">{{item.DataDetail[2].SDataValue[0].DValue}}</span><br>
-                            <span class="label">是否有人</span>
+                          <p v-for="obj in item.DataDetail?item.DataDetail.slice(3):[]" :key="obj.SDataID">
+                            <span class="value">{{obj.SDataValue[0].DValue}}{{obj.SDataUnit}}</span><br>
+                            <span class="label">{{obj.SDataTitle}}</span>
                           </p>
                         </div>
                       </div>

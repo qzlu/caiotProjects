@@ -101,7 +101,7 @@ const store = new Vuex.Store({
       areaList:[], //所有区域
       orderUser:[],
       menuData:JSON.parse(localStorage.getItem('menuData'))||[], //主页菜单
-      systemMenu:localStorage.getItem('systemMenu') != "undefined"?JSON.parse(localStorage.getItem('systemMenu')):[] //后台管理菜单
+      systemMenu:localStorage.getItem('systemMenu') != "undefined"&&localStorage.getItem('systemMenu')?JSON.parse(localStorage.getItem('systemMenu')):[] //后台管理菜单
     },
     mutations: {
         /**

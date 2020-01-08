@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <audio id="myAudio" muted>
+    <audio id="myAudio">
         <source src="@/assets/audio/new_warn.mp3"  type="audio/mpeg">
     </audio>
     <div class="home_center">
@@ -12,7 +12,7 @@
           {{formName}}
         </div>
         <operation :top="20" className="home-project-list">
-          <li class="l icon" @click="goManage()" v-if="systemMenu.length>0">
+          <li class="l icon" @click="goManage()" v-if="systemMenu&&systemMenu.length>0">
               <i class="iconfont icon-zs-backstage"></i>
           </li>
           <li class="l icon" @click="switchAudio">
@@ -130,7 +130,9 @@ export default {
      * 播放报警声
      */
     playWarn(){
-      this.myAudio.play()
+      this.$nextTick(() => {
+        this.myAudio.play()
+      })
 /*       if(this.alarmTimes < 3){
         this.myAudio.play()
         this.alarmTimes ++ //只报警三次

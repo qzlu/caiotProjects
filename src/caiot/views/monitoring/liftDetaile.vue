@@ -5,25 +5,9 @@
             电梯数据
         </h3>
         <ul class="lift-info">
-<!--             <li v-for="(item,i) in dataLabel" :key="i">
-                <span class="label">{{item.label}} :</span>
-                <span class="value">{{liftInfo[item.prop]}}</span>
-            </li> -->
-            <li>
-                <span class="label">运行方向</span>
-                <span class="value">{{liftInfo.DataDetail&&liftInfo.DataDetail[1].SDataValue[0].DValue>0?'上行':(liftInfo.DataDetail[1].SDataValue[0].DValue==0?'停止':'下行')}}</span>
-            </li>
-            <li>
-                <span class="label">速度</span>
-                <span class="value">{{liftInfo.DataDetail&&liftInfo.DataDetail[3].SDataValue[0].DValue}} m/s</span>
-            </li>
-            <li>
-                <span class="label">楼层</span>
-                <span class="value">{{liftInfo.DataDetail&&liftInfo.DataDetail[0].SDataValue[0].DValue}} 楼</span>
-            </li>
-            <li>
-                <span class="label">是否有人</span>
-                <span class="value">{{liftInfo.DataDetail&&liftInfo.DataDetail[2].SDataValue[0].DValue}}</span>
+            <li v-for="(item,i) in liftInfo.DataDetail" :key="i">
+                <span class="label">{{item.SDataTitle}} :</span>
+                <span class="value">{{item.SDataValue[0].DValue}}{{item.SDataUnit}}</span>
             </li>
         </ul>
         <h3>

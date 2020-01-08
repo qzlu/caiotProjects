@@ -6,11 +6,11 @@
 import {post } from './http';
 const Login = p => post('Check', p);
 const HomePage = p => post('HomePage',p)
-const Project = p => post('Project',p)
-const Alarm = p => post('Alarm',p)
-const System = p => post('System', p)
-const Device = p => post('Device',p)
-const Orders = p => post('Orders',p)
+const Project = (p,load = false) => post('Project',p,load)
+const Alarm = (p,load = false) => post('Alarm',p,load)
+const System = (p,load = false) => post('System', p,load)
+const Device = (p,load = false) => post('Device',p,load)
+const Orders = (p,load = false) => post('Orders',p,load)
 export{
     Login,
     HomePage,
