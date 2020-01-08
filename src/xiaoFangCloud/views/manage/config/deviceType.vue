@@ -24,9 +24,9 @@
                 </el-form-item>
                 <el-form-item label="图标" prop="IconName">
                   <el-select v-model="addInfo.IconName" filterable placeholder="请选择">
-                    <el-option v-for="(item,i) in iconList"  :key="i" :value="item.name">
-                        <i :class="['iconfont',item.name]" style="font-size:24px;"></i>
-                        <span>{{item.name}}</span>
+                    <el-option v-for="(item,i) in iconList"  :key="i" :value="`icon-${item.font_class}`">
+                        <i :class="['iconfont',`icon-${item.font_class}`]" style="font-size:24px;"></i>
+                        <span>{{`icon-${item.font_class}`}}</span>
                     </el-option>
                   </el-select>
                 </el-form-item>
@@ -160,7 +160,7 @@ export default {
         this.queryData()
         this.querySEnergyType()
         this.queryPageSSystemParam()
-        this.iconList = iconJson.map(item => JSON.parse(item))
+        this.iconList = iconJson.glyphs
     },
     methods:{
         /**

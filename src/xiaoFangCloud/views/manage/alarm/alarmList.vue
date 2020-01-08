@@ -2,81 +2,55 @@
 
 <template>
   <div class="report">
-    <ul class="operation clearfix">
-<!--       <li class="l" style="margin-right:286px;">
-        <el-button @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button>
-      </li> -->
-      <li class="l">
-        <span class="label">设备名称</span>
-        <el-input class="search-input" v-model="filterText"></el-input>
-      </li>
-      <li class="l">
-        <span class="label">告警级别</span>
-        <el-select v-model="Alarm_levid">
-          <el-option v-for="(item,index) in Alarm_lev" :key="index" :value="index" :label="item"></el-option>
-        </el-select>
-      </li>
-      <li class="l">
-        <span class="label">平台类型</span>
-        <el-select v-model="systemId">
-            <el-option :value="0" label="全部"></el-option>
-            <el-option v-for="(item,index) in sysTemList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
-        </el-select>
-      </li>
-<!--       <li class="l">
-        <span class="label">告警类型</span>
-        <el-select v-model="Alarm_Typeid">
-          <el-option :value="0" label="全部"></el-option>
-          <el-option
-            v-for="item in AlarmType"
-            :key="item.AlarmTypeID"
-            :value="item.AlarmTypeID"
-            :label="item.AlarmTypeName"
-          ></el-option>
-        </el-select>
-      </li> -->
-      <li class="l">
-        <span class="label">时间段</span>
-        <el-date-picker
-          v-model="time"
-          type="daterange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
-        ></el-date-picker>
-      </li>
-      <li class="l" @click="queryData()">
-        <el-button><i class="iconfont icon-search"></i>查询</el-button>
-      </li>
-    </ul>
-    <div class="zw-table">
-      <el-table
-        :data="tableData"
-        style="width: 100%"
-        header-row-class-name="el-table-header"
-        :row-class-name="tableRowClassName"
-      >
-        <el-table-column
-          v-for="item in tableLabel"
-          :key="item.prop"
-          :prop="item.prop"
-          :width="item.width"
-          :label="item.label"
-          :sortable="item.sortble"
-          :formatter="item.formatter"
-          show-overflow-tooltip
-        ></el-table-column>
-      </el-table>
-    </div>
-    <zw-pagination @pageIndexChange="handleCurrentChange" :pageIndex="pageIndex" :total="total"></zw-pagination>
+    <Table
+      ref="table"
+      :showAdd="false"
+      :tableLabel="tableLabel"
+      :getData="queryData"
+      :filter="false"
+      :exportData="exportFile"
+      :showOperationColumn="false"
+    >
+      <template slot="operation">
+        <li class="l">
+          <span class="label">设备名称</span>
+          <el-input class="search-input" v-model="filterText"></el-input>
+        </li>
+        <li class="l">
+          <span class="label">告警级别</span>
+          <el-select v-model="Alarm_levid">
+            <el-option v-for="(item,index) in Alarm_lev" :key="index" :value="index" :label="item"></el-option>
+          </el-select>
+        </li>
+        <li class="l">
+          <span class="label">平台类型</span>
+          <el-select v-model="systemId">
+              <el-option :value="0" label="全部"></el-option>
+              <el-option v-for="(item,index) in sysTemList" :key="index" :value="item.ID" :label="item.FormName"></el-option>
+          </el-select>
+        </li>
+        <li class="l">
+          <span class="label">时间段</span>
+          <el-date-picker
+            v-model="time"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+          ></el-date-picker>
+        </li>
+        <li class="l" @click="$refs.table.queryData()">
+          <el-button><i class="iconfont icon-search"></i>查询</el-button>
+        </li>
+      </template>
+    </Table>
   </div>
 </template>
 <script>
-import table from "@/xiaoFangCloud/mixins/table"; //表格混入数据
 import { Alarm, Device ,Project} from "@/xiaoFangCloud/request/api.js";
 const alarmLevel = ["全部", "提示", "一般", "严重"]
+import Table from '../layout/table.vue'
 export default {
-  mixins: [table],
   data() {
     return {
       tableLabel: [
@@ -133,8 +107,12 @@ export default {
       Alarm_Typeid: 0, //告警类型id,默认为0，
       Alarm_lev: alarmLevel, //告警级别
       Alarm_levid: 0, //告警级别 对应id,默认为0
-      systemId:0
+      systemId:0,
+      filterText:''
     };
+  },
+  components:{
+    Table
   },
   computed:{
     sysTemList(){
@@ -142,13 +120,12 @@ export default {
     }
   },
   created() {
-    this.queryData();
     this.querySystemAlarmType();
   },
   methods: {
     /*查询数据按钮*/
-    queryData() {
-        Alarm({
+    queryData(data) {
+        return Alarm({
           FAction: "QueryPageUAlarmInfo",
           FName: this.filterText,
           DeviceTypeID: "",
@@ -156,15 +133,9 @@ export default {
           AlarmTypeID: this.Alarm_Typeid, //告警类型ID
           StartDateTime: this.time[0].toLocaleDateString() + " 00:00",
           EndDateTime: this.time[1].toLocaleDateString() + " 23:59",
-          PageIndex: this.pageIndex,
-          PageSize: 10,
-          FormID:this.systemId
+          FormID:this.systemId,
+          ...data
         })
-        .then(data => {
-          this.total = data.FObject.FTotalCount || 0
-          this.tableData = data.FObject.Data || []
-        })
-        .catch(err => {});
     },
     /**
      * 查询告警类型
@@ -192,7 +163,7 @@ export default {
         });
         return;
       }
-      Alarm({
+      return Alarm({
         FAction: "CreateCaiotHistoryAlarmByProject",
         SearchKey: this.filterText,
         DeviceTypeID: "",
@@ -201,15 +172,6 @@ export default {
         StartDateTime: this.time[0].toLocaleDateString() + " 00:00",
         EndDateTime: this.time[1].toLocaleDateString() + " 23:59"
       })
-        .then(data => {
-          window.location = "http://www.szqianren.com/" + data.FObject;
-        })
-        .catch(err => {
-          this.$message({
-            type: "error",
-            message: "导出失败!请重试"
-          });
-        });
     }
   },
   mounted: function() {}

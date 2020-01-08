@@ -295,7 +295,12 @@ export default {
                 if(!item.DataItem.DataItemID||!item.Meter.MeterID){
                     return
                 }
-                let express = (item.express?"":"@")+'(' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID + item.express + item.value+')'
+                let express
+                if(item.express){
+                    express = '(' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID + item.express + item.value+')'
+                }else{
+                    express = '@' + item.Meter.MeterID +'_'+ item.DataItem.DataItemID
+                }
                 if(i<this.expressionList.length-1){
                     return express + item.connectExpress
                 }else{
@@ -306,7 +311,12 @@ export default {
                 if(!item.DataItem.DataItemName||!item.Meter.MeterName){
                     return
                 }
-                let express = (item.express?"":"@")+'(' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName + item.express + item.value+')'
+                let express
+                if(item.express){
+                    express = '(' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName + item.express + item.value+')'
+                }else{
+                    express = '@' + item.Meter.MeterName +'_'+ item.DataItem.DataItemName
+                }
                 if(i<this.expressionList.length-1){
                     return express + item.connectExpress
                 }else{

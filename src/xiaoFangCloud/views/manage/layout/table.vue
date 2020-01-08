@@ -7,9 +7,10 @@
                </el-button>
            </li>
             <li class="l" v-if="exportData"><el-button :disabled="disabledExport"  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
-            <li class="l"><el-button @click="queryData"><i class="iconfont icon-Refresh"></i>刷新</el-button></li>
-            <li class="r">
-                <el-input v-if="filter" class="search-input" placeholder="搜索关键字" v-model="filterText">
+            <!-- <li class="l"><el-button @click="queryData"><i class="iconfont icon-Refresh"></i>刷新</el-button></li> -->
+            <slot name='operation'></slot>
+            <li class="r" v-if="filter">
+                <el-input  class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
                 </el-input>
             </li>
@@ -50,6 +51,7 @@
                <slot></slot>
                <el-table-column
                  prop=""
+                 v-if="showOperationColumn"
                  label="操作">
                  <template slot-scope="scoped">
                      <div class="role-operation">
@@ -105,7 +107,11 @@ export default {
         beforeSubmit:Function,//提交之前处理的数据
         submitFun:Function, //新增或修改
         deleteRow:Function, //删除
-        exportData:Function //导出
+        exportData:Function, //导出
+        showOperationColumn:{
+            default:true,
+            type:Boolean
+        }
     },
     components:{
         zwPagination

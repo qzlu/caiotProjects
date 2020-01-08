@@ -74,6 +74,13 @@ export default new Router({
                     }
                 },
                 {
+                    path:'AreaInfo', //区域信息
+                    component:() => import('@/xiaoFangCloud/views/manage/project/areaInfo.vue'),
+                    meta:{
+                        name:'区域信息'
+                    }
+                },
+                {
                     path:'gatewayInfo', //网关信息
                     component:() => import('@/xiaoFangCloud/views/manage/project/gatewayInfo.vue'),
                     meta:{
@@ -106,6 +113,13 @@ export default new Router({
                     component: () => import('@/xiaoFangCloud/views/manage/project/deviceMaping.vue'),
                     meta:{
                         name:'设备映射'
+                    }
+                },
+                {
+                    path:'SystemType', //系统分类
+                    component: () => import('@/xiaoFangCloud/views/manage/system/SystemType.vue'),
+                    meta:{
+                        name:'系统分类'
                     }
                 },
                 /************************************系统管理 ********************************************/

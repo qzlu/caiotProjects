@@ -81,10 +81,9 @@ export default {
         projectList(){
           if(this.$store.state.projectList.length === 0) return []
           let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
-          if(!sessionStorage.getItem('projectID')){
-            sessionStorage.setItem('projectID',projectID)
-          }
           this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
+          sessionStorage.setItem('projectID',this.project.ProjectID)
+          sessionStorage.setItem('projectName',this.project.ProjectName)
           return this.$store.state.projectList
         }
         
@@ -92,7 +91,6 @@ export default {
     created(){
         this.getMenus()
         this.$store.dispatch('querySForm')
-        console.log(this.$route)
     },
     mounted(){
     },
@@ -113,6 +111,7 @@ export default {
         select(item){
           this.project = item
           sessionStorage.setItem('projectID',item.ProjectID)
+          sessionStorage.setItem('projectName',item.ProjectName)
           location.reload()
         },
         deleteRoute(index){

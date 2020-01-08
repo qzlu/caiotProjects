@@ -4,7 +4,7 @@ import {messageErr} from '@/plugins/statusCode.js'
 import router from '../router'
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
-    axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';} 
+    axios.defaults.baseURL = 'http://172.172.172.37:8085/DigitalAPI';} 
 else if (process.env.NODE_ENV == 'debug') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';
 } 

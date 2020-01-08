@@ -1,7 +1,17 @@
 <template>
     <div class="report meter">
-        <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="750px" class="zw-dialog meter">
-            <el-form :model="addInfo" inline ref="form">
+        <Table
+          ref="table"
+          :tableLabel="tableLabel"
+          :getData="queryData"
+          @beforeAdd = 'beforeAdd'
+          @editItem = 'editItem'
+          :deleteRow = 'deleteItem' 
+          :exportData="exportFile"
+          :submitFun="addOrUpdate"
+          dialogWidth="740px"
+        >
+            <el-form slot="dialog" :model="addInfo" inline ref="form" label-width="134px">
                 <el-form-item label="网关名称" prop="LDasID" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addInfo.LDasID"  value-key="" filterable  placeholder="请选择" >
                     <el-option v-for="list in ldasList" :key="list.LDasID" :label="list.LDasName" :value="list.LDasID"></el-option>
@@ -41,66 +51,19 @@
                     <el-switch v-model="addInfo.IsDISId"></el-switch>
                 </el-form-item>
             </el-form>
-            <div slot="footer">
-                <el-button  @click="addUpdateUMeter()">确定</el-button>
-                <el-button @click="show = false">取消</el-button>
-            </div>
-        </el-dialog>    
-        <ul class="operation clearfix">
-            <li class="l"><el-button  @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l"><el-button  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
-            <li class="r">
-                <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
-                    <i class="el-icon-search" slot="suffix"></i>
-                </el-input>
-            </li>
-        </ul>
-        <div class="zw-table">
-            <el-table
-               :data="tableData"
-               style="width: 100%"
-               header-row-class-name="el-table-header"
-               :row-class-name="tableRowClassName"
-               >
-               <el-table-column
-                 v-for="item in tableLabel"
-                 :key="item.prop"
-                 :prop="item.prop"
-                 :width="item.width"
-                 :label="item.label"
-                 :sortable="item.sortble"
-                 :formatter="item.formatter"
-                 show-overflow-tooltip
-                >
-               </el-table-column>
-               <el-table-column
-                 prop=""
-                 label="操作">
-                 <template slot-scope="scoped">
-                     <div class="role-operation">
-                        <span class="pointer" @click="updatedProject(scoped.row)">编辑</span>
-                        <span class="pointer" @click="deleteUMeter(scoped.row)">删除</span>
-                     </div>
-                 </template>
-               </el-table-column>
-            </el-table>
-        </div>
-        <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination>
+        </Table>
     </div>
 </template>
 <script>
-import table from '@/xiaoFangCloud/mixins/table' //表格混入数据
 import {Project,System,Device} from '@/xiaoFangCloud/request/api.js';
+import Table from '../layout/table.vue'
 export default {
-    mixins:[table],
+    components:{
+        Table
+    },
     data(){
         return{
             tableLabel:[
-                {
-                    prop: 'RowIndex',
-                    label: '序号',
-                    width:80
-                },
                 {
                     prop: 'LDasName',
                     label: '网关名称',
@@ -163,13 +126,7 @@ export default {
     },
     computed:{
     },
-    watch:{
-        filterText(val){
-            this.queryData()
-        }
-    },
     created(){
-        this.queryData()
         this.queryULdasByProjectID()
         this.queryUAreaList()
         this.queryPageSMeterModel()
@@ -178,27 +135,11 @@ export default {
         /**
          * 274.分页查询仪表信息
          */
-        queryData(){
-            Project({
+        queryData(data){
+            return Project({
                 FAction:'QueryPageUMeter',
-                SearchKey:this.filterText,
-                PageIndex:this.pageIndex,
-                PageSize:10
+                ...data
             })
-            .then((data) => {
-                this.total = data.FObject.FTotalCount || 0
-                this.tableData = data.FObject.Data || []
-                /**
-                 * 删除操作时，当前页面无数据时跳到上一页
-                 */
-                if(this.tableData.length === 0&&this.pageIndex > 1){
-                    --this.pageIndex
-                    this.queryData()
-                }
-            })
-            .catch((err) => {
-                
-            });
         },
         /**
          * 根据项目ID获取区域（66.获取所有区域）
@@ -240,10 +181,9 @@ export default {
                 PageSize:10000,
                 SearchKey:''
             })
-            .then(data => {
-                console.log(data)
+            .then(data => 
                 this.ldasList = data.FObject.Data || []
-            })
+            )
             .catch(err => {})
         },
         /**
@@ -257,7 +197,7 @@ export default {
         /**
          * 修改仪表信息
          */
-        updatedProject(row) {
+        editItem(row) {
             this.show = true
             this.type = 1
             Object.keys(this.addInfo).forEach(key => {
@@ -268,61 +208,33 @@ export default {
         /**
          * 275.新增/修改仪表信息
          */
-        addUpdateUMeter(){
-            this.show = false
+        addOrUpdate(){
             this.addInfo.IsDISId = Number(this.addInfo.IsDISId)
-            Project({
+            return Project({
                 FAction:'AddOrUpdateUMeter',
                 uMeter:this.addInfo
-            })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {
-                console.log(err);
             })
         },
         /**
          * 删除仪表信息
          */
-        async deleteUMeter(row){
-            await this.beforeDelete()
-            Project({
+        async deleteItem(row){
+            return Project({
                 FAction:'DeleteUMeter',
                 ID:row.MeterID
             })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {})
         },
         /**
          * exportFile 导出
          */
         exportFile(){
-            Project({
+            return Project({
                 FAction:'ExportExcelUMeter',
                 SearchKey:this.filterText,
-            })
-            .then(data => {
-                this.downloadFile(data)
-            })
-            .catch(error => {
-                this.$message({
-                  type: 'error',
-                  message: '导出失败!请重试'
-                });
             })
         },
     }
 }
 </script>
 <style lang="scss">
-.zw-dialog.meter{
-    .el-dialog__body {
-        .el-form-item__label{
-            width: 134px;
-        }
-    }
-}
 </style>
