@@ -98,11 +98,12 @@ export default {
             default:true,
             type:Boolean
         },
-        addData:Object,
         dialogWidth:{
             default:'695px',
             type:String
         }, //弹出框宽度
+        beforeSubmit:Function,//提交之前处理的数据
+        submitFun:Function, //新增或修改
         deleteRow:Function, //删除
         exportData:Function //导出
     },
@@ -177,8 +178,32 @@ export default {
         /**
          * 确定（弹出框）
          */
-        submit(){
-            this.$emit('submit')
+        async submit(){
+            this.beforeSubmit&&this.beforeSubmit()
+            await new Promise(resolve => {
+                 this.$parent.$refs.form.validate((valid) => {
+                  if (valid) {
+                      resolve()
+                  } 
+                });
+            })
+            this.submitFun()
+            .then((result) => {
+                this.show = false
+                this.$message({
+                    message:'操作成功',
+                    type:'success',
+                    duration:'500'
+                })
+                this.queryData()
+            }).catch((err) => {
+                this.$message({
+                    message:'操作失败',
+                    type:'error',
+                    duration:'500'
+                })
+            });
+            /* this.$emit('submit') */
         },
         beforeDelete(text = ''){
             return new Promise((resolve,reject) => {

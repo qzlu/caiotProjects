@@ -66,9 +66,9 @@
                     >
                         <template slot-scope="scoped">
                             <div>
-                                <span title="初始化" @click="resetUser(scoped.row)"><i class="iconfont icon-ZS-Initialization"></i></span>
-                                <span @click="update(scoped.row)" title="编辑"><i class="el-icon-document"></i></span>
-                                <span @click="deleteUser(scoped.row)" title="删除"><i class="el-icon-delete"></i></span>
+                                <span title="初始化" @click="resetUser(scoped.row)">初始化</span>
+                                <span @click="update(scoped.row)" title="编辑">编辑</span>
+                                <span @click="deleteUser(scoped.row)" title="删除">删除</span>
                                 <span @click="queryTRoleBloc(scoped.row)">权限</span>
                             </div>
                         </template>

@@ -7,8 +7,9 @@
           @beforeAdd = 'beforeAdd'
           @editItem = 'editItem'
           :deleteRow = 'deleteItem' 
-          :exportData="exportFile" 
-          @submit="addOrUpdate"
+          :exportData="exportFile"
+          :beforeSubmit="beforeSubmit" 
+          :submitFun="addOrUpdate"
         >
             <el-form slot="dialog" :model="addData" inline ref="form" class="add-block">
                 <el-form-item label="集团全称" prop="BlocName" :rules="[{ required: true, message: '请输入'}]">
@@ -162,6 +163,10 @@ export default {
                 console.log(this.fileList)
             }
         },
+        beforeSubmit(){
+            this.addData.Address = (this.province.p||'') + (this.city.n||'') + (this.area.s||'') + this.addData.Address
+            this.addData.FLogo = this.fileList[0]||''
+        },
         /**
          * 新增或编辑
          */
@@ -176,25 +181,10 @@ export default {
                     resolve()
                 })
             }) */
-            this.addData.Address = (this.province.p||'') + (this.city.n||'') + (this.area.s||'') + this.addData.Address
-            this.addData.FLogo = this.fileList[0]||''
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  }
-                }) 
-            });
-            System({
+            return System({
                 FAction:'AddUpdateBloc',
                 uBloc:this.addData
             },true)
-            .then((result) => {
-                this.$refs.table.show = false
-                this.$refs.table.queryData()
-            }).catch((err) => {
-                
-            });
         },
         /**
          * 删除集团

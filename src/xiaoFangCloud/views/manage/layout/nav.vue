@@ -1,5 +1,5 @@
 <template>
-  <div class="zw-nav">
+  <div class="zw-nav" style="padding:0">
         <div v-for="menu in menus" :key="menu.FGUID" :class="`menu-list-${menu.FMenuLevle}`" >
           <el-submenu v-if="menu.FChildMenu&&menu.FChildMenu.length"  :index='menu.FFunctionURLAddress'>
             <template slot="title" >

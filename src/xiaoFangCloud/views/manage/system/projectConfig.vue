@@ -8,8 +8,9 @@
               @beforeAdd = 'beforeAdd'
               @editItem = 'editItem'
               :deleteRow = 'deleteItem'
-              :exportData="exportFile" 
-              @submit="addOrUpdate"
+              :exportData="exportFile"
+              :beforeSubmit="beforeSubmit" 
+              :submitFun="addOrUpdate"
             >
                 <el-form slot="dialog" :model="addData"  inline ref="form" class="add-block">
                     <el-form-item label="项目全称" prop='ProjectName' :rules="[{ required: true, message: '请输入'}]">
@@ -48,15 +49,15 @@
                             <el-option value="4" label="数字有限空间"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="系统类型" prop="SystemType" :rules="[{ required: true, message: '请选择'}]"> 
+<!--                     <el-form-item label="系统类型" prop="SystemType" :rules="[{ required: true, message: '请选择'}]"> 
                         <el-select v-model="addData.SystemType">
                             <el-option v-for="item in systemTypeList" :key="item.ParamID" :value="item.ParamID" :label="item.Value"></el-option>
                         </el-select>
-                    </el-form-item>
+                    </el-form-item> -->
                     <el-form-item label="第三方ID" prop='OtherSourceID'>
                         <el-input v-model="addData.OtherSourceID"  autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="选择区域" prop='County'>
+                    <el-form-item label="选择区域" prop='Province' :rules="[{ required: true, message: '请选择'}]">
                         <el-select v-model="province" value-key="p" filterable style="width:160px;" @change="city = {}">
                             <el-option v-for="(item,i) in provins" :key="i" :value="item" :label="item.p">
                             </el-option>
@@ -70,7 +71,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="地址" prop='Address' :rules="[{ required: true, message: '输入'}]">
+                    <el-form-item label="地址" prop='Address'>
                         <el-input v-model="addData.Address" class="block"></el-input>
                     </el-form-item>
                     <el-form-item label="项目描述" prop='FDescribe'>
@@ -171,7 +172,7 @@ export default {
                 BuildArea:'',
                 BuildTypeName:null,
                 OtherSourceID:0,
-                SystemType:null,
+                SystemType:0,
                 OnlineDateTime:null,
                 Province:'',
                 City:'',
@@ -210,7 +211,7 @@ export default {
         this.defaultAddData = JSON.parse(JSON.stringify(this.addData))
         this.queryTORGGroupList()
         this.url = axios.defaults.baseURL
-        this.getSystemParam()
+        /* this.getSystemParam() */
         /* this.provinces = provinceList */
     },
     methods:{
@@ -241,7 +242,7 @@ export default {
         /**
          * 获取系统分类
          */
-        getSystemParam(){
+/*         getSystemParam(){
             System({
                 FAction:'GetSystemParam',
                 FName:'系统分类'
@@ -251,7 +252,7 @@ export default {
             }).catch((err) => {
                 
             });
-        },
+        }, */
         /**
          * 上传项目宣传图片
          */
@@ -283,25 +284,20 @@ export default {
             this.city = this.province.c&&this.province.c.find(item => item.n == row.City||item.n+'市' == row.City) || {}
             this.area = this.city.a&&this.city.a.find(item => item.s == row.County||item.s.slice(0,2) == row.County.slice(0,2)) || {}
         },
-        /**
-         * 新增或修改项目
-         */
-        async addOrUpdate(){
+        beforeSubmit(){
             let {addData,fileList,province,city,area} = this
             addData.FPublicityPhoto = fileList[0]||''
             addData.Province = province.p||''
             addData.City = city.n||''
             addData.County = area.s||''
-            addData.Address = addData.Province + addData.City + addData.County + addData.Address
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
+        },
+        /**
+         * 新增或修改项目
+         */
+        async addOrUpdate(){
+            let {addData} = this
             let myGeo = new BMap.Geocoder()
-            let address = addData.Address
+            let address = addData.Province + addData.City + addData.County + addData.Address
             await new Promise((resolve,reject) => {
                 myGeo.getPoint(address,point => {
                     try{
@@ -313,17 +309,12 @@ export default {
                     } 
                 })
             })
-            Project({
+            return Project({
                 FAction:'AddOrUpdateUProject',
                 IDStr:this.selectFrom.join(','),
                 uProject:addData
             })
-            .then((result) => {
-                this.$refs.table.queryData()
-                this.$refs.table.show = false
-            }).catch((err) => {
-                
-            });
+           
         },
         /**
          * 删除项目

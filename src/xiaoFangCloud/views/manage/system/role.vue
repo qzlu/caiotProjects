@@ -55,8 +55,8 @@
                 >
                     <template slot-scope="scoped">
                         <div>
-                            <span @click="update(scoped.row)" title="编辑"><i class="el-icon-document"></i></span>
-                            <span @click="deleteUser(scoped.row)"><i class="el-icon-delete"></i></span>
+                            <span @click="update(scoped.row)" title="编辑">编辑</span>
+                            <span @click="deleteUser(scoped.row)">删除</span>
                             <span @click="updateConfig(scoped.row)">权限</span>
                         </div>
                     </template>
