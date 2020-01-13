@@ -1,6 +1,6 @@
 <template>
     <el-container class="home" style="height:100%;padding: 10px 0;">
-      <el-header class="header" height='80px'>
+      <el-header class="header" height='80px;' style="overflow: hidden;">
           <div class="clearfix">
               <div class="app-logo l">
                   <router-link to="/">
@@ -13,7 +13,7 @@
                     <el-option
                       v-for="item in projectList"
                       :key="item.ProjectID"
-                      :label="item.ProjectName||0"
+                      :label="item.ShortName||0"
                       :value="item">
                     </el-option>
                   </el-select>
@@ -37,7 +37,7 @@
       </el-header>
       <el-container style="height:980px">
         <el-aside width="300px">
-          <div style="height:calc(100% - 20px);">
+          <div style="height:calc(100% - 20px);border:1px solid #327099;border-radius: 10px;">
               <el-scrollbar>
                   <el-menu unique-opened :default-active="$route.path" router>
                     <zw-nav :menus="menus">
@@ -83,7 +83,7 @@ export default {
           let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
           this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
           sessionStorage.setItem('projectID',this.project.ProjectID)
-          sessionStorage.setItem('projectName',this.project.ProjectName)
+          sessionStorage.setItem('projectName',this.project.ShortName)
           return this.$store.state.projectList
         }
         
@@ -111,7 +111,7 @@ export default {
         select(item){
           this.project = item
           sessionStorage.setItem('projectID',item.ProjectID)
-          sessionStorage.setItem('projectName',item.ProjectName)
+          sessionStorage.setItem('projectName',item.ShortName)
           location.reload()
         },
         deleteRoute(index){

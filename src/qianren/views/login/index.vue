@@ -11,7 +11,7 @@
 
       <div class="login_item">
         <div class="title">
-            <img src="../../assets/images/logo_2.png" />
+            <img src="../../assets/images/logo_3.png" />
         </div>
         <div class="lcen">
           <h1>用户登录</h1>

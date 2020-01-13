@@ -49,11 +49,12 @@ export default {
                     label:'系统名称'
                 },
             ],
-            defaultAddData:null, //新增默认数据
-            addData:{ //新增或修改项目参数
+            defaultAddData:{
                 ID:0,
                 FormName:null,
                 IconName:null,
+            }, //新增默认数据
+            addData:{ //新增或修改项目参数
             },
             iconList:[]
         }
@@ -62,7 +63,6 @@ export default {
         Table
     },
     created(){
-        this.defaultAddData = Object.assign({},this.addData)
         this.iconList = iconJson.glyphs
     },
     methods:{
@@ -88,6 +88,7 @@ export default {
          * 编辑
          */
         editItem(row){
+            this.beforeAdd()
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })

@@ -78,8 +78,6 @@ export default {
             filterText:'',
             tableData:[],
             pageIndex:1,
-            name:"xiaoming"
-
         }
     },
     props:{

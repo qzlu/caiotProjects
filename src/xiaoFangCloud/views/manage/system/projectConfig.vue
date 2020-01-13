@@ -82,11 +82,11 @@
                             <div class="delete">
                                 <i class="el-icon-delete" @click="fileList = [] "></i>
                             </div>
-                            <img :src="url.replace(/\/DigitalAPI/,'')+fileList[0]" alt="">
+                            <img :src="url.replace(/DigitalAPI/,'')+fileList[0]" alt="">
                         </div>
                         <el-upload
                           v-else
-                          :action="url+'FileUploadContext'"
+                          :action="url+'/FileUploadContext'"
                           list-type="picture-card"
                           :limit = '1'
                           :show-file-list="false"
@@ -141,6 +141,7 @@ export default {
                 {
                     prop: 'Address',
                     label: '详细地址',
+                    width:260
                 },
                 {
                     prop: 'BuildTypeName',
@@ -195,7 +196,7 @@ export default {
             province:{},
             city:{},
             area:{},
-            url:""
+            url:axios.defaults.baseURL
         }
     },
     components:{
@@ -210,8 +211,6 @@ export default {
         this.provins = citys
         this.defaultAddData = JSON.parse(JSON.stringify(this.addData))
         this.queryTORGGroupList()
-        this.url = axios.defaults.baseURL
-        /* this.getSystemParam() */
         /* this.provinces = provinceList */
     },
     methods:{
@@ -313,7 +312,7 @@ export default {
                 FAction:'AddOrUpdateUProject',
                 IDStr:this.selectFrom.join(','),
                 uProject:addData
-            })
+            },true)
            
         },
         /**
@@ -329,53 +328,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.el-dialog{
-    .add-block{
-        .thumb-img{
-            width: 165px;
-            height:128px;
-            position: relative;
-            border: 1px solid #05679e;
-            border-radius: 6px;
-            .delete{
-                display: none;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                line-height: 128px;
-                left: 0;
-                top: 0;
-                background: rgba($color: #000000, $alpha: 0.3);
-                cursor: pointer;
-                font-size: 40px;
-                text-align: center;
-                color: white;
-            }
-            img{
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .thumb-img:hover{
-            .delete{
-                display: block;
-            }
-        }
-        .el-upload--picture-card{
-            width:165px;
-            height:128px;
-            background:rgba(24,64,107,1);
-            border:1px solid rgba(5,103,158,1);
-            p{
-                line-height: 26px;
-                display: inline-block;
-                color: #9EE5F3;
-                i{
-                    font-size: 30px;
-                    color: #9EE5F3;
-                }
-            }
-        }
-    }
-}
 </style>

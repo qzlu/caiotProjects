@@ -48,7 +48,7 @@
     </div>
 </template>
 <script>
-import {Alarm,Device,System} from '@/xiaoFangCloud/request/api.js';
+import {Alarm,Device} from '@/xiaoFangCloud/request/api.js';
 import Table from '../layout/table.vue'
 export default {
     data(){
@@ -109,15 +109,6 @@ export default {
                 ID:0
             },
             addConfig:{ //新增或修改配置参数
-                DeviceID:null,
-                DataItemID:null,
-                AlarmTypeID:null,
-                DeviceName:null,
-                Duration:null,
-                TriggerType:null,
-                LimitValue:0,
-                IsEnable:true,
-                ID:0
             },
             device:{},//所选设备
             title:'新增',
@@ -168,7 +159,6 @@ export default {
                 })
                 .then((data) => {
                     this.dataItemList = data.FObject
-                    console.log(data)
                     resolve()
                 }).catch((err) => {
 
@@ -203,8 +193,7 @@ export default {
          * 点击新增
          */
         beforeAdd(){
-            this.show =true
-            this.addConfig = Object.assign({},this.defaultConfig)
+            this.addConfig = {...this.defaultConfig}
             this.device = {}
             this.title = '新增'
         },
@@ -212,8 +201,8 @@ export default {
          * 修改配置
          */
         async editItem(row) {
-            this.show = true
             this.title = '编辑'
+            this.addConfig = {...this.defaultConfig}
             await this.querySDataItemList(row.DeviceTypeID)
             Object.keys(this.addConfig).forEach(key => {
                 this.addConfig[key] = row[key]
@@ -228,7 +217,7 @@ export default {
             return Alarm({
                 FAction:'AddOrUpdateUAlarmSet',
                 uAlarmSet:this.addConfig
-            })
+            },true)
         },
         /**
          * 删除告警配置

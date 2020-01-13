@@ -12,7 +12,7 @@
       :showOperationColumn="false"
     >
       <template slot="operation">
-        <li class="l">
+        <li class="l" style="margin-left:378px;">
           <span class="label">设备名称</span>
           <el-input class="search-input" v-model="filterText"></el-input>
         </li>
@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import { Alarm, Device ,Project} from "@/xiaoFangCloud/request/api.js";
+import { Alarm, Device } from "@/xiaoFangCloud/request/api.js";
 const alarmLevel = ["全部", "提示", "一般", "严重"]
 import Table from '../layout/table.vue'
 export default {

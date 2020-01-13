@@ -1,82 +1,62 @@
 <template>
     <div class="report user">
-        <el-dialog  :title="type?'编辑':'新增'" :visible.sync="show" append-to-body width="695px" class="zw-dialog">
-            <el-form :model='addData' ref='form' inline>
-                <el-form-item label="用户名" prop="FContacts" :rules="[{ required: true, message: '请输入用户名'}]">
+        <Table
+          ref="table"
+          :tableLabel="tableLabel"
+          :getData="queryData"
+          @beforeAdd = 'beforeAdd'
+          @editItem = 'editItem'
+          :deleteRow="deleteItem"
+          :submitFun="addOrUpdate"
+        >
+            <el-form slot="dialog" :model='addData' ref='form' inline>
+                <el-form-item label="用户姓名" prop="FContacts" :rules="[{ required: true, message: '请输入用户名'}]">
                     <el-input v-model="addData.FContacts"></el-input>
                 </el-form-item>
-                <el-form-item label="账号" prop="FUserName" :rules="[{ required: true, message: '请输入账号'}]">
+                <el-form-item label="手机号码" prop="FTelephone" :rules="FTelephoneRule">
+                    <el-input v-model="addData.FTelephone"></el-input>
+                </el-form-item>
+                <el-form-item label="用户账号" prop="FUserName" :rules="[{ required: true, message: '请输入账号'}]">
                     <el-input v-model="addData.FUserName"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" >
+                    <el-input readonly value="123456"></el-input>
                 </el-form-item>
                 <el-form-item label="第三方账号" prop="FOtherAccount">
                     <el-input v-model="addData.FOtherAccount"></el-input>
                 </el-form-item>
-                <el-form-item label="电话号码" prop="FTelephone" :rules="FTelephoneRule">
-                    <el-input v-model="addData.FTelephone"></el-input>
-                </el-form-item>
-                <el-form-item label="角色" prop="FRoleGUID" :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item label="功能角色" prop="FRoleGUID" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FRoleGUID"   placeholder="请选择角色">
                     <el-option v-for="role in roleList" :key="role.FGUID" :label="role.FName" :value="role.FGUID"></el-option>
                   </el-select>
                 </el-form-item>
-<!--                 <el-form-item label="性别" prop="FGender" :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addData.FGender"   placeholder="请选择性别">
-                    <el-option  label="男" :value="1"></el-option>
-                    <el-option  label="女" :value="0"></el-option>
-                  </el-select>
-                </el-form-item> -->
-                <el-form-item v-if="!type" label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
+                <el-form-item label="管理角色" prop="FUserType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addData.FUserType"   placeholder="请选择角色">
                     <el-option v-for="(item,i) in userType" :key="i" :value="item.id" :label="item.name"></el-option>
                   </el-select>
                 </el-form-item>
+                <el-form-item v-if="addData.FUserType == 5" label="监管单位" prop="RegulatoryID" :rules="[{ required: true, message: '请选择'}]">
+                    <el-select v-model="addData.RegulatoryID" >
+                        <el-option v-for="item in regulatoryList" :key="item.ID" :value="item.ID" :label="item.Name"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item v-else label="所属集团" prop="BlocID" :rules="[{ required: true, message: '请选择'}]">
+                    <el-select v-model="addData.BlocID" >
+                        <el-option v-for="item in blockList" :key="item.BlocID" :value="item.BlocID" :label="item.ShortName"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="告警通知">
+                    <el-checkbox-group v-model="noticeList">
+                        <el-checkbox label="1">电话</el-checkbox>
+                        <el-checkbox label="2">短信</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
             </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="addOrUpdate()">确 定</el-button>
-                <el-button @click="show = false">取 消</el-button>
-            </span>
-        </el-dialog>
-        <div class="tab-content">
-            <ul class="operation clearfix" style="margin-top:20px;margin-bottom:10px;">
-                <li class="l" @click="beforeAdd"><el-button type='primary'><i class="el-icon-plus"></i>新增</el-button></li>
-                <li class="l" ><el-button type='primary'><i class="iconfont icon-Export"></i>导出</el-button></li>
-                <li class="r">
-                    <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
-                        <i class="el-icon-search" slot="suffix"></i>
-                    </el-input>
-                </li>
-            </ul>       
-            <div class="zw-table">
-                <el-table
-                 :data='tableData'
-                 :row-class-name="tableRowClassName"
-                >
-                    <el-table-column
-                      v-for="item in tableLabel"
-                      show-overflow-tooltip
-                      :key="item.prop"
-                      :prop="item.prop"
-                      :label="item.label"
-                      :width="item.width"
-                      :formatter="item.formatter"
-                     >
-                    </el-table-column>
-                    <el-table-column
-                        label="操作"
-                    >
-                        <template slot-scope="scoped">
-                            <div>
-                                <span title="初始化" @click="resetUser(scoped.row)">初始化</span>
-                                <span @click="update(scoped.row)" title="编辑">编辑</span>
-                                <span @click="deleteUser(scoped.row)" title="删除">删除</span>
-                                <span @click="queryTRoleBloc(scoped.row)">权限</span>
-                            </div>
-                        </template>
-                    </el-table-column>
-                </el-table>
-            </div>
-            <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination> 
-        </div>
+            <template slot="row-operation" slot-scope="scoped">
+                    <span title="初始化" @click="resetUser(scoped.row)">初始化</span>
+                    <span @click="queryTRoleBloc(scoped.row)">权限</span>
+            </template>
+        </Table>
         <el-dialog class="zw-dialog role-config" title="权限修改" :visible.sync="show1" append-to-body width="560px">
             <ul class="tab-header clearfix">
                 <li class="active l"><div>项目权限</div></li>
@@ -99,19 +79,23 @@
                 </tree-transfer>
             </div>
             <div slot="footer">
-                <el-button class="zw-btn zw-btn-primary" @click="UpdateTRoleProject()">确定</el-button>
                 <el-button class="zw-btn zw-btn-primary" @click="show1 = false">取消</el-button>
+                <el-button class="zw-btn zw-btn-primary" @click="UpdateTRoleProject()">确定</el-button>
             </div>
         </el-dialog> 
     </div>
 </template>
 <script>
-import table from '@/xiaoFangCloud/mixins/table.js'
 import {System} from '@/xiaoFangCloud/request/api.js';
 import {treeTransfer} from '@/components/index.js'
-const userType = ['',{id:1,name:'运营管理'},{id:2, name:'集团管理'},{id:3,name:'项目管理'},{id:4,name:'项目现场运维'}]
+const userType = ['',{id:1,name:'运营管理'},{id:2, name:'集团管理'},{id:3,name:'项目管理'},{id:4,name:'项目现场运维'},{id:5,name:'监管单位'}]
+import Table from '../layout/table.vue'
+const param = {
+    PageIndex:1,
+    PageSize:1000,
+    SearchKey:''
+}
 export default {
-    mixins:[table],
     data(){
         const phoneNumbre = (rule, value, callback) => {
             var isPhone = /^0?1[3|4|5|7|8][0-9]\d{8}$/;//手机号码
@@ -126,39 +110,30 @@ export default {
         return{
             tableLabel:[
                 {
-                    prop: 'RowIndex',
-                    label: '序号',
-                    width:80
-                },
-                {
                     prop: 'FContacts',
-                    label: '用户名'
+                    label: '用户姓名',
+                    width:120
                 },
                 {
                     prop: 'FUserName',
-                    label: '账号'
+                    label: '用户账号'
                 },
                 {
-                    prop: 'FSimpleName',
-                    label: '所属角色'
+                    prop: 'FTelephone',
+                    label: '手机号码'
                 },
                 {
                     prop: 'FOtherAccount',
                     label: '第三方账号',
                 },
-/*                 {
-                    prop: 'FCreateUser',
-                    label: '创建人',
-                }, */
                 {
-                    prop: 'FCreateTime',
-                    label: '创建时间',
-                    width:'160'
+                    prop: 'RoleName',
+                    label: '功能角色'
                 },
-/*                 {
-                    prop: 'FPassword',
-                    label: '密码'
-                } */
+                {
+                    prop: 'RBName',
+                    label: '所属集团/监管单位',
+                },
             ],
             roleList:[],
             userType:userType.slice(sessionStorage.getItem('FUserType')),
@@ -176,23 +151,12 @@ export default {
                 FRoleGUID:'',
                 FGUID:'00000000-0000-0000-0000-000000000000',
                 FDescribe:'',
-                FOtherAccount:''
+                FOtherAccount:'',
+                RegulatoryID:'',
+                BlocID:'',
+                FNotice:''
             },
             addData:{
-                FUserName:'',
-                FUserNickname:'',
-                FUserType:4,
-                FContacts:'',
-                FTelephone:'',
-                FEMailAddress:'',
-                FIMG:'',
-                FIdentityID:'',
-                FGender:null,
-                FIsOwners:0,
-                FRoleGUID:'',
-                FGUID:'00000000-0000-0000-0000-000000000000',
-                FDescribe:'',
-                FOtherAccount:''
             },
             FTelephoneRule:[{required: true, validator: phoneNumbre}], //联系方式规则
             show1:false,
@@ -202,47 +166,33 @@ export default {
                 label: 'Name'
             },
             defaultCheckProject: [], //已有权限的项目
+            blockList:[],
+            regulatoryList:[],
+            noticeList:['1','2'],
         }
     },
     components:{
-        treeTransfer
+        treeTransfer,
+        Table
     },
     created(){
 
     },
-    watch:{
-        filterText(val){
-            this.queryData()
-        },
-    },
     mounted(){
-        this.queryData()
         this.queryRole()
+        this.queryTORGGroupList()
+        this.queryPageURegulatory()
+        /* this.queryProject() */
     },
     methods:{
         /**
          * 分页查询用户
          */
-        queryData(){
-            System({
+        queryData(data){
+            return System({
                 FAction:'QueryPageTUsers',
-                SearchKey:this.filterText,
-                PageIndex:this.pageIndex,
-                PageSize:10
+                ...data
             })
-            .then((data) => {
-                this.total = data.FObject.FTotalCount || 0
-                this.tableData = data.FObject.Data || []
-                /**
-                 * 删除操作时，当前页面无数据时跳到上一页
-                 */
-                if(this.tableData.length === 0&&this.pageIndex > 1){
-                    --this.pageIndex
-                    this.queryData()
-                }
-            }).catch((err) => {
-                
-            });
         },
         queryRole(){
             System({
@@ -259,19 +209,57 @@ export default {
             });
         },
         /**
+         * —查询集团列表
+         */
+        queryTORGGroupList(){
+           System({
+               FAction:'QueryPageUBloc',
+               ...param
+           })
+            .then((result) => {
+                this.blockList = result.FObject.Data || []
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 查询监管单位
+         */
+        queryPageURegulatory(){
+            System({
+               FAction:'QueryPageURegulatory',
+               ...param
+            })
+            .then((result) => {
+                this.regulatoryList = result.FObject.Data || []
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 获取项目列表
+         */
+        queryProject(){
+            System({
+                FAction:'QuerUsersProject'
+            })
+            .then((result) => {
+                console.log(result)
+            }).catch((err) => {
+                
+            });
+        },
+        /**
          * 点击新增
          */
         beforeAdd(){
-            this.type = 0
-            this.show = true,
-            this.addData = Object.assign({},this.defaultData)
+            this.addData = {...this.defaultData}
         },
         /**
          * 编辑用户
          */
-        update(item){
-            this.show = true
-            this.type = 1
+        editItem(item){
+            this.addData = {...this.defaultData}
             for(let key in this.addData){
                 this.addData[key] = item [key]?item [key]:''
             }
@@ -280,26 +268,14 @@ export default {
          * 新增或修改账户
          */
         async addOrUpdate(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
-            this.show  = false
             this.addData.FUserNickname =  this.addData.FContacts
-            System({
+            this.addData.FNotice = this.noticeList.join('')
+            return System({
                 FAction:'AddOrUpdateTUsers',
                 RoleID:this.addData.FRoleGUID,
+                ProjectIDStr:"",
                 tUsers:this.addData
-            })
-            .then((data) => {
-                console.log(data);
-                this.queryData()
-            }).catch((err) => {
-                
-            });
+            },true)
         },
         /**
          * 初始化
@@ -357,10 +333,8 @@ export default {
                 FGUID:this.user.FGUID,
             })
             .then((data) => {
-                console.log(data);
                 this.projectList = data.FObject||[]
                 this.defaultCheckProject = this.findExist(this.projectList,'Data','ProjectID')
-                console.log(this.defaultCheckProject)
                 this.$nextTick(() => {
                     this.$refs.transfer1.$refs.tree1.filter()
                 })
@@ -429,17 +403,11 @@ export default {
         /**
          * 删除用户
          */
-        async deleteUser(row){
-            await this.beforeDelete()
-            System({
+        async deleteItem(row){
+            return System({
                 FAction:'DeleteTUsers',
                 UserID:row.FGUID
             })
-            .then((data) => {
-                this.queryData()
-            }).catch((err) => {
-                
-            });
         }
     }
 }

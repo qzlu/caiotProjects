@@ -323,7 +323,7 @@ export default {
         margin: 20px 0;
     }
     ul{
-        width: 1200px;
+        width: 1070px;
         /* height: 455px; */
         margin-left: 415px;
         background:rgba(14,49,83,1);

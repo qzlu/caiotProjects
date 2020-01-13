@@ -7,7 +7,8 @@ var global_callback = null;
  
 function initWebSocket(){ //初始化weosocket
     //ws地址
-    var wsuri = "ws://www.caszyj.com/DigitalAPI/WebSocket/";
+    var wsuri = "ws://172.172.172.37:8085/DigitalAPI/WebSocket/"
+    /* var wsuri = "ws://www.caszyj.com/DigitalAPI/WebSocket/"; */
     websock = new WebSocket(wsuri);
     websock.onmessage = function(e){
         websocketonmessage(e);

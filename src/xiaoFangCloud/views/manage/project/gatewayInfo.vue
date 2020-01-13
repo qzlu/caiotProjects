@@ -15,9 +15,10 @@
                     <el-input v-model="addInfo.LDasName">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="网关位置" prop="Position" :rules="[{ required: true, message: '请输入'}]">
-                    <el-input v-model="addInfo.Position">
-                    </el-input>
+                <el-form-item label="区域名称" prop="AreaID" :rules="[{ required: true, message: '请选择'}]">
+                  <el-select v-model="addInfo.AreaID"  value-key="AreaID" filterable  placeholder="请选择" >
+                    <el-option v-for="list in areaList" :key="list.AreaID" :label="list.AreaName" :value="list.AreaID"></el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="ICCID" prop="LDasPhoneNumber">
                     <el-input v-model="addInfo.LDasPhoneNumber">
@@ -33,13 +34,13 @@
             </el-table-column>
             <el-table-column
               prop=""
-              width="200"
+              width="250"
               label="配置">
               <template slot-scope="scoped">
                   <div class="role-operation">
-                     <span class="pointer" @click="createLdasConfig(scoped.row)">生成LDAS</span>
-                     <span class="pointer" v-if="scoped.row.ConfigFileAddress !=''&&scoped.row.ConfigFileAddress !=null" @click="sendFile(scoped.row)">下发指令</span>
-                     <span style="color:#999;cursor: not-allowed;" v-else>下发指令</span>
+                     <el-button round class="pointer" @click="createLdasConfig(scoped.row)">生成LDAS</el-button>
+                     <el-button round class="pointer" v-if="scoped.row.ConfigFileAddress !=''&&scoped.row.ConfigFileAddress !=null" @click="sendFile(scoped.row)">下发指令</el-button>
+                     <el-button round style="color:#999;cursor: not-allowed;" v-else>下发指令</el-button>
                   </div>
               </template>
             </el-table-column>
@@ -54,6 +55,14 @@ export default {
         return{
             tableLabel:[
                 {
+                    prop:'BlocName',
+                    label:'集团名称'
+                },
+                {
+                    prop: 'ProjectName',
+                    label: '项目名称',
+                },
+                {
                     prop: 'LDasName',
                     label: '网关名称',
                 },
@@ -66,8 +75,8 @@ export default {
                     label: 'ICCID',
                 },
                 {
-                    prop: 'Position',
-                    label: '网关位置',
+                    prop: 'AreaName',
+                    label: '区域名称',
                 },
                 {
                     prop: 'IsEnable',
@@ -84,21 +93,12 @@ export default {
                 LDasPhoneNumber:null,
                 IsOnline:1,
                 IsMsgAlerts:1,
-                ConfigFileAddress:''
+                ConfigFileAddress:'',
+                AreaID:''
             },
             addInfo:{ //新增或修改网关
-                LDasID:null,
-                IsEnable:true,
-                LDasName:null,
-                Position:null,
-                LDasPhoneNumber:null,
-                IsOnline:1,
-                IsMsgAlerts:1,
-                ConfigFileAddress:''
-
             },
-            title:'新增',
-            show:false,
+            areaList:[],//区域
         }
     },
     components:{
@@ -110,6 +110,7 @@ export default {
         }
     },
     created(){
+        this.queryUAreaList()
     },
     methods:{
         /**
@@ -122,19 +123,28 @@ export default {
             })
         },
         /**
+         * 根据项目ID获取区域（66.获取所有区域）
+         */
+        queryUAreaList(){
+            Project({
+                FAction:'QueryUAreaList',
+            })
+            .then(data => {
+                this.areaList = data.FObject
+            })
+            .catch(err => {})
+        },
+        /**
          * 点击新增
          */
         beforeAdd(){
-            this.show =true
-            this.type = 0
-            this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.addInfo = {...this.defaultAddInfo}
         },
         /**
          * 修改网关
          */
         editItem(row) {
-            this.show = true
-            this.type = 1
+            this.addInfo = {...this.defaultAddInfo}
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
@@ -147,7 +157,7 @@ export default {
             return Project({
                 FAction:'AddOrUpdateULdas',
                 uLdas:this.addInfo
-            })
+            },true)
         },
         /**
          * 268.删除网关

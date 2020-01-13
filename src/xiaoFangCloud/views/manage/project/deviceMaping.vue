@@ -1,7 +1,16 @@
 <template>
     <div class="report">
-        <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="750px" class="zw-dialog">
-            <el-form :model="addInfo" inline ref="form">
+        <Table
+          ref="table"
+          :tableLabel="tableLabel"
+          :getData="queryData"
+          @beforeAdd = 'beforeAdd'
+          @editItem = 'editItem'
+          :deleteRow = 'deleteItem' 
+          :exportData="exportFile"
+          :submitFun="addOrUpdate"
+        >
+            <el-form slot="dialog" :model="addInfo" inline ref="form">
                 <el-form-item label="设备名称" prop="DeviceID" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="selectDevice"  value-key="DeviceID" filterable  placeholder="请选择" @change="select">
                     <el-option v-for="list in deviceList" :key="list.DeviceID" :label="list.DeviceName" :value="list"></el-option>
@@ -12,80 +21,31 @@
                     <el-option v-for="list in dataItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
                   </el-select>
                 </el-form-item>
-<!--                 <el-form-item label="仪表" prop="meter">
-                  <el-select v-model="meter"  value-key="MeterID" filterable  placeholder="请选择"  @change="selectMeter">
-                    <el-option v-for="list in meterList" :key="list.MeterID" :label="list.MeterName" :value="list"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="仪表数据标识" prop="meter">
-                  <el-select v-model="meterDataItemID"  value-key="" filterable  placeholder="请选择" >
-                    <el-option v-for="list in meterItemList" :key="list.DataItemID" :label="list.DataItemName" :value="list.DataItemID"></el-option>
-                  </el-select>
-                </el-form-item> -->
                 <el-form-item label="计算公式" prop="Expression" >
                     <el-input v-model="addInfo.Expression">
                     </el-input>
                 </el-form-item>
             </el-form>
-            <div slot="footer">
-                <el-button  @click="addOrUpdateUDeviceMapingData()">确定</el-button>
-                <el-button @click="show = false ">取消</el-button>
-            </div>
-        </el-dialog>    
-        <ul class="operation clearfix">
-            <li class="l"><el-button class="zw-btn zw-btn-add" @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l"><el-button class="zw-btn zw-btn-export" @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
-            <li class="r">
-                <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
-                    <i class="el-icon-search" slot="suffix"></i>
-                </el-input>
-            </li>
-        </ul>
-        <div class="zw-table">
-            <el-table
-               :data="tableData"
-               style="width: 100%"
-               header-row-class-name="el-table-header"
-               :row-class-name="tableRowClassName"
-               >
-               <el-table-column
-                 v-for="item in tableLabel"
-                 :key="item.prop"
-                 :prop="item.prop"
-                 :width="item.width"
-                 :label="item.label"
-                 :sortable="item.sortble"
-                 :formatter="item.formatter"
-                 show-overflow-tooltip
-                >
-               </el-table-column>
-               <el-table-column
-                 prop=""
-                 label="操作">
-                 <template slot-scope="scoped">
-                     <div class="role-operation">
-                        <span class="pointer" @click="updatedProject(scoped.row)">编辑</span>
-                        <span class="pointer" @click="deleteUDeviceMapingData(scoped.row)">删除</span>
-                     </div>
-                 </template>
-               </el-table-column>
-            </el-table>
-        </div>
-        <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination>
+        </Table>
     </div>
 </template>
 <script>
-import table from '@/xiaoFangCloud/mixins/table' //表格混入数据
 import {Project,System,Device } from '@/xiaoFangCloud/request/api.js';
+import Table from '../layout/table.vue'
 export default {
-    mixins:[table],
+    components:{
+        Table
+    },
     data(){
         return{
             tableLabel:[
                 {
-                    prop: 'RowIndex',
-                    label: '序号',
-                    width:80
+                    prop:'BlocName',
+                    label:'集团名称'
+                },
+                {
+                    prop: 'ProjectName',
+                    label: '项目名称',
                 },
                 {
                     prop: 'DeviceName',
@@ -102,18 +62,13 @@ export default {
             ],
             type:0,
             defaultAddInfo:{//新增区域映射参数默认数据
-                ProjectID:parseInt(localStorage.getItem('projectid')),
+                ProjectID:parseInt(sessionStorage.getItem('projectId')),
                 DeviceID:null,
                 DataItemID:null,
                 Expression:null,
                 ID:0,
             },
             addInfo:{ //新增或修改区域映射
-                ProjectID:null,
-                DeviceID:null,
-                DataItemID:null,
-                Expression:null,
-                ID:null,
             },
             title:'新增',
             areaList:[],
@@ -129,15 +84,11 @@ export default {
     computed:{
     },
     watch:{
-        filterText(val){
-            this.queryData()
-        },
         meterDataItemID(){
             this.addInfo.Expression =this.meterDataItemID && `[${this.meter.MeterID}_${this.meterDataItemID}]`
         }
     },
     created(){
-        this.queryData()
         this.queryUDevice()
         /* this.queryUMeter() */
     },
@@ -145,27 +96,11 @@ export default {
         /**
          *287.分页查询设备映射
          */
-        queryData(){
-            Project({
+        queryData(data){
+            return Project({
                 FAction:'QueryPageUDeviceMapingData',
-                SearchKey:this.filterText,
-                PageIndex:this.pageIndex,
-                PageSize:10
+                ...data
             })
-            .then((data) => {
-                this.total = data.FObject.FTotalCount || 0
-                this.tableData = data.FObject.Data || []
-                /**
-                 * 删除操作时，当前页面无数据时跳到上一页
-                 */
-                if(this.tableData.length === 0&&this.pageIndex > 1){
-                    --this.pageIndex
-                    this.queryData()
-                }
-            })
-            .catch((err) => {
-                
-            });
         },
         /**
          * 选择项目（新增弹框）
@@ -223,7 +158,6 @@ export default {
                 PageSize:10000
             })
             .then((data) => {
-                console.log(data)
                 this.meterList = data.FObject.Data || []
             }).catch((err) => {
                 
@@ -253,9 +187,7 @@ export default {
          * 点击新增
          */
         beforeAdd(){
-            this.show =true
-            this.type = 0
-            this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.addInfo = {...this.defaultAddInfo}
             this.selectDevice = {}
             this.meter = {}
             this.meterDataItemID = null
@@ -263,66 +195,41 @@ export default {
         /**
          * 修改设备映射
          */
-        async updatedProject(row) {
-            this.show = true
-            this.type = 1
-            this.selectDevice = {}
+        async editItem(row) {
+            this.beforeAdd()
             await this.queryUDevice()
             await this.querySDataItemsByDeviceTypeID(row.DeviceTypeID)
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
             this.$set(this.selectDevice,'DeviceID',row.DeviceID)
-            this.meter = {}
-            this.meterDataItemID = null
         },
         /**
          * 285.新增/修改设备映射
          */
-        addOrUpdateUDeviceMapingData(){
-            this.show = false
-            Project({
+        addOrUpdate(){
+            return Project({
                 FAction:'AddOrUPdateUDeviceMapingData',
                 uDeviceMapingData:this.addInfo
-            })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {
-                console.log(err);
-            })
+            },true)
         },
 
         /**
          * 286.删除设备映射
          */
-        async deleteUDeviceMapingData(row){
-            await this.beforeDelete()
-            Project({
+        async deleteItem(row){
+            return Project({
                 FAction:'DeleteUDeviceMapingData',
                 ID:row.ID
             })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {})
         },
         /**
          * exportFile 导出
          */
         exportFile(){
-            Project({
+            return Project({
                 FAction:'ExportExcelUDeviceMapingData',
                 SearchKey:this.filterText,
-            })
-            .then(data => {
-                this.downloadFile(data)
-            })
-            .catch(error => {
-                this.$message({
-                  type: 'error',
-                  message: '导出失败!请重试'
-                });
             })
         },
     }

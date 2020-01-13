@@ -26,8 +26,8 @@
                 </el-form-item>
                 <el-form-item label="是否检查" prop="IsInspection">
                     <el-select v-model="addInfo.IsInspection">
-                        <el-option  label="是" :value="true"></el-option>
-                        <el-option  label="否" :value="false"></el-option>
+                        <el-option  label="是" :value="1"></el-option>
+                        <el-option  label="否" :value="0"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -131,7 +131,7 @@ export default {
                 ZeroShowText:null,
                 DataGroupText:null,
                 ShowPosition:0,
-                IsInspection:null
+                IsInspection:0
             },
             title:'新增',
             show:false,

@@ -1,7 +1,17 @@
 <template>
     <div class="report">
-        <el-dialog :title="type?'编辑':'新增'" append-to-body :visible.sync="show" width="720px" class="zw-dialog data-item">
-            <el-form :model="addInfo" inline ref="form">
+        <Table
+          ref="table"
+          dialogWidth="720px"
+          :tableLabel="tableLabel"
+          :getData="queryData"
+          @beforeAdd = 'beforeAdd'
+          @editItem = 'editItem'
+          :deleteRow = 'deleteItem' 
+          :exportData="exportFile"
+          :submitFun="addOrUpdate"
+        >
+            <el-form slot="dialog" :model="addInfo" label-width="120px" inline ref="form">
                 <el-form-item label="数据标识" prop="DataItemName" :rules="[{ required: true, message: '请输入'}]">
                     <el-input v-model="addInfo.DataItemName">
                     </el-input>
@@ -28,66 +38,19 @@
                     <el-input type="number" v-model="addInfo.DecimalDigits"></el-input>
                 </el-form-item>
             </el-form>
-            <div class="submit" slot="footer">
-                <el-button  @click="addOrUpdate()">确定</el-button>
-                <el-button @click="show = false">取消</el-button>
-            </div>
-        </el-dialog>    
-        <ul class="operation clearfix">
-            <li class="l"><el-button  @click="beforeAdd"><i class="el-icon-plus"></i>新增</el-button></li>
-            <li class="l"><el-button  @click="exportFile"><i class="iconfont icon-Export"></i>导出</el-button></li>
-            <li class="r">
-                <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
-                    <i class="el-icon-search" slot="suffix"></i>
-                </el-input>
-            </li>
-        </ul>
-        <div class="zw-table">
-            <el-table
-               :data="tableData"
-               style="width: 100%"
-               header-row-class-name="el-table-header"
-               :row-class-name="tableRowClassName"
-               >
-               <el-table-column
-                 v-for="item in tableLabel"
-                 :key="item.prop"
-                 :prop="item.prop"
-                 :width="item.width"
-                 :label="item.label"
-                 :sortable="item.sortble"
-                 :formatter="item.formatter"
-                 show-overflow-tooltip
-                >
-               </el-table-column>
-               <el-table-column
-                 prop=""
-                 label="操作">
-                 <template slot-scope="scoped">
-                     <div class="role-operation">
-                        <span class="pointer" @click="updatedProject(scoped.row)">编辑</span>
-                        <span class="pointer" @click="deleteItem(scoped.row)">删除</span>
-                     </div>
-                 </template>
-               </el-table-column>
-            </el-table>
-        </div>
-        <zw-pagination @pageIndexChange='handleCurrentChange' :pageIndex='pageIndex' :total='total'></zw-pagination>
+        </Table>
     </div>
 </template>
 <script>
-import table from '@/xiaoFangCloud/mixins/table' //表格混入数据
 import {System} from '@/xiaoFangCloud/request/api.js';
+import Table from '../layout/table.vue'
 export default {
-    mixins:[table],
+    components:{
+        Table
+    },
     data(){
         return{
             tableLabel:[
-                {
-                    prop: 'RowIndex',
-                    label: '序号',
-                    width:80
-                },
                 {
                     prop:'DataItemName',
                     label:'数据标识名称'
@@ -115,7 +78,6 @@ export default {
                     label: '保留小数位数',
                 }
             ],
-            type:0,
             defaultAddInfo:{//新增项目参数默认数据
                 DataItemID:0,
                 DataItemName:null,
@@ -126,68 +88,34 @@ export default {
                 DecimalDigits:null
             },
             addInfo:{ //新增或修改项目参数
-                DataItemID:0,
-                DataItemName:null,
-                IsSumItem:null,
-                IsStatusItem:null,
-                Unit:null,
-                SaveCycle:null,
-                DecimalDigits:null
             },
-            title:'新增',
-    
         }
     },
     computed:{
     },
-    watch:{
-        filterText(val){
-            this.queryData()
-        }
-    },
     created(){
-        this.queryData()
     },
     methods:{
         /**
          * 334.标准配置-分页查询数据标识
          */
-        queryData(){
-            System({
+        queryData(data){
+            return System({
                 FAction:'QueryPageSDataItem',
-                SearchKey:this.filterText,
-                PageIndex:this.pageIndex,
-                PageSize:10
+                ...data
             })
-            .then((data) => {
-                this.total = data.FObject.FTotalCount || 0
-                this.tableData = data.FObject.Data || []
-                /**
-                 * 删除操作时，当前页面无数据时跳到上一页
-                 */
-                if(this.tableData.length === 0&&this.pageIndex > 1){
-                    --this.pageIndex
-                    this.queryData()
-                }
-            })
-            .catch((err) => {
-                
-            });
         },
         /**
          * 点击新增
          */
         beforeAdd(){
-            this.show =true
-            this.type = 0
-            this.addInfo = Object.assign({},this.defaultAddInfo)
+            this.addInfo = {...this.defaultAddInfo}
         },
         /**
          * 编辑
          */
-        updatedProject(row) {
-            this.show = true
-            this.type = 1
+        editItem(row) {
+            this.beforeAdd()
             Object.keys(this.addInfo).forEach(key => {
                 this.addInfo[key] = row[key]
             })
@@ -196,71 +124,31 @@ export default {
          * 335.标准配置-新增/修改数据标识
          */
         async addOrUpdate(){
-            await new Promise(resolve => {
-                this.$refs.form.validate((valid) => {
-                  if (valid) {
-                      resolve()
-                  } 
-                });
-            })
-            this.show = false
-            System({
+            return System({
                 FAction:'AddOrUpdateSDataItem',
                 sDataItem:this.addInfo
-            })
-            .then(data => {
-                this.$message({
-                  type: 'success',
-                  message: '配置成功！'
-                });
-                this.queryData()
-            })
-            .catch(err => {
-                console.log(err);
-            })
+            },true)
         },
         /**
          * 336.标准配置-删除数据标识
          */
         async deleteItem(row){
-            await this.beforeDelete()
-            System({
+            return System({
                 FAction:'DeleteSDataItem',
                 ID:row.DataItemID
             })
-            .then(data => {
-                this.queryData()
-            })
-            .catch(err => {})
         },
         /**
          * exportFile 导出
          */
         exportFile(){
-            System({
+            return System({
                 FAction:'ExportSDataItem',
                 SearchKey:this.filterText,
-            })
-            .then(data => {
-                this.downloadFile(data)
-            })
-            .catch(error => {
-                this.$message({
-                  type: 'error',
-                  message: '导出失败!请重试'
-                });
             })
         },
     }
 }
 </script>
 <style lang="scss">
-.data-item.zw-dialog {
-    .el-form-item {
-        .el-form-item__label{
-            width: 120px
-        }
-    }
-    
-}
 </style>

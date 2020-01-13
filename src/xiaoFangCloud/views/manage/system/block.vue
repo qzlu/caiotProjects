@@ -19,7 +19,7 @@
                     <el-input v-model="addData.ShortName"></el-input>
                 </el-form-item>
                 <el-form-item label="平台名称" prop="PlatformName">
-                    <el-input v-model="addData.PlatformName"></el-input>
+                    <el-input class="block" v-model="addData.PlatformName"></el-input>
                 </el-form-item>
                 <el-form-item  label="选择区域">
                     <el-select v-model="province" value-key="p" filterable style="width:160px;" @change="city = {}">
@@ -46,11 +46,11 @@
                         <div class="delete">
                             <i class="el-icon-delete" @click="fileList = [] "></i>
                         </div>
-                        <img :src="url.replace(/\/DigitalAPI/,'')+fileList[0]" alt="">
+                        <img :src="url.replace(/DigitalAPI/,'')+fileList[0]" alt="">
                     </div>
                     <el-upload
                       v-else
-                      :action="url+'FileUploadContext'"
+                      :action="url+'/FileUploadContext'"
                       list-type="picture-card"
                       :limit = '1'
                       :show-file-list="false"
@@ -90,16 +90,18 @@ export default {
                     label: '地址',
                 }
             ],
-            defaultAddData:null, //新增默认数据
-            addData:{ //新增或修改项目参数
+            defaultAddData:{
                 BlocID:'',
                 BlocName:null,
                 ShortName:null,
                 IndustryID:null,
                 FLogo:null,
-                PlatformName:'数字应急',
+                PlatformName:'数字应急云平台',
                 Describe:'',
                 Address:''
+            }, //新增默认数据
+            addData:{ //新增或修改项目参数
+
             },
             token:sessionStorage.getItem('FToken'),
             fileList:[],
@@ -107,16 +109,14 @@ export default {
             province:{},
             city:{},
             area:{},
-            url:''
+            url:axios.defaults.baseURL
         }
     },
     components:{
         Table
     },
     created(){
-        this.url = axios.defaults.baseURL
         this.provins = citys
-        this.defaultAddData = Object.assign({},this.addData)
     },
     methods:{
         /**
@@ -134,7 +134,7 @@ export default {
          * 点击新增
          */
         beforeAdd(){
-           this.addData = Object.assign({},this.defaultAddData)
+           this.addData = {...this.defaultAddData}
            this.fileList = []
            this.province = {}
            this.city = {}
@@ -145,13 +145,10 @@ export default {
          * 编辑
          */
         editItem(row){
-            this.fileList = []
+            this.beforeAdd()
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })
-           this.province = {}
-           this.city = {}
-           this.area = {}
            row.FLogo&&this.fileList.push(row.FLogo)
         },
         /**
@@ -202,48 +199,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.el-dialog{
-    .add-block{
-        .thumb-img{
-            width: 165px;
-            height:128px;
-            position: relative;
-            border: 1px solid #05679e;
-            border-radius: 6px;
-            .delete{
-                display: none;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                line-height: 128px;
-                left: 0;
-                top: 0;
-                background: rgba($color: #000000, $alpha: 0.3);
-                cursor: pointer;
-                font-size: 40px;
-                text-align: center;
-                color: white;
-            }
-            img{
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .thumb-img:hover{
-            .delete{
-                display: block;
-            }
-        }
-        .el-upload--picture-card{
-            width:165px;
-            height:128px;
-            background:rgba(24,64,107,1);
-            border:1px solid rgba(5,103,158,1);
-            p{
-                line-height: 26px;
-                display: inline-block;
-            }
-        }
-    }
-}
 </style>

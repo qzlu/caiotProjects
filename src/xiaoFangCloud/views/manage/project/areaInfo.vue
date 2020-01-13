@@ -33,7 +33,7 @@ export default {
             tableLabel:[
                 {
                     prop:'BlocName',
-                    label:'集团全称'
+                    label:'集团名称'
                 },
                 {
                     prop: 'ProjectName',
@@ -48,12 +48,13 @@ export default {
                     label: '区域位置',
                 }
             ],
-            defaultAddData:null, //新增默认数据
-            projectName:sessionStorage.getItem('projectName'),
-            addData:{ //新增或修改项目参数
+            defaultAddData:{
                 AreaID:null,
                 AreaName:null,
                 Position:null,
+            }, //新增默认数据
+            projectName:sessionStorage.getItem('projectName'),
+            addData:{ //新增或修改项目参数
             },
         }
     },
@@ -61,7 +62,6 @@ export default {
         Table
     },
     created(){
-        this.defaultAddData = Object.assign({},this.addData)
     },
     methods:{
         /**
@@ -79,13 +79,14 @@ export default {
          * 点击新增
          */
         beforeAdd(){
-           this.addData = Object.assign({},this.defaultAddData)
+           this.addData = {...this.defaultAddData}
 
         },
         /**
          * 编辑
          */
         editItem(row){
+            this.addData = {...this.defaultAddData}
             Object.keys(this.addData).forEach(key => {
                 this.addData[key] = row[key] || ''
             })

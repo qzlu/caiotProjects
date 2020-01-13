@@ -122,6 +122,20 @@ export default new Router({
                         name:'系统分类'
                     }
                 },
+                {
+                    path:'Regulatory', //监管单位
+                    component: () => import('@/xiaoFangCloud/views/manage/project/Regulatory.vue'),
+                    meta:{
+                        name:'监管单位'
+                    }
+                },
+                {
+                    path:'SDeviceTypeDataItem', //设备参数
+                    component: () => import('@/xiaoFangCloud/views/manage/config/SDeviceTypeDataItem.vue'),
+                    meta:{
+                        name:'设备参数'
+                    }
+                },
                 /************************************系统管理 ********************************************/
                 {
                     path:'UserManagement' , //用户管理
