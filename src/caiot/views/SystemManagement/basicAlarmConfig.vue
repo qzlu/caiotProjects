@@ -2,16 +2,15 @@
     <div class="report inspection-item">
         <el-dialog :title="title" :visible.sync="show" width="650px" class="zw-dialog">
             <el-form :model="addConfig" ref="form" inline>
-                <el-form-item label="设备名称"  prop='DeviceID'  :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="device" v-if='title ==="新增"' value-key="DeviceID" filterable  placeholder="请选择" @change="selectDevice">
-                    <el-option v-for="device in deviceList" :key="device.DeviceID" :label="device.DeviceName" :value="device"></el-option>
-                  </el-select>
-                  <span v-else>{{device.DeviceName}}</span>
+                <el-form-item label="设备类型" prop="DeviceTypeID" :rules="[{ required: true, message: '请选择'}]">
+                    <el-select v-model="addConfig.DeviceTypeID" :readonly='title == "编辑"' rules="[{ required: true, message: '请选择'}]" @change="querySDataItemsByDeviceTypeID">
+                        <el-option v-for="(item,i) in deviceTypeList" :key="i" :label="item.DeviceTypeName" :value="item.DeviceTypeID"></el-option>
+                    </el-select>
                 </el-form-item>
-                <el-form-item label="数据标识" prop="DataItemID" filterable :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="addConfig.DataItemID" filterable  placeholder="请选择">
-                    <el-option v-for="item in device.mDeviceDataItems?device.mDeviceDataItems:[]" :key="item.DataItemID" :label="item.DataItemName" :value="item.DataItemID"></el-option>
-                  </el-select>
+                <el-form-item label="数据标识" prop="DataItemID" :rules="[{ required: true, message: '请选择'}]">
+                   <el-select v-model="addConfig.DataItemID" value-key="DataItemID">
+                       <el-option v-for="(item,i) in dataItemList" :key="i" :label="item.DataItemName" :value="item.DataItemID"></el-option>
+                   </el-select>
                 </el-form-item>
                 <el-form-item label="告警类型" prop="AlarmType" :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addConfig.AlarmType" filterable   placeholder="请选择">
@@ -42,8 +41,7 @@
         </el-dialog>    
         <ul class="report-header clearfix">
             <li class="l"><button class="zw-btn zw-btn-add" @click="beforeAdd">新增</button></li>
-            <li class="l"><button class="zw-btn zw-btn-export" @click="exportFile">导出</button></li>
-            <li class="l"><button class="zw-btn zw-btn-import" @click="importUDeviceAlarmSet">导入标准</button></li>
+            <!-- <li class="l"><button class="zw-btn zw-btn-export" @click="exportFile">导出</button></li> -->
             <li class="r">
                 <el-input class="search-input" placeholder="搜索关键字" v-model="filterText">
                     <i class="el-icon-search" slot="suffix"></i>
@@ -86,11 +84,9 @@
 <script>
 import table from '@/caiot/mixins/table' //表格混入数据
 import {Alarm,Device,system} from '@/caiot/request/api.js';
-import {zwBorder} from '@/components/index.js'
 export default {
     mixins:[table],
     components:{
-        zwBorder
     },
     data(){
         return{
@@ -100,8 +96,8 @@ export default {
                     label: '序号'
                 },
                 {
-                    prop:'DeviceName',
-                    label:'设备名称'
+                    prop:'DeviceTypeName',
+                    label:'设备类型'
                 },
                 {
                     prop: 'DataItemName',
@@ -138,17 +134,7 @@ export default {
             alarmLevel:['','提示','一般','严重'],
             type:['>','<','='],
             defaultConfig:{//新增配置参数默认数据
-                DeviceID:null,
-                DataItemID:null,
-                AlarmType:null,
-                Duration:null,
-                TriggerType:null,
-                LimitValue:0,
-                IsEnable:true,
-                IDStr:null
-            },
-            addConfig:{ //新增或修改配置参数
-                DeviceID:null,
+                DeviceTypeID:null,
                 DataItemID:null,
                 AlarmType:null,
                 Duration:null,
@@ -157,10 +143,13 @@ export default {
                 IsEnable:true,
                 IDStr:''
             },
+            addConfig:{ //新增或修改配置参数
+            },
             device:{},//所选设备
             title:'新增',
             show:false,
-            deviceList:[],
+            deviceTypeList:[],
+            dataItemList:[],
             alarmTypeList:[]
         }
     },
@@ -171,8 +160,8 @@ export default {
     },
     created(){
         this.queryData()
-        this.queryDeviceAndDataItem()
         this.querySystemAlarmType()
+        this.queryDeviceType()
     },
     methods:{
         /**
@@ -180,7 +169,7 @@ export default {
          */
         queryData(){
             Alarm({
-                FAction:'QueryUAlarmSet',
+                FAction:'QueryPageUDeviceTypeAlarmSet',
                 SearchKey:this.filterText,
                 PageIndex:this.pageIndex,
                 PageSize:10
@@ -201,6 +190,19 @@ export default {
             });
         },
         /**
+         * 241.获取设备类型
+         */
+        queryDeviceType(){
+            system({
+                FAction:'QueryDeviceType',
+            })
+            .then((result) => {
+                this.deviceTypeList = result.FObject
+            }).catch((err) => {
+                
+            });
+        },
+        /**
          * handleCurrentChange 页码改变时触发
          */
         handleCurrentChange(val){
@@ -210,13 +212,13 @@ export default {
         /**
          * 252.查询设备及设备相关数据项数据
          */
-        queryDeviceAndDataItem(){
-            Device({
-                FAction:'QueryDeviceAndDataItem',
+        querySDataItemsByDeviceTypeID(id){
+            system({
+                FAction:'QuerySDataItemsByDeviceTypeID',
+                DeviceTypeID:id
             })
             .then((data) => {
-                this.deviceList = data.FObject
-                let device = this.deviceList.find(item => item.name)
+                this.dataItemList = data.FObject
             }).catch((err) => {
                 
             });
@@ -236,17 +238,11 @@ export default {
             });
         },
         /**
-         * 选择设备
-         */
-        selectDevice(){
-            this.addConfig.DeviceID = this.device.DeviceID
-        },
-        /**
          * 点击新增
          */
         beforeAdd(){
             this.show =true
-            this.addConfig = Object.assign({},this.defaultConfig)
+            this.addConfig = {...this.defaultConfig}
             this.device = {}
             this.title = '新增'
         },
@@ -256,10 +252,11 @@ export default {
         updatedSet(row) {
             this.show = true
             this.title = '编辑'
+            this.addConfig = {...this.defaultConfig}
             Object.keys(this.addConfig).forEach(key => {
                 this.addConfig[key] = row[key]
             })
-            this.device = this.deviceList.find(item => item.DeviceID === row.DeviceID)
+            this.querySDataItemsByDeviceTypeID(row.DeviceTypeID)
         },
         /**
          * 249.新增或修改设备报警配置
@@ -267,9 +264,9 @@ export default {
         async addOrUpdateUAlarmSet(){
             this.show = false
             Alarm({
-                FAction:'AddOrUpdateUAlarmSet',
+                FAction:'AddOrUpdateUDeviceTypeAlarmSet',
                 IDStr:this.addConfig.IDStr,
-                mUAlarmSet:this.addConfig
+                mUDeviceTypeAlarmSet:this.addConfig
             })
             .then(data => {
                 this.$message({
@@ -279,33 +276,6 @@ export default {
                 this.queryData()
             })
             .catch(err => {})
-        },
-        async importUDeviceAlarmSet(){
-            await new Promise(resove => {
-                this.$DeleteMessage([`是否导入告警标准`,''])
-                .then(() => {
-                    resove()
-                })
-                .catch(error => {
-
-                })
-            })
-            Alarm({
-                FAction:'ImportUDeviceAlarmSet'
-            })
-            .then(data => {
-                this.$message({
-                  type: 'success',
-                  message: '导入成功!'
-                });
-                this.queryData()
-            })
-            .catch(err => {
-                this.$message({
-                  type: 'error',
-                  message: '导入失败!'
-                });
-            })
         },
         /**
          * 删除告警配置
@@ -321,8 +291,8 @@ export default {
                 })
             })
             Alarm({
-                FAction:'DeleteDeviceAndDataItem',
-                IDStr:`${row.ProjectID}_${row.DeviceID}_${row.DataItemID}_${row.AlarmType}`
+                FAction:'DeleteUDeviceTypeAlarmSet',
+                IDStr:row.IDStr
             })
             .then(data => {
                 this.$message({

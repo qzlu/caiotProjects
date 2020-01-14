@@ -2706,6 +2706,132 @@
       "font_class": "Carparkexit",
       "unicode": "e7dc",
       "unicode_decimal": 59356
+    },
+    {
+      "icon_id": "12695190",
+      "name": "SZYJ-Explosion",
+      "font_class": "SZYJ-Explosion",
+      "unicode": "e7dd",
+      "unicode_decimal": 59357
+    },
+    {
+      "icon_id": "12695191",
+      "name": "SZYJ-Electricity",
+      "font_class": "SZYJ-Electricity",
+      "unicode": "e7de",
+      "unicode_decimal": 59358
+    },
+    {
+      "icon_id": "12695192",
+      "name": "SZYJ-Smoke",
+      "font_class": "SZYJ-Smoke",
+      "unicode": "e7df",
+      "unicode_decimal": 59359
+    },
+    {
+      "icon_id": "12718421",
+      "name": "Switch map",
+      "font_class": "Switchmap",
+      "unicode": "e7e0",
+      "unicode_decimal": 59360
+    },
+    {
+      "icon_id": "12718433",
+      "name": "Emergency safety indicators",
+      "font_class": "Emergencysafetyindicators",
+      "unicode": "e7e1",
+      "unicode_decimal": 59361
+    },
+    {
+      "icon_id": "12718625",
+      "name": "Type statistics",
+      "font_class": "Typestatistics",
+      "unicode": "e7e2",
+      "unicode_decimal": 59362
+    },
+    {
+      "icon_id": "12755074",
+      "name": "Restored",
+      "font_class": "Restored",
+      "unicode": "e7e3",
+      "unicode_decimal": 59363
+    },
+    {
+      "icon_id": "12755075",
+      "name": "Not restored",
+      "font_class": "Notrestored",
+      "unicode": "e7e4",
+      "unicode_decimal": 59364
+    },
+    {
+      "icon_id": "12755754",
+      "name": "SZYJ-Charging pile",
+      "font_class": "SZYJ-Chargingpile",
+      "unicode": "e7e5",
+      "unicode_decimal": 59365
+    },
+    {
+      "icon_id": "12755755",
+      "name": "SZYJ-Fire fighting",
+      "font_class": "SZYJ-Firefighting",
+      "unicode": "e7e6",
+      "unicode_decimal": 59366
+    },
+    {
+      "icon_id": "12755756",
+      "name": "SZYJ-elevator",
+      "font_class": "SZYJ-elevator",
+      "unicode": "e7e7",
+      "unicode_decimal": 59367
+    },
+    {
+      "icon_id": "12755757",
+      "name": "Rescue-line",
+      "font_class": "Rescue-line",
+      "unicode": "e7e8",
+      "unicode_decimal": 59368
+    },
+    {
+      "icon_id": "12755758",
+      "name": "SZYJ-Hazardous",
+      "font_class": "SZYJ-Hazardous",
+      "unicode": "e7e9",
+      "unicode_decimal": 59369
+    },
+    {
+      "icon_id": "12755759",
+      "name": "Application-line",
+      "font_class": "Application-line",
+      "unicode": "e7ea",
+      "unicode_decimal": 59370
+    },
+    {
+      "icon_id": "12755760",
+      "name": "Application-surface",
+      "font_class": "Application-surface",
+      "unicode": "e7eb",
+      "unicode_decimal": 59371
+    },
+    {
+      "icon_id": "12755761",
+      "name": "Rescue-surface",
+      "font_class": "Rescue-surface",
+      "unicode": "e7ec",
+      "unicode_decimal": 59372
+    },
+    {
+      "icon_id": "12761043",
+      "name": "Rescuer",
+      "font_class": "Rescuer",
+      "unicode": "e7ed",
+      "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "12814597",
+      "name": "Water tank",
+      "font_class": "Watertank",
+      "unicode": "e7ee",
+      "unicode_decimal": 59374
     }
   ]
 }

@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="clearfix lift-list" v-else>
-                <h4><i class="iconfont icon-Equipment"></i>设备列表</h4>
+                <h4><i class="iconfont icon-Equipment"></i>设备列表({{data[0]?data[0].data.length:0}})</h4>
                 <ul>
-                  <li :class="{alarm:item.IsAlarm}"  v-for="(item,i) in data[0]?data[0].data:[]"  :key="i">
+                  <li :class="['l',{alarm:item.IsAlarm}]"  v-for="(item,i) in data[0]?data[0].data:[]"  :key="i">
                     <i
                       :class="{r:true, 'el-icon-star-off':!item.IsFocus,'el-icon-star-on':item.IsFocus}"
                       @click.stop="addOrDeleteUFocusMonitor(item)"

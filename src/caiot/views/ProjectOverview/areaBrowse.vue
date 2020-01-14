@@ -91,6 +91,11 @@ export default {
         leftSide
     },
     created(){
+        try {
+            this.activeArea = JSON.parse(sessionStorage.getItem('activeArea'))
+        } catch (error) {
+            this.activeArea = null
+        }
         this.queryUAreaDeviceByCount()
     },
     beforeDestroy(){
@@ -119,7 +124,13 @@ export default {
             })
             .then((result) => {
                 this.areaCount = result.FObject
-                !this.activeArea && (this.activeArea = this.areaCount[0])
+                if(this.activeArea){
+                    this.activeArea = this.areaCount.find(item => item.AreaID == this.activeArea.AreaID)||this.areaCount[0]
+                    let currentIndex = this.areaCount.findIndex(item => item.AreaID == this.activeArea.AreaID)
+                    this.lastIndex = currentIndex>4?currentIndex:4
+                }else{
+                    this.activeArea = this.areaCount[0]
+                }
                 this.getPrjSingleInfo(load)
                 this.timer = setTimeout(this.queryUAreaDeviceByCount,10000)
             }).catch((err) => {
@@ -153,6 +164,7 @@ export default {
          */
         selectArea(item){
             this.activeArea = item
+             sessionStorage.setItem('activeArea',JSON.stringify(item))
             this.getPrjSingleInfo(true)
         },
     }
