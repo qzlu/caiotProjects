@@ -3,10 +3,9 @@
         <el-dialog :title="title" :visible.sync="show" width="650px" class="zw-dialog">
             <el-form :model="addConfig" ref="form" inline>
                 <el-form-item label="设备名称"  prop='DeviceID'  :rules="[{ required: true, message: '请选择'}]">
-                  <el-select v-model="device" v-if='title ==="新增"' value-key="DeviceID" filterable  placeholder="请选择" @change="selectDevice">
+                  <el-select v-model="device" :disabled='title ==="编辑"' value-key="DeviceID" filterable  placeholder="请选择" @change="selectDevice">
                     <el-option v-for="device in deviceList" :key="device.DeviceID" :label="device.DeviceName" :value="device"></el-option>
                   </el-select>
-                  <span v-else>{{device.DeviceName}}</span>
                 </el-form-item>
                 <el-form-item label="数据标识" prop="DataItemID" filterable :rules="[{ required: true, message: '请选择'}]">
                   <el-select v-model="addConfig.DataItemID" filterable  placeholder="请选择">
@@ -113,7 +112,8 @@ export default {
                 },
                 {
                     prop: 'LimitValue',
-                    label: '限制值'
+                    label: '限制值',
+                    formatter:row => row.LimitValue + row.Unit
                 },
                 {
                     prop: 'TriggerType',
@@ -260,6 +260,7 @@ export default {
                 this.addConfig[key] = row[key]
             })
             this.device = this.deviceList.find(item => item.DeviceID === row.DeviceID)
+            console.log(this.device)
         },
         /**
          * 249.新增或修改设备报警配置

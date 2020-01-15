@@ -3,7 +3,7 @@
         <el-dialog :title="title" :visible.sync="show" width="650px" class="zw-dialog">
             <el-form :model="addConfig" ref="form" inline>
                 <el-form-item label="设备类型" prop="DeviceTypeID" :rules="[{ required: true, message: '请选择'}]">
-                    <el-select v-model="addConfig.DeviceTypeID" :readonly='title == "编辑"' rules="[{ required: true, message: '请选择'}]" @change="querySDataItemsByDeviceTypeID">
+                    <el-select v-model="addConfig.DeviceTypeID" :disabled='title == "编辑"' rules="[{ required: true, message: '请选择'}]" @change="querySDataItemsByDeviceTypeID">
                         <el-option v-for="(item,i) in deviceTypeList" :key="i" :label="item.DeviceTypeName" :value="item.DeviceTypeID"></el-option>
                     </el-select>
                 </el-form-item>
@@ -109,7 +109,8 @@ export default {
                 },
                 {
                     prop: 'LimitValue',
-                    label: '限制值'
+                    label: '限制值',
+                    formatter:row => row.LimitValue + row.Unit
                 },
                 {
                     prop: 'TriggerType',
