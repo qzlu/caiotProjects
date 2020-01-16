@@ -144,7 +144,7 @@ export default {
           },
           data:this.$props.data.columns
         },
-        yAxis: [
+        yAxis: this.$props.data.yAxis||[
           {
             type: "value",
             splitLine: { show: false }, //去除网格线

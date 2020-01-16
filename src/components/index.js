@@ -14,6 +14,7 @@ const Power = () =>  import('./power')
 const Water = () =>  import('./water')
 const zwBorder = () => import('./box-border')
 const zwCard1 = () => import('./card1')
+const radarChart = () => import('./radarChart')
 export{
     zwCard,
     zwPagination,
@@ -29,5 +30,6 @@ export{
     Power,
     Water,
     zwBorder,
-    zwCard1
+    zwCard1,
+    radarChart
 }

@@ -73,7 +73,7 @@ export default {
         }
         .border{
             height: 1px;
-            margin: 9px 25px 0 13px;
+            margin: 0px 25px 0 13px;
             background: #07A6FF;
         }
         .icon{

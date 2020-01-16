@@ -57,60 +57,44 @@ export default {
   },
   methods: {
     /**
-     * 绘制饼图
+     * 绘制雷达图
      * id 图形容器id
      * data 数据
      */
     showPieChart() {
       var dom = document.getElementById(this.id);
       !this.myChart&&(this.myChart = echarts.init(dom));
-      var app = {};
       var option = null;
-      app.title = "环形图"
       option = {
         tooltip: {
           trigger: "item",
           formatter: "{b}: {c} ({d}%)"
         },
-        legend: {
-          show:this.showLegend,
-          orient: "vertical",
-          x: this.$props.setting&&this.$props.setting.legend?this.$props.setting.legend.x:'195px',
-          y: "center",
-          textStyle: { color: "#fff" },
-          itemWidth: 13,
-          itemHeight: 13,
-          data: this.$props.data&&this.$props.data.columns  
+        radar: {
+            // shape: 'circle',
+            name: {
+                textStyle: {
+                    fontSize:16,
+                    color: '#F1F1F2',
+                }
+            },
+            splitNumber:4,
+            radius: 100,
+            indicator:this.$props.data&&this.$props.data.columns
         },
         series: this.series || [
           {
-            name: "访问来源",
-            type: "pie",
-            radius: ["50", "60"],
-            avoidLabelOverlap: true,
-            center:this.setting&&this.setting.center||['50%','50%'],
-            zlevel:10,
-            label: {
-              normal: this.label,
-              emphasis: {
-                show: true,
-                textStyle: {
-                  fontSize: "14",
-                  fontWeight: "bold"
-                }
-              }
+            type: 'radar',
+            lineStyle: {
+                width:6,
+                color:'#1CA7FF',
+                shadowColor: '#1CA7FF',
+                shadowBlur: 20
             },
-            labelLine: {
-              normal: {
-                show: true,
-                length:6,
-                length2:10 
-              },
-            },
+            // areaStyle: {normal: {}},
             data:this.$props.data.rows
           }
         ],
-        color:this.$props.color && this.$props.color,
       };
       if (option && typeof option === "object") {
         this.myChart.setOption(option, true);
