@@ -2825,6 +2825,34 @@
       "font_class": "Rescuer",
       "unicode": "e7ed",
       "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "12814597",
+      "name": "Water tank",
+      "font_class": "Watertank",
+      "unicode": "e7ee",
+      "unicode_decimal": 59374
+    },
+    {
+      "icon_id": "12827985",
+      "name": "MoreQR",
+      "font_class": "MoreQR",
+      "unicode": "e7ef",
+      "unicode_decimal": 59375
+    },
+    {
+      "icon_id": "12835272",
+      "name": "Reagent feeder",
+      "font_class": "Reagentfeeder",
+      "unicode": "e7f0",
+      "unicode_decimal": 59376
+    },
+    {
+      "icon_id": "12835312",
+      "name": "Blender",
+      "font_class": "Blender",
+      "unicode": "e7f1",
+      "unicode_decimal": 59377
     }
   ]
 }

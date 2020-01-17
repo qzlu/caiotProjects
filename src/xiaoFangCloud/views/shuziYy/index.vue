@@ -31,8 +31,34 @@
                 应急网络分布图
             </div>
             <div class="operation">
-                <span><i class="iconfont icon-Switchmap"></i></span>
+                <span @click="toggleMap()"><i class="iconfont icon-Switchmap"></i></span>
                 <span @click="fullScreen = !fullScreen"><i class="iconfont icon-Switchmap"></i></span>
+            </div>
+            <div :class="['radar']">
+                <div class="radar-map-container">
+                    <div id="radar-map" class="radar-map"></div>
+                    </div>
+                    <div class="changing-number-container" data-number="1234567890456"></div>
+                    <div class="risk-points"></div>
+                    <div class="scanning-circle">
+                        <div class="radar-scanner">
+                            <div class="inner-scanner"></div>
+                            <div class="outer-scanner">
+                                <div class="scanner-container">
+                                    <div class="umbrella"></div>
+                                    <div class="scanner-decoration">
+                                        <div class="thin-border"></div>
+                                        <div class="small-ellipse"></div>
+                                        <div class="small-ellipse"></div>
+                                        <div class="small-ellipse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div :class="['baidu-map',{'hidden':!showBMap}]">
+                <b-map></b-map>
             </div>
         </div>
         <div style="width:360px">
@@ -58,11 +84,15 @@
     </div>
 </template>
 <script>
-import {barChart,pieChart,radarChart,zwCard1} from '@/components/index.js'
+import {barChart,pieChart,radarChart,zwCard1,bMap} from '@/components/index.js'
 import gauge from './gauge.vue'
+import {Radar} from './radar.js'
+import('./radar.css')
+import china from '@/mapJson/allCity.json'
 export default {
     data(){
         return{
+            showBMap:false,
             sosCount:{
                 columns:['数字消防','数字电梯','数字充电桩','数字危化品'],
                 legend:{
@@ -185,7 +215,9 @@ export default {
             },
             activeIndex:0,
             scoreNumber:90,
-            fullScreen:false
+            fullScreen:false,
+            myChart:null,
+            radar:null
         }
     },
     components:{
@@ -193,12 +225,127 @@ export default {
         pieChart,
         radarChart,
         gauge,
-        zwCard1
+        zwCard1,
+        bMap
     },
     mounted(){
+        this.$nextTick(() => {
+            this.radar = new Radar(document.querySelector('.radar'));
+            this.radar.init({scanSpeed: 2})
+        })
+        setTimeout(() => {
+            this.showMap()
+        },1000)
         setInterval(() => {
             this.scoreNumber = Math.floor(Math.random(0,1)*100 + 1)
         },2000)
+    },
+    methods:{
+        toggleMap(){
+            this.radar.roamingToggle()
+            setTimeout(() => {
+                this.showBMap = !this.showBMap
+            })
+        },
+        /**
+         * 渲染地图
+         * @param {Array} mapArr 地图数据
+         */
+        showMap(){
+          if(!this.myChart){
+            var dom = document.getElementById('radar-map');
+            this.myChart = echarts.init(dom);
+          }else{
+              this.myChart.off('click')
+          }
+          echarts.registerMap('china',china)
+          var option = null;
+          option = {
+              tooltip: {
+                  trigger: 'item',
+              },
+              legend: {
+                  show:true,
+                  itemHeight:50,
+                  icon : 'triangle',//图例的形状
+              },
+              visualMap: {
+                  show:true,
+                  min: 0,
+                  max: 10,
+                  left: 'left',
+                  top: 'center',
+                  text: ['高','低'],           // 文本，默认为数值文本
+                  calculable: true,
+                  symbolSize:50,
+                  splitList: [   
+                        {start: 0, end: 100},  
+                  ],  
+                  color: ['#5475f5', '#9feaa5']  
+              },
+          	  dataRange: {
+                  show:false,
+                  orient: 'horizontal',
+                  min: 0,
+                  max: 100,
+                  text: ['高', '低'],           // 文本，默认为数值文本
+                  splitList: [   
+                   {start: 0, end: 50},
+                   {start: 50, end: 100},    
+                  ],  
+                  splitNumber: 0,
+                  color: ['#001869', '#001869']  
+              },
+              color:['red'],
+              animationDuration:1000,
+	          animationEasing:'cubicOut',
+	          animationDurationUpdate:1000,
+              series: [
+                    {
+                        name: '',
+                        type: 'map',
+                        map: 'china',
+                        roam:true,
+                        selectedMode:'single',
+                        showLegendSymbol:false,
+                        label: {
+                            normal: {
+                                color:'white',
+                                /* formatter: '{b}\n项目:{c}个', */
+                                formatter:data => {
+                                    if(data.value>0){
+                                        return data.name + '\n' +`项目：${data.value}`
+                                    }else{
+                                        return ''
+                                    }
+                                },
+                                position: 'right',
+                                show: true,
+                                lineHeight: 20,
+                            },
+                            emphasis: {
+                                color:'white',
+                                show: true,
+                                fontSize:'18'
+                            }
+                        },
+                        zoom:1.2,
+                        itemStyle: {
+                            normal: {
+                                areaColor: '#001869',
+                                borderColor: '#0E3D94'
+                            },
+                            emphasis: {
+                                areaColor: '#174CFF'
+                            }
+                        }
+                    },
+              ]
+          }
+          if (option && typeof option === "object") {
+              this.myChart.setOption(option, true);
+          }
+        },
     }
 }
 </script>
@@ -252,6 +399,7 @@ $url:'../../../assets/image/';
     .map-container{
         width: 764px;
         position: relative;
+        /* transform-style: preserve-3d; */
         transition: all 0.5s;
         div.title{
             width: 278px;
@@ -259,12 +407,15 @@ $url:'../../../assets/image/';
             line-height: 40px;
             font-size: 20px;
             margin: 5px auto 0 auto;
+            position: relative;
+            z-index: 10;
             background: url(#{$url}cloud/index/device-title.png);
         }
         .operation{
             position: absolute;
             top: 20px;
             right: 36px;
+            z-index: 10;
             span{
                 display: inline-block;
                 width:36px;
@@ -281,6 +432,27 @@ $url:'../../../assets/image/';
             span+span{
                 margin-left: 20px;
             }
+        }
+        .radar{
+            width: 680px;
+            height: 680px;
+            margin-top: 28px;
+            z-index: 8;
+            .radar-map{
+                width: 94%;
+            }
+        }
+        .baidu-map{
+            width:100%;
+            height: 100%;
+            position: absolute;
+            top:0px;
+            left:0px;
+            z-index: 9;
+            transition: all ease-in-out 0.5s
+        }
+        .baidu-map.hidden{
+            opacity: 0;
         }
     }
     .map-container.full-screen{
