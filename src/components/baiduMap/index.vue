@@ -6,6 +6,7 @@
 <script>
 //引入uuid文件
 import uuidv1 from 'uuid/v1'
+require('@/plugins/BMapLib_InfoBox.js')
 export default {
     data(){
         return{
@@ -33,6 +34,23 @@ export default {
 	        this.map.setCurrentCity("深圳");          // 设置地图显示的城市 此项是必须设置的
           this.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
           this.map.setMapStyle({style:'midnight'});
+          this.setInfoWindow()
+        },
+        setInfoWindow(){
+          let html = `
+            <div>
+              <h5>展厅烟感</h5>
+              <ul class="info-list">
+                <li><span class='label'>告警时间 : </span>2020-02-12</li>
+              </ul>
+            </div>
+          `
+          var infoBox = new BMapLib.InfoBox(this.map,html,{boxStyle:{background:"rgba(16,44,87,0.78)",width: "369px",height:"165px",color:"white",border:"1px solid #AFE0FF",borderRadius:"10px"},enableAutoPan: true
+          ,alignBottom: false});
+          let point = new BMap.Point(116.404, 39.915)
+          var marker = new BMap.Marker(point)
+          this.map.addOverlay(marker)
+          infoBox.open(marker)
         },
         setIcon(url,x = 32, y = 34){
           var myIcon = new BMap.Icon(url, new BMap.Size(x,y));
@@ -74,6 +92,23 @@ export default {
     height: 100%;
     .anchorBL{
       display:none;
+    }
+    .infoBox{
+      h5{
+        height:50px;
+        line-height:50px;
+        padding-left:25px;
+        background:rgba(57,75,115,0.5);
+        font-size:18px;
+        color:#00D294;
+      }
+      .info-list{
+        padding-left:10px;
+        line-height:34px;
+        font-size:16px;
+        color:#F1F1F2;
+
+      }
     } 
 }
 </style>

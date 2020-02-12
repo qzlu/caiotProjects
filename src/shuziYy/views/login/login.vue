@@ -8,7 +8,6 @@ import Login from '@/xiaoFangCloud/views/login/login.vue'
 export default {
     data(){
         return{
-
         }
     },
     components:{

@@ -34,7 +34,7 @@
                 <span @click="toggleMap()"><i class="iconfont icon-Switchmap"></i></span>
                 <span @click="fullScreen = !fullScreen"><i class="iconfont icon-Switchmap"></i></span>
             </div>
-            <div :class="['radar']">
+            <div :class="['radar']" v-if="false">
                 <div class="radar-map-container">
                     <div id="radar-map" class="radar-map"></div>
                     </div>
@@ -92,7 +92,7 @@ import china from '@/mapJson/allCity.json'
 export default {
     data(){
         return{
-            showBMap:false,
+            showBMap:true,
             sosCount:{
                 columns:['数字消防','数字电梯','数字充电桩','数字危化品'],
                 legend:{
@@ -239,6 +239,7 @@ export default {
         setInterval(() => {
             this.scoreNumber = Math.floor(Math.random(0,1)*100 + 1)
         },2000)
+        this.queryData()
     },
     methods:{
         toggleMap(){
@@ -346,6 +347,14 @@ export default {
               this.myChart.setOption(option, true);
           }
         },
+        handleData(data){
+            console.log(data)
+        },
+        queryData(){
+            this.$socket({
+                FAction:'QueryAllFormAllProject'
+            },this.handleData)
+        }
     }
 }
 </script>
