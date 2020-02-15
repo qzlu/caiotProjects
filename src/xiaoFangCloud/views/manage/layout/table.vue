@@ -1,6 +1,6 @@
 <template>
     <div class="report">
-       <ul class="operation">
+       <ul class="operation" v-if="showOperation">
            <li class="l" v-if="showAdd">
                <el-button :disabled="disabledAdd" @click="beforeAdd">
                    <i class="iconfont icon-Added"></i>新增
@@ -107,6 +107,10 @@ export default {
         deleteRow:Function, //删除
         exportData:Function, //导出
         showOperationColumn:{
+            default:true,
+            type:Boolean
+        },
+        showOperation:{
             default:true,
             type:Boolean
         }

@@ -5,7 +5,7 @@ import router from '../router'
 import { Loading } from 'element-ui';
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
-    axios.defaults.baseURL = 'http://172.172.172.37:8085/DigitalAPI';
+    axios.defaults.baseURL = 'http://47.106.64.130:8888/DigitalAPI';
 } 
 else if (process.env.NODE_ENV == 'debug') {    
     axios.defaults.baseURL = 'http://www.caszyj.com/DigitalAPI/';

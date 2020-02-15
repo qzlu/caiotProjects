@@ -8,7 +8,7 @@ var global_callback = null;
 function initWebSocket(){ //初始化weosocket
     //ws地址
     /* var wsuri = "ws://172.172.172.37:8085/DigitalAPI/WebSocket/" */
-    var wsuri = "ws://www.caszyj.com/DigitalAPI/WebSocket/";
+    var wsuri = "ws://47.106.64.130:8888/DigitalAPI/WebSocket/";
     websock = new WebSocket(wsuri);
     websock.onmessage = function(e){
         websocketonmessage(e);
@@ -63,8 +63,9 @@ function websocketonmessage(e){
     let data = JSON.parse(e.data)
     if(data.Result !=200){
         messageErr(data.Result,data.Message)
+    }else{
+        global_callback(data);
     }
-    global_callback(data);
 }
  
 //数据发送
