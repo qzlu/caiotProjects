@@ -10,14 +10,24 @@ router.beforeEach(async (to, from, next) => {
 	if (to.meta.title) {
 		document.title = to.meta.title;
 	}
-	let { token, projectID, showMenu } = to.query
+	let { token, projectID, showMenu, link } = to.query
 	if (token) {
 		localStorage.setItem('Token', token)
 		localStorage.setItem('inIframe', showMenu || 1)
 		await store.dispatch('tokenLogin')
 		await store.dispatch('getMenu')
 		store.dispatch('addRoute')
-		next(to.path)
+		let menuData
+		try {
+			menuData = JSON.parse(localStorage.getItem('menuData')) || []
+		} catch (error) {
+			menuData = []
+		}
+		if (menuData.length == 0) {
+			window.location.href = link
+		} else {
+			next(to.path)
+		}
 	}
 	if (projectID) {
 		localStorage.setItem('projectid', projectID)

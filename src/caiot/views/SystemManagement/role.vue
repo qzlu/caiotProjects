@@ -80,6 +80,7 @@
             <li class="l role-head-add" @click="add"><button class="zw-btn zw-btn-add">新增</button></li>
             <li class="l role-head-export" @click="exportFile"><button class="zw-btn zw-btn-export">导出</button></li>
             <li class="l role-head-refrest" @click="pageIndex=1;queryData()"><button class="zw-btn zw-btn-refrest">刷新</button></li>
+            <li class="l role-head-export" v-if="userName == 'zhys'" @click="importRole"><button class="zw-btn zw-btn-import">一键导入</button></li>
         </ul>
         <div class="role-table">
             <el-table
@@ -203,7 +204,8 @@ export default {
                 label: 'FMenuName'
             },
             showDelete:false,
-            checkStrictly:false
+            checkStrictly:false,
+            userName:localStorage.getItem('iuserName')
         }
     },
     components:{
@@ -544,6 +546,33 @@ export default {
                   message: '导出失败!请重试'
                 });
             })
+        },
+        /**
+         * 导入角色
+         */
+        async importRole(){
+            await new Promise(resolve => {
+                this.$DeleteMessage([`确定要导入角色`,'导入角色'])
+                .then(() => {
+                    resolve()
+                })
+                .catch(() => {
+                })
+            })
+            system({
+                FAction:"ImportXHRoles"
+            })
+            .then((result) => {
+                this.$message({
+                  type: 'success',
+                  message: '导入成功!'
+                });
+            }).catch((err) => {
+                this.$message({
+                  type: 'error',
+                  message: '导入失败!'
+                });
+            });
         }   
         
     }

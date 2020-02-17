@@ -84,6 +84,12 @@ export default {
           );
           return projectList;
         } else {
+          let project = this.$store.state.projectList.find(item => item.ProjectID == projectID)
+          if(!project){
+            this.project = this.$store.state.projectList[0].ProjectID
+            localStorage.setItem("projectid", this.project);
+            localStorage.setItem("projectname", this.$store.state.projectList[0].ShortName);
+          }
           return this.$store.state.projectList;
         }
       }
