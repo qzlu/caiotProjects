@@ -15,6 +15,8 @@ const Water = () =>  import('./water')
 const zwBorder = () => import('./box-border')
 const zwCard1 = () => import('./card1')
 const radarChart = () => import('./radarChart')
+const statuBox = () => import('./statuBox')
+const deviceParams = () => import('./deviceParams')
 export{
     zwCard,
     zwPagination,
@@ -31,5 +33,7 @@ export{
     Water,
     zwBorder,
     zwCard1,
-    radarChart
+    radarChart,
+    statuBox,
+    deviceParams
 }

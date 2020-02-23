@@ -8,7 +8,6 @@
       :tableLabel="tableLabel"
       :getData="queryData"
       :filter="false"
-      :exportData="exportFile"
       :showOperationColumn="false"
     >
       <template slot="operation">
@@ -47,7 +46,7 @@
   </div>
 </template>
 <script>
-import { Alarm, Device } from "@/xiaoFangCloud/request/api.js";
+import { Alarm, Device,Orders } from "@/xiaoFangCloud/request/api.js";
 const alarmLevel = ["全部", "提示", "一般", "严重"]
 import Table from '../layout/table.vue'
 const orderState={
@@ -68,17 +67,17 @@ export default {
       tableLabel: [
         {
             prop:'FormName',
-            label:'系统名称'
+            label:'应急系统'
         },
         {
-            prop: 'ShortName',
+            prop: 'ProjectName',
             label: '项目名称',
             width:160
         },
         {
-            prop: 'AlarmTime',
-            label: '告警时间',
-            width:160
+            prop: 'OrderID',
+            label: '救援单号',
+            width:120
         },
         {
             prop: 'DeviceName',
@@ -86,37 +85,35 @@ export default {
             width:160
         },
         {
-            prop: 'AlarmTypeName',
-            label: '告警类型',
+            prop:'AlarmTypeName',
+            label:'告警类型',
+            width:120
         },
         {
-            prop: 'Duration',
-            label: '告警级别',
-            formatter: (row)=> alarmLevel[row['AlarmLevel']]
-        },
-        {
-            prop:'AlarmText',
-            label:'告警内容',
+            prop:'AlarmTime',
+            label:'告警时间',
             width:160
         },
         {
-            prop:'AlarmData',
-            label:'当前值',
+            prop: 'OrderCreateDateTime',
+            label: '提单时间',
+            width:160
+        },
+        {
+            prop:'RunningOrderDateTime',
+            label:'到场时间',
+            width:160
+        },
+        {
+            prop:'EndOrderDateTime',
+            label:'完成时间',
+            width:160
         },
         {
             prop:'OrderState',
-            label:'确认进度',
+            label:'救援状态',
             formatter:(row, column, cellValue, index) => orderState[row.OrderState]
         },
-        {
-            prop:'ID',
-            label:'救援单号',
-        },
-        {
-            prop:'IsRecovery',
-            label:'告警状态',
-            formatter:(row, column, cellValue, index) => row.IsRecovery == 1?'已恢复':'未恢复'
-        }
       ],
       time: [new Date(), new Date()], //时间选择参数
       AlarmType: {}, //告警类型
@@ -141,9 +138,9 @@ export default {
   methods: {
     /*查询数据按钮*/
     queryData(data) {
-        return Alarm({
-          FAction: "QueryPageUAlarmListByDate",
-          DeviceName: this.filterText,
+        return Orders({
+          FAction: "QueryPageAlarmOrder",
+          SearchKey: this.filterText,
           StartDateTime: this.time[0].toLocaleDateString() + " 00:00",
           EndDateTime: this.time[1].toLocaleDateString() + " 23:59",
           FormID:this.systemId,

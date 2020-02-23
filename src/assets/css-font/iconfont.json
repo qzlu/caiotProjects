@@ -2853,6 +2853,27 @@
       "font_class": "Blender",
       "unicode": "e7f1",
       "unicode_decimal": 59377
+    },
+    {
+      "icon_id": "12874221",
+      "name": "Screen",
+      "font_class": "Screen",
+      "unicode": "e7f2",
+      "unicode_decimal": 59378
+    },
+    {
+      "icon_id": "13056179",
+      "name": "Close",
+      "font_class": "Close",
+      "unicode": "e7f3",
+      "unicode_decimal": 59379
+    },
+    {
+      "icon_id": "13056182",
+      "name": "Scale",
+      "font_class": "Scale",
+      "unicode": "e7f4",
+      "unicode_decimal": 59380
     }
   ]
 }

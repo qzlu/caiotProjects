@@ -1,23 +1,25 @@
 <template>
     <div>
         <div class="left-side l">
-            <div class="side-header clearfix">
-                <number class="l" :data="fireAlarmData?fireAlarmData.FTotalCount:0"></number>
-                <span>实时火警</span>
-            </div>
-            <div class="side-content">
+            <div class="side-content formList">
                  <el-scrollbar>
-                    <left-side :data="systemList"></left-side>
+                     <div :class="['form-item',{alarm:item.isAlarm}]" v-for="item in systemList" :key="item.ID">
+                        <zw-card1 :icon="item.IconName" :title="item.FormName">
+                            <div slot="header" class="r flex" style="align-items:center;font-size:24px;">
+                                <i class="iconfont icon-Equipment" style="font-size:24px;"></i>
+                                {{item.DeviceCount||0}}
+                            </div>
+                            <div style="height:190px;">
+                                <statu-box :data='item'></statu-box>
+                            </div>
+                        </zw-card1>
+                     </div>
                  </el-scrollbar>
             </div>
         </div>
         <div class="right-side r">
-            <div class="side-header clearfix">
-                <number class="l" :data="wariningData?wariningData.FTotalCount:0"></number>
-                <span>实时预警</span>
-            </div>
             <div class="side-content" v-if="formID == 1">
-                <div class="table">
+                <div class="table" style="height:100%">
                     <div class="title">
                       <i class="iconfont icon-FireAlarm"></i>
                       实时火警
@@ -26,52 +28,23 @@
                     <ul class="table-header">
                         <li v-for="(item,i) in tableLabel1" :key="i" :style="{'width':item.width}">{{item.label}}</li>
                     </ul>
-                    <div style="height:356px">
+                    <div style="height:calc(100% - 90px)">
                         <el-scrollbar>
                             <ul class="table-body">
-                                <li class="clearfix" v-for="(obj,i) in fireAlarmData?fireAlarmData.Data:[]" :key="i">
+                                <li class="clearfix" v-for="(obj,i) in fireAlarmData" :key="i">
                                     <div>
                                         <span v-for="(item,j) in tableLabel1" :key="j" :style="{'width':item.width,color:item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">
                                             {{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}
                                         </span>
                                     </div>
-                                    <div class="r" v-if='obj.OrderState == 4'>
+                                    <div class="r" v-if="obj.AlarmState == 0">
+                                        <el-button class="submit-alarm"  @click="changeAlarmState(obj,8)">确认告警</el-button>
                                         <el-button  @click="changeAlarmState(obj,7)">误报</el-button>
+                                        <el-button  @click="changeAlarmState(obj,0)">解除</el-button>
+                                    </div>
+                                    <div class="r" v-else-if='obj.OrderState == 4'>
                                         <el-button  @click="dispatchOrder(obj)">派单</el-button>
                                         <el-button  @click="changeAlarmState(obj,0)">解除</el-button>
-
-                                    </div>
-                                    <div class="r" v-else>
-                                        <el-button @click="queryOrderRecord(obj)">记录</el-button>
-                                        <el-button v-if="obj.OrderState == 7" @click="changeAlarmState(obj,0)">解除</el-button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </el-scrollbar>
-                    </div>
-                </div>
-                <div class="table" style="margin-top:11px">
-                    <div class="title">
-                      <i class="iconfont icon-SZXFY-Earlywarning"></i>
-                      实时预警
-                      <span class="r" @click="show1 = true;queryHistoryPageAlarm()">历史记录</span>
-                    </div>
-                    <ul class="table-header">
-                        <li v-for="(item,i) in tableLabel1" :key="i" :style="{'width':item.width}">{{item.label}}</li>
-                    </ul>
-                    <div style="height:356px">
-                        <el-scrollbar>
-                            <ul class="table-body">
-                                <li class="clearfix" v-for="(obj,i) in wariningData?wariningData.Data:[]" :key="i">
-                                    <div>
-                                        <span v-for="(item,j) in tableLabel1" :key="j" :style="{'width':item.width,color:item.color}" :title="item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]">
-                                            {{item.formatter?item.formatter.call(null,obj[item.prop]):obj[item.prop]}}
-                                        </span>
-                                    </div>
-                                    <div class="r" v-if='obj.OrderState == 4'>
-                                        <el-button @click="changeAlarmState(obj,7)">误报</el-button>
-                                        <el-button @click="dispatchOrder(obj)">派单</el-button>
-                                        <el-button @click="changeAlarmState(obj,0)">解除</el-button>
                                     </div>
                                     <div class="r" v-else>
                                         <el-button @click="queryOrderRecord(obj)">记录</el-button>
@@ -131,7 +104,7 @@
             </div>
         </el-dialog>
         <!-- 工单记录 -->
-        <el-dialog title="工单记录" class="zw-dialog show-detail" width="1050px" append-to-body :visible.sync="showDetail">
+        <el-dialog title="工单记录" class="zw-dialog show-detail" top="20px" width="1050px" append-to-body :visible.sync="showDetail">
             <el-scrollbar>
                 <div>
                     <div>
@@ -233,28 +206,18 @@
                 <h4>设备总况</h4>
                 <div class="type-list">
                     <el-scrollbar>
-                        <div v-for="(item,i) in count" :key="i">
-                            <h5 v-if="item.mProjectHomePageShowDevices.length&&formID != 2">
-                                <i :class="['iconfont',item.SystemParamIconName]"></i>
-                                <span>{{item.SystemParamName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
+                        <div class="l" v-for="(item,i) in count" :key="i">
+                            <h5 v-if="item.mProjectHomePageShowDevices.length">
+                                <i :class="['iconfont',item.IconName]"></i>
+                                <span>{{item.DeviceTypeName}}（{{item.mProjectHomePageShowDevices.length}}）</span>
                             </h5>
                             <ul class="device">
-                                <li :class="{alarm:device.DeviceColor == 5}" v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j">
-                                    <router-link :to="`/deviceDetaile/${formID}/${device.DeviceID}`">
-                                        <div :class="['icon',{'off-line':device.DeviceStatusName === '离线','red':device.DeviceStatusName === '故障'}]" :style="{'color':colors[device.DeviceColor]}">
-                                            <p><i :class="['iconfont',device.IconName]" ></i></p>
-                                            <p class="device-status">{{device.DeviceStatusName}}</p>
-                                        </div>
-                                        <div class="device-info">
-                                            <h6>{{device.DeviceName}}</h6>
-                                            <ul class="data-item">
-                                                <li v-for="(obj,m) in device.mDeviceHomePageShowPositions" :key="m">
-                                                    <p :style="{'color':colors[device.DeviceColor]}">{{(formID==2&&m==0)?statu[obj.ShowData]:obj.ShowData}}</p>
-                                                    <p>{{obj.ShowName}}<span v-if="obj.Unit">（{{obj.Unit}}）</span></p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </router-link>
+                                <li v-for="(device,j) in item.mProjectHomePageShowDevices" :key="j" @click="readDeviceDetail(device)">
+                                    <device-params 
+                                     :data="device"
+                                     :props="{children:'mDeviceHomePageShowPositions',position:'ShowPosition',value:'ShowData'}"
+                                    >
+                                    </device-params>
                                 </li>
                             </ul>
                         </div>
@@ -262,14 +225,18 @@
                 </div>
             </div>
         </div>
+        <el-dialog :modal="false" :title="deviceName" top="20px" :visible.sync="show2" width="1576px" class="device-detail-dialog zw-dialog">
+            <device-detaile :id="deviceID"></device-detaile>
+        </el-dialog>
     </div>
 </template>
 <script>
 import '@/assets/css/index.scss'
-import {number,zwTable} from '@/components/index.js'
-import {HomePage, Orders, Alarm} from '@/xiaoFangCloud/request/api.js'
+import {number,zwTable,zwCard1,statuBox,deviceParams} from '@/components/index.js'
+import {HomePage, Orders, Alarm,Project} from '@/xiaoFangCloud/request/api.js'
 import leftSide from './leftSide.vue'
 import table from '@/xiaoFangCloud/mixins/table.js'
+import deviceDetaile from '../shuziYy/deviceDetaile.vue'
 import formatDate from '@/utils/formatDate.js'
 let orderState = ['','待完成','已完成','待接单','待派单','已逾期','未完成','误报']
 export default {
@@ -280,11 +247,11 @@ export default {
             count:[],
             systemList:[], //系统列表（左侧数据）
             fireList:[], //火警信息列表（右侧数据）
-            fireAlarmData:null,
+            fireAlarmData:[],
             wariningData:null,
-            timer:null,
             show1:false,
             showDetail:false,
+            show2:false,
             userList:[],
             UserGUID:null,
             order:null,
@@ -323,7 +290,7 @@ export default {
                 },
                 {
                     label:'告警内容',
-                    prop:'AlarmText',
+                    prop:'OrderContent',
                     width:'50%'
                 },
                 {
@@ -388,14 +355,44 @@ export default {
                     width:'20%',
                     /* formatter: val => val == 1?'手动恢复':'自动恢复' */
                 }
-            ]
+            ],
+            basicInfo:[
+                { prop:'DeviceCode	',label:'设备编码'},
+                { prop:'Manufacturer',label:'生产厂商'},
+                { prop:'City',label:'区域名称'},
+                { prop:'FormName',label:'应急系统'},
+                { prop:'ProjectName',label:'项目名称'},
+                { prop:'Address',label:'项目地址'},
+                { prop:'ProjectName',label:'项目安全负责人'},
+                { prop:'RegulatoryName',label:'监管单位'},
+                { prop:'RegulatoryUser',label:'监管安全负责人'},
+                { prop:'PropertyName',label:'物联单位'},
+                { prop:'PropertyLeader',label:'物联负责人'},
+            ],
+            alarmLable:[
+                { prop:'AlarmTime',label:'告警时间'},
+                { prop:'AlarmTypeName',label:'告警类型'},
+                { prop:'ReceivingOrderDateTime',label:'确认时间'},
+                { prop:'AlarmState',label:'告警进度'},
+                { prop:'IsRecovery',label:'告警状态'},
+            ],
+            deviceInfo:{},
+            deviceAlarmInfo:{},
+            deviceEvent:[],
+            alarmData:[],
+            deviceID:0,
+            deviceName:'',
         }
     },
     props:['isOpen'],
     components:{
         number,
         zwTable,
-        leftSide
+        leftSide,
+        zwCard1,
+        statuBox,
+        deviceParams,
+        deviceDetaile
     },
     computed:{
         projectName(){
@@ -419,50 +416,31 @@ export default {
     mounted(){
 
     },
+    beforeDestroy(){
+        this.$websocket.close()
+    },
     methods:{
         queryData(){
             this.$socket({
-                FRouterName:'QueryProjectHomePageCount',
-                FAction:'QueryProjectHomePageCount',
-                FormID:this.formID
+                FAction:'QueryOneFormOneProject',
+                FormID:this.formID,
+                ProjectID:sessionStorage.getItem('projectID')
             },this.handleData)
         },
         handleData(data){
-            console.log(data)
-            if(data.FAction !="QueryProjectHomePageCount"){
+/*             if(data.FAction !="QueryProjectHomePageCount"){
                 this.setDeviceStatus(data)
                 return
-            }
-            [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
-            if(this.formID == 2&&this.count.length>1){
-                for(let i = 1; i<this.count.length ; i++ ){
-                    this.count[0].mProjectHomePageShowDevices.push(this.count[i].mProjectHomePageShowDevices)
-                }
-            }
-            let lastAlarmTime
-            //获取最新报警时间
-            if(this.wariningData.Data.length>0&&this.fireAlarmData.Data.length>0){
-               lastAlarmTime = this.wariningData.Data[0].AlarmTime > this.fireAlarmData.Data[0].AlarmTime? this.wariningData.Data[0].AlarmTime:this.fireAlarmData.Data[0].AlarmTime
-            }else if(this.wariningData.Data.length>0){
-                lastAlarmTime = this.wariningData.Data[0].AlarmTime
-            }else if(this.fireAlarmData.Data.length>0){
-                lastAlarmTime = this.fireAlarmData.Data[0].AlarmTime
-            }else{
-                lastAlarmTime = ''
-            }
-            if(this.lastAlarmTime ==''){
-                this.lastAlarmTime = lastAlarmTime
-            }
-            if(new Date(this.lastAlarmTime) < new Date(lastAlarmTime)){
-                this.lastAlarmTime = lastAlarmTime
-                this.alarmTimes = 0
-            }
-            let isAlarm = this.systemList.some(item => item.AlarmKind>0)
-            this.$nextTick(() => {
-                if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
-                    this.playWarn()
-                }
+            } */
+            /* [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject */
+            let result = data.FObject
+            this.systemList = result.QueryFormData
+            this.fireAlarmData = result.ProjectAlarmData
+            this.count = result.QueryDeviceListData
+            this.systemList.forEach(item => {
+                item.isAlarm = item.Data.some(obj => obj.AlarmCount>0)
             })
+            console.log(this.systemList)
         },
         /**
          * 设置电梯的状态
@@ -490,48 +468,11 @@ export default {
                 setTimeout(this.playWarn,3000)
             }
         },
-/*         queryData(){
-            HomePage({
-                FAction:'QueryProjectHomePageCount',
-                FormID:this.formID
-            })
-            .then((data) => {
-                [this.systemList,this.wariningData,this.fireAlarmData,this.count] = data.FObject&&data.FObject
-                let lastAlarmTime
-                //获取最新报警时间
-                if(this.wariningData.Data.length>0&&this.fireAlarmData.Data.length>0){
-                   lastAlarmTime = this.wariningData.Data[0].AlarmTime > this.fireAlarmData.Data[0].AlarmTime? this.wariningData.Data[0].AlarmTime:this.fireAlarmData.Data[0].AlarmTime
-                }else if(this.wariningData.Data.length>0){
-                    lastAlarmTime = this.wariningData.Data[0].AlarmTime
-                }else if(this.fireAlarmData.Data.length>0){
-                    lastAlarmTime = this.fireAlarmData.Data[0].AlarmTime
-                }else{
-                    lastAlarmTime = ''
-                }
-                if(this.lastAlarmTime ==''){
-                    this.lastAlarmTime = lastAlarmTime
-                }
-                if(new Date(this.lastAlarmTime) < new Date(lastAlarmTime)){
-                    this.lastAlarmTime = lastAlarmTime
-                    this.alarmTimes = 0
-                }
-                let isAlarm = this.systemList.some(item => item.AlarmKind>0)
-                this.$nextTick(() => {
-                    if(this.alarmTimes<3&&this.isOpen ==1 && isAlarm){
-                        this.myAudio.play()
-                        this.alarmTimes ++ //只报警三次
-                    }
-                })
-                this.timer = setTimeout(this.queryData,3000)
-            }).catch((err) => {
-                console.log(err)
-            });
-        }, */
         queryOrderyUser(item){
             console.log(item)
             Orders({
                 FAction:'QueryOrderyUser',
-                ID:item.ID,
+                ID:item.OrdersID,
                 IDStr:''
             })
             .then((data) => {
@@ -547,8 +488,9 @@ export default {
             this.queryOrderyUser(row)
         },
         async changeAlarmState(row,state){
-            if(state ==7 || state == 0){
-                let text = state == 7 ? '确认误报？':'确认解除？'
+            const stateText = {0:'确认解除？',7:'确认误报？',8:'确认告警'}
+            let text = stateText[state]
+            if(text){
                 await new Promise((resolve,reject) => {
                     this.$confirm(text, '提示', {
                       confirmButtonText: '确定',
@@ -564,7 +506,7 @@ export default {
             this.show = false
             Orders({
                 FAction:'UpdateOrderState',
-                ID:row.ID,
+                ID:row.OrdersID,
                 FState:state,
                 UserGUID:this.UserGUID
             })
@@ -594,7 +536,7 @@ export default {
         queryOrderRecord(row){
             Orders({
                 FAction:'QueryOrderRecord',
-                ID:row.ID
+                ID:row.OrdersID
             })
             .then((data) => {
                 this.workInfo = data.FObject
@@ -624,15 +566,82 @@ export default {
             this.pageIndex = val
             this.queryHistoryPageAlarm()
         },
+        /**
+         * 获取设备详情
+         */
+        queryDeviceBasisInfo(id){
+            HomePage({
+                FAction:'QueryDeviceBasisInfo',
+                DeviceID:id
+            })
+            .then((result) => {
+                this.deviceInfo = result.FObject[0]||{}
+                console.log(result)
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 546.设备详情--查询告警详情
+         */
+        queryAlarmInfo(id){
+            HomePage({
+                FAction:'QueryAlarmInfo',
+                DeviceID:id
+            })
+            .then((result) => {
+                this.deviceAlarmInfo = result.FObject[0]||{}
+                console.log(result)
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 查询设备大事记
+         */
+        queryUDeviceEvents(id){
+            Project({
+                FAction:'QueryUDeviceEvents',
+                DeviceID:id
+            })
+            .then((data) => {
+                this.deviceEvent = data.FObject.reverse()
+            }).catch((err) => {
+            });
+        },
+        /**
+         * 查看设备详情
+         */
+        readDeviceDetail(data){
+            this.show2 = true
+            this.deviceID = data.DeviceID
+            this.deviceName = data.DeviceName
+        }
 
     },
     beforeDestroy(){
-        clearTimeout(this.timer)
-        this.timer = null
+    
     }
 }
 </script>
 <style lang="scss" scoped>
+.left-side{
+    .formList{
+        .form-item{
+            background: rgba(5, 34, 86, 0.4);
+            -webkit-box-shadow: 0 0 8px 8px #052256 inset;
+            box-shadow: inset 0 0 8px 8px #052256;
+            border-radius: 10px 6px 6px 10px;
+        }
+        .form-item+.form-item{
+            margin-top: 10px;
+        }
+        .form-item.alarm{
+            background: rgba($color: #560505, $alpha: 0.2);
+            box-shadow: 0 0 100px 20px rgba(150, 14, 14, 0.3) inset;
+        }
+    }
+}
     .right-side{
         .side-content{
             .table{
@@ -683,6 +692,11 @@ export default {
                                 border:1px solid rgba(81, 128, 205, 0.82);
                                 border-radius:2px;
                                 color: #9EE5F3;
+                            }
+                            .el-button.submit-alarm{
+                                background: linear-gradient(56deg, rgba(105, 18, 32, 1), rgba(139, 27, 44, 1), rgba(176, 52, 70, 1), rgba(135, 26, 43, 1), rgba(105, 18, 32, 1));
+                                border: 1px solid rgba(220, 52, 87, 1);
+                                box-shadow: 0px 3px 10px 0px rgba(114, 20, 20, 0.36);
                             }
                         }
                     }
@@ -973,5 +987,6 @@ export default {
                 }
             }
         }
+
 </style>
 

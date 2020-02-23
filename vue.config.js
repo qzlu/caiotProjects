@@ -20,6 +20,11 @@ module.exports = {
                 test: /\.(js|css)/
             })
         ],
+        devServer: {
+            watchOptions: {
+                ignored: ['node_modules/**']
+            }
+        },
         externals:{
             echarts: 'echarts',
             html2canvas:'html2canvas',

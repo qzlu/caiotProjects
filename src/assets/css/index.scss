@@ -59,7 +59,7 @@ $url:'../image/cloud/index';
         }
     }
     .left-side,.right-side{
-        height: 994px;
+        height: 970px;
         .side-header{
             width: 366px;
             position: relative;
@@ -72,8 +72,7 @@ $url:'../image/cloud/index';
         }
         .side-content{
             width: 100%;
-            height: 911px;
-            padding-top: 6px;
+            height: 100%;
             .iconfont{
                 font-size: 28px;
                 margin-right: 8px;
@@ -214,7 +213,6 @@ $url:'../image/cloud/index';
         margin-left: 390px;
         margin-right: 425px;
         height: 974px;
-        padding-top: 20px;
         &-header{
             display: flex;
             justify-content: center;
@@ -279,7 +277,7 @@ $url:'../image/cloud/index';
                     font-size:18px;
                     font-family:MicrosoftYaHeiUI;
                     font-weight:400;
-                    color:rgba(165,239,252,1);
+                    color:#18a1ec;
                     .iconfont{
                         font-size: 24px;
                         margin-right: 10px;
@@ -293,6 +291,7 @@ $url:'../image/cloud/index';
                         height: 240px;
                         position: relative;
                         display: inline-block;
+                        cursor: pointer;
                         a{
                             display: block;
                             height: 100%;
@@ -339,7 +338,7 @@ $url:'../image/cloud/index';
                             }
                         }
                     }
-                    >li:not(.alarm):before{
+/*                     >li:not(.alarm):before{
                         display: block;
                         width: 193px;
                         height: 4px;
@@ -361,7 +360,7 @@ $url:'../image/cloud/index';
                         right: 4px;
                         content: '';
                         background: url(#{$url}/border-right.png);
-                    }
+                    } */
                 }
             }
         }

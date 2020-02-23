@@ -25,6 +25,7 @@ export default {
 </script>
 <style lang='scss'>
 .data-item{
+    cursor: pointer;
     &-name{
         width:81px;
         height:24px;

@@ -5,6 +5,7 @@
               :tableLabel="tableLabel"
               :getData='queryData'
               :filter='false'
+              dialogWidth="740px"
               @beforeAdd = 'beforeAdd'
               @editItem = 'editItem'
               :deleteRow = 'deleteItem'
@@ -12,7 +13,7 @@
               :beforeSubmit="beforeSubmit" 
               :submitFun="addOrUpdate"
             >
-                <el-form slot="dialog" :model="addData"  inline ref="form" class="add-block">
+                <el-form slot="dialog" :model="addData" label-width="130px"  inline ref="form" class="add-block">
                     <el-form-item label="项目全称" prop='ProjectName' :rules="[{ required: true, message: '请输入'}]">
                       <el-input v-model="addData.ProjectName" autocomplete="off"></el-input>
                     </el-form-item>
@@ -22,6 +23,11 @@
                     <el-form-item label="所属集团" prop="BlocID" :rules="[{ required: true, message: '请选择'}]">
                         <el-select v-model="addData.BlocID" >
                             <el-option v-for="item in blockList" :key="item.BlocID" :value="item.BlocID" :label="item.ShortName"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="项目安全负责人" prop="SecurityUser" :rules="[{ required: true, message: '请选择'}]">
+                        <el-select v-model="addData.SecurityUser" >
+                            <el-option v-for="item in userList" :key="item.FGUID" :value="item.FGUID" :label="item.FContacts"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="项目经理" prop='PropertyLeader'>
@@ -153,7 +159,7 @@ export default {
                 },
                 {
                     prop: 'PropertyLeader',
-                    label: '项目负责人',
+                    label: '项目经理',
                 },
                 {
                     prop: 'PropertyPhone',
@@ -185,6 +191,7 @@ export default {
                 PropertyName:'',
                 PropertyLeader:'',
                 PropertyPhone:'',
+                SecurityUser:''
             },
             fileList:[],
             token:sessionStorage.getItem('FToken'),
@@ -196,7 +203,8 @@ export default {
             province:{},
             city:{},
             area:{},
-            url:axios.defaults.baseURL
+            url:axios.defaults.baseURL,
+            userList:[]
         }
     },
     components:{
@@ -211,6 +219,7 @@ export default {
         this.provins = citys
         this.defaultAddData = JSON.parse(JSON.stringify(this.addData))
         this.queryTORGGroupList()
+        this.queryProjectUser()
         /* this.provinces = provinceList */
     },
     methods:{
@@ -234,6 +243,16 @@ export default {
            })
             .then((result) => {
                 this.blockList = result.FObject.Data || []
+            }).catch((err) => {
+                
+            });
+        },
+        queryProjectUser(){
+            System({
+                FAction:'QueryProjectUser'
+            })
+            .then((result) => {
+                this.userList = result.FObject
             }).catch((err) => {
                 
             });

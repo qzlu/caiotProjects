@@ -1,28 +1,58 @@
 <template>
-    <div class="map" :id="id">
-      <button>慝</button>
+    <div class="map" :style="style" :id="id">
     </div>
 </template>
 <script>
 //引入uuid文件
 import uuidv1 from 'uuid/v1'
 require('@/plugins/BMapLib_InfoBox.js')
+import formatDate from '@/utils/formatDate.js'
+const orderState={
+  1:'待完成',
+  2:'已完成',
+  3:'待接单',
+  4:'待派单',
+  5:'已逾期',
+  6:'未完成',
+  7:'误报',
+  8:'转单',
+  9:'到场',
+  10:'处理中'
+}
 export default {
     data(){
         return{
             id:'',
-            map:null
+            map:null,
+            ratioHeigt:null,
+            ratioWidth:null,
         }
+    },
+    computed:{
+      style(){
+        return {
+          width:`${1/this.ratioWidth*100}%`,
+          height:`${1/this.ratioHeigt*100}%`,
+          transform: "scale("+ this.ratioWidth + ',' + this.ratioHeigt + ") ",
+          transformOrigin: "left top ",
+        }
+      }
     },
     created(){
         this.id = uuidv1()
     },
     mounted(){
+        window.addEventListener('resize',this.getHeight)
+        this.getHeight()
         this.$nextTick(() => {
             this.initMap()
         })
     },
     methods:{
+        getHeight(){
+          this.ratioWidth = 1920/window.innerWidth
+          this.ratioHeigt=1080/window.innerHeight
+        },
         initMap(){
           this.map =  new BMap.Map(this.id)
           console.log(this.map)
@@ -38,26 +68,24 @@ export default {
         },
         setInfoWindow(data){
           let html
-          if(data.Data&&data.Data.length>0){
+          let isAlarm = data.Data&&data.Data.length>0
+          if(isAlarm){
             let alarmData = data.Data[0]
             let title = alarmData.AlarmText
-            function test(){
-              console.log(123)
-            }
             html = `
               <div class="alarm">
                 <h5 id="test">${title} </h5>
                 <ul class="info-list">
-                  <li><span class='label'>告警时间 : </span>${alarmData.AlarmTime}</li>
+                  <li><span class='label'>告警时间 : </span>${formatDate(alarmData.AlarmTime)}</li>
                   <li><span class='label'>告警类型 : </span>${alarmData.AlarmText}</li>
-                  <li><span class='label'>告警进度 : </span>${alarmData.OrderState}</li>
+                  <li><span class='label'>告警进度 : </span>${orderState[alarmData.OrderState]}</li>
                 </ul>
                 <div class="alarm-detail">
-                  <button>详情</button>
+                  <button id="${alarmData.AlarmID}">详情</button>
                 </div>
                 <ul class="info-list">
                   <li><span class='label'>项目名称 : </span>${data.ProjectName}</li>
-                  <li><span class='label'>项目名称 : </span>${data.ProjectName}</li>
+                  <li><span class='label'>项目地址 : </span>${data.Address}</li>
                   <li><span class='label'>安全负责人 : </span>${data.PropertyLeader}  ${data.PropertyPhone}</li>
                 </ul>
               </div>
@@ -68,16 +96,14 @@ export default {
                 <h5 id="test">正常</h5>
                 <ul class="info-list">
                   <li><span class='label'>项目名称 : </span>${data.ProjectName}</li>
-                  <li><span class='label'>项目名称 : </span>${data.ProjectName}</li>
+                  <li><span class='label'>项目地址 : </span>${data.Address}</li>
                   <li><span class='label'>安全负责人 : </span>${data.PropertyLeader}  ${data.PropertyPhone}</li>
                 </ul>
               </div>
             `
           }
           var infoBox = new BMapLib.InfoBox(this.map,html,{boxStyle:{background:"rgba(16,44,87,0.78)",width: "369px",minHeight:"165px",color:"white",borderRadius:"10px"},enableAutoPan: true
-          ,alignBottom: false,closeIconUrl:'warn.png',closeIconMargin: "14px 14px 0 0"});
-          infoBox.addEventListener("open", (e) => {
-          });
+          ,alignBottom: false,closeIconUrl:'close.png',closeIconMargin: "14px 14px 0 0",offset:new BMap.Size(0, 26)});
           return infoBox
         },
         setIcon(url,x = 32, y = 34){

@@ -2,7 +2,7 @@
 <div class="index flex">
     <div class="aside">
         <div class="chart-container box-bg">
-            <zw-card1 icon="icon-brokenlinegraph" title="消防救援统计" :showMore='true'>
+            <zw-card1 icon="icon-brokenlinegraph" title="消防救援统计" :showMore='true' @click="show3 = true">
                 <ul class="time-tab-list">
                     <li :class="['l',{active:activeIndex === key}]" v-for='(item,key) in sosCountType' @click="changeCountType(key)">{{item}}</li>
                 </ul>
@@ -26,9 +26,9 @@
         </div>
         <div class="operation">
             <span @click="toggleMap()"><i class="iconfont icon-Switchmap"></i></span>
-            <span @click="fullScreen = !fullScreen"><i class="iconfont icon-Switchmap"></i></span>
+            <span @click="fullScreen = !fullScreen"><i class="iconfont icon-Scale"></i></span>
         </div>
-        <div :class="['radar']" v-if="false">
+        <div :class="['radar']">
             <div class="radar-map-container">
                 <div id="radar-map" class="radar-map"></div>
             </div>
@@ -50,7 +50,9 @@
                     </div>
                 </div>
             </div>
-            <div :class="['circle-btn',{'circle-btn-alarm':item.IsEsists} ,  `circle-btn-${item.ID}`]" v-for="item in mapData.Data||[]" :key="item.ID">{{item.FormName.slice(0,2)}}<br>{{item.FormName.slice(2)}}</div>
+            <div :class="['circle-btn',{'circle-btn-alarm':item.IsEsists} ,  `circle-btn-${item.ID}`]"  v-for="item in mapData.Data||[]" :key="item.ID">
+                <router-link  :to="`/index/${item.ID}`">{{item.FormName.slice(0,2)}}<br>{{item.FormName.slice(2)}}</router-link>
+            </div>
         </div>
         <div :class="['baidu-map',{'hidden':!showBMap}]">
             <b-map ref="map"></b-map>
@@ -58,7 +60,7 @@
         <div class="data-item-content flex flex-center">
             <data-item name='项目数' :value="mapData.ProjectCount||0"></data-item>
             <data-item name='设备数' :value="mapData.DeviceCount||0"></data-item>
-            <data-item name='告警数' :value="mapData.AlarmCount||0"></data-item>
+            <data-item name='告警数' :value="mapData.AlarmCount||0" @click.native="show = true"></data-item>
         </div>
     </div>
     <div style="width:360px">
@@ -85,7 +87,7 @@
     <div class="aside box-bg right-side">
         <el-scrollbar>
             <transition-group tag="ul" name="list" class="list">
-                <li :class="{alarm:item.isAlarm}" v-for="(item,i) in projectList" :key="item.ProjectID" @click="selectProject(item,i)" @dblclick="changeRouter(item)">
+                <li :class="{alarm:item.isAlarm}" v-for="(item,i) in projectList" :key="item.ProjectID">
                     <div class="clearfix">
                         <h4 class="l">{{item.ProjectName}}</h4>
                         <div class="r" style="margin-right:20px;line-height:36px;font-size:24px;">
@@ -108,60 +110,47 @@
             </transition-group>
         </el-scrollbar>
     </div>
-    <el-dialog append-to-body title="实时告警" :visible.sync="show" width="1532px" class="zw-dialog">
+    <el-dialog append-to-body title="实时告警" top="20px" :visible.sync="show" width="1532px" class="zw-dialog table-dialog">
         <div class="monitor-alarm-dialog">
-            <Table :showOperation='false' :tableLabel="tableLabel"></Table>
+            <Table :showOperation='false' :showOperationColumn='false' :tableLabel="tableLabel" :getData="queryAlarmData"></Table>
+        </div>
+    </el-dialog>
+    <el-dialog append-to-body title="应急救援" top="20px" :visible.sync="show3" width="1532px" class="zw-dialog table-dialog">
+        <div class="monitor-alarm-dialog">
+            <Table :showOperation='false' :showOperationColumn='false' :tableLabel="tableLabel1" @cell-click="cellClick" :getData="queryPageOrders"></Table>
         </div>
     </el-dialog>
     <el-dialog append-to-body title="救援记录单" top="50px" :visible.sync="show1" width="1105px" class="zw-dialog">
         <div class="sos-dialog">
             <h4 class="flex">
-                <p><span class="label">单号日期：</span><span class="value">{{new Date()}}</span></p>
-                <p><span class="label">救援单号：</span><span class="value">{{'JYT1232032465'}}</span></p>
+                <p><span class="label">单号日期：</span><span class="value">{{orderInfo.OrderCreateDateTime}}</span></p>
+                <p><span class="label">救援单号：</span><span class="value">{{orderInfo.ID}}</span></p>
             </h4>
             <h5>基本信息</h5>
             <ul class="flex">
                 <li v-for="(item,i) in basicInfo" :key="i">
                     <span class="label" style="width:120px;">{{item.label}}:</span>
-                    <span class="value">{{item.prop}}</span>
+                    <span class="value">{{deviceInfo[item.prop]}}</span>
                 </li>
             </ul>
             <h5>救援进度</h5>
             <ul class="flex">
                 <li v-for="(item,i) in helpProgress" :key="i">
                     <span class="label" style="width:120px;">{{item.label}}:</span>
-                    <span class="value">{{item.prop}}</span>
+                    <span class="value">{{orderInfo[item.prop]}}</span>
                 </li>
             </ul>
             <h5>救援记录</h5>
             <ul class="flex">
                 <li v-for="(item,i) in helpRecord" :key="i">
                     <span class="label" style="width:120px;">{{item.label}}:</span>
-                    <span class="value">{{item.prop}}</span>
+                    <span class="value">{{orderInfo[item.prop]}}</span>
                 </li>
             </ul>
         </div>
     </el-dialog>
-    <el-dialog :modal="false" title="消防主机" top="20px" :visible.sync="show2" width="1576px" class="device-detail-dialog zw-dialog">
-        <div class="monitor-data flex">
-            <div class="monitor-data-left">
-                <h4>实时监测</h4>
-                <h5>消防主机<i class="r el-icon-star-off"></i></h5>
-                <div class="device-param">
-
-                </div>
-            </div>
-            <div class="monitor-data-border" style="margin-top:84px;">
-            </div>
-            <div class="monitor-data-center">
-
-            </div>
-            <div class="monitor-data-border" style="margin-top:35px;">
-            </div>
-            <div class="monitor-data-right">
-
-            </div>
-        </div>
+    <el-dialog :modal="false" :title="deviceName" top="20px" :visible.sync="show2" width="1576px" class="device-detail-dialog zw-dialog">
+        <device-detaile :id="deviceID" :projectId="projectId"></device-detaile>
     </el-dialog>
 </div>
 </template>
@@ -180,81 +169,155 @@ import Table from '../manage/layout/table.vue'
 import {
     Radar
 } from './radar.js'
-import('./radar.css')
+import './radar.css'
+import './index.scss'
 import china from '@/mapJson/allCity.json'
+import {HomePage, Orders, Alarm,Project} from '@/xiaoFangCloud/request/api.js'
+import deviceDetaile from './deviceDetaile.vue'
+const orderState={
+  1:'待完成',
+  2:'已完成',
+  3:'待接单',
+  4:'待派单',
+  5:'已逾期',
+  6:'未完成',
+  7:'误报',
+  8:'转单'
+}
+const alarmLevel = ["全部", "提示", "一般", "严重"]
 export default {
     data() {
         return {
             show:false,
             show1:false,
             show2:false,
-            showBMap: true,
+            show3:false,
+            showBMap: false,
             basicInfo:[
                 { prop:'ProjectName',label:'项目名称'},
                 { prop:'DeviceName',label:'告警设备'},
                 { prop:'AlarmTypeName',label:'告警类型'},
-                { prop:'AreaName',label:'区域名称'},
-                { prop:'SystemName',label:'系统名称'},
-                { prop:'FContact',label:'项目安全负责人'},
-                { prop:'ProjectName',label:'监管单位'},
-                { prop:'ProjectName',label:'监管安全负责人'},
-                { prop:'ProjectName',label:'物联单位'},
-                { prop:'ProjectName',label:'物联负责人'},
+                { prop:'City',label:'区域名称'},
+                { prop:'FormName',label:'系统名称'},
+                /* { prop:'FContact',label:'项目安全负责人'}, */
+                { prop:'RegulatoryName',label:'监管单位'},
+                { prop:'RegulatoryUser',label:'监管安全负责人'},
+                { prop:'PropertyName',label:'物联单位'},
+                { prop:'PropertyLeader',label:'物联负责人'},
             ],
             helpProgress:[
-                { prop:'ProjectName',label:'项目名称'},
-                { prop:'DeviceName',label:'告警设备'},
-                { prop:'AlarmTypeName',label:'告警类型'},
-                { prop:'AreaName',label:'区域名称'},
-                { prop:'SystemName',label:'系统名称'},
-                { prop:'FContact',label:'项目安全负责人'},
-                { prop:'ProjectName',label:'监管单位'},
-                { prop:'ProjectName',label:'监管安全负责人'},
+                { prop:'AlarmTime',label:'告警时间'},
+                { prop:'FCreatorUser',label:'确认人员'},
+                { prop:'OrderCreateDateTime',label:'确认时间'},
+                { prop:'OrderUser',label:'救援人员'},
+                { prop:'ReceivingOrderDateTime',label:'到场时间'},
+                { prop:'EndOrderDateTime',label:'完成时间'},
+                { prop:'ReceivingTime',label:'处理时长'},
             ],
             helpRecord:[
-                { prop:'ProjectName',label:'监管单位'},
-                { prop:'ProjectName',label:'监管安全负责人'},
+                { prop:'ProjectName',label:'拍照'},
+                { prop:'FDescription',label:'处理描述'},
             ],
             tableLabel:[
                 {
-                    prop:'DeviceName',
-                    label:'设备名称'
+                    prop:'FormName',
+                    label:'系统名称'
                 },
                 {
-                    prop: 'DataItemName',
-                    label: '数据标识',
+                    prop: 'ProjectName',
+                    label: '项目名称',
+                    width:160
+                },
+                {
+                    prop: 'AlarmTime',
+                    label: '告警时间',
+                    width:160
+                },
+                {
+                    prop: 'DeviceLedgerName',
+                    label: '设备名称',
+                    width:160
                 },
                 {
                     prop: 'AlarmTypeName',
-                    label: '告警类型名称'
-                },
-                {
-                    prop: 'LimitValue',
-                    label: '限制值'
-                },
-                {
-                    prop: 'TriggerType',
-                    label: '告警条件',
-                    formatter:(row, column, cellValue, index) => this.type[row.TriggerType-1] + row.LimitValue
+                    label: '告警类型',
                 },
                 {
                     prop: 'Duration',
-                    label: '持续时长(s)',
+                    label: '告警级别',
+                    formatter: (row)=> alarmLevel[row['AlarmLevel']]
                 },
                 {
-                    prop:'IsEnable',
-                    label:'是否启用',
-                    formatter:(row, column, cellValue, index) => row.IsEnable?'是':'否'
+                    prop:'OrderContent',
+                    label:'告警内容',
+                    width:160
                 },
                 {
-                    prop:'AlarmLevel',
-                    label:'告警级别',
-                    formatter:(row, column, cellValue, index) => this.alarmLevel[row.AlarmLevel]
+                    prop:'AlarmData',
+                    label:'当前值',
                 },
                 {
-                    prop:'AlarmKind',
-                    label:'告警种类',
-                    formatter:(row, column, cellValue, index) => row.AlarmKind == 1?'预警':'火警'
+                    prop:'OrderState',
+                    label:'确认进度',
+                    formatter:(row, column, cellValue, index) => orderState[row.OrderState]
+                },
+                {
+                    prop:'OrdersID',
+                    label:'救援单号',
+                },
+                {
+                    prop:'IsRecovery',
+                    label:'告警状态',
+                    formatter:(row, column, cellValue, index) => row.IsRecovery == 1?'已恢复':'未恢复'
+                }
+            ],
+            tableLabel1:[
+                {
+                    prop:'FormName',
+                    label:'系统名称'
+                },
+                {
+                    prop: 'ProjectName',
+                    label: '项目名称',
+                    width:160
+                },
+                {
+                    prop:'OrdersID',
+                    label:'救援单号',
+                },
+                {
+                    prop: 'DeviceLedgerName',
+                    label: '设备名称',
+                    width:160
+                },
+                {
+                    prop: 'AlarmTypeName',
+                    label: '告警类型',
+                },
+                {
+                    prop: 'AlarmTime',
+                    label: '告警时间',
+                    width:160
+                },
+                {
+                    prop: 'OrderCreateDateTime',
+                    label: '确认时间',
+                    width:160
+                },
+                {
+                    prop: 'RunningOrderDateTime',
+                    label: '到场时间',
+                    width:160
+                },
+                {
+                    prop: 'EndOrderDateTime',
+                    label: '完成时间',
+                    width:160
+                },
+                {
+                    prop:'IsRecovery',
+                    label:'救援状态',
+                    formatter:(row, column, cellValue, index) => row.IsRecovery == 1?'已恢复':'未恢复'
                 }
             ],
             DataDetail:[
@@ -482,6 +545,11 @@ export default {
             mapData:{},
             projectList:[],
             fireList:[],
+            deviceName:'',
+            deviceID:0,
+            projectId:0,
+            deviceInfo:{},
+            orderInfo:{}
         }
     },
     components: {
@@ -492,7 +560,8 @@ export default {
         zwCard1,
         bMap,
         dataItem,
-        Table
+        Table,
+        deviceDetaile
     },
     computed: {},
     mounted() {
@@ -509,6 +578,13 @@ export default {
             this.scoreNumber = Math.floor(Math.random(0, 1) * 100 + 1)
         }, 2000)
         this.queryData()
+        this.$websocket.onclose = () => {
+            this.$initWebSocket()
+            this.queryData()
+        }
+    },
+    beforeDestroy(){
+        this.$websocket.close()
     },
     methods: {
         toggleMap() {
@@ -740,51 +816,38 @@ export default {
                 }
                 const point = new BMap.Point(item.Flng,item.Flat)
                 let marker,icon,img,temp
-/*                 if(item.isAlarm||item.unNormal){
-                    img = require(`@/assets/image/marker/icon_wrong_${this.formID}.gif`)
-                    icon = Map.setIcon(img,75,75)
+                if(item.isAlarm){
+                    img = require(`@/assets/image/marker/icon-alarm.gif`)
                 }else{
-                    img = require(`@/assets/image/marker/icon_normal_${this.formID}.png`)
-                    icon = Map.setIcon(img,34,40)
-                } */
-                img = require(`@/assets/image/marker/icon_normal_1.png`)
-                icon = Map.setIcon(img,34,40)
+                    img = require(`@/assets/image/marker/icon-normal.gif`)
+                }
+                icon = Map.setIcon(img,54,54)
                 marker = new BMap.Marker(point,{icon:icon})
-/*                 if(item.isAlarm||item.unNormal){
+                if(item.isAlarm){
                     marker.setZIndex({zIndex:10})
-                } */
+                }
                 Map.map.addOverlay(marker)
                 resetView && Map.map.centerAndZoom(point, 8);
                 let infoBox = Map.setInfoWindow(item)
+              /*   if(item.isAlarm){
+                    infoBox.open(marker)
+                } */
+                let alarmData = item.Data&&item.Data[0]
+                if(alarmData){
+                  infoBox.addEventListener("open", (e) => {
+                      let id = alarmData.AlarmID
+                      let el = document.getElementById(id)
+                      el.onclick = () => {
+                          console.log(alarmData)
+                          this.show2 = true
+                          this.deviceID = alarmData.DeviceID
+                          this.projectId = alarmData.ProjectID
+                      }
+                  });
+                }
                 marker.addEventListener("click",function(e){
 		            infoBox.open(marker)
                 });
-                /* Map.setLabel(marker,item.ProjectName) */
-/*                 let label
-                if(item.isAlarm||item.unNormal){
-                    // Map.map.centerAndZoom(point, 11)
-                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(50,40)})
-                    label.setStyle({
-                      color:'red',
-                      borderColor:'white',
-                      padding:'4px 10px',
-                    })
-                }else{
-                    label = new BMap.Label(item.ProjectName,{offset:new BMap.Size(20,20)})
-                    label.setStyle({
-                      color:'#999999 ',
-                      backgroundColor:'rgb(227, 228, 228)',
-                      borderColor:'rgb(227, 228, 228)',
-                      padding:'0 10px',
-                    })
-                }
-                marker.setLabel(label)
-                marker.addEventListener('mouseover',e => {
-                  Map.openInfoWindow(temp,point)
-                })
-                marker.addEventListener('dblclick',e => {
-                  this.changeRouter(item)
-                }) */
             })
         },
         handleData(data) {
@@ -801,6 +864,9 @@ export default {
             this.projectList.forEach(item => {
                 item.isAlarm = item.Data.find(obj => obj.AlarmCount>0)
             })
+            this.fireList.forEach(item => {
+                item.isAlarm = item.Data&&item.Data.length>0
+            })
             this.$nextTick(() => {
                 this.showMarks()
             })
@@ -809,412 +875,66 @@ export default {
             this.$socket({
                 FAction: 'QueryAllFormAllProject'
             }, this.handleData)
-        }
+        },
+        /**
+         * 获取实时告警数据
+         */
+        queryAlarmData(data){
+            return HomePage({
+                FAction:'QueryPageAlarmData',
+                ...data
+            })
+        },
+        /**
+         * 获取救援记录单
+         */
+        queryPageOrders(data){
+            return HomePage({
+                FAction:'QueryPageOrders',
+                ...data
+            })
+        },
+        cellClick(data){
+            let {row,column} = data
+            if(column.property == "OrdersID"){
+                this.show1 = true
+                this.queryOrderRecord(row)
+                this.queryDeviceBasisInfo(row)
+            }
+        },
+        /**
+         * 获取设备详情
+         */
+        queryDeviceBasisInfo(row){
+            HomePage({
+                FAction:'QueryDeviceBasisInfo',
+                DeviceID:row.DeviceID,
+                ProjectID:row.ProjectID
+            })
+            .then((result) => {
+                this.deviceInfo = result.FObject[0]||{}
+            }).catch((err) => {
+                
+            });
+        },
+        /**
+         * 查询工单记录
+         */
+        queryOrderRecord(row){
+            Orders({
+                FAction:'QueryOrderRecord',
+                ID:row.OrdersID
+            })
+            .then((result) => {
+                this.orderInfo = result.FObject.Data[0]||{}
+            }).catch((err) => {
+                console.log(err)
+            });
+        },
     }
 }
 </script>
 
 <style lang="scss">
-$url:'../../../assets/image/';
 
-.index {
-    height: 972px;
-    margin-top: 8px;
-    justify-content: space-between;
-
-    .box-bg {
-        background: rgba(5, 34, 86, .4);
-        -webkit-box-shadow: 0 0 8px 8px #052256 inset;
-        box-shadow: inset 0 0 8px 8px #052256;
-        border-radius: 10px 6px 6px 10px;
-    }
-    >div {
-        height: 100%;
-
-        .chart-container {
-            width: 100%;
-            height: 480px;
-            ul.time-tab-list {
-                width: 192px;
-                margin: 16px auto 0px;
-                border: 1px solid rgba(83, 123, 174, 1);
-                border-radius: 6px;
-                overflow: hidden;
-
-                li {
-                    width: 64px;
-                    height: 34px;
-                    line-height: 34px;
-                    border-radius: 6px;
-                    font-size: 14px;
-                    color: #F1F1F2;
-                    cursor: pointer;
-                }
-
-                li.active {
-                    background: linear-gradient(0deg, rgba(0, 79, 177, 1), rgba(16, 137, 172, 1));
-                }
-            }
-            .chart-box {
-                height: 420px;
-                position:relative;
-                .data-item-content{
-                    width:100%;
-                    position:absolute;
-                    bottom:20px;
-                    .data-item+.data-item{
-                        margin-left:60px;
-                    }
-                }
-            }
-        }
-
-        .chart-container+.chart-container {
-            margin-top: 10px;
-        }
-    }
-
-    .aside {
-        width: 380px;
-    }
-    .aside.right-side{
-        .list{
-            >li{
-                width: 100%;
-                height: 243px;
-                border-bottom: 1px dotted #2B76B2;
-                cursor: pointer;
-                h4{
-                    width: 188px;
-                    height: 44px;
-                    line-height: 36px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    background: url(#{$url}/cloud/index/bg_4.png);
-                    font-size:18px;
-                    font-weight:400;
-                    color:rgba(158,229,243,1);
-                }
-                .statu{
-                    width:72px;
-                    height:72px;
-                    line-height: 72px;
-                    position: absolute;
-                    top: 50%;
-                    left: 20px;
-                    font-size: 28px;
-                    font-weight: 500;
-                    color: #017901;
-                    transform: translateY(-50%) scaleY(1.9);
-                    border:1px solid rgba(1,150,7,1);
-                    border-radius:9px;
-                    box-shadow:  0 0 14px rgba(1,150,7,1);
-                    span{
-                        display: inline-block;
-                        transform: scaleY(0.6)
-                    }
-                    &:after{
-                        content: ' ';
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        background-image: linear-gradient(44deg, rgba(0, 255, 51, 0) 50%, #00ff33 100%);
-                        width: 50%;
-                        height: 50%;
-                        animation: radar-beam 10s infinite;
-                        animation-timing-function: linear;
-                        transform-origin: bottom right;
-                        border-radius: 100% 0 0 0;
-                    }
-                }
-                @keyframes radar-beam {
-                  0% {
-                    transform: rotate(0deg);
-                  }
-
-                  100% {
-                    transform: rotate(360deg);
-                  }
-                }
-                .list-content{
-                    height: 183px;
-                    position: relative;
-                    .param{
-                        padding-left: 40px;
-                        position: absolute;
-                        top: 50%;
-                        left: 90px;
-                        transform: translateY(-50%);
-                        li{
-                            width: 120px;
-                            height: 30px;
-                            line-height: 30px;
-                            font-size: 20px;
-                            text-align: left;
-                            .value{
-                                font-size: 20px;
-                                margin-left: 10px;
-                                line-height: 30px;
-                            }
-                            .iconfont{
-                                font-size:26px;
-                                vertical-align: baseline;
-                            }
-                        }
-                        li:nth-of-type(1),li:nth-of-type(2){
-                            margin-bottom: 30px
-                        }
-                    }
-                }
-            }
-            >li.alarm{
-                background:url(#{$url}index/alarm.png)!important;
-                background-size: 100% 100%!important;
-                .statu{
-                    border: 1px solid #fb0d0d;
-                    -webkit-box-shadow: 0 0 14px #fb0d0d;
-                    box-shadow: 0 0 14px #fb0d0d;
-                    color: #fb0d0d;
-                    &:after{
-                        background-image: linear-gradient(44deg,rgba(251,13,13,0) 42%,#fb0d0d);
-                    } 
-                }
-            }
-            >li.active{
-                background: rgba($color: #2B76B2, $alpha: 0.3);
-            }
-        }
-    }
-    .map-container {
-        width: 764px;
-        position: relative;
-        /* transform-style: preserve-3d; */
-        transition: all 0.5s;
-
-        div.title {
-            width: 278px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 20px;
-            margin: 5px auto 0 auto;
-            position: relative;
-            z-index: 10;
-            background: url(#{$url}cloud/index/device-title.png);
-        }
-
-        .operation {
-            position: absolute;
-            top: 20px;
-            right: 36px;
-            z-index: 10;
-
-            span {
-                display: inline-block;
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
-                background: rgba(84, 177, 221, .32);
-                border-radius: 50%;
-                box-shadow: 0 0 6px 6px rgba(84, 177, 221, 0.42);
-                cursor: pointer;
-
-                i {
-                    font-size: 24px;
-                }
-            }
-
-            span+span {
-                margin-left: 20px;
-            }
-        }
-
-        .radar {
-            width: 680px;
-            height: 680px;
-            margin-top: 28px;
-            z-index: 8;
-            .radar-map {
-                width: 94%;
-            }
-            .circle-btn{
-                position: absolute;
-                width: 78px;
-                height: 94px;
-                display: flex;
-                z-index: 11;
-                align-items: center;
-                justify-content: center;
-                font-size: 20px;
-                color: #A5EFFC;
-                box-shadow: 0 0 15px #65C11D inset;
-                border-radius: 50%;
-                cursor: pointer;
-                &:after{
-                    content: '';
-                    width: 88px;
-                    height: 104px;
-                    border: 2px solid #65C11D;
-                    border-radius: 50%;
-                    position: absolute;
-                    top: -7px;
-                    left: -7px;
-                }
-                &:hover{
-                    font-size: 16px;
-                }
-            }
-            .circle-btn.circle-btn-alarm{
-                box-shadow: 0 0 15px #FB0D0D inset;
-                &:after{
-                    border: 2px solid #FB0D0D;
-                }
-            }
-            .circle-btn-1,.circle-btn-2{
-                top: 10px;
-            }
-            .circle-btn-1,.circle-btn-3{
-                left:0px
-            }
-            .circle-btn-2,.circle-btn-4{
-                right: 0px
-            }
-            .circle-btn-3,.circle-btn-4{
-                bottom: 0
-            }
-        }
-
-        .baidu-map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            z-index: 9;
-            transition: all ease-in-out 0.5s;
-        }
-
-        .baidu-map.hidden {
-            opacity: 0;
-            z-index: 7;
-        }
-        .data-item-content{
-            width:100%;
-            position:absolute;
-            bottom:20px;
-            z-index:10;
-            .data-item+.data-item{
-                margin-left:60px;
-            }
-        }
-    }
-
-    .map-container.full-screen {
-        width: 1920px;
-        height: 1080px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        background: rgba(5, 34, 86, 1);
-    }
-}
-.monitor-alarm-dialog{
-    height: 687px;
-    .report{
-        .zw-table::before{
-            display: none;
-        }
-        .zw-pagination{
-            bottom: 0;
-        }
-    }
-}
-.sos-dialog{
-    color: #BDE3EE;
-    h4{
-        justify-content: flex-end;
-        font-size:18px;
-        font-weight:400;
-    }
-    h5{
-        margin-top:20px;
-        font-size: 18px;
-        font-weight:400;
-        &:before{
-            content: '';
-            display: inline-block;
-            width:4px;
-            height:12px;
-            margin-right: 10px;
-            background:rgba(189,227,238,1);
-        }
-    }
-    ul{
-        flex-wrap: wrap;
-        font-size: 16px;
-        font-weight: 400;
-        li{
-            width: 50%;
-            line-height: 50px;
-        }
-    }
-}
-.device-detail-dialog.zw-dialog{
-    .el-dialog__body{
-        padding: 0;
-        .monitor-data{
-            height: 927px;
-            color: #BDE3EE;
-            text-align: left;
-            h4{
-                font-size: 18px;
-                font-weight:400;
-                &:before{
-                    content: '';
-                    display: inline-block;
-                    width:4px;
-                    height:12px;
-                    margin-right: 10px;
-                    background:rgba(189,227,238,1);
-                }
-            }
-            &-left{
-                width: 432px;
-                height: 100%;
-                padding-right: 35px;
-                box-sizing: border-box;
-                h4{
-                    margin-top:27px;
-                    padding-left: 50px;
-                }
-                h5{
-                    margin-top: 20px;
-                    padding-left: 64px;
-                    font-size: 16px;
-                    color: #525E7E;
-                    i{
-                        font-size: 24px;
-                        color:#2A91FC
-                    }
-                }
-            }
-            &-border{
-                width:3px;
-                height:753px;
-                background:linear-gradient(180deg,rgba(9,38,75,1),rgba(60,114,181,1),rgba(21,67,123,1),rgba(60,114,181,1),rgba(7,34,73,1));
-                opacity:0.59;
-            }
-            &-center{
-                width: 660px;
-                height: 100%;
-            }
-            &-right{
-                width: 478px;
-                height: 100%;
-            }
-        }
-    }
-}
 </style>

@@ -29,6 +29,7 @@
                style="width: 100%"
                header-row-class-name="el-table-header"
                :row-class-name="tableRowClassName"
+               @cell-click="cellClick"
                >
                <el-table-column label="序号" width="80px">
                    <template slot-scope="scope">
@@ -160,7 +161,7 @@ export default {
                     this.queryData()
                 }
             }).catch((err) => {
-                
+                console.log(err)
             });
         },
         handleCurrentChange(val){
@@ -276,6 +277,9 @@ export default {
               return 'even-row';
             }
         },
+        cellClick(row, column, cell, event){
+            this.$emit('cell-click',{row, column, cell, event})
+        }
     }
 }
 </script>

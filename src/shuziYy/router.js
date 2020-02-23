@@ -64,7 +64,20 @@ export default new Router({
                         name:'告警配置'
                     }
                 },
-
+                {
+                    path: 'historyAlarm', //历史告警
+                    component: () => import('@/xiaoFangCloud/views/manage/alarm/historyAlarm.vue'),
+                    meta: {
+                        name: '历史告警'
+                    }
+                },
+                {
+                    path: 'sos', //历史告警
+                    component: () => import('@/xiaoFangCloud/views/manage/alarm/sos.vue'),
+                    meta: {
+                        name: '应急救援'
+                    }
+                },
                 /************************************项目管理 ********************************************/
                 {
                     path:'projectInfo', //项目信息

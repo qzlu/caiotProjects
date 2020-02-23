@@ -68,7 +68,7 @@ export default {
       tableLabel: [
         {
             prop:'FormName',
-            label:'系统名称'
+            label:'应急系统'
         },
         {
             prop: 'ShortName',
@@ -81,13 +81,13 @@ export default {
             width:160
         },
         {
+            prop: 'AlarmTypeName',
+            label: '告警类型',
+        },
+        {
             prop: 'DeviceName',
             label: '设备名称',
             width:160
-        },
-        {
-            prop: 'AlarmTypeName',
-            label: '告警类型',
         },
         {
             prop: 'Duration',
@@ -116,7 +116,11 @@ export default {
             prop:'IsRecovery',
             label:'告警状态',
             formatter:(row, column, cellValue, index) => row.IsRecovery == 1?'已恢复':'未恢复'
-        }
+        },
+        {
+            prop:'RecoveryTime',
+            label:'恢复时间',
+        },
       ],
       time: [new Date(), new Date()], //时间选择参数
       AlarmType: {}, //告警类型

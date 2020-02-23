@@ -1,6 +1,6 @@
 <template>
     <div :class="['home','cloud',{inIframe}]" style="position:relative">
-        <audio id="myAudio" autoplay="false">
+        <audio id="myAudio">
             <source src="@/assets/audio/new_warn.mp3" type="audio/mpeg">
         </audio>
         <div class="header">
@@ -60,7 +60,7 @@ export default {
         return{
             show:false,
             isOpen:localStorage.getItem('open')||1, //控制报警声音
-            formList:['','数字消防平台','数字电梯平台','数字充电桩平台','数字危化品平台'],
+            formList:['','数字消防云平台','数字电梯云平台','数字充电桩云平台','数字危化品云平台'],
             inIframe:sessionStorage.getItem('inIframe'),
             project:null,
         }
@@ -89,12 +89,15 @@ export default {
         projectList(){
           if(this.$store.state.projectList.length === 0) return []
           let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
-          console.log(this.$store.state.projectList)
           this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
           return this.$store.state.projectList
         }
     },
     watch:{
+        $route(){
+            let projectID = sessionStorage.getItem('projectID') ||this.$store.state.projectList[0].ProjectID
+            this.project = this.$store.state.projectList.find(item => item.ProjectID == projectID) || this.$store.state.projectList[0]
+        }
     },
     beforeCreate(){
     },
@@ -143,7 +146,6 @@ export default {
          * 
          */
         select(project){
-            console.log(project)
             sessionStorage.setItem('projectID',project.ProjectID)
             sessionStorage.setItem('projectName',project.ProjectName)
             location.reload()
